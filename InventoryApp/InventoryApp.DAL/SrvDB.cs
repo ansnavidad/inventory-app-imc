@@ -16,23 +16,17 @@ namespace InventoryApp.DAL
             try
             {
                 //conn = Mdb.getConnectionString("srvrdb");
-                try
+               try
                 {
-                    return "Data Source=Source=localhost; Initial Catalog=Example_MVVM; Integrated Security=Yes; providerName=System.Data.SqlClient";
+                    conn = System.Configuration.ConfigurationManager.ConnectionStrings["LocalDB"].ToString();
+   
                 }
                 catch (Exception ex)
                 {
-                    return "Data Source=Source=localhost; Initial Catalog=Example_MVVM; Integrated Security=Yes; providerName=System.Data.SqlClient";
-
-                    //return "Data Source=IMCDEV10-PC; Initial Catalog=ExampleE; User ID=sa; Password=inmeta;";
-
-                    //return "Data Source=JUANPABLO-PC; Initial Catalog=TAE; User ID=sa; Password=inmeta;";
-
-                    //return "Data Source=JUANPABLO-HP; Initial Catalog=TAE; User ID=sa; Password=inmeta;";
-
-                    //return "Data Source=RAFAEL-PC; Initial Catalog=TAE; User ID=sa; Password=inmeta;";
+                    return "Data Source=localhost;Initial Catalog=Example_MVVM;Integrated Security=Yes;";
                 }
-            }
+           }
+                  
             catch (Exception ex)
             {
                 throw ex;

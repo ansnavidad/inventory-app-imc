@@ -40,12 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Articulo.cs" />
-    <Compile Include="ArticuloCollection.cs" />
-    <Compile Include="Categoria.cs" />
     <Compile Include="CategoriaArticuloModel.cs" />
-    <Compile Include="Item.cs" />
-    <Compile Include="ItemCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewItemsModel.cs" />
   </ItemGroup>

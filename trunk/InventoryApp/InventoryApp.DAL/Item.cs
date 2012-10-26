@@ -8,27 +8,10 @@ namespace InventoryApp.DAL
 {
     public class Item : Articulo, INotifyPropertyChanged
     {
-        private Articulo _articulo;
         private string _sku;
         private string _serialNbr;
         private float _precio;
         private float _imputesto;
-
-        private Articulo Articulo
-        {
-            get { return _articulo; }
-            set
-            { 
-                if(_articulo != value)
-                {
-                    _articulo = value;
-                    if(PropertyChanged != null)
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs("Articulo"));
-                    }
-                }
-            }
-        }
 
         private string Sku
         {

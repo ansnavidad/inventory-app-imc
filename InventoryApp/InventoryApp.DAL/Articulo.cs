@@ -11,6 +11,9 @@ namespace InventoryApp.DAL
     {
         private long _unidArticulo;
         private string _nombre;
+        float _peso;
+        string _color;
+        Categoria categoria;
 
         public string Nombre
         {
@@ -52,6 +55,45 @@ namespace InventoryApp.DAL
             }
         }
 
+        public string Color
+        {
+            get
+            {
+                return _color;
+            }
+
+            set
+            {
+                if (_color != value)
+                {
+                    _color = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Color"));
+                    }
+                }
+            }
+        }
+
+        public float Peso
+        {
+            get
+            {
+                return _peso;
+            }
+
+            set
+            {
+                if (_peso != value)
+                {
+                    _peso = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Peso"));
+                    }
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

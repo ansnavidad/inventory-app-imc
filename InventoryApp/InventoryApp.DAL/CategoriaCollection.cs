@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace InventoryApp.DAL
 {
-    class CategoriaCollection : ObservableCollection<Categoria>
+    public class CategoriaCollection : ObservableCollection<Categoria>
     {          
 
         public CategoriaCollection()

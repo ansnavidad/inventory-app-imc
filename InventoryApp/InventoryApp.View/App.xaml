@@ -4,6 +4,6 @@
              xmlns:viewModel="clr-namespace:InventoryApp.ViewModel;assembly=InventoryApp.ViewModel"
              StartupUri="ItemACView.xaml">
     <Application.Resources>
-            <viewModel:ItemACViewModel x:Key="itemACViewModel" />
+            <!--<viewModel:ItemACViewModel x:Key="itemACViewModel" />-->
     </Application.Resources>
 </Application>

@@ -10,7 +10,7 @@ namespace InventoryApp.DAL
 
         public ArticuloCollection GetArticulos(Categoria categoria)
         {
-
+            return null;
         }
 
 

@@ -23,7 +23,7 @@ namespace InventoryApp.DAL
                 }
                 catch (Exception ex)
                 {
-                    return "Data Source=JUANPABLO-PC; Initial Catalog=DBJP; User ID=sa; Password=inmeta;";
+                    return "Data Source=localhost; Initial Catalog=Example_MVVM; Integrated Security=True;";
                 }
             }
             catch (Exception ex)

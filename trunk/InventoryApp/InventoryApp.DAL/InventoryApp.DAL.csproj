@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Articulo.cs" />
     <Compile Include="ArticuloCollection.cs" />
+    <Compile Include="ArticuloDataMapper.cs" />
     <Compile Include="Categoria.cs" />
     <Compile Include="CategoriaCollection.cs" />
     <Compile Include="Class1.cs" />

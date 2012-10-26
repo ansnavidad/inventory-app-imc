@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace InventoryApp.DAL
 {
-    public class Categoria
+    public class Categoria : INotifyPropertyChanged
     {
         private long _unidCategoria;
         private string _nombre;
@@ -14,10 +15,18 @@ namespace InventoryApp.DAL
         {
             get
             {
-                throw new System.NotImplementedException();
+                return _nombre;
             }
             set
             {
+                if (_nombre != value)
+                {
+                    _nombre = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Nombre"));
+                    }
+                }
             }
         }
 
@@ -25,11 +34,21 @@ namespace InventoryApp.DAL
         {
             get
             {
-                throw new System.NotImplementedException();
+                return _unidCategoria;
             }
             set
             {
+                if (_unidCategoria != value)
+                {
+                    _unidCategoria = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("UnidCategoria"));
+                    }
+                }
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -7,21 +7,13 @@ namespace InventoryApp.DAL
 {
     class ArticuloDataMapper
     {
-        public ArticuloCollection GetArticulos()
-        {
-        }
 
         public ArticuloCollection GetArticulos(Categoria categoria)
         {
+
         }
 
-        public void InsertArticulo()
-        {
-        }
 
-        public void EliminarArticulo()
-        {
-        }
 
     }
 }

@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace InventoryApp.View
 {
     /// <summary>
-    /// Lógica de interacción para CatalogView.xaml
+    /// Lógica de interacción para CatalogItemView.xaml
     /// </summary>
-    public partial class CatalogView : Window
+    public partial class CatalogItemView : Window
     {
-        public CatalogView()
+        public CatalogItemView()
         {
             InitializeComponent();
         }

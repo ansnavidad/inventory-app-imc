@@ -18,6 +18,7 @@ namespace InventoryApp.DAL
             {
                 //store con parametro
             }
+            return null;
         }
 
         public void insertItems()

@@ -11,6 +11,12 @@ namespace InventoryApp.DAL
         private long _unidCategoria;
         private string _nombre;
 
+        public Categoria(long unidCategoria, string nombre)
+        {
+            this._nombre = nombre;
+            this._unidCategoria = unidCategoria;
+        }
+
         public string Nombre
         {
             get

@@ -9,10 +9,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryApp.View", "Invent
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryApp.DAL", "InventoryApp.DAL\InventoryApp.DAL.csproj", "{85AA51E1-F7B7-488C-A286-1E4015501512}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALTestProject", "DALTestProject\DALTestProject.csproj", "{C09C94F8-AE02-4703-8CC1-79984D2EA099}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E375EDE2-4A68-4FF7-BB0C-D4390C162FDF}"
+	ProjectSection(SolutionItems) = preProject
+		InventoryApp.vsmdi = InventoryApp.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
 		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = InventoryApp.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +75,16 @@ Global
 		{85AA51E1-F7B7-488C-A286-1E4015501512}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{85AA51E1-F7B7-488C-A286-1E4015501512}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{85AA51E1-F7B7-488C-A286-1E4015501512}.Release|x86.ActiveCfg = Release|Any CPU
+		{C09C94F8-AE02-4703-8CC1-79984D2EA099}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C09C94F8-AE02-4703-8CC1-79984D2EA099}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C09C94F8-AE02-4703-8CC1-79984D2EA099}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C09C94F8-AE02-4703-8CC1-79984D2EA099}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C09C94F8-AE02-4703-8CC1-79984D2EA099}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C09C94F8-AE02-4703-8CC1-79984D2EA099}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C09C94F8-AE02-4703-8CC1-79984D2EA099}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C09C94F8-AE02-4703-8CC1-79984D2EA099}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C09C94F8-AE02-4703-8CC1-79984D2EA099}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C09C94F8-AE02-4703-8CC1-79984D2EA099}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

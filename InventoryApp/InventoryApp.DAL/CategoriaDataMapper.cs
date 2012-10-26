@@ -7,9 +7,13 @@ namespace InventoryApp.DAL
 {
     class CategoriaDataMapper
     {
-        public ItemCollection getItems()
+        public CategoriaDataMapper getCategorias()
         {
             
+        }
+
+        public CategoriaDataMapper getCategorias(Categoria categoria)
+        {
         }
     }
 }

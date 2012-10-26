@@ -96,6 +96,14 @@ namespace InventoryApp.DAL
             }
         }
 
+        public Articulo(long unidArticulo, string nombre, float peso, string color, Categoria categoria)
+        {
+            this._unidArticulo = unidArticulo;
+            this._nombre = nombre;
+            this._peso = peso;
+            this._color = color;
+            this.categoria = categoria;
+        }
         public event PropertyChangedEventHandler PropertyChanged;
     }
 

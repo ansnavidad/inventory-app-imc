@@ -22,7 +22,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="InventoryApp.DAL.ItemCollection">
+  <Class Name="InventoryApp.DAL.ItemCollection" Collapsed="true">
     <Position X="0.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -32,9 +32,10 @@
   <Class Name="InventoryApp.DAL.Categoria">
     <Position X="2.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAACAgAAAAAAAAAAAAAAAAAYAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAACAgAAAgAAAAAAAAAAAAAYAAAA=</HashCode>
       <FileName>Categoria.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

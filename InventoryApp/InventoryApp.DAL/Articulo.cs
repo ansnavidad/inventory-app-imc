@@ -15,6 +15,7 @@ namespace InventoryApp.DAL
         string _color;
         Categoria categoria;
 
+        
         public string Nombre
         {
             get

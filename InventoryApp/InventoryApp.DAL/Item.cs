@@ -13,7 +13,7 @@ namespace InventoryApp.DAL
         private float _precio;
         private float _imputesto;
 
-        private string Sku
+        public string Sku
         {
             get { return _sku; }
             set
@@ -29,7 +29,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        private string SerialNbr
+        public string SerialNbr
         {
             get { return _serialNbr; }
             set
@@ -45,7 +45,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        private float Precio
+        public float Precio
         {
             get { return _precio; }
             set
@@ -61,7 +61,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        private float Imputesto
+        public float Imputesto
         {
             get { return _imputesto; }
             set

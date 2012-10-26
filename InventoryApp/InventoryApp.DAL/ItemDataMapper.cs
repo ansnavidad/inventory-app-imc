@@ -104,7 +104,7 @@ namespace InventoryApp.DAL
 
         public void deleteItems(Item item)
         {
-            SrvDB.ExecuteNonQuery("EXEC SP_DELETE_ITEM @ = " + item);
+            //SrvDB.ExecuteNonQuery("EXEC SP_DELETE_ITEM @ = " + item);
         }
 
         public void updateItems(Item item)

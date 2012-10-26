@@ -5,15 +5,24 @@ using System.Text;
 
 namespace InventoryApp.DAL
 {
-    class CategoriaDataMapper
+    public class CategoriaDataMapper
     {
-        public CategoriaDataMapper getCategorias()
+        public CategoriaCollection GetCategorias()
         {
-            
+
         }
 
-        public CategoriaDataMapper getCategorias(Categoria categoria)
+        public void InsertCategoria()
         {
+
+        }
+
+        public void EliminarCategoria()
+        {
+
         }
     }
 }
+
+sp_get_categoria
+    select

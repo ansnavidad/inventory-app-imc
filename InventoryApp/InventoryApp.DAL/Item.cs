@@ -12,6 +12,23 @@ namespace InventoryApp.DAL
         private string _serialNbr;
         private float _precio;
         private float _imputesto;
+        private long _idItem;
+
+        public long IdItem
+        {
+            get { return _idItem; }
+            set
+            {
+                if (_idItem != value)
+                {
+                    _idItem = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("IdItem"));
+                    }
+                }
+            }
+        }
 
         public string Sku
         {

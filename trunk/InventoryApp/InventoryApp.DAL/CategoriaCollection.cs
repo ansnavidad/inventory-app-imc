@@ -6,8 +6,12 @@ using System.Collections.ObjectModel;
 
 namespace InventoryApp.DAL
 {
-    public class ItemCollection : ObservableCollection<Item>
-    {
-        public ItemCollection() { }
+    class CategoriaCollection : ObservableCollection<Categoria>
+    {          
+
+        public CategoriaCollection()
+        {
+            
+        }
     }
 }

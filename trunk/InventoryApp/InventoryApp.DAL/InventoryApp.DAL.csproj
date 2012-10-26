@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Articulo.cs" />
+    <Compile Include="ArticuloCollection.cs" />
     <Compile Include="Categoria.cs" />
+    <Compile Include="CategoriaCollection.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="iNotifyPropertyChanged.cs" />
     <Compile Include="Item.cs" />

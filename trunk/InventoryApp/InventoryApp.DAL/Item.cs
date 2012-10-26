@@ -77,6 +77,13 @@ namespace InventoryApp.DAL
             }
         }
 
+        public Item(string sku, string serialNbr, float precio, float imputesto) { 
+            this._sku = sku;
+            this._serialNbr = serialNbr;
+            this._precio = precio;
+            this._imputesto = imputesto;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
     

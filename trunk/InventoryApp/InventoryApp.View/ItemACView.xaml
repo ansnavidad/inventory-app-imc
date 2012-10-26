@@ -1,8 +1,7 @@
 ﻿<Window x:Class="InventoryApp.View.ItemACView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:viewModel="clr-namespace:InventoryApp.ViewModel;assembly=InventoryApp.ViewModel"
-        DataContext="{StaticResource itemACViewModel}"
+        
         Title="Alta / Cambios Item" Height="296" Width="353">
     <Window.Resources>
     </Window.Resources>

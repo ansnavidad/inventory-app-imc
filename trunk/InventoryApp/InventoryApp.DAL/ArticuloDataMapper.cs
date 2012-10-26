@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 
+
 namespace InventoryApp.DAL
 {
     class ArticuloDataMapper

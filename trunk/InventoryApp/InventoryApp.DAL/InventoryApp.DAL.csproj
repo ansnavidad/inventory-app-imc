@@ -46,7 +46,13 @@
     <Compile Include="ArticuloDataMapper.cs" />
     <Compile Include="Categoria.cs" />
     <Compile Include="CategoriaCollection.cs" />
+<<<<<<< .mine
     <Compile Include="CategoriaDataMapper.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="iNotifyPropertyChanged.cs" />
+=======
+    <Compile Include="CategoriaDataMapper.cs" />
+>>>>>>> .r21
     <Compile Include="Item.cs" />
     <Compile Include="ItemCollection.cs" />
     <Compile Include="ItemDataMapper.cs" />

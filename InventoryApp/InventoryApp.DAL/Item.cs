@@ -77,7 +77,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public Item(string sku, string serialNbr, float precio, float imputesto) { 
+        public Item(Articulo articulo, string sku, string serialNbr, float precio, float imputesto):base(articulo) {
             this._sku = sku;
             this._serialNbr = serialNbr;
             this._precio = precio;

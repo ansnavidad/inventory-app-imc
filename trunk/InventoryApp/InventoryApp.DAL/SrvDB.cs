@@ -18,13 +18,13 @@ namespace InventoryApp.DAL
                 //conn = Mdb.getConnectionString("srvrdb");
                 try
                 {
-                    return "Data Source=IMCDEV10-PC; Initial Catalog=ExampleE; User ID=sa; Password=inmeta;";
+                    return "Data Source=Source=localhost; Initial Catalog=Example_MVVM; Integrated Security=Yes; providerName=System.Data.SqlClient";
                 }
                 catch (Exception ex)
                 {
-                    //return "Data Source=Source=localhost; Initial Catalog=TAE; Integrated Security=Yes; providerName=System.Data.SqlClient";
+                    return "Data Source=Source=localhost; Initial Catalog=Example_MVVM; Integrated Security=Yes; providerName=System.Data.SqlClient";
 
-                    return "Data Source=IMCDEV10-PC; Initial Catalog=ExampleE; User ID=sa; Password=inmeta;";
+                    //return "Data Source=IMCDEV10-PC; Initial Catalog=ExampleE; User ID=sa; Password=inmeta;";
 
                     //return "Data Source=JUANPABLO-PC; Initial Catalog=TAE; User ID=sa; Password=inmeta;";
 

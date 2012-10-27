@@ -47,6 +47,7 @@
     <Compile Include="Categoria.cs" />
     <Compile Include="CategoriaCollection.cs" />
     <Compile Include="CategoriaDataMapper.cs" />
+    <Compile Include="IDataMapper.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemCollection.cs" />
     <Compile Include="ItemDataMapper.cs" />

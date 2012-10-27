@@ -23,7 +23,8 @@ namespace InventoryApp.DAL
                 }
                 catch (Exception ex)
                 {
-                    return "Data Source=localhost;Initial Catalog=Example_MVVM;Integrated Security=Yes;";
+                    //return "Data Source=192.168.0.15\sql2005;Initial Catalog=Example_MVVM;User";
+                    return @"Data Source=192.168.0.15\SQL2005;Initial Catalog=Example_MVVM;User ID=sa; Password=4dmin;";
                 }
            }
                   

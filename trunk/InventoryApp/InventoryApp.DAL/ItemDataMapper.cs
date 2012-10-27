@@ -8,12 +8,13 @@ namespace InventoryApp.DAL
 {
     public class ItemDataMapper
     {
-        public ItemCollection getItems(Item item)
+        public Item getItems(Item item)
         {
+            Item itemRes = null;
             ItemCollection res = new ItemCollection();
             if (item != null)
             {
-                DataTable dt = SrvDB.ExecuteQuery("SP_GET_ITEM_ID_ARTICULO @ID_ARTICULO = " + item.UnidArticulo);
+                DataTable dt = SrvDB.ExecuteQuery("SP_GET_ITEM_ID_ITEM @ID_ITEM = " + item.IdItem);
 
                 dt.AsEnumerable().ToList().ForEach(row =>
                 {
@@ -24,18 +25,24 @@ namespace InventoryApp.DAL
                             , row.IsNull("PESO") ? 0 : (float)Convert.ToDouble(row["PESO"])
                             , row.IsNull("COLOR") ? "" : row["COLOR"].ToString()
                             , new Categoria(row.IsNull("ID_CATEGORIA") ? 0 : Convert.ToInt64(row["ID_CATEGORIA"])
-                            , row.IsNull("CATEGORIA") ? "" : row["CATEGORIA"].ToString()))
-
+                            , row.IsNull("CATEGORIA") ? "" : row["CATEGORIA"].ToString())
+                            )
+                            , row.IsNull("ID_ITEM") ? 0 : Convert.ToInt64(row["ID_ITEM"].ToString())
                             , row.IsNull("SKU") ? "" : row["SKU"].ToString()
                             , row.IsNull("SERIE") ? "" : row["SERIE"].ToString()
                             , row.IsNull("PRECIO") ? 0 : (float)Convert.ToDouble(row["PRECIO"])
                             , row.IsNull("IMPUESTO") ? 0 : (float)Convert.ToDouble(row["IMPUESTO"])
                         ));
                 }
-                ); 
+                );
+
+                if (res.Count >= 0)
+                {
+                    itemRes = res[0];
+                }
             }
 
-            return res;
+            return itemRes;
         }
 
         public void insertItems(Item item)
@@ -69,7 +76,7 @@ namespace InventoryApp.DAL
                         , row.IsNull("COLOR") ? "" : row["COLOR"].ToString()
                         ,new Categoria(row.IsNull("ID_CATEGORIA") ? 0 : Convert.ToInt64(row["ID_CATEGORIA"])
                         , row.IsNull("CATEGORIA") ? "" : row["CATEGORIA"].ToString()))
-
+                        , row.IsNull("ID_ITEM") ? 0 : Convert.ToInt64(row["ID_ITEM"].ToString())
                         , row.IsNull("SKU") ? "" : row["SKU"].ToString()
                         , row.IsNull("SERIE") ? "" : row["SERIE"].ToString()
                         , row.IsNull("PRECIO") ? 0 : (float)Convert.ToDouble(row["PRECIO"])
@@ -98,8 +105,9 @@ namespace InventoryApp.DAL
                              , row.IsNull("PESO") ? 0 : (float)Convert.ToDouble(row["PESO"])
                              , row.IsNull("COLOR") ? "" : row["COLOR"].ToString()
                              , new Categoria(row.IsNull("ID_CATEGORIA") ? 0 : Convert.ToInt64(row["ID_CATEGORIA"])
-                             , row.IsNull("CATEGORIA") ? "" : row["CATEGORIA"].ToString()))
-
+                             , row.IsNull("CATEGORIA") ? "" : row["CATEGORIA"].ToString())
+                             )
+                             , row.IsNull("ID_ITEM") ? 0 : Convert.ToInt64(row["ID_ITEM"].ToString())
                              , row.IsNull("SKU") ? "" : row["SKU"].ToString()
                              , row.IsNull("SERIE") ? "" : row["SERIE"].ToString()
                              , row.IsNull("PRECIO") ? 0 : (float)Convert.ToDouble(row["PRECIO"])
@@ -121,10 +129,9 @@ namespace InventoryApp.DAL
         {
             if (item != null)
             {
-                SrvDB.ExecuteNonQuery("EXEC SP_UPDATE_ITEM @ = " + item.UnidArticulo);
+                
 
                 string sqlStmt = "";
-
                 sqlStmt += "EXEC SP_UPDATE_ITEM";
                 sqlStmt += " @SKU = '" + item.Sku + "'";
                 sqlStmt += " ,@SERIE = '" + item.SerialNbr + "'";

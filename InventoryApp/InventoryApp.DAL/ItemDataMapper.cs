@@ -56,8 +56,8 @@ namespace InventoryApp.DAL
 
         public ItemCollection getItems()
         {
-            ItemCollection res = new ItemCollection();            
-            DataTable dt = SrvDB.ExecuteQuery("SP_SELECT_ITEM");
+            ItemCollection res = new ItemCollection();
+            DataTable dt = SrvDB.ExecuteQuery("SP_GET_ITEMS");
 
             dt.AsEnumerable().ToList().ForEach(row =>
             {
@@ -87,7 +87,7 @@ namespace InventoryApp.DAL
              if (articulo != null)
              {
 
-                 DataTable dt = SrvDB.ExecuteQuery("SP_SELECT_ITEM @ID_ARTICULO = " + articulo.UnidArticulo);
+                 DataTable dt = SrvDB.ExecuteQuery("SP_GET_ITEM_ID_ARTICULO @ID_ARTICULO = " + articulo.UnidArticulo);
 
                  dt.AsEnumerable().ToList().ForEach(row =>
                  {

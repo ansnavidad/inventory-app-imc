@@ -78,5 +78,44 @@ namespace DALTestProject
             actual = target.getItems(item);
             Assert.AreEqual(6, actual.Count);
         }
+
+        /// <summary>
+        ///Una prueba de insertItems
+        ///</summary>
+        [TestMethod()]
+        public void insertItemsTest()
+        {
+            ItemDataMapper target = new ItemDataMapper(); // TODO: Inicializar en un valor adecuado
+            Item item = null; // TODO: Inicializar en un valor adecuado
+            target.insertItems(item);
+            Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
+        }
+
+
+        /// <summary>
+        ///Una prueba de getItems
+        ///</summary>
+        [TestMethod()]
+        public void getItemsTest1()
+        {
+            ItemDataMapper target = new ItemDataMapper(); // TODO: Inicializar en un valor adecuado
+            Articulo articulo = new Articulo(3, "", 0, "", new Categoria(3, "")); // TODO: Inicializar en un valor adecuado            
+            ItemCollection actual;
+            actual = target.getItems(articulo);
+            Assert.AreEqual(6, actual.Count);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de updateItems
+        ///</summary>
+        [TestMethod()]
+        public void updateItemsTest()
+        {
+            ItemDataMapper target = new ItemDataMapper(); // TODO: Inicializar en un valor adecuado
+            Item item = new Item(new Articulo(3, "", 0, "", new Categoria(3, "")), "", "", 0, 0);
+            target.updateItems(item);
+            Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
+        }
     }
 }

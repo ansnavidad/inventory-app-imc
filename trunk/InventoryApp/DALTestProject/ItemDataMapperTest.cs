@@ -86,9 +86,9 @@ namespace DALTestProject
         public void insertItemsTest()
         {
             ItemDataMapper target = new ItemDataMapper(); // TODO: Inicializar en un valor adecuado
-            Item item = null; // TODO: Inicializar en un valor adecuado
-            target.insertItems(item);
-            Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
+            Articulo art = new Articulo(1, "LAPTOP", 20.7f, "NEGRO", new Categoria(4, "COMPUTO"));
+            Item expected = new Item(art, 7, "1234", "4321", 11000f, 16.0f);
+            target.insertItems(expected);
         }
 
 

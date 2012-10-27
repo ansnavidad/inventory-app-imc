@@ -56,9 +56,10 @@ namespace InventoryApp.DAL
                 sqlStmt += " ,@SERIE = '" + item.SerialNbr + "'";
                 sqlStmt += " ,@PRECIO = " + item.Precio;
                 sqlStmt += " ,@IMPUESTO = " + item.Imputesto;
+                sqlStmt += " ,@ID_ARTICULO = " + item.UnidArticulo;
 
                 SrvDB.ExecuteNonQuery(sqlStmt); 
-            }
+            } 
         }
 
         public ItemCollection getItems()

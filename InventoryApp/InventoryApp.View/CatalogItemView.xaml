@@ -13,17 +13,19 @@
                 <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItems" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogItemModel.Items}">
+        <DataGrid AutoGenerateColumns="False" SelectedItem="{Binding CatalogItemModel.SelectedItem}" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItems" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogItemModel.Items}">
             <DataGrid.Columns>
             <DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />
-                <DataGridTextColumn Header="SKU" Width="150" x:Name="proveedor" Binding="{Binding Path=Sku}" IsReadOnly="True" />
-            <DataGridTextColumn Header="SERIAL" Width="150" x:Name="Lote" Binding="{Binding Path=nombreLote}" IsReadOnly="True" />
-            <DataGridTextColumn Header="PRECIO" Width="150" x:Name="Pedimento" Binding="{Binding Path=pedimento}" IsReadOnly="True"/>
-            <DataGridTextColumn Header="IMPUESTOS" Width="*" x:Name="Factura" Binding="{Binding Path=factura}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Artículo" Width="100" x:Name="articuloNombre" Binding="{Binding Path=Nombre}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Color" Width="100" x:Name="articuloColor" Binding="{Binding Path=Color}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="SKU" Width="100" x:Name="itemSku" Binding="{Binding Path=Sku}" IsReadOnly="True" />
+                <DataGridTextColumn Header="SERIAL" Width="100" x:Name="itemSerial" Binding="{Binding Path=SerialNbr}" IsReadOnly="True" />
+            <DataGridTextColumn Header="PRECIO" Width="100" x:Name="itemPrecio" Binding="{Binding Path=Precio}" IsReadOnly="True"/>
+            <DataGridTextColumn Header="IMPUESTOS" Width="*" x:Name="itemImpuestos" Binding="{Binding Path=Impuesto}" IsReadOnly="True"/>
             <!--<DataGridTextColumn Header="TOTAL" Width="*" x:Name="Total" Binding="{Binding Path=total}" IsReadOnly="True"/>-->
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="CONSULTA DE DATOS" Height="28" HorizontalAlignment="Left" Margin="5,0,0,0" Name="lblNameConsulta" Width="154" />
-        <Button Content="Agregar" Height="23" HorizontalAlignment="Left" Margin="591,0,0,0" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" />
+        <Button Content="Agregar" Height="23" HorizontalAlignment="Left" Margin="591,0,0,0" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Click="btnAgregar_Click" />
     </Grid>
 </Window>

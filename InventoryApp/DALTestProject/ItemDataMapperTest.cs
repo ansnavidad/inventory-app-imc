@@ -121,7 +121,7 @@ namespace DALTestProject
             Assert.AreEqual(expected.Sku,actual.Sku);
             Assert.AreEqual(expected.SerialNbr, actual.SerialNbr);
             Assert.AreEqual(expected.Precio, actual.Precio);
-            Assert.AreEqual(expected.Imputesto, actual.Imputesto);
+            Assert.AreEqual(expected.Impuesto, actual.Impuesto);
             
         }
 

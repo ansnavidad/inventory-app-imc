@@ -55,7 +55,7 @@ namespace InventoryApp.DAL
                 sqlStmt += " @SKU = '" + item.Sku + "'";
                 sqlStmt += " ,@SERIE = '" + item.SerialNbr + "'";
                 sqlStmt += " ,@PRECIO = " + item.Precio;
-                sqlStmt += " ,@IMPUESTO = " + item.Imputesto;
+                sqlStmt += " ,@IMPUESTO = " + item.Impuesto;
                 sqlStmt += " ,@ID_ARTICULO = " + item.UnidArticulo;
 
                 SrvDB.ExecuteNonQuery(sqlStmt); 
@@ -137,7 +137,7 @@ namespace InventoryApp.DAL
                 sqlStmt += " @SKU = '" + item.Sku + "'";
                 sqlStmt += " ,@SERIE = '" + item.SerialNbr + "'";
                 sqlStmt += " ,@PRECIO = " + item.Precio;
-                sqlStmt += " ,@IMPUESTO = " + item.Imputesto;
+                sqlStmt += " ,@IMPUESTO = " + item.Impuesto;
                 sqlStmt += " ,@ID_ARTICULO = " + item.UnidArticulo;
                 sqlStmt += " ,@ID_ITEM = " + item.IdItem;
 

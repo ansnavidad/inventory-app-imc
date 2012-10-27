@@ -22,5 +22,10 @@ namespace InventoryApp.View
         {
             InitializeComponent();
         }
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

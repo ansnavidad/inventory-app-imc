@@ -22,7 +22,7 @@ namespace ModelTestProject
         ///Obtiene o establece el contexto de la prueba que proporciona
         ///la información y funcionalidad para la ejecución de pruebas actual.
         ///</summary>
-        public TestContext TestContext
+        public TestContext TestContexC:\Users\Rafael\Documents\Visual Studio 2010\Projects\InventoryApp\InventoryApp\ModelTestProject\CatalogItemModelTest.cst
         {
             get
             {

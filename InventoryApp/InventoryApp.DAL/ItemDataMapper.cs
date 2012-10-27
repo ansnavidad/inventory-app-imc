@@ -11,46 +11,52 @@ namespace InventoryApp.DAL
         public ItemCollection getItems(Item item)
         {
             ItemCollection res = new ItemCollection();
-            DataTable dt = SrvDB.ExecuteQuery("SP_GET_ITEM_ID_ARTICULO @ID_ARTICULO = " + item.UnidArticulo);
-
-            dt.AsEnumerable().ToList().ForEach(row =>
+            if (item != null)
             {
-                res.Add(new Item(new Articulo(
+                DataTable dt = SrvDB.ExecuteQuery("SP_GET_ITEM_ID_ARTICULO @ID_ARTICULO = " + item.UnidArticulo);
 
-                        row.IsNull("ID_ARTICULO") ? 0 : Convert.ToInt64(row["ID_ARTICULO"])
-                        , row.IsNull("ARTICULO") ? "" : row["ARTICULO"].ToString()
-                        , row.IsNull("PESO") ? 0 : (float)Convert.ToDouble(row["PESO"])
-                        , row.IsNull("COLOR") ? "" : row["COLOR"].ToString()
-                        , new Categoria(row.IsNull("ID_CATEGORIA") ? 0 : Convert.ToInt64(row["ID_CATEGORIA"])
-                        , row.IsNull("CATEGORIA") ? "" : row["CATEGORIA"].ToString()))
+                dt.AsEnumerable().ToList().ForEach(row =>
+                {
+                    res.Add(new Item(new Articulo(
 
-                        , row.IsNull("SKU") ? "" : row["SKU"].ToString()
-                        , row.IsNull("SERIAL") ? "" : row["SERIAL"].ToString()
-                        , row.IsNull("PRECIO") ? 0 : (float)Convert.ToDouble(row["PRECIO"])
-                        , row.IsNull("IMPUESTO") ? 0 : (float)Convert.ToDouble(row["IMPUESTO"])
-                    ));
+                            row.IsNull("ID_ARTICULO") ? 0 : Convert.ToInt64(row["ID_ARTICULO"])
+                            , row.IsNull("ARTICULO") ? "" : row["ARTICULO"].ToString()
+                            , row.IsNull("PESO") ? 0 : (float)Convert.ToDouble(row["PESO"])
+                            , row.IsNull("COLOR") ? "" : row["COLOR"].ToString()
+                            , new Categoria(row.IsNull("ID_CATEGORIA") ? 0 : Convert.ToInt64(row["ID_CATEGORIA"])
+                            , row.IsNull("CATEGORIA") ? "" : row["CATEGORIA"].ToString()))
+
+                            , row.IsNull("SKU") ? "" : row["SKU"].ToString()
+                            , row.IsNull("SERIE") ? "" : row["SERIE"].ToString()
+                            , row.IsNull("PRECIO") ? 0 : (float)Convert.ToDouble(row["PRECIO"])
+                            , row.IsNull("IMPUESTO") ? 0 : (float)Convert.ToDouble(row["IMPUESTO"])
+                        ));
+                }
+                ); 
             }
-            );
 
             return res;
         }
 
         public void insertItems(Item item)
         {
-            string sqlStmt = "";
+            if (item != null)
+            {
+                string sqlStmt = "";
 
-            sqlStmt += "EXEC SP_INSERT_ITEM";
-            sqlStmt += " @SKU = '" + item.Sku + "'";
-            sqlStmt += " ,@SERIE = '" + item.SerialNbr + "'";
-            sqlStmt += " ,@PRECIO = " + item.Precio;
-            sqlStmt += " ,@IMPUESTO = " + item.Imputesto;
+                sqlStmt += "EXEC SP_INSERT_ITEM";
+                sqlStmt += " @SKU = '" + item.Sku + "'";
+                sqlStmt += " ,@SERIE = '" + item.SerialNbr + "'";
+                sqlStmt += " ,@PRECIO = " + item.Precio;
+                sqlStmt += " ,@IMPUESTO = " + item.Imputesto;
 
-            SrvDB.ExecuteNonQuery(sqlStmt);
+                SrvDB.ExecuteNonQuery(sqlStmt); 
+            }
         }
 
         public ItemCollection getItems()
         {
-            ItemCollection res = new ItemCollection();
+            ItemCollection res = new ItemCollection();            
             DataTable dt = SrvDB.ExecuteQuery("SP_SELECT_ITEM");
 
             dt.AsEnumerable().ToList().ForEach(row =>
@@ -65,7 +71,7 @@ namespace InventoryApp.DAL
                         , row.IsNull("CATEGORIA") ? "" : row["CATEGORIA"].ToString()))
 
                         , row.IsNull("SKU") ? "" : row["SKU"].ToString()
-                        , row.IsNull("SERIAL") ? "" : row["SERIAL"].ToString()
+                        , row.IsNull("SERIE") ? "" : row["SERIE"].ToString()
                         , row.IsNull("PRECIO") ? 0 : (float)Convert.ToDouble(row["PRECIO"])
                         , row.IsNull("IMPUESTO") ? 0 : (float)Convert.ToDouble(row["IMPUESTO"])
                     ));
@@ -78,26 +84,30 @@ namespace InventoryApp.DAL
         public ItemCollection getItems(Articulo articulo)
         {
              ItemCollection res = new ItemCollection();
-             DataTable dt = SrvDB.ExecuteQuery("SP_SELECT_ITEM @ID_ARTICULO = " + articulo.UnidArticulo);
-
-             dt.AsEnumerable().ToList().ForEach(row =>
+             if (articulo != null)
              {
-                 res.Add(new Item(new Articulo(
 
-                         row.IsNull("ID_ARTICULO") ? 0 : Convert.ToInt64(row["ID_ARTICULO"])
-                         , row.IsNull("ARTICULO") ? "" : row["ARTICULO"].ToString()
-                         , row.IsNull("PESO") ? 0 : (float)Convert.ToDouble(row["PESO"])
-                         , row.IsNull("COLOR") ? "" : row["COLOR"].ToString()
-                         , new Categoria(row.IsNull("ID_CATEGORIA") ? 0 : Convert.ToInt64(row["ID_CATEGORIA"])
-                         , row.IsNull("CATEGORIA") ? "" : row["CATEGORIA"].ToString()))
+                 DataTable dt = SrvDB.ExecuteQuery("SP_SELECT_ITEM @ID_ARTICULO = " + articulo.UnidArticulo);
 
-                         , row.IsNull("SKU") ? "" : row["SKU"].ToString()
-                         , row.IsNull("SERIAL") ? "" : row["SERIAL"].ToString()
-                         , row.IsNull("PRECIO") ? 0 : (float)Convert.ToDouble(row["PRECIO"])
-                         , row.IsNull("IMPUESTO") ? 0 : (float)Convert.ToDouble(row["IMPUESTO"])
-                     ));
+                 dt.AsEnumerable().ToList().ForEach(row =>
+                 {
+                     res.Add(new Item(new Articulo(
+
+                             row.IsNull("ID_ARTICULO") ? 0 : Convert.ToInt64(row["ID_ARTICULO"])
+                             , row.IsNull("ARTICULO") ? "" : row["ARTICULO"].ToString()
+                             , row.IsNull("PESO") ? 0 : (float)Convert.ToDouble(row["PESO"])
+                             , row.IsNull("COLOR") ? "" : row["COLOR"].ToString()
+                             , new Categoria(row.IsNull("ID_CATEGORIA") ? 0 : Convert.ToInt64(row["ID_CATEGORIA"])
+                             , row.IsNull("CATEGORIA") ? "" : row["CATEGORIA"].ToString()))
+
+                             , row.IsNull("SKU") ? "" : row["SKU"].ToString()
+                             , row.IsNull("SERIE") ? "" : row["SERIE"].ToString()
+                             , row.IsNull("PRECIO") ? 0 : (float)Convert.ToDouble(row["PRECIO"])
+                             , row.IsNull("IMPUESTO") ? 0 : (float)Convert.ToDouble(row["IMPUESTO"])
+                         ));
+                 }
+                ); 
              }
-            );
 
              return res;
         }
@@ -109,19 +119,22 @@ namespace InventoryApp.DAL
 
         public void updateItems(Item item)
         {
-            SrvDB.ExecuteNonQuery("EXEC SP_UPDATE_ITEM @ = " + item.UnidArticulo);
+            if (item != null)
+            {
+                SrvDB.ExecuteNonQuery("EXEC SP_UPDATE_ITEM @ = " + item.UnidArticulo);
 
-            string sqlStmt = "";
+                string sqlStmt = "";
 
-            sqlStmt += "EXEC SP_UPDATE_ITEM";
-            sqlStmt += " @SKU = '" + item.Sku + "'";
-            sqlStmt += " ,@SERIE = '" + item.SerialNbr + "'";
-            sqlStmt += " ,@PRECIO = " + item.Precio;
-            sqlStmt += " ,@IMPUESTO = " + item.Imputesto;
-            sqlStmt += " ,@ID_ARTICULO = " + item.UnidArticulo;
-            sqlStmt += " ,@ID_ITEM = " + item.IdItem;
+                sqlStmt += "EXEC SP_UPDATE_ITEM";
+                sqlStmt += " @SKU = '" + item.Sku + "'";
+                sqlStmt += " ,@SERIE = '" + item.SerialNbr + "'";
+                sqlStmt += " ,@PRECIO = " + item.Precio;
+                sqlStmt += " ,@IMPUESTO = " + item.Imputesto;
+                sqlStmt += " ,@ID_ARTICULO = " + item.UnidArticulo;
+                sqlStmt += " ,@ID_ITEM = " + item.IdItem;
 
-            SrvDB.ExecuteNonQuery(sqlStmt);
+                SrvDB.ExecuteNonQuery(sqlStmt); 
+            }
         }
     }
 }

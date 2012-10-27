@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="ArticuloDataMapperTest.cs" />
     <Compile Include="CategoriaDataMapperTest.cs" />
+    <Compile Include="ItemDataMapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -94,11 +94,12 @@ namespace InventoryApp.DAL
             }
         }
 
-        public Item(Articulo articulo, string sku, string serialNbr, float precio, float imputesto):base(articulo) {
+        public Item(Articulo articulo,long idItem, string sku, string serialNbr, float precio, float imputesto):base(articulo) {
             this._sku = sku;
             this._serialNbr = serialNbr;
             this._precio = precio;
             this._imputesto = imputesto;
+            this._idItem = idItem;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -64,20 +64,20 @@ namespace DALTestProject
         #endregion
 
 
-        /// <summary>
-        ///Una prueba de getItems
-        ///</summary>
-        [TestMethod()]
-        public void getItemsTest()
-        {
-            ItemDataMapper target = new ItemDataMapper(); // TODO: Inicializar en un valor adecuado
+        ///// <summary>
+        /////Una prueba de getItems
+        /////</summary>
+        //[TestMethod()]
+        //public void getItemsTest()
+        //{
+        //    ItemDataMapper target = new ItemDataMapper(); // TODO: Inicializar en un valor adecuado
+
+        //    Item item = null;//new Item(new Articulo(3, "", 0, "", new Categoria(3, "")), "", "", 0, 0);  // TODO: Inicializar en un valor adecuado
             
-            Item item = new Item(new Articulo(3, "", 0, "", new Categoria(3, "")), "", "", 0, 0);  // TODO: Inicializar en un valor adecuado
-            
-            ItemCollection actual;
-            actual = target.getItems(item);
-            Assert.AreEqual(6, actual.Count);
-        }
+        //    ItemCollection actual;
+        //    actual = target.getItems(item);
+        //    Assert.AreEqual(6, actual.Count);
+        //}
 
         /// <summary>
         ///Una prueba de insertItems
@@ -92,19 +92,19 @@ namespace DALTestProject
         }
 
 
-        /// <summary>
-        ///Una prueba de getItems
-        ///</summary>
-        [TestMethod()]
-        public void getItemsTest1()
-        {
-            ItemDataMapper target = new ItemDataMapper(); // TODO: Inicializar en un valor adecuado
-            Articulo articulo = new Articulo(3, "", 0, "", new Categoria(3, "")); // TODO: Inicializar en un valor adecuado            
-            ItemCollection actual;
-            actual = target.getItems(articulo);
-            Assert.AreEqual(6, actual.Count);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        }
+        ///// <summary>
+        /////Una prueba de getItems
+        /////</summary>
+        //[TestMethod()]
+        //public void getItemsTest1()
+        //{
+        //    ItemDataMapper target = new ItemDataMapper(); // TODO: Inicializar en un valor adecuado
+        //    Articulo articulo = new Articulo(3, "", 0, "", new Categoria(3, "")); // TODO: Inicializar en un valor adecuado            
+        //    ItemCollection actual;
+        //    actual = target.getItems(articulo);
+        //    Assert.AreEqual(6, actual.Count);
+        //    Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        //}
 
         /// <summary>
         ///Una prueba de updateItems
@@ -113,9 +113,36 @@ namespace DALTestProject
         public void updateItemsTest()
         {
             ItemDataMapper target = new ItemDataMapper(); // TODO: Inicializar en un valor adecuado
-            Item item = new Item(new Articulo(3, "", 0, "", new Categoria(3, "")), "", "", 0, 0);
-            target.updateItems(item);
-            Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
+            Articulo art=new Articulo(3,"IPHONE",0.8f,"BLANCO",new Categoria(3,"TELEFONIA"));
+            Item expected = new Item(art, 6, "777", "777", 777f, 777f);
+            target.updateItems(expected);
+
+            Item actual = target.getItems(expected);
+            Assert.AreEqual(expected.Sku,actual.Sku);
+            Assert.AreEqual(expected.SerialNbr, actual.SerialNbr);
+            Assert.AreEqual(expected.Precio, actual.Precio);
+            Assert.AreEqual(expected.Imputesto, actual.Imputesto);
+            
+        }
+
+        /// <summary>
+        ///Una prueba de getItems
+        ///</summary>
+        [TestMethod()]
+        public void TestGetSingleItem()
+        {
+            ItemDataMapper target = new ItemDataMapper(); // TODO: Inicializar en un valor adecuado
+
+            Articulo artExpected = new Articulo(3, "IPHONE", 0.8f, "BLANCO", new Categoria(3, "TELEFONIA"));
+            Item expected = new Item(artExpected, 6, "666", "92884933", 666f, 666f);
+
+            Item actual = null; // TODO: Inicializar en un valor adecuado
+            Articulo artActual = new Articulo(3, "IPHONE", 0.8f, "BLANCO", new Categoria(3, "TELEFONIA"));
+            Item item = new Item(artActual, 6, "", "", 0f, 0f);
+            actual = target.getItems(item);
+
+            Assert.AreEqual(expected.SerialNbr, actual.SerialNbr);
+            //Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
     }
 }

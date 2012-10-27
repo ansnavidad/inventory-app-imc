@@ -78,5 +78,20 @@ namespace DALTestProject
             Assert.AreEqual(2, actual.Count);
           //  Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
+
+        /// <summary>
+        ///Una prueba de GetArticulos
+        ///</summary>
+        [TestMethod()]
+        public void TestGetArticulosByNonExistingCategory()
+        {
+            ArticuloDataMapper target = new ArticuloDataMapper(); // TODO: Inicializar en un valor adecuado
+            Categoria categoria = new Categoria(0, null); // TODO: Inicializar en un valor adecuado
+            //ArticuloCollection expected = null; // TODO: Inicializar en un valor adecuado
+            ArticuloCollection actual;
+            actual = target.GetArticulos(categoria);
+            Assert.AreEqual(0, actual.Count);
+            //  Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace InventoryApp.DAL
         private string _sku;
         private string _serialNbr;
         private float _precio;
-        private float _imputesto;
+        private float _impuesto;
         private long _idItem;
 
         public long IdItem
@@ -78,14 +78,14 @@ namespace InventoryApp.DAL
             }
         }
 
-        public float Imputesto
+        public float Impuesto
         {
-            get { return _imputesto; }
+            get { return _impuesto; }
             set
             {
-                if (_imputesto != value)
+                if (_impuesto != value)
                 {
-                    _imputesto = value;
+                    _impuesto = value;
                     if (PropertyChanged != null)
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("Imputesto"));
@@ -94,11 +94,11 @@ namespace InventoryApp.DAL
             }
         }
 
-        public Item(Articulo articulo,long idItem, string sku, string serialNbr, float precio, float imputesto):base(articulo) {
+        public Item(Articulo articulo,long idItem, string sku, string serialNbr, float precio, float impuesto):base(articulo) {
             this._sku = sku;
             this._serialNbr = serialNbr;
             this._precio = precio;
-            this._imputesto = imputesto;
+            this._impuesto = impuesto;
             this._idItem = idItem;
         }
 

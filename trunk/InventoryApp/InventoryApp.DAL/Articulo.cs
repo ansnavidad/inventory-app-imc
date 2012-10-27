@@ -7,7 +7,7 @@ using System.ComponentModel;
 namespace InventoryApp.DAL
 {
     
-    public class Articulo : INotifyPropertyChanged
+    public  class Articulo : INotifyPropertyChanged
     {
         private long _unidArticulo;
         private string _nombre;
@@ -96,6 +96,10 @@ namespace InventoryApp.DAL
             }
         }
 
+        public Articulo()
+        {
+        }
+        
         public Articulo(long unidArticulo, string nombre, float peso, string color, Categoria categoria)
         {
             this._unidArticulo = unidArticulo;

@@ -41,7 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewItemsModel.cs" />
+    <Compile Include="CatalogItemModel.cs" />
+    <Compile Include="TestCode\CatalogItemModelDataMapperTEst.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

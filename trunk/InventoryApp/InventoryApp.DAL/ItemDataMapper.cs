@@ -6,7 +6,7 @@ using System.Data;
 
 namespace InventoryApp.DAL
 {
-    public class ItemDataMapper
+    public class ItemDataMapper : IDataMapper
     {
         public Item getItems(Item item)
         {
@@ -143,6 +143,22 @@ namespace InventoryApp.DAL
 
                 SrvDB.ExecuteNonQuery(sqlStmt); 
             }
+        }
+
+        public object getElements()
+        {
+            ItemCollection items = this.getItems();
+            return items;
+        }
+
+        public object udpateElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object insertElement(object element)
+        {
+            throw new NotImplementedException();
         }
     }
 }

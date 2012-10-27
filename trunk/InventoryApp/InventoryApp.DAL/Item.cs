@@ -102,6 +102,11 @@ namespace InventoryApp.DAL
             this._idItem = idItem;
         }
 
+        public Item():base(new Articulo(){ Color="",Nombre="", Peso=0f, UnidArticulo=0})
+        {
+
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
     

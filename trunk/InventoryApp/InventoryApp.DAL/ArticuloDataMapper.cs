@@ -38,8 +38,6 @@ namespace InventoryApp.DAL
             {
                 throw ex;
             }
-
-
             return articulos;
         }
 

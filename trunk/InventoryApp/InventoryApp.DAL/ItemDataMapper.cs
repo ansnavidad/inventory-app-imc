@@ -24,8 +24,9 @@ namespace InventoryApp.DAL
                             , row.IsNull("ARTICULO") ? "" : row["ARTICULO"].ToString()
                             , row.IsNull("PESO") ? 0 : (float)Convert.ToDouble(row["PESO"])
                             , row.IsNull("COLOR") ? "" : row["COLOR"].ToString()
-                            , new Categoria(row.IsNull("ID_CATEGORIA") ? 0 : Convert.ToInt64(row["ID_CATEGORIA"])
-                            , row.IsNull("CATEGORIA") ? "" : row["CATEGORIA"].ToString())
+                            , new Categoria(
+                                row.IsNull("ID_CATEGORIA") ? 0 : Convert.ToInt64(row["ID_CATEGORIA"])
+                                ,row.IsNull("CATEGORIA") ? "" : row["CATEGORIA"].ToString())
                             )
                             , row.IsNull("ID_ITEM") ? 0 : Convert.ToInt64(row["ID_ITEM"].ToString())
                             , row.IsNull("SKU") ? "" : row["SKU"].ToString()
@@ -105,8 +106,9 @@ namespace InventoryApp.DAL
                              , row.IsNull("ARTICULO") ? "" : row["ARTICULO"].ToString()
                              , row.IsNull("PESO") ? 0 : (float)Convert.ToDouble(row["PESO"])
                              , row.IsNull("COLOR") ? "" : row["COLOR"].ToString()
-                             , new Categoria(row.IsNull("ID_CATEGORIA") ? 0 : Convert.ToInt64(row["ID_CATEGORIA"])
-                             , row.IsNull("CATEGORIA") ? "" : row["CATEGORIA"].ToString())
+                             , new Categoria(
+                                 row.IsNull("ID_CATEGORIA") ? 0 : Convert.ToInt64(row["ID_CATEGORIA"])
+                                ,row.IsNull("CATEGORIA") ? "" : row["CATEGORIA"].ToString())
                              )
                              , row.IsNull("ID_ITEM") ? 0 : Convert.ToInt64(row["ID_ITEM"].ToString())
                              , row.IsNull("SKU") ? "" : row["SKU"].ToString()
@@ -114,10 +116,8 @@ namespace InventoryApp.DAL
                              , row.IsNull("PRECIO") ? 0 : (float)Convert.ToDouble(row["PRECIO"])
                              , row.IsNull("IMPUESTO") ? 0 : (float)Convert.ToDouble(row["IMPUESTO"])
                          ));
-                 }
-                ); 
+                 }); 
              }
-
              return res;
         }
 
@@ -130,8 +130,6 @@ namespace InventoryApp.DAL
         {
             if (item != null)
             {
-                
-
                 string sqlStmt = "";
                 sqlStmt += "EXEC SP_UPDATE_ITEM";
                 sqlStmt += " @SKU = '" + item.Sku + "'";

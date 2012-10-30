@@ -9,8 +9,8 @@ namespace InventoryApp.DAL
     {
         object getElements();
         object getElement(object element);
-        object udpateElement(object element);
-        object insertElement(object element);
-        object deleteElement(object element);
+        void udpateElement(object element);
+        void insertElement(object element);
+        void deleteElement(object element);
     }
 }

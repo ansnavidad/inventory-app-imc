@@ -7,7 +7,7 @@ namespace InventoryApp.Model
 {
     public static class UNID
     {
-        public static string getNewUNID(){
+        public static long getNewUNID(){
 
             string res = "";
             string aux = "";
@@ -46,7 +46,9 @@ namespace InventoryApp.Model
                 res += "0";
             res += aux;
 
-            return res;
+            long aux2 = long.Parse(res);
+
+            return aux2;
         }
     }
 }

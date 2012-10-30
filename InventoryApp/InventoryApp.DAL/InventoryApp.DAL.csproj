@@ -187,6 +187,8 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProveedorCollection.cs" />
+    <Compile Include="ProveedorDataMapper.cs" />
     <Compile Include="SrvDB.cs" />
   </ItemGroup>
   <ItemGroup>

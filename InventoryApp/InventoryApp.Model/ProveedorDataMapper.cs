@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.DAL;
 
-namespace InventoryApp.DAL
+namespace InventoryApp.Model
 {
     class ProveedorDataMapper : IDataMapper
     {
@@ -82,7 +83,7 @@ namespace InventoryApp.DAL
                     PROVEEDOR Eprov = (PROVEEDOR)element;
                     PROVEEDOR prov = new PROVEEDOR();
 
-                    prov.UNID_PROVEEDOR = Eprov.UNID_PROVEEDOR;
+                    prov.UNID_PROVEEDOR = UNID.getNewUNID();
                     prov.PROVEEDOR_NAME = Eprov.PROVEEDOR_NAME;
                     prov.CONTACTO = Eprov.CONTACTO;
                     prov.TEL1 = Eprov.TEL1;

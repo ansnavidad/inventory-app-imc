@@ -64,11 +64,11 @@ namespace DALTestProject
         #endregion
 
 
-        /// <summary>
+        /// <summary |   
         ///Una prueba de GetArticulos
         ///</summary>
         [TestMethod()]
-        public void GetArticulosTest()
+        public void GetArticulosTest() 
         {
             ArticuloDataMapper target = new ArticuloDataMapper(); // TODO: Inicializar en un valor adecuado
             Categoria categoria = new Categoria(4, "COMPUTO"); // TODO: Inicializar en un valor adecuado

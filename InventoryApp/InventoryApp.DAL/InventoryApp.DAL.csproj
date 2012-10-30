@@ -34,6 +34,9 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,11 +54,159 @@
     <Compile Include="Item.cs" />
     <Compile Include="ItemCollection.cs" />
     <Compile Include="ItemDataMapper.cs" />
+    <Compile Include="POCOS\ALMACEN.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\ALMACEN_EMAIL.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\ARTICULO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\BANCO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\CATEGORIA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\CIUDAD.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\CLIENTE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\COTIZACION.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\DEPARTAMENTO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\EMPRESA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\EntityElara.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityElara.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\EQUIPO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\FACTURA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\FACTURA_DETALLE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\ITEM.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\ITEM_STATUS.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\LOTE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MARCA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MEDIO_ENVIO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MODELO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MONEDA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MOVIMENTO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MOVIMIENTO_DETALLE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PEDIMENTO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PocosElara.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PocosElara.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PocosElara.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\POM.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\POM_ARTICULO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PROPIEDAD.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PROVEEDOR.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PROVEEDOR_CUENTA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PROYECTO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\SERVICIO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\SOLICITANTE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\SOLICITANTE1.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TERMINO_ENVIO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TIPO_COTIZACION.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TIPO_EMPRESA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TIPO_MOVIMIENTO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TIPO_PEDIMENTO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TRANSPORTE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\UNIDAD.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SrvDB.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="DALDiagram.cd" />
+    <EntityDeploy Include="POCOS\EntityElara.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EntityElara.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="POCOS\PocosElara.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PocosElara.Context.cs</LastGenOutput>
+    </None>
+    <None Include="POCOS\PocosElara.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PocosElara.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

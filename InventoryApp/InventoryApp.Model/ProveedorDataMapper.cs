@@ -13,11 +13,11 @@ namespace InventoryApp.Model
         {
             object o = null;
             using (var oAWEntities = new TAE2Entities())
-            {                               
+            {
                 var provs = from p in oAWEntities.PROVEEDORs
                             select p;
 
-                if(provs != null)
+                if (provs != null)
                     o = (object)provs;
 
                 return o;
@@ -38,7 +38,7 @@ namespace InventoryApp.Model
                                 select p;
 
                     if (provs != null)
-                        o = (object)provs;                    
+                        o = (object)provs;
                 }
             }
             return o;
@@ -46,7 +46,8 @@ namespace InventoryApp.Model
 
         public void udpateElement(object element)
         {
-            if (element != null) {
+            if (element != null)
+            {
 
                 PROVEEDOR Eprov = (PROVEEDOR)element;
 
@@ -76,9 +77,11 @@ namespace InventoryApp.Model
 
         public void insertElement(object element)
         {
-            if (element != null) {                
+            if (element != null)
+            {
 
-                using (var oAWEntities = new TAE2Entities()) {
+                using (var oAWEntities = new TAE2Entities())
+                {
 
                     PROVEEDOR Eprov = (PROVEEDOR)element;
                     PROVEEDOR prov = new PROVEEDOR();
@@ -98,7 +101,7 @@ namespace InventoryApp.Model
                     oAWEntities.PROVEEDORs.AddObject(prov);
 
                     oAWEntities.SaveChanges();
-                }            
+                }
             }
         }
 
@@ -117,7 +120,8 @@ namespace InventoryApp.Model
 
                     var provs = query.First();
 
-                    if (provs != null) {
+                    if (provs != null)
+                    {
 
                         PROVEEDOR aux = (PROVEEDOR)provs;
 

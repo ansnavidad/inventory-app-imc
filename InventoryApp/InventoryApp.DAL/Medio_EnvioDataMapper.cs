@@ -12,9 +12,9 @@ namespace InventoryApp.DAL
         public object getElements()
         {
             object o = null;
-            using (var oAWEntities = new TAE2Entities())
+            using (var Entity = new TAE2Entities())
             {
-                var provs = from p in oAWEntities.MEDIO_ENVIO
+                var provs = from p in Entity.MEDIO_ENVIO
                             select p;
 
                 if (provs != null)
@@ -31,9 +31,9 @@ namespace InventoryApp.DAL
             {
                 MEDIO_ENVIO Eprov = (MEDIO_ENVIO)element;
 
-                using (var oAWEntities = new TAE2Entities())
+                using (var Entity = new TAE2Entities())
                 {
-                    var provs = from p in oAWEntities.MEDIO_ENVIO
+                    var provs = from p in Entity.MEDIO_ENVIO
                                 where p.UNID_MEDIO_ENVIO == Eprov.UNID_MEDIO_ENVIO
                                 select p;
 
@@ -50,9 +50,9 @@ namespace InventoryApp.DAL
             {
                 MEDIO_ENVIO Eprov = (MEDIO_ENVIO)element;
 
-                using (var oAWEntities = new TAE2Entities())
+                using (var Entity = new TAE2Entities())
                 {
-                    var query = from p in oAWEntities.MEDIO_ENVIO
+                    var query = from p in Entity.MEDIO_ENVIO
                                 where p.UNID_MEDIO_ENVIO == Eprov.UNID_MEDIO_ENVIO
                                 select p;
 
@@ -60,7 +60,7 @@ namespace InventoryApp.DAL
 
                     prov.MEDIO_ENVIO_NAME = Eprov.MEDIO_ENVIO_NAME;                    
 
-                    oAWEntities.SaveChanges();
+                    Entity.SaveChanges();
                 }
             }
         }
@@ -70,7 +70,7 @@ namespace InventoryApp.DAL
             if (element != null)
             {
 
-                using (var oAWEntities = new TAE2Entities())
+                using (var Entity = new TAE2Entities())
                 {
 
                     MEDIO_ENVIO Eprov = (MEDIO_ENVIO)element;
@@ -79,9 +79,9 @@ namespace InventoryApp.DAL
                     prov.UNID_MEDIO_ENVIO = UNID.getNewUNID();
                     prov.MEDIO_ENVIO_NAME = Eprov.MEDIO_ENVIO_NAME;
 
-                    oAWEntities.MEDIO_ENVIO.AddObject(prov);
+                    Entity.MEDIO_ENVIO.AddObject(prov);
 
-                    oAWEntities.SaveChanges();
+                    Entity.SaveChanges();
                 }
             }
         }
@@ -90,12 +90,12 @@ namespace InventoryApp.DAL
         {
             if (element != null)
             {
-                using (var oAWEntities = new TAE2Entities())
+                using (var Entity = new TAE2Entities())
                 {
 
                     MEDIO_ENVIO Eprov = (MEDIO_ENVIO)element;
 
-                    var query = from p in oAWEntities.MEDIO_ENVIO
+                    var query = from p in Entity.MEDIO_ENVIO
                                 where p.UNID_MEDIO_ENVIO == Eprov.UNID_MEDIO_ENVIO
                                 select p;
 
@@ -106,7 +106,7 @@ namespace InventoryApp.DAL
 
                         MEDIO_ENVIO aux = (MEDIO_ENVIO)provs;
 
-                        oAWEntities.MEDIO_ENVIO.DeleteObject(aux);
+                        Entity.MEDIO_ENVIO.DeleteObject(aux);
                     }
                 }
             }

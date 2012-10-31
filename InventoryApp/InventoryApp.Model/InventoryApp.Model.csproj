@@ -48,10 +48,6 @@
     <Compile Include="TestCode\CatalogItemModelDataMapperTEst.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="ClassDiagram1.cd" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\InventoryApp.DAL\InventoryApp.DAL.csproj">
       <Project>{85AA51E1-F7B7-488C-A286-1E4015501512}</Project>
       <Name>InventoryApp.DAL</Name>

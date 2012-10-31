@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.Model;
+using System.Collections.Generic;
 
 namespace DALTestProject
 {
@@ -92,6 +93,82 @@ namespace DALTestProject
             actual = target.getElement(element);
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getElements
+        ///</summary>
+        [TestMethod()]
+        public void getElementsTest1()
+        {
+            TransporteDataMapper target = new TransporteDataMapper(); // TODO: Inicializar en un valor adecuado
+            //object expected = null; // TODO: Inicializar en un valor adecuado
+            object actual;
+            actual = target.getElements();
+            Assert.AreEqual(2, ((List<TRANSPORTE>)actual).Count);
+           // Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getElement
+        ///</summary>
+        [TestMethod()]
+        public void getElementTest1()
+        {
+            TransporteDataMapper target = new TransporteDataMapper(); // TODO: Inicializar en un valor adecuado
+            object element = null; // TODO: Inicializar en un valor adecuado
+            TRANSPORTE prueba = new TRANSPORTE();
+            prueba.UNID_TIPO_EMPRESA = 1;
+            prueba.UNID_TRANSPORTE= 2;
+            element = prueba;
+            //object expected = null; // TODO: Inicializar en un valor adecuado
+            object actual;
+            actual = target.getElement(element);
+            Assert.AreEqual(1, ((List<TRANSPORTE>)actual).Count);
+            //Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de insertElement
+        ///</summary>
+        [TestMethod()]
+        public void insertElementTest()
+        {
+            TransporteDataMapper target = new TransporteDataMapper(); // TODO: Inicializar en un valor adecuado
+            object element = null; // TODO: Inicializar en un valor adecuado
+            TRANSPORTE prueba = new TRANSPORTE();
+            prueba.UNID_TIPO_EMPRESA = 1;
+            prueba.UNID_TRANSPORTE = 22345;
+            prueba.TRANSPORTE_NAME = "TREN";
+            element = prueba;
+            target.insertElement(element);
+           
+            object actual;
+            actual = target.getElement(element);
+
+            Assert.AreEqual(((TRANSPORTE)element).UNID_TRANSPORTE, ((List<TRANSPORTE>)actual)[0].UNID_TRANSPORTE);
+            //Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
+        }
+
+        /// <summary>
+        ///Una prueba de udpateElement
+        ///</summary>
+        [TestMethod()]
+        public void udpateElementTest()
+        {
+            TransporteDataMapper target = new TransporteDataMapper(); // TODO: Inicializar en un valor adecuado
+            object element = null; // TODO: Inicializar en un valor adecuado
+            TRANSPORTE prueba = new TRANSPORTE();
+            prueba.UNID_TIPO_EMPRESA = 1;
+            prueba.UNID_TRANSPORTE = 22345;
+            prueba.TRANSPORTE_NAME = "TRANVIA";
+            element = prueba;
+            target.udpateElement(element);
+            object actual;
+            actual = target.getElement(element);
+
+            Assert.AreEqual(((TRANSPORTE)element).UNID_TRANSPORTE, ((List<TRANSPORTE>)actual)[0].UNID_TRANSPORTE);
+          
         }
     }
 }

@@ -78,29 +78,11 @@ namespace InventoryApp.Model
         {
             if (element !=null)
             {
-                using (var oAWEntities = new TAE2Entities())
+                using (var entitie = new TAE2Entities())
                 {
-
-                    EMPRESA EEmp = (EMPRESA)element;
-                    EMPRESA Emp = new EMPRESA();
-
-                    Emp.UNID_EMPRESA = EEmp.UNID_EMPRESA;
-
-                    Emp.EMPRESA_NAME = EEmp.EMPRESA_NAME;
-
-                    Emp.DIRECCION = EEmp.DIRECCION;
-
-                    Emp.POMs = EEmp.POMs;
-
-                    Emp.RAZON_SOCIAL = EEmp.RAZON_SOCIAL;
-
-                    Emp.RFC = EEmp.RFC;
-
-                    Emp.SOLICITANTEs = EEmp.SOLICITANTEs;
-
-                    oAWEntities.EMPRESAs.AddObject(Emp);
-
-                    oAWEntities.SaveChanges();
+                    EMPRESA empresa = (EMPRESA)element;
+                    entitie.EMPRESAs.AddObject(empresa);
+                    entitie.SaveChanges();
                 }            
             }
         }

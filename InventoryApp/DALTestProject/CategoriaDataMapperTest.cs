@@ -67,15 +67,15 @@ namespace DALTestProject
         /// <summary>
         ///Una prueba de GetCategorias
         ///</summary>
-        [TestMethod()]
-        public void GetCategoriasTest()
-        {
-            CategoriaDataMapper target = new CategoriaDataMapper(); // TODO: Inicializar en un valor adecuado
-            //CategoriaCollection expected = null; // TODO: Inicializar en un valor adecuado
-            CategoriaCollection actual;
-            actual = target.GetCategorias();
-            Assert.AreEqual(4, actual.Count);
-            //Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        }
+        //[TestMethod()]
+        //public void GetCategoriasTest()
+        //{
+        //    CategoriaDataMapper target = new CategoriaDataMapper(); // TODO: Inicializar en un valor adecuado
+        //    //CategoriaCollection expected = null; // TODO: Inicializar en un valor adecuado
+        //    CategoriaCollection actual;
+        //    actual = target.GetCategorias();
+        //    Assert.AreEqual(4, actual.Count);
+        //    //Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        //}
     }
 }

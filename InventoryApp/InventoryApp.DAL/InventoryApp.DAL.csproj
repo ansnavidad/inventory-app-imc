@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmpresaDataMapper.cs" />
     <Compile Include="IDataMapper.cs" />
+    <Compile Include="PedimentoDataMapper.cs" />
     <Compile Include="POCOS\ALMACEN.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
@@ -178,6 +180,10 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProveedorDataMapper.cs" />
+    <Compile Include="TipoEmpresaDataMapper.cs" />
+    <Compile Include="TransporteDataMapper.cs" />
+    <Compile Include="UNID.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

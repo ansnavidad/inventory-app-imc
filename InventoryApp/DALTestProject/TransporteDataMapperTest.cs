@@ -1,17 +1,19 @@
-﻿using InventoryApp.Model;
+﻿using InventoryApp.DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using InventoryApp.DAL.POCOS;
+using InventoryApp.Model;
 
 namespace DALTestProject
 {
     
     
     /// <summary>
-    ///Se trata de una clase de prueba para UNIDTest y se pretende que
-    ///contenga todas las pruebas unitarias UNIDTest.
+    ///Se trata de una clase de prueba para TransporteDataMapperTest y se pretende que
+    ///contenga todas las pruebas unitarias TransporteDataMapperTest.
     ///</summary>
     [TestClass()]
-    public class UNIDTest
+    public class TransporteDataMapperTest
     {
 
 
@@ -63,18 +65,33 @@ namespace DALTestProject
         //
         #endregion
 
+        /// <summary>
+        ///Una prueba de getElements
+        ///</summary>
+        [TestMethod()]
+        public void getElementsTest()
+        {
+            TransporteDataMapper target = new TransporteDataMapper(); // TODO: Inicializar en un valor adecuado
+            object expected = null; // TODO: Inicializar en un valor adecuado
+            object actual;
+            actual = target.getElements();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
 
-        ///// <summary>
-        /////Una prueba de getNewUNID
-        /////</summary>
-        //[TestMethod()]
-        //public void getNewUNIDTest()
-        //{
-        //    string expected = string.Empty; // TODO: Inicializar en un valor adecuado
-        //    string actual;
-        //    actual = UNID.getNewUNID();
-        //    Assert.AreEqual(expected, actual);
-        //    Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        //}
+        /// <summary>
+        ///Una prueba de getElement
+        ///</summary>
+        [TestMethod()]
+        public void getElementTest()
+        {
+            TransporteDataMapper target = new TransporteDataMapper(); // TODO: Inicializar en un valor adecuado
+            object element = null; // TODO: Inicializar en un valor adecuado
+            object expected = null; // TODO: Inicializar en un valor adecuado
+            object actual;
+            actual = target.getElement(element);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

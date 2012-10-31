@@ -5,7 +5,7 @@ using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
 
-namespace InventoryApp.Model
+namespace InventoryApp.DAL
 {
     class ProveedorDataMapper : IDataMapper
     {

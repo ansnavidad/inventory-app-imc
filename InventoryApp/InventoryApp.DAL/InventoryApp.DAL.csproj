@@ -48,6 +48,7 @@
     <Compile Include="DepartamentoDataMapper.cs" />
     <Compile Include="EmpresaDataMapper.cs" />
     <Compile Include="IDataMapper.cs" />
+    <Compile Include="MarcaDataMapper.cs" />
     <Compile Include="Medio_EnvioDataMapper.cs" />
     <Compile Include="MonedaDataMapper.cs" />
     <Compile Include="PedimentoDataMapper.cs" />

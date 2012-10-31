@@ -12,9 +12,9 @@ namespace InventoryApp.DAL
         public object getElements()
         {
             object o = null;
-            using (var oAWEntities = new TAE2Entities())
+            using (var Entity = new TAE2Entities())
             {
-                var provs = from p in oAWEntities.TIPO_PEDIMENTO
+                var provs = from p in Entity.TIPO_PEDIMENTO
                             select p;
 
                 if (provs != null)
@@ -31,9 +31,9 @@ namespace InventoryApp.DAL
             {
                 TIPO_PEDIMENTO Eprov = (TIPO_PEDIMENTO)element;
 
-                using (var oAWEntities = new TAE2Entities())
+                using (var Entity = new TAE2Entities())
                 {
-                    var provs = from p in oAWEntities.TIPO_PEDIMENTO
+                    var provs = from p in Entity.TIPO_PEDIMENTO
                                 where p.UNID_TIPO_PEDIMENTO == Eprov.UNID_TIPO_PEDIMENTO
                                 select p;
 
@@ -50,9 +50,9 @@ namespace InventoryApp.DAL
             {
                 TIPO_PEDIMENTO Eprov = (TIPO_PEDIMENTO)element;
 
-                using (var oAWEntities = new TAE2Entities())
+                using (var Entity = new TAE2Entities())
                 {
-                    var query = from p in oAWEntities.TIPO_PEDIMENTO
+                    var query = from p in Entity.TIPO_PEDIMENTO
                                 where p.UNID_TIPO_PEDIMENTO == Eprov.UNID_TIPO_PEDIMENTO
                                 select p;
 
@@ -63,7 +63,7 @@ namespace InventoryApp.DAL
                     prov.REGIMEN = Eprov.REGIMEN;
                     prov.NOTA = Eprov.NOTA;
 
-                    oAWEntities.SaveChanges();
+                    Entity.SaveChanges();
                 }
             }
         }
@@ -73,7 +73,7 @@ namespace InventoryApp.DAL
             if (element != null)
             {
 
-                using (var oAWEntities = new TAE2Entities())
+                using (var Entity = new TAE2Entities())
                 {
 
                     TIPO_PEDIMENTO Eprov = (TIPO_PEDIMENTO)element;
@@ -85,9 +85,9 @@ namespace InventoryApp.DAL
                     prov.REGIMEN = Eprov.REGIMEN;
                     prov.NOTA = Eprov.NOTA;
 
-                    oAWEntities.TIPO_PEDIMENTO.AddObject(prov);
+                    Entity.TIPO_PEDIMENTO.AddObject(prov);
 
-                    oAWEntities.SaveChanges();
+                    Entity.SaveChanges();
                 }
             }
         }
@@ -96,12 +96,12 @@ namespace InventoryApp.DAL
         {
             if (element != null)
             {
-                using (var oAWEntities = new TAE2Entities())
+                using (var Entity = new TAE2Entities())
                 {
 
                     TIPO_PEDIMENTO Eprov = (TIPO_PEDIMENTO)element;
 
-                    var query = from p in oAWEntities.TIPO_PEDIMENTO
+                    var query = from p in Entity.TIPO_PEDIMENTO
                                 where p.UNID_TIPO_PEDIMENTO == Eprov.UNID_TIPO_PEDIMENTO
                                 select p;
 
@@ -112,7 +112,7 @@ namespace InventoryApp.DAL
 
                         TIPO_PEDIMENTO aux = (TIPO_PEDIMENTO)provs;
 
-                        oAWEntities.TIPO_PEDIMENTO.DeleteObject(aux);
+                        Entity.TIPO_PEDIMENTO.DeleteObject(aux);
                     }
                 }
             }

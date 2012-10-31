@@ -12,9 +12,9 @@ namespace InventoryApp.DAL
         public object getElements()
         {
             object o = null;
-            using (var oAWEntities = new TAE2Entities())
+            using (var Entity = new TAE2Entities())
             {
-                var provs = from p in oAWEntities.PROVEEDORs
+                var provs = from p in Entity.PROVEEDORs
                             select p;
 
                 if (provs != null)
@@ -31,9 +31,9 @@ namespace InventoryApp.DAL
             {
                 PROVEEDOR Eprov = (PROVEEDOR)element;
 
-                using (var oAWEntities = new TAE2Entities())
+                using (var Entity = new TAE2Entities())
                 {
-                    var provs = from p in oAWEntities.PROVEEDORs
+                    var provs = from p in Entity.PROVEEDORs
                                 where p.UNID_PROVEEDOR.Equals(Eprov.UNID_PROVEEDOR)
                                 select p;
 
@@ -51,9 +51,9 @@ namespace InventoryApp.DAL
 
                 PROVEEDOR Eprov = (PROVEEDOR)element;
 
-                using (var oAWEntities = new TAE2Entities())
+                using (var Entity = new TAE2Entities())
                 {
-                    var query = from p in oAWEntities.PROVEEDORs
+                    var query = from p in Entity.PROVEEDORs
                                 where p.UNID_PROVEEDOR == Eprov.UNID_PROVEEDOR
                                 select p;
 
@@ -70,7 +70,7 @@ namespace InventoryApp.DAL
                     prov.CODIGO_POSTAL = Eprov.CODIGO_POSTAL;
                     prov.RFC = Eprov.RFC;
 
-                    oAWEntities.SaveChanges();
+                    Entity.SaveChanges();
                 }
             }
         }
@@ -80,7 +80,7 @@ namespace InventoryApp.DAL
             if (element != null)
             {
 
-                using (var oAWEntities = new TAE2Entities())
+                using (var Entity = new TAE2Entities())
                 {
 
                     PROVEEDOR Eprov = (PROVEEDOR)element;
@@ -98,9 +98,9 @@ namespace InventoryApp.DAL
                     prov.CODIGO_POSTAL = Eprov.CODIGO_POSTAL;
                     prov.RFC = Eprov.RFC;
 
-                    oAWEntities.PROVEEDORs.AddObject(prov);
+                    Entity.PROVEEDORs.AddObject(prov);
 
-                    oAWEntities.SaveChanges();
+                    Entity.SaveChanges();
                 }
             }
         }
@@ -109,12 +109,12 @@ namespace InventoryApp.DAL
         {
             if (element != null)
             {
-                using (var oAWEntities = new TAE2Entities())
+                using (var Entity = new TAE2Entities())
                 {
 
                     PROVEEDOR Eprov = (PROVEEDOR)element;
 
-                    var query = from p in oAWEntities.PROVEEDORs
+                    var query = from p in Entity.PROVEEDORs
                                 where p.UNID_PROVEEDOR == Eprov.UNID_PROVEEDOR
                                 select p;
 
@@ -125,7 +125,7 @@ namespace InventoryApp.DAL
 
                         PROVEEDOR aux = (PROVEEDOR)provs;
 
-                        oAWEntities.PROVEEDORs.DeleteObject(aux);
+                        Entity.PROVEEDORs.DeleteObject(aux);
                     }
                 }
             }

@@ -28,12 +28,12 @@ namespace InventoryApp.Model
         {
             object res = null;
 
-            using (var oAWEntities = new TAE2Entities())
+            using (var entitie = new TAE2Entities())
             {
-                 EMPRESA EEmp = (EMPRESA)element;
+                 EMPRESA empresa = (EMPRESA)element;
 
-                var query = from cust in oAWEntities.EMPRESAs
-                            where cust.UNID_EMPRESA == EEmp.UNID_EMPRESA
+                var query = from cust in entitie.EMPRESAs
+                            where cust.UNID_EMPRESA == empresa.UNID_EMPRESA
                             select cust;
                 if (query != null)
                 {

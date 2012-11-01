@@ -20,7 +20,19 @@ namespace InventoryApp.DAL
 
         public object getElement(object element)
         {
-            throw new NotImplementedException();
+            object res = null;
+            using (var entitie = new TAE2Entities())
+            {
+                SOLICITANTE solicitante = (SOLICITANTE)element;
+                var query = from cust in entitie.SOLICITANTEs
+                            where cust.UNID_SOLICITANTE == solicitante.UNID_SOLICITANTE
+                            select cust;
+                if (query != null)
+                {
+                    res = query;
+                }
+                return res;
+            }
         }
 
         public void udpateElement(object element)

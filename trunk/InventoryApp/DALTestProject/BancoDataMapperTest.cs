@@ -72,7 +72,7 @@ namespace DALTestProject
         public void insertElementTest()
         {
             BancoDataMapper target = new BancoDataMapper(); // TODO: Inicializar en un valor adecuado
-            object element = new InventoryApp.DAL.POCOS.BANCO() { BANCO_NAME = "HSBC" }; // TODO: Inicializar en un valor adecuado
+            object element = new InventoryApp.DAL.POCOS.BANCO() { UNID_BANCO = 20121031163918109, BANCO_NAME = "HSBC" }; // TODO: Inicializar en un valor adecuado
             target.insertElement(element);
             Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
         }
@@ -83,7 +83,7 @@ namespace DALTestProject
         [TestMethod()]
         public void getElementsTest()
         {
-            BancoDataMapper target = new BancoDataMapper(); // TODO: Inicializar en un valor adecuado
+            BancoDataMapper target = new InventoryApp.DAL.BancoDataMapper();  // TODO: Inicializar en un valor adecuado
             object expected = null; // TODO: Inicializar en un valor adecuado
             object actual;
             actual = target.getElements();
@@ -119,6 +119,8 @@ namespace DALTestProject
             testBanco.BANCO_NAME = "IXE";
             element = testBanco;
             target.udpateElement(element);
+            object actual;
+            actual = target.getElement(element);
             Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
         }
     }

@@ -20,7 +20,6 @@ namespace InventoryApp.DAL
         public object getElement(object element)
         {
             object res = null;
-
             using (var entitie = new TAE2Entities())
             {
                 BANCO banco = (BANCO)element;

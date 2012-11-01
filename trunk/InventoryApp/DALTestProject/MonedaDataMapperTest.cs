@@ -75,5 +75,34 @@ namespace DALTestProject
             target.insertElement(element);
             Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
         }
+
+        /// <summary>
+        ///Una prueba de getElement
+        ///</summary>
+        [TestMethod()]
+        public void getElementTest()
+        {
+            MonedaDataMapper target = new MonedaDataMapper(); // TODO: Inicializar en un valor adecuado
+            object element = null; // TODO: Inicializar en un valor adecuado
+            object expected = null; // TODO: Inicializar en un valor adecuado
+            object actual;
+            actual = target.getElement(element);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getElements
+        ///</summary>
+        [TestMethod()]
+        public void getElementsTest()
+        {
+            MonedaDataMapper target = new MonedaDataMapper(); // TODO: Inicializar en un valor adecuado
+            object expected = null; // TODO: Inicializar en un valor adecuado
+            object actual;
+            actual = target.getElements();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

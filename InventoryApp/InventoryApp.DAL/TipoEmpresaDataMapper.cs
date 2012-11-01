@@ -12,14 +12,11 @@ namespace InventoryApp.DAL
         public object getElements()
         {
             object res = null;
-            using (var oAWEntities = new TAE2Entities())
+            using (var entity = new TAE2Entities())
             {
-                var query = from cust in oAWEntities.TIPO_EMPRESA
-                                        select cust;
-                if (query != null)
-                {
-                    res = query;
-                }
+                res = (from tipo in entity.TIPO_EMPRESA
+                                        select tipo).ToList();
+               
                 return res;
             }
         }
@@ -28,40 +25,37 @@ namespace InventoryApp.DAL
         {
             object res = null;
 
-            using (var oAWEntities = new TAE2Entities())
+            using (var entity = new TAE2Entities())
             {
                 TIPO_EMPRESA TEmp = (TIPO_EMPRESA)element;
 
-                var query = from cust in oAWEntities.TIPO_EMPRESA
-                            where cust.UNID_TIPO_EMPRESA == TEmp.UNID_TIPO_EMPRESA  
-                            select cust;
-                if (query != null)
-                {
-                    res = query;
-                }
+                res = (from tipo in entity.TIPO_EMPRESA
+                            where tipo.UNID_TIPO_EMPRESA == TEmp.UNID_TIPO_EMPRESA  
+                            select tipo).ToList();
+                
                 return res;
             }
         }
 
         public void udpateElement(object element)
         {
-            //using (var oAWEntities = new TAE2Entities())
-            //{
-            //    TIPO_EMPRESA TEmp = (TIPO_EMPRESA)element;
+            using (var entity = new TAE2Entities())
+            {
+                TIPO_EMPRESA TEmp = (TIPO_EMPRESA)element;
 
-            //    var query = from cust in oAWEntities.TRANSPORTEs
-            //                where cust.UNID_TRANSPORTE == Etra.UNID_TRANSPORTE && cust.UNID_TIPO_EMPRESA == Etra.UNID_TIPO_EMPRESA
-            //                select cust;
+                var query = from tipo in entity.TIPO_EMPRESA
+                            where tipo.UNID_TIPO_EMPRESA == TEmp.UNID_TIPO_EMPRESA
+                            select tipo;
 
-            //    var tra = query.First();
+                var tra = query.First();
 
-            //    tra.TRANSPORTE_NAME = Etra.TRANSPORTE_NAME;
+                tra.TIPO_EMPRESA_NAME = TEmp.TIPO_EMPRESA_NAME;
 
-            //    oAWEntities.TRANSPORTEs.AddObject(tra);
+                entity.TIPO_EMPRESA.AddObject(tra);
 
-            //    oAWEntities.SaveChanges();
+                entity.SaveChanges();
 
-            //}
+            }
             throw new NotImplementedException();
         }
 

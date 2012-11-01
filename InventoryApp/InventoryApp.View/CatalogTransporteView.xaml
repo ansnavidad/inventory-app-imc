@@ -1,0 +1,28 @@
+﻿<Window x:Class="InventoryApp.View.CatalogTransporteView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:InventoryApp.ViewModel;assembly=InventoryApp.ViewModel"
+        Title="CatalogTransporteView" Height="400" Width="700">
+    <Window.Resources>
+        <vm:CatalogTransporteViewModel x:Key="catalogTransporteViewModel" />
+    </Window.Resources>
+
+    <Grid Name="GridPrincipal" DataContext="{StaticResource catalogTransporteViewModel}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" SelectedItem="{Binding CatalogTransporteModel.SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItems" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogTransporteModel.Transportes}">
+            <DataGrid.Columns>
+                <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />--> 
+                <DataGridTextColumn Header="Transporte" Width="100" x:Name="transporteNombre" Binding="{Binding Path=TRANSPORTE_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Tipo Empresa" Width="100" x:Name="tipoEmpresaNombre" Binding="{Binding Path=TIPO_EMPRESA.TIPO_EMPRESA_NAME}" IsReadOnly="True"/>
+
+                <!--<DataGridTextColumn Header="TOTAL" Width="*" x:Name="Total" Binding="{Binding Path=total}" IsReadOnly="True"/>-->
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="CONSULTA DE DATOS" Height="28" HorizontalAlignment="Left" Margin="5,0,0,0" Name="lblNameConsulta" Width="154" />
+        <Button Content="Agregar" Height="23" HorizontalAlignment="Left" Margin="591,0,0,0" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" />
+    </Grid>
+</Window>

@@ -61,14 +61,31 @@
     <Compile Include="CatalogItemView.xaml.cs">
       <DependentUpon>CatalogItemView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogTipoEmpresaView.xaml.cs">
+      <DependentUpon>CatalogTipoEmpresaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTransporteView.xaml.cs">
+      <DependentUpon>CatalogTransporteView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ItemACView.xaml.cs">
       <DependentUpon>ItemACView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
     <Page Include="CatalogBancoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTipoEmpresaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTransporteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -85,6 +102,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ItemACView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -107,6 +128,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.Config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

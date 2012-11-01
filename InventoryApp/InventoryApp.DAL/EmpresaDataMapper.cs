@@ -9,7 +9,6 @@ namespace InventoryApp.Model
 {
     public class EmpresaDataMapper : IDataMapper
     {
-
         public object getElements()
         {
             object res = null;

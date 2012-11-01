@@ -1,6 +1,7 @@
 ﻿using InventoryApp.DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using InventoryApp.DAL.POCOS;
 
 namespace DALTestProject
 {
@@ -73,6 +74,51 @@ namespace DALTestProject
             BancoDataMapper target = new BancoDataMapper(); // TODO: Inicializar en un valor adecuado
             object element = new InventoryApp.DAL.POCOS.BANCO() { BANCO_NAME = "HSBC" }; // TODO: Inicializar en un valor adecuado
             target.insertElement(element);
+            Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
+        }
+
+        /// <summary>
+        ///Una prueba de getElements
+        ///</summary>
+        [TestMethod()]
+        public void getElementsTest()
+        {
+            BancoDataMapper target = new BancoDataMapper(); // TODO: Inicializar en un valor adecuado
+            object expected = null; // TODO: Inicializar en un valor adecuado
+            object actual;
+            actual = target.getElements();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getElement
+        ///</summary>
+        [TestMethod()]
+        public void getElementTest()
+        {
+            BancoDataMapper target = new BancoDataMapper(); // TODO: Inicializar en un valor adecuado
+            object element = null; // TODO: Inicializar en un valor adecuado
+            object expected = null; // TODO: Inicializar en un valor adecuado
+            object actual;
+            actual = target.getElement(element);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de udpateElement
+        ///</summary>
+        [TestMethod()]
+        public void udpateElementTest()
+        {
+            BancoDataMapper target = new BancoDataMapper(); // TODO: Inicializar en un valor adecuado
+            object element = null; // TODO: Inicializar en un valor adecuado
+            BANCO testBanco = new BANCO();
+            testBanco.UNID_BANCO = 0;
+            testBanco.BANCO_NAME = "IXE";
+            element = testBanco;
+            target.udpateElement(element);
             Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
         }
     }

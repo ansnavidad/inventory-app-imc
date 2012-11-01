@@ -10,7 +10,12 @@ namespace InventoryApp.DAL
     {
         public object getElements()
         {
-            throw new NotImplementedException();
+            object res = null;
+            using (var entitie = new TAE2Entities())
+            {
+                res = (from monedas in entitie.MONEDAs select monedas).ToList();
+                return res;
+            }
         }
 
         public object getElement(object element)

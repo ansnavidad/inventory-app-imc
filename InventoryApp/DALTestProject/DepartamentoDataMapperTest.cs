@@ -1,4 +1,4 @@
-﻿using InventoryApp.Model;
+﻿using InventoryApp.DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -7,11 +7,11 @@ namespace DALTestProject
     
     
     /// <summary>
-    ///Se trata de una clase de prueba para EmpresaDataMapperTest y se pretende que
-    ///contenga todas las pruebas unitarias EmpresaDataMapperTest.
+    ///Se trata de una clase de prueba para DepartamentoDataMapperTest y se pretende que
+    ///contenga todas las pruebas unitarias DepartamentoDataMapperTest.
     ///</summary>
     [TestClass()]
-    public class EmpresaDataMapperTest
+    public class DepartamentoDataMapperTest
     {
 
 
@@ -70,31 +70,13 @@ namespace DALTestProject
         [TestMethod()]
         public void insertElementTest()
         {
-            EmpresaDataMapper target = new EmpresaDataMapper(); // TODO: Inicializar en un valor adecuado
-            object element = new InventoryApp.DAL.POCOS.EMPRESA() 
-            { 
-                UNID_EMPRESA = 12345
-                ,EMPRESA_NAME = "Microsoft"
-                ,RAZON_SOCIAL = "microsoft test"
-                ,RFC = "DFGH010101"
-                ,DIRECCION = "Santa Fe"
+            DepartamentoDataMapper target = new DepartamentoDataMapper(); // TODO: Inicializar en un valor adecuado
+            object element = new InventoryApp.DAL.POCOS.DEPARTAMENTO() { 
+                UNID_DEPARTAMENTO = 12345
+                ,DEPARTAMENTO_NAME = "Finanzas"
             }; // TODO: Inicializar en un valor adecuado
             target.insertElement(element);
             Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
-        }
-
-        /// <summary>
-        ///Una prueba de getElements
-        ///</summary>
-        [TestMethod()]
-        public void getElementsTest()
-        {
-            EmpresaDataMapper target = new EmpresaDataMapper(); // TODO: Inicializar en un valor adecuado
-            object expected = null; // TODO: Inicializar en un valor adecuado
-            object actual;
-            actual = target.getElements();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
     }
 }

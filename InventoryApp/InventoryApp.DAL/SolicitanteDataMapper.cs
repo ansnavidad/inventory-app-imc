@@ -10,7 +10,12 @@ namespace InventoryApp.DAL
     {
         public object getElements()
         {
-            throw new NotImplementedException();
+            object res = null;
+            using (var entitie = new TAE2Entities())
+            {
+                res = (from solicitantes in entitie.SOLICITANTEs select solicitantes).ToList();
+                return res;
+            }
         }
 
         public object getElement(object element)
@@ -25,18 +30,13 @@ namespace InventoryApp.DAL
 
         public void insertElement(object element)
         {
-            using (var entitie = new TAE2Entities())
-            {
-                SOLICITANTE Esolicitate = (SOLICITANTE)element;
-                SOLICITANTE soliciatante = new SOLICITANTE();
-                soliciatante.UNID_SOLICITANTE = soliciatante.UNID_SOLICITANTE;
-                soliciatante.SOLICITANTE_NAME = soliciatante.SOLICITANTE_NAME;
-                soliciatante.UNID_EMPRESA = soliciatante.UNID_EMPRESA;
-                soliciatante.UNID_DEPARTAMENTO = soliciatante.UNID_DEPARTAMENTO;
-                soliciatante.EMAIL = soliciatante.EMAIL;
-                soliciatante.VALIDADOR = soliciatante.VALIDADOR;
-                entitie.SOLICITANTEs.AddObject(soliciatante);
-                entitie.SaveChanges();
+            if(element != null){
+                using (var entitie = new TAE2Entities())
+                {
+                    SOLICITANTE solicitante = (SOLICITANTE)element;
+                    entitie.SOLICITANTEs.AddObject(solicitante);
+                    entitie.SaveChanges();
+                }
             }
         }
 

@@ -10,7 +10,12 @@ namespace InventoryApp.DAL
     {
         public object getElements()
         {
-            throw new NotImplementedException();
+            object res = null;
+            using (var entitie = new TAE2Entities())
+            {
+                res = (from monedas in entitie.DEPARTAMENTOes select monedas).ToList();
+                return res;
+            }
         }
 
         public object getElement(object element)
@@ -29,10 +34,7 @@ namespace InventoryApp.DAL
             {
                 using (var entitie = new TAE2Entities())
                 {
-                    DEPARTAMENTO Edepartamento = (DEPARTAMENTO)element;
-                    DEPARTAMENTO departamento = new DEPARTAMENTO();
-                    departamento.UNID_DEPARTAMENTO = departamento.UNID_DEPARTAMENTO;
-                    departamento.DEPARTAMENTO_NAME = departamento.DEPARTAMENTO_NAME;
+                    DEPARTAMENTO departamento = (DEPARTAMENTO)element;
                     entitie.DEPARTAMENTOes.AddObject(departamento);
                     entitie.SaveChanges();
                 }

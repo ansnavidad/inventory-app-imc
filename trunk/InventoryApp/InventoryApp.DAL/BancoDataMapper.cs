@@ -10,17 +10,44 @@ namespace InventoryApp.DAL
     {
         public object getElements()
         {
-            throw new NotImplementedException();
+            object res = null;
+            using(var entitie = new TAE2Entities()){
+                res = (from bancos in entitie.BANCOes select bancos).ToList();
+                return res;
+            }
         }
 
         public object getElement(object element)
         {
-            throw new NotImplementedException();
+            object res = null;
+
+            using (var entitie = new TAE2Entities())
+            {
+                BANCO banco = (BANCO)element;
+
+                var query = from cust in entitie.BANCOes
+                            where cust.UNID_BANCO == banco.UNID_BANCO
+                            select cust;
+                if (query != null)
+                {
+                    res = query;
+                }
+                return res;
+            }
         }
 
         public void udpateElement(object element)
         {
-            throw new NotImplementedException();
+            using (var entitie = new TAE2Entities())
+            {
+                BANCO banco = (BANCO)element;
+                var query = from cust in entitie.BANCOes
+                            where cust.UNID_BANCO == banco.UNID_BANCO
+                            select cust;
+                var ban = query.First();    
+                ban.BANCO_NAME = banco.BANCO_NAME;
+                entitie.SaveChanges();
+            }
         }
 
         public void insertElement(object element)
@@ -30,6 +57,7 @@ namespace InventoryApp.DAL
                 using (var entitie = new TAE2Entities())
                 {
                     BANCO Ebanco = (BANCO)element;
+                    Ebanco.UNID_BANCO = UNID.getNewUNID();
                     entitie.BANCOes.AddObject(Ebanco);
                     entitie.SaveChanges();
                 }

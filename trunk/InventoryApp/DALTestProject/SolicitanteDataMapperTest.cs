@@ -1,4 +1,4 @@
-﻿using InventoryApp.Model;
+﻿using InventoryApp.DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -7,11 +7,11 @@ namespace DALTestProject
     
     
     /// <summary>
-    ///Se trata de una clase de prueba para EmpresaDataMapperTest y se pretende que
-    ///contenga todas las pruebas unitarias EmpresaDataMapperTest.
+    ///Se trata de una clase de prueba para SolicitanteDataMapperTest y se pretende que
+    ///contenga todas las pruebas unitarias SolicitanteDataMapperTest.
     ///</summary>
     [TestClass()]
-    public class EmpresaDataMapperTest
+    public class SolicitanteDataMapperTest
     {
 
 
@@ -70,14 +70,15 @@ namespace DALTestProject
         [TestMethod()]
         public void insertElementTest()
         {
-            EmpresaDataMapper target = new EmpresaDataMapper(); // TODO: Inicializar en un valor adecuado
-            object element = new InventoryApp.DAL.POCOS.EMPRESA() 
+            SolicitanteDataMapper target = new SolicitanteDataMapper(); // TODO: Inicializar en un valor adecuado
+            object element = new InventoryApp.DAL.POCOS.SOLICITANTE() 
             { 
-                UNID_EMPRESA = 12345
-                ,EMPRESA_NAME = "Microsoft"
-                ,RAZON_SOCIAL = "microsoft test"
-                ,RFC = "DFGH010101"
-                ,DIRECCION = "Santa Fe"
+                UNID_SOLICITANTE = 12345 
+                ,SOLICITANTE_NAME = "Rafa"
+                ,UNID_EMPRESA = 12345
+                ,UNID_DEPARTAMENTO = 12345
+                ,EMAIL = "rafaelgp87@gmail.com"
+                ,VALIDADOR="Test" 
             }; // TODO: Inicializar en un valor adecuado
             target.insertElement(element);
             Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
@@ -89,7 +90,7 @@ namespace DALTestProject
         [TestMethod()]
         public void getElementsTest()
         {
-            EmpresaDataMapper target = new EmpresaDataMapper(); // TODO: Inicializar en un valor adecuado
+            SolicitanteDataMapper target = new SolicitanteDataMapper(); // TODO: Inicializar en un valor adecuado
             object expected = null; // TODO: Inicializar en un valor adecuado
             object actual;
             actual = target.getElements();

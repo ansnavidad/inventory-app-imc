@@ -105,7 +105,7 @@ namespace DALTestProject
             //object expected = null; // TODO: Inicializar en un valor adecuado
             object actual;
             actual = target.getElements();
-            Assert.AreEqual(2, ((List<TRANSPORTE>)actual).Count);
+            Assert.AreEqual(4, ((List<TRANSPORTE>)actual).Count);
            // Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
 

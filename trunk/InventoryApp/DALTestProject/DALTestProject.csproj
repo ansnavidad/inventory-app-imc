@@ -56,6 +56,10 @@
   <ItemGroup>
     <Compile Include="ArticuloDataMapperTest.cs" />
     <Compile Include="BancoDataMapperTest.cs" />
+    <Compile Include="CatalogTipoEmpresaModelTest.cs" />
+    <Compile Include="CatalogTipoEmpresaViewModelTest.cs" />
+    <Compile Include="CatalogTransporteModelTest.cs" />
+    <Compile Include="CatalogTransporteViewModelTest.cs" />
     <Compile Include="CategoriaDataMapperTest.cs" />
     <Compile Include="DepartamentoDataMapperTest.cs" />
     <Compile Include="EmpresaDataMapperTest.cs" />

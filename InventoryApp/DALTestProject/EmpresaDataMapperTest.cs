@@ -96,5 +96,20 @@ namespace DALTestProject
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
+
+        /// <summary>
+        ///Una prueba de getElement
+        ///</summary>
+        [TestMethod()]
+        public void getElementTest()
+        {
+            EmpresaDataMapper target = new EmpresaDataMapper(); // TODO: Inicializar en un valor adecuado
+            object element = null; // TODO: Inicializar en un valor adecuado
+            object expected = null; // TODO: Inicializar en un valor adecuado
+            object actual;
+            actual = target.getElement(element);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

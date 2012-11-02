@@ -68,12 +68,12 @@ namespace DALTestProject
         /// <summary>
         ///Una prueba de Constructor CatalogTransporteModel
         ///</summary>
-        [TestMethod()]
-        public void CatalogTransporteModelConstructorTest()
-        {
-            IDataMapper dataMapper = null; // TODO: Inicializar en un valor adecuado
-            CatalogTransporteModel target = new CatalogTransporteModel(dataMapper);
-            Assert.Inconclusive("TODO: Implementar código para comprobar el destino");
-        }
+        //[TestMethod()]
+        //public void CatalogTransporteModelConstructorTest()
+        //{
+        //    IDataMapper dataMapper = null; // TODO: Inicializar en un valor adecuado
+        //    CatalogTransporteModel target = new CatalogTransporteModel(dataMapper);
+        //    Assert.Inconclusive("TODO: Implementar código para comprobar el destino");
+        //}
     }
 }

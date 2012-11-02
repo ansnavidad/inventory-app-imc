@@ -12,11 +12,14 @@ namespace InventoryApp.DAL
         public object getElements()
         {
             object res = null;
-            using (var entity = new TAE2Entities())
+            using (var oAWEntities = new TAE2Entities())
             {
-                res = (from tipo in entity.TIPO_EMPRESA
-                                        select tipo).ToList();
-               
+                var query = from cust in oAWEntities.TIPO_EMPRESA
+                                        select cust;
+                if (query != null)
+                {
+                    res = query;
+                }
                 return res;
             }
         }
@@ -25,51 +28,45 @@ namespace InventoryApp.DAL
         {
             object res = null;
 
-            using (var entity = new TAE2Entities())
+            using (var oAWEntities = new TAE2Entities())
             {
                 TIPO_EMPRESA TEmp = (TIPO_EMPRESA)element;
 
-                res = (from tipo in entity.TIPO_EMPRESA
-                            where tipo.UNID_TIPO_EMPRESA == TEmp.UNID_TIPO_EMPRESA  
-                            select tipo).ToList();
-                
+                var query = from cust in oAWEntities.TIPO_EMPRESA
+                            where cust.UNID_TIPO_EMPRESA == TEmp.UNID_TIPO_EMPRESA  
+                            select cust;
+                if (query != null)
+                {
+                    res = query;
+                }
                 return res;
             }
         }
 
         public void udpateElement(object element)
         {
-            using (var entity = new TAE2Entities())
+            using (var oAWEntities = new TAE2Entities())
             {
-                TIPO_EMPRESA TEmp = (TIPO_EMPRESA)element;
+                TIPO_EMPRESA TEEmp = (TIPO_EMPRESA)element;
 
-                var query = from tipo in entity.TIPO_EMPRESA
-                            where tipo.UNID_TIPO_EMPRESA == TEmp.UNID_TIPO_EMPRESA
-                            select tipo;
+                var query = from cust in oAWEntities.TIPO_EMPRESA
+                            where cust.UNID_TIPO_EMPRESA == TEEmp.UNID_TIPO_EMPRESA
+                            select cust;
 
-                var tra = query.First();
+                var tEmp = query.First();
 
-                tra.TIPO_EMPRESA_NAME = TEmp.TIPO_EMPRESA_NAME;
+                tEmp.TIPO_EMPRESA_NAME = TEEmp.TIPO_EMPRESA_NAME;
 
-                entity.TIPO_EMPRESA.AddObject(tra);
+                oAWEntities.TIPO_EMPRESA.AddObject(tEmp);
 
-                entity.SaveChanges();
+                oAWEntities.SaveChanges();
 
             }
-            throw new NotImplementedException();
         }
 
         public void insertElement(object element)
         {
-            if (element != null)
-            {
-                using (var entity = new TAE2Entities())
-                {
-                    TIPO_EMPRESA tra = (TIPO_EMPRESA)element;
-                    entity.TIPO_EMPRESA.AddObject(tra);
-                    entity.SaveChanges();
-                }
-            }
+            throw new NotImplementedException();
         }
 
         public void deleteElement(object element)

@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace InventoryApp.View
+{
+    /// <summary>
+    /// Lógica de interacción para CatalogTipoMovimiento.xaml
+    /// </summary>
+    public partial class CatalogTipoMovimiento : Window
+    {
+        public CatalogTipoMovimiento()
+        {
+            InitializeComponent();
+        }
+        
+        private void btnNuevo_Click(object sender, RoutedEventArgs e)
+        {
+            AltaTipoMovimiento alta = new AltaTipoMovimiento();
+            alta.ShowDialog();
+        }
+
+        private void dtGridMovimiento_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+    }
+}

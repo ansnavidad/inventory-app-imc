@@ -1,18 +1,18 @@
-﻿using InventoryApp.ViewModel;
+﻿using InventoryApp.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using InventoryApp.Model;
+using InventoryApp.DAL;
 
 namespace DALTestProject
 {
     
     
     /// <summary>
-    ///Se trata de una clase de prueba para CatalogTransporteViewModelTest y se pretende que
-    ///contenga todas las pruebas unitarias CatalogTransporteViewModelTest.
+    ///Se trata de una clase de prueba para CatalogItemStatusModelTest y se pretende que
+    ///contenga todas las pruebas unitarias CatalogItemStatusModelTest.
     ///</summary>
     [TestClass()]
-    public class CatalogTransporteViewModelTest
+    public class CatalogItemStatusModelTest
     {
 
 
@@ -66,28 +66,15 @@ namespace DALTestProject
 
 
         /// <summary>
-        ///Una prueba de CatalogTransporteModel
+        ///Una prueba de Constructor CatalogItemStatusModel
         ///</summary>
-        //[TestMethod()]
-        //public void CatalogTransporteModelTest()
-        //{
-        //    CatalogTransporteViewModel target = new CatalogTransporteViewModel(); // TODO: Inicializar en un valor adecuado
-        //    CatalogTransporteModel expected = null; // TODO: Inicializar en un valor adecuado
-        //    CatalogTransporteModel actual;
-        //    target.CatalogTransporteModel = expected;
-        //    actual = target.CatalogTransporteModel;
-        //    Assert.AreEqual(expected, actual);
-        //    Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        //}
+        [TestMethod()]
+        public void CatalogItemStatusModelConstructorTest()
+        {
+            IDataMapper dataMapper = null; // TODO: Inicializar en un valor adecuado
+            CatalogItemStatusModel target = new CatalogItemStatusModel(dataMapper);
+           
+        }
 
-        ///// <summary>
-        /////Una prueba de Constructor CatalogTransporteViewModel
-        /////</summary>
-        //[TestMethod()]
-        //public void CatalogTransporteViewModelConstructorTest()
-        //{
-        //    CatalogTransporteViewModel target = new CatalogTransporteViewModel();
-        //    Assert.Inconclusive("TODO: Implementar código para comprobar el destino");
-        //}
     }
 }

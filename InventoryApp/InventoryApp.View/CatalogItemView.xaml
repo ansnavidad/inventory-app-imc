@@ -4,7 +4,9 @@
         xmlns:vm="clr-namespace:InventoryApp.ViewModel;assembly=InventoryApp.ViewModel"
         Title="Catalogo de Item" Height="400" Width="700">
     <Window.Resources>
-        <vm:CatalogItemViewModel x:Key="catalogItemViewModel" />
+        <vm:CatalogItemViewModel x:Key="catalogItemViewModel">
+            
+        </vm:CatalogItemViewModel>
     </Window.Resources>
 
     <Grid Name="GridPrincipal" DataContext="{StaticResource catalogItemViewModel}">
@@ -25,7 +27,7 @@
             <!--<DataGridTextColumn Header="TOTAL" Width="*" x:Name="Total" Binding="{Binding Path=total}" IsReadOnly="True"/>-->
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="CONSULTA DE DATOS" Height="28" HorizontalAlignment="Left" Margin="5,0,0,0" Name="lblNameConsulta" Width="154" />
+        <Label Content="CONSULTA DE DATOS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="154" />
         <Button Content="Agregar" Height="23" HorizontalAlignment="Left" Margin="591,0,0,0" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Click="btnAgregar_Click" />
     </Grid>
 </Window>

@@ -9,6 +9,7 @@ namespace InventoryApp.ViewModel
 { 
     public class CatalogItemViewModel
     {
+        
         //private CatalogItemModel _catalogItemModel;
     
         //public CatalogItemViewModel()
@@ -29,5 +30,6 @@ namespace InventoryApp.ViewModel
         //        _catalogItemModel = value;
         //    }
         //}
+
     }
 }

@@ -68,12 +68,12 @@ namespace DALTestProject
         /// <summary>
         ///Una prueba de Constructor CatalogTipoEmpresaModel
         ///</summary>
-        [TestMethod()]
-        public void CatalogTipoEmpresaModelConstructorTest()
-        {
-            IDataMapper dataMapper = null; // TODO: Inicializar en un valor adecuado
-            CatalogTipoEmpresaModel target = new CatalogTipoEmpresaModel(dataMapper);
-            Assert.Inconclusive("TODO: Implementar código para comprobar el destino");
-        }
+        //[TestMethod()]
+        //public void CatalogTipoEmpresaModelConstructorTest()
+        //{
+        //    IDataMapper dataMapper = null; // TODO: Inicializar en un valor adecuado
+        //    CatalogTipoEmpresaModel target = new CatalogTipoEmpresaModel(dataMapper);
+        //    Assert.Inconclusive("TODO: Implementar código para comprobar el destino");
+        //}
     }
 }

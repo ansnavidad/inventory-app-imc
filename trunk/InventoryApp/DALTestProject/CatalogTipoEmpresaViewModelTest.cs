@@ -67,11 +67,11 @@ namespace DALTestProject
         /// <summary>
         ///Una prueba de Constructor CatalogTipoEmpresaViewModel
         ///</summary>
-        [TestMethod()]
-        public void CatalogTipoEmpresaViewModelConstructorTest()
-        {
-            CatalogTipoEmpresaViewModel target = new CatalogTipoEmpresaViewModel();
-            Assert.Inconclusive("TODO: Implementar código para comprobar el destino");
-        }
+        //[TestMethod()]
+        //public void CatalogTipoEmpresaViewModelConstructorTest()
+        //{
+        //    CatalogTipoEmpresaViewModel target = new CatalogTipoEmpresaViewModel();
+        //    Assert.Inconclusive("TODO: Implementar código para comprobar el destino");
+        //}
     }
 }

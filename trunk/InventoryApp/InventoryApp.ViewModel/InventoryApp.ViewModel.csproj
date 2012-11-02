@@ -40,10 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogItemStatusViewModel.cs" />
     <Compile Include="CatalogItemViewModel.cs" />
-    <Compile Include="CatalogTipoEmpresaViewModel.cs" />
-    <Compile Include="CatalogTransporteViewModel.cs" />
-    <Compile Include="InsertTipoEmpresaViewModel.cs" />
+    <Compile Include="CatalogProyectoViewModel.cs" />
+    <Compile Include="CatalogTipoCotizacionViewModel.cs" />
+    <Compile Include="CatalogTipoMovimientoViewModel.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="InsertUpdateItemStatusViewModel.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +61,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

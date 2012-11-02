@@ -56,17 +56,21 @@
   <ItemGroup>
     <Compile Include="ArticuloDataMapperTest.cs" />
     <Compile Include="BancoDataMapperTest.cs" />
-    <Compile Include="CatalogTipoEmpresaModelTest.cs" />
-    <Compile Include="CatalogTipoEmpresaViewModelTest.cs" />
-    <Compile Include="CatalogTransporteModelTest.cs" />
-    <Compile Include="CatalogTransporteViewModelTest.cs" />
+    <Compile Include="CatalogItemStatusModelTest.cs" />
+    <Compile Include="CatalogItemStatusViewModelTest.cs" />
+    <Compile Include="CatalogItemViewModelTest.cs" />
+    <Compile Include="CatalogProyectoModelTest.cs" />
+    <Compile Include="CatalogTipoCotizacionModelTest.cs" />
+    <Compile Include="CatalogTipoMovimientoModelTest.cs" />
     <Compile Include="CategoriaDataMapperTest.cs" />
-    <Compile Include="DepartamentoDataMapperTest.cs" />
+    <Compile Include="EstatusDataMapperTest.cs" />
     <Compile Include="EmpresaDataMapperTest.cs" />
     <Compile Include="ItemDataMapperTest.cs" />
     <Compile Include="MonedaDataMapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SolicitanteDataMapperTest.cs" />
+    <Compile Include="ProyectoDataMapperTest.cs" />
+    <Compile Include="TipoCotizacionDataMapperTest.cs" />
+    <Compile Include="TipoMovimientoDataMapperTest.cs" />
     <Compile Include="TransporteDataMapperTest.cs" />
     <Compile Include="UNIDTest.cs" />
   </ItemGroup>
@@ -85,7 +89,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

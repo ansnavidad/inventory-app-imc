@@ -54,29 +54,55 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </ApplicationDefinition>
-    <Compile Include="CatalogBancoView.xaml.cs">
-      <DependentUpon>CatalogBancoView.xaml</DependentUpon>
+    <Compile Include="AltaModificarItemStatus.xaml.cs">
+      <DependentUpon>AltaModificarItemStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AltaModificarProyecto.xaml.cs">
+      <DependentUpon>AltaModificarProyecto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AltaModificarTipoCotizacion.xaml.cs">
+      <DependentUpon>AltaModificarTipoCotizacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AltaModificarTipoMovimiento.xaml.cs">
+      <DependentUpon>AltaModificarTipoMovimiento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogItemStatusView.xaml.cs">
+      <DependentUpon>CatalogItemStatusView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogItemView.xaml.cs">
       <DependentUpon>CatalogItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogTipoEmpresaView.xaml.cs">
-      <DependentUpon>CatalogTipoEmpresaView.xaml</DependentUpon>
+    <Compile Include="CatalogProyectoView.xaml.cs">
+      <DependentUpon>CatalogProyectoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogTransporteView.xaml.cs">
-      <DependentUpon>CatalogTransporteView.xaml</DependentUpon>
+    <Compile Include="CatalogTipoCotizacionView.xaml.cs">
+      <DependentUpon>CatalogTipoCotizacionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InsertTipoEmpresaView.xaml.cs">
-      <DependentUpon>InsertTipoEmpresaView.xaml</DependentUpon>
+    <Compile Include="CatalogTipoMovimientoView.xaml.cs">
+      <DependentUpon>CatalogTipoMovimientoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ItemACView.xaml.cs">
       <DependentUpon>ItemACView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
-    <Page Include="CatalogBancoView.xaml">
+    <Page Include="AltaModificarItemStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AltaModificarProyecto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AltaModificarTipoCotizacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AltaModificarTipoMovimiento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogItemStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -84,15 +110,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CatalogTipoEmpresaView.xaml">
+    <Page Include="CatalogProyectoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CatalogTransporteView.xaml">
+    <Page Include="CatalogTipoCotizacionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InsertTipoEmpresaView.xaml">
+    <Page Include="CatalogTipoMovimientoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,16 +129,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ItemACView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

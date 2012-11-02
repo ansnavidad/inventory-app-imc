@@ -1,7 +1,11 @@
 ﻿<Application x:Class="InventoryApp.View.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"             
-             StartupUri="InsertTipoEmpresaView.xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="CatalogItemStatusView.xaml">
+    <!--StartupUri="CatalogTipoMovimientoView.xaml">-->
+    <!--StartupUri="CatalogItemStatusView.xaml">-->
+    <!--StartupUri="CatalogTipoCotizacionView.xaml">-->
+    <!--StartupUri="CatalogProyectoView.xaml">-->
     <Application.Resources>
             <!--<viewModel:ItemACViewModel x:Key="itemACViewModel" />-->
     </Application.Resources>

@@ -9,24 +9,19 @@ namespace InventoryApp.DAL
 {
     public class TransporteDataMapper : IDataMapper
     {
-        /// <summary>
-        /// Obtiene todos los elementos en la tabla transporte
-        /// </summary>
-        /// <returns></returns>
+
         public object getElements()
         {
             object res = null;
-            using (var entity = new TAE2Entities())
+            using (var oAWEntities = new TAE2Entities())
             {
-                res = (from transporte in entity.TRANSPORTEs
-                                        select transporte).ToList();
+                var query = from cust in oAWEntities.TRANSPORTEs
+                                        select cust;
 
-              foreach (TRANSPORTE trans in  ((List<TRANSPORTE>)res))
-              {
-                  trans.TIPO_EMPRESA = trans.TIPO_EMPRESA;
-              }
-                
-
+                if (query != null)
+                {
+                    res = query;
+                }
                 return res;
             }
         }
@@ -35,36 +30,38 @@ namespace InventoryApp.DAL
         {
             object res = null;
 
-            using (var entity = new TAE2Entities())
+            using (var oAWEntities = new TAE2Entities())
             {
                 TRANSPORTE Etra = (TRANSPORTE)element;
 
-                res = (from cust in entity.TRANSPORTEs
+                var query = from cust in oAWEntities.TRANSPORTEs
                             where cust.UNID_TRANSPORTE == Etra.UNID_TRANSPORTE
-                            select cust).ToList<TRANSPORTE>();
-                
-                foreach (TRANSPORTE trans in ((List<TRANSPORTE>)res))
+                            select cust;
+                if (query != null)
                 {
-                    trans.TIPO_EMPRESA = trans.TIPO_EMPRESA;
+                    res = query;
                 }
-
                 return res;
             }
         }
 
         public void udpateElement(object element)
         {
-            using (var entity = new TAE2Entities())
+            using (var oAWEntities = new TAE2Entities())
             {
                 TRANSPORTE Etra = (TRANSPORTE)element;
 
-                var query = from transporte in entity.TRANSPORTEs
-                            where transporte.UNID_TRANSPORTE == Etra.UNID_TRANSPORTE && transporte.UNID_TIPO_EMPRESA == Etra.UNID_TIPO_EMPRESA
-                            select transporte;
+                var query = from cust in oAWEntities.TRANSPORTEs
+                            where cust.UNID_TRANSPORTE == Etra.UNID_TRANSPORTE && cust.UNID_TIPO_EMPRESA == Etra.UNID_TIPO_EMPRESA
+                            select cust;
 
                 var tra = query.First();
+
                 tra.TRANSPORTE_NAME = Etra.TRANSPORTE_NAME;
-                entity.SaveChanges();
+
+                oAWEntities.TRANSPORTEs.AddObject(tra);
+
+                oAWEntities.SaveChanges();
 
             }
 
@@ -76,8 +73,17 @@ namespace InventoryApp.DAL
             {
                 using (var oAWEntities = new TAE2Entities())
                 {
-                    TRANSPORTE tra = (TRANSPORTE)element;
+                    TRANSPORTE Etra = (TRANSPORTE)element;
+                    TRANSPORTE tra = new TRANSPORTE();
+
+                    tra.UNID_TRANSPORTE = Etra.UNID_TRANSPORTE;
+
+                    tra.TRANSPORTE_NAME = Etra.TRANSPORTE_NAME;
+
+                    tra.UNID_TIPO_EMPRESA = Etra.UNID_TIPO_EMPRESA;
+                   
                    oAWEntities.TRANSPORTEs.AddObject(tra);
+
                    oAWEntities.SaveChanges();
                 }
             }

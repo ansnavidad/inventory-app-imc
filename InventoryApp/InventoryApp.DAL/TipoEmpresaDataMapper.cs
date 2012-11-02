@@ -61,7 +61,15 @@ namespace InventoryApp.DAL
 
         public void insertElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TIPO_EMPRESA tra = (TIPO_EMPRESA)element;
+                    entity.TIPO_EMPRESA.AddObject(tra);
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void deleteElement(object element)

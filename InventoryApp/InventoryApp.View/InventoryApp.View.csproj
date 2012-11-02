@@ -67,6 +67,9 @@
     <Compile Include="CatalogTransporteView.xaml.cs">
       <DependentUpon>CatalogTransporteView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InsertTipoEmpresaView.xaml.cs">
+      <DependentUpon>InsertTipoEmpresaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ItemACView.xaml.cs">
       <DependentUpon>ItemACView.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogTransporteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsertTipoEmpresaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

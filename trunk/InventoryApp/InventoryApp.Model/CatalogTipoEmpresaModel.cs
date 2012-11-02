@@ -68,10 +68,6 @@ namespace InventoryApp.Model
             }
         }
 
-        public void insertItems()
-        {
-            this._dataMapper.insertElement(_selectedEmpresa);
-        }
 
         public CatalogTipoEmpresaModel(IDataMapper dataMapper)
         {

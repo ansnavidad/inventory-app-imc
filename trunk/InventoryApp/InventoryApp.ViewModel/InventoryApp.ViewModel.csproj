@@ -43,6 +43,7 @@
     <Compile Include="CatalogItemViewModel.cs" />
     <Compile Include="CatalogTipoEmpresaViewModel.cs" />
     <Compile Include="CatalogTransporteViewModel.cs" />
+    <Compile Include="InsertTipoEmpresaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

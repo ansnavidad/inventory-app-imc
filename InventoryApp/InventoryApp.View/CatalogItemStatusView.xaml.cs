@@ -21,7 +21,6 @@ namespace InventoryApp.View
     {
         public CatalogItemStatusView()
         {
-            CatalogItemStatusViewModel cag = new CatalogItemStatusViewModel();
             InitializeComponent();
         }
 
@@ -29,7 +28,6 @@ namespace InventoryApp.View
         {
             AltaItemStatus alta = new AltaItemStatus();
             alta.ShowDialog();
-
         }
     }
 }

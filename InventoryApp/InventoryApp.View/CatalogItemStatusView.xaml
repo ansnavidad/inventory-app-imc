@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:InventoryApp.ViewModel;assembly=InventoryApp.ViewModel"
         Title="CatalogItemStatusView" Height="400" Width="500">
-    <Window.Resources>
+    <!--<Window.Resources>
         <vm:CatalogItemStatusViewModel x:Key="catalogItemStatusViewModel"></vm:CatalogItemStatusViewModel>
-    </Window.Resources>
+    </Window.Resources>-->
     <Grid Name="GridPrincipal"  DataContext="{StaticResource catalogItemStatusViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />

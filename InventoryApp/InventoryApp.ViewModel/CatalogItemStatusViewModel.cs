@@ -41,5 +41,20 @@ namespace InventoryApp.ViewModel
                 _catalogItemStatusModel = value;
             }
         }
+
+        public void loadItems()
+        {
+            this._catalogItemStatusModel.loadItems();
+        }
+
+        /// <summary>
+        /// Crea una nueva instancia de addItemStatus y se pasa asi mismo como parámetro
+        /// Referenca pag 232 del libro MVVM
+        /// </summary>
+        /// <returns></returns>
+        public AddItemStatusViewModel CreateAddItemStatusViewModel()
+        {
+            return new AddItemStatusViewModel(this);
+        }
     }
 }

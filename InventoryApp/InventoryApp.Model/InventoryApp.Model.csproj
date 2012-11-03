@@ -48,6 +48,7 @@
     <Compile Include="CatalogTipoCotizacionModel.cs" />
     <Compile Include="CatalogTipoMovimientoModel.cs" />
     <Compile Include="InsertUpdateItemStatusModel.cs" />
+    <Compile Include="ItemStatusModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CatalogItemModel.cs" />
     <Compile Include="TestCode\CatalogItemModelDataMapperTEst.cs" />

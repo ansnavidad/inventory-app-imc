@@ -9,6 +9,7 @@ namespace InventoryApp.ViewModel
 {
     public class InsertUpdateItemStatusViewModel
     {
+
         private InsertUpdateItemStatusModel _insertUpdateItemStatusModel;
         
         public InsertUpdateItemStatusViewModel()

@@ -31,7 +31,7 @@ namespace InventoryApp.View
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            InsertUpdateItemStatusViewModel insert = new InsertUpdateItemStatusViewModel();
+            this.Close();
         }
     }
 }

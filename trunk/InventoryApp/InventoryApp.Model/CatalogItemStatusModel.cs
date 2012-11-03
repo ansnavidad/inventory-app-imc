@@ -82,7 +82,8 @@ namespace InventoryApp.Model
             FixupCollection<ITEM_STATUS> ic = element as FixupCollection<ITEM_STATUS>; //element as FixupCollection<PROYECTO>;
             if (ic != null)
             {
-                this._itemStatus = ic;
+                //this._itemStatus = ic;
+                this.ItemStatus = ic;
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;

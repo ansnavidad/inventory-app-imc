@@ -1,12 +1,20 @@
 ﻿<Application x:Class="InventoryApp.View.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:InventoryApp.ViewModel;assembly=InventoryApp.ViewModel"    
              StartupUri="CatalogItemStatusView.xaml">
     <!--StartupUri="CatalogTipoMovimientoView.xaml">-->
     <!--StartupUri="CatalogItemStatusView.xaml">-->
     <!--StartupUri="CatalogTipoCotizacionView.xaml">-->
     <!--StartupUri="CatalogProyectoView.xaml">-->
     <Application.Resources>
-            <!--<viewModel:ItemACViewModel x:Key="itemACViewModel" />-->
+        <!--
+            Se crean los recursos que se utilizarán.
+            ObjectDataProvider expone el método CreateAddItemStatusViewModel que regresa el viewModel de addItemStatusViewModel
+            De esta forma es posible pasar por parametro el viewmodel de catálogo al constructor de addItemStatusViewModel
+        -->
+        <vm:CatalogItemStatusViewModel x:Key="catalogItemStatusViewModel"></vm:CatalogItemStatusViewModel>
+        <ObjectDataProvider x:Key="addItemStatusViewModel" ObjectInstance="{StaticResource catalogItemStatusViewModel}" 
+                            MethodName="CreateAddItemStatusViewModel" x:Shared="False"/>
     </Application.Resources>
 </Application>

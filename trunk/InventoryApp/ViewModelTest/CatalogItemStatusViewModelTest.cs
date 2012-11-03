@@ -1,9 +1,8 @@
-﻿using InventoryApp.ViewModel;
+﻿using InventoryApp.ViewModel.CatalogItemStatus;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using InventoryApp.ViewModel.CatalogItemStatus;
 
-namespace DALTestProject
+namespace ViewModelTest
 {
     
     
@@ -66,13 +65,17 @@ namespace DALTestProject
 
 
         /// <summary>
-        ///Una prueba de Constructor CatalogItemStatusViewModel
+        ///Una prueba de CreateModifyItemStatusViewModel
         ///</summary>
         [TestMethod()]
-        public void CatalogItemStatusViewModelConstructorTest()
+        public void CreateModifyItemStatusViewModelTest()
         {
-            CatalogItemStatusViewModel target = new CatalogItemStatusViewModel();
-            //Assert.Inconclusive("TODO: Implementar código para comprobar el destino");
+            CatalogItemStatusViewModel target = new CatalogItemStatusViewModel(); // TODO: Inicializar en un valor adecuado
+            ModifyItemStatusViewModel expected = null; // TODO: Inicializar en un valor adecuado
+            ModifyItemStatusViewModel actual;
+            actual = target.CreateModifyItemStatusViewModel();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<Window x:Class="InventoryApp.View.CatalogItemStatusView"
+﻿<Window x:Class="InventoryApp.View.CatalogItemStatus.CatalogItemStatusView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:InventoryApp.ViewModel;assembly=InventoryApp.ViewModel"
@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <Label Content="CONSULTA DE ITEM STATUS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
 
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogItemStatusModel.ItemStatus}">
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogItemStatusModel.ItemStatus}" SelectedItem="{Binding CatalogItemStatusModel.SelectedItemStatus, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />
                 <DataGridTextColumn Header="Status" Width="*" x:Name="nombreStatus" Binding="{Binding Path=ITEM_STATUS_NAME}" IsReadOnly="True"/>

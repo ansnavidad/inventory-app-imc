@@ -7,7 +7,7 @@ using System.Windows.Input;
 using InventoryApp.DAL;
 //using System.Windows.Input;
 
-namespace InventoryApp.ViewModel
+namespace InventoryApp.ViewModel.CatalogItemStatus
 {
     public class AddItemStatusViewModel
     {

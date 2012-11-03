@@ -56,7 +56,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </ApplicationDefinition>
-    <Compile Include="AltaModificarItemStatus.xaml.cs">
+    <Compile Include="CatalogItemStatus\AltaModificarItemStatus.xaml.cs">
       <DependentUpon>AltaModificarItemStatus.xaml</DependentUpon>
     </Compile>
     <Compile Include="AltaModificarProyecto.xaml.cs">
@@ -68,7 +68,7 @@
     <Compile Include="AltaModificarTipoMovimiento.xaml.cs">
       <DependentUpon>AltaModificarTipoMovimiento.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogItemStatusView.xaml.cs">
+    <Compile Include="CatalogItemStatus\CatalogItemStatusView.xaml.cs">
       <DependentUpon>CatalogItemStatusView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogItemView.xaml.cs">
@@ -83,10 +83,13 @@
     <Compile Include="CatalogTipoMovimientoView.xaml.cs">
       <DependentUpon>CatalogTipoMovimientoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogItemStatus\ModifyItemStatusView.xaml.cs">
+      <DependentUpon>ModifyItemStatusView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ItemACView.xaml.cs">
       <DependentUpon>ItemACView.xaml</DependentUpon>
     </Compile>
-    <Page Include="AltaModificarItemStatus.xaml">
+    <Page Include="CatalogItemStatus\AltaModificarItemStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -102,7 +105,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CatalogItemStatusView.xaml">
+    <Page Include="CatalogItemStatus\CatalogItemStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,6 +124,10 @@
     <Page Include="CatalogTipoMovimientoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogItemStatus\ModifyItemStatusView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -64,6 +64,11 @@ namespace InventoryApp.Model
             }
         }
 
+        public void updateItemStatus()
+        {
+            this._dataMapper.udpateElement(new ITEM_STATUS() { UNID_ITEM_STATUS=this._unidItemStatus,ITEM_STATUS_NAME=this._itemStatusName });
+        }
+
         #region Constructors
         public ItemStatusModel(IDataMapper dataMapper)
         {

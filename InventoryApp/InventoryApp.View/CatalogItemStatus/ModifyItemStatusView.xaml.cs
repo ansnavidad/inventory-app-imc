@@ -12,16 +12,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using InventoryApp.ViewModel;
 
-namespace InventoryApp.View
+namespace InventoryApp.View.CatalogItemStatus
 {
     /// <summary>
     /// Lógica de interacción para AltaItemStatus.xaml
     /// </summary>
-    public partial class AltaItemStatus : Window
+    public partial class ModifyItemStatusView : Window
     {
-        public AltaItemStatus()
+        public ModifyItemStatusView()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtNomreStatus);
+            this.txtNomreStatus.SelectAll();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

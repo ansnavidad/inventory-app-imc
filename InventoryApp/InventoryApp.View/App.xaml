@@ -1,8 +1,8 @@
 ﻿<Application x:Class="InventoryApp.View.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="clr-namespace:InventoryApp.ViewModel;assembly=InventoryApp.ViewModel"    
-             StartupUri="CatalogItemStatusView.xaml">
+             xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogItemStatus;assembly=InventoryApp.ViewModel"    
+             StartupUri="CatalogItemStatus/CatalogItemStatusView.xaml">
     <!--StartupUri="CatalogTipoMovimientoView.xaml">-->
     <!--StartupUri="CatalogItemStatusView.xaml">-->
     <!--StartupUri="CatalogTipoCotizacionView.xaml">-->
@@ -16,5 +16,7 @@
         <vm:CatalogItemStatusViewModel x:Key="catalogItemStatusViewModel"></vm:CatalogItemStatusViewModel>
         <ObjectDataProvider x:Key="addItemStatusViewModel" ObjectInstance="{StaticResource catalogItemStatusViewModel}" 
                             MethodName="CreateAddItemStatusViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyItemStatusViewModel" ObjectInstance="{StaticResource catalogItemStatusViewModel}" 
+                            MethodName="CreateModifyItemStatusViewModel" x:Shared="False"/>
     </Application.Resources>
 </Application>

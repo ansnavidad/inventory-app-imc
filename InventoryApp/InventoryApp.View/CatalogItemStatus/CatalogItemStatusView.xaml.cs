@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using InventoryApp.ViewModel;
 
-namespace InventoryApp.View
+namespace InventoryApp.View.CatalogItemStatus
 {
     /// <summary>
     /// Lógica de interacción para CatalogItemStatusView.xaml
@@ -28,6 +28,18 @@ namespace InventoryApp.View
         {
             AltaItemStatus alta = new AltaItemStatus();
             alta.ShowDialog();
+        }
+
+        private void dtGridItemStatus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                DataGrid dg = sender as DataGrid;
+                if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
+                {
+                    (new ModifyItemStatusView()).ShowDialog();
+                }
+            }
         }
     }
 }

@@ -74,6 +74,15 @@
     <Compile Include="CatalogItemView.xaml.cs">
       <DependentUpon>CatalogItemView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogMedioEnvio\AltaModificarMedioEnvio.xaml.cs">
+      <DependentUpon>AltaModificarMedioEnvio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogMedioEnvio\CatalogMedioEnvioView.xaml.cs">
+      <DependentUpon>CatalogMedioEnvioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogMedioEnvio\ModifyMedioEnvioView.xaml.cs">
+      <DependentUpon>ModifyMedioEnvioView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogProyectoView.xaml.cs">
       <DependentUpon>CatalogProyectoView.xaml</DependentUpon>
     </Compile>
@@ -110,6 +119,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogMedioEnvio\AltaModificarMedioEnvio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogMedioEnvio\CatalogMedioEnvioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogMedioEnvio\ModifyMedioEnvioView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

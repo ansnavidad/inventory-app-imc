@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
-using InventoryApp.DAL;
 
 namespace InventoryApp.DAL
 {
-    class ProveedorDataMapper : IDataMapper
+    public class TerminoEnvioDataMapper : IDataMapper
     {
         public object getElements()
         {
             object o = null;
-            FixupCollection<PROVEEDOR> tp = new FixupCollection<PROVEEDOR>();
+            FixupCollection<TERMINO_ENVIO> tp = new FixupCollection<TERMINO_ENVIO>();
             using (var Entity = new TAE2Entities())
             {
-                (from p in Entity.PROVEEDORs
+                (from p in Entity.TERMINO_ENVIO
                  select p).ToList().ForEach(d => { tp.Add(d); });
 
                 if (tp.Count > 0)
@@ -32,13 +31,13 @@ namespace InventoryApp.DAL
             object o = null;
             if (element != null)
             {
-                PROVEEDOR Eprov = (PROVEEDOR)element;
-                FixupCollection<PROVEEDOR> tp = new FixupCollection<PROVEEDOR>();
+                TERMINO_ENVIO Eprov = (TERMINO_ENVIO)element;
+                FixupCollection<TERMINO_ENVIO> tp = new FixupCollection<TERMINO_ENVIO>();
 
                 using (var Entity = new TAE2Entities())
                 {
-                    (from p in Entity.PROVEEDORs
-                     where p.UNID_PROVEEDOR == Eprov.UNID_PROVEEDOR
+                    (from p in Entity.TERMINO_ENVIO
+                     where p.UNID_TERMINO_ENVIO == Eprov.UNID_TERMINO_ENVIO
                      select p).ToList().ForEach(d => { tp.Add(d); });
 
                     if (tp.Count > 0)
@@ -56,19 +55,13 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    PROVEEDOR proveedor = (PROVEEDOR)element;
+                    TERMINO_ENVIO terminoEnvio = (TERMINO_ENVIO)element;
 
-                    var modifiedProveedor = entity.PROVEEDORs.First(p => p.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR);
-                    modifiedProveedor.CALLE = proveedor.CALLE;
-                    modifiedProveedor.CODIGO_POSTAL = proveedor.CODIGO_POSTAL;
-                    modifiedProveedor.CONTACTO = proveedor.CONTACTO;
-                    modifiedProveedor.MAIL = proveedor.MAIL;
-                    modifiedProveedor.RFC = proveedor.RFC;
-                    modifiedProveedor.UNID_CIUDAD = proveedor.UNID_CIUDAD;
-                    modifiedProveedor.UNID_PAIS = proveedor.UNID_PAIS;
-                    modifiedProveedor.TEL1 = proveedor.TEL1;
-                    modifiedProveedor.TEL2 = proveedor.TEL2;
-                    modifiedProveedor.PROVEEDOR_NAME = proveedor.PROVEEDOR_NAME;
+                    var modifiedTerminoEnvio = entity.TERMINO_ENVIO.First(p => p.UNID_TERMINO_ENVIO == terminoEnvio.UNID_TERMINO_ENVIO);
+                    modifiedTerminoEnvio.CLAVE = terminoEnvio.CLAVE;
+                    modifiedTerminoEnvio.GENERA_LOTES = terminoEnvio.GENERA_LOTES;
+                    modifiedTerminoEnvio.SIGNIFICADO = terminoEnvio.SIGNIFICADO;
+                    modifiedTerminoEnvio.TERMINO = terminoEnvio.TERMINO;
                     entity.SaveChanges();
                 }
             }
@@ -80,11 +73,11 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    PROVEEDOR proveedor = (PROVEEDOR)element;
+                    TERMINO_ENVIO terminoEnvio = (TERMINO_ENVIO)element;
 
-                    proveedor.UNID_PROVEEDOR = UNID.getNewUNID();
+                    terminoEnvio.UNID_TERMINO_ENVIO = UNID.getNewUNID();
 
-                    entity.PROVEEDORs.AddObject(proveedor);
+                    entity.TERMINO_ENVIO.AddObject(terminoEnvio);
                     entity.SaveChanges();
                 }
             }

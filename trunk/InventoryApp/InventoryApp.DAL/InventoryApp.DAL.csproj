@@ -51,6 +51,7 @@
     <Compile Include="IDataMapper.cs" />
     <Compile Include="ItemStatusDataMapper.cs" />
     <Compile Include="MarcaDataMapper.cs" />
+    <Compile Include="MedioEnvioDataMapper.cs" />
     <Compile Include="Medio_EnvioDataMapper.cs" />
     <Compile Include="MonedaDataMapper.cs" />
     <Compile Include="PedimentoDataMapper.cs" />
@@ -190,11 +191,11 @@
     <Compile Include="ProveedorDataMapper.cs" />
     <Compile Include="ProyectoDataMapper.cs" />
     <Compile Include="SolicitanteDataMapper.cs" />
-    <Compile Include="Termino_EnvioDataMapper.cs" />
+    <Compile Include="TerminoEnvioDataMapper.cs" />
     <Compile Include="TipoCotizacionDataMapper.cs" />
     <Compile Include="TipoEmpresaDataMapper.cs" />
     <Compile Include="TipoMovimientoDataMapper.cs" />
-    <Compile Include="Tipo_PedimentoDataMapper.cs" />
+    <Compile Include="TipoPedimentoDataMapper.cs" />
     <Compile Include="TransporteDataMapper.cs" />
     <Compile Include="UNID.cs" />
   </ItemGroup>

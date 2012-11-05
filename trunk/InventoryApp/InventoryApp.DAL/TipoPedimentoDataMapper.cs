@@ -7,15 +7,15 @@ using InventoryApp.DAL;
 
 namespace InventoryApp.DAL
 {
-    class ProveedorDataMapper : IDataMapper
+    class TipoPedimentoDataMapper : IDataMapper
     {
         public object getElements()
         {
             object o = null;
-            FixupCollection<PROVEEDOR> tp = new FixupCollection<PROVEEDOR>();
+            FixupCollection<TIPO_PEDIMENTO> tp = new FixupCollection<TIPO_PEDIMENTO>();
             using (var Entity = new TAE2Entities())
             {
-                (from p in Entity.PROVEEDORs
+                (from p in Entity.TIPO_PEDIMENTO
                  select p).ToList().ForEach(d => { tp.Add(d); });
 
                 if (tp.Count > 0)
@@ -32,13 +32,13 @@ namespace InventoryApp.DAL
             object o = null;
             if (element != null)
             {
-                PROVEEDOR Eprov = (PROVEEDOR)element;
-                FixupCollection<PROVEEDOR> tp = new FixupCollection<PROVEEDOR>();
+                TIPO_PEDIMENTO Eprov = (TIPO_PEDIMENTO)element;
+                FixupCollection<TIPO_PEDIMENTO> tp = new FixupCollection<TIPO_PEDIMENTO>();
 
                 using (var Entity = new TAE2Entities())
                 {
-                    (from p in Entity.PROVEEDORs
-                     where p.UNID_PROVEEDOR == Eprov.UNID_PROVEEDOR
+                    (from p in Entity.TIPO_PEDIMENTO
+                     where p.UNID_TIPO_PEDIMENTO == Eprov.UNID_TIPO_PEDIMENTO
                      select p).ToList().ForEach(d => { tp.Add(d); });
 
                     if (tp.Count > 0)
@@ -56,19 +56,14 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    PROVEEDOR proveedor = (PROVEEDOR)element;
+                    TIPO_PEDIMENTO tipoPedimento = (TIPO_PEDIMENTO)element;
 
-                    var modifiedProveedor = entity.PROVEEDORs.First(p => p.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR);
-                    modifiedProveedor.CALLE = proveedor.CALLE;
-                    modifiedProveedor.CODIGO_POSTAL = proveedor.CODIGO_POSTAL;
-                    modifiedProveedor.CONTACTO = proveedor.CONTACTO;
-                    modifiedProveedor.MAIL = proveedor.MAIL;
-                    modifiedProveedor.RFC = proveedor.RFC;
-                    modifiedProveedor.UNID_CIUDAD = proveedor.UNID_CIUDAD;
-                    modifiedProveedor.UNID_PAIS = proveedor.UNID_PAIS;
-                    modifiedProveedor.TEL1 = proveedor.TEL1;
-                    modifiedProveedor.TEL2 = proveedor.TEL2;
-                    modifiedProveedor.PROVEEDOR_NAME = proveedor.PROVEEDOR_NAME;
+                    var modifiedTipoPedimento = entity.TIPO_PEDIMENTO.First(p => p.UNID_TIPO_PEDIMENTO == tipoPedimento.UNID_TIPO_PEDIMENTO);
+                    modifiedTipoPedimento.NOTA = tipoPedimento.NOTA;
+                    modifiedTipoPedimento.CLAVE = tipoPedimento.CLAVE;
+                    modifiedTipoPedimento.REGIMEN = tipoPedimento.REGIMEN;
+                    modifiedTipoPedimento.TIPO_PEDIMENTO_NAME = tipoPedimento.TIPO_PEDIMENTO_NAME;
+
                     entity.SaveChanges();
                 }
             }
@@ -80,11 +75,11 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    PROVEEDOR proveedor = (PROVEEDOR)element;
+                    TIPO_PEDIMENTO tipoPedimento = (TIPO_PEDIMENTO)element;
 
-                    proveedor.UNID_PROVEEDOR = UNID.getNewUNID();
+                    tipoPedimento.UNID_TIPO_PEDIMENTO = UNID.getNewUNID();
 
-                    entity.PROVEEDORs.AddObject(proveedor);
+                    entity.TIPO_PEDIMENTO.AddObject(tipoPedimento);
                     entity.SaveChanges();
                 }
             }

@@ -3,27 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
-using InventoryApp.DAL;
 
 namespace InventoryApp.DAL
 {
-    public class MarcaDataMapper : IDataMapper
+    public class EquipoDataMapper : IDataMapper
     {
-
         public object getElements()
         {
 
-            FixupCollection<MARCA> modelos = new FixupCollection<MARCA>();
+            FixupCollection<EQUIPO> equipos = new FixupCollection<EQUIPO>();
             object res = null;
 
             using (var entity = new TAE2Entities())
             {
-                (from cust in entity.MARCAs
-                 select cust).ToList().ForEach(d => { modelos.Add(d); });
+                (from cust in entity.EQUIPOes
+                 select cust).ToList().ForEach(d => { equipos.Add(d); });
 
-                if (modelos.Count > 0)
+                if (equipos.Count > 0)
                 {
-                    res = modelos;
+                    res = equipos;
                 }
 
                 return res;
@@ -37,10 +35,10 @@ namespace InventoryApp.DAL
 
             using (var entity = new TAE2Entities())
             {
-                MARCA Tmp = (MARCA)element;
+                EQUIPO Tmp = (EQUIPO)element;
 
-                res = (from tipo in entity.MARCAs
-                       where tipo.UNID_MARCA == Tmp.UNID_MARCA
+                res = (from tipo in entity.EQUIPOes
+                       where tipo.UNID_EQUIPO == Tmp.UNID_EQUIPO
                        select tipo).ToList();
 
                 return res;
@@ -53,9 +51,9 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    MARCA marca = (MARCA)element;
-                    var modifiedItemStatus = entity.MARCAs.First(p => p.UNID_MARCA == marca.UNID_MARCA);
-                    modifiedItemStatus.MARCA_NAME = marca.MARCA_NAME;
+                    EQUIPO equipo = (EQUIPO)element;
+                    var modifiedItemStatus = entity.EQUIPOes.First(p => p.UNID_EQUIPO == equipo.UNID_EQUIPO);
+                    modifiedItemStatus.EQUIPO_NAME = equipo.EQUIPO_NAME;
                     entity.SaveChanges();
                 }
             }
@@ -68,10 +66,10 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    MARCA marca = (MARCA)element;
-                    marca.UNID_MARCA = UNID.getNewUNID();
+                    EQUIPO equipo = (EQUIPO)element;
+                    equipo.UNID_EQUIPO = UNID.getNewUNID();
 
-                    entity.MARCAs.AddObject(marca);
+                    entity.EQUIPOes.AddObject(equipo);
                     entity.SaveChanges();
                 }
             }

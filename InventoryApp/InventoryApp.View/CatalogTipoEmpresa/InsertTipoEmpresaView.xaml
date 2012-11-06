@@ -1,0 +1,13 @@
+﻿<Window x:Class="InventoryApp.View.InsertTipoEmpresaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        DataContext="{DynamicResource insertTipoEmpresaViewModel}"
+        Title="InsertTipoEmpresaView" Height="300" Width="300">
+    <Window.Resources>
+
+    </Window.Resources>
+    <Grid DataContext="{StaticResource insertTipoEmpresaViewModel}"  >
+        <TextBox  Text="{Binding TipoEmpresa.TipoEmpresaName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="23" HorizontalAlignment="Left" Margin="87,71,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
+        <Button Content="AGREGAR" Grid.Row="4" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Command="{Binding AddItemCommand,Mode=OneWay}" Click="btnAgregar_Click" />
+    </Grid>
+</Window>

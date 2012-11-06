@@ -6,45 +6,81 @@ using System.ComponentModel;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
 
+
 namespace InventoryApp.Model
 {
     public class InsertTipoEmpresaModel : INotifyPropertyChanged
     {
-        private TIPO_EMPRESA _newEmpresa;
-        private IDataMapper _dataMapper;
+        #region Fields
+        private long _unidTipoEmpresa;
+        private string _tipoEmpresaName;
+        private TipoEmpresaDataMapper _dataMapper;
+        #endregion
 
-        public TIPO_EMPRESA NewEmpresa
+        #region Props
+        public long UnidTipoEmpresa
         {
             get
             {
-                return _newEmpresa;
+                return _unidTipoEmpresa;
             }
             set
             {
-                if (_newEmpresa != value)
+                if (_unidTipoEmpresa != value)
                 {
-                    _newEmpresa = value;
+                    _unidTipoEmpresa = value;
                     if (PropertyChanged != null)
                     {
-                        PropertyChanged(this, new PropertyChangedEventArgs("SelectedEmpresa"));
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("UnidTipoEmpresa"));
                     }
                 }
             }
         }
 
-
-        public InsertTipoEmpresaModel()
+        public string TipoEmpresaName
         {
-            this._dataMapper = new TipoEmpresaDataMapper();
-            this._newEmpresa = new TIPO_EMPRESA();
-            _newEmpresa.TIPO_EMPRESA_NAME="JuanPablo";
-            _newEmpresa.UNID_TIPO_EMPRESA=123564;
-;        }
-
-        public void insertItems()
-        {
-            this._dataMapper.insertElement(_newEmpresa);
+            get
+            {
+                return _tipoEmpresaName;
+            }
+            set
+            {
+                if (_tipoEmpresaName != value)
+                {
+                    _tipoEmpresaName = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("TipoEmpresaName"));
+                    }
+                }
+            }
         }
+        #endregion
+
+        public void saveTipoEmpresa()
+        {
+            if (_dataMapper != null)
+            {
+                _dataMapper.insertElement(new TIPO_EMPRESA() { TIPO_EMPRESA_NAME = this._tipoEmpresaName });
+            }
+        }
+
+        public void updateTipoEmpresa()
+        {
+            this._dataMapper.udpateElement(new TIPO_EMPRESA() { UNID_TIPO_EMPRESA = this._unidTipoEmpresa, TIPO_EMPRESA_NAME = this._tipoEmpresaName });
+        }
+
+        #region Constructors
+        public InsertTipoEmpresaModel(IDataMapper dataMapper)
+        {
+            if ((dataMapper as TipoEmpresaDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as TipoEmpresaDataMapper;
+            }
+
+        }
+        #endregion
+
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -11,21 +11,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace InventoryApp.View
+namespace InventoryApp.View.CatalogProyecto
 {
     /// <summary>
-    /// Lógica de interacción para AltaTipoMovimiento.xaml
+    /// Lógica de interacción para AltaProyecto.xaml
     /// </summary>
-    public partial class AltaTipoMovimiento : Window
+    public partial class AltaProyecto : Window
     {
-        public AltaTipoMovimiento()
+        public AltaProyecto()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtProyecto);
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -34,3 +35,4 @@ namespace InventoryApp.View
         }
     }
 }
+

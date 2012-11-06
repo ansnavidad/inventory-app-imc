@@ -11,24 +11,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace InventoryApp.View
+namespace InventoryApp.View.CatalogTipoCotizacion
 {
     /// <summary>
-    /// Lógica de interacción para AltaProyecto.xaml
+    /// Lógica de interacción para ModifyTipoCotizacionView.xaml
     /// </summary>
-    public partial class AltaProyecto : Window
+    public partial class ModifyTipoCotizacionView : Window
     {
-        public AltaProyecto()
+        public ModifyTipoCotizacionView()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtTipoCotizacion);
+            this.txtTipoCotizacion.SelectAll();
+        }
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -60,6 +61,7 @@
     <Compile Include="CatalogItemStatusViewModelTest.cs" />
     <Compile Include="CatalogItemViewModelTest.cs" />
     <Compile Include="CatalogProyectoModelTest.cs" />
+    <Compile Include="CatalogProyectoViewModelTest.cs" />
     <Compile Include="CatalogTipoCotizacionModelTest.cs" />
     <Compile Include="CatalogTipoMovimientoModelTest.cs" />
     <Compile Include="CategoriaDataMapperTest.cs" />

@@ -12,22 +12,22 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
     public class AddItemStatusViewModel
     {
         #region Fields
-        private ItemStatusModel _itemStatus;
+        private ItemStatusModel _addItemStatus;
         private RelayCommand _addItemCommand;
         private CatalogItemStatusViewModel _catalogItemStatusViewModel;
         #endregion
 
         //Exponer la propiedad item status
         #region Props
-        public ItemStatusModel ItemStatus 
+        public ItemStatusModel AddItemStatus 
         {
             get
             {
-                return _itemStatus;
+                return _addItemStatus;
             }
             set
             {
-                _itemStatus = value;
+                _addItemStatus = value;
             }
         }
 
@@ -51,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
         /// <param name="catalogItemStatusViewModel"></param>
         public AddItemStatusViewModel(CatalogItemStatusViewModel catalogItemStatusViewModel)
         {
-            this._itemStatus = new ItemStatusModel(new ItemStatusDataMapper());
+            this._addItemStatus = new ItemStatusModel(new ItemStatusDataMapper());
             this._catalogItemStatusViewModel = catalogItemStatusViewModel;
         }
         #endregion
@@ -65,7 +65,7 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
         public bool CanAttempAddItemStatus()
         {
             bool _canAddItemStatus = true;
-            if (String.IsNullOrEmpty(this._itemStatus.ItemStatusName))
+            if (String.IsNullOrEmpty(this._addItemStatus.ItemStatusName))
                 _canAddItemStatus = false;
 
             return _canAddItemStatus;
@@ -73,7 +73,7 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
 
         public void AttempAddItemStatus()
         {
-            this._itemStatus.saveItemStatus();
+            this._addItemStatus.saveItemStatus();
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya que
             //es una dependencia inyectada

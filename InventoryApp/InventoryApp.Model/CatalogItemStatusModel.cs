@@ -79,10 +79,9 @@ namespace InventoryApp.Model
 
             object element = this._dataMapper.getElements();
 
-            FixupCollection<ITEM_STATUS> ic = element as FixupCollection<ITEM_STATUS>; //element as FixupCollection<PROYECTO>;
+            FixupCollection<ITEM_STATUS> ic = element as FixupCollection<ITEM_STATUS>;
             if (ic != null)
             {
-                //this._itemStatus = ic;
                 this.ItemStatus = ic;
             }
         }

@@ -69,7 +69,7 @@ namespace InventoryApp.Model
             FixupCollection<TIPO_COTIZACION> ic = element as FixupCollection<TIPO_COTIZACION>; //element as FixupCollection<PROYECTO>;
             if (ic != null)
             {
-                this._tipoCotizacion = ic;
+                this.TipoCotizacion = ic;
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;

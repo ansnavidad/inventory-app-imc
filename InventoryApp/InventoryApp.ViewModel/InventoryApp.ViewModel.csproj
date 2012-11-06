@@ -41,25 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogCategoria\AddCategoriaViewModel.cs" />
+    <Compile Include="CatalogCategoria\CatalogCategoriaViewModel.cs" />
+    <Compile Include="CatalogCategoria\ModifyCategoriaViewModel.cs" />
     <Compile Include="CatalogItemStatus\AddItemStatusViewModel.cs" />
     <Compile Include="CatalogItemStatus\CatalogItemStatusViewModel.cs" />
     <Compile Include="CatalogItemViewModel.cs" />
-    <Compile Include="CatalogMedioEnvio\AddMedioEnvioViewModel.cs" />
-    <Compile Include="CatalogMedioEnvio\CatalogMedioEnvioViewModel.cs" />
-    <Compile Include="CatalogMedioEnvio\ModifyMedioEnvioViewModel.cs" />
-    <Compile Include="CatalogProveedor\AddProveedorViewModel.cs" />
-    <Compile Include="CatalogProveedor\CatalogProveedorViewModel.cs" />
-    <Compile Include="CatalogProveedor\ModifyProveedorViewModel.cs" />
-    <Compile Include="CatalogProyectoViewModel.cs" />
-    <Compile Include="CatalogTerminoEnvio\AddTerminoEnvioViewModel.cs" />
-    <Compile Include="CatalogTerminoEnvio\CatalogTerminoEnvioViewModel.cs" />
-    <Compile Include="CatalogTerminoEnvio\ModifyTerminoEnvioViewModel.cs" />
-    <Compile Include="CatalogTipoCotizacionViewModel.cs" />
-    <Compile Include="CatalogTipoMovimientoViewModel.cs" />
-    <Compile Include="CatalogTipoPedimento\AddTipoPedimentoViewModel.cs" />
-    <Compile Include="CatalogTipoPedimento\CatalogTipoPedimentoViewModel.cs" />
-    <Compile Include="CatalogTipoPedimento\ModifyTipoPedimentoViewModel.cs" />
-    <Compile Include="InsertUpdateItemStatusViewModel.cs" />
+    <Compile Include="CatalogProyecto\AddProyectoViewModel.cs" />
+    <Compile Include="CatalogProyecto\CatalogProyectoViewModel.cs" />
+    <Compile Include="CatalogProyecto\ModifyProyectoViewModel.cs" />
+    <Compile Include="CatalogTipoCotizacion\AddTipoCotizacionViewModel.cs" />
+    <Compile Include="CatalogTipoCotizacion\CatalogTipoCotizacionViewModel.cs" />
+    <Compile Include="CatalogTipoCotizacion\ModifyTipoCotizacionViewModel.cs" />
+    <Compile Include="CatalogTipoMovimiento\AddTipoMovimientoViewModel.cs" />
+    <Compile Include="CatalogTipoMovimiento\CatalogTipoMovimientoViewModel.cs" />
+    <Compile Include="CatalogTipoMovimiento\ModifyTipoMovimientoViewModel.cs" />
     <Compile Include="CatalogItemStatus\ModifyItemStatusViewModel.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

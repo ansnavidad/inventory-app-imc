@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using InventoryApp.ViewModel;
 
-namespace InventoryApp.View
+namespace InventoryApp.View.CatalogProyecto
 {
     /// <summary>
     /// Lógica de interacción para CatalogProyectoView.xaml
@@ -21,14 +21,24 @@ namespace InventoryApp.View
     {
         public CatalogProyectoView()
         {
-            //CatalogProyectoViewModel cat = new CatalogProyectoViewModel();
             InitializeComponent();
         }
-
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             AltaProyecto alta = new AltaProyecto();
             alta.ShowDialog();
+        }
+
+        private void dtGridProyecto_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                DataGrid dg = sender as DataGrid;
+                if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
+                {
+                    (new ModifyProyectoView()).ShowDialog();
+                }
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace InventoryApp.View
+namespace InventoryApp.View.CatalogTipoCotizacion
 {
     /// <summary>
     /// Lógica de interacción para CatalogTipoCotizacionView.xaml
@@ -27,6 +27,19 @@ namespace InventoryApp.View
         {
             AltaTipoCotizacion alta = new AltaTipoCotizacion();
             alta.ShowDialog();
+        }
+
+        private void dtGridCotizacion_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                DataGrid dg = sender as DataGrid;
+                if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
+                {
+                    (new ModifyTipoCotizacionView()).ShowDialog();
+                }
+            }
+
         }
     }
 }

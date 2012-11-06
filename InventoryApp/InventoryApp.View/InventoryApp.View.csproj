@@ -83,8 +83,26 @@
     <Compile Include="CatalogMedioEnvio\ModifyMedioEnvioView.xaml.cs">
       <DependentUpon>ModifyMedioEnvioView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogProveedor\AltaModificarProveedor.xaml.cs">
+      <DependentUpon>AltaModificarProveedor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProveedor\CatalogProveedorView.xaml.cs">
+      <DependentUpon>CatalogProveedorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProveedor\ModifyProveedorView.xaml.cs">
+      <DependentUpon>ModifyProveedorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogProyectoView.xaml.cs">
       <DependentUpon>CatalogProyectoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTerminoEnvio\AltaModificarTerminoEnvio.xaml.cs">
+      <DependentUpon>AltaModificarTerminoEnvio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTerminoEnvio\CatalogTerminoEnvioView.xaml.cs">
+      <DependentUpon>CatalogTerminoEnvioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTerminoEnvio\ModifyTerminoEnvioView.xaml.cs">
+      <DependentUpon>ModifyTerminoEnvioView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogTipoCotizacionView.xaml.cs">
       <DependentUpon>CatalogTipoCotizacionView.xaml</DependentUpon>
@@ -94,6 +112,15 @@
     </Compile>
     <Compile Include="CatalogItemStatus\ModifyItemStatusView.xaml.cs">
       <DependentUpon>ModifyItemStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoPedimento\AltaModificarTipoPedimento.xaml.cs">
+      <DependentUpon>AltaModificarTipoPedimento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoPedimento\CatalogTipoPedimentoView.xaml.cs">
+      <DependentUpon>CatalogTipoPedimentoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoPedimento\ModifyTipoPedimentoView.xaml.cs">
+      <DependentUpon>ModifyTipoPedimentoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ItemACView.xaml.cs">
       <DependentUpon>ItemACView.xaml</DependentUpon>
@@ -134,7 +161,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CatalogProveedor\AltaModificarProveedor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProveedor\CatalogProveedorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProveedor\ModifyProveedorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogProyectoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTerminoEnvio\AltaModificarTerminoEnvio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTerminoEnvio\CatalogTerminoEnvioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTerminoEnvio\ModifyTerminoEnvioView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,6 +200,18 @@
     <Page Include="CatalogItemStatus\ModifyItemStatusView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTipoPedimento\AltaModificarTipoPedimento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTipoPedimento\CatalogTipoPedimentoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTipoPedimento\ModifyTipoPedimentoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +262,7 @@
       <Name>InventoryApp.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

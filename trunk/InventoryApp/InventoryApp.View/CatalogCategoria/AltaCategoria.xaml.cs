@@ -11,27 +11,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace InventoryApp.View
+namespace InventoryApp.View.CatalogCategoria
 {
     /// <summary>
-    /// Lógica de interacción para CatalogTipoMovimiento.xaml
+    /// Lógica de interacción para AltaCategoria.xaml
     /// </summary>
-    public partial class CatalogTipoMovimiento : Window
+    public partial class AltaCategoria : Window
     {
-        public CatalogTipoMovimiento()
+        public AltaCategoria()
         {
             InitializeComponent();
-        }
-        
-        private void btnNuevo_Click(object sender, RoutedEventArgs e)
-        {
-            AltaTipoMovimiento alta = new AltaTipoMovimiento();
-            alta.ShowDialog();
+            FocusManager.SetFocusedElement(this, this.txtNomreCategoria);
         }
 
-        private void dtGridMovimiento_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.Close();
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

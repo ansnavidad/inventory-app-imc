@@ -70,7 +70,7 @@ namespace InventoryApp.Model
             FixupCollection<PROYECTO> ic = element as FixupCollection<PROYECTO>; //element as FixupCollection<PROYECTO>;
             if (ic != null)
             {
-                this._proyecto = ic;
+                this.Proyecto = ic;
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;

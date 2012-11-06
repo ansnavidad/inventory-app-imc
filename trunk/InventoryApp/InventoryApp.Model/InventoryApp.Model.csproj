@@ -43,23 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogCategoriaModel.cs" />
     <Compile Include="CatalogItemStatusModel.cs" />
-    <Compile Include="CatalogMedioEnvioModel.cs" />
-    <Compile Include="CatalogProveedorModel.cs" />
     <Compile Include="CatalogProyectoModel.cs" />
-    <Compile Include="CatalogTerminoEnvioModel.cs" />
     <Compile Include="CatalogTipoCotizacionModel.cs" />
     <Compile Include="CatalogTipoMovimientoModel.cs" />
-    <Compile Include="CatalogTipoPedimentoModel.cs" />
-    <Compile Include="InsertUpdateItemStatusModel.cs" />
+    <Compile Include="CategoriaModel.cs" />
     <Compile Include="ItemStatusModel.cs" />
-    <Compile Include="MedioEnvioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CatalogItemModel.cs" />
-    <Compile Include="ProveedorModel.cs" />
-    <Compile Include="TerminoEnvioModel.cs" />
+    <Compile Include="ProyectoModel.cs" />
     <Compile Include="TestCode\CatalogItemModelDataMapperTEst.cs" />
-    <Compile Include="TipoPedimentoModel.cs" />
+    <Compile Include="TipoCotizacionModel.cs" />
+    <Compile Include="TipoMovimientoModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InventoryApp.DAL\InventoryApp.DAL.csproj">

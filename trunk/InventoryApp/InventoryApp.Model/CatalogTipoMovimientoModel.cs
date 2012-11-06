@@ -69,7 +69,7 @@ namespace InventoryApp.Model
             FixupCollection<TIPO_MOVIMIENTO> ic = element as FixupCollection<TIPO_MOVIMIENTO>; //element as FixupCollection<PROYECTO>;
             if (ic != null)
             {
-                this._tipoMovimiento = ic;
+                this.TipoMovimiento = ic;
             }
         }
 

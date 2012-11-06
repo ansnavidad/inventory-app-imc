@@ -11,22 +11,22 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
     public class ModifyItemStatusViewModel
     {
         #region Fields
-        private ItemStatusModel _itemStatus;
+        private ItemStatusModel _modiItemStatus;
         private RelayCommand _modifyItemCommand;
         private CatalogItemStatusViewModel _catalogItemStatusViewModel;
         #endregion
 
         //Exponer la propiedad item status
         #region Props
-        public ItemStatusModel ItemStatus 
+        public ItemStatusModel ModiItemStatus 
         {
             get
             {
-                return _itemStatus;
+                return _modiItemStatus;
             }
             set
             {
-                _itemStatus = value;
+                _modiItemStatus = value;
             }
         }
 
@@ -50,10 +50,10 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyItemStatusViewModel(CatalogItemStatusViewModel catalogItemStatusViewModel,ItemStatusModel selectedItemStatusModel)
         {
-            this._itemStatus = new ItemStatusModel(new ItemStatusDataMapper());
+            this._modiItemStatus = new ItemStatusModel(new ItemStatusDataMapper());
             this._catalogItemStatusViewModel = catalogItemStatusViewModel;
-            this._itemStatus.UnidItemStatus = selectedItemStatusModel.UnidItemStatus;
-            this._itemStatus.ItemStatusName = selectedItemStatusModel.ItemStatusName;
+            this._modiItemStatus.UnidItemStatus = selectedItemStatusModel.UnidItemStatus;
+            this._modiItemStatus.ItemStatusName = selectedItemStatusModel.ItemStatusName;
         }
         #endregion
 
@@ -66,7 +66,7 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
         public bool CanAttempModifyItemStatus()
         {
             bool _canAddItemStatus = true;
-            if (String.IsNullOrEmpty(this._itemStatus.ItemStatusName))
+            if (String.IsNullOrEmpty(this._modiItemStatus.ItemStatusName))
                 _canAddItemStatus = false;
 
             return _canAddItemStatus;
@@ -74,7 +74,7 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
 
         public void AttempModifyItemStatus()
         {
-            this._itemStatus.updateItemStatus();
+            this._modiItemStatus.updateItemStatus();
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya que
             //es una dependencia inyectada

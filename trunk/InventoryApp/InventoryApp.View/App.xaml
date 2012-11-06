@@ -1,37 +1,57 @@
 ﻿<Application x:Class="InventoryApp.View.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"             
-             xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogProveedor;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogProveedor/CatalogProveedorView.xaml">
-    <!--StartupUri="CatalogTipoMovimientoView.xaml">-->
-    <!--StartupUri="CatalogItemStatusView.xaml">-->
-    <!--StartupUri="CatalogTipoCotizacionView.xaml">-->
-    <!--StartupUri="CatalogProyectoView.xaml">-->
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTipoMovimiento;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogTipoMovimiento/CatalogTipoMovimientoView.xaml">
+    
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogItemStatus;assembly=InventoryApp.ViewModel"
+    StartupUri="CatalogItemStatus/CatalogItemStatusView.xaml">-->
+
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogProyecto;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogProyecto/CatalogProyectoView.xaml">-->
+
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTipoCotizacion;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogTipoCotizacion/CatalogTipoCotizacionView.xaml">-->
+    
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTipoMovimiento;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogTipoMovimiento/CatalogTipoMovimientoView.xaml">-->
+
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogCategoria;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogCategoria/CatalogCategoriaView.xaml">-->
     <Application.Resources>
         <!--
             Se crean los recursos que se utilizarán.
             ObjectDataProvider expone el método CreateAddItemStatusViewModel que regresa el viewModel de addItemStatusViewModel
             De esta forma es posible pasar por parametro el viewmodel de catálogo al constructor de addItemStatusViewModel
         -->
-        <!--
-        <vm:CatalogItemStatusViewModel x:Key="catalogItemStatusViewModel"></vm:CatalogItemStatusViewModel>
+        <!--<vm:CatalogItemStatusViewModel x:Key="catalogItemStatusViewModel"></vm:CatalogItemStatusViewModel>
         <ObjectDataProvider x:Key="addItemStatusViewModel" ObjectInstance="{StaticResource catalogItemStatusViewModel}" 
                             MethodName="CreateAddItemStatusViewModel" x:Shared="False"/>
         <ObjectDataProvider x:Key="modifyItemStatusViewModel" ObjectInstance="{StaticResource catalogItemStatusViewModel}" 
-                            MethodName="CreateModifyItemStatusViewModel" x:Shared="False"/>
+                            MethodName="CreateModifyItemStatusViewModel" x:Shared="False"/>-->
+        
+        <!--<vm:CatalogProyectoViewModel x:Key="catalogProyectoViewModel"></vm:CatalogProyectoViewModel>
+        <ObjectDataProvider x:Key="addProyectoViewModel" ObjectInstance="{StaticResource catalogProyectoViewModel }"
+                            MethodName="CreateAddProyectoViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyProyectoViewModel" ObjectInstance="{StaticResource catalogProyectoViewModel }"
+                            MethodName="CreateModifyProyectoViewModel" x:Shared="False"/>-->
 
-        <vm2:CatalogMedioEnvioViewModel x:Key="catalogMedioEnvioViewModel"></vm2:CatalogMedioEnvioViewModel>
-        <ObjectDataProvider x:Key="addMedioEnvioViewModel" ObjectInstance="{StaticResource catalogMedioEnvioViewModel}" 
-                            MethodName="CreateAddMedioEnvioViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyMedioEnvioViewModel" ObjectInstance="{StaticResource catalogMedioEnvioViewModel}" 
-                            MethodName="CreateModifyMedioEnvioViewModel" x:Shared="False"/>
-        -->
+        <!--<vm:CatalogTipoCotizacionViewModel x:Key="catalogTipoCotizacionViewModel"></vm:CatalogTipoCotizacionViewModel>
+        <ObjectDataProvider x:Key="addTipoCotizacionViewModel" ObjectInstance="{StaticResource catalogTipoCotizacionViewModel}"
+                            MethodName="CreateAddTipoCotizacionViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyTipoCotizacionViewModel" ObjectInstance="{StaticResource catalogTipoCotizacionViewModel }"
+                            MethodName="CreateModifyTipoCotizacionViewModel" x:Shared="False"/>-->
 
-
-        <vm:CatalogProveedorViewModel x:Key="catalogProveedorViewModel"></vm:CatalogProveedorViewModel>
-        <ObjectDataProvider x:Key="addProveedorViewModel" ObjectInstance="{StaticResource catalogProveedorViewModel}" 
-                            MethodName="CreateAddProveedorViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyProveedorViewModel" ObjectInstance="{StaticResource catalogProveedorViewModel}" 
-                            MethodName="CreateModifyProveedorViewModel" x:Shared="False"/>
+        <vm:CatalogTipoMovimientoViewModel x:Key="catalogTipoMovimientoViewModel"></vm:CatalogTipoMovimientoViewModel>
+        <ObjectDataProvider x:Key="addTipoMovimientoViewModel" ObjectInstance="{StaticResource catalogTipoMovimientoViewModel}"
+                            MethodName="CreateAddTipoMovimientoViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyTipoMovimientoViewModel" ObjectInstance="{StaticResource catalogTipoMovimientoViewModel }"
+                            MethodName="CreateModifyTipoMovimientoViewModel" x:Shared="False"/>
+        
+        <!--<vm:CatalogCategoriaViewModel x:Key="catalogCategoriaViewModel"></vm:CatalogCategoriaViewModel>
+        <ObjectDataProvider x:Key="addCategoriaViewModel" ObjectInstance="{StaticResource catalogCategoriaViewModel}"
+                            MethodName="CreateAddCategoriaViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyCategoriaViewModel" ObjectInstance="{StaticResource catalogCategoriaViewModel }"
+                            MethodName="CreateModifyCategoriaViewModel" x:Shared="False"/>-->
     </Application.Resources>
 </Application>

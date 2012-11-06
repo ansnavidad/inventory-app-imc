@@ -1,6 +1,7 @@
 ﻿using InventoryApp.DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using InventoryApp.DAL.POCOS;
 
 namespace DALTestProject
 {
@@ -93,5 +94,24 @@ namespace DALTestProject
         //    Assert.AreEqual(0, actual.Count);
         //    //  Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         //}
+
+        /// <summary>
+        ///Una prueba de insertElement
+        ///</summary>
+        [TestMethod()]
+        public void insertElementTest()
+        {
+            ArticuloDataMapper target = new ArticuloDataMapper(); // TODO: Inicializar en un valor adecuado
+            object element = null;// TODO: Inicializar en un valor adecuado
+            ARTICULO modelo = new ARTICULO();
+            modelo.ARTICULO1 = "Tableta";
+            modelo.UNID_CATEGORIA = 20121106130238876;
+            modelo.UNID_EQUIPO = 2012110512571408;
+            modelo.UNID_MARCA = 20121105123017071;
+            modelo.UNID_MODELO = 20121106125528552;
+            target.insertElement(modelo);
+            element = target.getElements();
+            Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
+        }
     }
 }

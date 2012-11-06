@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogArticulo\AddArticuloViewModel.cs" />
+    <Compile Include="CatalogArticulo\CatalogArticuloViewModel.cs" />
+    <Compile Include="CatalogArticulo\ModifyArticuloViewModel.cs" />
     <Compile Include="CatalogEquipo\AddEquipoViewModel.cs" />
     <Compile Include="CatalogEquipo\CatalogEquipoViewModel.cs" />
     <Compile Include="CatalogEquipo\ModifyEquipoViewModel.cs" />

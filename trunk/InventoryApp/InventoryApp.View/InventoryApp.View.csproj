@@ -56,6 +56,15 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </ApplicationDefinition>
+    <Compile Include="CatalogArticulo\AddArticuloView.xaml.cs">
+      <DependentUpon>AddArticuloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogArticulo\CatalogArticuloView.xaml.cs">
+      <DependentUpon>CatalogArticuloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogArticulo\ModifyArticuloView.xaml.cs">
+      <DependentUpon>ModifyArticuloView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogEquipo\AddEquipoView.xaml.cs">
       <DependentUpon>AddEquipoView.xaml</DependentUpon>
     </Compile>
@@ -149,6 +158,18 @@
     <Compile Include="ItemACView.xaml.cs">
       <DependentUpon>ItemACView.xaml</DependentUpon>
     </Compile>
+    <Page Include="CatalogArticulo\AddArticuloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogArticulo\CatalogArticuloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogArticulo\ModifyArticuloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogEquipo\AddEquipoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

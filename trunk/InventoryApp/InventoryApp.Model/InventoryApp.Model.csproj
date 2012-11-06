@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticuloModel.cs" />
+    <Compile Include="CatalogArticuloModel.cs" />
     <Compile Include="CatalogEquipoModel.cs" />
     <Compile Include="CatalogCategoriaModel.cs" />
     <Compile Include="CatalogItemStatusModel.cs" />

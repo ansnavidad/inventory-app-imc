@@ -52,10 +52,10 @@ namespace InventoryApp.ViewModel.CatalogMedioEnvio
         /// Referenca pag 232 del libro MVVM
         /// </summary>
         /// <returns></returns>
-        public AddMedioEnvioViewModel CreateAddMedioEnvioViewModel()
-        {
-            return new AddMedioEnvioViewModel(this);
-        }
+        //public AddMedioEnvioViewModel CreateAddMedioEnvioViewModel()
+        //{
+        //    return new AddMedioEnvioViewModel(this);
+        //}
 
         /// <summary>
         /// Crea una nueva instancia de ModifyItemStatus y se pasa asi mismo como parámetro y el item seleccionado

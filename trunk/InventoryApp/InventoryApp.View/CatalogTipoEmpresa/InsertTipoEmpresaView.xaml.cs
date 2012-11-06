@@ -22,14 +22,13 @@ namespace InventoryApp.View
         public InsertTipoEmpresaView()
         {
             InitializeComponent();
-            InsertTipoEmpresaViewModel prueba = new InsertTipoEmpresaViewModel();
-            textBox1.DataContext = this.Resources["insertTipoEmpresaViewModel"];
+
         }
 
-        private void button1_Click_1(object sender, RoutedEventArgs e)
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            InsertTipoEmpresaViewModel p = this.Resources["insertTipoEmpresaViewModel"] as InsertTipoEmpresaViewModel;
-            p.InsertItem();
+            this.Close();
         }
     }
 }

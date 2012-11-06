@@ -11,17 +11,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace InventoryApp.View
+namespace InventoryApp.View.CatalogEquipo
 {
     /// <summary>
-    /// Lógica de interacción para CatalogTransporteView.xaml
+    /// Lógica de interacción para ModifyEquipoView.xaml
     /// </summary>
-    public partial class CatalogTransporteView : Window
+    public partial class ModifyEquipoView : Window
     {
-        public CatalogTransporteView()
+        public ModifyEquipoView()
         {
             InitializeComponent();
-            InventoryApp.ViewModel.CatalogTransporteViewModel prueba = new ViewModel.CatalogTransporteViewModel();
+        }
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

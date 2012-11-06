@@ -11,62 +11,69 @@ namespace InventoryApp.DAL
 
         public object getElements()
         {
+
+            FixupCollection<TIPO_EMPRESA> tp = new FixupCollection<TIPO_EMPRESA>();
             object res = null;
-            using (var oAWEntities = new TAE2Entities())
+
+            using (var entity = new TAE2Entities())
             {
-                var query = from cust in oAWEntities.TIPO_EMPRESA
-                                        select cust;
-                if (query != null)
+                (from cust in entity.TIPO_EMPRESA
+                 select cust).ToList().ForEach(d => { tp.Add(d); });
+
+                if (tp.Count > 0)
                 {
-                    res = query;
+                    res = tp;
                 }
+
                 return res;
             }
+
         }
 
         public object getElement(object element)
         {
             object res = null;
 
-            using (var oAWEntities = new TAE2Entities())
+            using (var entity = new TAE2Entities())
             {
                 TIPO_EMPRESA TEmp = (TIPO_EMPRESA)element;
 
-                var query = from cust in oAWEntities.TIPO_EMPRESA
-                            where cust.UNID_TIPO_EMPRESA == TEmp.UNID_TIPO_EMPRESA  
-                            select cust;
-                if (query != null)
-                {
-                    res = query;
-                }
+                res = (from tipo in entity.TIPO_EMPRESA
+                       where tipo.UNID_TIPO_EMPRESA == TEmp.UNID_TIPO_EMPRESA
+                       select tipo).ToList();
+
                 return res;
             }
         }
 
         public void udpateElement(object element)
         {
-            using (var oAWEntities = new TAE2Entities())
+            if (element != null)
             {
-                TIPO_EMPRESA TEEmp = (TIPO_EMPRESA)element;
-
-                var query = from cust in oAWEntities.TIPO_EMPRESA
-                            where cust.UNID_TIPO_EMPRESA == TEEmp.UNID_TIPO_EMPRESA
-                            select cust;
-
-                var tEmp = query.First();
-
-                tEmp.TIPO_EMPRESA_NAME = TEEmp.TIPO_EMPRESA_NAME;
-
-                oAWEntities.TIPO_EMPRESA.AddObject(tEmp);
-
-                oAWEntities.SaveChanges();
-
+                using (var entity = new TAE2Entities())
+                {
+                    TIPO_EMPRESA tipoEmpresa = (TIPO_EMPRESA)element;
+                    var modifiedItemStatus = entity.TIPO_EMPRESA.First(p => p.UNID_TIPO_EMPRESA == tipoEmpresa.UNID_TIPO_EMPRESA);
+                    modifiedItemStatus.TIPO_EMPRESA_NAME = tipoEmpresa.TIPO_EMPRESA_NAME;
+                    entity.SaveChanges();
+                }
             }
+
         }
 
         public void insertElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TIPO_EMPRESA tra = (TIPO_EMPRESA)element;
+                    tra.UNID_TIPO_EMPRESA = UNID.getNewUNID();
+
+                    entity.TIPO_EMPRESA.AddObject(tra);
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void deleteElement(object element)

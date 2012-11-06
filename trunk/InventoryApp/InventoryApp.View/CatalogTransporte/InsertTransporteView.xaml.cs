@@ -14,13 +14,18 @@ using System.Windows.Shapes;
 namespace InventoryApp.View
 {
     /// <summary>
-    /// Lógica de interacción para CatalogTipoEmpresaView.xaml
+    /// Lógica de interacción para InsertTransporteView.xaml
     /// </summary>
-    public partial class CatalogTipoEmpresaView : Window
+    public partial class InsertTransporteView : Window
     {
-        public CatalogTipoEmpresaView()
+        public InsertTransporteView()
         {
             InitializeComponent();
+        }
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

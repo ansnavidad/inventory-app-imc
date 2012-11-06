@@ -48,12 +48,14 @@
     <Compile Include="CategoriaDataMapper.cs" />
     <Compile Include="DepartamentoDataMapper.cs" />
     <Compile Include="EmpresaDataMapper.cs" />
+    <Compile Include="EquipoDataMapper.cs" />
     <Compile Include="EstatusDataMapper.cs" />
     <Compile Include="IDataMapper.cs" />
     <Compile Include="ItemStatusDataMapper.cs" />
     <Compile Include="MarcaDataMapper.cs" />
     <Compile Include="MedioEnvioDataMapper.cs" />
     <Compile Include="Medio_EnvioDataMapper.cs" />
+    <Compile Include="ModeloDataMapper.cs" />
     <Compile Include="MonedaDataMapper.cs" />
     <Compile Include="PedimentoDataMapper.cs" />
     <Compile Include="POCOS\ALMACEN.cs">

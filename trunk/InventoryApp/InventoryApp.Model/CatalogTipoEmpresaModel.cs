@@ -10,13 +10,13 @@ namespace InventoryApp.Model
 {
     public class CatalogTipoEmpresaModel : INotifyPropertyChanged
     {
-         private FixupCollection<TIPO_EMPRESA> _tipoEmpresas;
+        private FixupCollection<TIPO_EMPRESA> _tipoEmpresas;
         private TIPO_EMPRESA _selectedEmpresa;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<TIPO_EMPRESA> TipoEmpresas 
+        public FixupCollection<TIPO_EMPRESA> TipoEmpresas
         {
-            get 
+            get
             {
                 return _tipoEmpresas;
             }
@@ -56,15 +56,11 @@ namespace InventoryApp.Model
         {
             object element = this._dataMapper.getElements();
 
-            FixupCollection<TIPO_EMPRESA> ic = new FixupCollection<TIPO_EMPRESA>();
-
-            foreach (TIPO_EMPRESA elemento in (List<TIPO_EMPRESA>)element)
-            {
-                ic.Add((TIPO_EMPRESA)elemento);
-            }
+            FixupCollection<TIPO_EMPRESA> ic = element as FixupCollection<TIPO_EMPRESA>; //element as FixupCollection<PROYECTO>;
             if (ic != null)
             {
-                this._tipoEmpresas = ic;
+                //this._itemStatus = ic;
+                this.TipoEmpresas = ic;
             }
         }
 
@@ -80,5 +76,5 @@ namespace InventoryApp.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
-    
+
 }

@@ -70,7 +70,7 @@ namespace InventoryApp.ViewModel.CatalogTerminoEnvio
         public bool CanAttempModifyTerminoEnvio()
         {
             bool _canAddTerminoEnvio = true;
-            if (String.IsNullOrEmpty(this._terminoEnvio.Termino))
+            if (String.IsNullOrEmpty(this._terminoEnvio.Termino) || String.IsNullOrEmpty(this._terminoEnvio.Clave) || String.IsNullOrEmpty(this._terminoEnvio.Significado))
                 _canAddTerminoEnvio = false;
 
             return _canAddTerminoEnvio;

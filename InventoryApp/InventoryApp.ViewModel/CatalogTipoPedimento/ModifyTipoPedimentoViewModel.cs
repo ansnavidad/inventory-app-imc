@@ -69,7 +69,7 @@ namespace InventoryApp.ViewModel.CatalogTipoPedimento
         public bool CanAttempModifyTipoPedimento()
         {
             bool _canAddTipoPedimento = true;
-            if (String.IsNullOrEmpty(this._tipoPedimento.TipoPedimentoName))
+            if (String.IsNullOrEmpty(this._tipoPedimento.TipoPedimentoName) || String.IsNullOrEmpty(this._tipoPedimento.Clave) || String.IsNullOrEmpty(this._tipoPedimento.Nota) || String.IsNullOrEmpty(this._tipoPedimento.Regimen))
                 _canAddTipoPedimento = false;
 
             return _canAddTipoPedimento;

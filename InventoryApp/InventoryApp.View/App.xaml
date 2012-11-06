@@ -6,7 +6,9 @@
              xmlns:vm3="clr-namespace:InventoryApp.ViewModel.CatalogMarca;assembly=InventoryApp.ViewModel"
              xmlns:vm4="clr-namespace:InventoryApp.ViewModel.CatalogEquipo;assembly=InventoryApp.ViewModel"
              xmlns:vm5="clr-namespace:InventoryApp.ViewModel.CatalogModelo;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogModelo/CatalogModeloView.xaml">
+             xmlns:vm6="clr-namespace:InventoryApp.ViewModel.CatalogCategoria;assembly=InventoryApp.ViewModel"
+             xmlns:vm7="clr-namespace:InventoryApp.ViewModel.CatalogArticulo;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogArticulo/CatalogArticuloView.xaml">
     <!--StartupUri="CatalogTipoMovimientoView.xaml">-->
     <!--StartupUri="CatalogItemStatusView.xaml">-->
     <!--StartupUri="CatalogTipoCotizacionView.xaml">-->
@@ -26,7 +28,7 @@
     <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTipoMovimiento;assembly=InventoryApp.ViewModel"
              StartupUri="CatalogTipoMovimiento/CatalogTipoMovimientoView.xaml">-->
 
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogCategoria;assembly=InventoryApp.ViewModel"
+    <!--<xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogCategoria;assembly=InventoryApp.ViewModel"
              StartupUri="CatalogCategoria/CatalogCategoriaView.xaml">-->
 
     <Application.Resources>
@@ -76,11 +78,11 @@
         <ObjectDataProvider x:Key="modifyTipoMovimientoViewModel" ObjectInstance="{StaticResource catalogTipoMovimientoViewModel }"
                             MethodName="CreateModifyTipoMovimientoViewModel" x:Shared="False"/>-->
         
-        <!--<vm:CatalogCategoriaViewModel x:Key="catalogCategoriaViewModel"></vm:CatalogCategoriaViewModel>
+        <vm6:CatalogCategoriaViewModel x:Key="catalogCategoriaViewModel"></vm6:CatalogCategoriaViewModel>
         <ObjectDataProvider x:Key="addCategoriaViewModel" ObjectInstance="{StaticResource catalogCategoriaViewModel}"
                             MethodName="CreateAddCategoriaViewModel" x:Shared="False"/>
         <ObjectDataProvider x:Key="modifyCategoriaViewModel" ObjectInstance="{StaticResource catalogCategoriaViewModel }"
-                            MethodName="CreateModifyCategoriaViewModel" x:Shared="False"/>-->
+                            MethodName="CreateModifyCategoriaViewModel" x:Shared="False"/>
 
         <vm3:CatalogMarcaViewModel x:Key="catalogMarcaViewModel" />
         <ObjectDataProvider x:Key="addMarcaViewModel" ObjectInstance="{StaticResource catalogMarcaViewModel}" 
@@ -97,5 +99,10 @@
                             MethodName="CreateAddModeloViewModel" x:Shared="False"/>
         <ObjectDataProvider x:Key="modifyModeloViewModel" ObjectInstance="{StaticResource catalogModeloViewModel}" 
                             MethodName="CreateModifyModeloViewModel" x:Shared="False"/>
+        <vm7:CatalogArticuloViewModel x:Key="catalogArticuloViewModel" />
+        <ObjectDataProvider x:Key="addArticuloViewModel" ObjectInstance="{StaticResource catalogArticuloViewModel}" 
+                            MethodName="CreateAddArticuloViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyArticuloViewModel" ObjectInstance="{StaticResource catalogArticuloViewModel}" 
+                            MethodName="CreateModifyArticuloViewModel" x:Shared="False"/>
     </Application.Resources>
 </Application>

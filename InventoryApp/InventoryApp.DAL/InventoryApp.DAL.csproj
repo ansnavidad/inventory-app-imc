@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticuloDataMapper.cs" />
     <Compile Include="BancoDataMapper.cs" />
     <Compile Include="CategoriaDataMapper.cs" />
     <Compile Include="DepartamentoDataMapper.cs" />

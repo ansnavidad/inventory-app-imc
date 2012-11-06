@@ -7,7 +7,7 @@ using InventoryApp.DAL;
 
 namespace InventoryApp.DAL
 {
-    class TipoPedimentoDataMapper : IDataMapper
+    public class TipoPedimentoDataMapper : IDataMapper
     {
         public object getElements()
         {
@@ -57,12 +57,11 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     TIPO_PEDIMENTO tipoPedimento = (TIPO_PEDIMENTO)element;
-
                     var modifiedTipoPedimento = entity.TIPO_PEDIMENTO.First(p => p.UNID_TIPO_PEDIMENTO == tipoPedimento.UNID_TIPO_PEDIMENTO);
+                    modifiedTipoPedimento.TIPO_PEDIMENTO_NAME = tipoPedimento.TIPO_PEDIMENTO_NAME;
+                    modifiedTipoPedimento.REGIMEN = tipoPedimento.REGIMEN;
                     modifiedTipoPedimento.NOTA = tipoPedimento.NOTA;
                     modifiedTipoPedimento.CLAVE = tipoPedimento.CLAVE;
-                    modifiedTipoPedimento.REGIMEN = tipoPedimento.REGIMEN;
-                    modifiedTipoPedimento.TIPO_PEDIMENTO_NAME = tipoPedimento.TIPO_PEDIMENTO_NAME;
 
                     entity.SaveChanges();
                 }

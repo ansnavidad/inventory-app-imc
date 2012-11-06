@@ -11,9 +11,9 @@
         </Grid.RowDefinitions>
         <Label Content="CONSULTA DE MEDIO ENVIO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
 
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogMedioEnvioModel.MedioEnvio}" SelectedItem="{Binding CatalogMedioEnvioModel.SelectedMedioEnvio, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick">
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding MedioEnvioModel.MedioEnvio}" SelectedItem="{Binding MedioEnvioModel.SelectedMedioEnvio, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />
+                <DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected"/>
                 <DataGridTextColumn Header="Medio Envio" Width="*" x:Name="nombreMedioEnvio" Binding="{Binding Path=MEDIO_ENVIO_NAME}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>

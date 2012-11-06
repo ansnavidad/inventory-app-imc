@@ -7,7 +7,7 @@ using InventoryApp.DAL;
 
 namespace InventoryApp.DAL
 {
-    class ProveedorDataMapper : IDataMapper
+    public class ProveedorDataMapper : IDataMapper
     {
         public object getElements()
         {

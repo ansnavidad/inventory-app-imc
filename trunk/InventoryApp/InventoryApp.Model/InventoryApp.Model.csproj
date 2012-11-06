@@ -56,7 +56,10 @@
     <Compile Include="MedioEnvioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CatalogItemModel.cs" />
+    <Compile Include="ProveedorModel.cs" />
+    <Compile Include="TerminoEnvioModel.cs" />
     <Compile Include="TestCode\CatalogItemModelDataMapperTEst.cs" />
+    <Compile Include="TipoPedimentoModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InventoryApp.DAL\InventoryApp.DAL.csproj">

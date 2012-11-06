@@ -10,24 +10,24 @@ namespace InventoryApp.Model
 {
     public class CatalogTerminoEnvioModel : INotifyPropertyChanged
     {
-        private FixupCollection<TERMINO_ENVIO> _terminoEnvioCollection;
+        private FixupCollection<TERMINO_ENVIO> _terminoEnvio;
         private TERMINO_ENVIO _selectedTerminoEnvio;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<TERMINO_ENVIO> TerminoEnvioCollection
+        public FixupCollection<TERMINO_ENVIO> TerminoEnvio
         {
             get
             {
-                return _terminoEnvioCollection;
+                return _terminoEnvio;
             }
             set
             {
-                if (_terminoEnvioCollection != value)
+                if (_terminoEnvio != value)
                 {
-                    _terminoEnvioCollection = value;
+                    _terminoEnvio = value;
                     if (PropertyChanged != null)
                     {
-                        PropertyChanged(this, new PropertyChangedEventArgs("TerminoEnvioCollection"));
+                        PropertyChanged(this, new PropertyChangedEventArgs("TerminoEnvio"));
                     }
                 }
             }
@@ -59,14 +59,14 @@ namespace InventoryApp.Model
             FixupCollection<TERMINO_ENVIO> ic = element as FixupCollection<TERMINO_ENVIO>;
             if (ic != null)
             {
-                this._terminoEnvioCollection = ic;
+                this.TerminoEnvio = ic;
             }
         }
 
         public CatalogTerminoEnvioModel(IDataMapper dataMapper)
         {
             this._dataMapper = new TerminoEnvioDataMapper();
-            this._terminoEnvioCollection = new FixupCollection<TERMINO_ENVIO>();
+            this._terminoEnvio = new FixupCollection<TERMINO_ENVIO>();
             this._selectedTerminoEnvio = new TERMINO_ENVIO();
             this.loadItems();
         }

@@ -16,7 +16,7 @@ namespace InventoryApp.ViewModel.CatalogMedioEnvio
             
             try
             {
-                IDataMapper dataMapper = new EstatusDataMapper();
+                IDataMapper dataMapper = new MedioEnvioDataMapper();
                 this._medioEnvioModel = new CatalogMedioEnvioModel(dataMapper);   
             }
             catch (ArgumentException a)

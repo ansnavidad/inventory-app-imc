@@ -75,7 +75,7 @@ namespace InventoryApp.ViewModel.CatalogProveedor
         public bool CanAttempModifyProveedor()
         {
             bool _canAddProveedor = true;
-            if (String.IsNullOrEmpty(this._proveedorModel.ProveedorName))
+            if (String.IsNullOrEmpty(this._proveedorModel.ProveedorName) || String.IsNullOrEmpty(this._proveedorModel.Calle) || String.IsNullOrEmpty(this._proveedorModel.CodigoPostal) || String.IsNullOrEmpty(this._proveedorModel.Contacto) || String.IsNullOrEmpty(this._proveedorModel.Mail) || String.IsNullOrEmpty(this._proveedorModel.RFC) || String.IsNullOrEmpty(this._proveedorModel.Tel1) || String.IsNullOrEmpty(this._proveedorModel.Tel2))
                 _canAddProveedor = false;
 
             return _canAddProveedor;

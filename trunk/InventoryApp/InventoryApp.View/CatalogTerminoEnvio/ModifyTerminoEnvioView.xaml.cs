@@ -32,5 +32,10 @@ namespace InventoryApp.View.CatalogTerminoEnvio
         {
             this.Close();
         }
+
+        private void btnCancelar_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

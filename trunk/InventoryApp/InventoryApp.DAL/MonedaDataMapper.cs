@@ -10,12 +10,21 @@ namespace InventoryApp.DAL
     {
         public object getElements()
         {
+            FixupCollection<MONEDA> tp = new FixupCollection<MONEDA>();
             object res = null;
-            using (var entitie = new TAE2Entities())
+
+            using (var entity = new TAE2Entities())
             {
-                res = (from monedas in entitie.MONEDAs select monedas).ToList();
+                (from cust in entity.MONEDAs
+                 select cust).ToList().ForEach(d => { tp.Add(d); });
+
+                if (tp.Count > 0)
+                {
+                    res = tp;
+                }
+
                 return res;
-            }
+            } throw new NotImplementedException();
         }
 
         public object getElement(object element)
@@ -24,7 +33,6 @@ namespace InventoryApp.DAL
             using (var entitie = new TAE2Entities())
             {
                 MONEDA moneda = (MONEDA)element;
-
                 var query = from cust in entitie.MONEDAs
                             where cust.UNID_MONEDA == moneda.UNID_MONEDA
                             select cust;
@@ -38,18 +46,29 @@ namespace InventoryApp.DAL
 
         public void udpateElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MONEDA moneda = (MONEDA)element;
+                    var modifiedMoneda = entity.MONEDAs.First(p => p.UNID_MONEDA == moneda.UNID_MONEDA);
+                    modifiedMoneda.MONEDA_NAME = moneda.MONEDA_NAME;
+                    modifiedMoneda.MONEDA_ABR = moneda.MONEDA_ABR;
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void insertElement(object element)
         {
             if (element != null)
             {
-                using (var entitie = new TAE2Entities())
+                using (var entity = new TAE2Entities())
                 {
                     MONEDA moneda = (MONEDA)element;
-                    entitie.MONEDAs.AddObject(moneda);
-                    entitie.SaveChanges();
+                    moneda.UNID_MONEDA = UNID.getNewUNID();
+                    entity.MONEDAs.AddObject(moneda);
+                    entity.SaveChanges();
                 }
             }
         }

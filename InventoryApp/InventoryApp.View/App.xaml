@@ -10,7 +10,8 @@
              xmlns:vm7="clr-namespace:InventoryApp.ViewModel.CatalogArticulo;assembly=InventoryApp.ViewModel"
              xmlns:vm8="clr-namespace:InventoryApp.ViewModel.CatalogBanco;assembly=InventoryApp.ViewModel"
              xmlns:vm9="clr-namespace:InventoryApp.ViewModel.CatalogMoneda;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogMoneda/CatalogMonedaView.xaml">
+             xmlns:vm10="clr-namespace:InventoryApp.ViewModel.CatalogDepartamento;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogDepartamento/CatalogDepartamentoView.xaml">
     <!--StartupUri="CatalogTipoMovimientoView.xaml">-->
     <!--StartupUri="CatalogItemStatusView.xaml">-->
     <!--StartupUri="CatalogTipoCotizacionView.xaml">-->
@@ -121,5 +122,11 @@
                             MethodName="CreateAddMonedaViewModel" x:Shared="False"/>
         <ObjectDataProvider x:Key="modifyMonedaViewModel" ObjectInstance="{StaticResource catalogMonedaViewModel}" 
                             MethodName="CreateModifyMonedaViewModel" x:Shared="False"/>
+
+        <vm10:CatalogDepartamentoViewModel x:Key="catalogDepartamentoViewModel"></vm10:CatalogDepartamentoViewModel>
+        <ObjectDataProvider x:Key="addDepartamentoViewModel" ObjectInstance="{StaticResource catalogDepartamentoViewModel}" 
+                            MethodName="CreateAddDepartamentoViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyDepartamentoViewModel" ObjectInstance="{StaticResource catalogDepartamentoViewModel}" 
+                            MethodName="CreateModifyDepartamentoViewModel" x:Shared="False"/>
     </Application.Resources>
 </Application>

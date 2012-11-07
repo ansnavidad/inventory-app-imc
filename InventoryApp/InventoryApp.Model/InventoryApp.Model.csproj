@@ -48,6 +48,7 @@
     <Compile Include="CatalogCiudadModel.cs" />
     <Compile Include="ArticuloModel.cs" />
     <Compile Include="CatalogArticuloModel.cs" />
+    <Compile Include="CatalogDepartamentoModel.cs" />
     <Compile Include="CatalogEquipoModel.cs" />
     <Compile Include="CatalogCategoriaModel.cs" />
     <Compile Include="CatalogItemStatusModel.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="CatalogTipoPedimentoModel.cs" />
     <Compile Include="CiudadModel.cs" />
     <Compile Include="CatalogTransporteModel.cs" />
+    <Compile Include="DepartamentoModel.cs" />
     <Compile Include="EquipoModel.cs" />
     <Compile Include="InsertTipoEmpresaModel.cs" />
     <Compile Include="InsertTransporteModel.cs" />

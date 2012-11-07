@@ -83,6 +83,15 @@
     <Compile Include="CatalogArticulo\ModifyArticuloView.xaml.cs">
       <DependentUpon>ModifyArticuloView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogDepartamento\AddDepartamentoView.xaml.cs">
+      <DependentUpon>AddDepartamentoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogDepartamento\CatalogDepartamentoView.xaml.cs">
+      <DependentUpon>CatalogDepartamentoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogDepartamento\ModifyDepartamentoView.xaml.cs">
+      <DependentUpon>ModifyDepartamentoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogEquipo\AddEquipoView.xaml.cs">
       <DependentUpon>AddEquipoView.xaml</DependentUpon>
     </Compile>
@@ -256,6 +265,18 @@
     <Page Include="CatalogArticulo\ModifyArticuloView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogDepartamento\AddDepartamentoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogDepartamento\CatalogDepartamentoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogDepartamento\ModifyDepartamentoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="CatalogEquipo\AddEquipoView.xaml">
       <SubType>Designer</SubType>

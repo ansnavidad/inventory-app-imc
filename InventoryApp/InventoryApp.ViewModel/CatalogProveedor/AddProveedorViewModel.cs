@@ -14,11 +14,38 @@ namespace InventoryApp.ViewModel.CatalogProveedor
         private ProveedorModel _proveedorEnvio;
         private RelayCommand _addProveedorCommand;
         private CatalogProveedorViewModel _catalogProveedorViewModel;
+        private CatalogCiudadModel _catalogCiudadModel;
+        private CatalogPaisModel _catalogPaisModel;
+
         #endregion
 
         //Exponer la propiedad item status
         #region Props
-        public ProveedorModel ProveedorEnvio 
+        public CatalogCiudadModel CatalogCiudadModel
+        {
+            get
+            {
+                return _catalogCiudadModel;
+            }
+            set
+            {
+                _catalogCiudadModel = value;
+            }
+        }
+
+        public CatalogPaisModel CatalogPaisModel
+        {
+            get
+            {
+                return _catalogPaisModel;
+            }
+            set
+            {
+                _catalogPaisModel = value;
+            }
+        }
+
+        public ProveedorModel ProveedorEnvio
         {
             get
             {
@@ -52,6 +79,34 @@ namespace InventoryApp.ViewModel.CatalogProveedor
         {
             this._proveedorEnvio = new ProveedorModel(new ProveedorDataMapper());
             this._catalogProveedorViewModel = catalogProveedorViewModel;
+
+            try
+            {
+
+                this._catalogCiudadModel = new CatalogCiudadModel(new CiudadDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            try
+            {
+
+                this._catalogPaisModel = new CatalogPaisModel(new PaisDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         #endregion
 

@@ -18,8 +18,8 @@ namespace InventoryApp.Model
         private string _tel2;
         private string _mail;
         private string _calle;
-        private long _unidCiudad;
-        private long _unidPais;
+        private CIUDAD _ciudad;
+        private PAI _pais;
         private string _codigoPostal;
         private string _RFC;
         private ProveedorDataMapper _dataMapper;
@@ -197,39 +197,39 @@ namespace InventoryApp.Model
             }
         }
 
-        public long UnidCiudad
+        public CIUDAD Ciudad
         {
             get
             {
-                return _unidCiudad;
+                return _ciudad;
             }
             set
             {
-                if (_unidCiudad != value)
+                if (_ciudad != value)
                 {
-                    _unidCiudad = value;
+                    _ciudad = value;
                     if (PropertyChanged != null)
                     {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("UnidCiudad"));
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Ciudad"));
                     }
                 }
             }
         }
 
-        public long UnidPais
+        public PAI Pais
         {
             get
             {
-                return _unidPais;
+                return _pais;
             }
             set
             {
-                if (_unidPais != value)
+                if (_pais != value)
                 {
-                    _unidPais = value;
+                    _pais = value;
                     if (PropertyChanged != null)
                     {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("UnidPais"));
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Pais"));
                     }
                 }
             }
@@ -241,13 +241,13 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new PROVEEDOR() { CALLE = this._calle, CODIGO_POSTAL = this._codigoPostal, CONTACTO = this._contacto, MAIL = this._mail, PROVEEDOR_NAME = this._proveedorName, RFC = this._RFC, TEL1 = this._tel1, TEL2 = this._tel2, UNID_CIUDAD = this._unidCiudad, UNID_PAIS = this._unidPais });
+                _dataMapper.insertElement(new PROVEEDOR() { CALLE = this._calle, CODIGO_POSTAL = this._codigoPostal, CONTACTO = this._contacto, MAIL = this._mail, PROVEEDOR_NAME = this._proveedorName, RFC = this._RFC, TEL1 = this._tel1, TEL2 = this._tel2, UNID_CIUDAD = this._ciudad.UNID_CIUDAD, UNID_PAIS = this._pais.UNID_PAIS });
             }
         }
 
         public void updateProveedor()
         {
-            this._dataMapper.udpateElement(new PROVEEDOR() { UNID_PROVEEDOR = this._unidProveedor, CALLE = this._calle, CODIGO_POSTAL = this._codigoPostal, CONTACTO = this._contacto, MAIL = this._mail, PROVEEDOR_NAME = this._proveedorName, RFC = this._RFC, TEL1 = this._tel1, TEL2 = this._tel2, UNID_CIUDAD = this._unidCiudad, UNID_PAIS = this._unidPais });
+            this._dataMapper.udpateElement(new PROVEEDOR() { UNID_PROVEEDOR = this._unidProveedor, CALLE = this._calle, CODIGO_POSTAL = this._codigoPostal, CONTACTO = this._contacto, MAIL = this._mail, PROVEEDOR_NAME = this._proveedorName, RFC = this._RFC, TEL1 = this._tel1, TEL2 = this._tel2, UNID_CIUDAD = this._ciudad.UNID_CIUDAD, UNID_PAIS = this._pais.UNID_PAIS });
         }
 
         #region Constructors

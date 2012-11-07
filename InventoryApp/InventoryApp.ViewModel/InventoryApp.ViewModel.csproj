@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogCiudad\AddCiudadViewModel.cs" />
+    <Compile Include="CatalogCiudad\CatalogCiudadViewModel.cs" />
+    <Compile Include="CatalogCiudad\ModifyCiudadViewModel.cs" />
     <Compile Include="CatalogArticulo\AddArticuloViewModel.cs" />
     <Compile Include="CatalogArticulo\CatalogArticuloViewModel.cs" />
     <Compile Include="CatalogArticulo\ModifyArticuloViewModel.cs" />
@@ -56,8 +59,21 @@
     <Compile Include="CatalogMarca\AddMarcaViewModel.cs" />
     <Compile Include="CatalogMarca\CatalogMarcaViewModel.cs" />
     <Compile Include="CatalogMarca\ModifyMarcaViewModel.cs" />
+    <Compile Include="CatalogMedioEnvio\AddMedioEnvioViewModel.cs" />
     <Compile Include="CatalogMedioEnvio\CatalogMedioEnvioViewModel.cs" />
     <Compile Include="CatalogMedioEnvio\ModifyMedioEnvioViewModel.cs" />
+    <Compile Include="CatalogPais\AddPaisViewModel.cs" />
+    <Compile Include="CatalogPais\CatalogPaisViewModel.cs" />
+    <Compile Include="CatalogPais\ModifyPaisViewModel.cs" />
+    <Compile Include="CatalogProveedor\AddProveedorViewModel.cs" />
+    <Compile Include="CatalogProveedor\CatalogProveedorViewModel.cs" />
+    <Compile Include="CatalogProveedor\ModifyProveedorViewModel.cs" />
+    <Compile Include="CatalogTerminoEnvio\AddTerminoEnvioViewModel.cs" />
+    <Compile Include="CatalogTerminoEnvio\CatalogTerminoEnvioViewModel.cs" />
+    <Compile Include="CatalogTerminoEnvio\ModifyTerminoEnvioViewModel.cs" />
+    <Compile Include="CatalogTipoPedimento\AddTipoPedimentoViewModel.cs" />
+    <Compile Include="CatalogTipoPedimento\CatalogTipoPedimentoViewModel.cs" />
+    <Compile Include="CatalogTipoPedimento\ModifyTipoPedimentoViewModel.cs" />
     <Compile Include="CatalogModelo\AddModeloViewModel.cs" />
     <Compile Include="CatalogModelo\CatalogModeloViewModel.cs" />
     <Compile Include="CatalogModelo\ModifyModeloViewModel.cs" />

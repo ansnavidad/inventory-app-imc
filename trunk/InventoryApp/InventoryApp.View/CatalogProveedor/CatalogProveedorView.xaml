@@ -20,8 +20,8 @@
                 <DataGridTextColumn IsReadOnly="True"  Width="90" Header="Tel 2" x:Name="TEL2" Binding="{Binding Path=TEL2}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="120" Header="Mail" x:Name="MAIL" Binding="{Binding Path=MAIL}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="120" Header="Calle" x:Name="CALLE" Binding="{Binding Path=CALLE}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="62" Header="Pais" x:Name="PAIS" Binding="{Binding Path=UNID_PAIS}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="65" Header="Ciudad" x:Name="CIUDAD" Binding="{Binding Path=UNID_CIUDAD}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="62" Header="Pais" x:Name="PAIS" Binding="{Binding Path=PAI.PAIS}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="65" Header="Ciudad" x:Name="CIUDAD" Binding="{Binding Path=CIUDAD.CIUDAD1}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="52" Header="CP" x:Name="CP" Binding="{Binding Path=CODIGO_POSTAL}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="110" Header="RFC" x:Name="RFC" Binding="{Binding Path=RFC}"></DataGridTextColumn>
             </DataGrid.Columns>

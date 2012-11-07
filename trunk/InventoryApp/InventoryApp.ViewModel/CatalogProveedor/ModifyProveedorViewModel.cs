@@ -14,11 +14,37 @@ namespace InventoryApp.ViewModel.CatalogProveedor
         private ProveedorModel _proveedorModel;
         private RelayCommand _modifyProveedorCommand;
         private CatalogProveedorViewModel _catalogProveedorViewModel;
+        private CatalogCiudadModel _catalogCiudadModel;
+        private CatalogPaisModel _catalogPaisModel;
         #endregion
 
         //Exponer la propiedad item status
         #region Props
-        public ProveedorModel ProveedorModel 
+        public CatalogCiudadModel CatalogCiudadModel 
+        {
+            get
+            {
+                return _catalogCiudadModel;
+            }
+            set
+            {
+                _catalogCiudadModel = value;
+            }
+        }
+
+        public CatalogPaisModel CatalogPaisModel
+        {
+            get
+            {
+                return _catalogPaisModel;
+            }
+            set
+            {
+                _catalogPaisModel = value;
+            }
+        }
+
+        public ProveedorModel ProveedorModel
         {
             get
             {
@@ -53,8 +79,8 @@ namespace InventoryApp.ViewModel.CatalogProveedor
             this._proveedorModel = new ProveedorModel(new ProveedorDataMapper());
             this._catalogProveedorViewModel = catalogProveedorViewModel;
             this._proveedorModel.UnidProveedor = selectedProveedorModel.UnidProveedor;
-            this._proveedorModel.UnidPais = selectedProveedorModel.UnidPais;
-            this._proveedorModel.UnidCiudad = selectedProveedorModel.UnidCiudad;
+            this._proveedorModel.Pais = selectedProveedorModel.Pais;
+            this._proveedorModel.Ciudad = selectedProveedorModel.Ciudad;
             this._proveedorModel.Tel2 = selectedProveedorModel.Tel2;
             this._proveedorModel.Tel1 = selectedProveedorModel.Tel1;
             this._proveedorModel.RFC = selectedProveedorModel.RFC;
@@ -63,6 +89,34 @@ namespace InventoryApp.ViewModel.CatalogProveedor
             this._proveedorModel.Contacto = selectedProveedorModel.Contacto;
             this._proveedorModel.CodigoPostal = selectedProveedorModel.CodigoPostal;
             this._proveedorModel.Calle = selectedProveedorModel.Calle;
+
+            try
+            {
+
+                this._catalogCiudadModel = new CatalogCiudadModel(new CiudadDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            try
+            {
+
+                this._catalogPaisModel = new CatalogPaisModel(new PaisDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         #endregion
 

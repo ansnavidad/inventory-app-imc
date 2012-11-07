@@ -56,11 +56,24 @@ namespace InventoryApp.Model
         {
             object element = this._dataMapper.getElements();
 
-            FixupCollection<PROVEEDOR> ic = element as FixupCollection<PROVEEDOR>;
+            FixupCollection<PROVEEDOR> ic = new FixupCollection<PROVEEDOR>();
+
+            foreach (PROVEEDOR elemento in (List<PROVEEDOR>)element)
+            {
+                ic.Add((PROVEEDOR)elemento);
+            }
             if (ic != null)
             {
                 this.Proveedor = ic;
             }
+
+
+
+            //FixupCollection<PROVEEDOR> ic = element as FixupCollection<PROVEEDOR>;
+            //if (ic != null)
+            //{
+            //    this.Proveedor = ic;
+            //}
         }
 
         public CatalogProveedorModel(IDataMapper dataMapper)

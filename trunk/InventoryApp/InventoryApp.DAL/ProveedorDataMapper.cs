@@ -11,19 +11,20 @@ namespace InventoryApp.DAL
     {
         public object getElements()
         {
-            object o = null;
-            FixupCollection<PROVEEDOR> tp = new FixupCollection<PROVEEDOR>();
+            object o = null;            
             using (var Entity = new TAE2Entities())
             {
-                (from p in Entity.PROVEEDORs
-                 select p).ToList().ForEach(d => { tp.Add(d); });
+                var res = (from p in Entity.PROVEEDORs
+                 select p).ToList();
 
-                if (tp.Count > 0)
+
+                foreach (PROVEEDOR trans in ((List<PROVEEDOR>)res))
                 {
-                    o = (object)tp;
+                    trans.PAI = trans.PAI;
+                    trans.CIUDAD = trans.CIUDAD;
                 }
 
-                return o;
+                return res;
             }
         }
 
@@ -33,18 +34,20 @@ namespace InventoryApp.DAL
             if (element != null)
             {
                 PROVEEDOR Eprov = (PROVEEDOR)element;
-                FixupCollection<PROVEEDOR> tp = new FixupCollection<PROVEEDOR>();
 
                 using (var Entity = new TAE2Entities())
                 {
-                    (from p in Entity.PROVEEDORs
-                     where p.UNID_PROVEEDOR == Eprov.UNID_PROVEEDOR
-                     select p).ToList().ForEach(d => { tp.Add(d); });
+                    var res = (from p in Entity.PROVEEDORs
+                    where p.UNID_PROVEEDOR == Eprov.UNID_PROVEEDOR
+                    select p).ToList();
 
-                    if (tp.Count > 0)
+                    foreach (PROVEEDOR trans in ((List<PROVEEDOR>)res))
                     {
-                        o = (object)tp;
+                        trans.CIUDAD = trans.CIUDAD;
+                        trans.PAI = trans.PAI;
                     }
+
+                    o = (object)res;                    
                 }
             }
             return o;
@@ -66,6 +69,8 @@ namespace InventoryApp.DAL
                     modifiedProveedor.RFC = proveedor.RFC;
                     modifiedProveedor.UNID_CIUDAD = proveedor.UNID_CIUDAD;
                     modifiedProveedor.UNID_PAIS = proveedor.UNID_PAIS;
+                    modifiedProveedor.PAI = proveedor.PAI;
+                    modifiedProveedor.CIUDAD = proveedor.CIUDAD;
                     modifiedProveedor.TEL1 = proveedor.TEL1;
                     modifiedProveedor.TEL2 = proveedor.TEL2;
                     modifiedProveedor.PROVEEDOR_NAME = proveedor.PROVEEDOR_NAME;

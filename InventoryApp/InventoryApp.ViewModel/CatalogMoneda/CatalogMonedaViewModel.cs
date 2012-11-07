@@ -68,6 +68,8 @@ namespace InventoryApp.ViewModel.CatalogMoneda
             {
                 monedaModel.UnidMoneda = this._catalogMonedaModel.SelectedMoneda.UNID_MONEDA;
                 monedaModel.MonedaName = this._catalogMonedaModel.SelectedMoneda.MONEDA_NAME;
+                monedaModel.MonedaAbr = this._catalogMonedaModel.SelectedMoneda.MONEDA_ABR;
+
             }
             return new ModifyMonedaViewModel(this,monedaModel);
         }

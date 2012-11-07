@@ -65,6 +65,9 @@
     <Compile Include="CatalogMedioEnvio\AddMedioEnvioViewModel.cs" />
     <Compile Include="CatalogMedioEnvio\CatalogMedioEnvioViewModel.cs" />
     <Compile Include="CatalogMedioEnvio\ModifyMedioEnvioViewModel.cs" />
+    <Compile Include="CatalogMoneda\AddMonedaViewModel.cs" />
+    <Compile Include="CatalogMoneda\CatalogMonedaViewModel.cs" />
+    <Compile Include="CatalogMoneda\ModifyMonedaViewModel.cs" />
     <Compile Include="CatalogPais\AddPaisViewModel.cs" />
     <Compile Include="CatalogPais\CatalogPaisViewModel.cs" />
     <Compile Include="CatalogPais\ModifyPaisViewModel.cs" />

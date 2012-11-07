@@ -53,6 +53,7 @@
     <Compile Include="CatalogItemStatusModel.cs" />
     <Compile Include="CatalogMarcaModel.cs" />
     <Compile Include="CatalogMedioEnvioModel.cs" />
+    <Compile Include="CatalogMonedaModel.cs" />
     <Compile Include="CatalogPaisModel.cs" />
     <Compile Include="CatalogModeloModel.cs" />
     <Compile Include="CatalogProveedorCuentaModel.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="ItemStatusModel.cs" />
     <Compile Include="MarcaModel.cs" />
     <Compile Include="MedioEnvioModel.cs" />
+    <Compile Include="MonedaModel.cs" />
     <Compile Include="PaisModel.cs" />
     <Compile Include="ModeloModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

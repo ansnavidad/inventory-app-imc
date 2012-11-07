@@ -77,6 +77,27 @@
     <Compile Include="CatalogItemStatus\AltaItemStatus.xaml.cs">
       <DependentUpon>AltaItemStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogMoneda\CatalogMonedaView.xaml.cs">
+      <DependentUpon>CatalogMonedaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogMoneda\ModifyMonedaView.xaml.cs">
+      <DependentUpon>ModifyMonedaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProveedorCenta\AltaModificarProveedorCuenta.xaml.cs">
+      <DependentUpon>AltaModificarProveedorCuenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProveedorCenta\CatalogProveedorCuentaView.xaml.cs">
+      <DependentUpon>CatalogProveedorCuentaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProveedorCenta\ModifyProveedorCuentaView.xaml.cs">
+      <DependentUpon>ModifyProveedorCuentaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProveedor\CatalogProveedorView.xaml.cs">
+      <DependentUpon>CatalogProveedorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProveedor\ModifyProveedorView.xaml.cs">
+      <DependentUpon>ModifyProveedorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogProyecto\AltaProyecto.xaml.cs">
       <DependentUpon>AltaProyecto.xaml</DependentUpon>
     </Compile>
@@ -151,6 +172,20 @@
     </Page>
     <Page Include="CatalogItemStatus\AltaItemStatus.xaml">
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogProveedorCenta\AltaModificarProveedorCuenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProveedorCenta\CatalogProveedorCuentaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProveedorCenta\ModifyProveedorCuentaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProveedor\CatalogProveedorView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogProyecto\AltaProyecto.xaml">

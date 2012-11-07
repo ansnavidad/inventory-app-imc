@@ -47,6 +47,7 @@
     <Compile Include="BancoModel.cs" />
     <Compile Include="CatalogArticuloModel.cs" />
     <Compile Include="CatalogBancoModel.cs" />
+    <Compile Include="CatalogCategoriaReloadModel.cs" />
     <Compile Include="CatalogCategoriaModel.cs" />
     <Compile Include="CatalogCiudadModel.cs" />
     <Compile Include="CatalogDepartamentoModel.cs" />

@@ -11,21 +11,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace InventoryApp.View.CatalogCiudad
+namespace InventoryApp.View.CatalogProveedorCenta
 {
     /// <summary>
-    /// Lógica de interacción para AltaModificarCiudad.xaml
+    /// Lógica de interacción para ModifyProveedorCuentaView.xaml
     /// </summary>
-    public partial class AltaModificarCiudad : Window
+    public partial class ModifyProveedorCuentaView : Window
     {
-        public AltaModificarCiudad()
+        public ModifyProveedorCuentaView()
         {
             InitializeComponent();
-        }
-
-        private void btnCancelar_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
@@ -33,9 +28,9 @@ namespace InventoryApp.View.CatalogCiudad
             this.Close();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

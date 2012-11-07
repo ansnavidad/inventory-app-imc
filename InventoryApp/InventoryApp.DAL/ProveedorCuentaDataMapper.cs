@@ -58,21 +58,17 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    PROVEEDOR proveedor = (PROVEEDOR)element;
+                    PROVEEDOR_CUENTA proveedor = (PROVEEDOR_CUENTA)element;
 
-                    var modifiedProveedor = entity.PROVEEDORs.First(p => p.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR);
-                    modifiedProveedor.CALLE = proveedor.CALLE;
-                    modifiedProveedor.CODIGO_POSTAL = proveedor.CODIGO_POSTAL;
-                    modifiedProveedor.CONTACTO = proveedor.CONTACTO;
-                    modifiedProveedor.MAIL = proveedor.MAIL;
-                    modifiedProveedor.RFC = proveedor.RFC;
-                    modifiedProveedor.UNID_CIUDAD = proveedor.UNID_CIUDAD;
-                    modifiedProveedor.UNID_PAIS = proveedor.UNID_PAIS;
-                    modifiedProveedor.PAI = proveedor.PAI;
-                    modifiedProveedor.CIUDAD = proveedor.CIUDAD;
-                    modifiedProveedor.TEL1 = proveedor.TEL1;
-                    modifiedProveedor.TEL2 = proveedor.TEL2;
-                    modifiedProveedor.PROVEEDOR_NAME = proveedor.PROVEEDOR_NAME;
+                    var modifiedProveedor = entity.PROVEEDOR_CUENTA.First(p => p.UNID_PROVEEDOR_CUENTA == proveedor.UNID_PROVEEDOR_CUENTA);
+                    modifiedProveedor.UNID_PROVEEDOR = proveedor.UNID_PROVEEDOR;
+                    modifiedProveedor.UNID_BANCO = proveedor.UNID_BANCO;
+                    modifiedProveedor.PROVEEDOR = proveedor.PROVEEDOR;
+                    modifiedProveedor.NUMERO_CUENTA = proveedor.NUMERO_CUENTA;
+                    modifiedProveedor.CLABE = proveedor.CLABE;
+                    modifiedProveedor.BENEFICIARIO = proveedor.BENEFICIARIO;
+                    modifiedProveedor.BANCO = proveedor.BANCO;
+
                     entity.SaveChanges();
                 }
             }

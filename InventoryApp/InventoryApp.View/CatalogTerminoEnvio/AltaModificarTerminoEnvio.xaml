@@ -10,9 +10,9 @@
         <Label Content="Clave:" Height="28" HorizontalAlignment="Left" Margin="66,70,0,0" Name="label2" VerticalAlignment="Top" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="112,72,0,0" MaxLength="3" Name="textBoxNombre" VerticalAlignment="Top" Width="39" Text="{Binding TerminoEnvio.Clave, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         <Label Content="Termino:" Height="28" HorizontalAlignment="Left" Margin="50,99,0,0" Name="label3" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,101,42,0" Name="textBoxTermino" VerticalAlignment="Top" Width="124" Text="{Binding TerminoEnvio.Termino, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,101,42,0" Name="textBoxTermino" VerticalAlignment="Top" Width="124" Text="{Binding TerminoEnvio.Termino, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="512"/>
         <Label Content="Significado:" Height="28" HorizontalAlignment="Left" Margin="35,128,0,0" Name="label4" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="112,130,0,0" Name="textBoxSignificado" VerticalAlignment="Top" Width="124" Text="{Binding TerminoEnvio.Significado, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="112,130,0,0" Name="textBoxSignificado" VerticalAlignment="Top" Width="124" Text="{Binding TerminoEnvio.Significado, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="1024"/>
         <CheckBox Content="Genera Lotes" Height="16" HorizontalAlignment="Left" Margin="112,163,0,0" Name="checkBox1" VerticalAlignment="Top" IsChecked="{Binding TerminoEnvio.GeneraLotes , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

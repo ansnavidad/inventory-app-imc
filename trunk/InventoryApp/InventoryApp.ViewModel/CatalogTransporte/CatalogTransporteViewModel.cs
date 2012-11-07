@@ -45,7 +45,7 @@ namespace InventoryApp.ViewModel
 
         public void loadItems()
         {
-            this._catalogTransporteModel.loadItems();
+            this._catalogTransporteModel.loadTransporte();
         }
 
         public InsertTransporteViewModel CreateInsertTransporteViewModel()

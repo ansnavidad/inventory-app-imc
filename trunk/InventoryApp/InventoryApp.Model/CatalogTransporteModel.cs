@@ -3,78 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
-using InventoryApp.DAL;
 using System.ComponentModel;
+using InventoryApp.DAL;
 
 namespace InventoryApp.Model
 {
     public class CatalogTransporteModel : INotifyPropertyChanged
     {
-        private FixupCollection<TRANSPORTE> _transportes;
-        private TRANSPORTE _selectedtransporte;
+        private TRANSPORTE _selectedTransporte;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<TRANSPORTE> Transportes
+        public CatalogTransporteModel(IDataMapper dataMapper)
         {
-            get
-            {
-                return _transportes;
-            }
-            set
-            {
-                if (_transportes != value)
-                {
-                    _transportes = value;
-                    if (PropertyChanged != null)
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs("Transportes"));
-                    }
-                }
-            }
+            //this._dataMapper = new TransporteDataMapper();
+            //this._items = new ItemCollection();
+            //this._selectedItem = new Item();
+            //this.loadItems();
+            
+        }
+        public void loadTransporte()
+        {
+            //object element = this._dataMapper.getElements();
+
+            //ItemCollection ic = element as ItemCollection;
+            //if (ic != null)
+            //{
+            //    this._items = ic;
+            //}
         }
 
         public TRANSPORTE SelectedTransporte
         {
             get
             {
-                return _selectedtransporte;
+                return _selectedTransporte;
             }
             set
             {
-                if (_selectedtransporte != value)
+                if (_selectedTransporte != value)
                 {
-                    _selectedtransporte = value;
+                    _selectedTransporte = value;
                     if (PropertyChanged != null)
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("SelectedTransporte"));
                     }
                 }
             }
-        }
-
-        public void loadItems()
-        {
-            object element = this._dataMapper.getElements();
-
-            FixupCollection<TRANSPORTE> ic = new FixupCollection<TRANSPORTE>();
-
-            foreach (TRANSPORTE elemento in (List<TRANSPORTE>)element)
-            {
-                ic.Add((TRANSPORTE)elemento);
-            }
-            if (ic != null)
-            {
-                this.Transportes = ic;
-            }
-        }
-
-        public CatalogTransporteModel(IDataMapper dataMapper)
-        {
-            this._dataMapper = new TransporteDataMapper();
-            this._transportes = new FixupCollection<TRANSPORTE>();
-            this._selectedtransporte = new TRANSPORTE();
-            this.loadItems();
-            //this.loadItems(new ItemDataMapper());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

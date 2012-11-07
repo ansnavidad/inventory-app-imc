@@ -11,14 +11,17 @@ namespace InventoryApp.Model
     {
         public object getElements()
         {
+            FixupCollection<EMPRESA> tp = new FixupCollection<EMPRESA>();
+
             object res = null;
+
             using (var oAWEntities = new TAE2Entities())
             {
-                var query = from cust in oAWEntities.EMPRESAs
-                                        select cust;
-                if (query != null)
+                (from cust in oAWEntities.EMPRESAs
+                             select cust).ToList().ForEach(d => { tp.Add(d); });
+                if (tp != null)
                 {
-                    res = query;
+                    res = tp;
                 }
                 return res;
             }
@@ -26,50 +29,54 @@ namespace InventoryApp.Model
 
         public object getElement(object element)
         {
+            FixupCollection<EMPRESA> tp = new FixupCollection<EMPRESA>();
+
             object res = null;
 
-            using (var entitie = new TAE2Entities())
+            if (element != null)
             {
-                 EMPRESA empresa = (EMPRESA)element;
-
-                var query = from cust in entitie.EMPRESAs
-                            where cust.UNID_EMPRESA == empresa.UNID_EMPRESA
-                            select cust;
-                if (query != null)
+                using (var entitie = new TAE2Entities())
                 {
-                    res = query;
+                    EMPRESA empresa = (EMPRESA)element;
+
+                    (from cust in entitie.EMPRESAs
+                                where cust.UNID_EMPRESA == empresa.UNID_EMPRESA
+                                 select cust).ToList().ForEach(d => { tp.Add(d); });
+                    if (tp != null)
+                    {
+                        res = tp;
+                    }
+                    return res;
                 }
-                return res;
             }
+            return res;
         }
 
         public void udpateElement(object element)
         {
-            using (var oAWEntities = new TAE2Entities())
+            if (element != null)
             {
-                EMPRESA EEmp = (EMPRESA)element;
-                
-                var query = from cust in oAWEntities.EMPRESAs
-                                        where cust.UNID_EMPRESA==EEmp.UNID_EMPRESA
-                                        select cust;
+                using (var oAWEntities = new TAE2Entities())
+                {
+                    EMPRESA EEmp = (EMPRESA)element;
 
-                var Emp = query.First();
+                    var query = from cust in oAWEntities.EMPRESAs
+                                where cust.UNID_EMPRESA == EEmp.UNID_EMPRESA
+                                select cust;
 
-                Emp.EMPRESA_NAME = EEmp.EMPRESA_NAME;
+                    var Emp = query.First();
 
-                Emp.DIRECCION = EEmp.DIRECCION;
+                    Emp.EMPRESA_NAME = EEmp.EMPRESA_NAME;
 
-                Emp.RAZON_SOCIAL = EEmp.RAZON_SOCIAL;
+                    Emp.DIRECCION = EEmp.DIRECCION;
 
-                Emp.RFC = EEmp.RFC;
+                    Emp.RAZON_SOCIAL = EEmp.RAZON_SOCIAL;
 
-                Emp.SOLICITANTEs = EEmp.SOLICITANTEs;
+                    Emp.RFC = EEmp.RFC;
 
-                Emp.POMs = EEmp.POMs;
+                    oAWEntities.SaveChanges();
 
-                oAWEntities.EMPRESAs.AddObject(Emp);
-
-                oAWEntities.SaveChanges();
+                }
             }
         }
 
@@ -79,8 +86,22 @@ namespace InventoryApp.Model
             {
                 using (var entitie = new TAE2Entities())
                 {
-                    EMPRESA empresa = (EMPRESA)element;
+                    EMPRESA EEmp = (EMPRESA)element;
+
+                    EMPRESA empresa = new EMPRESA();
+
+                    empresa.UNID_EMPRESA = UNID.getNewUNID();
+
+                    empresa.EMPRESA_NAME = EEmp.EMPRESA_NAME;
+
+                    empresa.DIRECCION = EEmp.DIRECCION;
+
+                    empresa.RAZON_SOCIAL = EEmp.RAZON_SOCIAL;
+
+                    empresa.RFC = EEmp.RFC;
+
                     entitie.EMPRESAs.AddObject(empresa);
+
                     entitie.SaveChanges();
                 }            
             }

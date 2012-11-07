@@ -3,38 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.DAL;
 
 namespace InventoryApp.Model
 {
-    public class CatalogBancoModel : INotifyPropertyChanged 
+    public class CatalogBancoModel : INotifyPropertyChanged
     {
-        private FixupCollection<BANCO> _banco;
         private BANCO _selectedBanco;
+        private FixupCollection<BANCO> _banco;
         private IDataMapper _dataMapper;
 
         public FixupCollection<BANCO> Banco
         {
-            get { return _banco; }
-            set { 
-                if(_banco != value){
+            get { 
+                return _banco; 
+                }
+            set
+            {
+                if (_banco !=value)
+                {
                     _banco = value;
-                    if(PropertyChanged != null)
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs("Banco"));
-                    }
+                        if (PropertyChanged !=null)
+	                    {
+                            PropertyChanged(this, new PropertyChangedEventArgs("Banco"));
+	                    }
                 }
             }
         }
-
         public BANCO SelectedBanco
         {
-            get { return _selectedBanco; }
-            set { 
-                if(_selectedBanco != value){
+            get
+            {
+                return _selectedBanco;
+            }
+            set
+            {
+                if (_selectedBanco != value)
+                {
                     _selectedBanco = value;
-                    if(PropertyChanged != null)
+                    if (PropertyChanged != null)
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("SelectedBanco"));
                     }
@@ -45,17 +53,22 @@ namespace InventoryApp.Model
         public void loadBancos()
         {
             object element = this._dataMapper.getElements();
-
-            
+            FixupCollection<BANCO> ic = element as FixupCollection<BANCO>; 
+            if (ic != null)
+            {
+                this.Banco = ic;
+            }
         }
 
-        public CatalogBancoModel(IDataMapper dataMapper){
+        public CatalogBancoModel(IDataMapper dataMapper)
+        {
             this._dataMapper = new BancoDataMapper();
+            this._banco = new  FixupCollection<BANCO>();
             this._selectedBanco = new BANCO();
             this.loadBancos();
-
+            
         }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

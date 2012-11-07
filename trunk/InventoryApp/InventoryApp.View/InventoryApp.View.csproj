@@ -56,6 +56,15 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </ApplicationDefinition>
+    <Compile Include="CatalogBanco\AddBancoView.xaml.cs">
+      <DependentUpon>AddBancoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogBanco\CatalogBancoView.xaml.cs">
+      <DependentUpon>CatalogBancoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogBanco\ModifyBancoView.xaml.cs">
+      <DependentUpon>ModifyBancoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogCiudad\AltaModificarCiudad.xaml.cs">
       <DependentUpon>AltaModificarCiudad.xaml</DependentUpon>
     </Compile>
@@ -203,6 +212,18 @@
     <Compile Include="CatalogTipoMovimiento\ModifyTipoMovimientoView.xaml.cs">
       <DependentUpon>ModifyTipoMovimientoView.xaml</DependentUpon>
     </Compile>
+    <Page Include="CatalogBanco\AddBancoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogBanco\CatalogBancoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogBanco\ModifyBancoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CatalogCiudad\AltaModificarCiudad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

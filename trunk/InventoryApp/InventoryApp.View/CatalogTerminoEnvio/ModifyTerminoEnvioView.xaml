@@ -1,0 +1,18 @@
+﻿<Window x:Class="InventoryApp.View.CatalogTerminoEnvio.ModifyTerminoEnvioView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        DataContext="{DynamicResource modifyTerminoEnvioViewModel}"
+        Title="ModifyTerminoEnvioView" Height="300" Width="300">
+    <Grid>
+        <Button Command="{Binding ModifyTerminoEnvioCommand, Mode=OneWay}" Content="AGREGAR" Height="23" HorizontalAlignment="Left" Margin="29,226,0,12" Name="btnAgregar" Width="75" Click="btnAgregar_Click" />
+        <Button Content="CANCELAR" Height="23" HorizontalAlignment="Stretch" Margin="179,226,24,12" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click_1" />
+        <Label Content="ALTA DE TERMINO ENVIO" Height="28" HorizontalAlignment="Stretch" Margin="51,10,43,223" Name="lblTitulo" VerticalAlignment="Stretch" Width="184" />
+        <Label Content="Clave:" Height="28" HorizontalAlignment="Left" Margin="45,80,0,0" Name="label2" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="91,77,0,0" MaxLength="3" Name="textBoxNombre" Text="{Binding TerminoEnvio.Clave, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="39" />
+        <Label Content="Termino:" Height="28" HorizontalAlignment="Left" Margin="29,104,0,0" Name="label3" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,106,63,0" Name="textBoxTermino" Text="{Binding TerminoEnvio.Termino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="124" />
+        <Label Content="Significado:" Height="28" HorizontalAlignment="Left" Margin="14,133,0,0" Name="label4" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="91,135,0,0" Name="textBoxSignificado" Text="{Binding TerminoEnvio.Significado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="124" />
+        <CheckBox Content="Genera Lotes" Height="16" HorizontalAlignment="Left" Margin="91,168,0,0" Name="checkBox1" IsChecked="{Binding TerminoEnvio.GeneraLotes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" />
+    </Grid>
+</Window>

@@ -10,9 +10,19 @@ namespace InventoryApp.DAL
     {
         public object getElements()
         {
+            FixupCollection<BANCO> tp = new FixupCollection<BANCO>();
             object res = null;
-            using(var entitie = new TAE2Entities()){
-                res = (from bancos in entitie.BANCOes select bancos).ToList();
+
+            using (var entity = new TAE2Entities())
+            {
+                (from cust in entity.BANCOes
+                 select cust).ToList().ForEach(d => { tp.Add(d); });
+
+                if (tp.Count > 0)
+                {
+                    res = tp;
+                }
+
                 return res;
             }
         }
@@ -23,7 +33,6 @@ namespace InventoryApp.DAL
             using (var entitie = new TAE2Entities())
             {
                 BANCO banco = (BANCO)element;
-
                 var query = from cust in entitie.BANCOes
                             where cust.UNID_BANCO == banco.UNID_BANCO
                             select cust;
@@ -37,15 +46,15 @@ namespace InventoryApp.DAL
 
         public void udpateElement(object element)
         {
-            using (var entitie = new TAE2Entities())
+            if (element != null)
             {
-                BANCO banco = (BANCO)element;
-                var query = from cust in entitie.BANCOes
-                            where cust.UNID_BANCO == banco.UNID_BANCO
-                            select cust;
-                var ban = query.First();    
-                ban.BANCO_NAME = banco.BANCO_NAME;
-                entitie.SaveChanges();
+                using (var entity = new TAE2Entities())
+                {
+                    BANCO banco = (BANCO)element;
+                    var modifiedBanco = entity.BANCOes.First(p => p.UNID_BANCO == banco.UNID_BANCO);
+                    modifiedBanco.BANCO_NAME = banco.BANCO_NAME;
+                    entity.SaveChanges();
+                }
             }
         }
 
@@ -53,12 +62,13 @@ namespace InventoryApp.DAL
         {
             if (element != null)
             {
-                using (var entitie = new TAE2Entities())
+                using (var entity = new TAE2Entities())
                 {
-                    BANCO Ebanco = (BANCO)element;
-                    Ebanco.UNID_BANCO = UNID.getNewUNID();
-                    entitie.BANCOes.AddObject(Ebanco);
-                    entitie.SaveChanges();
+                    BANCO banco = (BANCO)element;
+                     banco.UNID_BANCO = UNID.getNewUNID();
+
+                    entity.BANCOes.AddObject(banco);
+                    entity.SaveChanges();
                 }
             }
         }

@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogBanco\AddBancoViewModel.cs" />
+    <Compile Include="CatalogBanco\CatalogBancoViewModel.cs" />
+    <Compile Include="CatalogBanco\ModifyBancoViewModel.cs" />
     <Compile Include="CatalogCiudad\AddCiudadViewModel.cs" />
     <Compile Include="CatalogCiudad\CatalogCiudadViewModel.cs" />
     <Compile Include="CatalogCiudad\ModifyCiudadViewModel.cs" />

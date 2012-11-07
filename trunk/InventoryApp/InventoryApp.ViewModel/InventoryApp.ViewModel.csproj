@@ -50,6 +50,9 @@
     <Compile Include="CatalogArticulo\AddArticuloViewModel.cs" />
     <Compile Include="CatalogArticulo\CatalogArticuloViewModel.cs" />
     <Compile Include="CatalogArticulo\ModifyArticuloViewModel.cs" />
+    <Compile Include="CatalogDepartamento\AddDepartamentoViewModel.cs" />
+    <Compile Include="CatalogDepartamento\CatalogDepartamentoViewModel.cs" />
+    <Compile Include="CatalogDepartamento\ModifyDepartamentoViewModel.cs" />
     <Compile Include="CatalogEquipo\AddEquipoViewModel.cs" />
     <Compile Include="CatalogEquipo\CatalogEquipoViewModel.cs" />
     <Compile Include="CatalogEquipo\ModifyEquipoViewModel.cs" />

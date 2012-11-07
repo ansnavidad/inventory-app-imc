@@ -59,6 +59,9 @@
     <Compile Include="CatalogCategoria\AddCategoriaViewModel.cs" />
     <Compile Include="CatalogCategoria\CatalogCategoriaViewModel.cs" />
     <Compile Include="CatalogCategoria\ModifyCategoriaViewModel.cs" />
+    <Compile Include="CatalogEmpresa\AddEmpresaViewModel.cs" />
+    <Compile Include="CatalogEmpresa\CatalogEmpresaViewModel.cs" />
+    <Compile Include="CatalogEmpresa\ModifyEmpresaViewModel.cs" />
     <Compile Include="CatalogItemStatus\AddItemStatusViewModel.cs" />
     <Compile Include="CatalogItemStatus\CatalogItemStatusViewModel.cs" />
     <Compile Include="CatalogItemViewModel.cs" />
@@ -96,6 +99,9 @@
     <Compile Include="CatalogProyecto\AddProyectoViewModel.cs" />
     <Compile Include="CatalogProyecto\CatalogProyectoViewModel.cs" />
     <Compile Include="CatalogProyecto\ModifyProyectoViewModel.cs" />
+    <Compile Include="CatalogSolicitante\AddSolicitanteViewModel.cs" />
+    <Compile Include="CatalogSolicitante\CatalogSolicitanteViewModel.cs" />
+    <Compile Include="CatalogSolicitante\ModifySolicitanteViewModel.cs" />
     <Compile Include="CatalogTipoCotizacion\AddTipoCotizacionViewModel.cs" />
     <Compile Include="CatalogTipoCotizacion\CatalogTipoCotizacionViewModel.cs" />
     <Compile Include="CatalogTipoCotizacion\ModifyTipoCotizacionViewModel.cs" />

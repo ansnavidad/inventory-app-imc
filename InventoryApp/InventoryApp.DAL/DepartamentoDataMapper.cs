@@ -12,34 +12,42 @@ namespace InventoryApp.DAL
         {
             FixupCollection<DEPARTAMENTO> tp = new FixupCollection<DEPARTAMENTO>();
             object res = null;
-            using (var entitie = new TAE2Entities())
-            {
-                (from monedas in entitie.DEPARTAMENTOes 
-                 select monedas).ToList().ForEach(d => { tp.Add(d); });
 
-                if (tp.Count>0)
+            using (var entity = new TAE2Entities())
+            {
+                (from cust in entity.DEPARTAMENTOes
+                 select cust).ToList().ForEach(d => { tp.Add(d); });
+
+                if (tp.Count > 0)
                 {
                     res = tp;
                 }
+
                 return res;
             }
         }
 
         public object getElement(object element)
         {
+            FixupCollection<DEPARTAMENTO> tp = new FixupCollection<DEPARTAMENTO>();
+
             object res = null;
-            using (var entitie = new TAE2Entities())
-            {
-                DEPARTAMENTO departamento = (DEPARTAMENTO)element;
-                var query = from cust in entitie.DEPARTAMENTOes
-                            where cust.UNID_DEPARTAMENTO == departamento.UNID_DEPARTAMENTO
-                            select cust;
-                if (query != null)
+            if (element != null)
+            { 
+                using (var entitie = new TAE2Entities())
                 {
-                    res = query;
+                    DEPARTAMENTO departamento = (DEPARTAMENTO)element;
+                     (from cust in entitie.DEPARTAMENTOes
+                                where cust.UNID_DEPARTAMENTO == departamento.UNID_DEPARTAMENTO
+                      select cust).ToList().ForEach(d => { tp.Add(d); });
+                     if (tp.Count>0)
+                    {
+                        res = tp;
+                    }
+                    return res;
                 }
-                return res;
             }
+            return res;
         }
 
         public void udpateElement(object element)

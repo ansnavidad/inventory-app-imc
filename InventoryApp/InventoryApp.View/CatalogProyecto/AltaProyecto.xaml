@@ -82,10 +82,21 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Content="AGREGAR" Grid.Row="4" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Command="{Binding AddProyectoCommand,Mode=OneWay}" Click="btnAgregar_Click" />
-        <Button Content="CANCELAR" Grid.Column="1" Grid.Row="4" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" Style="{StaticResource bntGrayLith}" />
+        <Button Content="AGREGAR" Grid.Row="4" Height="23"
+                HorizontalAlignment="Stretch" Margin="5,0" 
+                Name="btnAgregar" VerticalAlignment="Stretch" Width="75"
+                Command="{Binding AddProyectoCommand,Mode=OneWay}" 
+                Click="btnAgregar_Click" />
+        <Button Content="CANCELAR" Grid.Column="1" Grid.Row="4"
+                Height="23" HorizontalAlignment="Stretch" Margin="5,0"
+                Name="btnCancelar" VerticalAlignment="Stretch" Width="75"
+                Click="btnCancelar_Click" Style="{StaticResource bntGrayLith}" />
         <Label Content="Nombre del proyecto :" Grid.Row="2" Height="28" HorizontalAlignment="Right" Margin="5,0" Name="lblProyecto" VerticalAlignment="Stretch" />
-            <TextBox Grid.Column="1" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="5,0" Name="txtProyecto" VerticalAlignment="Stretch" Width="120" Text="{Binding AddProyecto.ProyectoName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle1}" />
+        <TextBox Grid.Column="1" Grid.Row="2" Height="23" 
+                 HorizontalAlignment="Left" Margin="5,0"
+                 Name="txtProyecto" VerticalAlignment="Stretch" Width="120"
+                 Text="{Binding AddProyecto.ProyectoName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 Style="{StaticResource TextBoxStyle1}" MaxLength="512" />
         <!--<Label Content="ALTA DE PROYECTO" Height="28" HorizontalAlignment="Stretch" Margin="5,0" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184" />-->
         <Border Grid.ColumnSpan="2" BorderBrush="#e5e5e5" BorderThickness="0,0,0,1" >
             <TextBlock Text="ALTA  [ PROYECTO ]" FontFamily="Arial" FontSize="15" Margin="0,0,0,0" Padding="5,10,0,10" Background="#eaedf4" Foreground="#525354"></TextBlock>

@@ -11,7 +11,7 @@
              xmlns:vm8="clr-namespace:InventoryApp.ViewModel.CatalogBanco;assembly=InventoryApp.ViewModel"
              xmlns:vm9="clr-namespace:InventoryApp.ViewModel.CatalogMoneda;assembly=InventoryApp.ViewModel"
              xmlns:vm10="clr-namespace:InventoryApp.ViewModel.CatalogDepartamento;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogDepartamento/CatalogDepartamentoView.xaml">
+             StartupUri="CatalogMoneda/CatalogMonedaView.xaml">
     <!--StartupUri="CatalogTipoMovimientoView.xaml">-->
     <!--StartupUri="CatalogItemStatusView.xaml">-->
     <!--StartupUri="CatalogTipoCotizacionView.xaml">-->

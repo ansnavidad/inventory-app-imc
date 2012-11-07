@@ -10,10 +10,10 @@
         <Label Content="Clave:" Height="28" HorizontalAlignment="Left" Margin="12,46,0,0" Name="label2" VerticalAlignment="Top" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="58,48,0,0" MaxLength="2" Name="textBoxClave" VerticalAlignment="Top" Width="39" Text="{Binding TipoPedimento.Clave, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         <Label Content="Regimen:" Height="28" HorizontalAlignment="Left" Margin="152,46,0,0" Name="label3" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,48,21,0" MaxLength="2" Name="textBoxRegimen" VerticalAlignment="Top" Width="39" Text="{Binding TipoPedimento.Regimen, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,48,21,0" MaxLength="3" Name="textBoxRegimen" VerticalAlignment="Top" Width="39" Text="{Binding TipoPedimento.Regimen, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         <Label Content="Tipo de Pedimento:" Height="28" HorizontalAlignment="Left" Margin="14,75,0,0" Name="label4" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="132,80,0,0" Name="textBoxSignificado" VerticalAlignment="Top" Width="124" Text="{Binding TipoPedimento.TipoPedimentoName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="132,80,0,0" Name="textBoxSignificado" VerticalAlignment="Top" Width="124" Text="{Binding TipoPedimento.TipoPedimentoName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="512"/>
         <Label Content="Nota:" Height="28" HorizontalAlignment="Left" Margin="15,109,0,0" Name="label5" VerticalAlignment="Top" />
-        <TextBox Height="69" HorizontalAlignment="Left" Margin="18,143,0,0" Name="textBoxNota" VerticalAlignment="Top" Width="238" Text="{Binding TipoPedimento.Nota, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Height="69" HorizontalAlignment="Left" Margin="18,143,0,0" Name="textBoxNota" VerticalAlignment="Top" Width="238" Text="{Binding TipoPedimento.Nota, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="1024"/>
     </Grid>
 </Window>

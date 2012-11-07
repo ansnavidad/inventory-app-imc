@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace InventoryApp.Model
 {
-    public class ProveedorCuentaModel
+    public class ProveedorCuentaModel : INotifyPropertyChanged
     {
         #region Fields
 

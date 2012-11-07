@@ -64,7 +64,7 @@ namespace InventoryApp.ViewModel.CatalogMoneda
         public bool CanAttempAddMoneda()
         {
             bool _canAddMoneda = true;
-            if (String.IsNullOrEmpty(this._moneda.MonedaName) && String.IsNullOrEmpty(this._moneda.MonedaAbr))
+            if (String.IsNullOrEmpty(this._moneda.MonedaName) || String.IsNullOrEmpty(this._moneda.MonedaAbr))
                 _canAddMoneda = false;
 
             return _canAddMoneda;

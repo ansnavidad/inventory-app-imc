@@ -28,7 +28,7 @@
                  Text="{Binding Moneda.MonedaName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
         <Label Content="Modificar Moneda" Height="28" HorizontalAlignment="Stretch" Margin="0,12,116,10" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184" />
         <Label Content="Abreviatura Moneda:" Grid.Row="2" Height="28" HorizontalAlignment="Left" Margin="22,11,0,0" Name="label1" VerticalAlignment="Top" />
-        <TextBox Grid.Column="1" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="0,16,0,0" 
+        <TextBox Grid.Column="1" MaxLength="3" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="0,16,0,0" 
                  Name="txtMonedaAbr" VerticalAlignment="Top" Width="120" 
                  Text="{Binding Moneda.MonedaAbr, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
     </Grid>

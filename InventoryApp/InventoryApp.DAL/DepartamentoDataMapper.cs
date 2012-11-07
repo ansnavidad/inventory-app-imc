@@ -10,10 +10,17 @@ namespace InventoryApp.DAL
     {
         public object getElements()
         {
+            FixupCollection<DEPARTAMENTO> tp = new FixupCollection<DEPARTAMENTO>();
             object res = null;
             using (var entitie = new TAE2Entities())
             {
-                res = (from monedas in entitie.DEPARTAMENTOes select monedas).ToList();
+                (from monedas in entitie.DEPARTAMENTOes 
+                 select monedas).ToList().ForEach(d => { tp.Add(d); });
+
+                if (tp.Count>0)
+                {
+                    res = tp;
+                }
                 return res;
             }
         }
@@ -37,18 +44,28 @@ namespace InventoryApp.DAL
 
         public void udpateElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    DEPARTAMENTO departamento = (DEPARTAMENTO)element;
+                    var modifiedDepartamento = entity.DEPARTAMENTOes.First(p => p.UNID_DEPARTAMENTO == departamento.UNID_DEPARTAMENTO);
+                    modifiedDepartamento.DEPARTAMENTO_NAME = departamento.DEPARTAMENTO_NAME;
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void insertElement(object element)
         {
             if (element != null)
             {
-                using (var entitie = new TAE2Entities())
+                using (var entity = new TAE2Entities())
                 {
                     DEPARTAMENTO departamento = (DEPARTAMENTO)element;
-                    entitie.DEPARTAMENTOes.AddObject(departamento);
-                    entitie.SaveChanges();
+                    departamento.UNID_DEPARTAMENTO = UNID.getNewUNID();
+                    entity.DEPARTAMENTOes.AddObject(departamento);
+                    entity.SaveChanges();
                 }
             }
         }

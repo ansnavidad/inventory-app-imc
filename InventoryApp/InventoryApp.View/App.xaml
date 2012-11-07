@@ -127,6 +127,6 @@
         <ObjectDataProvider x:Key="addDepartamentoViewModel" ObjectInstance="{StaticResource catalogDepartamentoViewModel}" 
                             MethodName="CreateAddDepartamentoViewModel" x:Shared="False"/>
         <ObjectDataProvider x:Key="modifyDepartamentoViewModel" ObjectInstance="{StaticResource catalogDepartamentoViewModel}" 
-                            MethodName="CreateModifyDepartamentoViewModel" x:Shared="False"/>
+                            MethodName="CreateDepartamentoViewModel" x:Shared="False"/>
     </Application.Resources>
 </Application>

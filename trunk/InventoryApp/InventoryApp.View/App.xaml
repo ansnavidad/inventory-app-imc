@@ -1,8 +1,7 @@
 ﻿<Application x:Class="InventoryApp.View.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogProveedorCenta;assembly=InventoryApp.ViewModel"
-              StartupUri="CatalogProveedorCenta/CatalogProveedorCuentaView.xaml">
+             StartupUri="MainWindow.xaml">
     <!--StartupUri="CatalogTipoMovimientoView.xaml">-->
     <!--StartupUri="CatalogItemStatusView.xaml">-->
     <!--StartupUri="CatalogTipoCotizacionView.xaml">-->
@@ -66,11 +65,11 @@
         <ObjectDataProvider x:Key="modifyCategoriaViewModel" ObjectInstance="{StaticResource catalogCategoriaViewModel }"
                             MethodName="CreateModifyCategoriaViewModel" x:Shared="False"/>-->
 
-        <vm:CatalogProveedorCuentaViewModel x:Key="catalogProveedorCuentaViewModel" />
+        <!--<vm:CatalogProveedorCuentaViewModel x:Key="catalogProveedorCuentaViewModel" />
         <ObjectDataProvider x:Key="addProveedorCuentaViewModel" ObjectInstance="{StaticResource catalogProveedorCuentaViewModel}" 
                             MethodName="CreateAddProveedorCuentaViewModel" x:Shared="False"/>
         <ObjectDataProvider x:Key="modifyProveedorCuentaViewModel" ObjectInstance="{StaticResource catalogProveedorCuentaViewModel}" 
-                            MethodName="CreateModifyProveedorCuentaViewModel" x:Shared="False"/>
+                            MethodName="CreateModifyProveedorCuentaViewModel" x:Shared="False"/>-->
 
         <!--<vm:CatalogEmpresaViewModel x:Key="catalogEmpresaViewModel"></vm:CatalogEmpresaViewModel>
         <ObjectDataProvider x:Key="addEmpresaViewModel" ObjectInstance="{StaticResource catalogEmpresaViewModel}"

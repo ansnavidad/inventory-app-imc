@@ -2,11 +2,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="AUTO"  Width="AUTO">
-    <Window.Resources>
-        <ResourceDictionary Source="Recurso.xaml">
-
-        </ResourceDictionary>
-    </Window.Resources>
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="180" />
@@ -61,6 +56,33 @@
                         </Button>
                     </StackPanel>
                 </Expander>
+                <TreeView Name="CatalogosTree" Margin="2,0,5,0" Width="auto">
+                    <TreeViewItem Header="Catálogos" Margin="15,0,0,0">
+                        <TreeViewItem Name="CatalogArticulo" Header="Artículo"></TreeViewItem>
+                        <TreeViewItem Name="CatalogBanco" Header="Banco"></TreeViewItem>
+                        <TreeViewItem Name="CatalogCategoria" Header="Categoría"></TreeViewItem>
+                        <TreeViewItem Name="CatalogCiudad" Header="Ciudad"></TreeViewItem>
+                        <TreeViewItem Name="CatalogDepartamento" Header="Departamento"></TreeViewItem>
+                        <TreeViewItem Name="CatalogEmpresa" Header="Empresa"></TreeViewItem>
+                        <TreeViewItem Name="CatalogEquipo" Header="Equipo"></TreeViewItem>
+                        <TreeViewItem Name="CatalogItemStatus" Header="Item Status"></TreeViewItem>
+                        <TreeViewItem Name="CatalogMarca" Header="Marca"></TreeViewItem>
+                        <TreeViewItem Name="CatalogMedioEnvio" Header="Medio de Envió"></TreeViewItem>
+                        <TreeViewItem Name="CatalogModelo" Header="Modelo"></TreeViewItem>
+                        <TreeViewItem Name="CatalogMoneda" Header="Moneda"></TreeViewItem>
+                        <TreeViewItem Name="CatalogPais" Header="País"></TreeViewItem>
+                        <TreeViewItem Name="CatalogProveedor" Header="Proveedor"></TreeViewItem>
+                        <TreeViewItem Name="CatalogProveedorCuenta" Header="Proveedor Cuenta"></TreeViewItem>
+                        <TreeViewItem Name="CatalogProyecto" Header="Proyecto"></TreeViewItem>
+                        <TreeViewItem Name="CatalogSolicitante" Header="Solicitante"></TreeViewItem>
+                        <TreeViewItem Name="CatalogTerminoEnvio" Header="Termino de Envió"></TreeViewItem>
+                        <TreeViewItem Name="TipoCotizacion" Header="Tipo de Cotización"></TreeViewItem>
+                        <TreeViewItem Name="TipoEmpresa" Header="Tipo de Empresa"></TreeViewItem>
+                        <TreeViewItem Name="TipoMovimiento" Header="Tipo de Movimiento"></TreeViewItem>
+                        <TreeViewItem Name="TipoPedimento" Header="Tipo de Pedimento"></TreeViewItem>
+                        <TreeViewItem Name="TipoTransporte" Header="Tipo de Transporte"></TreeViewItem>
+                    </TreeViewItem>
+                </TreeView>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5,0,0,0" Name="grid3" VerticalAlignment="Stretch">

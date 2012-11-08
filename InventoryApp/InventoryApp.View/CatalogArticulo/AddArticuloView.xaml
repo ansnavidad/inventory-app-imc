@@ -4,11 +4,17 @@
         DataContext="{DynamicResource addArticuloViewModel}"
         Title="AddArticuloView" Height="300" Width="300">
     <Grid DataContext="{StaticResource addArticuloViewModel}"  >
-        <TextBox  Text="{Binding Articulo.ArticuloName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="23" HorizontalAlignment="Left" Margin="87,54,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
+        <TextBox MaxLength="512" Text="{Binding Articulo.ArticuloName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="23" HorizontalAlignment="Left" Margin="116,56,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
         <Button Content="AGREGAR" Height="23" HorizontalAlignment="Stretch" Margin="104,226,99,12" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Command="{Binding AddItemCommand,Mode=OneWay}" Click="btnAgregar_Click" />
-        <ComboBox SelectedItem="{Binding Articulo.Categoria,Mode=TwoWay}" ItemsSource="{Binding CatalogCategoriaModel.Categoria, Mode=OneWay}" DisplayMemberPath="CATEGORIA_NAME" SelectedValuePath="UNID_CATEGORIA" Height="23" HorizontalAlignment="Left" Margin="87,97,0,0" Name="comboBox1" VerticalAlignment="Top" Width="120" />
-        <ComboBox DisplayMemberPath="MARCA_NAME" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogMarcaModel.Marcas, Mode=OneWay}" Margin="87,126,0,0" Name="comboBox2" SelectedItem="{Binding Articulo.Marca, Mode=TwoWay}" SelectedValuePath="UNID_MARCA" VerticalAlignment="Top" Width="120" />
-        <ComboBox DisplayMemberPath="MODELO_NAME" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogModeloModel.Modelos, Mode=OneWay}" Margin="87,155,0,0" Name="comboBox3" SelectedItem="{Binding Articulo.Modelo, Mode=TwoWay}" SelectedValuePath="UNID_MODELo" VerticalAlignment="Top" Width="120" />
-        <ComboBox DisplayMemberPath="EQUIPO_NAME" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogEquipoModel.Equipos, Mode=OneWay}" Margin="87,184,0,0" Name="comboBox4" SelectedItem="{Binding Articulo.Equipo, Mode=TwoWay}" SelectedValuePath="UNID_EQUIPO" VerticalAlignment="Top" Width="120" />
+        <ComboBox SelectedIndex="0" SelectedItem="{Binding Articulo.Categoria,Mode=TwoWay}" ItemsSource="{Binding CatalogCategoriaModel.Categoria, Mode=OneWay}" DisplayMemberPath="CATEGORIA_NAME" SelectedValuePath="UNID_CATEGORIA" Height="23" HorizontalAlignment="Left" Margin="116,97,0,0" Name="comboBox1" VerticalAlignment="Top" Width="120" />
+        <ComboBox SelectedIndex="0"  DisplayMemberPath="MARCA_NAME" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogMarcaModel.Marcas, Mode=OneWay}" Margin="116,126,0,0" Name="comboBox2" SelectedItem="{Binding Articulo.Marca, Mode=TwoWay}" SelectedValuePath="UNID_MARCA" VerticalAlignment="Top" Width="120" />
+        <ComboBox SelectedIndex="0"  DisplayMemberPath="MODELO_NAME" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogModeloModel.Modelos, Mode=OneWay}" Margin="116,155,0,0" Name="comboBox3" SelectedItem="{Binding Articulo.Modelo, Mode=TwoWay}" SelectedValuePath="UNID_MODELo" VerticalAlignment="Top" Width="120" />
+        <ComboBox SelectedIndex="0"  DisplayMemberPath="EQUIPO_NAME" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogEquipoModel.Equipos, Mode=OneWay}" Margin="116,184,0,0" Name="comboBox4" SelectedItem="{Binding Articulo.Equipo, Mode=TwoWay}" SelectedValuePath="UNID_EQUIPO" VerticalAlignment="Top" Width="120" />
+        <Label Content="ALTA ARTICULO" Height="28" HorizontalAlignment="Left" Margin="96,12,0,0" Name="label1" VerticalAlignment="Top" />
+        <Label Content="Nombre Articulo" Height="28" HorizontalAlignment="Left" Margin="12,54,0,0" Name="label2" VerticalAlignment="Top" />
+        <Label Content=" Categoria" Height="28" HorizontalAlignment="Left" Margin="12,92,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="Marca" Height="28" HorizontalAlignment="Left" Margin="12,121,0,0" Name="label4" VerticalAlignment="Top" />
+        <Label Content="Modelo" Height="28" HorizontalAlignment="Left" Margin="12,150,0,0" Name="label5" VerticalAlignment="Top" />
+        <Label Content="Equipo" Height="28" HorizontalAlignment="Left" Margin="12,184,0,0" Name="label6" VerticalAlignment="Top" />
     </Grid>
 </Window>

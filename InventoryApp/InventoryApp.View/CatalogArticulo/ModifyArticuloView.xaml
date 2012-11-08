@@ -2,27 +2,32 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         DataContext="{DynamicResource modifyArticuloViewModel}"
-        Title="ModifyArticuloView" Height="300" Width="300">
+        Title="ModifyArticuloView" Height="377" Width="415">
     <Grid Name="gridAlta" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="93*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="166"/>
+            <RowDefinition Height="57*"/>
         </Grid.RowDefinitions>
         <Button Content="Modificar" Grid.Row="4" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Command="{Binding ModifyItemCommand,Mode=OneWay}" Click="btnAgregar_Click" />
         <Button Content="CANCELAR" Grid.Column="1" Grid.Row="4" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
         <Label Content="Nombre Articulo :" Height="28" HorizontalAlignment="Right" Margin="0,48,10,24" Name="lblNombreStatus" VerticalAlignment="Stretch" Grid.RowSpan="2" />
-        <TextBox Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="0,0,0,28" Name="txtNomreStatus" VerticalAlignment="Stretch" Width="120" Text="{Binding Articulo.ArticuloName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-        <Label Content="Modificar DE ITEM STATUS" Height="28" HorizontalAlignment="Stretch" Margin="5,0" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184" />
-        <ComboBox SelectedItem="{Binding Articulo.Categoria,Mode=TwoWay}" ItemsSource="{Binding CatalogCategoriaModel.Categoria, Mode=OneWay}" DisplayMemberPath="CATEGORIA_NAME" SelectedValuePath="UNID_CATEGORIA" Grid.Column="1" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="8,9,0,0" Name="comboBox1" VerticalAlignment="Top" Width="120" />
-        <ComboBox DisplayMemberPath="MARCA_NAME" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogMarcaModel.Marcas, Mode=OneWay}" Margin="20,9,0,0" Name="comboBox2" SelectedItem="{Binding Articulo.Marca, Mode=TwoWay}" SelectedValuePath="UNID_MARCA" VerticalAlignment="Top" Width="120" Grid.Row="2" />
-        <ComboBox DisplayMemberPath="MODELO_NAME" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogModeloModel.Modelos, Mode=OneWay}" Margin="20,17,0,0" Name="comboBox3" SelectedItem="{Binding Articulo.Modelo, Mode=TwoWay}" SelectedValuePath="UNID_MODELO" VerticalAlignment="Top" Width="120" Grid.Row="3" />
-        <ComboBox DisplayMemberPath="EQUIPO_NAME" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogEquipoModel.Equipos, Mode=OneWay}" Margin="8,17,0,0" Name="comboBox4" SelectedItem="{Binding Articulo.Equipo, Mode=TwoWay}" SelectedValuePath="UNID_EQUIPO" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="3" />
+        <TextBox MaxLength="512" Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="0,0,0,28" Name="txtNomreStatus" VerticalAlignment="Stretch" Width="120" Text="{Binding Articulo.ArticuloName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        <Label Content="MODIFICAR ARTICULO" Height="28" HorizontalAlignment="Stretch" Margin="5,0" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184" />
+        <ComboBox  DisplayMemberPath="CATEGORIA_NAME" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogCategoriaModel.Categoria, Mode=OneWay}" Margin="8,96,0,0" Name="comboBox1" Text="{Binding Articulo.Categoria.CATEGORIA_NAME, Mode=TwoWay}" SelectedItem="{Binding Articulo.Categoria, Mode=TwoWay}" SelectedValuePath="UNID_CATEGORIA" VerticalAlignment="Top" Width="120" Grid.Row="3" Grid.Column="1" />
+        <ComboBox DisplayMemberPath="MARCA_NAME" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogMarcaModel.Marcas, Mode=OneWay}" Margin="8,67,0,0" Name="comboBox2" Text="{Binding Articulo.Marca.MARCA_NAME, Mode=TwoWay}" SelectedItem="{Binding Articulo.Marca, Mode=TwoWay}" SelectedValuePath="UNID_MARCA" VerticalAlignment="Top" Width="120" Grid.Row="3" Grid.Column="1" />
+        <ComboBox DisplayMemberPath="MODELO_NAME" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogModeloModel.Modelos, Mode=OneWay}" Margin="8,38,0,0" Name="comboBox3"  Text="{Binding Articulo.Modelo.MODELO_NAME, Mode=TwoWay}" SelectedItem="{Binding Articulo.Modelo, Mode=TwoWay}" SelectedValuePath="UNID_MODELO" VerticalAlignment="Top" Width="120" Grid.Row="3" Grid.Column="1" />
+        <ComboBox DisplayMemberPath="EQUIPO_NAME" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogEquipoModel.Equipos, Mode=OneWay}" Margin="8,9,0,0" Name="comboBox4"  Text="{Binding Articulo.Equipo.EQUIPO_NAME, Mode=TwoWay}" SelectedItem="{Binding Articulo.Equipo, Mode=TwoWay}" SelectedValuePath="UNID_EQUIPO" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="3" />
+        <Label Content="Equipo:" Height="28" HorizontalAlignment="Right" Margin="0,4,0,134" Name="label1" VerticalAlignment="Stretch" Grid.Row="3" />
+        <Label Content="Modelo:" Height="28" HorizontalAlignment="Right" Margin="0,33,0,105" Name="label2" VerticalAlignment="Stretch" Grid.Row="3" />
+        <Label Content="Marca:" Height="28" HorizontalAlignment="Right" Margin="0,62,0,76" Name="label3" VerticalAlignment="Stretch" Grid.Row="3" />
+        <Label Content="Categoria:" Height="28" HorizontalAlignment="Right" Margin="0,91,0,47" Name="label4" VerticalAlignment="Stretch" Grid.Row="3" />
     </Grid>
 </Window>

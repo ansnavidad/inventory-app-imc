@@ -76,11 +76,11 @@
                         <TreeViewItem Name="CatalogProyecto" Header="Proyecto"></TreeViewItem>
                         <TreeViewItem Name="CatalogSolicitante" Header="Solicitante"></TreeViewItem>
                         <TreeViewItem Name="CatalogTerminoEnvio" Header="Termino de Envió"></TreeViewItem>
-                        <TreeViewItem Name="TipoCotizacion" Header="Tipo de Cotización"></TreeViewItem>
-                        <TreeViewItem Name="TipoEmpresa" Header="Tipo de Empresa"></TreeViewItem>
-                        <TreeViewItem Name="TipoMovimiento" Header="Tipo de Movimiento"></TreeViewItem>
-                        <TreeViewItem Name="TipoPedimento" Header="Tipo de Pedimento"></TreeViewItem>
-                        <TreeViewItem Name="TipoTransporte" Header="Tipo de Transporte"></TreeViewItem>
+                        <TreeViewItem Name="CatalogTipoCotizacion" Header="Tipo de Cotización"></TreeViewItem>
+                        <TreeViewItem Name="CatalogTipoEmpresa" Header="Tipo de Empresa"></TreeViewItem>
+                        <TreeViewItem Name="CatalogTipoMovimiento" Header="Tipo de Movimiento"></TreeViewItem>
+                        <TreeViewItem Name="CatalogTipoPedimento" Header="Tipo de Pedimento"></TreeViewItem>
+                        <TreeViewItem Name="CatalogTipoTransporte" Header="Tipo de Transporte"></TreeViewItem>
                     </TreeViewItem>
                 </TreeView>
             </StackPanel>

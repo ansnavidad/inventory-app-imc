@@ -59,6 +59,9 @@
     <Compile Include="CatalogArticulo\AddArticuloView.xaml.cs">
       <DependentUpon>AddArticuloView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogArticulo\ArticuloUserControl.xaml.cs">
+      <DependentUpon>ArticuloUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogArticulo\CatalogArticuloView.xaml.cs">
       <DependentUpon>CatalogArticuloView.xaml</DependentUpon>
     </Compile>
@@ -67,6 +70,9 @@
     </Compile>
     <Compile Include="CatalogBanco\AddBancoView.xaml.cs">
       <DependentUpon>AddBancoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogBanco\BancoUserControl.xaml.cs">
+      <DependentUpon>BancoUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogBanco\CatalogBancoView.xaml.cs">
       <DependentUpon>CatalogBancoView.xaml</DependentUpon>
@@ -80,6 +86,9 @@
     <Compile Include="CatalogCategoria\CatalogCategoriaView.xaml.cs">
       <DependentUpon>CatalogCategoriaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogCategoria\CategoriaUserControl.xaml.cs">
+      <DependentUpon>CategoriaUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogCategoria\ModifyCategoriaView.xaml.cs">
       <DependentUpon>ModifyCategoriaView.xaml</DependentUpon>
     </Compile>
@@ -88,6 +97,9 @@
     </Compile>
     <Compile Include="CatalogCiudad\CatalogCiudadView.xaml.cs">
       <DependentUpon>CatalogCiudadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogCiudad\CiudadUserControl.xaml.cs">
+      <DependentUpon>CiudadUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogCiudad\ModifyCiudadView.xaml.cs">
       <DependentUpon>ModifyCiudadView.xaml</DependentUpon>
@@ -98,6 +110,9 @@
     <Compile Include="CatalogDepartamento\CatalogDepartamentoView.xaml.cs">
       <DependentUpon>CatalogDepartamentoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogDepartamento\DepartamentoUserControl.xaml.cs">
+      <DependentUpon>DepartamentoUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogDepartamento\ModifyDepartamentoView.xaml.cs">
       <DependentUpon>ModifyDepartamentoView.xaml</DependentUpon>
     </Compile>
@@ -106,6 +121,9 @@
     </Compile>
     <Compile Include="CatalogEmpresa\CatalogEmpresaView.xaml.cs">
       <DependentUpon>CatalogEmpresaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogEmpresa\EmpresaUserControl.xaml.cs">
+      <DependentUpon>EmpresaUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogEmpresa\ModifyEmpresaView.xaml.cs">
       <DependentUpon>ModifyEmpresaView.xaml</DependentUpon>
@@ -116,6 +134,9 @@
     <Compile Include="CatalogEquipo\CatalogEquipoView.xaml.cs">
       <DependentUpon>CatalogEquipoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogEquipo\EquipoUserControl.xaml.cs">
+      <DependentUpon>EquipoUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogEquipo\ModifyEquipoView.xaml.cs">
       <DependentUpon>ModifyEquipoView.xaml</DependentUpon>
     </Compile>
@@ -124,6 +145,9 @@
     </Compile>
     <Compile Include="CatalogItemStatus\CatalogItemStatusView.xaml.cs">
       <DependentUpon>CatalogItemStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogItemStatus\ItemStatusUserControl.xaml.cs">
+      <DependentUpon>ItemStatusUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogItemStatus\ModifyItemStatusView.xaml.cs">
       <DependentUpon>ModifyItemStatusView.xaml</DependentUpon>
@@ -137,6 +161,9 @@
     <Compile Include="CatalogMarca\CatalogMarcaView.xaml.cs">
       <DependentUpon>CatalogMarcaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogMarca\MarcaUserControl.xaml.cs">
+      <DependentUpon>MarcaUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogMarca\ModifyMarcaView.xaml.cs">
       <DependentUpon>ModifyMarcaView.xaml</DependentUpon>
     </Compile>
@@ -146,6 +173,9 @@
     <Compile Include="CatalogMedioEnvio\CatalogMedioEnvioView.xaml.cs">
       <DependentUpon>CatalogMedioEnvioView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogMedioEnvio\MedioEnvioUserControl.xaml.cs">
+      <DependentUpon>MedioEnvioUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogMedioEnvio\ModifyMedioEnvioView.xaml.cs">
       <DependentUpon>ModifyMedioEnvioView.xaml</DependentUpon>
     </Compile>
@@ -154,6 +184,9 @@
     </Compile>
     <Compile Include="CatalogModelo\CatalogModeloView.xaml.cs">
       <DependentUpon>CatalogModeloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogModelo\ModeloUserControl.xaml.cs">
+      <DependentUpon>ModeloUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogModelo\ModifyModeloView.xaml.cs">
       <DependentUpon>ModifyModeloView.xaml</DependentUpon>
@@ -167,6 +200,9 @@
     <Compile Include="CatalogMoneda\ModifyMonedaView.xaml.cs">
       <DependentUpon>ModifyMonedaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogMoneda\MonedaUserControl.xaml.cs">
+      <DependentUpon>MonedaUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogPais\AltaModificarPais.xaml.cs">
       <DependentUpon>AltaModificarPais.xaml</DependentUpon>
     </Compile>
@@ -175,6 +211,9 @@
     </Compile>
     <Compile Include="CatalogPais\ModifyPaisView.xaml.cs">
       <DependentUpon>ModifyPaisView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogPais\PaisUserControl.xaml.cs">
+      <DependentUpon>PaisUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogProveedorCenta\AltaModificarProveedorCuenta.xaml.cs">
       <DependentUpon>AltaModificarProveedorCuenta.xaml</DependentUpon>
@@ -185,6 +224,9 @@
     <Compile Include="CatalogProveedorCenta\ModifyProveedorCuentaView.xaml.cs">
       <DependentUpon>ModifyProveedorCuentaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogProveedorCenta\ProveedorCuentaUserControl.xaml.cs">
+      <DependentUpon>ProveedorCuentaUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogProveedor\AltaModificarProveedor.xaml.cs">
       <DependentUpon>AltaModificarProveedor.xaml</DependentUpon>
     </Compile>
@@ -193,6 +235,9 @@
     </Compile>
     <Compile Include="CatalogProveedor\ModifyProveedorView.xaml.cs">
       <DependentUpon>ModifyProveedorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProveedor\ProveedorUserControl.xaml.cs">
+      <DependentUpon>ProveedorUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogProyecto\AltaProyecto.xaml.cs">
       <DependentUpon>AltaProyecto.xaml</DependentUpon>
@@ -203,6 +248,9 @@
     <Compile Include="CatalogProyecto\ModifyProyectoView.xaml.cs">
       <DependentUpon>ModifyProyectoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogProyecto\ProyectoUserControl.xaml.cs">
+      <DependentUpon>ProyectoUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogSolicitante\AltaSolicitante.xaml.cs">
       <DependentUpon>AltaSolicitante.xaml</DependentUpon>
     </Compile>
@@ -211,6 +259,9 @@
     </Compile>
     <Compile Include="CatalogSolicitante\ModifySolicitanteView.xaml.cs">
       <DependentUpon>ModifySolicitanteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogSolicitante\SolicitanteUserControl.xaml.cs">
+      <DependentUpon>SolicitanteUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogTerminoEnvio\AltaModificarTerminoEnvio.xaml.cs">
       <DependentUpon>AltaModificarTerminoEnvio.xaml</DependentUpon>
@@ -221,6 +272,9 @@
     <Compile Include="CatalogTerminoEnvio\ModifyTerminoEnvioView.xaml.cs">
       <DependentUpon>ModifyTerminoEnvioView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogTerminoEnvio\TerminoEnvioUserControl.xaml.cs">
+      <DependentUpon>TerminoEnvioUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogTipoCotizacion\AltaTipoCotizacion.xaml.cs">
       <DependentUpon>AltaTipoCotizacion.xaml</DependentUpon>
     </Compile>
@@ -229,6 +283,9 @@
     </Compile>
     <Compile Include="CatalogTipoCotizacion\ModifyTipoCotizacionView.xaml.cs">
       <DependentUpon>ModifyTipoCotizacionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoCotizacion\TipoCotizacionUserControl.xaml.cs">
+      <DependentUpon>TipoCotizacionUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogTipoEmpresa\CatalogTipoEmpresaView.xaml.cs">
       <DependentUpon>CatalogTipoEmpresaView.xaml</DependentUpon>
@@ -239,6 +296,9 @@
     <Compile Include="CatalogTipoEmpresa\ModifyTipoEmpresaView.xaml.cs">
       <DependentUpon>ModifyTipoEmpresaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogTipoEmpresa\TipoEmpresaUserControl.xaml.cs">
+      <DependentUpon>TipoEmpresaUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogTipoMovimiento\AltaTipoMovimiento.xaml.cs">
       <DependentUpon>AltaTipoMovimiento.xaml</DependentUpon>
     </Compile>
@@ -247,6 +307,9 @@
     </Compile>
     <Compile Include="CatalogTipoMovimiento\ModifyTipoMovimientoView.xaml.cs">
       <DependentUpon>ModifyTipoMovimientoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoMovimiento\TipoMovimientoUserControl.xaml.cs">
+      <DependentUpon>TipoMovimientoUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogTipoPedimento\AltaModificarTipoPedimento.xaml.cs">
       <DependentUpon>AltaModificarTipoPedimento.xaml</DependentUpon>
@@ -257,6 +320,9 @@
     <Compile Include="CatalogTipoPedimento\ModifyTipoPedimentoView.xaml.cs">
       <DependentUpon>ModifyTipoPedimentoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogTipoPedimento\TipoPedimentoUserControl.xaml.cs">
+      <DependentUpon>TipoPedimentoUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogTransporte\CatalogTransporteView.xaml.cs">
       <DependentUpon>CatalogTransporteView.xaml</DependentUpon>
     </Compile>
@@ -266,12 +332,19 @@
     <Compile Include="CatalogTransporte\ModifyTransporteView.xaml.cs">
       <DependentUpon>ModifyTransporteView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogTransporte\TransporteUserControl.xaml.cs">
+      <DependentUpon>TransporteUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ItemACView.xaml.cs">
       <DependentUpon>ItemACView.xaml</DependentUpon>
     </Compile>
     <Page Include="CatalogArticulo\AddArticuloView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogArticulo\ArticuloUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogArticulo\CatalogArticuloView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -284,6 +357,10 @@
     <Page Include="CatalogBanco\AddBancoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogBanco\BancoUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogBanco\CatalogBancoView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -301,6 +378,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CatalogCategoria\CategoriaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogCategoria\ModifyCategoriaView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -312,6 +393,10 @@
     <Page Include="CatalogCiudad\CatalogCiudadView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogCiudad\CiudadUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogCiudad\ModifyCiudadView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -325,6 +410,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CatalogDepartamento\DepartamentoUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogDepartamento\ModifyDepartamentoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -336,6 +425,10 @@
     <Page Include="CatalogEmpresa\CatalogEmpresaView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogEmpresa\EmpresaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogEmpresa\ModifyEmpresaView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -349,6 +442,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CatalogEquipo\EquipoUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogEquipo\ModifyEquipoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -360,6 +457,10 @@
     <Page Include="CatalogItemStatus\CatalogItemStatusView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogItemStatus\ItemStatusUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogItemStatus\ModifyItemStatusView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -377,6 +478,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CatalogMarca\MarcaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogMarca\ModifyMarcaView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -389,6 +494,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CatalogMedioEnvio\MedioEnvioUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogMedioEnvio\ModifyMedioEnvioView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -400,6 +509,10 @@
     <Page Include="CatalogModelo\CatalogModeloView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogModelo\ModeloUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogModelo\ModifyModeloView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -417,6 +530,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CatalogMoneda\MonedaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogPais\AltaModificarPais.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -428,6 +545,10 @@
     <Page Include="CatalogPais\ModifyPaisView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogPais\PaisUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogProveedorCenta\AltaModificarProveedorCuenta.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -441,6 +562,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CatalogProveedorCenta\ProveedorCuentaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogProveedor\AltaModificarProveedor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -452,6 +577,10 @@
     <Page Include="CatalogProveedor\ModifyProveedorView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogProveedor\ProveedorUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogProyecto\AltaProyecto.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -465,6 +594,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CatalogProyecto\ProyectoUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogSolicitante\AltaSolicitante.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -476,6 +609,10 @@
     <Page Include="CatalogSolicitante\ModifySolicitanteView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogSolicitante\SolicitanteUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogTerminoEnvio\AltaModificarTerminoEnvio.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -489,6 +626,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CatalogTerminoEnvio\TerminoEnvioUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogTipoCotizacion\AltaTipoCotizacion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -500,6 +641,10 @@
     <Page Include="CatalogTipoCotizacion\ModifyTipoCotizacionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTipoCotizacion\TipoCotizacionUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogTipoEmpresa\CatalogTipoEmpresaView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -513,6 +658,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CatalogTipoEmpresa\TipoEmpresaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogTipoMovimiento\AltaTipoMovimiento.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -524,6 +673,10 @@
     <Page Include="CatalogTipoMovimiento\ModifyTipoMovimientoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTipoMovimiento\TipoMovimientoUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogTipoPedimento\AltaModificarTipoPedimento.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -537,6 +690,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CatalogTipoPedimento\TipoPedimentoUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogTransporte\CatalogTransporteView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -548,6 +705,10 @@
     <Page Include="CatalogTransporte\ModifyTransporteView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTransporte\TransporteUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

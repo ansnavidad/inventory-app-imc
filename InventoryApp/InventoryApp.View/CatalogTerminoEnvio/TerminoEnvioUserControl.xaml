@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="InventoryApp.View.CatalogTerminoEnvio.TerminoEnvioUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="305" d:DesignWidth="629" Height="369">
+    <Grid Name="GridPrincipal"  DataContext="{StaticResource catalogTerminoEnvioViewModel}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="300" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="CONSULTA DE TERTMINO ENVIO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridTerminoEnvio" VerticalAlignment="Stretch" ItemsSource="{Binding Path=CatalogTerminoEnvioModel.TerminoEnvio}" SelectedItem="{Binding CatalogTerminoEnvioModel.SelectedTerminoEnvio, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="" IsReadOnly="False" Width="25" x:Name="ISCHECK" Binding="{Binding Path=Is_Check}"></DataGridCheckBoxColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="162" Header="Clave" x:Name="CLAVE" Binding="{Binding Path=CLAVE}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="162" Header="Termino" x:Name="TERMINO" Binding="{Binding Path=TERMINO}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="188" Header="Significado" x:Name="SIGNIFICADO" Binding="{Binding Path=SIGNIFICADO}"></DataGridTextColumn>
+                <DataGridCheckBoxColumn Header="Genera Lotes" IsReadOnly="True" Width="85" x:Name="GENERA_LOTES" Binding="{Binding Path=GENERA_LOTES}"></DataGridCheckBoxColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Name="gridBtn" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
+            <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+        </Grid>
+    </Grid>
+</UserControl>

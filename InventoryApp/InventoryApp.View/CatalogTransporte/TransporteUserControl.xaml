@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="InventoryApp.View.CatalogTransporte.TransporteUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="306" Width="689">
+    <Grid Name="GridPrincipal" DataContext="{StaticResource catalogTransporteViewModel}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" SelectedItem="{Binding CatalogTransporteModel.SelectedTransporte, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItems" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogTransporteModel.Transportes}" MouseDoubleClick="dtGridItems_MouseDoubleClick">
+            <DataGrid.Columns>
+                <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />-->
+                <DataGridTextColumn Header="Transporte" Width="100" x:Name="transporteNombre" Binding="{Binding Path=TRANSPORTE_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Tipo Empresa" Width="100" x:Name="tipoEmpresaNombre" Binding="{Binding Path=TIPO_EMPRESA.TIPO_EMPRESA_NAME}" IsReadOnly="True"/>
+
+                <!--<DataGridTextColumn Header="TOTAL" Width="*" x:Name="Total" Binding="{Binding Path=total}" IsReadOnly="True"/>-->
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="CONSULTA DE DATOS" Height="28" HorizontalAlignment="Left" Margin="5,0,0,0" Name="lblNameConsulta" Width="154" />
+        <Button Content="Agregar" Height="23" HorizontalAlignment="Left" Margin="591,0,0,0" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Click="btnAgregar_Click" />
+    </Grid>
+</UserControl>

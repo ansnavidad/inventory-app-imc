@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="InventoryApp.View.CatalogMedioEnvio.MedioEnvioUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="312" d:DesignWidth="372" Height="374">
+    <Grid Name="GridPrincipal"  DataContext="{StaticResource catalogMedioEnvioViewModel}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="300" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="CONSULTA DE MEDIO ENVIO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding MedioEnvioModel.MedioEnvio}" SelectedItem="{Binding MedioEnvioModel.SelectedMedioEnvio, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected"/>
+                <DataGridTextColumn Header="Medio Envio" Width="*" x:Name="nombreMedioEnvio" Binding="{Binding Path=MEDIO_ENVIO_NAME}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Name="gridBtn" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="InventoryApp.View.CatalogPais.PaisUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="306" d:DesignWidth="369" Height="376">
+    <Grid Name="GridPrincipal"  DataContext="{StaticResource catalogPaisViewModel}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="300" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="CONSULTA DE PAIS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogPaisModel.Pais}" SelectedItem="{Binding CatalogPaisModel.SelectedPais, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected"/>
+                <DataGridTextColumn Header="País" Width="*" x:Name="nombrePais" Binding="{Binding Path=PAIS}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="ISO" Width="*" x:Name="ISO" Binding="{Binding Path=ISO}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Name="gridBtn" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+        </Grid>
+    </Grid>
+</UserControl>

@@ -9,34 +9,35 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InventoryApp.View.CatalogTipoCotizacion
+namespace InventoryApp.View.CatalogMoneda
 {
     /// <summary>
-    /// Lógica de interacción para CatalogTipoCotizacionView.xaml
+    /// Lógica de interacción para MonedaUserControl.xaml
     /// </summary>
-    public partial class CatalogTipoCotizacionView : Window
+    public partial class MonedaUserControl : UserControl
     {
-        public CatalogTipoCotizacionView()
+        public MonedaUserControl()
         {
             InitializeComponent();
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            AltaTipoCotizacion alta = new AltaTipoCotizacion();
-            alta.ShowDialog();
+            AddMonedaView add = new AddMonedaView();
+            add.ShowDialog();
         }
 
-        private void dtGridCotizacion_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void dtGridMoneda_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)
             {
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyTipoCotizacionView()).ShowDialog();
+                    (new ModifyMonedaView()).ShowDialog();
                 }
             }
         }

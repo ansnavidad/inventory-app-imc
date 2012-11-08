@@ -9,34 +9,35 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InventoryApp.View.CatalogTipoCotizacion
+namespace InventoryApp.View.CatalogArticulo
 {
     /// <summary>
-    /// Lógica de interacción para CatalogTipoCotizacionView.xaml
+    /// Lógica de interacción para ArticuloUserControl.xaml
     /// </summary>
-    public partial class CatalogTipoCotizacionView : Window
+    public partial class ArticuloUserControl : UserControl
     {
-        public CatalogTipoCotizacionView()
+        public ArticuloUserControl()
         {
             InitializeComponent();
         }
 
-        private void btnNuevo_Click(object sender, RoutedEventArgs e)
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            AltaTipoCotizacion alta = new AltaTipoCotizacion();
+            AddArticuloView alta = new AddArticuloView();
             alta.ShowDialog();
         }
 
-        private void dtGridCotizacion_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void dtGridItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)
             {
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyTipoCotizacionView()).ShowDialog();
+                    (new ModifyArticuloView()).ShowDialog();
                 }
             }
         }

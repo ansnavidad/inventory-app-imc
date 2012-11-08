@@ -9,16 +9,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace InventoryApp.View.CatalogTipoCotizacion
 {
     /// <summary>
-    /// Lógica de interacción para CatalogTipoCotizacionView.xaml
+    /// Lógica de interacción para TipoCotizacionUserControl.xaml
     /// </summary>
-    public partial class CatalogTipoCotizacionView : Window
+    public partial class TipoCotizacionUserControl : UserControl
     {
-        public CatalogTipoCotizacionView()
+        public TipoCotizacionUserControl()
         {
             InitializeComponent();
         }

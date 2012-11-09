@@ -5,7 +5,6 @@ using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
 
-
 namespace InventoryApp.DAL
 {
     public class ArticuloDataMapper : IDataMapper
@@ -14,6 +13,33 @@ namespace InventoryApp.DAL
         /// Obtiene todos los elementos en la tabla transporte
         /// </summary>
         /// <returns></returns>
+        public object getElements_EntradasSalidas(object element)
+        {
+            object o = null;
+            if (element != null)
+            {
+                CATEGORIA Eprov = (CATEGORIA)element;
+
+                using (var Entity = new TAE2Entities())
+                {
+                    var res = (from p in Entity.ARTICULOes
+                               where p.UNID_CATEGORIA == Eprov.UNID_CATEGORIA
+                               select p).ToList();
+
+                    foreach (ARTICULO trans in ((List<ARTICULO>)res))
+                    {
+                        trans.MODELO = trans.MODELO;
+                        trans.MARCA = trans.MARCA;
+                        trans.EQUIPO = trans.EQUIPO;
+                        trans.CATEGORIA = trans.CATEGORIA;                        
+                    }
+
+                    o = (object)res;
+                }
+            }
+            return o;
+        }
+        
         public object getElements()
         {
             object res = null;
@@ -29,7 +55,6 @@ namespace InventoryApp.DAL
                     art.MODELO = art.MODELO;
                     art.EQUIPO = art.EQUIPO;
                 }
-
 
                 return res;
             }

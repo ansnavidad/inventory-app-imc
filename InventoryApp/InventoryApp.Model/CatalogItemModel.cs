@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
 using System.ComponentModel;
 
@@ -9,67 +10,71 @@ namespace InventoryApp.Model
 {
     public class CatalogItemModel : INotifyPropertyChanged
     {
-        //private ItemCollection _items;
-        //private Item _selectedItem;
-        //private IDataMapper _dataMapper;
+        private FixupCollection<ItemModel> _itemModel;
+        private ItemModel _selectedItemModel;
+        private IDataMapper _dataMapper;
 
-        //public ItemCollection Items 
-        //{
-        //    get 
-        //    {
-        //        return _items;
-        //    }
-        //    set
-        //    {
-        //        if (_items != value)
-        //        {
-        //            _items = value;
-        //            if (PropertyChanged != null)
-        //            {
-        //                PropertyChanged(this, new PropertyChangedEventArgs("Items"));
-        //            }
-        //        }
-        //    }
-        //}
+        public FixupCollection<ItemModel> ItemModel
+        {
+            get
+            {
+                return _itemModel;
+            }
+            set
+            {
+                if (_itemModel != value)
+                {
+                    _itemModel = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("ItemModel"));
+                    }
+                }
+            }
+        }
 
-        //public Item SelectedItem
-        //{
-        //    get
-        //    {
-        //        return _selectedItem;
-        //    }
-        //    set
-        //    {
-        //        if (_selectedItem != value)
-        //        {
-        //            _selectedItem = value;
-        //            if (PropertyChanged != null)
-        //            {
-        //                PropertyChanged(this, new PropertyChangedEventArgs("SelectedItem"));
-        //            }
-        //        }
-        //    }
-        //}
+        public ItemModel SelectedItemModel
+        {
+            get
+            {
+                return _selectedItemModel;
+            }
+            set
+            {
+                if (_selectedItemModel != value)
+                {
+                    _selectedItemModel = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("SelectedItemModel"));
+                    }
+                }
+            }
+        }
 
-        //public void loadItems()
-        //{
-        //    object element = this._dataMapper.getElements();
+        public void loadItems()
+        {
+            object element = this._dataMapper.getElements();
 
-        //    ItemCollection ic = element as ItemCollection;
-        //    if (ic != null)
-        //    {
-        //        this._items = ic;
-        //    }
-        //}
+            FixupCollection<ItemModel> ic = new FixupCollection<ItemModel>();
 
-        //public CatalogItemModel(IDataMapper dataMapper)
-        //{
-        //    this._dataMapper = new ItemDataMapper();
-        //    this._items = new ItemCollection();
-        //    this._selectedItem = new Item();
-        //    this.loadItems();
-        //    //this.loadItems(new ItemDataMapper());
-        //}
+            foreach (ItemModel elemento in (List<ItemModel>)element)
+            {
+                ic.Add((ItemModel)elemento);
+            }
+            if (ic != null)
+            {
+                this.ItemModel = ic;
+            }
+        }
+
+        public CatalogItemModel(IDataMapper dataMapper)
+        {
+            this._dataMapper = new ProveedorCuentaDataMapper();
+            this._itemModel = new FixupCollection<ItemModel>();
+            //this._selectedItemModel = new ItemModel();
+            this.loadItems();
+        }       
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

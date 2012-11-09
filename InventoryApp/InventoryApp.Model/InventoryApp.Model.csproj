@@ -76,6 +76,7 @@
     <Compile Include="EquipoModel.cs" />
     <Compile Include="InsertTipoEmpresaModel.cs" />
     <Compile Include="InsertTransporteModel.cs" />
+    <Compile Include="ItemModel.cs" />
     <Compile Include="ItemStatusModel.cs" />
     <Compile Include="MarcaModel.cs" />
     <Compile Include="MedioEnvioModel.cs" />

@@ -98,6 +98,12 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private long _uNID_MODELO;
+    
+        public virtual bool IS_ACTIVE
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

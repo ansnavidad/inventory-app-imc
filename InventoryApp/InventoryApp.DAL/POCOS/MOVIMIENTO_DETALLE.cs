@@ -58,6 +58,18 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private long _uNID_MOVIMIENTO;
+    
+        public virtual bool IS_ACTIVE
+        {
+            get;
+            set;
+        }
+    
+        public virtual string OBSERVACIONES
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties
@@ -91,6 +103,38 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private MOVIMENTO _mOVIMENTO;
+    
+        public virtual ICollection<ULTIMO_MOVIMIENTO> ULTIMO_MOVIMIENTO
+        {
+            get
+            {
+                if (_uLTIMO_MOVIMIENTO == null)
+                {
+                    var newCollection = new FixupCollection<ULTIMO_MOVIMIENTO>();
+                    newCollection.CollectionChanged += FixupULTIMO_MOVIMIENTO;
+                    _uLTIMO_MOVIMIENTO = newCollection;
+                }
+                return _uLTIMO_MOVIMIENTO;
+            }
+            set
+            {
+                if (!ReferenceEquals(_uLTIMO_MOVIMIENTO, value))
+                {
+                    var previousValue = _uLTIMO_MOVIMIENTO as FixupCollection<ULTIMO_MOVIMIENTO>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupULTIMO_MOVIMIENTO;
+                    }
+                    _uLTIMO_MOVIMIENTO = value;
+                    var newValue = value as FixupCollection<ULTIMO_MOVIMIENTO>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupULTIMO_MOVIMIENTO;
+                    }
+                }
+            }
+        }
+        private ICollection<ULTIMO_MOVIMIENTO> _uLTIMO_MOVIMIENTO;
 
         #endregion
         #region Association Fixup
@@ -131,6 +175,28 @@ namespace InventoryApp.DAL.POCOS
                 if (UNID_MOVIMIENTO != MOVIMENTO.UNID_MOVIMIENTO)
                 {
                     UNID_MOVIMIENTO = MOVIMENTO.UNID_MOVIMIENTO;
+                }
+            }
+        }
+    
+        private void FixupULTIMO_MOVIMIENTO(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (ULTIMO_MOVIMIENTO item in e.NewItems)
+                {
+                    item.MOVIMIENTO_DETALLE = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (ULTIMO_MOVIMIENTO item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.MOVIMIENTO_DETALLE, this))
+                    {
+                        item.MOVIMIENTO_DETALLE = null;
+                    }
                 }
             }
         }

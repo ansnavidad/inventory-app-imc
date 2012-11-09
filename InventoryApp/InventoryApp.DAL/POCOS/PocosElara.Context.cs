@@ -281,6 +281,18 @@ namespace InventoryApp.DAL.POCOS
             get { return _pOM_ARTICULO  ?? (_pOM_ARTICULO = CreateObjectSet<POM_ARTICULO>("POM_ARTICULO")); }
         }
         private ObjectSet<POM_ARTICULO> _pOM_ARTICULO;
+    
+        public ObjectSet<FACTURA_VENTA> FACTURA_VENTA
+        {
+            get { return _fACTURA_VENTA  ?? (_fACTURA_VENTA = CreateObjectSet<FACTURA_VENTA>("FACTURA_VENTA")); }
+        }
+        private ObjectSet<FACTURA_VENTA> _fACTURA_VENTA;
+    
+        public ObjectSet<ULTIMO_MOVIMIENTO> ULTIMO_MOVIMIENTO
+        {
+            get { return _uLTIMO_MOVIMIENTO  ?? (_uLTIMO_MOVIMIENTO = CreateObjectSet<ULTIMO_MOVIMIENTO>("ULTIMO_MOVIMIENTO")); }
+        }
+        private ObjectSet<ULTIMO_MOVIMIENTO> _uLTIMO_MOVIMIENTO;
 
         #endregion
     }

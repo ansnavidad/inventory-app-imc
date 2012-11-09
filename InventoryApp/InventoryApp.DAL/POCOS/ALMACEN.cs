@@ -65,6 +65,12 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private long _uNID_CIUDAD;
+    
+        public virtual bool IS_ACTIVE
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties
@@ -179,6 +185,70 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private CIUDAD _cIUDAD;
+    
+        public virtual ICollection<MOVIMENTO> MOVIMENTOes_1
+        {
+            get
+            {
+                if (_mOVIMENTOes_1 == null)
+                {
+                    var newCollection = new FixupCollection<MOVIMENTO>();
+                    newCollection.CollectionChanged += FixupMOVIMENTOes_1;
+                    _mOVIMENTOes_1 = newCollection;
+                }
+                return _mOVIMENTOes_1;
+            }
+            set
+            {
+                if (!ReferenceEquals(_mOVIMENTOes_1, value))
+                {
+                    var previousValue = _mOVIMENTOes_1 as FixupCollection<MOVIMENTO>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupMOVIMENTOes_1;
+                    }
+                    _mOVIMENTOes_1 = value;
+                    var newValue = value as FixupCollection<MOVIMENTO>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupMOVIMENTOes_1;
+                    }
+                }
+            }
+        }
+        private ICollection<MOVIMENTO> _mOVIMENTOes_1;
+    
+        public virtual ICollection<ULTIMO_MOVIMIENTO> ULTIMO_MOVIMIENTO
+        {
+            get
+            {
+                if (_uLTIMO_MOVIMIENTO == null)
+                {
+                    var newCollection = new FixupCollection<ULTIMO_MOVIMIENTO>();
+                    newCollection.CollectionChanged += FixupULTIMO_MOVIMIENTO;
+                    _uLTIMO_MOVIMIENTO = newCollection;
+                }
+                return _uLTIMO_MOVIMIENTO;
+            }
+            set
+            {
+                if (!ReferenceEquals(_uLTIMO_MOVIMIENTO, value))
+                {
+                    var previousValue = _uLTIMO_MOVIMIENTO as FixupCollection<ULTIMO_MOVIMIENTO>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupULTIMO_MOVIMIENTO;
+                    }
+                    _uLTIMO_MOVIMIENTO = value;
+                    var newValue = value as FixupCollection<ULTIMO_MOVIMIENTO>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupULTIMO_MOVIMIENTO;
+                    }
+                }
+            }
+        }
+        private ICollection<ULTIMO_MOVIMIENTO> _uLTIMO_MOVIMIENTO;
 
         #endregion
         #region Association Fixup
@@ -264,6 +334,50 @@ namespace InventoryApp.DAL.POCOS
                     if (ReferenceEquals(item.ALMACEN1, this))
                     {
                         item.ALMACEN1 = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupMOVIMENTOes_1(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (MOVIMENTO item in e.NewItems)
+                {
+                    item.ALMACEN_1 = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (MOVIMENTO item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.ALMACEN_1, this))
+                    {
+                        item.ALMACEN_1 = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupULTIMO_MOVIMIENTO(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (ULTIMO_MOVIMIENTO item in e.NewItems)
+                {
+                    item.ALMACEN = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (ULTIMO_MOVIMIENTO item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.ALMACEN, this))
+                    {
+                        item.ALMACEN = null;
                     }
                 }
             }

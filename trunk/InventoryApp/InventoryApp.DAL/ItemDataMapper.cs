@@ -37,17 +37,45 @@ namespace InventoryApp.DAL
             return o;
         }
 
-        public object getElements_EntradasSalidasSKU(ALMACEN almacen, string SKU)
+        public object getElements_EntradasSalidasSerie(CLIENTE cliente, string numSerie)
         {
             object o = null;
-            if (almacen != null && !SKU.Equals(""))
+            if (cliente != null && !numSerie.Equals(""))
             {
                 using (var Entity = new TAE2Entities())
                 {
                     var res = (from i in Entity.ITEMs
                                join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
-                               join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
-                               where i.SKU == SKU && u2.UNID_ALMACEN == almacen.UNID_ALMACEN
+                               join u2 in Entity.CLIENTEs on u1.UNID_CLIENTE equals u2.UNID_CLIENTE
+                               where i.NUMERO_SERIE == numSerie && u2.UNID_CLIENTE == cliente.UNID_CLIENTE
+                               select i).ToList();
+
+                    if (((List<ITEM>)res).Count > 0)
+                    {
+                        foreach (ITEM trans in ((List<ITEM>)res))
+                        {
+                            trans.ARTICULO = trans.ARTICULO;
+                            trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
+                            trans.ITEM_STATUS = trans.ITEM_STATUS;
+                        }
+                        o = (object)res;
+                    }
+                }
+            }
+            return o;
+        }
+
+        public object getElements_EntradasSalidasSerie(PROVEEDOR proveedor, string numSerie)
+        {
+            object o = null;
+            if (proveedor != null && !numSerie.Equals(""))
+            {
+                using (var Entity = new TAE2Entities())
+                {
+                    var res = (from i in Entity.ITEMs
+                               join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                               join u2 in Entity.PROVEEDORs on u1.UNID_PROVEEDOR equals u2.UNID_PROVEEDOR
+                               where i.NUMERO_SERIE == numSerie && u2.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR
                                select i).ToList();
 
                     if (((List<ITEM>)res).Count > 0)

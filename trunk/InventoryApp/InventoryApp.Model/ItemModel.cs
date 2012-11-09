@@ -11,6 +11,9 @@ namespace InventoryApp.Model
     public class ItemModel : ITEM, INotifyPropertyChanged
     {
         private bool _isChecked;
+        private ARTICULO _articulo;
+        private FACTURA_DETALLE _facturaDetalle;
+        private ITEM_STATUS _itemStatus;
 
         public bool IsChecked
         {
@@ -26,21 +29,57 @@ namespace InventoryApp.Model
             }
         }
 
+        public ARTICULO Articulo
+        {
+            get { return this._articulo; }
+            set
+            {
+                if (value != this._articulo)
+                {
+                    this._articulo = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Articulo"));
+                }
+            }
+        }
+
+        public FACTURA_DETALLE FacturaDetalle
+        {
+            get { return this._facturaDetalle; }
+            set
+            {
+                if (value != this._facturaDetalle)
+                {
+                    this._facturaDetalle = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("FacturaDetalle"));
+                }
+            }
+        }
+
+        public ITEM_STATUS ItemStatus
+        {
+            get { return this._itemStatus; }
+            set
+            {
+                if (value != this._itemStatus)
+                {
+                    this._itemStatus = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("ItemStatus"));
+                }
+            }
+        }
+
         public ItemModel(ITEM item) 
         {
-            this.ARTICULO = item.ARTICULO;
-            this.COSTO_UNITARIO = item.COSTO_UNITARIO;
-            this.FACTURA_DETALLE = item.FACTURA_DETALLE;
-            this.IS_ACTIVE = item.IS_ACTIVE;
-            this.ITEM_STATUS = item.ITEM_STATUS;
-            this.MOVIMIENTO_DETALLE = item.MOVIMIENTO_DETALLE;
+            this._articulo = item.ARTICULO;
+            this.SKU = item.SKU;
             this.NUMERO_SERIE = item.NUMERO_SERIE;
-            this.UNID_ARTICULO = item.UNID_ARTICULO;
-            this.UNID_EMPRESA = item.UNID_EMPRESA;
-            this.UNID_FACTURA_DETALE = item.UNID_FACTURA_DETALE;
-            this.UNID_ITEM = item.UNID_ITEM;
-            this.UNID_ITEM_STATUS = item.UNID_ITEM_STATUS;
-
+            this._itemStatus = item.ITEM_STATUS;
+            this.COSTO_UNITARIO = item.COSTO_UNITARIO;
+            this._facturaDetalle = item.FACTURA_DETALLE;
+            this.IS_ACTIVE = item.IS_ACTIVE;
             this.IsChecked = false;
         }
 

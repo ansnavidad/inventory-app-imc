@@ -70,7 +70,7 @@ namespace InventoryApp.Model
 
         public CatalogItemModel(IDataMapper dataMapper)
         {
-            this._dataMapper = new ProveedorCuentaDataMapper();
+            this._dataMapper = new ItemDataMapper();
             this._itemModel = new FixupCollection<ItemModel>();
             //this._selectedItemModel = new ItemModel();
             this.loadItems();

@@ -9,18 +9,18 @@ namespace InventoryApp.DAL
 {
     public class ItemDataMapper : IDataMapper
     {
-        public object getElements_EntradasSalidasSerie(object element)
+        public object getElements_EntradasSalidasSerie(ALMACEN almacen, string numSerie)
         {
             object o = null;
-            if (element != null)
-            {
-                string Eprov = (string)element;
-
+            if (almacen != null && !numSerie.Equals(""))
+            {               
                 using (var Entity = new TAE2Entities())
                 {
-                    var res = (from p in Entity.ITEMs
-                               where p.NUMERO_SERIE == Eprov
-                               select p).ToList();
+                    var res = (from i in Entity.ITEMs
+                                    join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                                    join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
+                                    where i.NUMERO_SERIE == numSerie && u2.UNID_ALMACEN == almacen.UNID_ALMACEN
+                                    select i).ToList();
 
                     if (((List<ITEM>)res).Count > 0)
                     {
@@ -37,18 +37,18 @@ namespace InventoryApp.DAL
             return o;
         }
 
-        public object getElements_EntradasSalidasSKU(object element)
+        public object getElements_EntradasSalidasSKU(ALMACEN almacen, string SKU)
         {
             object o = null;
-            if (element != null)
+            if (almacen != null && !SKU.Equals(""))
             {
-                string Eprov = (string)element;
-
                 using (var Entity = new TAE2Entities())
                 {
-                    var res = (from p in Entity.ITEMs
-                               where p.SKU == Eprov
-                               select p).ToList();
+                    var res = (from i in Entity.ITEMs
+                               join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                               join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
+                               where i.SKU == SKU && u2.UNID_ALMACEN == almacen.UNID_ALMACEN
+                               select i).ToList();
 
                     if (((List<ITEM>)res).Count > 0)
                     {

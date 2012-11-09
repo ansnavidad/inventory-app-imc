@@ -93,6 +93,18 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private long _uNID_FACTURA_DETALE;
+    
+        public virtual bool IS_ACTIVE
+        {
+            get;
+            set;
+        }
+    
+        public virtual Nullable<long> UNID_EMPRESA
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties
@@ -173,6 +185,21 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private FACTURA_DETALLE _fACTURA_DETALLE;
+    
+        public virtual ULTIMO_MOVIMIENTO ULTIMO_MOVIMIENTO
+        {
+            get { return _uLTIMO_MOVIMIENTO; }
+            set
+            {
+                if (!ReferenceEquals(_uLTIMO_MOVIMIENTO, value))
+                {
+                    var previousValue = _uLTIMO_MOVIMIENTO;
+                    _uLTIMO_MOVIMIENTO = value;
+                    FixupULTIMO_MOVIMIENTO(previousValue);
+                }
+            }
+        }
+        private ULTIMO_MOVIMIENTO _uLTIMO_MOVIMIENTO;
 
         #endregion
         #region Association Fixup
@@ -234,6 +261,19 @@ namespace InventoryApp.DAL.POCOS
                 {
                     UNID_FACTURA_DETALE = FACTURA_DETALLE.UNID_FACTURA_DETALE;
                 }
+            }
+        }
+    
+        private void FixupULTIMO_MOVIMIENTO(ULTIMO_MOVIMIENTO previousValue)
+        {
+            if (previousValue != null && ReferenceEquals(previousValue.ITEM, this))
+            {
+                previousValue.ITEM = null;
+            }
+    
+            if (ULTIMO_MOVIMIENTO != null)
+            {
+                ULTIMO_MOVIMIENTO.ITEM = this;
             }
         }
     

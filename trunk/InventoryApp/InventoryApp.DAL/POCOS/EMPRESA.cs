@@ -48,6 +48,12 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
+    
+        public virtual bool IS_ACTIVE
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties
@@ -115,6 +121,38 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private ICollection<POM> _pOMs;
+    
+        public virtual ICollection<ITEM_STATUS> ITEM_STATUS
+        {
+            get
+            {
+                if (_iTEM_STATUS == null)
+                {
+                    var newCollection = new FixupCollection<ITEM_STATUS>();
+                    newCollection.CollectionChanged += FixupITEM_STATUS;
+                    _iTEM_STATUS = newCollection;
+                }
+                return _iTEM_STATUS;
+            }
+            set
+            {
+                if (!ReferenceEquals(_iTEM_STATUS, value))
+                {
+                    var previousValue = _iTEM_STATUS as FixupCollection<ITEM_STATUS>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupITEM_STATUS;
+                    }
+                    _iTEM_STATUS = value;
+                    var newValue = value as FixupCollection<ITEM_STATUS>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupITEM_STATUS;
+                    }
+                }
+            }
+        }
+        private ICollection<ITEM_STATUS> _iTEM_STATUS;
 
         #endregion
         #region Association Fixup
@@ -154,6 +192,28 @@ namespace InventoryApp.DAL.POCOS
             if (e.OldItems != null)
             {
                 foreach (POM item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.EMPRESA, this))
+                    {
+                        item.EMPRESA = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupITEM_STATUS(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (ITEM_STATUS item in e.NewItems)
+                {
+                    item.EMPRESA = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (ITEM_STATUS item in e.OldItems)
                 {
                     if (ReferenceEquals(item.EMPRESA, this))
                     {

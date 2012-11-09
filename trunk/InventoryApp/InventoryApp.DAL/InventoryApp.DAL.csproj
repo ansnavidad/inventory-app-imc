@@ -53,12 +53,14 @@
     <Compile Include="EquipoDataMapper.cs" />
     <Compile Include="EstatusDataMapper.cs" />
     <Compile Include="IDataMapper.cs" />
+    <Compile Include="ItemDataMapper.cs" />
     <Compile Include="ItemStatusDataMapper.cs" />
     <Compile Include="MarcaDataMapper.cs" />
     <Compile Include="MedioEnvioDataMapper.cs" />
     <Compile Include="Medio_EnvioDataMapper.cs" />
     <Compile Include="ModeloDataMapper.cs" />
     <Compile Include="MonedaDataMapper.cs" />
+    <Compile Include="MovimientoDataMapper.cs" />
     <Compile Include="PaisDataMapper.cs" />
     <Compile Include="PedimentoDataMapper.cs" />
     <Compile Include="POCOS\ALMACEN.cs">
@@ -103,6 +105,9 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\FACTURA_DETALLE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\FACTURA_VENTA.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\ITEM.cs">
@@ -191,6 +196,9 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\TRANSPORTE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\ULTIMO_MOVIMIENTO.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\UNIDAD.cs">

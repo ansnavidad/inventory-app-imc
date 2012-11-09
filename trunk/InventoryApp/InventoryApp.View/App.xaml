@@ -77,11 +77,5 @@
         <ObjectDataProvider x:Key="modifyEmpresaViewModel" ObjectInstance="{StaticResource catalogEmpresaViewModel }"
                             MethodName="CreateModifyEmpresaViewModel" x:Shared="False"/>-->
 
-        <!--<vm:CatalogSolicitanteViewModel x:Key="catalogSolicitanteViewModel"></vm:CatalogSolicitanteViewModel>
-        <ObjectDataProvider x:Key="addSolicitanteViewModel" ObjectInstance="{StaticResource catalogSolicitanteViewModel}"
-                            MethodName="CreateAddSolicitanteViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifySolicitanteViewModel" ObjectInstance="{StaticResource catalogSolicitanteViewModel}"
-                            MethodName="CreateModifySolicitanteViewModel" x:Shared="False"/>-->
-
     </Application.Resources>
 </Application>

@@ -30,6 +30,37 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
+    
+        public virtual bool IS_ACTIVE
+        {
+            get;
+            set;
+        }
+    
+        public virtual Nullable<long> UNID_EMPRESA
+        {
+            get { return _uNID_EMPRESA; }
+            set
+            {
+                try
+                {
+                    _settingFK = true;
+                    if (_uNID_EMPRESA != value)
+                    {
+                        if (EMPRESA != null && EMPRESA.UNID_EMPRESA != value)
+                        {
+                            EMPRESA = null;
+                        }
+                        _uNID_EMPRESA = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
+        }
+        private Nullable<long> _uNID_EMPRESA;
 
         #endregion
         #region Navigation Properties
@@ -65,9 +96,50 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private ICollection<ITEM> _iTEMs;
+    
+        public virtual EMPRESA EMPRESA
+        {
+            get { return _eMPRESA; }
+            set
+            {
+                if (!ReferenceEquals(_eMPRESA, value))
+                {
+                    var previousValue = _eMPRESA;
+                    _eMPRESA = value;
+                    FixupEMPRESA(previousValue);
+                }
+            }
+        }
+        private EMPRESA _eMPRESA;
 
         #endregion
         #region Association Fixup
+    
+        private bool _settingFK = false;
+    
+        private void FixupEMPRESA(EMPRESA previousValue)
+        {
+            if (previousValue != null && previousValue.ITEM_STATUS.Contains(this))
+            {
+                previousValue.ITEM_STATUS.Remove(this);
+            }
+    
+            if (EMPRESA != null)
+            {
+                if (!EMPRESA.ITEM_STATUS.Contains(this))
+                {
+                    EMPRESA.ITEM_STATUS.Add(this);
+                }
+                if (UNID_EMPRESA != EMPRESA.UNID_EMPRESA)
+                {
+                    UNID_EMPRESA = EMPRESA.UNID_EMPRESA;
+                }
+            }
+            else if (!_settingFK)
+            {
+                UNID_EMPRESA = null;
+            }
+        }
     
         private void FixupITEMs(object sender, NotifyCollectionChangedEventArgs e)
         {

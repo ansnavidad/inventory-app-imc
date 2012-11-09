@@ -111,6 +111,12 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private Nullable<long> _uNID_MONEDA;
+    
+        public virtual bool IS_ACTIVE
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

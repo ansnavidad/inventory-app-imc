@@ -36,6 +36,12 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
+    
+        public virtual bool IS_ACTIVE
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties
@@ -71,6 +77,38 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private ICollection<FACTURA> _fACTURAs;
+    
+        public virtual ICollection<FACTURA_VENTA> FACTURA_VENTA
+        {
+            get
+            {
+                if (_fACTURA_VENTA == null)
+                {
+                    var newCollection = new FixupCollection<FACTURA_VENTA>();
+                    newCollection.CollectionChanged += FixupFACTURA_VENTA;
+                    _fACTURA_VENTA = newCollection;
+                }
+                return _fACTURA_VENTA;
+            }
+            set
+            {
+                if (!ReferenceEquals(_fACTURA_VENTA, value))
+                {
+                    var previousValue = _fACTURA_VENTA as FixupCollection<FACTURA_VENTA>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupFACTURA_VENTA;
+                    }
+                    _fACTURA_VENTA = value;
+                    var newValue = value as FixupCollection<FACTURA_VENTA>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupFACTURA_VENTA;
+                    }
+                }
+            }
+        }
+        private ICollection<FACTURA_VENTA> _fACTURA_VENTA;
 
         #endregion
         #region Association Fixup
@@ -88,6 +126,28 @@ namespace InventoryApp.DAL.POCOS
             if (e.OldItems != null)
             {
                 foreach (FACTURA item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.MONEDA, this))
+                    {
+                        item.MONEDA = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupFACTURA_VENTA(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (FACTURA_VENTA item in e.NewItems)
+                {
+                    item.MONEDA = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (FACTURA_VENTA item in e.OldItems)
                 {
                     if (ReferenceEquals(item.MONEDA, this))
                     {

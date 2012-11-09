@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="InventoryApp.View.Entradas.DialogoItems"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="509" d:DesignWidth="720" xmlns:my="clr-namespace:InventoryApp.View.Entradas">
+    <Grid>
+        <Label Content="Agregar Items" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="35" HorizontalAlignment="Right" Margin="0,12,286,0" Name="label1" VerticalAlignment="Top" Width="135" />
+        <Label Content="Artículo:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,48,613,0" Name="label8" VerticalAlignment="Top" />
+        <Label Content="Categoría:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,82,613,0" Name="label7" VerticalAlignment="Top" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="105,48,0,0" Name="comboBoxArticulo" VerticalAlignment="Top" Width="143" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="105,82,0,0" Name="comboBoxCategoria" VerticalAlignment="Top" Width="143" />
+        <DataGrid AutoGenerateColumns="False" Height="313" HorizontalAlignment="Left" Margin="12,148,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="287" />
+        <Button Command="{Binding AddItemCommand, Mode=OneWay}" Content="Agregar Items" Height="23" HorizontalAlignment="Left" Margin="185,474,0,12" Name="btnAgregar" Width="96" />
+        <Button Command="{Binding AddItemCommand, Mode=OneWay}" Content="Cancelar" Height="23" HorizontalAlignment="Left" Margin="440,474,0,12" Name="button1" Width="96" />
+        <DataGrid AutoGenerateColumns="False" Height="313" HorizontalAlignment="Left" Margin="421,148,0,0" Name="dataGrid2" VerticalAlignment="Top" Width="287" />
+        <Label Content="Items en existencia:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,126,587,0" Name="label2" VerticalAlignment="Top" />
+        <Label Content="Items elegidos:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,126,204,0" Name="label3" VerticalAlignment="Top" />
+        <Button Content=">" Height="50" HorizontalAlignment="Left" Margin="340,261,0,0" Name="button2" VerticalAlignment="Top" Width="50" FontSize="30" FontFamily="Berlin Sans FB" />
+        <Button Content="&lt;" FontFamily="Berlin Sans FB" FontSize="30" Height="50" HorizontalAlignment="Left" Margin="340,317,0,0" Name="button3" VerticalAlignment="Top" Width="50" />
+    </Grid>
+</UserControl>

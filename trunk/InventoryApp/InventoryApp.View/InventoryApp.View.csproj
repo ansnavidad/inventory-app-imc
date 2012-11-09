@@ -332,11 +332,59 @@
     <Compile Include="CatalogTransporte\ModifyTransporteView.xaml.cs">
       <DependentUpon>ModifyTransporteView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Entradas\DialogoItems.xaml.cs">
+      <DependentUpon>DialogoItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\EntradaDesinstalacion.xaml.cs">
+      <DependentUpon>EntradaDesinstalacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\EntradaDevolucion.xaml.cs">
+      <DependentUpon>EntradaDevolucion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\EntradaPrestamo.xaml.cs">
+      <DependentUpon>EntradaPrestamo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\EntradaValidacionRevision.xaml.cs">
+      <DependentUpon>EntradaValidacionRevision.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogTransporte\TransporteUserControl.xaml.cs">
       <DependentUpon>TransporteUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ItemACView.xaml.cs">
       <DependentUpon>ItemACView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaConfiguracion.xaml.cs">
+      <DependentUpon>SalidaConfiguracion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaCorrectivo.xaml.cs">
+      <DependentUpon>SalidaCorrectivo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaDemo.xaml.cs">
+      <DependentUpon>SalidaDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaObsequio.xaml.cs">
+      <DependentUpon>SalidaObsequio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaOffice.xaml.cs">
+      <DependentUpon>SalidaOffice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaPrestamo.xaml.cs">
+      <DependentUpon>SalidaPrestamo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaPruebas.xaml.cs">
+      <DependentUpon>SalidaPruebas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaRenta.xaml.cs">
+      <DependentUpon>SalidaRenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaRevision.xaml.cs">
+      <DependentUpon>SalidaRevision.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaRMA.xaml.cs">
+      <DependentUpon>SalidaRMA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaVenta.xaml.cs">
+      <DependentUpon>SalidaVenta.xaml</DependentUpon>
     </Compile>
     <Page Include="CatalogArticulo\AddArticuloView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -706,6 +754,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Entradas\DialogoItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\EntradaDesinstalacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\EntradaDevolucion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\EntradaPrestamo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\EntradaValidacionRevision.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogTransporte\TransporteUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -724,6 +792,50 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ItemACView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaConfiguracion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaCorrectivo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaObsequio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaOffice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaPrestamo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaPruebas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaRenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaRevision.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaRMA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaVenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -55,6 +55,12 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private Nullable<long> _uNID_TIPO_EMPRESA;
+    
+        public virtual bool IS_ACTIVE
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

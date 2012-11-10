@@ -23,5 +23,15 @@ namespace InventoryApp.View.Salidas
         {
             InitializeComponent();
         }
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

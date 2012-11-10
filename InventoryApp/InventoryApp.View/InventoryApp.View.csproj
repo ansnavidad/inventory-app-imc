@@ -353,6 +353,9 @@
     <Compile Include="ItemACView.xaml.cs">
       <DependentUpon>ItemACView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Salidas\DialogoItems.xaml.cs">
+      <DependentUpon>DialogoItems.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Salidas\SalidaConfiguracion.xaml.cs">
       <DependentUpon>SalidaConfiguracion.xaml</DependentUpon>
     </Compile>
@@ -792,6 +795,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ItemACView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\DialogoItems.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -15,23 +15,13 @@ using System.Windows.Shapes;
 namespace InventoryApp.View.Salidas
 {
     /// <summary>
-    /// Lógica de interacción para SalidaConfiguracion.xaml
+    /// Lógica de interacción para DialogoItems.xaml
     /// </summary>
-    public partial class SalidaConfiguracion : UserControl
+    public partial class DialogoItems : UserControl
     {
-        public SalidaConfiguracion()
+        public DialogoItems()
         {
             InitializeComponent();
-        }
-
-        private void btnAgregar_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnCancelar_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

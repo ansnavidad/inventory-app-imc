@@ -15,23 +15,23 @@ using System.Collections.Specialized;
 
 namespace InventoryApp.DAL.POCOS
 {
-    public partial class MEDIO_ENVIO
+    public partial class USUARIO
     {
         #region Primitive Properties
     
-        public virtual long UNID_MEDIO_ENVIO
+        public virtual long UNID_USUARIO
         {
             get;
             set;
         }
     
-        public virtual string MEDIO_ENVIO_NAME
+        public virtual string USUARIO_MAIL
         {
             get;
             set;
         }
     
-        public virtual bool IS_ACTIVE
+        public virtual string USUARIO_PWD
         {
             get;
             set;

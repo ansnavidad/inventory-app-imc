@@ -10,11 +10,11 @@ namespace InventoryApp.Model
 {
     public class CatalogMarcaModel : INotifyPropertyChanged
     {
-        private FixupCollection<MARCA> _marcas;
+        private FixupCollection<DeleteMarca> _marcas;
         private MARCA _selectedmarca;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<MARCA> Marcas
+        public FixupCollection<DeleteMarca> Marcas
         {
             get
             {
@@ -56,19 +56,37 @@ namespace InventoryApp.Model
         {
             object element = this._dataMapper.getElements();
 
-            FixupCollection<MARCA> ic = element as FixupCollection<MARCA>; //element as FixupCollection<PROYECTO>;
-            if (ic != null)
+            FixupCollection<DeleteMarca> ic = new FixupCollection<DeleteMarca>();
+
+            if (element != null)
             {
-                //this._itemStatus = ic;
-                this.Marcas = ic;
+                if (((List<MARCA>)element).Count > 0)
+                {
+                    foreach (MARCA item in (List<MARCA>)element)
+                    {
+                        DeleteMarca aux = new DeleteMarca(item);
+                        ic.Add(aux);
+                    }
+                }
             }
+            this.Marcas = ic;
         }
 
+        public void deleteMarca()
+        {
+            foreach (DeleteMarca item in this._marcas)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
+            }
+        }
 
         public CatalogMarcaModel(IDataMapper dataMapper)
         {
             this._dataMapper = new MarcaDataMapper();
-            this._marcas = new FixupCollection<MARCA>();
+            this._marcas = new FixupCollection<DeleteMarca>();
             this._selectedmarca = new MARCA();
             this.loadItems();
 

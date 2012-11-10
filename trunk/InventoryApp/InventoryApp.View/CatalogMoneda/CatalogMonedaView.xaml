@@ -10,14 +10,24 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Label Content="Consulta de Moneda" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
-        <Button  Content="Agregar" Height="23" HorizontalAlignment="Stretch" Margin="280,2,139,5" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+        <Button  Content="Agregar" Height="23" HorizontalAlignment="Stretch" Margin="389,2,30,5" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+        <Button Content="ELIMINAR" Height="23" HorizontalAlignment="Stretch"
+                    Margin="5,0" Name="btnEliminar" VerticalAlignment="Stretch"
+                    Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteMonedaCommand,Mode=OneWay}"/>
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridMoneda"
                   SelectedItem="{Binding CatalogMonedaModel.SelectedMoneda, Mode=TwoWay}"
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogMonedaModel.Moneda}"
                   MouseDoubleClick="dtGridMoneda_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />
+                <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />-->
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Moneda" Width="*" x:Name="nombreMoneda" 
                                     Binding="{Binding Path=MONEDA_NAME}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Abreviatura" Width="*" x:Name="monedaAbr" 

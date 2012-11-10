@@ -15,13 +15,14 @@ namespace InventoryApp.DAL
 
             using (var entity = new TAE2Entities())
             {
-                (from cust in entity.DEPARTAMENTOes
-                 select cust).ToList().ForEach(d => { tp.Add(d); });
+               var query= (from cust in entity.DEPARTAMENTOes
+                           where cust.IS_ACTIVE ==true
+                           select cust).ToList();
 
-                if (tp.Count > 0)
-                {
-                    res = tp;
-                }
+               if (query.Count > 0)
+               {
+                    res = query;
+               }
 
                 return res;
             }
@@ -37,12 +38,13 @@ namespace InventoryApp.DAL
                 using (var entitie = new TAE2Entities())
                 {
                     DEPARTAMENTO departamento = (DEPARTAMENTO)element;
-                     (from cust in entitie.DEPARTAMENTOes
+
+                    var query= (from cust in entitie.DEPARTAMENTOes
                                 where cust.UNID_DEPARTAMENTO == departamento.UNID_DEPARTAMENTO
-                      select cust).ToList().ForEach(d => { tp.Add(d); });
-                     if (tp.Count>0)
+                                select cust).ToList();
+                    if (query.Count > 0)
                     {
-                        res = tp;
+                        res = query;
                     }
                     return res;
                 }
@@ -80,7 +82,16 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    DEPARTAMENTO departamento = (DEPARTAMENTO)element;
+                    var deleteDepartamento = entity.DEPARTAMENTOes.First(p => p.UNID_DEPARTAMENTO == departamento.UNID_DEPARTAMENTO);
+                    deleteDepartamento.IS_ACTIVE = false;
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

@@ -430,8 +430,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CatalogCategoria\CategoriaUserControl.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="CatalogCategoria\ModifyCategoriaView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -845,6 +845,14 @@
     <Page Include="Salidas\SalidaVenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\DataGridStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\WindowTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

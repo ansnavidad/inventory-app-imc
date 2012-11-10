@@ -10,12 +10,48 @@ namespace InventoryApp.DAL
     {
         public object getElements()
         {
-            throw new NotImplementedException();
+            FixupCollection<ITEM_STATUS> tp = new FixupCollection<ITEM_STATUS>();
+
+            object res = null;
+
+            using (var entity = new TAE2Entities())
+            {
+              var query = (from cust in entity.ITEM_STATUS
+                 where cust.IS_ACTIVE == true
+                 select cust).ToList();
+
+              if (query.Count > 0)
+              {
+                  res = query;
+              }
+                return res;
+            }
         }
 
         public object getElement(object element)
         {
-            throw new NotImplementedException();
+            FixupCollection<ITEM_STATUS> tp = new FixupCollection<ITEM_STATUS>();
+
+            object res = null;
+
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ITEM_STATUS ESta = (ITEM_STATUS)element;
+
+                   var query= (from cust in entity.ITEM_STATUS
+                     where cust.UNID_ITEM_STATUS == ESta.UNID_ITEM_STATUS
+                     select cust).ToList();
+
+                   if (query.Count > 0)
+                    {
+                        res = query;
+                    }
+                    return res;
+                }
+            }
+            return res;
         }
 
         public void udpateElement(object element)
@@ -49,7 +85,20 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+               
+                using (var entity = new TAE2Entities())
+                {
+                    ITEM_STATUS itemStatus = (ITEM_STATUS)element;
+
+                    var deleteItemStatus = entity.ITEM_STATUS.First(p => p.UNID_ITEM_STATUS == itemStatus.UNID_ITEM_STATUS);
+
+                    deleteItemStatus.IS_ACTIVE =false;
+
+                    entity.SaveChanges();
+                }        
+            }
         }
     }
 }

@@ -180,11 +180,12 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new SOLICITANTE() { SOLICITANTE_NAME= this._solicitanteName,
-                                                               UNID_DEPARTAMENTO=this._departamento.UNID_DEPARTAMENTO,
-                                                              UNID_EMPRESA=this._empresa.UNID_EMPRESA,
-                                                              EMAIL=this._email,
-                                                              VALIDADOR=this._validador});
+                _dataMapper.insertElement(new SOLICITANTE() {IS_ACTIVE=true,
+                                                             SOLICITANTE_NAME= this._solicitanteName,
+                                                             UNID_DEPARTAMENTO=this._departamento.UNID_DEPARTAMENTO,
+                                                             UNID_EMPRESA=this._empresa.UNID_EMPRESA,
+                                                             EMAIL=this._email,
+                                                             VALIDADOR=this._validador});
             }
         }
 

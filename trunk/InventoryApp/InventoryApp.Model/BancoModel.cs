@@ -60,7 +60,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new BANCO() { BANCO_NAME = this._bancoName });
+                _dataMapper.insertElement(new BANCO() { IS_ACTIVE = true, BANCO_NAME = this._bancoName });
             }
         }
 

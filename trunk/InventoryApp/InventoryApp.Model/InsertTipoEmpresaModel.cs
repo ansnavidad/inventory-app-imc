@@ -61,7 +61,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new TIPO_EMPRESA() { TIPO_EMPRESA_NAME = this._tipoEmpresaName });
+                _dataMapper.insertElement(new TIPO_EMPRESA() { IS_ACTIVE = true, TIPO_EMPRESA_NAME = this._tipoEmpresaName });
             }
         }
 

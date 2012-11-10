@@ -10,11 +10,11 @@ namespace InventoryApp.Model
 {
     public class CatalogArticuloModel : INotifyPropertyChanged
     {
-        private FixupCollection<ARTICULO> _articulos;
+        private FixupCollection<DeleteArticulo> _articulos;
         private ARTICULO _selectedarticulo;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<ARTICULO> Articulos
+        public FixupCollection<DeleteArticulo> Articulos
         {
             get
             {
@@ -56,22 +56,48 @@ namespace InventoryApp.Model
         {
             object element = this._dataMapper.getElements();
 
-            FixupCollection<ARTICULO> ic = new FixupCollection<ARTICULO>();
+            FixupCollection<DeleteArticulo> ic = new FixupCollection<DeleteArticulo>();
 
-            foreach (ARTICULO elemento in (List<ARTICULO>)element)
+            if (element != null)
             {
-                ic.Add((ARTICULO)elemento);
+                if (((List<ARTICULO>)element).Count > 0)
+                {
+                    foreach (ARTICULO item in (List<ARTICULO>)element)
+                    {
+                        DeleteArticulo aux = new DeleteArticulo(item);
+                        //item.IsChecked = false;
+                        ic.Add(aux);
+                    }
+                }
             }
-            if (ic != null)
+            this.Articulos = ic;
+            //FixupCollection<DeleteArticulo> ic = new FixupCollection<DeleteArticulo>();
+
+            //foreach (ARTICULO elemento in (List<ARTICULO>)element)
+            //{
+            //    ic.Add((ARTICULO)elemento);
+            //}
+            //if (ic != null)
+            //{
+            //    this.Articulos = ic;
+            //}
+        }
+
+        public void deleteArticulos()
+        {
+            foreach (DeleteArticulo item in _articulos)
             {
-                this.Articulos = ic;
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
         }
 
         public CatalogArticuloModel(IDataMapper dataMapper)
         {
             this._dataMapper = new ArticuloDataMapper();
-            this._articulos = new FixupCollection<ARTICULO>();
+            this._articulos = new FixupCollection<DeleteArticulo>();
             this._selectedarticulo = new ARTICULO();
             this.loadItems();
             //this.loadItems(new ItemDataMapper());

@@ -59,7 +59,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new PROYECTO() { PROYECTO_NAME = this._proyectoName });
+                _dataMapper.insertElement(new PROYECTO() {IS_ACTIVE=true, PROYECTO_NAME = this._proyectoName });
             }
         }
         public void updateProyecto()

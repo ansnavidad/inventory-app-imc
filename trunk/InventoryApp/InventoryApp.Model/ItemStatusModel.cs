@@ -60,7 +60,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new ITEM_STATUS() { ITEM_STATUS_NAME = this._itemStatusName });
+                _dataMapper.insertElement(new ITEM_STATUS() { ITEM_STATUS_NAME = this._itemStatusName, IS_ACTIVE=true });
             }
         }
 
@@ -76,7 +76,6 @@ namespace InventoryApp.Model
             {
                 this._dataMapper = dataMapper as ItemStatusDataMapper;
             }
-            
         }
         #endregion
 

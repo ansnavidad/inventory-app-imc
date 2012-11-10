@@ -4,12 +4,26 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogArticulo
 {
     public class CatalogArticuloViewModel
     {
+         private RelayCommand _deleteArticuloCommand;
          private CatalogArticuloModel _catalogArticuloModel;
+
+         public ICommand DeleteArticuloCommand
+         {
+             get
+             {
+                 if (_deleteArticuloCommand == null)
+                 {
+                     _deleteArticuloCommand = new RelayCommand(p => this.AttempDeleteArticulo(), p => this.CanAttempDeleteArticulo());
+                 }
+                 return _deleteArticuloCommand;
+             }
+         }
 
         public CatalogArticuloViewModel()
         {
@@ -77,5 +91,36 @@ namespace InventoryApp.ViewModel.CatalogArticulo
             }
             return new ModifyArticuloViewModel(this, articuloModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteArticulo()
+        {
+            bool _canDeleteArticulo = false;
+            foreach (DeleteArticulo d in this._catalogArticuloModel.Articulos)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteArticulo = true;
+                }
+            }
+
+            return _canDeleteArticulo;
+        }
+        public void AttempDeleteArticulo()
+        {
+            this._catalogArticuloModel.deleteArticulos();
+
+            //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
+            if (this._catalogArticuloModel != null)
+            {
+                this._catalogArticuloModel.loadItems();
+            }
+        }
+        #endregion
     }
 }

@@ -17,13 +17,15 @@ namespace InventoryApp.DAL
 
             using (var entity = new TAE2Entities())
             {
-                (from cust in entity.CATEGORIAs
-                 select cust).ToList().ForEach(d => { tp.Add(d); });
 
-                if (tp.Count > 0)
-                {
-                    res = tp;
-                }
+                 var query= (from cust in entity.CATEGORIAs
+                             where cust.IS_ACTIVE==true
+                             select cust).ToList();
+
+                 if (query.Count > 0)
+                 {
+                    res = query;
+                 }
                 return res;
             }
         }
@@ -40,13 +42,13 @@ namespace InventoryApp.DAL
                 {
                     CATEGORIA ETipo = (CATEGORIA)element;
 
-                    (from cust in entity.CATEGORIAs
+                   var query= (from cust in entity.CATEGORIAs
                                  where cust.UNID_CATEGORIA == ETipo.UNID_CATEGORIA
-                                 select cust).ToList().ForEach(d => { tp.Add(d); });
-                    if (tp.Count > 0)
-                    {
-                        res = tp;
-                    }
+                                 select cust).ToList();
+                   if (query.Count > 0)
+                   {
+                        res = query;
+                   }
                     return res;
                 }    
             }
@@ -83,15 +85,11 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    CATEGORIA ETipo = (CATEGORIA)element;
+                    CATEGORIA categoria = (CATEGORIA)element;
 
-                    CATEGORIA tipo = new CATEGORIA();
+                    categoria.UNID_CATEGORIA = UNID.getNewUNID();
 
-                    tipo.UNID_CATEGORIA = UNID.getNewUNID();
-
-                    tipo.CATEGORIA_NAME = ETipo.CATEGORIA_NAME;
-
-                    entity.CATEGORIAs.AddObject(tipo);
+                    entity.CATEGORIAs.AddObject(categoria);
 
                     entity.SaveChanges();
 
@@ -101,7 +99,16 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    CATEGORIA categoria = (CATEGORIA)element;
+                    var deleteCategoria = entity.CATEGORIAs.First(p => p.UNID_CATEGORIA == categoria.UNID_CATEGORIA);
+                    deleteCategoria.IS_ACTIVE = false;
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

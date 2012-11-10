@@ -60,7 +60,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new MODELO() { MODELO_NAME = this._modeloName });
+                _dataMapper.insertElement(new MODELO() { IS_ACTIVE = true, MODELO_NAME = this._modeloName });
             }
         }
 

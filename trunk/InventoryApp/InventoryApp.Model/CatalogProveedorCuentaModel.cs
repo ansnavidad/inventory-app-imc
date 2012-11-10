@@ -10,11 +10,11 @@ namespace InventoryApp.Model
 {
     public class CatalogProveedorCuentaModel : INotifyPropertyChanged
     {
-        private FixupCollection<PROVEEDOR_CUENTA> _proveedorCuenta;
+        private FixupCollection<DeleteProveedorCuenta> _proveedorCuenta;
         private PROVEEDOR_CUENTA _selectedProveedorCuenta;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<PROVEEDOR_CUENTA> ProveedorCuenta
+        public FixupCollection<DeleteProveedorCuenta> ProveedorCuenta
         {
             get
             {
@@ -56,30 +56,37 @@ namespace InventoryApp.Model
         {
             object element = this._dataMapper.getElements();
 
-            FixupCollection<PROVEEDOR_CUENTA> ic = new FixupCollection<PROVEEDOR_CUENTA>();
+            FixupCollection<DeleteProveedorCuenta> ic = new FixupCollection<DeleteProveedorCuenta>();
 
-            foreach (PROVEEDOR_CUENTA elemento in (List<PROVEEDOR_CUENTA>)element)
+            if (element != null)
             {
-                ic.Add((PROVEEDOR_CUENTA)elemento);
+                if (((List<PROVEEDOR_CUENTA>)element).Count > 0)
+                {
+                    foreach (PROVEEDOR_CUENTA item in (List<PROVEEDOR_CUENTA>)element)
+                    {
+                        DeleteProveedorCuenta aux = new DeleteProveedorCuenta(item);
+                        ic.Add(aux);
+                    }
+                }
             }
-            if (ic != null)
+            this.ProveedorCuenta = ic;
+        }
+
+        public void deleteProveedorCuenta()
+        {
+            foreach (DeleteProveedorCuenta item in this._proveedorCuenta)
             {
-                this.ProveedorCuenta = ic;
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
-
-
-
-            //FixupCollection<PROVEEDOR> ic = element as FixupCollection<PROVEEDOR>;
-            //if (ic != null)
-            //{
-            //    this.Proveedor = ic;
-            //}
         }
 
         public CatalogProveedorCuentaModel(IDataMapper dataMapper)
         {
             this._dataMapper = new ProveedorCuentaDataMapper();
-            this._proveedorCuenta = new FixupCollection<PROVEEDOR_CUENTA>();
+            this._proveedorCuenta = new FixupCollection<DeleteProveedorCuenta>();
             this._selectedProveedorCuenta = new PROVEEDOR_CUENTA();
             this.loadItems();
         }

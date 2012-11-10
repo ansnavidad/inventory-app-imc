@@ -10,11 +10,11 @@ namespace InventoryApp.Model
 {
     public class CatalogCiudadModel : INotifyPropertyChanged
     {
-        private FixupCollection<CIUDAD> _ciudad;
+        private FixupCollection<DeleteCiudad> _ciudad;
         private CIUDAD _selectedCiudad;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<CIUDAD> Ciudad
+        public FixupCollection<DeleteCiudad> Ciudad
         {
             get
             {
@@ -56,17 +56,37 @@ namespace InventoryApp.Model
         {
             object element = this._dataMapper.getElements();
 
-            FixupCollection<CIUDAD> ic = element as FixupCollection<CIUDAD>;
-            if (ic != null)
+            FixupCollection<DeleteCiudad> ic = new FixupCollection<DeleteCiudad>();
+
+            if (element != null)
             {
-                this.Ciudad = ic;
+                if (((List<CIUDAD>)element).Count > 0)
+                {
+                    foreach (CIUDAD item in (List<CIUDAD>)element)
+                    {
+                        DeleteCiudad aux = new DeleteCiudad(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.Ciudad = ic;
+        }
+
+        public void deleteCiudad()
+        {
+            foreach (DeleteCiudad item in this._ciudad)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
         }
 
         public CatalogCiudadModel(IDataMapper dataMapper)
         {
             this._dataMapper = new CiudadDataMapper();
-            this._ciudad = new FixupCollection<CIUDAD>();
+            this._ciudad = new FixupCollection<DeleteCiudad>();
             this._selectedCiudad = new CIUDAD();
             this.loadItems();
         }

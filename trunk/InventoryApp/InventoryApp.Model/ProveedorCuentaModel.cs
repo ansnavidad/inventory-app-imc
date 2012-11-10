@@ -142,7 +142,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new PROVEEDOR_CUENTA() { UNID_PROVEEDOR = this._proveedor.UNID_PROVEEDOR, UNID_BANCO = this._banco.UNID_BANCO, NUMERO_CUENTA = this._numeroCuenta, CLABE = this._clabe, BENEFICIARIO = this._beneficiario });
+                _dataMapper.insertElement(new PROVEEDOR_CUENTA() { IS_ACTIVE = true, UNID_PROVEEDOR = this._proveedor.UNID_PROVEEDOR, UNID_BANCO = this._banco.UNID_BANCO, NUMERO_CUENTA = this._numeroCuenta, CLABE = this._clabe, BENEFICIARIO = this._beneficiario });
             }
         }
 

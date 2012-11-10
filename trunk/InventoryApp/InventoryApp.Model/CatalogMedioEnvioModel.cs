@@ -11,25 +11,10 @@ namespace InventoryApp.Model
     public class CatalogMedioEnvioModel : INotifyPropertyChanged
     {
         private MEDIO_ENVIO _selectedMedioEnvio;
-        private FixupCollection<MEDIO_ENVIO> _medioEnvio;
+        private FixupCollection<DeleteMedioEnvio> _medioEnvio;
         private IDataMapper _dataMapper;
-        //private bool _isChecked;
 
-        //public bool IsChecked
-        //{
-        //    get { return this._isChecked; }
-        //    set
-        //    {
-        //        if (value != this._isChecked)
-        //        {
-        //            this._isChecked = value;
-        //            if (this.PropertyChanged != null)
-        //                this.PropertyChanged(this, new PropertyChangedEventArgs("IsChecked"));
-        //        }
-        //    }
-        //}
-
-        public FixupCollection<MEDIO_ENVIO> MedioEnvio
+        public FixupCollection<DeleteMedioEnvio> MedioEnvio
         {
             get { 
                 return _medioEnvio; 
@@ -46,6 +31,7 @@ namespace InventoryApp.Model
                 }
             }
         }
+
         public MEDIO_ENVIO SelectedMedioEnvio
         {
             get
@@ -68,22 +54,42 @@ namespace InventoryApp.Model
         public CatalogMedioEnvioModel(IDataMapper dataMapper)
         {
             this._dataMapper = new MedioEnvioDataMapper();
-            this._medioEnvio = new FixupCollection<MEDIO_ENVIO>();
+            this._medioEnvio = new FixupCollection<DeleteMedioEnvio>();
             this._selectedMedioEnvio = new MEDIO_ENVIO();
             //this._isChecked = false;
             this.loadItems();
             
         }
+
         public void loadItems()
         {
 
             object element = this._dataMapper.getElements();
 
-            FixupCollection<MEDIO_ENVIO> ic = element as FixupCollection<MEDIO_ENVIO>; //element as FixupCollection<PROYECTO>;
-            if (ic != null)
+            FixupCollection<DeleteMedioEnvio> ic = new FixupCollection<DeleteMedioEnvio>();
+
+            if (element != null)
             {
-                //this._itemStatus = ic;
-                this.MedioEnvio = ic;
+                if (((List<MEDIO_ENVIO>)element).Count > 0)
+                {
+                    foreach (MEDIO_ENVIO item in (List<MEDIO_ENVIO>)element)
+                    {
+                        DeleteMedioEnvio aux = new DeleteMedioEnvio(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.MedioEnvio = ic;
+        }
+
+        public void deleteMedioEnvio()
+        {
+            foreach (DeleteMedioEnvio item in this._medioEnvio)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
         }
 

@@ -11,25 +11,10 @@ namespace InventoryApp.Model
     public class CatalogItemStatusModel : INotifyPropertyChanged
     {
         private ITEM_STATUS _selectedItemStatus;
-        private FixupCollection<ITEM_STATUS> _itemStatus;
+        private FixupCollection<DeleteItemStatus> _itemStatus;
         private IDataMapper _dataMapper;
-        //private bool _isChecked;
 
-        //public bool IsChecked
-        //{
-        //    get { return this._isChecked; }
-        //    set
-        //    {
-        //        if (value != this._isChecked)
-        //        {
-        //            this._isChecked = value;
-        //            if (this.PropertyChanged != null)
-        //                this.PropertyChanged(this, new PropertyChangedEventArgs("IsChecked"));
-        //        }
-        //    }
-        //}
-
-        public FixupCollection<ITEM_STATUS> ItemStatus
+        public FixupCollection<DeleteItemStatus> ItemStatus
         {
             get { 
                 return _itemStatus; 
@@ -46,6 +31,7 @@ namespace InventoryApp.Model
                 }
             }
         }
+
         public ITEM_STATUS SelectedItemStatus
         {
             get
@@ -67,24 +53,45 @@ namespace InventoryApp.Model
 
         public CatalogItemStatusModel(IDataMapper dataMapper)
         {
-            this._dataMapper = new EstatusDataMapper();
-            this._itemStatus = new  FixupCollection<ITEM_STATUS>();
+            this._dataMapper = new ItemStatusDataMapper();
+            this._itemStatus = new FixupCollection<DeleteItemStatus>();
             this._selectedItemStatus = new ITEM_STATUS();
-            //this._isChecked = false;
             this.loadItems();
             
         }
+
         public void loadItems()
         {
 
             object element = this._dataMapper.getElements();
 
-            FixupCollection<ITEM_STATUS> ic = element as FixupCollection<ITEM_STATUS>;
-            if (ic != null)
+            FixupCollection<DeleteItemStatus> ic = new FixupCollection<DeleteItemStatus>();
+            if (element != null)
             {
-                this.ItemStatus = ic;
+                if (((List<ITEM_STATUS>)element).Count > 0)
+                {
+                    foreach (ITEM_STATUS item in (List<ITEM_STATUS>)element)
+                    {
+                        DeleteItemStatus aux = new DeleteItemStatus(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.ItemStatus = ic;
+            
+        }
+
+        public void deleteItem()
+        {
+            foreach (DeleteItemStatus item in this._itemStatus)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

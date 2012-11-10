@@ -4,12 +4,27 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogMoneda
 {
     public class CatalogMonedaViewModel
     {
+        private RelayCommand _deleteMonedaCommand;
+
         private CatalogMonedaModel _catalogMonedaModel;
+
+        public ICommand DeleteMonedaCommand
+        {
+            get
+            {
+                if (_deleteMonedaCommand == null)
+                {
+                    _deleteMonedaCommand = new RelayCommand(p => this.AttempDeleteMoneda(), p => this.CanAttempDeleteMoneda());
+                }
+                return _deleteMonedaCommand;
+            }
+        }
 
         public CatalogMonedaViewModel()
         {
@@ -30,6 +45,7 @@ namespace InventoryApp.ViewModel.CatalogMoneda
             }   
             
         }
+
         public CatalogMonedaModel CatalogMonedaModel
         {
             get
@@ -73,5 +89,36 @@ namespace InventoryApp.ViewModel.CatalogMoneda
             }
             return new ModifyMonedaViewModel(this,monedaModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteMoneda()
+        {
+            bool _canDeleteMoneda = false;
+            foreach (DeleteMoneda d in this._catalogMonedaModel.Moneda)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteMoneda = true;
+                }
+            }
+
+            return _canDeleteMoneda;
+        }
+
+        public void AttempDeleteMoneda()
+        {
+            this._catalogMonedaModel.deleteMoneda();
+
+            if (this._catalogMonedaModel != null)
+            {
+                this._catalogMonedaModel.loadMonedas();
+            }
+        }
+        #endregion
     }
 }

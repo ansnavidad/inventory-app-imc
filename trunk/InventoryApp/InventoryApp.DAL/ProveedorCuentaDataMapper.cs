@@ -10,46 +10,43 @@ namespace InventoryApp.DAL
     public class ProveedorCuentaDataMapper : IDataMapper
     {
         public object getElements()
-        {                       
+        {
+            object res = null;           
             using (var Entity = new TAE2Entities())
             {
-                var res = (from p in Entity.PROVEEDOR_CUENTA
-                 select p).ToList();
-
-
-                foreach (PROVEEDOR_CUENTA trans in ((List<PROVEEDOR_CUENTA>)res))
+                var query = (from p in Entity.PROVEEDOR_CUENTA
+                             where p.IS_ACTIVE ==true
+                             select p).ToList();
+                if (query.Count >0)
                 {
-                    trans.BANCO = trans.BANCO;
-                    trans.PROVEEDOR = trans.PROVEEDOR;
+                    res = query;
                 }
-
                 return res;
             }
         }
 
         public object getElement(object element)
         {
-            object o = null;
+            object res = null;
             if (element != null)
             {
                 PROVEEDOR_CUENTA Eprov = (PROVEEDOR_CUENTA)element;
 
                 using (var Entity = new TAE2Entities())
                 {
-                    var res = (from p in Entity.PROVEEDOR_CUENTA
+                    var query = (from p in Entity.PROVEEDOR_CUENTA
                                where p.UNID_PROVEEDOR_CUENTA == Eprov.UNID_PROVEEDOR_CUENTA
                                select p).ToList();
 
-                    foreach (PROVEEDOR_CUENTA trans in ((List<PROVEEDOR_CUENTA>)res))
+                    if (query.Count>0)
                     {
-                        trans.BANCO = trans.BANCO;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        res = query;
                     }
 
-                    o = (object)res;                    
+                    return res;
                 }
             }
-            return o;
+            return res;
         }
 
         public void udpateElement(object element)
@@ -58,16 +55,16 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    PROVEEDOR_CUENTA proveedor = (PROVEEDOR_CUENTA)element;
+                    PROVEEDOR_CUENTA proveedorCuenta = (PROVEEDOR_CUENTA)element;
 
-                    var modifiedProveedor = entity.PROVEEDOR_CUENTA.First(p => p.UNID_PROVEEDOR_CUENTA == proveedor.UNID_PROVEEDOR_CUENTA);
-                    modifiedProveedor.UNID_PROVEEDOR = proveedor.UNID_PROVEEDOR;
-                    modifiedProveedor.UNID_BANCO = proveedor.UNID_BANCO;
-                    modifiedProveedor.PROVEEDOR = proveedor.PROVEEDOR;
-                    modifiedProveedor.NUMERO_CUENTA = proveedor.NUMERO_CUENTA;
-                    modifiedProveedor.CLABE = proveedor.CLABE;
-                    modifiedProveedor.BENEFICIARIO = proveedor.BENEFICIARIO;
-                    modifiedProveedor.BANCO = proveedor.BANCO;
+                    var modifiedProveedor = entity.PROVEEDOR_CUENTA.First(p => p.UNID_PROVEEDOR_CUENTA == proveedorCuenta.UNID_PROVEEDOR_CUENTA);
+                    modifiedProveedor.UNID_PROVEEDOR = proveedorCuenta.UNID_PROVEEDOR;
+                    modifiedProveedor.UNID_BANCO = proveedorCuenta.UNID_BANCO;
+                    modifiedProveedor.PROVEEDOR = proveedorCuenta.PROVEEDOR;
+                    modifiedProveedor.NUMERO_CUENTA = proveedorCuenta.NUMERO_CUENTA;
+                    modifiedProveedor.CLABE = proveedorCuenta.CLABE;
+                    modifiedProveedor.BENEFICIARIO = proveedorCuenta.BENEFICIARIO;
+                    modifiedProveedor.BANCO = proveedorCuenta.BANCO;
 
                     entity.SaveChanges();
                 }
@@ -80,11 +77,10 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    PROVEEDOR_CUENTA proveedor = (PROVEEDOR_CUENTA)element;
+                    PROVEEDOR_CUENTA proveedorCuenta = (PROVEEDOR_CUENTA)element;
 
-                    proveedor.UNID_PROVEEDOR_CUENTA = UNID.getNewUNID();
-
-                    entity.PROVEEDOR_CUENTA.AddObject(proveedor);
+                    proveedorCuenta.UNID_PROVEEDOR_CUENTA = UNID.getNewUNID();
+                    entity.PROVEEDOR_CUENTA.AddObject(proveedorCuenta);
                     entity.SaveChanges();
                 }
             }
@@ -92,7 +88,19 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    PROVEEDOR_CUENTA proveedorCuenta = (PROVEEDOR_CUENTA)element;
+
+                    var deleteProveedorCuenta = entity.PROVEEDOR_CUENTA.First(p => p.UNID_PROVEEDOR_CUENTA == proveedorCuenta.UNID_PROVEEDOR_CUENTA);
+
+                    deleteProveedorCuenta.IS_ACTIVE = false;
+
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

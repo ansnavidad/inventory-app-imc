@@ -11,7 +11,7 @@ namespace InventoryApp.Model
     public class CatalogDepartamentoModel : INotifyPropertyChanged
     {
         private DEPARTAMENTO _selectedDepartamento;
-        private FixupCollection<DEPARTAMENTO> _departamento;
+        private FixupCollection<DeleteDepartamento> _departamento;
         private IDataMapper _dataMapper;
 
         public DEPARTAMENTO SelectedDepartamento
@@ -28,7 +28,7 @@ namespace InventoryApp.Model
             }
         }
 
-        public FixupCollection<DEPARTAMENTO> Departamento
+        public FixupCollection<DeleteDepartamento> Departamento
         {
             get { return _departamento; }
             set {
@@ -44,17 +44,38 @@ namespace InventoryApp.Model
         public void loadDepartamentos()
         {
             object element = this._dataMapper.getElements();
-            FixupCollection<DEPARTAMENTO> ic = element as FixupCollection<DEPARTAMENTO>;
-            if (ic != null)
+
+            FixupCollection<DeleteDepartamento> ic = new FixupCollection<DeleteDepartamento>();
+
+            if (element != null)
             {
-                this.Departamento = ic;
+                if (((List<DEPARTAMENTO>)element).Count > 0)
+                {
+                    foreach (DEPARTAMENTO item in (List<DEPARTAMENTO>)element)
+                    {
+                        DeleteDepartamento aux = new DeleteDepartamento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.Departamento = ic;
+        }
+
+        public void deleteDepartamentos()
+        {
+            foreach (DeleteDepartamento item in this._departamento)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
         }
 
         public CatalogDepartamentoModel(IDataMapper dataMapper)
         {
             this._dataMapper = new DepartamentoDataMapper();
-            this._departamento = new  FixupCollection<DEPARTAMENTO>();
+            this._departamento = new FixupCollection<DeleteDepartamento>();
             this._selectedDepartamento = new DEPARTAMENTO();
             this.loadDepartamentos();
             

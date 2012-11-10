@@ -4,12 +4,27 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogMedioEnvio
 {
     public class CatalogMedioEnvioViewModel
     {
+        private RelayCommand _deleteMedioEnvioCommand;
+
         private CatalogMedioEnvioModel _medioEnvioModel;
+
+        public ICommand DeleteMedioEnvioCommand
+        {
+            get
+            {
+                if (_deleteMedioEnvioCommand == null)
+                {
+                    _deleteMedioEnvioCommand = new RelayCommand(p => this.AttempDeleteMedioEnvio(), p => this.CanAttempDeleteMedioEnvio());
+                }
+                return _deleteMedioEnvioCommand;
+            }
+        }
 
         public CatalogMedioEnvioViewModel()
         {
@@ -30,6 +45,7 @@ namespace InventoryApp.ViewModel.CatalogMedioEnvio
             }   
             
         }
+
         public CatalogMedioEnvioModel MedioEnvioModel
         {
             get
@@ -52,10 +68,10 @@ namespace InventoryApp.ViewModel.CatalogMedioEnvio
         /// Referenca pag 232 del libro MVVM
         /// </summary>
         /// <returns></returns>
-        //public AddMedioEnvioViewModel CreateAddMedioEnvioViewModel()
-        //{
-        //    return new AddMedioEnvioViewModel(this);
-        //}
+        public AddMedioEnvioViewModel CreateAddMedioEnvioViewModel()
+        {
+            return new AddMedioEnvioViewModel(this);
+        }
 
         /// <summary>
         /// Crea una nueva instancia de ModifyItemStatus y se pasa asi mismo como parámetro y el item seleccionado
@@ -71,5 +87,36 @@ namespace InventoryApp.ViewModel.CatalogMedioEnvio
             }
             return new ModifyMedioEnvioViewModel(this, medioEnvioModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteMedioEnvio()
+        {
+            bool _canDeleteMedioEnvio = false;
+            foreach (DeleteMedioEnvio d in this._medioEnvioModel.MedioEnvio)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteMedioEnvio = true;
+                }
+            }
+
+            return _canDeleteMedioEnvio;
+        }
+
+        public void AttempDeleteMedioEnvio()
+        {
+            this._medioEnvioModel.deleteMedioEnvio();
+
+            if (this._medioEnvioModel != null)
+            {
+                this._medioEnvioModel.loadItems();
+            }
+        }
+        #endregion
     }
 }

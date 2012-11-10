@@ -18,12 +18,13 @@ namespace InventoryApp.DAL
 
             using (var entity = new TAE2Entities())
             {
-                (from cust in entity.MARCAs
-                 select cust).ToList().ForEach(d => { modelos.Add(d); });
+               var query= (from cust in entity.MARCAs
+                           where cust.IS_ACTIVE == true
+                           select cust).ToList();
 
-                if (modelos.Count > 0)
+               if (query.Count > 0)
                 {
-                    res = modelos;
+                    res = query;
                 }
 
                 return res;
@@ -70,7 +71,6 @@ namespace InventoryApp.DAL
                 {
                     MARCA marca = (MARCA)element;
                     marca.UNID_MARCA = UNID.getNewUNID();
-
                     entity.MARCAs.AddObject(marca);
                     entity.SaveChanges();
                 }
@@ -79,7 +79,19 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MARCA marca = (MARCA)element;
+
+                    var deleteMarca = entity.MARCAs.First(p => p.UNID_MARCA == marca.UNID_MARCA);
+
+                    deleteMarca.IS_ACTIVE = false;
+
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

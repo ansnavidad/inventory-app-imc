@@ -4,12 +4,27 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogPais
 {
     public class CatalogPaisViewModel
     {
+        private RelayCommand _deletePaisCommand;
+
         private CatalogPaisModel _catalogPaisModel;
+
+        public ICommand DeletePaisCommand
+        {
+            get
+            {
+                if (_deletePaisCommand == null)
+                {
+                    _deletePaisCommand = new RelayCommand(p => this.AttempDeletePais(), p => this.CanAttempDeletePais());
+                }
+                return _deletePaisCommand;
+            }
+        }
 
         public CatalogPaisViewModel()
         {            
@@ -29,6 +44,7 @@ namespace InventoryApp.ViewModel.CatalogPais
             }   
             
         }
+
         public CatalogPaisModel CatalogPaisModel
         {
             get
@@ -71,5 +87,36 @@ namespace InventoryApp.ViewModel.CatalogPais
             }
             return new ModifyPaisViewModel(this, paisModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeletePais()
+        {
+            bool _canDeletePais = false;
+            foreach (DeletePais d in this._catalogPaisModel.Pais)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeletePais = true;
+                }
+            }
+
+            return _canDeletePais;
+        }
+
+        public void AttempDeletePais()
+        {
+            this._catalogPaisModel.deletePais();
+
+            if (this._catalogPaisModel != null)
+            {
+                this._catalogPaisModel.loadItems();
+            }
+        }
+        #endregion
     }
 }

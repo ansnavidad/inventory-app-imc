@@ -4,11 +4,26 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogDepartamento
 {
     public class CatalogDepartamentoViewModel
     {
+        private RelayCommand _deleteDepartamentoCommand;
+
+        public ICommand DeleteDepartamentoCommand
+        {
+            get
+            {
+                if (_deleteDepartamentoCommand == null)
+                {
+                    _deleteDepartamentoCommand = new RelayCommand(p => this.AttempDeleteDepartamento(), p => this.CanAttempDeleteDepartamento());
+                }
+                return _deleteDepartamentoCommand;
+            }
+        }
+
         private CatalogDepartamentoModel _catalogDepartamentoModel;
 
         public CatalogDepartamentoViewModel()
@@ -71,5 +86,37 @@ namespace InventoryApp.ViewModel.CatalogDepartamento
             }
             return new ModifyDepartamentoViewModel(this,departamentoModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteDepartamento()
+        {
+            bool _canDeleteDepartamento = false;
+            foreach (DeleteDepartamento d in this._catalogDepartamentoModel.Departamento)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteDepartamento = true;
+                }
+            }
+
+            return _canDeleteDepartamento;
+        }
+
+        public void AttempDeleteDepartamento()
+        {
+            this._catalogDepartamentoModel.deleteDepartamentos();
+
+            //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
+            if (this._catalogDepartamentoModel != null)
+            {
+                this._catalogDepartamentoModel.loadDepartamentos();
+            }
+        }
+        #endregion
     }
 }

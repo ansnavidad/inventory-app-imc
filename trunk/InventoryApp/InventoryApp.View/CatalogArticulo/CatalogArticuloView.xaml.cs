@@ -40,5 +40,15 @@ namespace InventoryApp.View.CatalogArticulo
                 }
             }
         }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RowCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

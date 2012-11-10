@@ -121,7 +121,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new EMPRESA() { EMPRESA_NAME=this._empresaName, DIRECCION= this._direccion, RAZON_SOCIAL=this._razonSocial, RFC= this._rfc });
+                _dataMapper.insertElement(new EMPRESA() { IS_ACTIVE = true, EMPRESA_NAME = this._empresaName, DIRECCION = this._direccion, RAZON_SOCIAL = this._razonSocial, RFC = this._rfc });
             }
         }
 

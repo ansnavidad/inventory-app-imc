@@ -141,7 +141,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new ARTICULO() { ARTICULO1 = this._articuloName, UNID_CATEGORIA = this._categoria.UNID_CATEGORIA, UNID_EQUIPO = this._equipo.UNID_EQUIPO, UNID_MODELO = this._modelo.UNID_MODELO, UNID_MARCA =this._marca.UNID_MARCA });
+                _dataMapper.insertElement(new ARTICULO() { IS_ACTIVE=true ,ARTICULO1 = this._articuloName, UNID_CATEGORIA = this._categoria.UNID_CATEGORIA, UNID_EQUIPO = this._equipo.UNID_EQUIPO, UNID_MODELO = this._modelo.UNID_MODELO, UNID_MARCA =this._marca.UNID_MARCA });
             }
         }
 

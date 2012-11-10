@@ -4,12 +4,27 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogMarca
 {
     public class CatalogMarcaViewModel
     {
+        private RelayCommand _deleteMarcaCommand;
+
         private CatalogMarcaModel _catalogMarcaModel;
+
+        public ICommand DeleteMarcaCommand
+        {
+            get
+            {
+                if (_deleteMarcaCommand == null)
+                {
+                    _deleteMarcaCommand = new RelayCommand(p => this.AttempDeleteMarca(), p => this.CanAttempDeleteMarca());
+                }
+                return _deleteMarcaCommand;
+            }
+        }
 
         public CatalogMarcaViewModel()
         {
@@ -30,6 +45,7 @@ namespace InventoryApp.ViewModel.CatalogMarca
             }   
             
         }
+
         public CatalogMarcaModel CatalogMarcaModel
         {
             get
@@ -71,5 +87,37 @@ namespace InventoryApp.ViewModel.CatalogMarca
             }
             return new ModifyMarcaViewModel(this, marcaModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteMarca()
+        {
+            bool _canDeleteMarca = false;
+            foreach (DeleteMarca d in this._catalogMarcaModel.Marcas)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteMarca = true;
+                }
+            }
+            
+            return _canDeleteMarca;
+        }
+
+        public void AttempDeleteMarca()
+        {
+            this._catalogMarcaModel.deleteMarca();
+
+            if (this._catalogMarcaModel != null)
+            {
+                this._catalogMarcaModel.loadItems();
+            }
+        }
+        #endregion
+
     }
 }

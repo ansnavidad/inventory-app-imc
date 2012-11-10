@@ -60,7 +60,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new DEPARTAMENTO() { DEPARTAMENTO_NAME = this._departamentoName });
+                _dataMapper.insertElement(new DEPARTAMENTO() { IS_ACTIVE = true, DEPARTAMENTO_NAME = this._departamentoName });
             }
         }
 

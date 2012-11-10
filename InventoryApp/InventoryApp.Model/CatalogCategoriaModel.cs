@@ -11,10 +11,10 @@ namespace InventoryApp.Model
     public class CatalogCategoriaModel : INotifyPropertyChanged
     {
         private CATEGORIA _selectedCategoria;
-        private FixupCollection<CATEGORIA> _itemCategoria;
+        private FixupCollection<DeleteCategoria> _itemCategoria;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<CATEGORIA> Categoria
+        public FixupCollection<DeleteCategoria> Categoria
         {
             get { 
                 return _itemCategoria; 
@@ -31,6 +31,7 @@ namespace InventoryApp.Model
                 }
             }
         }
+
         public CATEGORIA SelectedCategoria
         {
             get
@@ -53,21 +54,39 @@ namespace InventoryApp.Model
         public CatalogCategoriaModel(IDataMapper dataMapper)
         {
             this._dataMapper = new CategoriaDataMapper();
-            this._itemCategoria = new FixupCollection<CATEGORIA>();
+            this._itemCategoria = new FixupCollection<DeleteCategoria>();
             this._selectedCategoria = new CATEGORIA();
-            //this._isChecked = false;
-            this.loadItems();
-            
+            this.loadItems();    
         }
         public void loadItems()
         {
 
             object element = this._dataMapper.getElements();
 
-            FixupCollection<CATEGORIA> ic = element as FixupCollection<CATEGORIA>;
-            if (ic != null)
+            FixupCollection<DeleteCategoria> ic = new FixupCollection<DeleteCategoria>();
+
+            if (element != null)
             {
-                this.Categoria = ic;
+                if (((List<CATEGORIA>)element).Count > 0)
+                {
+                    foreach (CATEGORIA item in (List<CATEGORIA>)element)
+                    {
+                        DeleteCategoria aux = new DeleteCategoria(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.Categoria = ic;
+        }
+
+        public void deleteCategoria()
+        {
+            foreach (DeleteCategoria item in this._itemCategoria)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
         }
 

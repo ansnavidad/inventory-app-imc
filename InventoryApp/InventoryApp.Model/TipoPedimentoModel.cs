@@ -120,7 +120,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new TIPO_PEDIMENTO() { TIPO_PEDIMENTO_NAME = this._tipoPedimentoName, CLAVE = this._clave, NOTA = this._nota, REGIMEN = this._regimen });
+                _dataMapper.insertElement(new TIPO_PEDIMENTO() { IS_ACTIVE = true,TIPO_PEDIMENTO_NAME = this._tipoPedimentoName, CLAVE = this._clave, NOTA = this._nota, REGIMEN = this._regimen });
             }
         }
 

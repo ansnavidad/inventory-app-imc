@@ -16,14 +16,14 @@ namespace InventoryApp.DAL
 
             using (var entity = new TAE2Entities())
             {
-                (from cust in entity.EQUIPOes
-                 select cust).ToList().ForEach(d => { equipos.Add(d); });
+                var query = (from cust in entity.EQUIPOes
+                             where cust.IS_ACTIVE ==true
+                             select cust).ToList();
 
-                if (equipos.Count > 0)
+                if (query.Count > 0)
                 {
-                    res = equipos;
+                    res = query;
                 }
-
                 return res;
             }
 
@@ -68,7 +68,6 @@ namespace InventoryApp.DAL
                 {
                     EQUIPO equipo = (EQUIPO)element;
                     equipo.UNID_EQUIPO = UNID.getNewUNID();
-
                     entity.EQUIPOes.AddObject(equipo);
                     entity.SaveChanges();
                 }
@@ -77,7 +76,16 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    EQUIPO equipo = (EQUIPO)element;
+                    var deleteEquipo = entity.EQUIPOes.First(p => p.UNID_EQUIPO == equipo.UNID_EQUIPO);
+                    deleteEquipo.IS_ACTIVE = false;
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

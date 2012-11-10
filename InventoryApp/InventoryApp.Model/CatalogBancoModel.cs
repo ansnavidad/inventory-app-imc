@@ -11,10 +11,10 @@ namespace InventoryApp.Model
     public class CatalogBancoModel : INotifyPropertyChanged
     {
         private BANCO _selectedBanco;
-        private FixupCollection<BANCO> _banco;
+        private FixupCollection<DeleteBanco> _banco;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<BANCO> Banco
+        public FixupCollection<DeleteBanco> Banco
         {
             get { 
                 return _banco; 
@@ -53,22 +53,43 @@ namespace InventoryApp.Model
         public void loadBancos()
         {
             object element = this._dataMapper.getElements();
-            FixupCollection<BANCO> ic = element as FixupCollection<BANCO>; 
-            if (ic != null)
+
+            FixupCollection<DeleteBanco> ic = new FixupCollection<DeleteBanco>();
+
+            if (element != null)
             {
-                this.Banco = ic;
+                if (((List<BANCO>)element).Count > 0)
+                {
+                    foreach (BANCO item in (List<BANCO>)element)
+                    {
+                        DeleteBanco aux = new DeleteBanco(item);
+                        ic.Add(aux);
+                    }
+                }
+             }
+            this.Banco = ic;
+        }
+
+        public void deleteBancos()
+        {
+            foreach (DeleteBanco item in this._banco)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
         }
 
         public CatalogBancoModel(IDataMapper dataMapper)
         {
             this._dataMapper = new BancoDataMapper();
-            this._banco = new  FixupCollection<BANCO>();
+            this._banco = new FixupCollection<DeleteBanco>();
             this._selectedBanco = new BANCO();
             this.loadBancos();
             
         }
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

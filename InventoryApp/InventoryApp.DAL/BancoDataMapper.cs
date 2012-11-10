@@ -15,14 +15,13 @@ namespace InventoryApp.DAL
 
             using (var entity = new TAE2Entities())
             {
-                (from cust in entity.BANCOes
-                 select cust).ToList().ForEach(d => { tp.Add(d); });
-
-                if (tp.Count > 0)
-                {
-                    res = tp;
-                }
-
+               var query= (from cust in entity.BANCOes
+                 where cust.IS_ACTIVE == true
+                 select cust).ToList();
+               if (query.Count > 0)
+               {
+                   res = query;
+               }
                 return res;
             }
         }
@@ -33,10 +32,10 @@ namespace InventoryApp.DAL
             using (var entitie = new TAE2Entities())
             {
                 BANCO banco = (BANCO)element;
-                var query = from cust in entitie.BANCOes
+                var query =( from cust in entitie.BANCOes
                             where cust.UNID_BANCO == banco.UNID_BANCO
-                            select cust;
-                if (query != null)
+                            select cust).ToList();
+                if (query.Count >0)
                 {
                     res = query;
                 }
@@ -75,7 +74,16 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    BANCO banco = (BANCO)element;
+                    var modifiedBanco = entity.BANCOes.First(p => p.UNID_BANCO == banco.UNID_BANCO);
+                    modifiedBanco.IS_ACTIVE = false;
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

@@ -59,7 +59,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new TIPO_COTIZACION() { TIPO_COTIZACION_NAME = this._tipoCotizacionName });
+                _dataMapper.insertElement(new TIPO_COTIZACION() {IS_ACTIVE=true, TIPO_COTIZACION_NAME = this._tipoCotizacionName });
             }
         }
 

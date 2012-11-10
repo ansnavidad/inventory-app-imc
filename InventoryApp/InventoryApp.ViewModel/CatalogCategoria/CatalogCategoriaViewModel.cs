@@ -4,12 +4,27 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogCategoria
 {
     public class CatalogCategoriaViewModel
     {
+        private RelayCommand _deleteCategoriaCommand;
+
         private CatalogCategoriaModel _catalogCategoriaModel;
+
+        public ICommand DeleteCategoriaCommand
+        {
+            get
+            {
+                if (_deleteCategoriaCommand == null)
+                {
+                    _deleteCategoriaCommand = new RelayCommand(p => this.AttempDeleteCategoria(), p => this.CanAttempDeleteCategoria());
+                }
+                return _deleteCategoriaCommand;
+            }
+        }
 
         public CatalogCategoriaViewModel()
         {
@@ -30,6 +45,7 @@ namespace InventoryApp.ViewModel.CatalogCategoria
             }   
             
         }
+
         public CatalogCategoriaModel CatalogCategoriaModel
         {
             get
@@ -69,5 +85,37 @@ namespace InventoryApp.ViewModel.CatalogCategoria
             }
             return new ModifyCategoriaViewModel(this, categoriaModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteCategoria()
+        {
+            bool _canDeleteCategoria = false;
+            foreach (DeleteCategoria d in this._catalogCategoriaModel.Categoria)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteCategoria = true;
+                }
+            }
+
+            return _canDeleteCategoria;
+        }
+
+        public void AttempDeleteCategoria()
+        {
+            this._catalogCategoriaModel.deleteCategoria();
+
+            //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
+            if (this._catalogCategoriaModel != null)
+            {
+                this._catalogCategoriaModel.loadItems();
+            }
+        }
+        #endregion
     }
 }

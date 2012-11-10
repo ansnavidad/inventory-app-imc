@@ -75,7 +75,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new MONEDA() { MONEDA_NAME = this._monedaName, MONEDA_ABR = this._monedaAbr });
+                _dataMapper.insertElement(new MONEDA() { IS_ACTIVE = true, MONEDA_NAME = this._monedaName, MONEDA_ABR = this._monedaAbr });
             }
         }
 

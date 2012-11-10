@@ -60,7 +60,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new MEDIO_ENVIO() { MEDIO_ENVIO_NAME = this._medioEnvioName });
+                _dataMapper.insertElement(new MEDIO_ENVIO() {IS_ACTIVE=true, MEDIO_ENVIO_NAME = this._medioEnvioName });
             }
         }
 

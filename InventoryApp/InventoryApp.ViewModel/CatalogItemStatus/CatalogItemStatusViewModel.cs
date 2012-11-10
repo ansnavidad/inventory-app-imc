@@ -4,13 +4,47 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogItemStatus
 {
     public class CatalogItemStatusViewModel
     {
+        #region Fields
+        private RelayCommand _deleteItemCommand;
         private CatalogItemStatusModel _catalogItemStatusModel;
+        #endregion
 
+        //Exponer la propiedad item status
+        #region Props
+        
+        public ICommand DeleteItemCommand
+        {
+            get
+            {
+                if (_deleteItemCommand == null)
+                {
+                    _deleteItemCommand = new RelayCommand(p => this.AttempDeleteItemStatus(), p => this.CanAttempDeleteItemStatus());
+                }
+                return _deleteItemCommand;
+            }
+        }
+
+        public CatalogItemStatusModel CatalogItemStatusModel
+        {
+            get
+            {
+                return _catalogItemStatusModel;
+            }
+            set
+            {
+                _catalogItemStatusModel = value;
+            }
+        }
+        #endregion
+
+        #region Contructor
         public CatalogItemStatusViewModel()
         {
             
@@ -30,17 +64,8 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
             }   
             
         }
-        public CatalogItemStatusModel CatalogItemStatusModel
-        {
-            get
-            {
-                return _catalogItemStatusModel;
-            }
-            set
-            {
-                _catalogItemStatusModel = value;
-            }
-        }
+        
+        #endregion
 
         public void loadItems()
         {
@@ -71,5 +96,51 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
             }
             return new ModifyItemStatusViewModel(this,itemStatusModel);
         }
+        ///// <summary>
+        ///// Crea una nueva instancia de DeleteItemStatus y se pasa asi mismo como parámetro y el item seleccionado
+        ///// </summary>
+        ///// <returns></returns>
+        //public DeleteItemStatusViewModel CreateDeleteItemStatusViewModel()
+        //{
+        //    ItemStatusModel itemStatusModel = new ItemStatusModel(new ItemStatusDataMapper());
+        //    if (this._catalogItemStatusModel != null && this._catalogItemStatusModel.ItemStatus != null)
+        //    {
+        //        itemStatusModel.ItemStatusName = this._catalogItemStatusModel.SelectedItemStatus.ITEM_STATUS_NAME;
+        //        itemStatusModel.UnidItemStatus = this._catalogItemStatusModel.SelectedItemStatus.UNID_ITEM_STATUS;
+        //    }
+        //    return new DeleteItemStatusViewModel(this, itemStatusModel);
+        //}
+        
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteItemStatus()
+        {
+            bool _canDeleteItemStatus =false;
+            foreach (DeleteItemStatus d in this._catalogItemStatusModel.ItemStatus)
+            {
+                if (d.IsChecked==true)
+                {
+                    _canDeleteItemStatus = true;
+                }
+            }
+               // _canDeleteItemStatus = true;
+
+            return _canDeleteItemStatus;
+        }
+        public void AttempDeleteItemStatus()
+        {
+            this._catalogItemStatusModel.deleteItem();
+            
+            //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
+            if (this._catalogItemStatusModel != null)
+            {
+                this._catalogItemStatusModel.loadItems();
+            }
+        }
+        #endregion
     }
 }

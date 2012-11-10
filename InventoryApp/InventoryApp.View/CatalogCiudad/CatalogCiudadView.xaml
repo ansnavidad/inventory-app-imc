@@ -13,7 +13,14 @@
 
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogCiudadModel.Ciudad}" SelectedItem="{Binding CatalogCiudadModel.SelectedCiudad, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected"/>
+                <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected"/>-->
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Ciudad" Width="*" x:Name="nombreCiudad" Binding="{Binding Path=CIUDAD1}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="ISO" Width="*" x:Name="ISO" Binding="{Binding Path=ISO}" IsReadOnly="True"/>
             </DataGrid.Columns>
@@ -25,6 +32,9 @@
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+            <Button Content="ELIMINAR" Height="23" HorizontalAlignment="Stretch"
+                    Margin="5,0" Name="btnEliminar" VerticalAlignment="Stretch"
+                    Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteCiudadCommand,Mode=OneWay}"/>
         </Grid>
     </Grid>
 </Window>

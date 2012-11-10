@@ -5,6 +5,11 @@
         Title="AltaSolicitante" Height="300" Width="300" ResizeMode="NoResize" 
         WindowStyle="None" WindowStartupLocation="CenterScreen" Topmost="True">
     <Window.Resources>
+        <!--<ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>-->
         <LinearGradientBrush x:Key="MouseOver_GradientEffect4" EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#E6E6E6"  Offset="0" />
             <GradientStop Color="#E6E6E6"  Offset="5" />
@@ -126,8 +131,8 @@
                      Text="{Binding AddSolicitante.Validador, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource TextBoxStyle1}" MaxLength="254" />
             <!--<Label Content="ALTA DE ITEM STATUS" Height="28" HorizontalAlignment="Stretch" Margin="5,0" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184"  />-->
-            <Border Grid.ColumnSpan="2" BorderBrush="#e5e5e5" BorderThickness="0,0,0,1" >
-                <TextBlock Text="ALTA  [ SOLICITANTE ]" FontFamily="Arial" FontSize="15" Margin="0,0,0,0" Padding="5,10,0,10" Background="#eaedf4" Foreground="#525354"></TextBlock>
+            <Border Grid.ColumnSpan="2"  BorderThickness="0,0,0,1" >
+                <TextBlock Text="ALTA  [ SOLICITANTE ]" FontFamily="Arial" FontSize="15" Margin="0,0,0,0" Padding="5,10,0,10"></TextBlock>
             </Border>
         </Grid>
     </Border>

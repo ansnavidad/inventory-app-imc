@@ -40,5 +40,10 @@ namespace InventoryApp.View.CatalogEmpresa
             AltaEmpresa alta = new AltaEmpresa();
             alta.ShowDialog();
         }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

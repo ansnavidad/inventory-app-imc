@@ -69,6 +69,7 @@
     <Compile Include="EstatusDataMapperTest.cs" />
     <Compile Include="EmpresaDataMapperTest.cs" />
     <Compile Include="ItemDataMapperTest.cs" />
+    <Compile Include="ItemStatusDataMapperTest.cs" />
     <Compile Include="MarcaDataMapperTest.cs" />
     <Compile Include="ModeloDataMapperTest.cs" />
     <Compile Include="MonedaDataMapperTest.cs" />

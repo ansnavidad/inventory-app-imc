@@ -81,7 +81,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new TRANSPORTE() { TRANSPORTE_NAME = this._transporteName, UNID_TIPO_EMPRESA = this._tipoEmpresa.UNID_TIPO_EMPRESA });
+                _dataMapper.insertElement(new TRANSPORTE() {IS_ACTIVE=true, TRANSPORTE_NAME = this._transporteName, UNID_TIPO_EMPRESA = this._tipoEmpresa.UNID_TIPO_EMPRESA });
             }
         }
 

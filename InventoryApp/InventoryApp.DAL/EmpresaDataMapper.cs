@@ -17,13 +17,14 @@ namespace InventoryApp.Model
 
             using (var oAWEntities = new TAE2Entities())
             {
-                (from cust in oAWEntities.EMPRESAs
-                             select cust).ToList().ForEach(d => { tp.Add(d); });
-                if (tp != null)
-                {
-                    res = tp;
-                }
-                return res;
+               var query= (from cust in oAWEntities.EMPRESAs
+                           where cust.IS_ACTIVE==true
+                           select cust).ToList();
+               if (query.Count>0)
+               {
+                    res = query;
+               }
+               return res;
             }
         }
 
@@ -39,13 +40,13 @@ namespace InventoryApp.Model
                 {
                     EMPRESA empresa = (EMPRESA)element;
 
-                    (from cust in entitie.EMPRESAs
+                   var query=(from cust in entitie.EMPRESAs
                                 where cust.UNID_EMPRESA == empresa.UNID_EMPRESA
-                                 select cust).ToList().ForEach(d => { tp.Add(d); });
-                    if (tp != null)
-                    {
-                        res = tp;
-                    }
+                                 select cust).ToList();
+                   if (query.Count>0)
+                   {
+                        res = query;
+                   }
                     return res;
                 }
             }
@@ -86,19 +87,9 @@ namespace InventoryApp.Model
             {
                 using (var entitie = new TAE2Entities())
                 {
-                    EMPRESA EEmp = (EMPRESA)element;
-
-                    EMPRESA empresa = new EMPRESA();
+                    EMPRESA empresa = (EMPRESA)element;
 
                     empresa.UNID_EMPRESA = UNID.getNewUNID();
-
-                    empresa.EMPRESA_NAME = EEmp.EMPRESA_NAME;
-
-                    empresa.DIRECCION = EEmp.DIRECCION;
-
-                    empresa.RAZON_SOCIAL = EEmp.RAZON_SOCIAL;
-
-                    empresa.RFC = EEmp.RFC;
 
                     entitie.EMPRESAs.AddObject(empresa);
 
@@ -109,7 +100,16 @@ namespace InventoryApp.Model
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    EMPRESA empresa = (EMPRESA)element;
+                    var deleteEmpresa = entity.EMPRESAs.First(p => p.UNID_EMPRESA == empresa.UNID_EMPRESA);
+                    deleteEmpresa.IS_ACTIVE = false;
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

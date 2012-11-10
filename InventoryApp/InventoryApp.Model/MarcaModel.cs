@@ -60,7 +60,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new MARCA() { MARCA_NAME = this._marcaName });
+                _dataMapper.insertElement(new MARCA() {IS_ACTIVE=true, MARCA_NAME = this._marcaName });
             }
         }
 

@@ -80,7 +80,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new TIPO_MOVIMIENTO() { TIPO_MOVIMIENTO_NAME = this._tipoMovimientoName, SIGNO_MOVIMIENTO =this._signoMovimiento});
+                _dataMapper.insertElement(new TIPO_MOVIMIENTO() {IS_ACTIVE=true, TIPO_MOVIMIENTO_NAME = this._tipoMovimientoName, SIGNO_MOVIMIENTO =this._signoMovimiento});
             }
         }
 

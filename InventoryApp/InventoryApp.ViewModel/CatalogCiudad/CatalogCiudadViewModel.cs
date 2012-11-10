@@ -4,12 +4,27 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogCiudad
 {
     public class CatalogCiudadViewModel
     {
+        private RelayCommand _deleteCiudadCommand;
+
         private CatalogCiudadModel _catalogCiudadModel;
+
+        public ICommand DeleteCiudadCommand
+        {
+            get
+            {
+                if (_deleteCiudadCommand == null)
+                {
+                    _deleteCiudadCommand = new RelayCommand(p => this.AttempDeleteCiudad(), p => this.CanAttempDeleteCiudad());
+                }
+                return _deleteCiudadCommand;
+            }
+        }
 
         public CatalogCiudadViewModel()
         {
@@ -30,6 +45,7 @@ namespace InventoryApp.ViewModel.CatalogCiudad
             }   
             
         }
+
         public CatalogCiudadModel CatalogCiudadModel
         {
             get
@@ -72,5 +88,37 @@ namespace InventoryApp.ViewModel.CatalogCiudad
             }
             return new ModifyCiudadViewModel(this, ciudadModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteCiudad()
+        {
+            bool _canDeleteCiudad = false;
+            foreach (DeleteCiudad d in this._catalogCiudadModel.Ciudad)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteCiudad = true;
+                }
+            }
+
+            return _canDeleteCiudad;
+        }
+
+        public void AttempDeleteCiudad()
+        {
+            this._catalogCiudadModel.deleteCiudad();
+
+            //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
+            if (this._catalogCiudadModel != null)
+            {
+                this._catalogCiudadModel.loadItems();
+            }
+        }
+        #endregion
     }
 }

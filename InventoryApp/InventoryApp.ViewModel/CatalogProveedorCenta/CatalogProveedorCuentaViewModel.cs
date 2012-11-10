@@ -10,7 +10,21 @@ namespace InventoryApp.ViewModel.CatalogProveedorCenta
 {
     public class CatalogProveedorCuentaViewModel
     {
+        private RelayCommand _deleteProveedorCuentaCommand;
+
         private CatalogProveedorCuentaModel _proveedorCuentaModel;
+
+        public ICommand DeleteProveedorCuentaCommand
+        {
+            get
+            {
+                if (_deleteProveedorCuentaCommand == null)
+                {
+                    _deleteProveedorCuentaCommand = new RelayCommand(p => this.AttempDeleteProveedorCuenta(), p => this.CanAttempDeleteProveedorCuenta());
+                }
+                return _deleteProveedorCuentaCommand;
+            }
+        }
 
         public CatalogProveedorCuentaViewModel()
         {
@@ -30,6 +44,7 @@ namespace InventoryApp.ViewModel.CatalogProveedorCenta
             }   
             
         }
+
         public CatalogProveedorCuentaModel ProveedorCuentaModel
         {
             get
@@ -75,5 +90,36 @@ namespace InventoryApp.ViewModel.CatalogProveedorCenta
             }
             return new ModifyProveedorCuentaViewModel(this, proveedorCuentaModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteProveedorCuenta()
+        {
+            bool _canDeleteProveedorCuenta = false;
+            foreach (DeleteProveedorCuenta d in this._proveedorCuentaModel.ProveedorCuenta)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteProveedorCuenta = true;
+                }
+            }
+
+            return _canDeleteProveedorCuenta;
+        }
+
+        public void AttempDeleteProveedorCuenta()
+        {
+            this._proveedorCuentaModel.deleteProveedorCuenta();
+
+            if (this._proveedorCuentaModel != null)
+            {
+                this._proveedorCuentaModel.loadItems();
+            }
+        }
+        #endregion
     }
 }

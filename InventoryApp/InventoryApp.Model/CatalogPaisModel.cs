@@ -10,11 +10,11 @@ namespace InventoryApp.Model
 {
     public class CatalogPaisModel : INotifyPropertyChanged
     {
-        private FixupCollection<PAI> _pais;
+        private FixupCollection<DeletePais> _pais;
         private PAI _selectedPais;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<PAI> Pais
+        public FixupCollection<DeletePais> Pais
         {
             get
             {
@@ -56,17 +56,37 @@ namespace InventoryApp.Model
         {
             object element = this._dataMapper.getElements();
 
-            FixupCollection<PAI> ic = element as FixupCollection<PAI>;
-            if (ic != null)
+            FixupCollection<DeletePais> ic = new FixupCollection<DeletePais>();
+
+            if (element != null)
             {
-                this.Pais = ic;
+                if (((List<PAI>)element).Count > 0)
+                {
+                    foreach (PAI item in (List<PAI>)element)
+                    {
+                        DeletePais aux = new DeletePais(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.Pais = ic;
+        }
+
+        public void deletePais()
+        {
+            foreach (DeletePais item in this._pais)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
         }
 
         public CatalogPaisModel(IDataMapper dataMapper)
         {
             this._dataMapper = new PaisDataMapper();
-            this._pais = new FixupCollection<PAI>();
+            this._pais = new FixupCollection<DeletePais>();
             this._selectedPais = new PAI();
             this.loadItems();
         }

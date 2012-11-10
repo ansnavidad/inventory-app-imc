@@ -185,7 +185,14 @@
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                   RowStyle="{StaticResource RowStyle}">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />
+                <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />-->
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Empresa" Width="*" x:Name="nombreEmpresa" Binding="{Binding Path=EMPRESA_NAME}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Direccion" Width="*" x:Name="direccion" Binding="{Binding Path=DIRECCION}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Razon social" Width="*" x:Name="razonSocial" Binding="{Binding Path=RAZON_SOCIAL}" IsReadOnly="True"/>
@@ -199,6 +206,9 @@
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click"  Style="{StaticResource bntGrayLith}" />
+            <Button Content="ELIMINAR" Height="23" HorizontalAlignment="Stretch"
+                    Margin="5,0" Name="btnEliminar" VerticalAlignment="Stretch"
+                    Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteEmpresaCommand,Mode=OneWay}"/>
         </Grid>
     </Grid>
 </Window>

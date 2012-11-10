@@ -15,14 +15,14 @@ namespace InventoryApp.DAL
   
             using (var entity = new TAE2Entities())
             {
-                  (from cust in entity.ITEM_STATUS
-                            select cust).ToList().ForEach(d=>{tp.Add(d);});
-
-                if (tp.Count > 0)
+                var query=(from cust in entity.ITEM_STATUS
+                 where cust.IS_ACTIVE == true
+                 select cust).ToList();
+                if (query.Count > 0)
                 {
-                    res = tp;
+                    res = query;
                 }
-                
+
                 return res;
             }
         }
@@ -91,10 +91,6 @@ namespace InventoryApp.DAL
 
                     status.UNID_ITEM_STATUS = UNID.getNewUNID();
 
-                    status.ITEM_STATUS_NAME = ESta.ITEM_STATUS_NAME;
-                    
-                    status.ITEMs = ESta.ITEMs;
-
                     entity.ITEM_STATUS.AddObject(status);
 
                     entity.SaveChanges();
@@ -105,7 +101,19 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ITEM_STATUS itemStatus = (ITEM_STATUS)element;
+
+                    var modifiedItemStatus = entity.ITEM_STATUS.First(p => p.UNID_ITEM_STATUS == itemStatus.UNID_ITEM_STATUS);
+
+                    modifiedItemStatus.IS_ACTIVE = false;
+
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

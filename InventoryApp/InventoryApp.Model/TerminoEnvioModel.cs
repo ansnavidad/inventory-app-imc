@@ -121,7 +121,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new TERMINO_ENVIO() { GENERA_LOTES = this._generaLotes, CLAVE = this._clave, SIGNIFICADO = this._significado, TERMINO = this._termino });
+                _dataMapper.insertElement(new TERMINO_ENVIO() {IS_ACTIVE=true, GENERA_LOTES = this._generaLotes, CLAVE = this._clave, SIGNIFICADO = this._significado, TERMINO = this._termino });
             }
         }
 

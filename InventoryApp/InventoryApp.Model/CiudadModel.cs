@@ -101,7 +101,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new CIUDAD() { CIUDAD1 = this._ciudad, ISO = this._iso });
+                _dataMapper.insertElement(new CIUDAD() { IS_ACTIVE = true, CIUDAD1 = this._ciudad, ISO = this._iso });
             }
         }
 

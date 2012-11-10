@@ -10,25 +10,25 @@ namespace InventoryApp.DAL
     {
         public object getElements()
         {
-            object o = null;
+            object res = null;
             FixupCollection<MEDIO_ENVIO> tp = new FixupCollection<MEDIO_ENVIO>();
             using (var Entity = new TAE2Entities())
             {
-                (from p in Entity.MEDIO_ENVIO
-                 select p).ToList().ForEach(d => { tp.Add(d); });
+               var query= (from p in Entity.MEDIO_ENVIO
+                           where p.IS_ACTIVE ==true
+                           select p).ToList();
 
-                if (tp.Count > 0)
-                {                    
-                    o = (object)tp;
-                }
-
-                return o;
+               if (query.Count > 0)
+               {
+                    res = query;
+               }
+               return res;
             }
         }
 
         public object getElement(object element)
         {
-            object o = null;
+            object res = null;
             if (element != null)
             {
                 MEDIO_ENVIO Eprov = (MEDIO_ENVIO)element;
@@ -36,17 +36,16 @@ namespace InventoryApp.DAL
 
                 using (var Entity = new TAE2Entities())
                 {
-                    (from p in Entity.MEDIO_ENVIO
-                     where p.UNID_MEDIO_ENVIO == Eprov.UNID_MEDIO_ENVIO
-                     select p).ToList().ForEach(d => { tp.Add(d); });
-
-                    if (tp.Count > 0)
+                    var query=(from p in Entity.MEDIO_ENVIO
+                               where p.UNID_MEDIO_ENVIO == Eprov.UNID_MEDIO_ENVIO
+                               select p).ToList();
+                    if (query.Count > 0)
                     {
-                        o = (object)tp;
+                        res = query;
                     }
                 }
             }
-            return o;
+            return res;
         }
 
         public void udpateElement(object element)
@@ -71,9 +70,7 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     MEDIO_ENVIO medioEnvio = (MEDIO_ENVIO)element;
-
                     medioEnvio.UNID_MEDIO_ENVIO = UNID.getNewUNID();
-
                     entity.MEDIO_ENVIO.AddObject(medioEnvio);
                     entity.SaveChanges();
                 }
@@ -82,7 +79,19 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MEDIO_ENVIO medioEnvio = (MEDIO_ENVIO)element;
+
+                    var deleteMarca = entity.MEDIO_ENVIO.First(p => p.UNID_MEDIO_ENVIO == medioEnvio.UNID_MEDIO_ENVIO);
+
+                    deleteMarca.IS_ACTIVE = false;
+
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

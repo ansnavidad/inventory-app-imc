@@ -58,7 +58,6 @@
     <Compile Include="ItemStatusDataMapper.cs" />
     <Compile Include="MarcaDataMapper.cs" />
     <Compile Include="MedioEnvioDataMapper.cs" />
-    <Compile Include="Medio_EnvioDataMapper.cs" />
     <Compile Include="ModeloDataMapper.cs" />
     <Compile Include="MonedaDataMapper.cs" />
     <Compile Include="MovimientoDataMapper.cs" />

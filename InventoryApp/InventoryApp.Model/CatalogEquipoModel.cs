@@ -10,11 +10,11 @@ namespace InventoryApp.Model
 {
     public class CatalogEquipoModel: INotifyPropertyChanged 
     {
-        private FixupCollection<EQUIPO> _equipos;
+        private FixupCollection<DeleteEquipo> _equipos;
         private EQUIPO _selectedEquipo;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<EQUIPO> Equipos
+        public FixupCollection<DeleteEquipo> Equipos
         {
             get
             {
@@ -56,19 +56,37 @@ namespace InventoryApp.Model
         {
             object element = this._dataMapper.getElements();
 
-            FixupCollection<EQUIPO> ic = element as FixupCollection<EQUIPO>; //element as FixupCollection<PROYECTO>;
-            if (ic != null)
+            FixupCollection<DeleteEquipo> ic = new FixupCollection<DeleteEquipo>();
+
+            if (element != null)
             {
-                //this._itemStatus = ic;
-                this.Equipos = ic;
+                if (((List<EQUIPO>)element).Count > 0)
+                {
+                    foreach (EQUIPO item in (List<EQUIPO>)element)
+                    {
+                        DeleteEquipo aux = new DeleteEquipo(item);
+                        ic.Add(aux);
+                    }
+                }
             }
+            this.Equipos = ic;
         }
 
+        public void deleteEquipo()
+        {
+            foreach (DeleteEquipo item in this._equipos)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
+            }
+        }
 
         public CatalogEquipoModel(IDataMapper dataMapper)
         {
             this._dataMapper = new EquipoDataMapper();
-            this._equipos = new FixupCollection<EQUIPO>();
+            this._equipos = new FixupCollection<DeleteEquipo>();
             this._selectedEquipo = new EQUIPO();
             this.loadItems();
 

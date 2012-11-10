@@ -11,10 +11,10 @@ namespace InventoryApp.Model
     public class CatalogEmpresaModel : INotifyPropertyChanged
     {
         private EMPRESA _selectedEmpresa;
-        private FixupCollection<EMPRESA> _empresa;
+        private FixupCollection<DeleteEmpresa> _empresa;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<EMPRESA> Empresa
+        public FixupCollection<DeleteEmpresa> Empresa
         {
             get { 
                 return _empresa; 
@@ -53,24 +53,44 @@ namespace InventoryApp.Model
         public CatalogEmpresaModel(IDataMapper dataMapper)
         {
             this._dataMapper = new EmpresaDataMapper();
-            this._empresa = new FixupCollection<EMPRESA>();
+            this._empresa = new FixupCollection<DeleteEmpresa>();
             this._selectedEmpresa = new EMPRESA();
             //this._isChecked = false;
             this.loadEmpresa();
             
         }
+
         public void loadEmpresa()
         {
 
             object element = this._dataMapper.getElements();
 
-            FixupCollection<EMPRESA> ic = element as FixupCollection<EMPRESA>;
-            if (ic != null)
+            FixupCollection<DeleteEmpresa> ic = new FixupCollection<DeleteEmpresa>();
+
+            if (element != null)
             {
-                this.Empresa = ic;
+                if (((List<EMPRESA>)element).Count > 0)
+                {
+                    foreach (EMPRESA item in (List<EMPRESA>)element)
+                    {
+                        DeleteEmpresa aux = new DeleteEmpresa(item);
+                        ic.Add(aux);
+                    }
+                }
             }
+            this.Empresa = ic;
         }
 
+        public void deleteEmpresa()
+        {
+            foreach (DeleteEmpresa item in this._empresa)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

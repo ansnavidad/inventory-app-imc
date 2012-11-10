@@ -43,9 +43,11 @@ namespace InventoryApp.DAL
         public object getElements()
         {
             object res = null;
+            FixupCollection<ARTICULO> tp = new FixupCollection<ARTICULO>();
             using (var entity = new TAE2Entities())
             {
                 res = (from articulo in entity.ARTICULOes
+                       where articulo.IS_ACTIVE == true
                        select articulo).ToList();
 
                 foreach (ARTICULO art in ((List<ARTICULO>)res))
@@ -70,7 +72,7 @@ namespace InventoryApp.DAL
 
                 res = (from cust in entity.ARTICULOes
                        where cust.UNID_ARTICULO == Etra.UNID_ARTICULO
-                       select cust).ToList<ARTICULO>();
+                       select cust).ToList();
 
                 foreach (ARTICULO art in ((List<ARTICULO>)res))
                 {
@@ -122,7 +124,16 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ARTICULO articulo = (ARTICULO)element;
+                    var modifiedArticulo = entity.ARTICULOes.First(p => p.UNID_ARTICULO == articulo.UNID_ARTICULO);
+                    modifiedArticulo.IS_ACTIVE = false;
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

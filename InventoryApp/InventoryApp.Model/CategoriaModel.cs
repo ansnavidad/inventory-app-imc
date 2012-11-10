@@ -58,7 +58,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new CATEGORIA() { CATEGORIA_NAME= this._categoriaName });
+                _dataMapper.insertElement(new CATEGORIA() { IS_ACTIVE = true, CATEGORIA_NAME = this._categoriaName });
             }
         }
         public void updateCategoria()

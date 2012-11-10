@@ -11,10 +11,10 @@ namespace InventoryApp.Model
     public class CatalogMonedaModel : INotifyPropertyChanged
     {
         private MONEDA _selectedMoneda;
-        private FixupCollection<MONEDA> _moneda;
+        private FixupCollection<DeleteMoneda> _moneda;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<MONEDA> Moneda
+        public FixupCollection<DeleteMoneda> Moneda
         {
             get { 
                 return _moneda; 
@@ -31,6 +31,7 @@ namespace InventoryApp.Model
                 }
             }
         }
+
         public MONEDA SelectedMoneda
         {
             get
@@ -53,17 +54,38 @@ namespace InventoryApp.Model
         public void loadMonedas()
         {
             object element = this._dataMapper.getElements();
-            FixupCollection<MONEDA> ic = element as FixupCollection<MONEDA>; 
-            if (ic != null)
+
+            FixupCollection<DeleteMoneda> ic = new FixupCollection<DeleteMoneda>();
+
+            if (element != null)
             {
-                this.Moneda = ic;
+                if (((List<MONEDA>)element).Count > 0)
+                {
+                    foreach (MONEDA item in (List<MONEDA>)element)
+                    {
+                        DeleteMoneda aux = new DeleteMoneda(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.Moneda = ic;
+        }
+
+        public void deleteMoneda()
+        {
+            foreach (DeleteMoneda item in this._moneda)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
         }
 
         public CatalogMonedaModel(IDataMapper dataMapper)
         {
             this._dataMapper = new MonedaDataMapper();
-            this._moneda = new  FixupCollection<MONEDA>();
+            this._moneda = new FixupCollection<DeleteMoneda>();
             this._selectedMoneda = new MONEDA();
             this.loadMonedas();
         }

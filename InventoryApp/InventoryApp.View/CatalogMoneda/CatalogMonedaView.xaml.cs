@@ -40,5 +40,10 @@ namespace InventoryApp.View.CatalogMoneda
                 }
             }
         }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

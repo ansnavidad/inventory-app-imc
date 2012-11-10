@@ -81,7 +81,7 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new PAI() { PAIS = this._pais, ISO = this._iso });
+                _dataMapper.insertElement(new PAI() {IS_ACTIVE=true, PAIS = this._pais, ISO = this._iso });
             }
         }
 

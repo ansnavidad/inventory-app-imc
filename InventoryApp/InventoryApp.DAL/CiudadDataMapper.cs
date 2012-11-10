@@ -11,25 +11,26 @@ namespace InventoryApp.DAL
     {
         public object getElements()
         {
-            object o = null;
+            object res = null;
             FixupCollection<CIUDAD> tp = new FixupCollection<CIUDAD>();
             using (var Entity = new TAE2Entities())
             {
-                (from p in Entity.CIUDADs
-                 select p).ToList().ForEach(d => { tp.Add(d); });
+              var query= (from p in Entity.CIUDADs
+                          where p.IS_ACTIVE ==true
+                          select p).ToList();
 
-                if (tp.Count > 0)
-                {
-                    o = (object)tp;
-                }
+              if (query.Count > 0)
+              {
+                res = query;
+              }
 
-                return o;
+              return res;
             }
         }
 
         public object getElement(object element)
         {
-            object o = null;
+            object res = null;
             if (element != null)
             {
                 CIUDAD Eprov = (CIUDAD)element;
@@ -37,17 +38,17 @@ namespace InventoryApp.DAL
 
                 using (var Entity = new TAE2Entities())
                 {
-                    (from p in Entity.CIUDADs
+                  var query= (from p in Entity.CIUDADs
                      where p.UNID_CIUDAD == Eprov.UNID_CIUDAD
-                     select p).ToList().ForEach(d => { tp.Add(d); });
+                     select p).ToList();
 
-                    if (tp.Count > 0)
-                    {
-                        o = (object)tp;
-                    }
+                  if (query.Count > 0)
+                  {
+                      res = query;
+                  }
                 }
             }
-            return o;
+            return res;
         }
 
         public void udpateElement(object element)
@@ -60,7 +61,6 @@ namespace InventoryApp.DAL
                     var modifiedCiudad = entity.CIUDADs.First(p => p.UNID_CIUDAD == ciudad.UNID_CIUDAD);                    
                     modifiedCiudad.ISO = ciudad.ISO;
                     modifiedCiudad.CIUDAD1 = ciudad.CIUDAD1;                    
-
                     entity.SaveChanges();
                 }
             }
@@ -83,7 +83,16 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    CIUDAD cuidad = (CIUDAD)element;
+                    var deleteCuidad = entity.CIUDADs.First(p => p.UNID_CIUDAD == cuidad.UNID_CIUDAD);
+                    deleteCuidad.IS_ACTIVE = false;
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

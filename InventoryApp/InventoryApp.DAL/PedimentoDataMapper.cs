@@ -11,37 +11,43 @@ namespace InventoryApp.DAL
     {
         public object getElements()
         {
-            object o = null;
+            object res = null;
             using (var oAWEntities = new TAE2Entities())
             {
-                var provs = from p in oAWEntities.PROVEEDORs
-                            select p;
+                var query = (from p in oAWEntities.PEDIMENTOes
+                            where p.IS_ACTIVE ==true
+                            select p).ToList();
 
-                if (provs != null)
-                    o = (object)provs;
-
-                return o;
+                if (query.Count > 0)
+                {
+                    res = query;
+                }
+                
+                return res;
             }
         }
 
         public object getElement(object element)
         {
-            object o = null;
+            object res = null;
             if (element != null)
             {
                 PROVEEDOR Eprov = (PROVEEDOR)element;
 
                 using (var oAWEntities = new TAE2Entities())
                 {
-                    var provs = from p in oAWEntities.PROVEEDORs
-                                where p.UNID_PROVEEDOR.Equals(Eprov.UNID_PROVEEDOR)
-                                select p;
+                    var query = (from p in oAWEntities.PEDIMENTOes
+                                where p.UNID_PEDIMENTO == Eprov.UNID_PROVEEDOR
+                                select p).ToList();
 
-                    if (provs != null)
-                        o = (object)provs;
+                    if (query.Count > 0)
+                    {
+                        res = query;
+                    }
+                    return res;
                 }
             }
-            return o;
+            return res;
         }
 
         public void udpateElement(object element)

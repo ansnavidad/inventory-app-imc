@@ -176,7 +176,6 @@
             <TextBlock Text="CONSULTA DE DATOS  [ CATEGORIA ]" FontFamily="Arial" FontSize="15" Margin="0,0,0,0" Padding="5,10,0,10" Background="#eaedf4" Foreground="#525354"></TextBlock>
         </Border>
         <!--<Label Content="CONSULTA DE ITEM STATUS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />-->
-
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridCategoria"
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogCategoriaModel.Categoria}"
@@ -185,7 +184,14 @@
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                   RowStyle="{StaticResource RowStyle}">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />
+                <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />-->
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Categoria" Width="*" x:Name="nombreCategoria" Binding="{Binding Path=CATEGORIA_NAME}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
@@ -196,6 +202,9 @@
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnAgregar_Click" Style="{StaticResource bntGrayLith}" />
+            <Button Content="ELIMINAR" Height="23" HorizontalAlignment="Stretch"
+                    Margin="5,0" Name="btnEliminar" VerticalAlignment="Stretch"
+                    Width="75" Click="btnEliminar_Click" Command="{Binding DeleteCategoriaCommand,Mode=OneWay}"/>
         </Grid>
     </Grid>
 </Window>

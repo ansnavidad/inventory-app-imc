@@ -4,13 +4,28 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 
 namespace InventoryApp.ViewModel.CatalogModelo
 {
     public class CatalogModeloViewModel
     {
-         private CatalogModeloModel _catalogModeloModel;
+        private RelayCommand _deleteModeloCommand;
+
+        private CatalogModeloModel _catalogModeloModel;
+
+        public ICommand DeleteModeloCommand
+        {
+            get
+            {
+                if (_deleteModeloCommand == null)
+                {
+                    _deleteModeloCommand = new RelayCommand(p => this.AttempDeleteModelo(), p => this.CanAttempDeleteModelo());
+                }
+                return _deleteModeloCommand;
+            }
+        }
 
         public CatalogModeloViewModel()
         {
@@ -31,6 +46,7 @@ namespace InventoryApp.ViewModel.CatalogModelo
             }   
             
         }
+
         public CatalogModeloModel CatalogModeloModel
         {
             get
@@ -72,6 +88,37 @@ namespace InventoryApp.ViewModel.CatalogModelo
             }
             return new ModifyModeloViewModel(this, modeloModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteModelo()
+        {
+            bool _canDeleteModelo = false;
+            foreach (DeleteModelo d in this._catalogModeloModel.Modelos)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteModelo = true;
+                }
+            }
+
+            return _canDeleteModelo;
+        }
+
+        public void AttempDeleteModelo()
+        {
+            this._catalogModeloModel.deleteModelo();
+
+            if (this._catalogModeloModel != null)
+            {
+                this._catalogModeloModel.loadItems();
+            }
+        }
+        #endregion
     
     }
 }

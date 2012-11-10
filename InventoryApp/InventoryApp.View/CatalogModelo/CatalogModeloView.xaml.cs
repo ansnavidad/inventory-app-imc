@@ -40,5 +40,10 @@ namespace InventoryApp.View.CatalogModelo
                 }
             }
         }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

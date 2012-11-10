@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="ArticuloModel.cs" />
     <Compile Include="BancoModel.cs" />
+    <Compile Include="CatalogAlmacenModel.cs" />
     <Compile Include="CatalogArticuloModel.cs" />
     <Compile Include="CatalogBancoModel.cs" />
     <Compile Include="CatalogCategoriaReloadModel.cs" />

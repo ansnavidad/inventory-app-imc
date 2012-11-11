@@ -85,7 +85,16 @@
     <Compile Include="DeleteModelo.cs" />
     <Compile Include="DeleteMoneda.cs" />
     <Compile Include="DeletePais.cs" />
+    <Compile Include="DeleteProveedor.cs" />
     <Compile Include="DeleteProveedorCuenta.cs" />
+    <Compile Include="DeleteProyecto.cs" />
+    <Compile Include="DeleteSolicitante.cs" />
+    <Compile Include="DeleteTerminoEnvio.cs" />
+    <Compile Include="DeleteTipoCotizacion.cs" />
+    <Compile Include="DeleteTipoEmpresa.cs" />
+    <Compile Include="DeleteTipoMovimiento.cs" />
+    <Compile Include="DeleteTipoPedimento.cs" />
+    <Compile Include="DeleteTransporte.cs" />
     <Compile Include="DepartamentoModel.cs" />
     <Compile Include="EmpresaModel.cs" />
     <Compile Include="EquipoModel.cs" />
@@ -109,6 +118,7 @@
     <Compile Include="TipoCotizacionModel.cs" />
     <Compile Include="TipoMovimientoModel.cs" />
     <Compile Include="TipoPedimentoModel.cs" />
+    <Compile Include="TransporteModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InventoryApp.DAL\InventoryApp.DAL.csproj">

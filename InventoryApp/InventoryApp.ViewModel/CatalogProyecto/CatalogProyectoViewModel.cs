@@ -4,12 +4,26 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogProyecto
 {
     public class CatalogProyectoViewModel
     {
+        private RelayCommand _deleteProyectoCommand;
         private CatalogProyectoModel _catalogProyectoModel;
+
+        public ICommand DeleteProyectoCommand
+        {
+            get
+            {
+                if (_deleteProyectoCommand == null)
+                {
+                    _deleteProyectoCommand = new RelayCommand(p => this.AttempDeleteProyecto(), p => this.CanAttempDeleteProyecto());
+                }
+                return _deleteProyectoCommand;
+            }
+        }
 
         public CatalogProyectoViewModel()
         {
@@ -67,5 +81,36 @@ namespace InventoryApp.ViewModel.CatalogProyecto
             }
             return new ModifyProyectoViewModel(this, proyectoModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteProyecto()
+        {
+            bool _canDeleteProyecto = false;
+            foreach (DeleteProyecto d in this._catalogProyectoModel.Proyecto)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteProyecto = true;
+                }
+            }
+
+            return _canDeleteProyecto;
+        }
+
+        public void AttempDeleteProyecto()
+        {
+            this._catalogProyectoModel.deleteProyecto();
+
+            if (this._catalogProyectoModel != null)
+            {
+                this._catalogProyectoModel.loadItems();
+            }
+        }
+        #endregion
     }
 }

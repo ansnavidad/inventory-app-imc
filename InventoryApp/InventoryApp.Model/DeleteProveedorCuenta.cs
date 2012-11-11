@@ -30,7 +30,10 @@ namespace InventoryApp.Model
 
         public BANCO Banco
         {
-            get { return this._banco; }
+            get
+            {
+                return this._banco;
+            }
             set
             {
                 if (value != this._banco)
@@ -44,7 +47,10 @@ namespace InventoryApp.Model
 
         public PROVEEDOR Proveedor
         {
-            get { return this._proveedor; }
+            get
+            {
+                return this._proveedor;
+            }
             set
             {
                 if (value != this._proveedor)

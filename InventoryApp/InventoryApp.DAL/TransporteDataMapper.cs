@@ -19,6 +19,7 @@ namespace InventoryApp.DAL
             using (var entity = new TAE2Entities())
             {
                 res = (from transporte in entity.TRANSPORTEs
+                       where transporte.IS_ACTIVE==true
                        select transporte).ToList();
 
                 foreach (TRANSPORTE trans in ((List<TRANSPORTE>)res))
@@ -86,7 +87,19 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TRANSPORTE transporte = (TRANSPORTE)element;
+
+                    var deleteTransporte = entity.TRANSPORTEs.First(p => p.UNID_TRANSPORTE == transporte.UNID_TRANSPORTE);
+
+                    deleteTransporte.IS_ACTIVE = false;
+
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

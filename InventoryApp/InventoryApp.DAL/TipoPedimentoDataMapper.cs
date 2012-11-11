@@ -15,12 +15,13 @@ namespace InventoryApp.DAL
             FixupCollection<TIPO_PEDIMENTO> tp = new FixupCollection<TIPO_PEDIMENTO>();
             using (var Entity = new TAE2Entities())
             {
-                (from p in Entity.TIPO_PEDIMENTO
-                 select p).ToList().ForEach(d => { tp.Add(d); });
+                var query = (from p in Entity.TIPO_PEDIMENTO
+                             where p.IS_ACTIVE ==true
+                             select p).ToList();
 
-                if (tp.Count > 0)
+                if (query.Count > 0)
                 {
-                    o = (object)tp;
+                    o = query;
                 }
 
                 return o;
@@ -37,13 +38,13 @@ namespace InventoryApp.DAL
 
                 using (var Entity = new TAE2Entities())
                 {
-                    (from p in Entity.TIPO_PEDIMENTO
-                     where p.UNID_TIPO_PEDIMENTO == Eprov.UNID_TIPO_PEDIMENTO
-                     select p).ToList().ForEach(d => { tp.Add(d); });
+                   var query= (from p in Entity.TIPO_PEDIMENTO
+                                where p.UNID_TIPO_PEDIMENTO == Eprov.UNID_TIPO_PEDIMENTO
+                                select p).ToList();
 
-                    if (tp.Count > 0)
+                   if (query.Count > 0)
                     {
-                        o = (object)tp;
+                        o = query;
                     }
                 }
             }
@@ -86,7 +87,19 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TIPO_PEDIMENTO tipoPedimento = (TIPO_PEDIMENTO)element;
+
+                    var deleteTipoPedimento = entity.TIPO_PEDIMENTO.First(p => p.UNID_TIPO_PEDIMENTO == tipoPedimento.UNID_TIPO_PEDIMENTO);
+
+                    deleteTipoPedimento.IS_ACTIVE = false;
+
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

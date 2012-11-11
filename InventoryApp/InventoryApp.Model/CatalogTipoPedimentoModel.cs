@@ -11,25 +11,10 @@ namespace InventoryApp.Model
     public class CatalogTipoPedimentoModel : INotifyPropertyChanged
     {
         private TIPO_PEDIMENTO _selectedTipoPedimento;
-        private FixupCollection<TIPO_PEDIMENTO> _tipoPedimento;
+        private FixupCollection<DeleteTipoPedimento> _tipoPedimento;
         private IDataMapper _dataMapper;
-        //private bool _isChecked;
 
-        //public bool IsChecked
-        //{
-        //    get { return this._isChecked; }
-        //    set
-        //    {
-        //        if (value != this._isChecked)
-        //        {
-        //            this._isChecked = value;
-        //            if (this.PropertyChanged != null)
-        //                this.PropertyChanged(this, new PropertyChangedEventArgs("IsChecked"));
-        //        }
-        //    }
-        //}
-
-        public FixupCollection<TIPO_PEDIMENTO> TipoPedimento
+        public FixupCollection<DeleteTipoPedimento> TipoPedimento
         {
             get { 
                 return _tipoPedimento; 
@@ -68,9 +53,8 @@ namespace InventoryApp.Model
         public CatalogTipoPedimentoModel(IDataMapper dataMapper)
         {
             this._dataMapper = new TipoPedimentoDataMapper();
-            this._tipoPedimento = new  FixupCollection<TIPO_PEDIMENTO>();
+            this._tipoPedimento = new FixupCollection<DeleteTipoPedimento>();
             this._selectedTipoPedimento = new TIPO_PEDIMENTO();
-            //this._isChecked = false;
             this.loadItems();
             
         }
@@ -79,13 +63,33 @@ namespace InventoryApp.Model
 
             object element = this._dataMapper.getElements();
 
-            FixupCollection<TIPO_PEDIMENTO> ic = element as FixupCollection<TIPO_PEDIMENTO>; //element as FixupCollection<PROYECTO>;
-            if (ic != null)
+            FixupCollection<DeleteTipoPedimento> ic = new FixupCollection<DeleteTipoPedimento>();
+
+            if (element != null)
             {
-                //this._itemStatus = ic;
-                this.TipoPedimento = ic;
+                if (((List<TIPO_PEDIMENTO>)element).Count > 0)
+                {
+                    foreach (TIPO_PEDIMENTO item in (List<TIPO_PEDIMENTO>)element)
+                    {
+                        DeleteTipoPedimento aux = new DeleteTipoPedimento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.TipoPedimento = ic;
+        }
+
+        public void deleteTipoPedimento()
+        {
+            foreach (DeleteTipoPedimento item in this._tipoPedimento)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

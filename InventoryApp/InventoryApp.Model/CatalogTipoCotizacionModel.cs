@@ -11,10 +11,10 @@ namespace InventoryApp.Model
     public class CatalogTipoCotizacionModel : INotifyPropertyChanged
     {
         private TIPO_COTIZACION _selectedTipoCotizacion;
-        private FixupCollection<TIPO_COTIZACION> _tipoCotizacion;
+        private FixupCollection<DeleteTipoCotizacion> _tipoCotizacion;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<TIPO_COTIZACION> TipoCotizacion
+        public FixupCollection<DeleteTipoCotizacion> TipoCotizacion
         {
             get
             {
@@ -55,7 +55,7 @@ namespace InventoryApp.Model
         public CatalogTipoCotizacionModel(IDataMapper dataMapper)
         {
             this._dataMapper = new TipoCotizacionDataMapper();
-            this._tipoCotizacion = new FixupCollection<TIPO_COTIZACION>();
+            this._tipoCotizacion = new FixupCollection<DeleteTipoCotizacion>();
             this._selectedTipoCotizacion = new TIPO_COTIZACION();
             this.loadItems();
             
@@ -66,12 +66,33 @@ namespace InventoryApp.Model
 
             object element = this._dataMapper.getElements();
 
-            FixupCollection<TIPO_COTIZACION> ic = element as FixupCollection<TIPO_COTIZACION>; //element as FixupCollection<PROYECTO>;
-            if (ic != null)
+            FixupCollection<DeleteTipoCotizacion> ic = new FixupCollection<DeleteTipoCotizacion>();
+
+            if (element != null)
             {
-                this.TipoCotizacion = ic;
+                if (((List<TIPO_COTIZACION>)element).Count > 0)
+                {
+                    foreach (TIPO_COTIZACION item in (List<TIPO_COTIZACION>)element)
+                    {
+                        DeleteTipoCotizacion aux = new DeleteTipoCotizacion(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.TipoCotizacion = ic;
+        }
+
+        public void deleteTipoCotizacion()
+        {
+            foreach (DeleteTipoCotizacion item in this._tipoCotizacion)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

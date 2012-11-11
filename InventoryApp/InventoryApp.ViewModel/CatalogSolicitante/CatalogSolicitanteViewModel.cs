@@ -4,13 +4,26 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogSolicitante
 {
     public class CatalogSolicitanteViewModel
     {
+        private RelayCommand _deleteSolicitanteCommand;
         private CatalogSolicitanteModel _catalogSolicitanteModel;
 
+        public ICommand DeleteSolicitanteCommand
+        {
+            get
+            {
+                if (_deleteSolicitanteCommand == null)
+                {
+                    _deleteSolicitanteCommand = new RelayCommand(p => this.AttempDeleteSolicitante(), p => this.CanAttempDeleteSolicitante());
+                }
+                return _deleteSolicitanteCommand;
+            }
+        }
         public CatalogSolicitanteViewModel()
         {
             try
@@ -74,5 +87,36 @@ namespace InventoryApp.ViewModel.CatalogSolicitante
             }
             return new ModifySolicitanteViewModel(this, solicitanteModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteSolicitante()
+        {
+            bool _canDeleteSolicitante = false;
+            foreach (DeleteSolicitante d in this._catalogSolicitanteModel.Solicitante)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteSolicitante = true;
+                }
+            }
+
+            return _canDeleteSolicitante;
+        }
+
+        public void AttempDeleteSolicitante()
+        {
+            this._catalogSolicitanteModel.deleteSolicitante();
+
+            if (this._catalogSolicitanteModel != null)
+            {
+                this._catalogSolicitanteModel.loadSolicitante();
+            }
+        }
+        #endregion
     }
 }

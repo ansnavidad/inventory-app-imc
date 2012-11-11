@@ -13,7 +13,14 @@
 
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridTipoPedimento" VerticalAlignment="Stretch" ItemsSource="{Binding TipoPedimentoModel.TipoPedimento}" SelectedItem="{Binding TipoPedimentoModel.SelectedTipoPedimento, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="" IsReadOnly="False" Width="25" x:Name="ISCHECK" Binding="{Binding Path=Is_Check}"></DataGridCheckBoxColumn>
+                <!--<DataGridCheckBoxColumn Header="" IsReadOnly="False" Width="25" x:Name="ISCHECK" Binding="{Binding Path=Is_Check}"></DataGridCheckBoxColumn>-->
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="140" Header="Nombre" x:Name="NOMBRE" Binding="{Binding Path=TIPO_PEDIMENTO_NAME}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="140" Header="Clave" x:Name="CLAVE" Binding="{Binding Path=CLAVE}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="140" Header="Regimen" x:Name="REGIMEN" Binding="{Binding Path=REGIMEN}"></DataGridTextColumn>
@@ -23,7 +30,10 @@
         <Grid Name="gridBtn" Grid.Row="2">
             <Grid.ColumnDefinitions>
             </Grid.ColumnDefinitions>
-            <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+            <Button Content="NUEVO" Height="23" HorizontalAlignment="Stretch" Margin="411,32,137,32" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+            <Button Content="ELIMINAR" Height="23" HorizontalAlignment="Stretch"
+                    Margin="76,32,472,32" Name="btnEliminar" VerticalAlignment="Stretch"
+                    Width="75" Click="btnEliminar_Click" Command="{Binding DeleteTipoPedimentoCommand,Mode=OneWay}"  />
         </Grid>
     </Grid>
 </Window>

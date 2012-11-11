@@ -42,6 +42,18 @@ namespace InventoryApp.DAL.POCOS
     
         #region ObjectSet Properties
     
+        public ObjectSet<MENU> MENUs
+        {
+            get { return _mENUs  ?? (_mENUs = CreateObjectSet<MENU>("MENUs")); }
+        }
+        private ObjectSet<MENU> _mENUs;
+    
+        public ObjectSet<USUARIO> USUARIOs
+        {
+            get { return _uSUARIOs  ?? (_uSUARIOs = CreateObjectSet<USUARIO>("USUARIOs")); }
+        }
+        private ObjectSet<USUARIO> _uSUARIOs;
+    
         public ObjectSet<ARTICULO> ARTICULOes
         {
             get { return _aRTICULOes  ?? (_aRTICULOes = CreateObjectSet<ARTICULO>("ARTICULOes")); }
@@ -228,6 +240,12 @@ namespace InventoryApp.DAL.POCOS
         }
         private ObjectSet<PAI> _pAIS;
     
+        public ObjectSet<FACTURA_VENTA> FACTURA_VENTA
+        {
+            get { return _fACTURA_VENTA  ?? (_fACTURA_VENTA = CreateObjectSet<FACTURA_VENTA>("FACTURA_VENTA")); }
+        }
+        private ObjectSet<FACTURA_VENTA> _fACTURA_VENTA;
+    
         public ObjectSet<ITEM> ITEMs
         {
             get { return _iTEMs  ?? (_iTEMs = CreateObjectSet<ITEM>("ITEMs")); }
@@ -245,6 +263,12 @@ namespace InventoryApp.DAL.POCOS
             get { return _mOVIMIENTO_DETALLE  ?? (_mOVIMIENTO_DETALLE = CreateObjectSet<MOVIMIENTO_DETALLE>("MOVIMIENTO_DETALLE")); }
         }
         private ObjectSet<MOVIMIENTO_DETALLE> _mOVIMIENTO_DETALLE;
+    
+        public ObjectSet<ULTIMO_MOVIMIENTO> ULTIMO_MOVIMIENTO
+        {
+            get { return _uLTIMO_MOVIMIENTO  ?? (_uLTIMO_MOVIMIENTO = CreateObjectSet<ULTIMO_MOVIMIENTO>("ULTIMO_MOVIMIENTO")); }
+        }
+        private ObjectSet<ULTIMO_MOVIMIENTO> _uLTIMO_MOVIMIENTO;
     
         public ObjectSet<FACTURA> FACTURAs
         {

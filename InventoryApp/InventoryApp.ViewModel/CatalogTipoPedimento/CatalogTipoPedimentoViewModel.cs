@@ -4,13 +4,27 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 
 namespace InventoryApp.ViewModel.CatalogTipoPedimento
 {
     public class CatalogTipoPedimentoViewModel
     {
+        private RelayCommand _deleteTipoPedimentoCommand;
         private CatalogTipoPedimentoModel _tipoPedimentoModel;
+
+        public ICommand DeleteTipoPedimentoCommand
+        {
+            get
+            {
+                if (_deleteTipoPedimentoCommand == null)
+                {
+                    _deleteTipoPedimentoCommand = new RelayCommand(p => this.AttempDeleteTipoPedimento(), p => this.CanAttempDeleteTipoPedimento());
+                }
+                return _deleteTipoPedimentoCommand;
+            }
+        }
 
         public CatalogTipoPedimentoViewModel()
         {
@@ -75,5 +89,36 @@ namespace InventoryApp.ViewModel.CatalogTipoPedimento
             }
             return new ModifyTipoPedimentoViewModel(this, tipoPedimentoModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteTipoPedimento()
+        {
+            bool _canDeleteTipoPedimento = false;
+            foreach (DeleteTipoPedimento d in this._tipoPedimentoModel.TipoPedimento)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteTipoPedimento = true;
+                }
+            }
+
+            return _canDeleteTipoPedimento;
+        }
+
+        public void AttempDeleteTipoPedimento()
+        {
+            this._tipoPedimentoModel.deleteTipoPedimento();
+
+            if (this._tipoPedimentoModel != null)
+            {
+                this._tipoPedimentoModel.loadItems();
+            }
+        }
+        #endregion
     }
 }

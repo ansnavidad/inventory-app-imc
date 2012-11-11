@@ -4,9 +4,9 @@
         DataContext="{DynamicResource insertTransporteViewModel}"
         Title="InsertTransporteView" Height="300" Width="300">
 
-    <Grid DataContext="{StaticResource insertTransporteViewModel}"  >
-        <TextBox  MaxLength="128" Text="{Binding Transporte.TransporteName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="23" HorizontalAlignment="Left" Margin="134,71,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
-        <Button Content="AGREGAR" Height="23" HorizontalAlignment="Stretch" Margin="109,149,95,89" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Command="{Binding AddItemCommand,Mode=OneWay}" Click="btnAgregar_Click" />
+    <Grid >
+        <TextBox  MaxLength="128" Text="{Binding AddTransporte.TrasnporteName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="23" HorizontalAlignment="Left" Margin="134,71,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
+        <Button Content="AGREGAR" Height="23" HorizontalAlignment="Stretch" Margin="109,149,95,89" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Command="{Binding AddTransporteCommand,Mode=OneWay}" Click="btnAgregar_Click" />
         <ComboBox SelectedIndex="0" SelectedItem="{Binding Transporte.TipoEmpresa,Mode=TwoWay}" ItemsSource="{Binding CatalogTipoEmpresaModel.TipoEmpresas, Mode=OneWay}" DisplayMemberPath="TIPO_EMPRESA_NAME" SelectedValuePath="UNID_TIPO_EMPRESA" Height="23" HorizontalAlignment="Left" Margin="134,112,0,0" Name="comboBox1" VerticalAlignment="Top" Width="120" />
         <Label Content="ALTA TRANSPORTE" Height="35" HorizontalAlignment="Left" Margin="80,14,0,0" Name="label1" VerticalAlignment="Top" Width="145" />
         <Label Content="Nombre Transporte:" Height="28" HorizontalAlignment="Left" Margin="12,69,0,0" Name="label2" VerticalAlignment="Top" />

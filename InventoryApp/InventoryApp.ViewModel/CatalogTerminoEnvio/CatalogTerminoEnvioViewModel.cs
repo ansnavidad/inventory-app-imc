@@ -4,12 +4,26 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogTerminoEnvio
 {
     public class CatalogTerminoEnvioViewModel
     {
+        private RelayCommand _deleteTerminoEnvioCommand;
         private CatalogTerminoEnvioModel _catalogTerminoEnvioModel;
+
+        public ICommand DeleteTerminoEnvioCommand
+        {
+            get
+            {
+                if (_deleteTerminoEnvioCommand == null)
+                {
+                    _deleteTerminoEnvioCommand = new RelayCommand(p => this.AttempDeleteTerminoEnvio(), p => this.CanAttempDeleteTerminoEnvio());
+                }
+                return _deleteTerminoEnvioCommand;
+            }
+        }
 
         public CatalogTerminoEnvioViewModel()
         {
@@ -74,5 +88,36 @@ namespace InventoryApp.ViewModel.CatalogTerminoEnvio
             }
             return new ModifyTerminoEnvioViewModel(this, terminoEnvioModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteTerminoEnvio()
+        {
+            bool _canDeleteTerminoEnvio = false;
+            foreach (DeleteTerminoEnvio d in this._catalogTerminoEnvioModel.TerminoEnvio)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteTerminoEnvio = true;
+                }
+            }
+
+            return _canDeleteTerminoEnvio;
+        }
+
+        public void AttempDeleteTerminoEnvio()
+        {
+            this._catalogTerminoEnvioModel.deleteTerminoEnvio();
+
+            if (this._catalogTerminoEnvioModel != null)
+            {
+                this._catalogTerminoEnvioModel.loadItems();
+            }
+        }
+        #endregion
     }
 }

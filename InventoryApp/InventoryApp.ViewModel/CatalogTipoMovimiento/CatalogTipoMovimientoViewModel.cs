@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogTipoMovimiento
 {
     public class CatalogTipoMovimientoViewModel
     {
+        private RelayCommand _deleteTipoMovimientoCommand;
         private CatalogTipoMovimientoModel _catalogTipoMovimientoModel;
 
         public CatalogTipoMovimientoViewModel()
@@ -28,6 +30,18 @@ namespace InventoryApp.ViewModel.CatalogTipoMovimiento
                 throw ex;
             }  
             
+        }
+
+        public ICommand DeleteTipoMovimientoCommand
+        {
+            get
+            {
+                if (_deleteTipoMovimientoCommand == null)
+                {
+                    _deleteTipoMovimientoCommand = new RelayCommand(p => this.AttempDeleteTipoMovimiento(), p => this.CanAttempDeleteTipoMovimiento());
+                }
+                return _deleteTipoMovimientoCommand;
+            }
         }
 
         public CatalogTipoMovimientoModel CatalogTipoMovimientoModel
@@ -70,5 +84,36 @@ namespace InventoryApp.ViewModel.CatalogTipoMovimiento
             }
             return new ModifyTipoMovimientoViewModel(this, tipoMovimientoModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteTipoMovimiento()
+        {
+            bool _canDeleteTipoMovimiento = false;
+            foreach (DeleteTipoMovimiento d in this._catalogTipoMovimientoModel.TipoMovimiento)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteTipoMovimiento = true;
+                }
+            }
+
+            return _canDeleteTipoMovimiento;
+        }
+
+        public void AttempDeleteTipoMovimiento()
+        {
+            this._catalogTipoMovimientoModel.deleteTipoMovimiento();
+
+            if (this._catalogTipoMovimientoModel != null)
+            {
+                this._catalogTipoMovimientoModel.loadItems();
+            }
+        }
+        #endregion
     }
 }

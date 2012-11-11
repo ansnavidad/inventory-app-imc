@@ -17,14 +17,14 @@ namespace InventoryApp.DAL
 
             using (var entity = new TAE2Entities())
             {
-                (from cust in entity.TIPO_COTIZACION
-                             select cust).ToList().ToList().ForEach(d => { tp.Add(d); });
+               var query= (from cust in entity.TIPO_COTIZACION
+                           where cust.IS_ACTIVE ==true
+                           select cust).ToList().ToList();
 
-                if (tp.Count > 0)
+               if (query.Count > 0)
                 {
-                    res = tp;
+                    res = query;
                 }
-
                 return res;
             }
         }
@@ -41,13 +41,13 @@ namespace InventoryApp.DAL
                 {
                     TIPO_COTIZACION ETipo = (TIPO_COTIZACION)element;
 
-                    (from cust in entity.TIPO_COTIZACION
+                    var query = (from cust in entity.TIPO_COTIZACION
                                  where cust.UNID_TIPO_COTIZACION == ETipo.UNID_TIPO_COTIZACION
-                                 select cust).ToList().ForEach(d => { tp.Add(d); });
+                                 select cust).ToList();
 
-                    if (tp.Count > 0)
+                    if (query.Count > 0)
                     {
-                        res = tp;
+                        res = query;
                     }
                     return res;
                 }
@@ -84,13 +84,9 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    TIPO_COTIZACION ETipo = (TIPO_COTIZACION)element;
-
-                    TIPO_COTIZACION tipo = new TIPO_COTIZACION();
+                    TIPO_COTIZACION tipo = (TIPO_COTIZACION)element;
 
                     tipo.UNID_TIPO_COTIZACION = UNID.getNewUNID();
-
-                    tipo.TIPO_COTIZACION_NAME = ETipo.TIPO_COTIZACION_NAME;
 
                     entity.TIPO_COTIZACION.AddObject(tipo);
 
@@ -102,7 +98,19 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TIPO_COTIZACION tipoCotizacion = (TIPO_COTIZACION)element;
+
+                    var deleteTipoCotizacion = entity.TIPO_COTIZACION.First(p => p.UNID_TIPO_COTIZACION == tipoCotizacion.UNID_TIPO_COTIZACION);
+
+                    deleteTipoCotizacion.IS_ACTIVE = false;
+
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

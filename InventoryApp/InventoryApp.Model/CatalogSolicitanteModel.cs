@@ -11,10 +11,10 @@ namespace InventoryApp.Model
     public class CatalogSolicitanteModel : INotifyPropertyChanged
     {
         private SOLICITANTE _selectedSolicitante;
-        private FixupCollection<SOLICITANTE> _solicitante;
+        private FixupCollection<DeleteSolicitante> _solicitante;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<SOLICITANTE> Solicitante
+        public FixupCollection<DeleteSolicitante> Solicitante
         {
             get
             {
@@ -55,9 +55,8 @@ namespace InventoryApp.Model
         public CatalogSolicitanteModel(IDataMapper dataMapper)
         {
             this._dataMapper = new SolicitanteDataMapper();
-            this._solicitante = new FixupCollection<SOLICITANTE>();
+            this._solicitante = new FixupCollection<DeleteSolicitante>();
             this._selectedSolicitante = new SOLICITANTE();
-            //this._isChecked = false;
             this.loadSolicitante();
         }
         public void loadSolicitante()
@@ -65,23 +64,31 @@ namespace InventoryApp.Model
 
             object element = this._dataMapper.getElements();
 
-            FixupCollection<SOLICITANTE> ic = new FixupCollection<SOLICITANTE>();
+            FixupCollection<DeleteSolicitante> ic = new FixupCollection<DeleteSolicitante>();
 
-            foreach (SOLICITANTE elemento in (List<SOLICITANTE>)element)
+            if (element != null)
             {
-                ic.Add((SOLICITANTE)elemento);
+                if (((List<SOLICITANTE>)element).Count > 0)
+                {
+                    foreach (SOLICITANTE item in (List<SOLICITANTE>)element)
+                    {
+                        DeleteSolicitante aux = new DeleteSolicitante(item);
+                        ic.Add(aux);
+                    }
+                }
             }
-            if (ic != null)
-            {
-                this.Solicitante = ic;
-            }
-            //FixupCollection<SOLICITANTE> ic = element as FixupCollection<SOLICITANTE>;
-            //if (ic != null)
-            //{
-            //    this.Solicitante = ic;
-            //}
+            this.Solicitante = ic;
         }
-
+        public void deleteSolicitante()
+        {
+            foreach (DeleteSolicitante item in this._solicitante)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

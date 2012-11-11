@@ -21,7 +21,6 @@ namespace InventoryApp.View
         public CatalogTransporteView()
         {
             InitializeComponent();
-            InventoryApp.ViewModel.CatalogTransporteViewModel prueba = new ViewModel.CatalogTransporteViewModel();
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
@@ -40,6 +39,11 @@ namespace InventoryApp.View
                     (new ModifyTransporteView()).ShowDialog();
                 }
             }
+        }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

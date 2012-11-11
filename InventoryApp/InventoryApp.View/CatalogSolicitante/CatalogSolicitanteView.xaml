@@ -31,10 +31,17 @@
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                   RowStyle="{StaticResource RowStyle}">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="" IsReadOnly="False" Width="25" x:Name="ISCHECK" Binding="{Binding Path=Is_Check}"></DataGridCheckBoxColumn>
+                <!--<DataGridCheckBoxColumn Header="" IsReadOnly="False" Width="25" x:Name="ISCHECK" Binding="{Binding Path=Is_Check}"></DataGridCheckBoxColumn>-->
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Solicitante" x:Name="nombreSolicitante" Binding="{Binding Path=SOLICITANTE_NAME}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Empresa" x:Name="NombreEmpresa" Binding="{Binding Path=EMPRESA.EMPRESA_NAME}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Departamento" x:Name="NombreDepartamento" Binding="{Binding Path=DEPARTAMENTO.DEPARTAMENTO_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Empresa" x:Name="NombreEmpresa" Binding="{Binding Path=Empresa.EMPRESA_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Departamento" x:Name="NombreDepartamento" Binding="{Binding Path=Departamento.DEPARTAMENTO_NAME}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Email" x:Name="Email" Binding="{Binding Path=EMAIL}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Validador" x:Name="Validador" Binding="{Binding Path=VALIDADOR}"></DataGridTextColumn>
             </DataGrid.Columns>
@@ -46,6 +53,9 @@
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click"  />
+            <Button Content="ELIMINAR" Height="23" HorizontalAlignment="Stretch"
+                    Margin="5,0" Name="btnEliminar" VerticalAlignment="Stretch"
+                    Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteSolicitanteCommand,Mode=OneWay}"/>
         </Grid>
     </Grid>
 </Window>

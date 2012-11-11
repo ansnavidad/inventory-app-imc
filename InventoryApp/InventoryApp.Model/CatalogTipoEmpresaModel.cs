@@ -10,11 +10,11 @@ namespace InventoryApp.Model
 {
     public class CatalogTipoEmpresaModel : INotifyPropertyChanged
     {
-        private FixupCollection<TIPO_EMPRESA> _tipoEmpresas;
+        private FixupCollection<DeleteTipoEmpresa> _tipoEmpresas;
         private TIPO_EMPRESA _selectedEmpresa;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<TIPO_EMPRESA> TipoEmpresas
+        public FixupCollection<DeleteTipoEmpresa> TipoEmpresas
         {
             get
             {
@@ -56,22 +56,39 @@ namespace InventoryApp.Model
         {
             object element = this._dataMapper.getElements();
 
-            FixupCollection<TIPO_EMPRESA> ic = element as FixupCollection<TIPO_EMPRESA>; //element as FixupCollection<PROYECTO>;
-            if (ic != null)
+            FixupCollection<DeleteTipoEmpresa> ic = new FixupCollection<DeleteTipoEmpresa>();
+
+            if (element != null)
             {
-                //this._itemStatus = ic;
-                this.TipoEmpresas = ic;
+                if (((List<TIPO_EMPRESA>)element).Count > 0)
+                {
+                    foreach (TIPO_EMPRESA item in (List<TIPO_EMPRESA>)element)
+                    {
+                        DeleteTipoEmpresa aux = new DeleteTipoEmpresa(item);
+                        ic.Add(aux);
+                    }
+                }
             }
+            this.TipoEmpresas = ic;
         }
 
+        public void deleteTipoEmpresa()
+        {
+            foreach (DeleteTipoEmpresa item in this._tipoEmpresas)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
+            }
+        }
 
         public CatalogTipoEmpresaModel(IDataMapper dataMapper)
         {
             this._dataMapper = new TipoEmpresaDataMapper();
-            this._tipoEmpresas = new FixupCollection<TIPO_EMPRESA>();
+            this._tipoEmpresas = new FixupCollection<DeleteTipoEmpresa>();
             this._selectedEmpresa = new TIPO_EMPRESA();
             this.loadItems();
-            //this.loadItems(new ItemDataMapper());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

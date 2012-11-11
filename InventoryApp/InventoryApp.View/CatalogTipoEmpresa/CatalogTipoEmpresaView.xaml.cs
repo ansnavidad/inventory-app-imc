@@ -40,5 +40,10 @@ namespace InventoryApp.View
                 }
             }
         }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -14,7 +14,14 @@
 
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridTerminoEnvio" VerticalAlignment="Stretch" ItemsSource="{Binding Path=CatalogTerminoEnvioModel.TerminoEnvio}" SelectedItem="{Binding CatalogTerminoEnvioModel.SelectedTerminoEnvio, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="" IsReadOnly="False" Width="25" x:Name="ISCHECK" Binding="{Binding Path=Is_Check}"></DataGridCheckBoxColumn>
+                <!--<DataGridCheckBoxColumn Header="" IsReadOnly="False" Width="25" x:Name="ISCHECK" Binding="{Binding Path=Is_Check}"></DataGridCheckBoxColumn>-->
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="162" Header="Clave" x:Name="CLAVE" Binding="{Binding Path=CLAVE}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="162" Header="Termino" x:Name="TERMINO" Binding="{Binding Path=TERMINO}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="188" Header="Significado" x:Name="SIGNIFICADO" Binding="{Binding Path=SIGNIFICADO}"></DataGridTextColumn>
@@ -24,7 +31,10 @@
         <Grid Name="gridBtn" Grid.Row="2">
             <Grid.ColumnDefinitions>
             </Grid.ColumnDefinitions>
-            <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+            <Button Content="NUEVO" Height="23" HorizontalAlignment="Stretch" Margin="447,32,101,32" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+            <Button Content="ELIMINAR" Height="23" HorizontalAlignment="Stretch"
+                    Margin="79,32,469,32" Name="btnEliminar" VerticalAlignment="Stretch"
+                    Width="75" Click="btnEliminar_Click" Command="{Binding DeleteTerminoEnvioCommand,Mode=OneWay}" />
         </Grid>
     </Grid>
 </Window>

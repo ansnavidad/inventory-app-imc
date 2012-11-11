@@ -4,12 +4,26 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogTipoCotizacion
 {
     public class CatalogTipoCotizacionViewModel
     {
+        private RelayCommand _deleteTipoCotizacionCommand;
         private CatalogTipoCotizacionModel _catalogTipoCotizacionModel;
+
+        public ICommand DeleteTipoCotizacionCommand
+        {
+            get
+            {
+                if (_deleteTipoCotizacionCommand == null)
+                {
+                    _deleteTipoCotizacionCommand = new RelayCommand(p => this.AttempDeleteTipoCotizacion(), p => this.CanAttempDeleteTipoCotizacion());
+                }
+                return _deleteTipoCotizacionCommand;
+            }
+        }
 
         public CatalogTipoCotizacionViewModel()
         {
@@ -67,5 +81,36 @@ namespace InventoryApp.ViewModel.CatalogTipoCotizacion
             }
             return new ModifyTipoCotizacionViewModel(this, tipoCotizacionModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteTipoCotizacion()
+        {
+            bool _canDeleteTipoCotizacion = false;
+            foreach (DeleteTipoCotizacion d in this._catalogTipoCotizacionModel.TipoCotizacion)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteTipoCotizacion = true;
+                }
+            }
+
+            return _canDeleteTipoCotizacion;
+        }
+
+        public void AttempDeleteTipoCotizacion()
+        {
+            this._catalogTipoCotizacionModel.deleteTipoCotizacion();
+
+            if (this._catalogTipoCotizacionModel != null)
+            {
+                this._catalogTipoCotizacionModel.loadItems();
+            }
+        }
+        #endregion
     }
 }

@@ -11,10 +11,10 @@ namespace InventoryApp.Model
     public class CatalogTipoMovimientoModel : INotifyPropertyChanged
     {
         private TIPO_MOVIMIENTO _selectedTipoMovimiento;
-        private FixupCollection<TIPO_MOVIMIENTO> _tipoMovimiento;
+        private FixupCollection<DeleteTipoMovimiento> _tipoMovimiento;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<TIPO_MOVIMIENTO> TipoMovimiento
+        public FixupCollection<DeleteTipoMovimiento> TipoMovimiento
         {
             get
             {
@@ -55,7 +55,7 @@ namespace InventoryApp.Model
         public CatalogTipoMovimientoModel(IDataMapper dataMapper)
         {
             this._dataMapper = new TipoMovimientoDataMapper();
-            this._tipoMovimiento = new FixupCollection<TIPO_MOVIMIENTO>();
+            this._tipoMovimiento = new FixupCollection<DeleteTipoMovimiento>();
             this._selectedTipoMovimiento = new TIPO_MOVIMIENTO();
             this.loadItems();
             
@@ -65,11 +65,30 @@ namespace InventoryApp.Model
         {
             object element = this._dataMapper.getElements();
 
+            FixupCollection<DeleteTipoMovimiento> ic = new FixupCollection<DeleteTipoMovimiento>();
 
-            FixupCollection<TIPO_MOVIMIENTO> ic = element as FixupCollection<TIPO_MOVIMIENTO>; //element as FixupCollection<PROYECTO>;
-            if (ic != null)
+            if (element != null)
             {
-                this.TipoMovimiento = ic;
+                if (((List<TIPO_MOVIMIENTO>)element).Count > 0)
+                {
+                    foreach (TIPO_MOVIMIENTO item in (List<TIPO_MOVIMIENTO>)element)
+                    {
+                        DeleteTipoMovimiento aux = new DeleteTipoMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.TipoMovimiento = ic;
+        }
+
+        public void deleteTipoMovimiento()
+        {
+            foreach (DeleteTipoMovimiento item in this._tipoMovimiento)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
         }
 

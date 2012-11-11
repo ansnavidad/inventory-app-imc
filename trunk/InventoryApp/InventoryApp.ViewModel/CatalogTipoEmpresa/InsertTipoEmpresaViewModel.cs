@@ -6,7 +6,7 @@ using InventoryApp.DAL;
 using InventoryApp.Model;
 using System.Windows.Input;
 
-namespace InventoryApp.ViewModel
+namespace InventoryApp.ViewModel.CatalogTipoEmpresa
 {
     public class InsertTipoEmpresaViewModel
     {

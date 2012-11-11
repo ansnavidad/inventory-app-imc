@@ -10,7 +10,21 @@ namespace InventoryApp.ViewModel.CatalogProveedor
 {
     public class CatalogProveedorViewModel
     {
+        private RelayCommand _deleteProveedorCommand;
+
         private CatalogProveedorModel _proveedorModel;
+
+        public ICommand DeleteProveedorCommand
+        {
+            get
+            {
+                if (_deleteProveedorCommand == null)
+                {
+                    _deleteProveedorCommand = new RelayCommand(p => this.AttempDeleteProveedor(), p => this.CanAttempDeleteProveedor());
+                }
+                return _deleteProveedorCommand;
+            }
+        }
 
         public CatalogProveedorViewModel()
         {
@@ -30,6 +44,7 @@ namespace InventoryApp.ViewModel.CatalogProveedor
             }   
             
         }
+
         public CatalogProveedorModel ProveedorModel
         {
             get
@@ -80,5 +95,36 @@ namespace InventoryApp.ViewModel.CatalogProveedor
             }
             return new ModifyProveedorViewModel(this, proveedorModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteProveedor()
+        {
+            bool _canDeleteProveedor = false;
+            foreach (DeleteProveedor d in this._proveedorModel.Proveedor)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteProveedor = true;
+                }
+            }
+
+            return _canDeleteProveedor;
+        }
+
+        public void AttempDeleteProveedor()
+        {
+            this._proveedorModel.deleteProveedor();
+
+            if (this._proveedorModel != null)
+            {
+                this._proveedorModel.loadItems();
+            }
+        }
+        #endregion
     }
 }

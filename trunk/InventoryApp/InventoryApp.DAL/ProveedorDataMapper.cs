@@ -11,19 +11,24 @@ namespace InventoryApp.DAL
     {
         public object getElements()
         {
-            object o = null;            
+            object res = null;            
             using (var Entity = new TAE2Entities())
             {
-                var res = (from p in Entity.PROVEEDORs
-                 select p).ToList();
+                var query = (from p in Entity.PROVEEDORs
+                             where p.IS_ACTIVE ==true
+                             select p).ToList();
 
 
-                foreach (PROVEEDOR trans in ((List<PROVEEDOR>)res))
+                foreach (PROVEEDOR trans in ((List<PROVEEDOR>)query))
                 {
                     trans.PAI = trans.PAI;
                     trans.CIUDAD = trans.CIUDAD;
                 }
 
+                if (query.Count>0)
+                {
+                    res = query;
+                }
                 return res;
             }
         }
@@ -97,7 +102,19 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    PROVEEDOR proveedor = (PROVEEDOR)element;
+
+                    var deleteProveedor = entity.PROVEEDORs.First(p => p.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR);
+
+                    deleteProveedor.IS_ACTIVE = false;
+
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

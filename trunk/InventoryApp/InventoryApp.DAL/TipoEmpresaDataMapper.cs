@@ -17,12 +17,13 @@ namespace InventoryApp.DAL
 
             using (var entity = new TAE2Entities())
             {
-                (from cust in entity.TIPO_EMPRESA
-                 select cust).ToList().ForEach(d => { tp.Add(d); });
+                var query=(from cust in entity.TIPO_EMPRESA
+                           where cust.IS_ACTIVE==true
+                           select cust).ToList();
 
-                if (tp.Count > 0)
+                if (query.Count > 0)
                 {
-                    res = tp;
+                    res = query;
                 }
 
                 return res;
@@ -78,7 +79,19 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TIPO_EMPRESA tipoEmpresa = (TIPO_EMPRESA)element;
+
+                    var deleteTipoEmpresa = entity.TIPO_EMPRESA.First(p => p.UNID_TIPO_EMPRESA == tipoEmpresa.UNID_TIPO_EMPRESA);
+
+                    deleteTipoEmpresa.IS_ACTIVE = false;
+
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

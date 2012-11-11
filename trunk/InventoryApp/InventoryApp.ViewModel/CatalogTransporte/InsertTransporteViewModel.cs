@@ -6,12 +6,12 @@ using InventoryApp.DAL;
 using InventoryApp.Model;
 using System.Windows.Input;
 
-namespace InventoryApp.ViewModel
+namespace InventoryApp.ViewModel.CatalogTransporte
 {
     public class InsertTransporteViewModel
     {
         #region Fields
-        private InsertTransporteModel _transporte;
+        private TransporteModel _addTransporte;
         private RelayCommand _addItemCommand;
         private CatalogTransporteViewModel _catalogTransporteViewModel;
         private CatalogTipoEmpresaModel _catalogTipoEmpresaModel;
@@ -20,15 +20,15 @@ namespace InventoryApp.ViewModel
 
         //Exponer la propiedad item status
         #region Props
-        public InsertTransporteModel Transporte
+        public TransporteModel AddTransporte
         {
             get
             {
-                return _transporte;
+                return _addTransporte;
             }
             set
             {
-                _transporte = value;
+                _addTransporte = value;
             }
         }
         public CatalogTipoEmpresaModel CatalogTipoEmpresaModel
@@ -43,7 +43,7 @@ namespace InventoryApp.ViewModel
             }
         }
 
-        public ICommand AddItemCommand
+        public ICommand AddTransporteCommand
         {
             get
             {
@@ -63,22 +63,10 @@ namespace InventoryApp.ViewModel
         /// <param name="catalogItemStatusViewModel"></param>
         public InsertTransporteViewModel(CatalogTransporteViewModel catalogTransporteViewModel)
         {
-            this._transporte = new InsertTransporteModel(new TransporteDataMapper());
+            this._addTransporte = new TransporteModel(new TransporteDataMapper());
             this._catalogTransporteViewModel = catalogTransporteViewModel;
-            try
-            {
-
-                this._catalogTipoEmpresaModel = new CatalogTipoEmpresaModel(new TipoEmpresaDataMapper());
-            }
-            catch (ArgumentException ae)
-            {
-                ;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
+            this._catalogTipoEmpresaModel = new CatalogTipoEmpresaModel(new TipoEmpresaDataMapper());
+         
         }
         #endregion
 
@@ -91,7 +79,7 @@ namespace InventoryApp.ViewModel
         public bool CanAttempInsertTransporte()
         {
             bool _canInsertTransporte = true;
-            if (String.IsNullOrEmpty(this._transporte.TransporteName))
+            if (String.IsNullOrEmpty(this._addTransporte.TrasnporteName))
                 _canInsertTransporte = false;
 
             return _canInsertTransporte;
@@ -99,7 +87,7 @@ namespace InventoryApp.ViewModel
 
         public void AttempInsertTransporte()
         {
-            this._transporte.saveTransporte();
+            this._addTransporte.saveTransporte();
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya que
             //es una dependencia inyectada

@@ -10,11 +10,11 @@ namespace InventoryApp.Model
 {
     public class CatalogTerminoEnvioModel : INotifyPropertyChanged
     {
-        private FixupCollection<TERMINO_ENVIO> _terminoEnvio;
+        private FixupCollection<DeleteTerminoEnvio> _terminoEnvio;
         private TERMINO_ENVIO _selectedTerminoEnvio;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<TERMINO_ENVIO> TerminoEnvio
+        public FixupCollection<DeleteTerminoEnvio> TerminoEnvio
         {
             get
             {
@@ -56,17 +56,37 @@ namespace InventoryApp.Model
         {
             object element = this._dataMapper.getElements();
 
-            FixupCollection<TERMINO_ENVIO> ic = element as FixupCollection<TERMINO_ENVIO>;
-            if (ic != null)
+            FixupCollection<DeleteTerminoEnvio> ic = new FixupCollection<DeleteTerminoEnvio>();
+
+            if (element != null)
             {
-                this.TerminoEnvio = ic;
+                if (((List<TERMINO_ENVIO>)element).Count > 0)
+                {
+                    foreach (TERMINO_ENVIO item in (List<TERMINO_ENVIO>)element)
+                    {
+                        DeleteTerminoEnvio aux = new DeleteTerminoEnvio(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.TerminoEnvio = ic;
+        }
+
+        public void deleteTerminoEnvio()
+        {
+            foreach (DeleteTerminoEnvio item in this._terminoEnvio)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
         }
 
         public CatalogTerminoEnvioModel(IDataMapper dataMapper)
         {
             this._dataMapper = new TerminoEnvioDataMapper();
-            this._terminoEnvio = new FixupCollection<TERMINO_ENVIO>();
+            this._terminoEnvio = new FixupCollection<DeleteTerminoEnvio>();
             this._selectedTerminoEnvio = new TERMINO_ENVIO();
             this.loadItems();
         }

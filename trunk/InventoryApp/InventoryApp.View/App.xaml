@@ -1,8 +1,26 @@
 ﻿<Application x:Class="InventoryApp.View.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogSolicitante;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogSolicitante/CatalogSolicitanteView.xaml">
+             xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTransporte;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogTransporte/CatalogTransporteView.xaml">
+
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTransporte;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogTransporte/CatalogTransporteView.xaml">-->
+
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTipoPedimento;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogTipoPedimento/CatalogTipoPedimentoView.xaml">-->
+
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTipoEmpresaViewModel;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogTipoEmpresa/CatalogTipoEmpresaView.xaml">-->
+
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTerminoEnvio;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogTerminoEnvio/CatalogTerminoEnvioView.xaml">-->
+
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogProveedor;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogProveedor/CatalogProveedorView.xaml">-->
+
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogProveedorCenta;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogProveedorCenta/CatalogProveedorCuentaView.xaml">-->
 
     <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogPais;assembly=InventoryApp.ViewModel"
              StartupUri="CatalogPais/CatalogPaisView.xaml">-->
@@ -63,6 +81,42 @@
             ObjectDataProvider expone el método CreateAddItemStatusViewModel que regresa el viewModel de addItemStatusViewModel
             De esta forma es posible pasar por parametro el viewmodel de catálogo al constructor de addItemStatusViewModel
         -->
+        <vm:CatalogTransporteViewModel x:Key="catalogTransporteViewModel"></vm:CatalogTransporteViewModel>
+        <ObjectDataProvider x:Key="insertTransporteViewModel" ObjectInstance="{StaticResource catalogTransporteViewModel}"
+                            MethodName="CreateInsertTransporteViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyTransporteViewModel" ObjectInstance="{StaticResource catalogTransporteViewModel}"
+                            MethodName="CreateModifyTransporteViewModel" x:Shared="False"/>
+        
+        <!--<vm:CatalogTipoPedimentoViewModel x:Key="catalogTipoPedimentoViewModel"></vm:CatalogTipoPedimentoViewModel>
+        <ObjectDataProvider x:Key="addTipoPedimentoViewModel" ObjectInstance="{StaticResource catalogTipoPedimentoViewModel}"
+                            MethodName="CreateAddTipoPedimentoViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyTipoPedimentoViewModel" ObjectInstance="{StaticResource catalogTipoPedimentoViewModel}"
+                            MethodName="CreateModifyTipoPedimentoViewModel" x:Shared="False"/>-->
+        
+        <!--<vm:CatalogTipoEmpresaViewModel x:Key="catalogTipoEmpresaViewModel"></vm:CatalogTipoEmpresaViewModel>
+        <ObjectDataProvider x:Key="insertTipoEmpresaViewModel" ObjectInstance="{StaticResource catalogTipoEmpresaViewModel}"
+                            MethodName="CreateInsertTipoEmpresaViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyTipoEmpresaViewModel" ObjectInstance="{StaticResource catalogTipoEmpresaViewModel}"
+                            MethodName="CreateModifyTipoEmpresaViewModel" x:Shared="False"/>-->
+        
+        <!--<vm:CatalogTerminoEnvioViewModel x:Key="catalogTerminoEnvioViewModel"></vm:CatalogTerminoEnvioViewModel>
+        <ObjectDataProvider x:Key="addTerminoEnvioViewModel" ObjectInstance="{StaticResource catalogTerminoEnvioViewModel}"
+                            MethodName="CreateAddTerminoEnvioViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyTerminoEnvioViewModel" ObjectInstance="{StaticResource catalogTerminoEnvioViewModel}"
+                            MethodName="CreateModifyTerminoEnvioViewModel" x:Shared="False"/>-->
+        
+        <!--<vm:CatalogProveedorViewModel x:Key="catalogProveedorViewModel"></vm:CatalogProveedorViewModel>
+        <ObjectDataProvider x:Key="addProveedorViewModel" ObjectInstance="{StaticResource catalogProveedorViewModel}"
+                            MethodName="CreateAddProveedorViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyProveedorViewModel" ObjectInstance="{StaticResource catalogProveedorViewModel}"
+                            MethodName="CreateModifyProveedorViewModel" x:Shared="False"/>-->
+        
+        <!--<vm:CatalogProveedorCuentaViewModel x:Key="catalogProveedorCuentaViewModel"></vm:CatalogProveedorCuentaViewModel>
+        <ObjectDataProvider x:Key="addProveedorCuentaViewModel" ObjectInstance="{StaticResource catalogProveedorCuentaViewModel}"
+                            MethodName="CreateAddProveedorCuentaViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyProveedorCuentaViewModel" ObjectInstance="{StaticResource catalogProveedorCuentaViewModel}"
+                            MethodName="CreateModifyProveedorCuentaViewModel" x:Shared="False"/>-->
+        
         <!--<vm:CatalogPaisViewModel x:Key="catalogPaisViewModel" />
         <ObjectDataProvider x:Key="addPaisViewModel" ObjectInstance="{StaticResource catalogPaisViewModel}" 
                             MethodName="CreateAddPaisViewModel" x:Shared="False"/>
@@ -171,11 +225,11 @@
         <ObjectDataProvider x:Key="modifyEmpresaViewModel" ObjectInstance="{StaticResource catalogEmpresaViewModel }"
                             MethodName="CreateModifyEmpresaViewModel" x:Shared="False"/>-->
 
-        <vm:CatalogSolicitanteViewModel x:Key="catalogSolicitanteViewModel"></vm:CatalogSolicitanteViewModel>
+        <!--<vm:CatalogSolicitanteViewModel x:Key="catalogSolicitanteViewModel"></vm:CatalogSolicitanteViewModel>
         <ObjectDataProvider x:Key="addSolicitanteViewModel" ObjectInstance="{StaticResource catalogSolicitanteViewModel}"
                             MethodName="CreateAddSolicitanteViewModel" x:Shared="False"/>
         <ObjectDataProvider x:Key="modifySolicitanteViewModel" ObjectInstance="{StaticResource catalogSolicitanteViewModel}"
-                            MethodName="CreateModifySolicitanteViewModel" x:Shared="False"/>
+                            MethodName="CreateModifySolicitanteViewModel" x:Shared="False"/>-->
 
     </Application.Resources>
 </Application>

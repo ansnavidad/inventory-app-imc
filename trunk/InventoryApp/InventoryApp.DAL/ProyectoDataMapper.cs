@@ -18,12 +18,13 @@ namespace InventoryApp.DAL
 
             using (var entity = new TAE2Entities())
             {
-                (from cust in entity.PROYECTOes
-                             select cust).ToList().ForEach(d => { tp.Add(d); });
+               var query= (from cust in entity.PROYECTOes
+                           where cust.IS_ACTIVE ==true
+                           select cust).ToList();
 
-                if (tp.Count > 0)
+               if (query.Count > 0)
                 {
-                    res = tp;
+                    res = query;
                 }
                 return res;
             }
@@ -81,15 +82,11 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    PROYECTO EPro = (PROYECTO)element;
+                    PROYECTO Proyecto = (PROYECTO)element;
 
-                    PROYECTO pro = new PROYECTO();
+                    Proyecto.UNID_PROYECTO = UNID.getNewUNID();
 
-                    pro.UNID_PROYECTO = UNID.getNewUNID();
-
-                    pro.PROYECTO_NAME = EPro.PROYECTO_NAME;
-
-                    entity.PROYECTOes.AddObject(pro);
+                    entity.PROYECTOes.AddObject(Proyecto);
 
                     entity.SaveChanges();
 
@@ -99,7 +96,19 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    PROYECTO proyecto = (PROYECTO)element;
+
+                    var deleteProyecto = entity.PROYECTOes.First(p => p.UNID_PROYECTO == proyecto.UNID_PROYECTO);
+
+                    deleteProyecto.IS_ACTIVE = false;
+
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

@@ -11,25 +11,26 @@ namespace InventoryApp.Model
     public class CatalogTransporteModel : INotifyPropertyChanged
     {
         private TRANSPORTE _selectedTransporte;
+        private FixupCollection<DeleteTransporte> _transporte;
         private IDataMapper _dataMapper;
 
-        public CatalogTransporteModel(IDataMapper dataMapper)
+        public FixupCollection<DeleteTransporte> Transporte
         {
-            //this._dataMapper = new TransporteDataMapper();
-            //this._items = new ItemCollection();
-            //this._selectedItem = new Item();
-            //this.loadItems();
-            
-        }
-        public void loadTransporte()
-        {
-            //object element = this._dataMapper.getElements();
-
-            //ItemCollection ic = element as ItemCollection;
-            //if (ic != null)
-            //{
-            //    this._items = ic;
-            //}
+            get
+            {
+                return _transporte;
+            }
+            set
+            {
+                if (_transporte != value)
+                {
+                    _transporte = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Transporte"));
+                    }
+                }
+            }
         }
 
         public TRANSPORTE SelectedTransporte
@@ -47,6 +48,46 @@ namespace InventoryApp.Model
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("SelectedTransporte"));
                     }
+                }
+            }
+        }
+
+        public CatalogTransporteModel(IDataMapper dataMapper)
+        {
+            this._dataMapper = new TransporteDataMapper();
+            this._transporte = new FixupCollection<DeleteTransporte>();
+            this._selectedTransporte = new TRANSPORTE();
+            this.loadItems();
+            
+        }
+
+        public void loadItems()
+        {
+            object element = this._dataMapper.getElements();
+
+            FixupCollection<DeleteTransporte> ic = new FixupCollection<DeleteTransporte>();
+
+            if (element != null)
+            {
+                if (((List<TRANSPORTE>)element).Count > 0)
+                {
+                    foreach (TRANSPORTE item in (List<TRANSPORTE>)element)
+                    {
+                        DeleteTransporte aux = new DeleteTransporte(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.Transporte = ic;
+        }
+
+        public void deleteTransporte()
+        {
+            foreach (DeleteTransporte item in this._transporte)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
                 }
             }
         }

@@ -10,11 +10,11 @@ namespace InventoryApp.Model
 {
     public class CatalogProveedorModel : INotifyPropertyChanged
     {
-        private FixupCollection<PROVEEDOR> _proveedor;
+        private FixupCollection<DeleteProveedor> _proveedor;
         private PROVEEDOR _selectedProveedor;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<PROVEEDOR> Proveedor
+        public FixupCollection<DeleteProveedor> Proveedor
         {
             get
             {
@@ -56,30 +56,37 @@ namespace InventoryApp.Model
         {
             object element = this._dataMapper.getElements();
 
-            FixupCollection<PROVEEDOR> ic = new FixupCollection<PROVEEDOR>();
+            FixupCollection<DeleteProveedor> ic = new FixupCollection<DeleteProveedor>();
 
-            foreach (PROVEEDOR elemento in (List<PROVEEDOR>)element)
+            if (element != null)
             {
-                ic.Add((PROVEEDOR)elemento);
+                if (((List<PROVEEDOR>)element).Count > 0)
+                {
+                    foreach (PROVEEDOR item in (List<PROVEEDOR>)element)
+                    {
+                        DeleteProveedor aux = new DeleteProveedor(item);
+                        ic.Add(aux);
+                    }
+                }
             }
-            if (ic != null)
+            this.Proveedor = ic;
+        }
+
+        public void deleteProveedor()
+        {
+            foreach (DeleteProveedor item in this._proveedor)
             {
-                this.Proveedor = ic;
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
-
-
-
-            //FixupCollection<PROVEEDOR> ic = element as FixupCollection<PROVEEDOR>;
-            //if (ic != null)
-            //{
-            //    this.Proveedor = ic;
-            //}
         }
 
         public CatalogProveedorModel(IDataMapper dataMapper)
         {
             this._dataMapper = new ProveedorDataMapper();
-            this._proveedor = new FixupCollection<PROVEEDOR>();
+            this._proveedor = new FixupCollection<DeleteProveedor>();
             this._selectedProveedor = new PROVEEDOR();
             this.loadItems();
         }

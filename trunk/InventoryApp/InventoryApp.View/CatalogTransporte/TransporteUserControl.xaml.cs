@@ -22,7 +22,6 @@ namespace InventoryApp.View.CatalogTransporte
         public TransporteUserControl()
         {
             InitializeComponent();
-            InventoryApp.ViewModel.CatalogTransporteViewModel prueba = new ViewModel.CatalogTransporteViewModel();
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)

@@ -14,11 +14,10 @@ namespace InventoryApp.Model
     {
 
         private PROYECTO _selectedProyecto;
-        private FixupCollection<PROYECTO> _proyecto;
-        //private ProyectoICollection _proyecto;
+        private FixupCollection<DeleteProyecto> _proyecto;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<PROYECTO> Proyecto
+        public FixupCollection<DeleteProyecto> Proyecto
         {
             get
             {
@@ -57,7 +56,7 @@ namespace InventoryApp.Model
         public CatalogProyectoModel(IDataMapper dataMapper)
         {
             this._dataMapper = new ProyectoDataMapper();
-            this._proyecto = new FixupCollection<PROYECTO>();
+            this._proyecto = new FixupCollection<DeleteProyecto>();
             this._selectedProyecto = new PROYECTO();
             this.loadItems();
             
@@ -66,11 +65,29 @@ namespace InventoryApp.Model
         {
             object element = this._dataMapper.getElements();
 
+            FixupCollection<DeleteProyecto> ic = new FixupCollection<DeleteProyecto>();
 
-            FixupCollection<PROYECTO> ic = element as FixupCollection<PROYECTO>; //element as FixupCollection<PROYECTO>;
-            if (ic != null)
+            if (element != null)
             {
-                this.Proyecto = ic;
+                if (((List<PROYECTO>)element).Count > 0)
+                {
+                    foreach (PROYECTO item in (List<PROYECTO>)element)
+                    {
+                        DeleteProyecto aux = new DeleteProyecto(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.Proyecto = ic;
+        }
+        public void deleteProyecto()
+        {
+            foreach (DeleteProyecto item in this._proyecto)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;

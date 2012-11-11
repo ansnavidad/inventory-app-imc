@@ -14,12 +14,13 @@ namespace InventoryApp.DAL
             FixupCollection<TERMINO_ENVIO> tp = new FixupCollection<TERMINO_ENVIO>();
             using (var Entity = new TAE2Entities())
             {
-                (from p in Entity.TERMINO_ENVIO
-                 select p).ToList().ForEach(d => { tp.Add(d); });
+               var query= (from p in Entity.TERMINO_ENVIO
+                           where p.IS_ACTIVE==true
+                           select p).ToList();
 
-                if (tp.Count > 0)
+               if (query.Count > 0)
                 {
-                    o = (object)tp;
+                    o = query;
                 }
 
                 return o;
@@ -36,13 +37,13 @@ namespace InventoryApp.DAL
 
                 using (var Entity = new TAE2Entities())
                 {
-                    (from p in Entity.TERMINO_ENVIO
-                     where p.UNID_TERMINO_ENVIO == Eprov.UNID_TERMINO_ENVIO
-                     select p).ToList().ForEach(d => { tp.Add(d); });
+                    var query = (from p in Entity.TERMINO_ENVIO
+                                 where p.UNID_TERMINO_ENVIO == Eprov.UNID_TERMINO_ENVIO
+                                 select p).ToList();
 
-                    if (tp.Count > 0)
+                    if (query.Count > 0)
                     {
-                        o = (object)tp;
+                        o = query;
                     }
                 }
             }
@@ -85,7 +86,19 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TERMINO_ENVIO terminoEnvio = (TERMINO_ENVIO)element;
+
+                    var deleteTerminoEnvio = entity.TERMINO_ENVIO.First(p => p.UNID_TERMINO_ENVIO == terminoEnvio.UNID_TERMINO_ENVIO);
+
+                    deleteTerminoEnvio.IS_ACTIVE = false;
+
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

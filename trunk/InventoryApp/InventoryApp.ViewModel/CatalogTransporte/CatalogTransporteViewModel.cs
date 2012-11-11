@@ -4,12 +4,26 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using System.Windows.Input;
 
-namespace InventoryApp.ViewModel
+namespace InventoryApp.ViewModel.CatalogTransporte
 {
     public class CatalogTransporteViewModel
     {
+        private RelayCommand _deleteTransporteCommand;
         private CatalogTransporteModel _catalogTransporteModel;
+
+        public ICommand DeleteTransporteCommand
+        {
+            get
+            {
+                if (_deleteTransporteCommand == null)
+                {
+                    _deleteTransporteCommand = new RelayCommand(p => this.AttempDeleteTransporte(), p => this.CanAttempDeleteTransporte());
+                }
+                return _deleteTransporteCommand;
+            }
+        }
 
         public CatalogTransporteViewModel()
         {
@@ -45,21 +59,12 @@ namespace InventoryApp.ViewModel
 
         public void loadItems()
         {
-            this._catalogTransporteModel.loadTransporte();
+            this._catalogTransporteModel.loadItems();
         }
 
         public InsertTransporteViewModel CreateInsertTransporteViewModel()
         {
-            InsertTransporteViewModel p;
-            try
-            {
-                p = new InsertTransporteViewModel(this);
-            }
-            catch (ArgumentException ex)
-            {
-                throw ex;
-            }
-            return p;
+            return new InsertTransporteViewModel(this);
         }
 
         public ModifyTransporteViewModel CreateModifyTransporteViewModel()
@@ -75,5 +80,36 @@ namespace InventoryApp.ViewModel
             }
             return new ModifyTransporteViewModel(this, transporteModel);
         }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteTransporte()
+        {
+            bool _canDeleteTransporte = false;
+            foreach (DeleteTransporte d in this._catalogTransporteModel.Transporte)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteTransporte = true;
+                }
+            }
+
+            return _canDeleteTransporte;
+        }
+
+        public void AttempDeleteTransporte()
+        {
+            this._catalogTransporteModel.deleteTransporte();
+
+            if (this._catalogTransporteModel != null)
+            {
+                this._catalogTransporteModel.loadItems();
+            }
+        }
+        #endregion
     }
 }

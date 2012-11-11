@@ -14,10 +14,16 @@ namespace InventoryApp.DAL
             object res = null;           
             using (var Entity = new TAE2Entities())
             {
-                var query = (from p in Entity.PROVEEDOR_CUENTA
-                             where p.IS_ACTIVE ==true
+                var query = (from p in Entity.PROVEEDOR_CUENTA 
+                             where p.IS_ACTIVE == true
                              select p).ToList();
-                if (query.Count >0)
+                foreach (PROVEEDOR_CUENTA sol in ((List<PROVEEDOR_CUENTA>)query))
+                {
+                    sol.BANCO = sol.BANCO;
+                    sol.PROVEEDOR = sol.PROVEEDOR;
+                }
+
+                if (query.Count > 0)
                 {
                     res = query;
                 }

@@ -15,7 +15,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Content="Modificar" Grid.Row="4" Height="23" HorizontalAlignment="Stretch" 
+        <Button Content="Guardar" Grid.Row="4" Height="23" HorizontalAlignment="Stretch" 
                 Margin="5,0" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" 
                 Command="{Binding ModifyMonedaCommand,Mode=OneWay}" Click="btnAgregar_Click" />
         <Button Content="Cancelar" Grid.Column="1" Grid.Row="4" Height="23" 

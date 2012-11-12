@@ -2,26 +2,40 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:InventoryApp.ViewModel;assembly=InventoryApp.ViewModel"
-        Title="CatalogPaisView" Height="418" Width="367">
+        Title="CatalogPaisView" Height="418" Width="500"
+        DataContext="{StaticResource catalogPaisViewModel}">
     <Window.Resources>
-    <ResourceDictionary>
-        <ResourceDictionary.MergedDictionaries>
-            <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
-        </ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
-    <Grid Name="GridPrincipal"  DataContext="{StaticResource catalogPaisViewModel}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="300" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Border Style="{StaticResource titleBorder}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Height="40">
-            <Label Content="CONSULTA DE PAIS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Content="CONSULTA PAIS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        
-
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogPaisModel.Pais}" SelectedItem="{Binding CatalogPaisModel.SelectedPais, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick">
+        <Button Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" 
+                VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" Grid.Row="0" Grid.Column="2"/>
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
+                    Margin="0,0,170,0" Name="btnEliminar" VerticalAlignment="Stretch"
+                    Width="75" Click="btnEliminar_Click" Command="{Binding DeletePaisCommand,Mode=OneWay}"/>
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" 
+                  Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogPaisModel.Pais}" 
+                  SelectedItem="{Binding CatalogPaisModel.SelectedPais, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick"
+                  Grid.Column="0" Grid.ColumnSpan="3"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
+                  RowStyle="{StaticResource RowStyle}">
             <DataGrid.Columns>
                 <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected"/>-->
                 <DataGridTemplateColumn Header="" Width="Auto">
@@ -35,16 +49,5 @@
                 <DataGridTextColumn Header="ISO" Width="*" x:Name="iso" Binding="{Binding Path=ISO}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Name="gridBtn" Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200"/>
-            </Grid.ColumnDefinitions>
-            <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
-            <Button Content="ELIMINAR" Height="23" HorizontalAlignment="Stretch"
-                    Margin="5,0" Name="btnEliminar" VerticalAlignment="Stretch"
-                    Width="75" Click="btnEliminar_Click"  Command="{Binding DeletePaisCommand,Mode=OneWay}"/>
-        </Grid>
     </Grid>
 </Window>

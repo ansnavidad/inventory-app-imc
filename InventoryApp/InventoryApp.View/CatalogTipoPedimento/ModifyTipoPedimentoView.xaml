@@ -4,8 +4,8 @@
         DataContext="{DynamicResource modifyTipoPedimentoViewModel}"
         Title="ModifyTipoPedimentoView" Height="300" Width="300">
     <Grid>
-        <Button Command="{Binding ModifyTipoPedimentoCommand, Mode=OneWay}" Content="AGREGAR" Height="23" HorizontalAlignment="Stretch" Margin="31,229,172,9" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Click="btnAgregar_Click" />
-        <Button Content="CANCELAR" Height="23" HorizontalAlignment="Stretch" Margin="181,229,22,9" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
+        <Button Content="Guardar" Command="{Binding ModifyTipoPedimentoCommand, Mode=OneWay}" Height="23" HorizontalAlignment="Stretch" Margin="31,229,172,9" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Click="btnAgregar_Click" />
+        <Button Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="181,229,22,9" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
         <Label Content="CAMBIO DE TIPO PEDIMENTO" Height="28" HorizontalAlignment="Stretch" Margin="61,4,33,229" Name="lblTitulo" VerticalAlignment="Stretch" Width="184" />
         <Label Content="Clave:" Height="28" HorizontalAlignment="Left" Margin="12,46,0,0" Name="label2" VerticalAlignment="Top" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="58,48,0,0" MaxLength="2" Name="textBoxClave" VerticalAlignment="Top" Width="39" Text="{Binding TipoPedimento.Clave, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>

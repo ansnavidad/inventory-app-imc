@@ -1,16 +1,40 @@
 ﻿<Window x:Class="InventoryApp.View.CatalogModelo.CatalogModeloView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="CatalogModeloView" Height="400" Width="500">
-    <Grid Name="GridPrincipal"  DataContext="{DynamicResource catalogModeloViewModel}">
+        Title="CatalogModeloView" Height="400" Width="500"
+        DataContext="{DynamicResource catalogModeloViewModel}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="300" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Content="CONSULTA DE MODELOS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
-
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridModelo" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogModeloModel.Modelos}" SelectedItem="{Binding CatalogModeloModel.SelectedModelo, Mode=TwoWay}" MouseDoubleClick="dtGridModelo_MouseDoubleClick">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Content="CONSULTA MODELO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <Button Content="Nuevo" Grid.Row="0" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" 
+                VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
+                    Margin="0,0,170,0" Name="btnEliminar" VerticalAlignment="Stretch"
+                    Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteModeloCommand,Mode=OneWay}"/>
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" 
+                  Name="dtGridModelo" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogModeloModel.Modelos}" 
+                  SelectedItem="{Binding CatalogModeloModel.SelectedModelo, Mode=TwoWay}" MouseDoubleClick="dtGridModelo_MouseDoubleClick"
+                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
+                  RowStyle="{StaticResource RowStyle}">
             <DataGrid.Columns>
                 <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />-->
                 <DataGridTemplateColumn Header="" Width="Auto">
@@ -20,19 +44,8 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Status" Width="*" x:Name="nombreStatus" Binding="{Binding Path=MODELO_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Modelo" Width="*" x:Name="nombreStatus" Binding="{Binding Path=MODELO_NAME}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Name="gridBtn" Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200"/>
-            </Grid.ColumnDefinitions>
-            <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
-            <Button Content="ELIMINAR" Height="23" HorizontalAlignment="Stretch"
-                    Margin="5,0" Name="btnEliminar" VerticalAlignment="Stretch"
-                    Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteModeloCommand,Mode=OneWay}"/>
-        </Grid>
     </Grid>
 </Window>

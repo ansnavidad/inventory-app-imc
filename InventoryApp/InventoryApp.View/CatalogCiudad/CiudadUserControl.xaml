@@ -4,18 +4,48 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="305" d:DesignWidth="312" Height="376" Width="386">
-    <Grid Name="GridPrincipal"  DataContext="{StaticResource catalogCiudadViewModel}">
+             d:DesignHeight="305" d:DesignWidth="312" Height="376" Width="500"
+             DataContext="{StaticResource catalogCiudadViewModel}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="300" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Content="CONSULTA DE CIUDAD" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
-
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogCiudadModel.Ciudad}" SelectedItem="{Binding CatalogCiudadModel.SelectedCiudad, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Content="CONSULTA CIUDAD " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <Button Content="Nuevo" Grid.Row="0" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" 
+                VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
+                    Margin="0,0,170,0" Name="btnEliminar" VerticalAlignment="Stretch" Command="{Binding DeleteCiudadCommand,Mode=OneWay}"
+                    Width="75" Click="btnEliminar_Click" />
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Margin="0,0,0,0" 
+                  Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogCiudadModel.Ciudad}" 
+                  SelectedItem="{Binding CatalogCiudadModel.SelectedCiudad, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
+                  RowStyle="{StaticResource RowStyle}">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected"/>
+                <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected"/>-->
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Ciudad" Width="*" x:Name="nombreCiudad" Binding="{Binding Path=CIUDAD1}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="ISO" Width="*" x:Name="ISO" Binding="{Binding Path=ISO}" IsReadOnly="True"/>
             </DataGrid.Columns>
@@ -26,7 +56,6 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
-            <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
         </Grid>
     </Grid>
 </UserControl>

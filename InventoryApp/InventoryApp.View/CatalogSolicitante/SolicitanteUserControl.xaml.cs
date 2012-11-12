@@ -41,5 +41,10 @@ namespace InventoryApp.View.CatalogSolicitante
             AltaSolicitante alta = new AltaSolicitante();
             alta.ShowDialog();
         }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

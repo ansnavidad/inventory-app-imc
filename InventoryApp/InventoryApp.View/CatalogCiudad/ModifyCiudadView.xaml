@@ -2,25 +2,45 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
         DataContext="{DynamicResource modifyCiudadViewModel}"
-        Title="ModifyCiudadView" Height="300" Width="300" Loaded="Window_Loaded">
-    <Grid Name="gridAlta" >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="150"/>
-        </Grid.ColumnDefinitions>
+        Title="ModifyCiudadView" Height="300" Width="300" WindowStyle="ToolWindow" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="71*" />
         </Grid.RowDefinitions>
-        <Button Content="AGREGAR" Grid.Row="4" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Command="{Binding ModifyCiudadCommand,Mode=OneWay}" Click="btnAgregar_Click" />
-        <Button Content="CANCELAR" Grid.Column="1" Grid.Row="4" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
-        <Label Content="Nombre Ciudad :" Grid.Row="2" Height="28" HorizontalAlignment="Right" Margin="0,35,18,37" Name="lblNombreStatus" VerticalAlignment="Stretch" Grid.RowSpan="2" />
-        <TextBox Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="142,38,0,40" Name="txtNombreMedioEnvio" VerticalAlignment="Stretch" Width="120" Text="{Binding CiudadModel.Ciudad, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Grid.RowSpan="2" MaxLength="512"/>
-        <Label Content="MODIFICAR CIUDAD" Height="28" HorizontalAlignment="Stretch" Margin="78,12,38,10" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184" />
-        <Label Content="ISO :" Height="28" HorizontalAlignment="Right" Margin="0,35,18,37" Name="label1" VerticalAlignment="Stretch" Grid.Row="1" Grid.RowSpan="2" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="142,38,0,39" Name="textBox1" Text="{Binding CiudadModel.Iso, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="120" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" MaxLength="16"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Content="MODIFICACION CIUDAD" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <!--Nombre Ciudad-->
+        <Label Content="Nombre Ciudad :" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,12,0,0" Name="lblNombreStatus" 
+               VerticalAlignment="Stretch" Grid.Column="1" />
+        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="118,14,0,3" Name="txtNombreMedioEnvio" VerticalAlignment="Stretch" 
+                 Width="120" Text="{Binding CiudadModel.Ciudad, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" 
+                 MaxLength="512" Grid.Column="1" />
+        <!--ISO-->
+        <Label Content="ISO :" Height="28" HorizontalAlignment="Right" Margin="0,17,0,146" Name="label1" VerticalAlignment="Stretch" 
+               Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="0,17,0,0" Name="textBox1" 
+                 Text="{Binding CiudadModel.Iso, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" 
+                 Width="120" Grid.Row="2" Grid.ColumnSpan="2" MaxLength="16" Grid.Column="2" />
+        <!--Botones-->
+        <Button Content="Guardar" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="44,33,0,95" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Command="{Binding ModifyCiudadCommand,Mode=OneWay}" Click="btnAgregar_Click" Grid.Column="1" />
+        <Button Content="Cancelar" Grid.Column="2" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="45,33,19,95" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" Grid.ColumnSpan="2" />
     </Grid>
 </Window>

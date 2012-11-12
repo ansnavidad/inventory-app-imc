@@ -4,8 +4,8 @@
         DataContext="{DynamicResource modifyProveedorViewModel}"
         Title="ModifyProveedorView"  Height="391" Width="588">
     <Grid>
-        <Button Command="{Binding ModifyProveedorCommand, Mode=OneWay}" Content="AGREGAR" Height="23" HorizontalAlignment="Stretch" Margin="61,307,430,21" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Click="btnAgregar_Click" />
-        <Button Content="CANCELAR" Height="23" HorizontalAlignment="Stretch" Margin="437,307,54,21" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
+        <Button Content="Guardar" Command="{Binding ModifyProveedorCommand, Mode=OneWay}" Height="23" HorizontalAlignment="Stretch" Margin="61,307,430,21" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Click="btnAgregar_Click" />
+        <Button Content="Cancelar" Height="23" HorizontalAlignment="Stretch" Margin="437,307,54,21" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
         <Label Content="CAMBIO DE PROVEEDOR" Height="28" HorizontalAlignment="Stretch" Margin="85,12,71,312" Name="lblTitulo" VerticalAlignment="Stretch" Width="184" />
         <Label Content="Nombre:" Height="28" HorizontalAlignment="Left" Margin="40,52,0,0" Name="label2" VerticalAlignment="Top" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="97,54,0,0" Name="textBoxNombre" VerticalAlignment="Top" Width="217" Text="{Binding ProveedorModel.ProveedorName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="254"/>

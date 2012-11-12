@@ -41,5 +41,10 @@ namespace InventoryApp.View.CatalogTipoMovimiento
                 }
             }
         }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             DataContext="{StaticResource entradaPorValidacionViewModel}"
              mc:Ignorable="d" 
 
              d:DesignHeight="595" d:DesignWidth="539" Loaded="UserControl_Loaded">
-    <Grid Name="gridAlta" Width="531" DataContext="{StaticResource entradaPorValidacionViewModel}">
+    <Grid Name="gridAlta" Width="531" >
 
         
         <!--<Label Content="ALTA DE ITEM STATUS" Height="28" HorizontalAlignment="Stretch" Margin="5,0" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184"  />-->

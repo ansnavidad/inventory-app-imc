@@ -1,7 +1,7 @@
 ﻿<Window x:Class="InventoryApp.View.Entradas.AddItem"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        DataContext="{DynamicResource catalogItemViewModel}"
+        
         Title="AddItem" Height="509" Width="720">
     <Grid>
         <Label Content="Agregar Items" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="35" HorizontalAlignment="Right" Margin="0,12,286,0" Name="label1" VerticalAlignment="Top" Width="135" />

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.Entradas;
 
 namespace InventoryApp.View.Entradas
 {
@@ -32,6 +33,8 @@ namespace InventoryApp.View.Entradas
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             AddItem it = new AddItem();
+            EntradaPorValidacionViewModel entrada = this.DataContext as EntradaPorValidacionViewModel;
+            it.DataContext = entrada.CreateCatalogItemViewModel();
             it.ShowDialog();
         }
     }

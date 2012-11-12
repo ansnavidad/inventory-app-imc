@@ -20,7 +20,7 @@ namespace InventoryApp.DAL
                     var res = (from i in Entity.ITEMs
                                     join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                     join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
-                                    where i.NUMERO_SERIE == numSerie && u2.UNID_ALMACEN == almacen.UNID_ALMACEN
+                                    where i.NUMERO_SERIE == numSerie && u2.UNID_ALMACEN == almacen.UNID_ALMACEN && i.IS_ACTIVE == true
                                     select i).ToList();
 
                     if (((List<ITEM>)res).Count > 0)
@@ -44,7 +44,7 @@ namespace InventoryApp.DAL
                 using (var Entity = new TAE2Entities())
                 {
                     var res = (from cust in Entity.ITEMs
-                               where cust.NUMERO_SERIE == numSerie
+                               where cust.NUMERO_SERIE == numSerie && cust.IS_ACTIVE == true
                                select cust).ToList();
 
                     if (((List<ITEM>)res).Count > 0)
@@ -71,7 +71,7 @@ namespace InventoryApp.DAL
                     var res = (from i in Entity.ITEMs
                                join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                join u2 in Entity.CLIENTEs on u1.UNID_CLIENTE equals u2.UNID_CLIENTE
-                               where i.NUMERO_SERIE == numSerie && u2.UNID_CLIENTE == cliente.UNID_CLIENTE
+                               where i.NUMERO_SERIE == numSerie && u2.UNID_CLIENTE == cliente.UNID_CLIENTE && i.IS_ACTIVE == true
                                select i).ToList();
 
                     if (((List<ITEM>)res).Count > 0)
@@ -99,7 +99,7 @@ namespace InventoryApp.DAL
                     var res = (from i in Entity.ITEMs
                                join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                join u2 in Entity.PROVEEDORs on u1.UNID_PROVEEDOR equals u2.UNID_PROVEEDOR
-                               where i.NUMERO_SERIE == numSerie && u2.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR
+                               where i.NUMERO_SERIE == numSerie && u2.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR && i.IS_ACTIVE == true
                                select i).ToList();
 
                     if (((List<ITEM>)res).Count > 0)

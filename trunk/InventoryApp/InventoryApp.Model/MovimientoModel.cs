@@ -13,19 +13,26 @@ namespace InventoryApp.Model
     {
         #region Fields
         private long _unidMovimiento;
-        private long? _unidAlmacen;
         private DateTime _fechaMovimiento;
         private TIPO_MOVIMIENTO _tipoMovimiento;
         private ALMACEN _almacenDestino;
+        private long? _unidAlmacenDestino;
         private PROVEEDOR _proveedorDestino;
+        private long? _unidProvedorDestino;
         private CLIENTE _clienteDestino;
+        private long? _unidClienteDestino;
         private PROVEEDOR _proveedorProcedencia;
+        private long? _unidProveedorProcedencia;
         private CLIENTE _clienteProcedencia;
+        private long? _unidClienteProcedencia;
         private ALMACEN _almacenProcedencia;
+        private long? _unidAlmacenProcedencia;
         private SERVICIO _servicio;
+        private long? _unidServicio;
         private string _tt;
         private string _contacto;
         private TRANSPORTE _transporte;
+        private long? _unidTransporte;
         private bool _isActive;
         private string _direccionEnvio;
         private string _sitioEnlace;
@@ -33,9 +40,13 @@ namespace InventoryApp.Model
         private string _recibe;
         private string _guia;
         private CLIENTE _cliente;
+        private long? _unidCliente;
         private PROVEEDOR _proveedor;
+        private long? _unidProveedor;
         private FACTURA_VENTA _facturaVenta;
+        private long? _unidFacturaVenta;
         private SOLICITANTE _solicitante;
+        private long? _unidSolicitante;
         private MovimientoDataMapper _dataMapper;
 
         #endregion
@@ -54,6 +65,7 @@ namespace InventoryApp.Model
                 if (_solicitante != value)
                 {
                     _solicitante = value;
+                    this._unidSolicitante = _solicitante.UNID_SOLICITANTE;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Solicitante"));
@@ -486,7 +498,7 @@ namespace InventoryApp.Model
             if (_dataMapper != null)
             {
                 //_dataMapper.insertElement(new MOVIMENTO() { UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO, UNID_ALMACEN_DESTINO = this._almacenDestino.UNID_ALMACEN, UNID_PROVEEDOR_DESTINO = this._proveedorDestino.UNID_PROVEEDOR, UNID_CLIENTE_DESTINO = this._clienteDestino.UNID_CLIENTE, UNID_ALMACEN_PROCEDENCIA = this._almacenProcedencia.UNID_ALMACEN, UNID_CLIENTE_PROCEDENCIA = this._clienteProcedencia.UNID_CLIENTE, UNID_PROVEEDOR_PROCEDENCIA = this._proveedorProcedencia.UNID_PROVEEDOR, UNID_SERVICIO = this._servicio.UNID_SERVICIO, TT = this._tt, CONTACTO = this._contacto, UNID_TRANSPORTE = this._transporte.UNID_TRANSPORTE, IS_ACTIVE = this._isActive, DIRECCION_ENVIO = this._direccionEnvio, SITIO_ENLACE = this._sitioEnlace, NOMBRE_SITIO = this._nombreSitio, RECIBE = this._recibe, GUIA = this._guia, UNID_CLIENTE = this._cliente.UNID_CLIENTE, UNID_PROVEEDOR = this._proveedor.UNID_PROVEEDOR, UNID_FACTURA_VENTA = this._facturaVenta.UNID_FACTURA_VENTA });
-                _dataMapper.insertElement(new MOVIMENTO() { UNID_ALMACEN_DESTINO = this._unidAlmacen, UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe});
+                _dataMapper.insertElement(new MOVIMENTO() {UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe, UNID_ALMACEN_DESTINO = this._unidSolicitante});
           
             }
         }
@@ -503,7 +515,6 @@ namespace InventoryApp.Model
             }
             
             this._almacenDestino = new ALMACEN();
-            this._unidAlmacen = null;
             this._proveedorDestino = new PROVEEDOR();
             this._clienteDestino = new CLIENTE();
             this._proveedorProcedencia = new PROVEEDOR();

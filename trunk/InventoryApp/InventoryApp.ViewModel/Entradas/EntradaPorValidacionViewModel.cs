@@ -12,6 +12,7 @@ namespace InventoryApp.ViewModel.Entradas
         private MovimientoModel _movimientoModel;
         private CatalogSolicitante1Model _catalogSolicitanteModel;
 
+
         public EntradaPorValidacionViewModel()
         {
             
@@ -65,16 +66,7 @@ namespace InventoryApp.ViewModel.Entradas
 
         public CatalogItemViewModel CreateCatalogItemViewModel()
         {
-            CatalogItemViewModel p;
-            try
-            {
-                p = new CatalogItemViewModel(this);
-            }
-            catch (ArgumentException ex)
-            {
-                throw ex;
-            }
-            return p;
+            return new CatalogItemViewModel(this); 
         }
 
     }

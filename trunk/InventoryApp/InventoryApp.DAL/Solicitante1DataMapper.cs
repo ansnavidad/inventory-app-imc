@@ -7,20 +7,16 @@ using InventoryApp.DAL;
 
 namespace InventoryApp.DAL
 {
-    public class MovimientoDataMapper : IDataMapper
+    public class Solicitante1DataMapper : IDataMapper
     {
         public object getElements()
         {
             using (var Entity = new TAE2Entities())
             {
-                var res = (from p in Entity.MOVIMENTOes
-                           select p).ToList();
-
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    //Para conservar las prop. de navegación
-                }
-
+                var res = (from p in Entity.SOLICITANTE1
+                           where p.IS_ACTIVE == true
+                           select p                           
+                           ).ToList();
                 return res;
             }
         }
@@ -30,18 +26,13 @@ namespace InventoryApp.DAL
             object o = null;
             if (element != null)
             {
-                MOVIMENTO Eprov = (MOVIMENTO)element;
+                SOLICITANTE1 Eprov = (SOLICITANTE1)element;
 
                 using (var Entity = new TAE2Entities())
                 {
-                    var res = (from p in Entity.MOVIMENTOes
-                               where p.UNID_MOVIMIENTO == Eprov.UNID_MOVIMIENTO
+                    var res = (from p in Entity.SOLICITANTE1
+                               where p.UNID_SOLICITANTE == Eprov.UNID_SOLICITANTE
                                select p).ToList();
-
-                    foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                    {
-                        //Para conservar las prop. de navegación
-                    }
 
                     o = (object)res;
                 }
@@ -56,16 +47,7 @@ namespace InventoryApp.DAL
 
         public void insertElement(object element)
         {
-            if (element != null)
-            {
-                using (var entity = new TAE2Entities())
-                {
-                    MOVIMENTO movimiento = (MOVIMENTO)element;
-
-                    entity.MOVIMENTOes.AddObject(movimiento);
-                    entity.SaveChanges();
-                }
-            }
+            throw new NotImplementedException();
         }
 
         public void deleteElement(object element)

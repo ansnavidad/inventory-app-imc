@@ -9,30 +9,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace InventoryApp.View.Entradas
 {
     /// <summary>
-    /// Lógica de interacción para EntradaValidacionRevision.xaml
+    /// Lógica de interacción para AddItem.xaml
     /// </summary>
-    public partial class EntradaValidacionRevision : UserControl
+    public partial class AddItem : Window
     {
-        public EntradaValidacionRevision()
+        public AddItem()
         {
             InitializeComponent();
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            AddItem it = new AddItem();
-            it.ShowDialog();
         }
     }
 }

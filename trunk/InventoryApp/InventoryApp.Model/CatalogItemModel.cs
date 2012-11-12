@@ -6,13 +6,14 @@ using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
 using System.ComponentModel;
 
+
 namespace InventoryApp.Model
 {
     public class CatalogItemModel : INotifyPropertyChanged
     {
         private FixupCollection<ItemModel> _itemModel;
-        private ItemModel _selectedItemModel;
-        private IDataMapper _dataMapper;
+        private string _serie;
+        private ItemDataMapper _dataMapper;
 
         public FixupCollection<ItemModel> ItemModel
         {
@@ -33,34 +34,36 @@ namespace InventoryApp.Model
             }
         }
 
-        public ItemModel SelectedItemModel
+        public string Serie
         {
             get
             {
-                return _selectedItemModel;
+                return _serie;
             }
             set
             {
-                if (_selectedItemModel != value)
+                if (_serie != value)
                 {
-                    _selectedItemModel = value;
+                    _serie = value;
                     if (PropertyChanged != null)
                     {
-                        PropertyChanged(this, new PropertyChangedEventArgs("SelectedItemModel"));
+                        PropertyChanged(this, new PropertyChangedEventArgs("Serie"));
                     }
                 }
             }
         }
 
+
         public void loadItems()
         {
-            object element = this._dataMapper.getElements();
+            object element = this._dataMapper.getElements_EntradasSalidasSerie(this._serie);
 
             FixupCollection<ItemModel> ic = new FixupCollection<ItemModel>();
 
-            foreach (ItemModel elemento in (List<ItemModel>)element)
+            foreach (ITEM elemento in (List<ITEM>)element)
             {
-                ic.Add((ItemModel)elemento);
+                ItemModel aux = new ItemModel(elemento);
+                ic.Add(aux);
             }
             if (ic != null)
             {
@@ -72,7 +75,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new ItemDataMapper();
             this._itemModel = new FixupCollection<ItemModel>();
-            //this._selectedItemModel = new ItemModel();
+            this._serie = "123456";
             this.loadItems();
         }       
 

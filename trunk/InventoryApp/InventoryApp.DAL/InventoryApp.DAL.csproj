@@ -61,6 +61,7 @@
     <Compile Include="ModeloDataMapper.cs" />
     <Compile Include="MonedaDataMapper.cs" />
     <Compile Include="MovimientoDataMapper.cs" />
+    <Compile Include="MovimientoDetalleDataMapper.cs" />
     <Compile Include="PaisDataMapper.cs" />
     <Compile Include="PedimentoDataMapper.cs" />
     <Compile Include="POCOS\ALMACEN.cs">
@@ -214,6 +215,7 @@
     <Compile Include="ProveedorCuentaDataMapper.cs" />
     <Compile Include="ProveedorDataMapper.cs" />
     <Compile Include="ProyectoDataMapper.cs" />
+    <Compile Include="Solicitante1DataMapper.cs" />
     <Compile Include="SolicitanteDataMapper.cs" />
     <Compile Include="TerminoEnvioDataMapper.cs" />
     <Compile Include="TipoCotizacionDataMapper.cs" />

@@ -64,7 +64,7 @@
     <Compile Include="CatalogEmpresa\ModifyEmpresaViewModel.cs" />
     <Compile Include="CatalogItemStatus\AddItemStatusViewModel.cs" />
     <Compile Include="CatalogItemStatus\CatalogItemStatusViewModel.cs" />
-    <Compile Include="CatalogItemViewModel.cs" />
+    <Compile Include="Entradas\CatalogItemViewModel.cs" />
     <Compile Include="CatalogMarca\AddMarcaViewModel.cs" />
     <Compile Include="CatalogMarca\CatalogMarcaViewModel.cs" />
     <Compile Include="CatalogMarca\ModifyMarcaViewModel.cs" />
@@ -111,6 +111,7 @@
     <Compile Include="CatalogItemStatus\ModifyItemStatusViewModel.cs" />
     <Compile Include="CatalogTipoEmpresa\ModifyTipoEmpresaViewModel.cs" />
     <Compile Include="CatalogTransporte\ModifyTransporteViewModel.cs" />
+    <Compile Include="Entradas\EntradaPorValidacionViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,8 +4,10 @@
         
         Title="AddItem" Height="509" Width="667">
     <Grid>
-        <Label Content="Numero de Serie:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,116,522,0" Name="label8" VerticalAlignment="Top" Width="111" />
-        <DataGrid AutoGenerateColumns="False" Height="251" HorizontalAlignment="Left" Margin="11,148,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="621" ItemsSource="{Binding CatalogItemModel.ItemModel}">
+        <Label Content="Agregar Items" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="35" HorizontalAlignment="Right" Margin="0,12,286,0" Name="label1" VerticalAlignment="Top" Width="135" />
+        <Label Content="Numero de Serie:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,47,587,0" Name="label8" VerticalAlignment="Top" Width="111" />
+        <DataGrid AutoGenerateColumns="False" Height="313" HorizontalAlignment="Left" Margin="12,101,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="667" ItemsSource="{Binding CatalogItemModel.ItemModel}">
+
 
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn x:Name="check"  MinWidth="25" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -16,15 +18,12 @@
                 <DataGridTextColumn IsReadOnly="True"  Width="90" Header="Marca" x:Name="MARCA" Binding="{Binding Path=Marca.MARCA_NAME}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="98" Header="Status" x:Name="STATUS" Binding="{Binding Path=Status.STATUS_NAME}"></DataGridTextColumn>
 
-
-
-                
             </DataGrid.Columns>
         </DataGrid>
-        <Button Command="{Binding AddItemCommand, Mode=OneWay}" Content="Agregar Items" Height="23" HorizontalAlignment="Left" Margin="99,428,0,19" Name="btnAgregar" Width="96" Click="btnAgregar_Click" />
+        <Button Command="{Binding AddItemsCommand, Mode=OneWay}" Content="Agregar Items" Height="23" HorizontalAlignment="Left" Margin="99,428,0,19" Name="btnAgregar" Width="96" Click="btnAgregar_Click" />
         <Button Content="Cancelar" Height="23" HorizontalAlignment="Left" Margin="444,428,0,19" Name="button1" Width="96" Click="button1_Click" />
         <TextBox Text="{Binding CatalogItemModel.Serie, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="23" HorizontalAlignment="Left" Margin="122,116,0,0" Name="textBox1" VerticalAlignment="Top" Width="159" />
         <Button Command="{Binding AddItemCommand, Mode=OneWay}"  Content="Buscar Item" Height="28" HorizontalAlignment="Right" Margin="0,111,260,0" Name="button2" VerticalAlignment="Top" Width="98" />
-        <Label Content="Agregar Items" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="35" HorizontalAlignment="Right" Margin="0,28,226,0" Name="label1" VerticalAlignment="Top" Width="135" />
-    </Grid>
+        <Label Content="Agregar Items" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="35" HorizontalAlignment="Right" Margin="0,28,226,0" Name="label54" VerticalAlignment="Top" Width="135" />
+          </Grid>
 </Window>

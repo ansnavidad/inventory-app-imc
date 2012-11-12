@@ -91,8 +91,8 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new ItemDataMapper();
             this._itemModel = new FixupCollection<ItemModel>();
-            //this._serie = "123456";
-            //this.loadItems();
+            this._serie = "123456";
+            this.loadItems();
         }       
 
         public event PropertyChangedEventHandler PropertyChanged;

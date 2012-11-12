@@ -11,6 +11,7 @@ namespace InventoryApp.Model
     public class ItemModel : ITEM, INotifyPropertyChanged
     {
         private bool _isChecked;
+        private string _nombre;
         private ARTICULO _articulo;
         private FACTURA_DETALLE _facturaDetalle;
         private ITEM_STATUS _itemStatus;
@@ -28,6 +29,21 @@ namespace InventoryApp.Model
                 }
             }
         }
+
+        public string Nombre
+        {
+            get { return this._nombre; }
+            set
+            {
+                if (value != this._nombre)
+                {
+                    this._nombre = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Nombre"));
+                }
+            }
+        }
+
 
         public ARTICULO Articulo
         {
@@ -74,6 +90,7 @@ namespace InventoryApp.Model
         public ItemModel(ITEM item) 
         {
             this._articulo = item.ARTICULO;
+            this._nombre = item.ARTICULO.ARTICULO1;
             this.SKU = item.SKU;
             this.NUMERO_SERIE = item.NUMERO_SERIE;
             this._itemStatus = item.ITEM_STATUS;

@@ -5,23 +5,29 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.Entradas
 {
     public class EntradaPorValidacionViewModel
     {
         private MovimientoModel _movimientoModel;
-        private CatalogSolicitante1Model _catalogSolicitanteModel;
+        private MovimientoDetalleModel _movimientoDetalleModel;
+        private CatalogSolicitanteModel _catalogSolicitanteModel;
         private CatalogItemModel _itemModel;
+        private RelayCommand _addItemCommand;
 
         public EntradaPorValidacionViewModel()
         {
             
             try
             {
-                IDataMapper dataMapper = new Solicitante1DataMapper();
-                this._catalogSolicitanteModel = new CatalogSolicitante1Model(dataMapper);
+                IDataMapper dataMapper = new SolicitanteDataMapper();
+                this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoModel(new MovimientoDataMapper());
+                TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
+                mov.UNID_TIPO_MOVIMIENTO = 1;
+                this._movimientoModel.TipoMovimiento = mov;
                 this._itemModel = new CatalogItemModel(new ItemDataMapper());
             }
             catch (ArgumentException a)
@@ -34,6 +40,18 @@ namespace InventoryApp.ViewModel.Entradas
                 throw ex;
             }   
             
+        }
+
+        public ICommand AddItemCommand
+        {
+            get
+            {
+                if (_addItemCommand == null)
+                {
+                    _addItemCommand = new RelayCommand(p => this.AttempArticulo(), p => this.CanAttempArticulo());
+                }
+                return _addItemCommand;
+            }
         }
         public MovimientoModel MovimientoModel
         {
@@ -60,7 +78,7 @@ namespace InventoryApp.ViewModel.Entradas
             }
         }
 
-        public CatalogSolicitante1Model CatalogSolicitanteModel
+        public CatalogSolicitanteModel CatalogSolicitanteModel
         {
             get
             {
@@ -75,7 +93,7 @@ namespace InventoryApp.ViewModel.Entradas
 
         public void loadItems()
         {
-            this._catalogSolicitanteModel.loadItems();
+            this._catalogSolicitanteModel.loadSolicitante();
         }
 
         public CatalogItemViewModel CreateCatalogItemViewModel()
@@ -83,5 +101,25 @@ namespace InventoryApp.ViewModel.Entradas
             return new CatalogItemViewModel(this); 
         }
 
+        public bool CanAttempArticulo()
+        {
+            bool _canInsertArticulo = false;
+            if (this.ItemModel.ItemModel.Count() != 0)
+                _canInsertArticulo = true;
+
+            return _canInsertArticulo;
+        }
+
+        public void AttempArticulo()
+        {
+            this._movimientoModel.saveArticulo();
+
+            foreach (ItemModel item in this._itemModel.ItemModel)
+            {
+                this._movimientoDetalleModel = new MovimientoDetalleModel(new MovimientoDetalleDataMapper(), this._movimientoModel.UnidMovimiento, item.UnidItem);
+                this._movimientoDetalleModel.saveArticulo();
+            }
+            
+        }
     }
 }

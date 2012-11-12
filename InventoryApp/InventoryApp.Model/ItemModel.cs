@@ -12,6 +12,7 @@ namespace InventoryApp.Model
     {
         private bool _isChecked;
         private string _nombre;
+        private long _unidItem;
         private ARTICULO _articulo;
         private FACTURA_DETALLE _facturaDetalle;
         private ITEM_STATUS _itemStatus;
@@ -26,6 +27,20 @@ namespace InventoryApp.Model
                     this._isChecked = value;
                     if (this.PropertyChanged != null)
                         this.PropertyChanged(this, new PropertyChangedEventArgs("IsChecked"));
+                }
+            }
+        }
+
+        public long UnidItem
+        {
+            get { return this._unidItem; }
+            set
+            {
+                if (value != this._unidItem)
+                {
+                    this._unidItem = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("UnidItem"));
                 }
             }
         }
@@ -91,6 +106,7 @@ namespace InventoryApp.Model
         {
             this._articulo = item.ARTICULO;
             this._nombre = item.ARTICULO.ARTICULO1;
+            this._unidItem = item.UNID_ITEM;
             this.SKU = item.SKU;
             this.NUMERO_SERIE = item.NUMERO_SERIE;
             this._itemStatus = item.ITEM_STATUS;

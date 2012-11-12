@@ -107,6 +107,7 @@
     <Compile Include="MedioEnvioModel.cs" />
     <Compile Include="ModeloModel.cs" />
     <Compile Include="MonedaModel.cs" />
+    <Compile Include="MovimientoDetalleModel.cs" />
     <Compile Include="MovimientoModel.cs" />
     <Compile Include="PaisModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

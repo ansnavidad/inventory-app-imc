@@ -31,7 +31,7 @@ namespace InventoryApp.DAL
                 using (var Entity = new TAE2Entities())
                 {
                     var res = (from p in Entity.SOLICITANTE1
-                               where p.UNID_SOLICITANTE == Eprov.UNID_SOLICITANTE
+                               where p.UNID_SOLICITANTE == Eprov.UNID_SOLICITANTE && p.IS_ACTIVE = true
                                select p).ToList();
 
                     o = (object)res;

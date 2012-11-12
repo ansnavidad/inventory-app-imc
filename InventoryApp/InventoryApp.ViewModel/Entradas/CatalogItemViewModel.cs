@@ -13,6 +13,7 @@ namespace InventoryApp.ViewModel.Entradas
 
         private CatalogItemModel _catalogItemModel;
         private RelayCommand _addItemCommand;
+        private RelayCommand _addItemsCommand;
         private EntradaPorValidacionViewModel _entradaPorValidacionViewModel;
 
         public CatalogItemViewModel( EntradaPorValidacionViewModel _entradaPorValidacionViewModel)
@@ -59,6 +60,19 @@ namespace InventoryApp.ViewModel.Entradas
             }
         }
 
+        public ICommand AddItemsCommand
+        {
+            get
+            {
+                if (_addItemsCommand == null)
+                {
+                    _addItemsCommand = new RelayCommand(p => this.AttempItems(), p => this.CanAttempItems());
+                }
+                return _addItemsCommand;
+            }
+        }
+
+
         #region Methods
         /// <summary>
         /// Hace las validaciones necesarias para habilitar el command
@@ -77,6 +91,27 @@ namespace InventoryApp.ViewModel.Entradas
         public void AttempArticulo()
         {
             this.CatalogItemModel.loadItems();
+        }
+
+        public bool CanAttempItems()
+        {
+            bool _canInsertArticulo = false;
+            foreach (ItemModel item in this._catalogItemModel.ItemModel)
+            {
+                if (item.IsChecked)
+                    _canInsertArticulo = true;
+            }
+
+            return _canInsertArticulo;
+        }
+
+        public void AttempItems()
+        {
+            foreach (ItemModel item in this._catalogItemModel.ItemModel)
+            {
+                if (item.IsChecked)
+                    this._entradaPorValidacionViewModel.ItemModel.ItemModel.Add(item);
+            }
         }
         #endregion
     }

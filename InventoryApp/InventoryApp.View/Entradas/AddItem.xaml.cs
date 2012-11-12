@@ -32,5 +32,6 @@ namespace InventoryApp.View.Entradas
         {
             this.Close();
         }
+
     }
 }

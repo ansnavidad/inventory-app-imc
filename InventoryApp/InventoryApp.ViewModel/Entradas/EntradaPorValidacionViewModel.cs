@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.Entradas
 {
@@ -11,7 +12,7 @@ namespace InventoryApp.ViewModel.Entradas
     {
         private MovimientoModel _movimientoModel;
         private CatalogSolicitante1Model _catalogSolicitanteModel;
-
+        private CatalogItemModel _itemModel;
 
         public EntradaPorValidacionViewModel()
         {
@@ -21,6 +22,7 @@ namespace InventoryApp.ViewModel.Entradas
                 IDataMapper dataMapper = new Solicitante1DataMapper();
                 this._catalogSolicitanteModel = new CatalogSolicitante1Model(dataMapper);
                 this._movimientoModel = new MovimientoModel(new MovimientoDataMapper());
+                this._itemModel = new CatalogItemModel(new ItemDataMapper());
             }
             catch (ArgumentException a)
             {
@@ -43,6 +45,18 @@ namespace InventoryApp.ViewModel.Entradas
             set
             {
                 _movimientoModel = value;
+            }
+        }
+        public CatalogItemModel ItemModel
+        {
+            get
+            {
+                return _itemModel;
+
+            }
+            set
+            {
+                _itemModel = value;
             }
         }
 

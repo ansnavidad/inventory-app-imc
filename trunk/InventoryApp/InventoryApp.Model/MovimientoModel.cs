@@ -13,6 +13,7 @@ namespace InventoryApp.Model
     {
         #region Fields
         private long _unidMovimiento;
+        private long? _unidAlmacen;
         private DateTime _fechaMovimiento;
         private TIPO_MOVIMIENTO _tipoMovimiento;
         private ALMACEN _almacenDestino;
@@ -34,18 +35,19 @@ namespace InventoryApp.Model
         private CLIENTE _cliente;
         private PROVEEDOR _proveedor;
         private FACTURA_VENTA _facturaVenta;
-        private SOLICITANTE1 _solicitante;
+        private SOLICITANTE _solicitante;
         private MovimientoDataMapper _dataMapper;
 
         #endregion
 
         #region Props
 
-        public SOLICITANTE1 Solicitante
+        public SOLICITANTE Solicitante
         {
             get
             {
                 return _solicitante;
+;
             }
             set
             {
@@ -483,7 +485,9 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new MOVIMENTO() { UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO, UNID_ALMACEN_DESTINO = this._almacenDestino.UNID_ALMACEN, UNID_PROVEEDOR_DESTINO = this._proveedorDestino.UNID_PROVEEDOR, UNID_CLIENTE_DESTINO = this._clienteDestino.UNID_CLIENTE, UNID_ALMACEN_PROCEDENCIA = this._almacenProcedencia.UNID_ALMACEN, UNID_CLIENTE_PROCEDENCIA = this._clienteProcedencia.UNID_CLIENTE, UNID_PROVEEDOR_PROCEDENCIA = this._proveedorProcedencia.UNID_PROVEEDOR, UNID_SERVICIO = this._servicio.UNID_SERVICIO, TT = this._tt, CONTACTO = this._contacto, UNID_TRANSPORTE = this._transporte.UNID_TRANSPORTE, IS_ACTIVE = this._isActive, DIRECCION_ENVIO = this._direccionEnvio, SITIO_ENLACE = this._sitioEnlace, NOMBRE_SITIO = this._nombreSitio, RECIBE = this._recibe, GUIA = this._guia, UNID_CLIENTE = this._cliente.UNID_CLIENTE, UNID_PROVEEDOR = this._proveedor.UNID_PROVEEDOR, UNID_FACTURA_VENTA = this._facturaVenta.UNID_FACTURA_VENTA });
+                //_dataMapper.insertElement(new MOVIMENTO() { UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO, UNID_ALMACEN_DESTINO = this._almacenDestino.UNID_ALMACEN, UNID_PROVEEDOR_DESTINO = this._proveedorDestino.UNID_PROVEEDOR, UNID_CLIENTE_DESTINO = this._clienteDestino.UNID_CLIENTE, UNID_ALMACEN_PROCEDENCIA = this._almacenProcedencia.UNID_ALMACEN, UNID_CLIENTE_PROCEDENCIA = this._clienteProcedencia.UNID_CLIENTE, UNID_PROVEEDOR_PROCEDENCIA = this._proveedorProcedencia.UNID_PROVEEDOR, UNID_SERVICIO = this._servicio.UNID_SERVICIO, TT = this._tt, CONTACTO = this._contacto, UNID_TRANSPORTE = this._transporte.UNID_TRANSPORTE, IS_ACTIVE = this._isActive, DIRECCION_ENVIO = this._direccionEnvio, SITIO_ENLACE = this._sitioEnlace, NOMBRE_SITIO = this._nombreSitio, RECIBE = this._recibe, GUIA = this._guia, UNID_CLIENTE = this._cliente.UNID_CLIENTE, UNID_PROVEEDOR = this._proveedor.UNID_PROVEEDOR, UNID_FACTURA_VENTA = this._facturaVenta.UNID_FACTURA_VENTA });
+                _dataMapper.insertElement(new MOVIMENTO() { UNID_ALMACEN_DESTINO = this._unidAlmacen, UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe});
+          
             }
         }
 
@@ -491,11 +495,35 @@ namespace InventoryApp.Model
         public MovimientoModel(IDataMapper dataMapper)
         {
             this._unidMovimiento = UNID.getNewUNID();
+            this._fechaMovimiento = DateTime.Now;
             this._isActive = true;
             if ((dataMapper as MovimientoDataMapper) != null)
             {
                 this._dataMapper = dataMapper as MovimientoDataMapper;
             }
+            
+            this._almacenDestino = new ALMACEN();
+            this._unidAlmacen = null;
+            this._proveedorDestino = new PROVEEDOR();
+            this._clienteDestino = new CLIENTE();
+            this._proveedorProcedencia = new PROVEEDOR();
+            this._clienteProcedencia = new CLIENTE();
+            this._almacenProcedencia = new ALMACEN();
+            this._servicio = new SERVICIO();
+            this._tt = " ";
+           this._contacto =" ";
+           this._transporte = new TRANSPORTE();
+           
+          this._direccionEnvio = " ";
+          this._sitioEnlace = " ";
+          this._nombreSitio = " ";
+          this._recibe = " ";
+          this._guia = " ";
+          this._cliente = new CLIENTE();
+          this._proveedor = new PROVEEDOR();
+          this._facturaVenta = new FACTURA_VENTA();
+          this._solicitante = new SOLICITANTE();
+        
             
         }
         #endregion

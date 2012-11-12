@@ -13,7 +13,8 @@ namespace InventoryApp.DAL
         {
             object o = null;
             if (almacen != null && !numSerie.Equals(""))
-            {               
+            {       
+        
                 using (var Entity = new TAE2Entities())
                 {
                     var res = (from i in Entity.ITEMs
@@ -37,6 +38,29 @@ namespace InventoryApp.DAL
             return o;
         }
 
+        public object getElements_EntradasSalidasSerie(string numSerie)
+        {
+            object o = null;
+                using (var Entity = new TAE2Entities())
+                {
+                    var res = (from cust in Entity.ITEMs
+                               where cust.NUMERO_SERIE == numSerie
+                               select cust).ToList();
+
+                    if (((List<ITEM>)res).Count > 0)
+                    {
+                        foreach (ITEM trans in ((List<ITEM>)res))
+                        {
+                            trans.ARTICULO = trans.ARTICULO;
+                            trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
+                            trans.ITEM_STATUS = trans.ITEM_STATUS;
+                        }
+                        o = (object)res;
+                    }
+                }
+            
+            return o;
+        }
         public object getElements_EntradasSalidasSerie(CLIENTE cliente, string numSerie)
         {
             object o = null;

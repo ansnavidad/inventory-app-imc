@@ -57,14 +57,15 @@
   <ItemGroup>
     <Compile Include="ArticuloDataMapperTest.cs" />
     <Compile Include="BancoDataMapperTest.cs" />
+    <Compile Include="CatalogItemModelTest.cs" />
     <Compile Include="CatalogItemStatusModelTest.cs" />
     <Compile Include="CatalogItemStatusViewModelTest.cs" />
-    <Compile Include="CatalogItemViewModelTest.cs" />
     <Compile Include="CatalogProyectoModelTest.cs" />
     <Compile Include="CatalogProyectoViewModelTest.cs" />
     <Compile Include="CatalogTipoCotizacionModelTest.cs" />
     <Compile Include="CatalogTipoMovimientoModelTest.cs" />
     <Compile Include="CategoriaDataMapperTest.cs" />
+    <Compile Include="EntradaPorValidacionViewModelTest.cs" />
     <Compile Include="EquipoDataMapperTest.cs" />
     <Compile Include="EstatusDataMapperTest.cs" />
     <Compile Include="EmpresaDataMapperTest.cs" />

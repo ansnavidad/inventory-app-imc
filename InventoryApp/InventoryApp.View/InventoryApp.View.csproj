@@ -332,6 +332,9 @@
     <Compile Include="CatalogTransporte\ModifyTransporteView.xaml.cs">
       <DependentUpon>ModifyTransporteView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Entradas\AddItem.xaml.cs">
+      <DependentUpon>AddItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entradas\DialogoItems.xaml.cs">
       <DependentUpon>DialogoItems.xaml</DependentUpon>
     </Compile>
@@ -756,6 +759,10 @@
     <Page Include="CatalogTransporte\ModifyTransporteView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Entradas\AddItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Entradas\DialogoItems.xaml">
       <SubType>Designer</SubType>

@@ -1,4 +1,4 @@
-﻿using InventoryApp.ViewModel;
+﻿using InventoryApp.ViewModel.Entradas;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -7,11 +7,11 @@ namespace DALTestProject
     
     
     /// <summary>
-    ///Se trata de una clase de prueba para CatalogItemViewModelTest y se pretende que
-    ///contenga todas las pruebas unitarias CatalogItemViewModelTest.
+    ///Se trata de una clase de prueba para EntradaPorValidacionViewModelTest y se pretende que
+    ///contenga todas las pruebas unitarias EntradaPorValidacionViewModelTest.
     ///</summary>
     [TestClass()]
-    public class CatalogItemViewModelTest
+    public class EntradaPorValidacionViewModelTest
     {
 
 
@@ -65,22 +65,12 @@ namespace DALTestProject
 
 
         /// <summary>
-        ///Una prueba de Constructor CatalogItemViewModel
+        ///Una prueba de Constructor EntradaPorValidacionViewModel
         ///</summary>
         [TestMethod()]
-        public void CatalogItemViewModelConstructorTest()
+        public void EntradaPorValidacionViewModelConstructorTest()
         {
-            CatalogItemViewModel target = new CatalogItemViewModel();
-            Assert.Inconclusive("TODO: Implementar código para comprobar el destino");
-        }
-
-        /// <summary>
-        ///Una prueba de Constructor CatalogItemViewModel
-        ///</summary>
-        [TestMethod()]
-        public void CatalogItemViewModelConstructorTest1()
-        {
-            CatalogItemViewModel target = new CatalogItemViewModel();
+            EntradaPorValidacionViewModel target = new EntradaPorValidacionViewModel();
             Assert.Inconclusive("TODO: Implementar código para comprobar el destino");
         }
     }

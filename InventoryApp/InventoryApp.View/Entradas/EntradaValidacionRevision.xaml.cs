@@ -25,11 +25,6 @@ namespace InventoryApp.View.Entradas
             InitializeComponent();
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             AddItem it = new AddItem();

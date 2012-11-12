@@ -22,5 +22,15 @@ namespace InventoryApp.View.Entradas
         {
             InitializeComponent();
         }
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

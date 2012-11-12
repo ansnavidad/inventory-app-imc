@@ -2,16 +2,40 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
         xmlns:vm="clr-namespace:InventoryApp.ViewModel;assembly=InventoryApp.ViewModel"
-        Title="CatalogProveedorView" Height="453" Width="978">
-    <Grid Name="GridPrincipal"  DataContext="{StaticResource catalogProveedorViewModel}">
+        Title="CatalogProveedorView" Height="453" Width="978"
+        DataContext="{StaticResource catalogProveedorViewModel}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="300" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Content="CONSULTA DE PROVEEDOR" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
-
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridTipoPedimento" VerticalAlignment="Stretch" ItemsSource="{Binding ProveedorModel.Proveedor}" SelectedItem="{Binding ProveedorModel.SelectedProveedor, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Content="CONSULTA PROVEEDOR" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <Button Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" Grid.Row="0" Grid.Column="2"
+                VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
+                    Margin="0,0,170,0" Name="btnEliminar" VerticalAlignment="Stretch"
+                    Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteProveedorCommand,Mode=OneWay}"/>
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" 
+                  Name="dtGridTipoPedimento" VerticalAlignment="Stretch" ItemsSource="{Binding ProveedorModel.Proveedor}" 
+                  SelectedItem="{Binding ProveedorModel.SelectedProveedor, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick"
+                  Grid.Column="0" Grid.ColumnSpan="3"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
+                  RowStyle="{StaticResource RowStyle}">
             <DataGrid.Columns>
                 <!--<DataGridCheckBoxColumn Header="" IsReadOnly="False" Width="25" x:Name="ISCHECK" Binding="{Binding Path=Is_Check}"></DataGridCheckBoxColumn>-->
                 <DataGridTemplateColumn Header="" Width="Auto">
@@ -33,13 +57,5 @@
                 <DataGridTextColumn IsReadOnly="True"  Width="110" Header="RFC" x:Name="RFC" Binding="{Binding Path=RFC}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Name="gridBtn" Grid.Row="2">
-            <Grid.ColumnDefinitions>
-            </Grid.ColumnDefinitions>
-            <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
-            <Button Content="ELIMINAR" Height="23" HorizontalAlignment="Stretch"
-                    Margin="72,15,492,15" Name="btnEliminar" VerticalAlignment="Stretch"
-                    Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteProveedorCommand,Mode=OneWay}"/>
-        </Grid>
     </Grid>
 </Window>

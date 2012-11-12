@@ -3,11 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         DataContext="{DynamicResource insertTipoEmpresaViewModel}"
         Title="InsertTipoEmpresaView" Height="300" Width="300">
-    <Window.Resources>
 
-    </Window.Resources>
-    <Grid DataContext="{StaticResource insertTipoEmpresaViewModel}"  >
+    <Grid>
         <TextBox MaxLength="128"  Text="{Binding TipoEmpresa.TipoEmpresaName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="23" HorizontalAlignment="Left" Margin="87,71,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
-        <Button Content="AGREGAR" Grid.Row="4" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Command="{Binding AddItemCommand,Mode=OneWay}" Click="btnAgregar_Click" />
+        <Button Content="Guardar" Height="23" HorizontalAlignment="Stretch" Margin="71,161,133,77" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Command="{Binding AddItemCommand,Mode=OneWay}" Click="btnAgregar_Click" />
+        <Button Content="Cancelar" Height="23" HorizontalAlignment="Stretch" Margin="166,161,37,77" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
     </Grid>
 </Window>

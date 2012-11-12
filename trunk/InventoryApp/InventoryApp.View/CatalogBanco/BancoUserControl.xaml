@@ -4,22 +4,50 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="305" Width="530">
-    <Grid Name="GridPrincipal"  DataContext="{StaticResource catalogBancoViewModel}">
+             d:DesignHeight="300" d:DesignWidth="305" Width="530"
+             DataContext="{StaticResource catalogBancoViewModel}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="300" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Content="CONSULTA DE BANCOS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
-        <Button  Content="Agregar" Height="23" HorizontalAlignment="Stretch" Margin="320,2,92,5" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Content="CONSULTA BANCO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <Button  Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" VerticalAlignment="Stretch" 
+                 Width="75" Click="btnNuevo_Click" Grid.Row="0" Grid.Column="2" />
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
+                    Margin="0,0,170,0" Name="btnEliminar" VerticalAlignment="Stretch"
+                    Width="75" Click="btnEliminar_Click" Command="{Binding DeleteBancoCommand,Mode=OneWay}"/>
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridBanco"
                   SelectedItem="{Binding CatalogBancoModel.SelectedBanco, Mode=TwoWay}"
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogBancoModel.Banco}" 
-                  MouseDoubleClick="dtGridBanco_MouseDoubleClick">
+                  MouseDoubleClick="dtGridBanco_MouseDoubleClick" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
+                  RowStyle="{StaticResource RowStyle}">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />
+                <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Banco" Width="*" x:Name="nombreBanco" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>

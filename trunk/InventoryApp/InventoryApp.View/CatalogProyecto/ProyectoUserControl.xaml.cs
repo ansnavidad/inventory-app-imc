@@ -41,5 +41,10 @@ namespace InventoryApp.View.CatalogProyecto
                 }
             }
         }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -4,8 +4,8 @@
         DataContext="{DynamicResource addTerminoEnvioViewModel}"
         Title="AltaModificarTerminoEnvio" Height="300" Width="300">
     <Grid>
-        <Button Command="{Binding AddTerminoEnvioCommand, Mode=OneWay}" Content="AGREGAR" Height="23" HorizontalAlignment="Stretch" Margin="31,218,172,20" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Click="btnAgregar_Click" />
-        <Button Content="CANCELAR" Height="23" HorizontalAlignment="Stretch" Margin="181,218,22,20" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click_1" />
+        <Button Content="Guardar" Command="{Binding AddTerminoEnvioCommand, Mode=OneWay}" Height="23" HorizontalAlignment="Stretch" Margin="31,218,172,20" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Click="btnAgregar_Click" />
+        <Button Content="Cancelar" Height="23" HorizontalAlignment="Stretch" Margin="181,218,22,20" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click_1" />
         <Label Content="ALTA DE TERMINO ENVIO" Height="28" HorizontalAlignment="Stretch" Margin="72,0,22,233" Name="lblTitulo" VerticalAlignment="Stretch" Width="184" />
         <Label Content="Clave:" Height="28" HorizontalAlignment="Left" Margin="66,70,0,0" Name="label2" VerticalAlignment="Top" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="112,72,0,0" MaxLength="3" Name="textBoxNombre" VerticalAlignment="Top" Width="39" Text="{Binding TerminoEnvio.Clave, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>

@@ -122,6 +122,7 @@ namespace InventoryApp.Model
                 if (_tipoMovimiento != value)
                 {
                     _tipoMovimiento = value;
+                    
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("TipoMovimiento"));
@@ -141,6 +142,7 @@ namespace InventoryApp.Model
                 if (_almacenDestino != value)
                 {
                     _almacenDestino = value;
+                    this._unidAlmacenDestino = _almacenDestino.UNID_ALMACEN;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("AlmacenDestino"));
@@ -160,6 +162,7 @@ namespace InventoryApp.Model
                 if (_proveedorDestino != value)
                 {
                     _proveedorDestino = value;
+                    this._unidProvedorDestino = _proveedorDestino.UNID_PROVEEDOR;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("ProveedorDestino"));
@@ -179,6 +182,7 @@ namespace InventoryApp.Model
                 if (_clienteDestino != value)
                 {
                     _clienteDestino = value;
+                    this._unidClienteDestino = _clienteDestino.UNID_CLIENTE;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("ClienteDestino"));
@@ -198,6 +202,7 @@ namespace InventoryApp.Model
                 if (_proveedorProcedencia != value)
                 {
                     _proveedorProcedencia = value;
+                    this._unidProveedorProcedencia = _proveedorProcedencia.UNID_PROVEEDOR;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("ProveedorProcedencia"));
@@ -217,6 +222,7 @@ namespace InventoryApp.Model
                 if (_clienteProcedencia != value)
                 {
                     _clienteProcedencia = value;
+                    this._unidClienteProcedencia = _clienteProcedencia.UNID_CLIENTE;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("ClienteProcedencia"));
@@ -236,6 +242,8 @@ namespace InventoryApp.Model
                 if (_almacenProcedencia != value)
                 {
                     _almacenProcedencia = value;
+                    this._unidAlmacenProcedencia = _almacenProcedencia.UNID_ALMACEN;
+                     
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("AlmacenProcenencia"));
@@ -255,6 +263,7 @@ namespace InventoryApp.Model
                 if (_servicio != value)
                 {
                     _servicio = value;
+                    this._unidServicio = _servicio.UNID_SERVICIO;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Servicio"));
@@ -312,6 +321,7 @@ namespace InventoryApp.Model
                 if (_transporte != value)
                 {
                     _transporte = value;
+                    this._unidTransporte = _transporte.UNID_TRANSPORTE;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Transporte"));
@@ -445,6 +455,7 @@ namespace InventoryApp.Model
                 if (_cliente != value)
                 {
                     _cliente = value;
+                    this._unidCliente = _cliente.UNID_CLIENTE;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Cliente"));
@@ -464,6 +475,7 @@ namespace InventoryApp.Model
                 if (_proveedor != value)
                 {
                     _proveedor = value;
+                    this._unidProveedor = _proveedor.UNID_PROVEEDOR;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Proveedor"));
@@ -483,6 +495,7 @@ namespace InventoryApp.Model
                 if (_facturaVenta != value)
                 {
                     _facturaVenta = value;
+                    this._unidFacturaVenta = _facturaVenta.UNID_FACTURA_VENTA;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("FacturaVenta"));
@@ -497,8 +510,8 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                //_dataMapper.insertElement(new MOVIMENTO() { UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO, UNID_ALMACEN_DESTINO = this._almacenDestino.UNID_ALMACEN, UNID_PROVEEDOR_DESTINO = this._proveedorDestino.UNID_PROVEEDOR, UNID_CLIENTE_DESTINO = this._clienteDestino.UNID_CLIENTE, UNID_ALMACEN_PROCEDENCIA = this._almacenProcedencia.UNID_ALMACEN, UNID_CLIENTE_PROCEDENCIA = this._clienteProcedencia.UNID_CLIENTE, UNID_PROVEEDOR_PROCEDENCIA = this._proveedorProcedencia.UNID_PROVEEDOR, UNID_SERVICIO = this._servicio.UNID_SERVICIO, TT = this._tt, CONTACTO = this._contacto, UNID_TRANSPORTE = this._transporte.UNID_TRANSPORTE, IS_ACTIVE = this._isActive, DIRECCION_ENVIO = this._direccionEnvio, SITIO_ENLACE = this._sitioEnlace, NOMBRE_SITIO = this._nombreSitio, RECIBE = this._recibe, GUIA = this._guia, UNID_CLIENTE = this._cliente.UNID_CLIENTE, UNID_PROVEEDOR = this._proveedor.UNID_PROVEEDOR, UNID_FACTURA_VENTA = this._facturaVenta.UNID_FACTURA_VENTA });
-                _dataMapper.insertElement(new MOVIMENTO() {UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe, UNID_ALMACEN_DESTINO = this._unidSolicitante});
+                _dataMapper.insertElement(new MOVIMENTO() { UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO, UNID_ALMACEN_DESTINO = this._unidAlmacenDestino, UNID_PROVEEDOR_DESTINO = this._unidProvedorDestino, UNID_CLIENTE_DESTINO = this._unidClienteDestino, UNID_ALMACEN_PROCEDENCIA = this._unidAlmacenProcedencia, UNID_CLIENTE_PROCEDENCIA = this._unidClienteProcedencia, UNID_PROVEEDOR_PROCEDENCIA = this._unidProveedorProcedencia, UNID_SERVICIO = this._unidServicio, TT = this._tt, CONTACTO = this._contacto, UNID_TRANSPORTE = this._unidTransporte, IS_ACTIVE = this._isActive, DIRECCION_ENVIO = this._direccionEnvio, SITIO_ENLACE = this._sitioEnlace, NOMBRE_SITIO = this._nombreSitio, RECIBE = this._recibe, GUIA = this._guia, UNID_CLIENTE = this._unidCliente, UNID_PROVEEDOR = this._unidProveedor, UNID_FACTURA_VENTA = this._unidFacturaVenta });
+                //_dataMapper.insertElement(new MOVIMENTO() {UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe, UNID_ALMACEN_DESTINO = this._unidSolicitante});
           
             }
         }
@@ -514,26 +527,28 @@ namespace InventoryApp.Model
                 this._dataMapper = dataMapper as MovimientoDataMapper;
             }
             
-            this._almacenDestino = new ALMACEN();
-            this._proveedorDestino = new PROVEEDOR();
-            this._clienteDestino = new CLIENTE();
-            this._proveedorProcedencia = new PROVEEDOR();
-            this._clienteProcedencia = new CLIENTE();
-            this._almacenProcedencia = new ALMACEN();
-            this._servicio = new SERVICIO();
-            this._tt = "";
-            this._contacto ="";
-            this._transporte = new TRANSPORTE();
-           
-            this._direccionEnvio = "";
-            this._sitioEnlace = "";
-            this._nombreSitio = "";
-            this._recibe = "";
-            this._guia = "";
-            this._cliente = new CLIENTE();
-            this._proveedor = new PROVEEDOR();
-            this._facturaVenta = new FACTURA_VENTA();
-            this._solicitante = new SOLICITANTE();       
+
+          //  this._almacenDestino = new ALMACEN();
+          //  this._proveedorDestino = new PROVEEDOR();
+          //  this._clienteDestino = new CLIENTE();
+          //  this._proveedorProcedencia = new PROVEEDOR();
+          //  this._clienteProcedencia = new CLIENTE();
+          //  this._almacenProcedencia = new ALMACEN();
+          //  this._servicio = new SERVICIO();
+          //  this._tt = " ";
+          // this._contacto =" ";
+          // this._transporte = new TRANSPORTE();
+          //this._direccionEnvio = " ";
+          //this._sitioEnlace = " ";
+          //this._nombreSitio = " ";
+          //this._recibe = " ";
+          //this._guia = " ";
+          //this._cliente = new CLIENTE();
+          //this._proveedor = new PROVEEDOR();
+          //this._facturaVenta = new FACTURA_VENTA();
+          //this._solicitante = new SOLICITANTE();
+        
+            
         }
         #endregion
 

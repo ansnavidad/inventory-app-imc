@@ -67,6 +67,15 @@
     <Compile Include="CatalogEmpresa\ModifyEmpresaViewModel.cs" />
     <Compile Include="CatalogItemStatus\AddItemStatusViewModel.cs" />
     <Compile Include="CatalogItemStatus\CatalogItemStatusViewModel.cs" />
+    <Compile Include="CatalogPropiedad\AddPropiedadViewModel.cs" />
+    <Compile Include="CatalogPropiedad\CatalogPropiedadViewModel.cs" />
+    <Compile Include="CatalogPropiedad\ModifyPropiedadViewModel.cs" />
+    <Compile Include="CatalogServicio\AddServicioViewModel.cs" />
+    <Compile Include="CatalogServicio\CatalogServicioViewModel.cs" />
+    <Compile Include="CatalogServicio\ModifyServicioViewModel.cs" />
+    <Compile Include="CatalogUnidad\AddUnidadViewModel.cs" />
+    <Compile Include="CatalogUnidad\CatalogUnidadViewModel.cs" />
+    <Compile Include="CatalogUnidad\ModifyUnidadViewModel.cs" />
     <Compile Include="Entradas\CatalogItemViewModel.cs" />
     <Compile Include="CatalogMarca\AddMarcaViewModel.cs" />
     <Compile Include="CatalogMarca\CatalogMarcaViewModel.cs" />

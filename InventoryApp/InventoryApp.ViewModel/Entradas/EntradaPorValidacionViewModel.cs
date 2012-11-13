@@ -225,6 +225,9 @@ namespace InventoryApp.ViewModel.Entradas
                 else
                     i++;
             }
+
+            this.MovimientoModel.CantidadItems = this.ItemModel.ItemModel.Count();
+            
         }
     }
 }

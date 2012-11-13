@@ -13,6 +13,7 @@ namespace InventoryApp.Model
     {
         #region Fields
         private long _unidMovimiento;
+        private int _cantidaditems;
         private DateTime _fechaMovimiento;
         private TIPO_MOVIMIENTO _tipoMovimiento;
         private ALMACEN _almacenDestino;
@@ -91,6 +92,26 @@ namespace InventoryApp.Model
                 }
             }
         }
+
+        public int CantidadItems
+        {
+            get
+            {
+                return _cantidaditems;
+            }
+            set
+            {
+                if (_cantidaditems != value)
+                {
+                    _cantidaditems = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("CantidadItems"));
+                    }
+                }
+            }
+        }
+
 
         public DateTime FechaMovimiento
         {

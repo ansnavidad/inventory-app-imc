@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogBanco;
 
 namespace InventoryApp.View.CatalogBanco
 {
@@ -26,6 +27,8 @@ namespace InventoryApp.View.CatalogBanco
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             AddBancoView add = new AddBancoView();
+            CatalogBancoViewModel bancoViewModel = this.DataContext as CatalogBancoViewModel;
+            add.DataContext = bancoViewModel.CreateAddBancoViewModel();
             add.ShowDialog();
         }
 

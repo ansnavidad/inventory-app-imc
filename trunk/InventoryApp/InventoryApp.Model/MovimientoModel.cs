@@ -164,8 +164,8 @@ namespace InventoryApp.Model
                 {
                     _almacenDestino = value;
 
-                    this._clienteDestino = new CLIENTE();
-                    this._proveedorDestino = new PROVEEDOR();
+                    this._clienteDestino = null;
+                    this._proveedorDestino = null;
 
                     this._unidAlmacenDestino = _almacenDestino.UNID_ALMACEN;
                     if (PropertyChanged != null)
@@ -188,8 +188,8 @@ namespace InventoryApp.Model
                 {
                     _proveedorDestino = value;
 
-                    this._almacenDestino = new ALMACEN();
-                    this._clienteDestino = new CLIENTE();
+                    this._almacenDestino = null;
+                    this._clienteDestino = null;
 
                     this._unidProvedorDestino = _proveedorDestino.UNID_PROVEEDOR;
                     if (PropertyChanged != null)
@@ -213,8 +213,8 @@ namespace InventoryApp.Model
                     _clienteDestino = value;
 
 
-                    this._almacenDestino = new ALMACEN();
-                    this._proveedorDestino = new PROVEEDOR();
+                    this._almacenDestino = null;
+                    this._proveedorDestino = null;
 
 
                     this._unidClienteDestino = _clienteDestino.UNID_CLIENTE;
@@ -237,9 +237,9 @@ namespace InventoryApp.Model
                 if (_proveedorProcedencia != value)
                 {
                     _proveedorProcedencia = value;
-                    
-                    this._clienteProcedencia = new CLIENTE();
-                    this._almacenProcedencia = new ALMACEN();
+
+                    this._clienteProcedencia = null;
+                    this._almacenProcedencia = null;
 
 
                     this._unidProveedorProcedencia = ((_proveedorProcedencia != null) ? _proveedorProcedencia.UNID_PROVEEDOR : (long?)null);
@@ -266,8 +266,8 @@ namespace InventoryApp.Model
                 {
                     _clienteProcedencia = value;
 
-                    this._proveedorProcedencia = new PROVEEDOR();
-                    this._almacenProcedencia = new ALMACEN();
+                    this._proveedorProcedencia = null;
+                    this._almacenProcedencia = null;
                     this._unidClienteProcedencia = ((_clienteProcedencia != null) ? _clienteProcedencia.UNID_CLIENTE : (long?)null);
          
                     if (PropertyChanged != null)
@@ -290,8 +290,8 @@ namespace InventoryApp.Model
                 {
                     _almacenProcedencia = value;
 
-                    this._proveedorProcedencia = new PROVEEDOR();
-                    this._clienteProcedencia = new CLIENTE();
+                    this._proveedorProcedencia = null;
+                    this._clienteProcedencia = null;
                     this._unidAlmacenProcedencia = ((_almacenProcedencia != null) ? _almacenProcedencia.UNID_ALMACEN : (long?)null);
                      
                     if (PropertyChanged != null)
@@ -582,17 +582,10 @@ namespace InventoryApp.Model
             this._proveedorDestino = new PROVEEDOR();
             this._clienteDestino = new CLIENTE();
             this._proveedorProcedencia = new PROVEEDOR();
-            this._clienteProcedencia = new CLIENTE();
-            this._almacenProcedencia = new ALMACEN();
+            this._clienteProcedencia = null;
+            this._almacenProcedencia = null;
             this._servicio = new SERVICIO();
-            this._tt = "";
-            this._contacto = "";
             this._transporte = new TRANSPORTE();
-            this._direccionEnvio = "";
-            this._sitioEnlace = "";
-            this._nombreSitio = "";
-            this._recibe = "";
-            this._guia = "";
             this._cliente = new CLIENTE();
             this._proveedor = new PROVEEDOR();
             this._facturaVenta = new FACTURA_VENTA();

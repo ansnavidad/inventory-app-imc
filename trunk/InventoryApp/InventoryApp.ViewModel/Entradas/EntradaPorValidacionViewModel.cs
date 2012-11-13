@@ -192,7 +192,7 @@ namespace InventoryApp.ViewModel.Entradas
             if (this.MovimientoModel.ProveedorProcedencia != null)
                 seleccion++;
 
-            if (this.ItemModel.ItemModel.Count() != 0 && !this.MovimientoModel.Tt.Equals("") && !this.MovimientoModel.Recibe.Equals("") && seleccion == 1)
+            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && !String.IsNullOrEmpty(this.MovimientoModel.Recibe) && seleccion == 1)
                 _canInsertArticulo = true;
 
             return _canInsertArticulo;

@@ -14,6 +14,7 @@ namespace InventoryApp.ViewModel.Entradas
         private MovimientoModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
         private CatalogSolicitanteModel _catalogSolicitanteModel;
+        private CatalogAlmacenModel _catalogAlmacenModel;
         private CatalogItemModel _itemModel;
         private RelayCommand _addItemCommand;
 
@@ -23,12 +24,14 @@ namespace InventoryApp.ViewModel.Entradas
             try
             {
                 IDataMapper dataMapper = new SolicitanteDataMapper();
+                IDataMapper dataMapper2 = new AlmacenDataMapper();
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoModel(new MovimientoDataMapper());
                 TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
                 mov.UNID_TIPO_MOVIMIENTO = 1;
                 this._movimientoModel.TipoMovimiento = mov;
                 this._itemModel = new CatalogItemModel(new ItemDataMapper());
+                this._catalogAlmacenModel = new CatalogAlmacenModel(dataMapper2);
             }
             catch (ArgumentException a)
             {
@@ -51,6 +54,19 @@ namespace InventoryApp.ViewModel.Entradas
                     _addItemCommand = new RelayCommand(p => this.AttempArticulo(), p => this.CanAttempArticulo());
                 }
                 return _addItemCommand;
+            }
+        }
+
+        public CatalogAlmacenModel CatalogAlmacenModel
+        {
+            get
+            {
+                return _catalogAlmacenModel;
+
+            }
+            set
+            {
+                _catalogAlmacenModel = value;
             }
         }
         public MovimientoModel MovimientoModel
@@ -94,6 +110,7 @@ namespace InventoryApp.ViewModel.Entradas
         public void loadItems()
         {
             this._catalogSolicitanteModel.loadSolicitante();
+            this._catalogAlmacenModel.loadItems();
         }
 
         public CatalogItemViewModel CreateCatalogItemViewModel()
@@ -104,7 +121,7 @@ namespace InventoryApp.ViewModel.Entradas
         public bool CanAttempArticulo()
         {
             bool _canInsertArticulo = false;
-            if (this.ItemModel.ItemModel.Count() != 0)
+            if (this.ItemModel.ItemModel.Count() != 0 && !this.MovimientoModel.Tt.Equals("") && !this.MovimientoModel.Recibe.Equals(""))
                 _canInsertArticulo = true;
 
             return _canInsertArticulo;

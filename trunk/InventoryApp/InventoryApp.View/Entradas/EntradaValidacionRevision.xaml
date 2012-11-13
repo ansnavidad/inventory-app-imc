@@ -8,17 +8,14 @@
 
              d:DesignHeight="793" d:DesignWidth="622">
     <Grid Name="gridAlta" Width="618" >
-
-        
-        <!--<Label Content="ALTA DE ITEM STATUS" Height="28" HorizontalAlignment="Stretch" Margin="5,0" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184"  />-->
-
         <Button Content="ACEPTAR" Command="{Binding AddItemCommand, Mode=OneWay}"  Height="23" Margin="0,653,431,0" Name="btnAgregar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" />
         <Button Content="CANCELAR" Height="23" Margin="0,653,109,0" Name="btnCancelar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" />
+        
         <Label Content="Folio:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" HorizontalAlignment="Right" Margin="0,37,553,0" Name="lblNombreStatus" Height="28" VerticalAlignment="Top" />
         <Label Content="Entrada Validación/Entrada" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,12,168,0" Name="label1" VerticalAlignment="Top" Width="241" />
         <Label Content="Fecha:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,61,552,0" Name="label2" VerticalAlignment="Top" />
-        <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,40,428,0" Name="textBlockFolio" VerticalAlignment="Top" Width="120" Text="{Binding MovimientoModel.UnidMovimiento, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-        <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,65,428,0" Name="textBlock2" Text="{Binding MovimientoModel.FechaMovimiento, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="120" />
+        <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,37,356,0" Name="textBlockFolio" VerticalAlignment="Top" Width="200" Text="{Binding MovimientoModel.UnidMovimiento, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,61,356,0" Name="textBlock2" Text="{Binding MovimientoModel.FechaMovimiento, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="200" />
         <Label Content="TT:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,148,537,0" Name="label5" VerticalAlignment="Top" />
         <Label Content="Rebice:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,119,537,0" Name="label6" VerticalAlignment="Top" />
         <TextBox Height="23" HorizontalAlignment="Right" Margin="0,121,400,0" MaxLength="254" Name="txtRecibe"  Text="{Binding MovimientoModel.Recibe, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="131" VerticalAlignment="Top" />
@@ -27,22 +24,23 @@
         
 
         <Label Content="Solicitante:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,124,161,0" Name="label8" VerticalAlignment="Top" />
-        <ComboBox DisplayMemberPath="SOLICITANTE_NAME" ItemsSource="{Binding CatalogSolicitanteModel.Solicitante, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  SelectedItem="{Binding MovimientoModel.Solicitante, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_SOLICITANTE" Height="23" HorizontalAlignment="Right" Margin="0,124,24,0" Name="comboBoxSolicitante" VerticalAlignment="Top" Width="131" />
+        <ComboBox DisplayMemberPath="SOLICITANTE_NAME" ItemsSource="{Binding CatalogSolicitanteModel.Solicitante, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  SelectedItem="{Binding MovimientoModel.Solicitante, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_SOLICITANTE" Height="23" HorizontalAlignment="Right" Margin="0,124,24,0" Name="comboBoxSolicitante" VerticalAlignment="Top" Width="131" SelectedIndex="0"/>
         <Label Content="Items Seleccionados:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,402,479,0" Name="label7" VerticalAlignment="Top" />
         <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,405,377,0" Name="textBlockCantidad" Text="TextBlockCant" VerticalAlignment="Top" Width="97" />
         <Label Content="Área del solicitante:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,150,161,0" Name="label9" VerticalAlignment="Top" />
         <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,153,24,0" Name="textBlockArea" Text="{Binding MovimientoModel.Solicitante.DEPARTAMENTO.DEPARTAMENTO_NAME, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="131" />
         <Button Content="AGREGAR ITEMS" Height="28" HorizontalAlignment="Right" Margin="0,390,150,0" Name="button1" VerticalAlignment="Top" Width="120" Click="button1_Click" />
         <Button  Content="BORRAR ITEMS" Height="28" HorizontalAlignment="Right" Margin="0,390,24,0" Name="button2" VerticalAlignment="Top" Width="120" />
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ItemModel.ItemModel}" Margin="0,425,10,0" Name="dtGridTipoPedimento" SelectedItem="{Binding ProveedorModel.SelectedProveedor, Mode=TwoWay}" VerticalAlignment="Top" Height="222" HorizontalAlignment="Right" Width="596">
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ItemModel.ItemModel}" Margin="0,425,10,0" Name="dtGridTipoPedimento" VerticalAlignment="Top" Height="222" HorizontalAlignment="Right" Width="596">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=Is_Check}" Header="" IsReadOnly="False" Width="25" />
-                <DataGridTextColumn x:Name="SERIE" Binding="{Binding Path=SERIE}" Header="Serie" IsReadOnly="True" Width="100" />
-                <DataGridTextColumn x:Name="SKU" Binding="{Binding Path=SKU}" Header="SKU" IsReadOnly="True" Width="100" />
-                <DataGridTextColumn x:Name="EQUIPO" Binding="{Binding Path=EQUIPO_NAME}" Header="Equipo" IsReadOnly="True" Width="90" />
-                <DataGridTextColumn x:Name="MODELO" Binding="{Binding Path=CIUDAD.CIUDAD1}" Header="Modelo" IsReadOnly="True" Width="90" />
-                <DataGridTextColumn x:Name="MARCA" Binding="{Binding Path=CODIGO_POSTAL}" Header="Marca" IsReadOnly="True" Width="90" />
-                <DataGridTextColumn x:Name="STATUS" Binding="{Binding Path=RFC}" Header="Status" IsReadOnly="True" Width="98" />
+                <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Serie" x:Name="SERIE" Binding="{Binding Path=NUMERO_SERIE}" />
+                <DataGridTextColumn IsReadOnly="True"  Width="100" Header="SKU" x:Name="SKU" Binding="{Binding Path=SKU}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="90" Header="Equipo" x:Name="EQUIPO" Binding="{Binding Path=Equipo.EQUIPO_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="90" Header="Modelo" x:Name="MODELO" Binding="{Binding Path=Modelo.MODELO_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="90" Header="Marca" x:Name="MARCA" Binding="{Binding Path=Marca.MARCA_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="98" Header="Status" x:Name="STATUS" Binding="{Binding Path=ItemStatus.ITEM_STATUS_NAME}"></DataGridTextColumn>
+
             </DataGrid.Columns>
         </DataGrid>
         <Border BorderBrush="Silver" BorderThickness="3" Height="3" HorizontalAlignment="Left" Margin="13,251,0,0" Name="border1" VerticalAlignment="Top" Width="587"></Border>
@@ -54,7 +52,7 @@
         <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,309,42,0" Name="comboBoxProveedorDestino" VerticalAlignment="Top" Width="159" />
         <Label Content="Procedencia:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,231,19,0" Name="label17" VerticalAlignment="Top" />
         <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border2" Width="587" Margin="10,363,21,427" />
-        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,199,298,0" Name="comboBoxAlmacenOrigen" VerticalAlignment="Top" Width="176" />
+        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,199,298,0" Name="comboBoxAlmacenOrigen" VerticalAlignment="Top" Width="176" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenDestino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN" SelectedIndex="0" />
         <Label Content="Almacén de destino:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,197,482,0" Name="label3" VerticalAlignment="Top" />
 
     </Grid>

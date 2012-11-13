@@ -17,6 +17,67 @@ namespace InventoryApp.Model
         private FACTURA_DETALLE _facturaDetalle;
         private ITEM_STATUS _itemStatus;
 
+        private MODELO _modelo;
+        private MARCA _marca;
+        private CATEGORIA _categoria;
+        private EQUIPO _equipo;
+
+        public MODELO Modelo
+        {
+            get { return this._modelo; }
+            set
+            {
+                if (value != this._modelo)
+                {
+                    this._modelo = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Modelo"));
+                }
+            }
+        }
+
+        public MARCA Marca
+        {
+            get { return this._marca; }
+            set
+            {
+                if (value != this._marca)
+                {
+                    this._marca = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Marca"));
+                }
+            }
+        }
+
+        public CATEGORIA Categoria
+        {
+            get { return this._categoria; }
+            set
+            {
+                if (value != this._categoria)
+                {
+                    this._categoria = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Categoria"));
+                }
+            }
+        }
+
+        public EQUIPO Equipo
+        {
+            get { return this._equipo; }
+            set
+            {
+                if (value != this._equipo)
+                {
+                    this._equipo = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Equipo"));
+                }
+            }
+        }
+
         public bool IsChecked
         {
             get { return this._isChecked; }
@@ -114,6 +175,10 @@ namespace InventoryApp.Model
             this._facturaDetalle = item.FACTURA_DETALLE;
             this.IS_ACTIVE = item.IS_ACTIVE;
             this.IsChecked = false;
+            this._equipo = item.ARTICULO.EQUIPO;
+            this._categoria = item.ARTICULO.CATEGORIA;
+            this._marca = item.ARTICULO.MARCA;
+            this._modelo = item.ARTICULO.MODELO;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

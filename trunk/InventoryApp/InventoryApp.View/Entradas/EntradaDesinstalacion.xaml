@@ -15,14 +15,10 @@
         <Label Content="Fecha:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,68,459,0" Name="label2" VerticalAlignment="Top" />
         <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,46,336,0" Name="textBlockFolio" Text="TextBlock" VerticalAlignment="Top" Width="120" />
         <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,71,336,0" Name="textBlock2" Text="TextBlockFecha" VerticalAlignment="Top" Width="120" />
-        <Label Content="Categoría:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" HorizontalAlignment="Right" Margin="0,397,441,0" Name="label3" Height="29" VerticalAlignment="Top" />
-        <Label Content="Artículo:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,426,442,0" Name="label4" VerticalAlignment="Top" />
         <Label Content="Destino:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,139,452,665" Name="label5" />
         <Label Content="Procedencia" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,220,13,584" Name="label6" />
         <Label Content="Items Seleccionados:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Left" Margin="13,499,0,305" Name="label7" />
-        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,398,302,0" Name="comboBoxCategoria" VerticalAlignment="Top" Width="137" />
-        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,427,302,0" Name="comboBoxArticulo" VerticalAlignment="Top" Width="137" />
-        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,400,34,409" MaxLength="254" Name="textBoxTT"  Text="{Binding AddItemStatus.ItemStatusName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="131" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,420,34,389" MaxLength="254" Name="textBoxTT"  Text="{Binding AddItemStatus.ItemStatusName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="131" />
         <DataGrid AutoGenerateColumns="False" Height="263" HorizontalAlignment="Left" Margin="13,524,0,0" Name="dataGridItems" VerticalAlignment="Top" Width="506" />
         <Label Content="Solicitante:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,53,160,0" Name="label8" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,53,23,0" Name="comboBoxSolicitante" VerticalAlignment="Top" Width="131" />
@@ -37,10 +33,10 @@
         <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,289,186,0" Name="comboBoxCliente" VerticalAlignment="Top" Width="137" />
         <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,289,12,0" Name="comboBoxProveedor" VerticalAlignment="Top" Width="137" />
         <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border2" Width="500" Margin="18,343,13,486" />
-        <Label Content="Contacto:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,400,171,404" Name="label10" VerticalAlignment="Stretch" />
-        <Label Content="TT:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,429,173,375" Name="label11" VerticalAlignment="Stretch" />
+        <Label Content="Contacto:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,420,171,384" Name="label10" VerticalAlignment="Stretch" />
+        <Label Content="TT:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,420,441,384" Name="label11" VerticalAlignment="Stretch" />
         <Label Content="Transporte:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,368,441,436" Name="label12" VerticalAlignment="Stretch" />
-        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,429,34,380" MaxLength="254" Name="textBox1" Text="{Binding AddItemStatus.ItemStatusName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="131" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,420,302,389" MaxLength="254" Name="textBox1" Text="{Binding AddItemStatus.ItemStatusName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="137" />
         <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,369,302,0" Name="comboBoxTransporte" VerticalAlignment="Top" Width="137" />
         <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,502,286,0" Name="textBlockCantidad" Text="TextBlockCant" VerticalAlignment="Top" Width="97" />
         <Label Content="Cliente:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,179,452,625" Name="label13" />
@@ -51,8 +47,9 @@
         <Label Content="Nombre de sitio:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,179,190,625" Name="label15" VerticalAlignment="Stretch" />
         <TextBox Height="23" HorizontalAlignment="Right" Margin="0,119,23,690" MaxLength="254" Name="textBox4" Text="{Binding AddItemStatus.ItemStatusName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="161" />
         <Label Content="Recibe:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,119,190,685" Name="label16" VerticalAlignment="Stretch" />
-        <Button Command="{Binding AddItemCommand, Mode=OneWay}" Content="AGREGAR ITEMS" HorizontalAlignment="Stretch" Margin="367,488,18,314" Name="buttonAgregarItems" VerticalAlignment="Stretch" />
         <TextBox Height="23" HorizontalAlignment="Right" Margin="0,371,34,438" MaxLength="254" Name="textBoxGuía" Text="{Binding AddItemStatus.ItemStatusName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="131" />
         <Label Content="Guía:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,371,171,433" Name="label17" VerticalAlignment="Stretch" />
+        <Button Content="AGREGAR ITEMS" Height="28" HorizontalAlignment="Right" Margin="0,486,149,0" Name="button1" VerticalAlignment="Top" Width="120" />
+        <Button Command="{Binding AddItemCommand, Mode=OneWay}" Content="BORRAR ITEMS" Height="28" HorizontalAlignment="Right" Margin="0,486,23,0" Name="button2" VerticalAlignment="Top" Width="120" />
     </Grid>
 </UserControl>

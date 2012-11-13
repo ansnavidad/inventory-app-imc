@@ -53,14 +53,22 @@ namespace InventoryApp.Model
         }
 
         public void loadItems()
-        {
+        {         
             object element = this._dataMapper.getElements();
 
-            FixupCollection<ALMACEN> ic = element as FixupCollection<ALMACEN>;
-            if (ic != null)
+            FixupCollection<ALMACEN> ic = new FixupCollection<ALMACEN>();
+            if (element != null)
             {
-                this.Almacen = ic;
-            }
+                if (((List<ALMACEN>)element).Count > 0)
+                {
+                    foreach (ALMACEN item in (List<ALMACEN>)element)
+                    {
+                        ic.Add(item);
+                    }
+                }
+            }            
+            
+            this.Almacen = ic;            
         }
 
         public CatalogAlmacenModel(IDataMapper dataMapper)

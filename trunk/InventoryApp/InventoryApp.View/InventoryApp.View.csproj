@@ -335,9 +335,6 @@
     <Compile Include="Entradas\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Entradas\DialogoItems.xaml.cs">
-      <DependentUpon>DialogoItems.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Entradas\EntradaDesinstalacion.xaml.cs">
       <DependentUpon>EntradaDesinstalacion.xaml</DependentUpon>
     </Compile>
@@ -356,8 +353,8 @@
     <Compile Include="ItemACView.xaml.cs">
       <DependentUpon>ItemACView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Salidas\DialogoItems.xaml.cs">
-      <DependentUpon>DialogoItems.xaml</DependentUpon>
+    <Compile Include="Salidas\AddItem.xaml.cs">
+      <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Salidas\SalidaConfiguracion.xaml.cs">
       <DependentUpon>SalidaConfiguracion.xaml</DependentUpon>
@@ -764,10 +761,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Entradas\DialogoItems.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Entradas\EntradaDesinstalacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -805,9 +798,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Salidas\DialogoItems.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Salidas\AddItem.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Salidas\SalidaConfiguracion.xaml">
       <SubType>Designer</SubType>

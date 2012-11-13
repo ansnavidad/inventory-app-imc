@@ -30,10 +30,10 @@
         <Label Content="Área del solicitante:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,150,161,0" Name="label9" VerticalAlignment="Top" />
         <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,153,24,0" Name="textBlockArea" Text="{Binding MovimientoModel.Solicitante.DEPARTAMENTO.DEPARTAMENTO_NAME, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="131" />
         <Button Content="AGREGAR ITEMS" Height="28" HorizontalAlignment="Right" Margin="0,390,150,0" Name="button1" VerticalAlignment="Top" Width="120" Click="button1_Click" />
-        <Button  Content="BORRAR ITEMS" Height="28" HorizontalAlignment="Right" Margin="0,390,24,0" Name="button2" VerticalAlignment="Top" Width="120" />
+        <Button  Content="BORRAR ITEMS" Command="{Binding DeleteItemCommand, Mode=OneWay}" Height="28" HorizontalAlignment="Right" Margin="0,390,24,0" Name="button2" VerticalAlignment="Top" Width="120" />
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ItemModel.ItemModel}" Margin="0,425,10,0" Name="dtGridTipoPedimento" VerticalAlignment="Top" Height="222" HorizontalAlignment="Right" Width="596">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=Is_Check}" Header="" IsReadOnly="False" Width="25" />
+                <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="25" />
                 <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Serie" x:Name="SERIE" Binding="{Binding Path=NUMERO_SERIE}" />
                 <DataGridTextColumn IsReadOnly="True"  Width="100" Header="SKU" x:Name="SKU" Binding="{Binding Path=SKU}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="90" Header="Equipo" x:Name="EQUIPO" Binding="{Binding Path=Equipo.EQUIPO_NAME}"></DataGridTextColumn>

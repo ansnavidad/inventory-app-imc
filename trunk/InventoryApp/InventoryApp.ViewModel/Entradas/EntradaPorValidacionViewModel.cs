@@ -20,10 +20,10 @@ namespace InventoryApp.ViewModel.Entradas
         private CatalogClienteModel _catalogClienteProcedenciaModel;
         private CatalogItemModel _itemModel;
         private RelayCommand _addItemCommand;
+        private RelayCommand _deleteItemCommand;
 
         public EntradaPorValidacionViewModel()
-        {
-            
+        {            
             try
             {
                 IDataMapper dataMapper = new SolicitanteDataMapper();
@@ -63,6 +63,18 @@ namespace InventoryApp.ViewModel.Entradas
                     _addItemCommand = new RelayCommand(p => this.AttempArticulo(), p => this.CanAttempArticulo());
                 }
                 return _addItemCommand;
+            }
+        }
+
+        public ICommand DeleteItemCommand
+        {
+            get
+            {
+                if (_deleteItemCommand == null)
+                {
+                    _deleteItemCommand = new RelayCommand(p => this.AttempDeleteArticulo(), p => this.CanAttempDeleteArticulo());
+                }
+                return _deleteItemCommand;
             }
         }
 
@@ -194,8 +206,25 @@ namespace InventoryApp.ViewModel.Entradas
             {
                 this._movimientoDetalleModel = new MovimientoDetalleModel(new MovimientoDetalleDataMapper(), this._movimientoModel.UnidMovimiento, item.UnidItem);
                 this._movimientoDetalleModel.saveArticulo();
+            }            
+        }
+
+        public bool CanAttempDeleteArticulo()
+        {
+            bool _canDeleteArticulo = true;
+            return _canDeleteArticulo;
+        }
+
+        public void AttempDeleteArticulo()
+        {
+            for (int i = 0; i < this._itemModel.ItemModel.Count; )
+            {
+
+                if (this._itemModel.ItemModel[i].IsChecked)
+                    this._itemModel.ItemModel.RemoveAt(i);
+                else
+                    i++;
             }
-            
         }
     }
 }

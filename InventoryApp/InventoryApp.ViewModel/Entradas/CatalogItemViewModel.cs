@@ -110,8 +110,21 @@ namespace InventoryApp.ViewModel.Entradas
             foreach (ItemModel item in this._catalogItemModel.ItemModel)
             {
                 if (item.IsChecked)
-                    if (!this._entradaPorValidacionViewModel.ItemModel.ItemModel.Contains(item))
+                {
+                    bool aux = true;
+
+                    for (int i = 0; i < this._entradaPorValidacionViewModel.ItemModel.ItemModel.Count; i++) {
+
+                        if (this._entradaPorValidacionViewModel.ItemModel.ItemModel[i].UnidItem == item.UnidItem)
+                            aux = false;
+                    }
+
+                    if (aux)
+                    {
+                        item.IsChecked = false;
                         this._entradaPorValidacionViewModel.ItemModel.ItemModel.Add(item);
+                    }
+                }
             }
         }
         #endregion

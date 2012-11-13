@@ -28,7 +28,7 @@ namespace InventoryApp.DAL
                         foreach (ITEM trans in ((List<ITEM>)res))
                         {
                             trans.ARTICULO = trans.ARTICULO;
-                            trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
+                            //trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
                             trans.ITEM_STATUS = trans.ITEM_STATUS;
                             trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
                             trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
@@ -56,7 +56,7 @@ namespace InventoryApp.DAL
                         foreach (ITEM trans in ((List<ITEM>)res))
                         {
                             trans.ARTICULO = trans.ARTICULO;
-                            trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
+                            //trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
                             trans.ITEM_STATUS = trans.ITEM_STATUS;
                             trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
                             trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
@@ -87,7 +87,7 @@ namespace InventoryApp.DAL
                         foreach (ITEM trans in ((List<ITEM>)res))
                         {
                             trans.ARTICULO = trans.ARTICULO;
-                            trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
+                            //trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
                             trans.ITEM_STATUS = trans.ITEM_STATUS;
                             trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
                             trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
@@ -119,7 +119,7 @@ namespace InventoryApp.DAL
                         foreach (ITEM trans in ((List<ITEM>)res))
                         {
                             trans.ARTICULO = trans.ARTICULO;
-                            trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
+                            //trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
                             trans.ITEM_STATUS = trans.ITEM_STATUS;
                             trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
                             trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;

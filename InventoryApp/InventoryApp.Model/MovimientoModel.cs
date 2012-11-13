@@ -142,6 +142,10 @@ namespace InventoryApp.Model
                 if (_almacenDestino != value)
                 {
                     _almacenDestino = value;
+
+                    this._clienteDestino = new CLIENTE();
+                    this._proveedorDestino = new PROVEEDOR();
+
                     this._unidAlmacenDestino = _almacenDestino.UNID_ALMACEN;
                     if (PropertyChanged != null)
                     {
@@ -162,6 +166,10 @@ namespace InventoryApp.Model
                 if (_proveedorDestino != value)
                 {
                     _proveedorDestino = value;
+
+                    this._almacenDestino = new ALMACEN();
+                    this._clienteDestino = new CLIENTE();
+
                     this._unidProvedorDestino = _proveedorDestino.UNID_PROVEEDOR;
                     if (PropertyChanged != null)
                     {
@@ -182,6 +190,11 @@ namespace InventoryApp.Model
                 if (_clienteDestino != value)
                 {
                     _clienteDestino = value;
+
+
+                    this._almacenDestino = new ALMACEN();
+                    this._proveedorDestino = new PROVEEDOR();
+
                     this._unidClienteDestino = _clienteDestino.UNID_CLIENTE;
                     if (PropertyChanged != null)
                     {
@@ -202,6 +215,10 @@ namespace InventoryApp.Model
                 if (_proveedorProcedencia != value)
                 {
                     _proveedorProcedencia = value;
+                    
+                    this._clienteProcedencia = new CLIENTE();
+                    this._almacenProcedencia = new ALMACEN();
+
                     this._unidProveedorProcedencia = _proveedorProcedencia.UNID_PROVEEDOR;
                     if (PropertyChanged != null)
                     {
@@ -222,6 +239,10 @@ namespace InventoryApp.Model
                 if (_clienteProcedencia != value)
                 {
                     _clienteProcedencia = value;
+
+                    this._proveedorProcedencia = new PROVEEDOR();
+                    this._almacenProcedencia = new ALMACEN();
+
                     this._unidClienteProcedencia = _clienteProcedencia.UNID_CLIENTE;
                     if (PropertyChanged != null)
                     {
@@ -242,11 +263,15 @@ namespace InventoryApp.Model
                 if (_almacenProcedencia != value)
                 {
                     _almacenProcedencia = value;
+
+                    this._proveedorProcedencia = new PROVEEDOR();
+                    this._clienteProcedencia = new CLIENTE();
+
                     this._unidAlmacenProcedencia = _almacenProcedencia.UNID_ALMACEN;
                      
                     if (PropertyChanged != null)
                     {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("AlmacenProcenencia"));
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("AlmacenProcedencia"));
                     }
                 }
             }
@@ -526,27 +551,27 @@ namespace InventoryApp.Model
             {
                 this._dataMapper = dataMapper as MovimientoDataMapper;
             }
-            
 
-          //  this._almacenDestino = new ALMACEN();
-          //  this._proveedorDestino = new PROVEEDOR();
-          //  this._clienteDestino = new CLIENTE();
-          //  this._proveedorProcedencia = new PROVEEDOR();
-          //  this._clienteProcedencia = new CLIENTE();
-          //  this._almacenProcedencia = new ALMACEN();
-          //  this._servicio = new SERVICIO();
-          //  this._tt = " ";
-          // this._contacto =" ";
-          // this._transporte = new TRANSPORTE();
-          //this._direccionEnvio = " ";
-          //this._sitioEnlace = " ";
-          //this._nombreSitio = " ";
-          //this._recibe = " ";
-          //this._guia = " ";
-          //this._cliente = new CLIENTE();
-          //this._proveedor = new PROVEEDOR();
-          //this._facturaVenta = new FACTURA_VENTA();
-          //this._solicitante = new SOLICITANTE();
+
+            this._almacenDestino = new ALMACEN();
+            this._proveedorDestino = new PROVEEDOR();
+            this._clienteDestino = new CLIENTE();
+            this._proveedorProcedencia = new PROVEEDOR();
+            this._clienteProcedencia = new CLIENTE();
+            this._almacenProcedencia = new ALMACEN();
+            this._servicio = new SERVICIO();
+            this._tt = "";
+            this._contacto = "";
+            this._transporte = new TRANSPORTE();
+            this._direccionEnvio = "";
+            this._sitioEnlace = "";
+            this._nombreSitio = "";
+            this._recibe = "";
+            this._guia = "";
+            this._cliente = new CLIENTE();
+            this._proveedor = new PROVEEDOR();
+            this._facturaVenta = new FACTURA_VENTA();
+            this._solicitante = new SOLICITANTE();
         
             
         }

@@ -17,6 +17,7 @@ namespace InventoryApp.ViewModel.Entradas
         private CatalogAlmacenModel _catalogAlmacenModel;
         private CatalogAlmacenModel _catalogAlmacenProcedenciaModel;
         private CatalogProveedorModel _catalogProveedorProcedenciaModel;
+        private CatalogClienteModel _catalogClienteProcedenciaModel;
         private CatalogItemModel _itemModel;
         private RelayCommand _addItemCommand;
 
@@ -28,6 +29,7 @@ namespace InventoryApp.ViewModel.Entradas
                 IDataMapper dataMapper = new SolicitanteDataMapper();
                 IDataMapper dataMapper2 = new AlmacenDataMapper();
                 IDataMapper dataMapper3 = new ProveedorDataMapper();
+                IDataMapper dataMapper4 = new ClienteDataMapper();
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoModel(new MovimientoDataMapper());
@@ -38,6 +40,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._catalogAlmacenModel = new CatalogAlmacenModel(dataMapper2);
                 this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
                 this._catalogProveedorProcedenciaModel = new CatalogProveedorModel(dataMapper3);
+                this._catalogClienteProcedenciaModel = new CatalogClienteModel(dataMapper4);
             }
             catch (ArgumentException a)
             {
@@ -86,6 +89,19 @@ namespace InventoryApp.ViewModel.Entradas
             set
             {
                 _catalogAlmacenModel = value;
+            }
+        }
+
+        public CatalogClienteModel CatalogClienteProcedenciaModel
+        {
+            get
+            {
+                return _catalogClienteProcedenciaModel;
+
+            }
+            set
+            {
+                _catalogClienteProcedenciaModel = value;
             }
         }
         public CatalogAlmacenModel CatalogAlmacenProcedenciaModel
@@ -144,6 +160,7 @@ namespace InventoryApp.ViewModel.Entradas
             this._catalogAlmacenModel.loadItems();
             this._catalogAlmacenProcedenciaModel.loadItems();
             this._catalogProveedorProcedenciaModel.loadItems();
+            this._catalogClienteProcedenciaModel.loadCliente();
         }
 
         public CatalogItemViewModel CreateCatalogItemViewModel()
@@ -154,7 +171,16 @@ namespace InventoryApp.ViewModel.Entradas
         public bool CanAttempArticulo()
         {
             bool _canInsertArticulo = false;
-            if (this.ItemModel.ItemModel.Count() != 0 && !this.MovimientoModel.Tt.Equals("") && !this.MovimientoModel.Recibe.Equals(""))
+
+            int seleccion = 0;
+            if (this.MovimientoModel.AlmacenProcedencia.UNID_ALMACEN != 0)
+                seleccion++;
+            if (this.MovimientoModel.ClienteProcedencia.UNID_CLIENTE != 0)
+                seleccion++;
+            if (this.MovimientoModel.ProveedorProcedencia.UNID_PROVEEDOR != 0)
+                seleccion++;
+
+            if (this.ItemModel.ItemModel.Count() != 0 && !this.MovimientoModel.Tt.Equals("") && !this.MovimientoModel.Recibe.Equals("") && seleccion == 1)
                 _canInsertArticulo = true;
 
             return _canInsertArticulo;

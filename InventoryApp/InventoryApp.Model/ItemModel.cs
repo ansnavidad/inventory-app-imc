@@ -172,7 +172,7 @@ namespace InventoryApp.Model
             this.NUMERO_SERIE = item.NUMERO_SERIE;
             this._itemStatus = item.ITEM_STATUS;
             this.COSTO_UNITARIO = item.COSTO_UNITARIO;
-            this._facturaDetalle = item.FACTURA_DETALLE;
+            //this._facturaDetalle = item.FACTURA_DETALLE;
             this.IS_ACTIVE = item.IS_ACTIVE;
             this.IsChecked = false;
             this._equipo = item.ARTICULO.EQUIPO;

@@ -175,6 +175,9 @@
     <Compile Include="POCOS\PROYECTO.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
+    <Compile Include="POCOS\ROL.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
     <Compile Include="POCOS\SERVICIO.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>

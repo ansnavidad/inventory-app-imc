@@ -8,8 +8,8 @@
 
              d:DesignHeight="793" d:DesignWidth="622">
     <Grid Name="gridAlta" Width="618" >
-        <Button Content="ACEPTAR" Command="{Binding AddItemCommand, Mode=OneWay}"  Height="23" Margin="0,653,431,0" Name="btnAgregar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" />
-        <Button Content="CANCELAR" Height="23" Margin="0,653,109,0" Name="btnCancelar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" />
+        <!--<Button Content="ACEPTAR" Command="{Binding AddItemCommand, Mode=OneWay}"  Height="23" Margin="0,653,431,0" Name="btnAgregar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" />
+        <Button Content="CANCELAR" Height="23" Margin="0,653,109,0" Name="btnCancelar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" />-->
         
         <Label Content="Folio:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" HorizontalAlignment="Right" Margin="0,37,553,0" Name="lblNombreStatus" Height="28" VerticalAlignment="Top" />
         <Label Content="Entrada Validación/Entrada" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,12,168,0" Name="label1" VerticalAlignment="Top" Width="241" />
@@ -47,9 +47,9 @@
         <RadioButton Content="Almacén" Height="16" HorizontalAlignment="Left" Margin="12,287,0,0" Name="radioButtonAlmacén" VerticalAlignment="Top" />
         <RadioButton Content="Cliente" Height="16" HorizontalAlignment="Left" Margin="209,287,0,0" Name="radioButtonCliente" VerticalAlignment="Top" />
         <RadioButton Content="Proveedor" Height="16" HorizontalAlignment="Right" Margin="0,287,147,0" Name="radioButtonProveedor" VerticalAlignment="Top" />
-        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,309,431,0" Name="comboBoxAlmacenDestino" VerticalAlignment="Top" Width="159" />
+        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,309,431,0" Name="comboBoxAlmacenDestino" VerticalAlignment="Top" Width="159" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenProcedencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN" SelectedIndex="0" />
         <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,309,234,0" Name="comboBoxClienteDestino" VerticalAlignment="Top" Width="159" />
-        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,309,42,0" Name="comboBoxProveedorDestino" VerticalAlignment="Top" Width="159" />
+        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,309,42,0" Name="comboBoxProveedorDestino" VerticalAlignment="Top" Width="159" DisplayMemberPath="PROVEEDOR_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogProveedorProcedenciaModel.Proveedor}"  SelectedItem="{Binding MovimientoModel.ProveedorDestino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_PROVEEDOR" SelectedIndex="0" />
         <Label Content="Procedencia:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,231,19,0" Name="label17" VerticalAlignment="Top" />
         <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border2" Width="587" Margin="10,363,21,427" />
         <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,199,298,0" Name="comboBoxAlmacenOrigen" VerticalAlignment="Top" Width="176" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenDestino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN" SelectedIndex="0" />

@@ -48,12 +48,6 @@ namespace InventoryApp.DAL.POCOS
         }
         private ObjectSet<MENU> _mENUs;
     
-        public ObjectSet<ROL> ROLs
-        {
-            get { return _rOLs  ?? (_rOLs = CreateObjectSet<ROL>("ROLs")); }
-        }
-        private ObjectSet<ROL> _rOLs;
-    
         public ObjectSet<USUARIO> USUARIOs
         {
             get { return _uSUARIOs  ?? (_uSUARIOs = CreateObjectSet<USUARIO>("USUARIOs")); }
@@ -311,6 +305,12 @@ namespace InventoryApp.DAL.POCOS
             get { return _pOM_ARTICULO  ?? (_pOM_ARTICULO = CreateObjectSet<POM_ARTICULO>("POM_ARTICULO")); }
         }
         private ObjectSet<POM_ARTICULO> _pOM_ARTICULO;
+    
+        public ObjectSet<ROL> ROLs
+        {
+            get { return _rOLs  ?? (_rOLs = CreateObjectSet<ROL>("ROLs")); }
+        }
+        private ObjectSet<ROL> _rOLs;
 
         #endregion
     }

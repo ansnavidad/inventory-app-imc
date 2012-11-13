@@ -11,14 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryApp.DAL", "Invento
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALTestProject", "DALTestProject\DALTestProject.csproj", "{C09C94F8-AE02-4703-8CC1-79984D2EA099}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModelTest", "ViewModelTest\ViewModelTest.csproj", "{7F03F887-13C3-49F5-95F1-D41A81EA1D1D}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E375EDE2-4A68-4FF7-BB0C-D4390C162FDF}"
 	ProjectSection(SolutionItems) = preProject
 		InventoryApp.vsmdi = InventoryApp.vsmdi
 		Local.testsettings = Local.testsettings
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModelTest", "ViewModelTest\ViewModelTest.csproj", "{7F03F887-13C3-49F5-95F1-D41A81EA1D1D}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution

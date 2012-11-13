@@ -79,5 +79,20 @@ namespace DALTestProject
             element = target.getElements();
             Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
         }
+
+        /// <summary>
+        ///Una prueba de GetArticuloEquipoByCategoria
+        ///</summary>
+        [TestMethod()]
+        public void GetArticuloEquipoByCategoriaTest()
+        {
+            EquipoDataMapper target = new EquipoDataMapper(); // TODO: Inicializar en un valor adecuado
+            CATEGORIA categoria = new CATEGORIA() { UNID_CATEGORIA = 20121112172549418 }; // TODO: Inicializar en un valor adecuado
+            FixupCollection<EQUIPO> expected = null; // TODO: Inicializar en un valor adecuado
+            FixupCollection<EQUIPO> actual;
+            actual = target.GetArticuloEquipoByCategoria(categoria);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

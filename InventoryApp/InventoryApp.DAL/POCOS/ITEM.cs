@@ -79,9 +79,20 @@ namespace InventoryApp.DAL.POCOS
     
         public virtual long UNID_FACTURA_DETALE
         {
-            get;
-            set;
+            get { return _uNID_FACTURA_DETALE; }
+            set
+            {
+                if (_uNID_FACTURA_DETALE != value)
+                {
+                    if (FACTURA_DETALLE != null && FACTURA_DETALLE.UNID_FACTURA_DETALE != value)
+                    {
+                        FACTURA_DETALLE = null;
+                    }
+                    _uNID_FACTURA_DETALE = value;
+                }
+            }
         }
+        private long _uNID_FACTURA_DETALE;
     
         public virtual bool IS_ACTIVE
         {
@@ -174,6 +185,21 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private ULTIMO_MOVIMIENTO _uLTIMO_MOVIMIENTO;
+    
+        public virtual FACTURA_DETALLE FACTURA_DETALLE
+        {
+            get { return _fACTURA_DETALLE; }
+            set
+            {
+                if (!ReferenceEquals(_fACTURA_DETALLE, value))
+                {
+                    var previousValue = _fACTURA_DETALLE;
+                    _fACTURA_DETALLE = value;
+                    FixupFACTURA_DETALLE(previousValue);
+                }
+            }
+        }
+        private FACTURA_DETALLE _fACTURA_DETALLE;
 
         #endregion
         #region Association Fixup
@@ -228,6 +254,26 @@ namespace InventoryApp.DAL.POCOS
             if (ULTIMO_MOVIMIENTO != null)
             {
                 ULTIMO_MOVIMIENTO.ITEM = this;
+            }
+        }
+    
+        private void FixupFACTURA_DETALLE(FACTURA_DETALLE previousValue)
+        {
+            if (previousValue != null && previousValue.ITEMs.Contains(this))
+            {
+                previousValue.ITEMs.Remove(this);
+            }
+    
+            if (FACTURA_DETALLE != null)
+            {
+                if (!FACTURA_DETALLE.ITEMs.Contains(this))
+                {
+                    FACTURA_DETALLE.ITEMs.Add(this);
+                }
+                if (UNID_FACTURA_DETALE != FACTURA_DETALLE.UNID_FACTURA_DETALE)
+                {
+                    UNID_FACTURA_DETALE = FACTURA_DETALLE.UNID_FACTURA_DETALE;
+                }
             }
         }
     

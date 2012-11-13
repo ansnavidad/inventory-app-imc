@@ -45,6 +45,34 @@ namespace InventoryApp.DAL
             }
         }
 
+        public FixupCollection<EQUIPO> GetArticuloEquipoByCategoria(CATEGORIA categoria)
+        {
+            FixupCollection<EQUIPO> equipos = new FixupCollection<EQUIPO>();
+
+            if (categoria != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    try
+                    {
+                        (from art in entity.ARTICULOes
+                         join catt in entity.CATEGORIAs
+                            on art.UNID_CATEGORIA equals catt.UNID_CATEGORIA
+                         join equ in entity.EQUIPOes
+                            on art.UNID_EQUIPO equals equ.UNID_EQUIPO
+                         where catt.UNID_CATEGORIA == categoria.UNID_CATEGORIA
+                         select equ
+                                            ).Distinct().ToList<EQUIPO>().ForEach(o => equipos.Add(new EQUIPO() { UNID_EQUIPO = o.UNID_EQUIPO, EQUIPO_NAME = o.EQUIPO_NAME }));
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                }
+            }
+
+            return equipos;
+        }
+
         public void udpateElement(object element)
         {
             if (element != null)

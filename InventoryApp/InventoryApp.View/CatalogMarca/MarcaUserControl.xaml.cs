@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogMarca;
 
 namespace InventoryApp.View.CatalogMarca
 {
@@ -27,6 +28,8 @@ namespace InventoryApp.View.CatalogMarca
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             AddMarca alta = new AddMarca();
+            CatalogMarcaViewModel marcaViewModel = (CatalogMarcaViewModel)this.DataContext;
+            alta.DataContext = marcaViewModel.CreateAddMarcaViewModel();
             alta.ShowDialog();
         }
 
@@ -37,7 +40,10 @@ namespace InventoryApp.View.CatalogMarca
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyMarcaView()).ShowDialog();
+                    ModifyMarcaView modifyMarcaView = new ModifyMarcaView();
+                    CatalogMarcaViewModel marcaViewModel = (CatalogMarcaViewModel)this.DataContext;
+                    modifyMarcaView.DataContext = marcaViewModel.CreateModifyMarcaViewModel();
+                    modifyMarcaView.ShowDialog();
                 }
             }
         }

@@ -1,19 +1,19 @@
-﻿using InventoryApp.DAL;
+﻿using InventoryApp.ViewModel.Recibo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using InventoryApp.DAL.POCOS;
-using System.Collections.Generic;
+using InventoryApp.Model;
+using System.Collections.ObjectModel;
 
 namespace DALTestProject
 {
     
     
     /// <summary>
-    ///Se trata de una clase de prueba para CategoriaDataMapperTest y se pretende que
-    ///contenga todas las pruebas unitarias CategoriaDataMapperTest.
+    ///Se trata de una clase de prueba para AddReciboViewModelTest y se pretende que
+    ///contenga todas las pruebas unitarias AddReciboViewModelTest.
     ///</summary>
     [TestClass()]
-    public class CategoriaDataMapperTest
+    public class AddReciboViewModelTest
     {
 
 
@@ -67,30 +67,15 @@ namespace DALTestProject
 
 
         /// <summary>
-        ///Una prueba de GetCategorias
-        ///</summary>
-        //[TestMethod()]
-        //public void GetCategoriasTest()
-        //{
-        //    CategoriaDataMapper target = new CategoriaDataMapper(); // TODO: Inicializar en un valor adecuado
-        //    //CategoriaCollection expected = null; // TODO: Inicializar en un valor adecuado
-        //    CategoriaCollection actual;
-        //    actual = target.GetCategorias();
-        //    Assert.AreEqual(4, actual.Count);
-        //    //Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        //}
-
-        /// <summary>
-        ///Una prueba de getElementsByProveedor
+        ///Una prueba de GetSolicitantes
         ///</summary>
         [TestMethod()]
-        public void getElementsByProveedorTest()
+        public void GetSolicitantesTest()
         {
-            CategoriaDataMapper target = new CategoriaDataMapper(); // TODO: Inicializar en un valor adecuado
-            PROVEEDOR proveedor = new PROVEEDOR() { UNID_PROVEEDOR = 20121113012552944 }; // TODO: Inicializar en un valor adecuado
-            List<CATEGORIA> expected = null; // TODO: Inicializar en un valor adecuado
-            List<CATEGORIA> actual;
-            actual = target.getElementsByProveedor(proveedor);
+            AddReciboViewModel target = new AddReciboViewModel(); // TODO: Inicializar en un valor adecuado
+            ObservableCollection<SolicitanteModel> expected = null; // TODO: Inicializar en un valor adecuado
+            ObservableCollection<SolicitanteModel> actual;
+            actual = target.GetSolicitantes();
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }

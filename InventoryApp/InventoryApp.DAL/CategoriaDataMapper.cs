@@ -9,6 +9,36 @@ namespace InventoryApp.DAL
     public class CategoriaDataMapper : IDataMapper
     {
 
+        public List<CATEGORIA> getElementsByProveedor(PROVEEDOR proveedor)
+        {
+            List<CATEGORIA> res = new List<CATEGORIA>();
+
+            try
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from prov in entity.PROVEEDORs
+                                 where prov.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR
+                                 select prov).First<PROVEEDOR>();
+
+                    query.CATEGORIAs.ToList<CATEGORIA>().ForEach(o => res.Add(new CATEGORIA()
+                    {
+                        UNID_CATEGORIA = o.UNID_CATEGORIA
+                        ,
+                        CATEGORIA_NAME = o.CATEGORIA_NAME
+                        ,
+                        IS_ACTIVE = o.IS_ACTIVE
+                    }));
+                }
+
+            }
+            catch (Exception)
+            {
+                ;
+            }
+            return res;
+        }//
+
         public object getElements()
         {
             object res = null;

@@ -36,6 +36,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -55,9 +56,9 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddReciboViewModelTest.cs" />
     <Compile Include="ArticuloDataMapperTest.cs" />
     <Compile Include="BancoDataMapperTest.cs" />
-    <Compile Include="CatalogItemModelTest.cs" />
     <Compile Include="CatalogItemStatusModelTest.cs" />
     <Compile Include="CatalogItemStatusViewModelTest.cs" />
     <Compile Include="CatalogProyectoModelTest.cs" />
@@ -72,6 +73,8 @@
     <Compile Include="ItemDataMapperTest.cs" />
     <Compile Include="ItemStatusDataMapperTest.cs" />
     <Compile Include="MarcaDataMapperTest.cs" />
+    <Compile Include="MenuDataMapperTest.cs" />
+    <Compile Include="MenuModelTest.cs" />
     <Compile Include="ModeloDataMapperTest.cs" />
     <Compile Include="MonedaDataMapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

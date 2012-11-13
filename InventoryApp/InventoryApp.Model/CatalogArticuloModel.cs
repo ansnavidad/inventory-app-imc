@@ -83,6 +83,14 @@ namespace InventoryApp.Model
             //}
         }
 
+        //public void loadItems(CategoriaModel categoria)
+        //{
+        //    List<ARTICULO> art=(List<ARTICULO>) (this._dataMapper as ArticuloDataMapper).getElements_EntradasSalidas(new CATEGORIA() { UNID_CATEGORIA=categoria.UnidCategoria });
+        //    FixupCollection<DeleteArticulo> articulos = new FixupCollection<DeleteArticulo>();
+        //    art.ForEach(o=>  articulos.Add(o) );
+        //    this.Articulos = articulos;
+        //}
+
         public void deleteArticulos()
         {
             foreach (DeleteArticulo item in _articulos)

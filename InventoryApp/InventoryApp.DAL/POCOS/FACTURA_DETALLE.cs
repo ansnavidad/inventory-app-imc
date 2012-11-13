@@ -145,6 +145,38 @@ namespace InventoryApp.DAL.POCOS
         }
         private UNIDAD _uNIDAD;
     
+        public virtual ICollection<ITEM> ITEMs
+        {
+            get
+            {
+                if (_iTEMs == null)
+                {
+                    var newCollection = new FixupCollection<ITEM>();
+                    newCollection.CollectionChanged += FixupITEMs;
+                    _iTEMs = newCollection;
+                }
+                return _iTEMs;
+            }
+            set
+            {
+                if (!ReferenceEquals(_iTEMs, value))
+                {
+                    var previousValue = _iTEMs as FixupCollection<ITEM>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupITEMs;
+                    }
+                    _iTEMs = value;
+                    var newValue = value as FixupCollection<ITEM>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupITEMs;
+                    }
+                }
+            }
+        }
+        private ICollection<ITEM> _iTEMs;
+    
         public virtual FACTURA FACTURA
         {
             get { return _fACTURA; }
@@ -219,6 +251,28 @@ namespace InventoryApp.DAL.POCOS
                 if (UNID_FACTURA != FACTURA.UNID_FACTURA)
                 {
                     UNID_FACTURA = FACTURA.UNID_FACTURA;
+                }
+            }
+        }
+    
+        private void FixupITEMs(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (ITEM item in e.NewItems)
+                {
+                    item.FACTURA_DETALLE = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (ITEM item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.FACTURA_DETALLE, this))
+                    {
+                        item.FACTURA_DETALLE = null;
+                    }
                 }
             }
         }

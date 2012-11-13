@@ -1,0 +1,203 @@
+﻿<UserControl x:Class="InventoryApp.View.Recibo.ReciboView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             DataContext="{StaticResource addReciboViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="700">
+    <UserControl.Resources>
+        <GridLength x:Key="descColWidth">120</GridLength>
+        <GridLength x:Key="captureColWidth">200</GridLength>
+        <GridLength x:Key="capRowHeight">27</GridLength>
+        <sys:Int32 x:Key="allCapColumnSpan">5</sys:Int32>
+    </UserControl.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <!-- información General -->
+        <Grid Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="Silver" BorderThickness="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TextBlock  Margin="10,0" Text="Información General" />
+            </Border>
+            <TextBlock Grid.Column="0" Grid.Row="1" Height="23" HorizontalAlignment="Left"  Text="Folio" VerticalAlignment="Top" />
+            <TextBlock Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left"  Text="Folio" VerticalAlignment="Top" />
+
+            <TextBlock Grid.Column="3" Grid.Row="1" Height="23" HorizontalAlignment="Left"  Text="Fecha" VerticalAlignment="Top" />
+            <TextBlock Grid.Column="4" Grid.Row="1" Height="23" HorizontalAlignment="Left"  Text="20/12/12" VerticalAlignment="Top" />
+            
+            <TextBlock Grid.Column="0" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Solicitante" VerticalAlignment="Top" />
+            <ComboBox Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Solicitantes}" SelectedItem="{Binding SelectedSolicitante, Mode=TwoWay}" DisplayMemberPath="SolicitanteName"/>
+
+            <TextBlock Grid.Column="3" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Area Solicitante" VerticalAlignment="Top" />
+            <TextBlock Grid.Column="4" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="{Binding SelectedSolicitante.Departamento.DEPARTAMENTO_NAME}" VerticalAlignment="Top" />
+
+            <TextBlock Grid.Column="0" Grid.Row="3" Height="23" HorizontalAlignment="Left" Text="Cliente" VerticalAlignment="Top" />
+            <ComboBox Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Clientes}" SelectedItem="{Binding SelectedCliente, Mode=TwoWay}" DisplayMemberPath="ClienteName"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="4" Height="23" HorizontalAlignment="Left" Text="Trouble Ticket" VerticalAlignment="Top" />
+            <TextBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding TroubleTicket,Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="3" Grid.Row="4" Height="23" HorizontalAlignment="Left" Text="PO" VerticalAlignment="Top" />
+            <TextBox Grid.Column="4" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding PO,Mode=TwoWay}" />
+        </Grid>
+
+        <!-- información del pedimento -->
+        <!--<Grid Grid.Column="1" Grid.Row="3"  HorizontalAlignment="Stretch" Name="grid1" VerticalAlignment="Stretch" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="Silver" BorderThickness="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" Name="border1" VerticalAlignment="Stretch">
+                <TextBlock  Margin="10,0" Name="textBlock1" Text="Pedimento" />
+            </Border>
+            <TextBlock Grid.Column="0" Grid.Row="1" Height="23" HorizontalAlignment="Left" Name="textBlock2" Text="Pedimientos" VerticalAlignment="Top" />
+            <ListView Grid.Column="1"  Grid.Row="1" Grid.RowSpan="4"  HorizontalAlignment="Stretch"  Name="listView1" VerticalAlignment="Stretch" />
+            <DockPanel Grid.Column="1" Grid.Row="5"  HorizontalAlignment="Stretch"  Name="stackPanel1" VerticalAlignment="Stretch" >
+                <Button Content="Agregar" Height="23" Name="btnPedimentoAdd" Width="75" HorizontalAlignment="Left" />
+                <Button Content="Eliminar" Height="23" Name="btnPedimentoDel" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" />
+            </DockPanel>
+
+            <TextBlock Grid.Column="3" Grid.Row="1" Height="23" HorizontalAlignment="Left" Name="txtBlockPedimentoImpo" Text="Pedimento Impo" VerticalAlignment="Top" />
+            <TextBox Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" Name="textBox1" VerticalAlignment="Top" Width="120" />
+
+            <TextBlock Grid.Column="3" Grid.Row="3" Height="23" HorizontalAlignment="Left" Name="txtBlockPedimentoExpo" Text="Pedimento Expo" VerticalAlignment="Top" />
+            <TextBox Grid.Column="4" Grid.Row="3" HorizontalAlignment="Left" Name="textBox2" VerticalAlignment="Top" Width="120" />
+        </Grid>-->
+
+        <!-- información de factura -->
+        <Grid Grid.Column="1" Grid.Row="5"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+            </Grid.ColumnDefinitions>
+            
+            <Border BorderBrush="Silver" BorderThickness="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TextBlock  Margin="10,0" Text="Factura" />
+            </Border>
+            <DockPanel Grid.Column="5" Grid.Row="0"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" >
+                <Button Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" />
+                <Button Content="Eliminar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" />
+            </DockPanel>
+            <ListView Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.RowSpan="4"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="" Width="20" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Path=IsChecked, NotifyOnSourceUpdated=True, NotifyOnValidationError=True}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Número" Width="150" DisplayMemberBinding="{Binding Path=idRecurso}" />
+                        <GridViewColumn Header="Fecha" Width="150" DisplayMemberBinding="{Binding Path=idRecurso}" />
+                        <GridViewColumn Header="Proveedor" Width="150" DisplayMemberBinding="{Binding Path=idRecurso}" />
+                        <GridViewColumn Header="Importe" Width="150" DisplayMemberBinding="{Binding Path=idRecurso}" />
+                        <GridViewColumn Header="Iva %" Width="150" DisplayMemberBinding="{Binding Path=idRecurso}" />
+                        <GridViewColumn Header="Iva $" Width="150" DisplayMemberBinding="{Binding Path=idRecurso}" />
+                        <GridViewColumn Header="Total $" Width="150" DisplayMemberBinding="{Binding Path=idRecurso}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+        <!-- información de movimientos -->
+        <Grid Grid.Column="1" Grid.Row="7"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="Silver" BorderThickness="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TextBlock  Margin="10,0" Text="Movimientos" />
+            </Border>
+            <DockPanel Grid.Column="5" Grid.Row="0"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" >
+                <Button Content="Agregar" Height="23" Width="75" HorizontalAlignment="Left" />
+                <Button Content="Eliminar" Height="23" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" />
+            </DockPanel>
+            <ListView Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.RowSpan="4"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="" Width="20" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Path=IsChecked, NotifyOnSourceUpdated=True, NotifyOnValidationError=True}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Folio" Width="150" DisplayMemberBinding="{Binding Path=idRecurso}" />
+                        <GridViewColumn Header="Fecha" Width="150" DisplayMemberBinding="{Binding Path=idRecurso}" />
+                        <GridViewColumn Header="Origen" Width="150" DisplayMemberBinding="{Binding Path=idRecurso}" />
+                        <GridViewColumn Header="Destino" Width="150" DisplayMemberBinding="{Binding Path=idRecurso}" />
+                        <GridViewColumn Header="Cantidad Items" Width="150" DisplayMemberBinding="{Binding Path=idRecurso}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</UserControl>

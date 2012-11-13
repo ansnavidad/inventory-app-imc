@@ -14,6 +14,7 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.ALMACENs
+                           where p.IS_ACTIVE == true
                            select p).ToList();
 
                 return res;

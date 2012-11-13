@@ -521,21 +521,19 @@ namespace InventoryApp.Model
             this._clienteProcedencia = new CLIENTE();
             this._almacenProcedencia = new ALMACEN();
             this._servicio = new SERVICIO();
-            this._tt = " ";
-           this._contacto =" ";
-           this._transporte = new TRANSPORTE();
+            this._tt = "";
+            this._contacto ="";
+            this._transporte = new TRANSPORTE();
            
-          this._direccionEnvio = " ";
-          this._sitioEnlace = " ";
-          this._nombreSitio = " ";
-          this._recibe = " ";
-          this._guia = " ";
-          this._cliente = new CLIENTE();
-          this._proveedor = new PROVEEDOR();
-          this._facturaVenta = new FACTURA_VENTA();
-          this._solicitante = new SOLICITANTE();
-        
-            
+            this._direccionEnvio = "";
+            this._sitioEnlace = "";
+            this._nombreSitio = "";
+            this._recibe = "";
+            this._guia = "";
+            this._cliente = new CLIENTE();
+            this._proveedor = new PROVEEDOR();
+            this._facturaVenta = new FACTURA_VENTA();
+            this._solicitante = new SOLICITANTE();       
         }
         #endregion
 

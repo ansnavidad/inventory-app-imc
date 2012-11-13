@@ -9,19 +9,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InventoryApp.View.Entradas
+namespace InventoryApp.View.Salidas
 {
     /// <summary>
-    /// Lógica de interacción para DialogoItems.xaml
+    /// Lógica de interacción para AddItem.xaml
     /// </summary>
-    public partial class DialogoItems : UserControl
+    public partial class AddItem : Window
     {
-        public DialogoItems()
+        public AddItem()
         {
             InitializeComponent();
         }
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

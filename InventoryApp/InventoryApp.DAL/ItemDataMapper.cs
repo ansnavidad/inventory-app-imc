@@ -30,6 +30,10 @@ namespace InventoryApp.DAL
                             trans.ARTICULO = trans.ARTICULO;
                             trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
                             trans.ITEM_STATUS = trans.ITEM_STATUS;
+                            trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                            trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                            trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                            trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
                         }
                         o = (object)res;
                     }
@@ -54,6 +58,10 @@ namespace InventoryApp.DAL
                             trans.ARTICULO = trans.ARTICULO;
                             trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
                             trans.ITEM_STATUS = trans.ITEM_STATUS;
+                            trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                            trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                            trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                            trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
                         }
                         o = (object)res;
                     }
@@ -81,6 +89,10 @@ namespace InventoryApp.DAL
                             trans.ARTICULO = trans.ARTICULO;
                             trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
                             trans.ITEM_STATUS = trans.ITEM_STATUS;
+                            trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                            trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                            trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                            trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
                         }
                         o = (object)res;
                     }
@@ -109,6 +121,10 @@ namespace InventoryApp.DAL
                             trans.ARTICULO = trans.ARTICULO;
                             trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
                             trans.ITEM_STATUS = trans.ITEM_STATUS;
+                            trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                            trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                            trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                            trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;                            
                         }
                         o = (object)res;
                     }

@@ -1,8 +1,17 @@
 ﻿<Application x:Class="InventoryApp.View.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="clr-namespace:InventoryApp.ViewModel.Entradas;assembly=InventoryApp.ViewModel"
-             StartupUri="Entradas/EntradaValidacionRevision.xaml">
+             xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogUnidad;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogUnidad/CatalogUnidadView.xaml">
+
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogUnidad;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogUnidad/CatalogUnidadView.xaml">-->
+
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogServicio;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogServicio/CatalogServicioView.xaml">-->
+
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogPropiedad;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogPropiedad/CatalogPropiedadView.xaml">-->
 
     <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogCliente;assembly=InventoryApp.ViewModel"
              StartupUri="CatalogCliente/CatalogClienteView.xaml">-->
@@ -80,9 +89,9 @@
              StartupUri="CatalogSolicitante/CatalogSolicitanteView.xaml">-->
     <Application.Resources>
 
-        <vm:EntradaPorValidacionViewModel x:Key="entradaPorValidacionViewModel"></vm:EntradaPorValidacionViewModel>
+        <!--<vm:EntradaPorValidacionViewModel x:Key="entradaPorValidacionViewModel"></vm:EntradaPorValidacionViewModel>
         <ObjectDataProvider x:Key="catalogItemViewModel" ObjectInstance="{StaticResource entradaPorValidacionViewModel}" 
-                            MethodName="CreateCatalogItemViewModel" x:Shared="False"/>
+                            MethodName="CreateCatalogItemViewModel" x:Shared="False"/>-->
 
         
         <!--
@@ -90,6 +99,23 @@
             ObjectDataProvider expone el método CreateAddItemStatusViewModel que regresa el viewModel de addItemStatusViewModel
             De esta forma es posible pasar por parametro el viewmodel de catálogo al constructor de addItemStatusViewModel
         -->
+        <vm:CatalogUnidadViewModel x:Key="catalogUnidadViewModel"></vm:CatalogUnidadViewModel>
+        <ObjectDataProvider x:Key="addUnidadViewModel" ObjectInstance="{StaticResource catalogUnidadViewModel}"
+                            MethodName="CreateAddUnidadViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyUnidadViewModel" ObjectInstance="{StaticResource catalogUnidadViewModel}"
+                            MethodName="CreateModifyUnidadViewModel" x:Shared="False"/>
+        
+        <!--<vm:CatalogServicioViewModel x:Key="catalogServicioViewModel"></vm:CatalogServicioViewModel>
+        <ObjectDataProvider x:Key="addServicioViewModel" ObjectInstance="{StaticResource catalogServicioViewModel}"
+                            MethodName="CreateAddServicioViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyServicioViewModel" ObjectInstance="{StaticResource catalogServicioViewModel}"
+                            MethodName="CreateModifyServicioViewModel" x:Shared="False"/>-->
+        
+        <!--<vm:CatalogPropiedadViewModel x:Key="catalogPropiedadViewModel"></vm:CatalogPropiedadViewModel>
+        <ObjectDataProvider x:Key="addPropiedadViewModel" ObjectInstance="{StaticResource catalogPropiedadViewModel}"
+                            MethodName="CreateAddPropiedadViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyPropiedadViewModel" ObjectInstance="{StaticResource catalogPropiedadViewModel}"
+                            MethodName="CreateModifyPropiedadViewModel" x:Shared="False"/>-->
 
         <!--<vm:CatalogClienteViewModel x:Key="catalogClienteViewModel"></vm:CatalogClienteViewModel>
         <ObjectDataProvider x:Key="addClienteViewModel" ObjectInstance="{StaticResource catalogClienteViewModel}"

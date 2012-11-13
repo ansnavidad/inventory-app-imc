@@ -96,20 +96,6 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
             }
             return new ModifyItemStatusViewModel(this,itemStatusModel);
         }
-        ///// <summary>
-        ///// Crea una nueva instancia de DeleteItemStatus y se pasa asi mismo como parámetro y el item seleccionado
-        ///// </summary>
-        ///// <returns></returns>
-        //public DeleteItemStatusViewModel CreateDeleteItemStatusViewModel()
-        //{
-        //    ItemStatusModel itemStatusModel = new ItemStatusModel(new ItemStatusDataMapper());
-        //    if (this._catalogItemStatusModel != null && this._catalogItemStatusModel.ItemStatus != null)
-        //    {
-        //        itemStatusModel.ItemStatusName = this._catalogItemStatusModel.SelectedItemStatus.ITEM_STATUS_NAME;
-        //        itemStatusModel.UnidItemStatus = this._catalogItemStatusModel.SelectedItemStatus.UNID_ITEM_STATUS;
-        //    }
-        //    return new DeleteItemStatusViewModel(this, itemStatusModel);
-        //}
         
         #region Methods
         /// <summary>
@@ -127,8 +113,7 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
                     _canDeleteItemStatus = true;
                 }
             }
-               // _canDeleteItemStatus = true;
-
+            
             return _canDeleteItemStatus;
         }
         public void AttempDeleteItemStatus()

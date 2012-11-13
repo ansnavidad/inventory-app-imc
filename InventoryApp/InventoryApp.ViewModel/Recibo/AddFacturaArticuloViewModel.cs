@@ -104,7 +104,7 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private ArticuloModel _SelectedArticulo;
+        private ArticuloModel _SelectedArticulo;    
         public const string SelectedArticuloPropertyName = "SelectedArticulo";
 
         public int Cantidad

@@ -7,6 +7,8 @@ using InventoryApp.Model;
 using InventoryApp.ViewModel.CatalogArticulo;
 using System.ComponentModel;
 using InventoryApp.ViewModel.CatalogMarca;
+using InventoryApp.ViewModel.Recibo;
+using InventoryApp.ViewModel.CatalogBanco;
 
 namespace InventoryApp.ViewModel
 {
@@ -111,7 +113,10 @@ namespace InventoryApp.ViewModel
                         page = new CatalogArticuloViewModel();
                         break;
                     case "Marca":
-                        page = new CatalogMarcaViewModel();
+                        page = new ReciboViewModel();
+                        break;
+                    case "Etc2":
+                        page = new CatalogBancoViewModel();
                         break;
                     default:
                         break;

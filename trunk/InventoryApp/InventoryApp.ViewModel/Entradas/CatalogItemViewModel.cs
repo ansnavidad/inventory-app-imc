@@ -123,9 +123,15 @@ namespace InventoryApp.ViewModel.Entradas
                     {
                         item.IsChecked = false;
                         this._entradaPorValidacionViewModel.ItemModel.ItemModel.Add(item);
+
+
+
                     }
                 }
+
             }
+                 this.EntradaPorValidacionViewModel.MovimientoModel.CantidadItems = this.EntradaPorValidacionViewModel.ItemModel.ItemModel.Count();
+            
         }
         #endregion
     }

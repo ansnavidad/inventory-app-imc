@@ -8,6 +8,7 @@ namespace InventoryApp.DAL
 {
     public class MovimientoDetalleDataMapper : IDataMapper
     {
+        //
         /// <summary>
         /// Obtiene todos los elementos en la tabla transporte
         /// </summary>

@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogBanco
 {
-    public class CatalogBancoViewModel
+    public class CatalogBancoViewModel:IPageViewModel
     {
         private RelayCommand _deleteBancoCommand;
         private CatalogBancoModel _catalogBancoModel;
@@ -116,5 +116,17 @@ namespace InventoryApp.ViewModel.CatalogBanco
             }
         }
         #endregion
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

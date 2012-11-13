@@ -1,0 +1,135 @@
+﻿<UserControl x:Class="InventoryApp.View.Recibo.ReciboView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        <!--<GridLength x:Key="descColWidth">120</GridLength>
+        <GridLength x:Key="captureColWidth">200</GridLength>
+        <GridLength x:Key="capRowHeight">27</GridLength>
+        <sys:Int32 x:Key="allCapColumnSpan">5</sys:Int32>-->
+    </UserControl.Resources>
+    <DockPanel>
+        <Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" DockPanel.Dock="Top" Height="40">
+            <DockPanel  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  >
+                <TextBlock  Margin="10,0" Text="Factura" HorizontalAlignment="Left" VerticalAlignment="Center" DockPanel.Dock="Left" />
+                <Button Name="btnAgregar" Content="Agregar" Height="23" Width="75" HorizontalAlignment="Right" Margin="30,0,0,0" DockPanel.Dock="Right" />
+                <Button Content="Cancelar" Height="23"  Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" DockPanel.Dock="Right" />
+            </DockPanel>
+        </Border>
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" 
+                  HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridMoneda"
+                  SelectedItem="{Binding CatalogMonedaModel.SelectedMoneda, Mode=TwoWay}"
+                  VerticalAlignment="Stretch" ItemsSource="{Binding CatalogMonedaModel.Moneda}"
+                  
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
+                  DockPanel.Dock="Bottom"
+                  RowStyle="{StaticResource RowStyle}">
+            <DataGrid.Columns>
+                <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />-->
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Moneda" Width="*" x:Name="nombreMoneda" 
+                                    Binding="{Binding Path=MONEDA_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Abreviatura" Width="*" x:Name="monedaAbr" 
+                                    Binding="{Binding Path=MONEDA_ABR}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+         información de factura 
+        <Grid Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="Silver" BorderThickness="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <DockPanel  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  >
+                    <TextBlock  Margin="10,0" Text="Factura" HorizontalAlignment="Left" DockPanel.Dock="Left" />
+                    <Button Name="btnAgregar" Content="Agregar" Height="23" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" DockPanel.Dock="Right" />
+                    <Button Content="Cancelar" Height="23"  Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" DockPanel.Dock="Right" />
+                </DockPanel>
+            </Border>
+
+            <TextBlock Grid.Column="0" Grid.Row="1" Height="23" HorizontalAlignment="Left" Text="Número de Factura" VerticalAlignment="Top" />
+            <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding NumeroFactura, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="3" Grid.Row="1" Height="23" HorizontalAlignment="Left" Text="Fecha de Factura" VerticalAlignment="Top" />
+            <DatePicker Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding FechaFactura, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Proveedor" VerticalAlignment="Top" />
+            <ComboBox Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Proveedores}" SelectedItem="{Binding SelectedProveedor,Mode=TwoWay}" DisplayMemberPath="ProveedorName" Text="{Binding SelectedProveedor.ProveedorName}" IsEnabled="{Binding CanSelecteProveedor}" />
+
+            <TextBlock Grid.Column="3" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Moneda" VerticalAlignment="Top" />
+            <ComboBox Grid.Column="4" Grid.Row="2" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Monedas}" SelectedItem="{Binding SelectedMoneda}" DisplayMemberPath="MonedaName" />
+
+            <TextBlock Grid.Column="0" Grid.Row="4" Height="23" HorizontalAlignment="Left" Text="Items" VerticalAlignment="Top" />
+            <DockPanel Grid.Column="5" Grid.Row="4"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" >
+                <Button Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Click="btnFacturaAdd_Click" />
+                <Button Content="Eliminar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" />
+            </DockPanel>
+            <ListView Grid.Column="0"  Grid.Row="5" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.RowSpan="4"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding FacturaDetalles}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="" Width="35" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Path=IsChecked, NotifyOnSourceUpdated=True, NotifyOnValidationError=True}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Categoría" Width="150" DisplayMemberBinding="{Binding Path=Articulo.Categoria.CATEGORIA_NAME }" />
+                        <GridViewColumn Header="Equipo" Width="150" DisplayMemberBinding="{Binding Path=Articulo.EquipoModel.EquipoName}" />
+                        <GridViewColumn Header="Marca" Width="150" DisplayMemberBinding="{Binding Path=Articulo.Marca.MARCA_NAME}" />
+                        <GridViewColumn Header="Articulo" Width="150" DisplayMemberBinding="{Binding Path=Articulo.ArticuloName}" />
+                        <GridViewColumn Header="Cantidad" Width="150" DisplayMemberBinding="{Binding Path=Cantidad}" />
+                        <GridViewColumn Header="Precio Unitario" Width="150" DisplayMemberBinding="{Binding Path=PrecioUnitario}" />
+                        <GridViewColumn Header="Impuesto Unitario" Width="150" DisplayMemberBinding="{Binding Path=ImpuestoUnitario}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>-->
+</UserControl>

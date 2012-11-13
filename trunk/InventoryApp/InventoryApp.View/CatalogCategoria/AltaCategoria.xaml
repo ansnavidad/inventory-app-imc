@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         DataContext="{DynamicResource addCategoriaViewModel}"
-        Title="AltaCategoria" Height="202" Width="300"
+        Title="AltaCategoria" Height="202" Width="350" 
         WindowStyle="ToolWindow" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
@@ -16,7 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="10" />
             <RowDefinition Height="31*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -28,21 +28,20 @@
         <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label Content="ALTA CATEGORIA " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <Label Content="Nombre categoría:" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,23,0,29" 
-               Name="lblNombreCategoria" VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="2" />
-        <TextBox Grid.Column="2" Grid.Row="1" Height="23"
-                 HorizontalAlignment="Left" Margin="0,27,0,0" 
-                 Name="txtNomreCategoria" VerticalAlignment="Stretch" Width="120"
-                 Text="{Binding AddCategoria.CategoriaName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                 MaxLength="254" Grid.ColumnSpan="2" />
         <Button Content="Guardar" Grid.Row="3" Height="23" 
-                HorizontalAlignment="Stretch" Margin="44,0,0,30" 
+                HorizontalAlignment="Stretch" Margin="5,0" 
                 Name="btnAgregar" VerticalAlignment="Stretch" Width="75" 
                 Command="{Binding AddCategoriaCommand,Mode=OneWay}"
                 Click="btnAgregar_Click" Grid.Column="1" />
         <Button Content="Cancelar" Grid.Column="2" Grid.Row="3" 
-                Height="23" HorizontalAlignment="Stretch" Margin="45,0,19,30" 
+                Height="23" HorizontalAlignment="Stretch" Margin="5,0" 
                 Name="btnCancelar" VerticalAlignment="Stretch" Width="75" 
-                Click="btnCancelar_Click" Grid.ColumnSpan="2" />
+                Click="btnCancelar_Click" />
+        <Label Content="Nombre categoria :" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,27,0,5" Name="lblNombreCategoria" VerticalAlignment="Stretch" FontFamily="Arial Rounded MT" FontStretch="Normal" Foreground="#848484" FontSize="11.5" Grid.Column="1" Grid.RowSpan="2" />
+        <TextBox Grid.Column="2" Grid.Row="1" Height="23"
+                 HorizontalAlignment="Left" Margin="0,27,0,0" 
+                 Name="txtNomreCategoria" VerticalAlignment="Stretch" Width="120"
+                 Text="{Binding AddCategoria.CategoriaName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="254"/>
+
     </Grid>
 </Window>

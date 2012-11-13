@@ -47,11 +47,11 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Articulo" Width="100" x:Name="articuloNombre" Binding="{Binding Path=ARTICULO1}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Categoria" Width="100" x:Name="categoriaNombre" Binding="{Binding Path=Categoria.CATEGORIA_NAME}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Marca" Width="100" x:Name="marcaaNombre" Binding="{Binding Path=Marca.MARCA_NAME}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Modelo" Width="100" x:Name="modeloNombre" Binding="{Binding Path=Modelo.MODELO_NAME}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Equipo" Width="100" x:Name="equipoaNombre" Binding="{Binding Path=Equipo.EQUIPO_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Articulo" Width="*" x:Name="articuloNombre" Binding="{Binding Path=ARTICULO1}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Categoria" Width="*" x:Name="categoriaNombre" Binding="{Binding Path=Categoria.CATEGORIA_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Marca" Width="*" x:Name="marcaaNombre" Binding="{Binding Path=Marca.MARCA_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Modelo" Width="*" x:Name="modeloNombre" Binding="{Binding Path=Modelo.MODELO_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Equipo" Width="*" x:Name="equipoaNombre" Binding="{Binding Path=Equipo.EQUIPO_NAME}" IsReadOnly="True"/>
                 <!--<DataGridTextColumn Header="TOTAL" Width="*" x:Name="Total" Binding="{Binding Path=total}" IsReadOnly="True"/>-->
             </DataGrid.Columns>
         </DataGrid>

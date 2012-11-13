@@ -1,19 +1,18 @@
-﻿using InventoryApp.DAL;
+﻿using InventoryApp.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using InventoryApp.DAL.POCOS;
-using System.Collections.Generic;
+using InventoryApp.DAL;
 
 namespace DALTestProject
 {
     
     
     /// <summary>
-    ///Se trata de una clase de prueba para CategoriaDataMapperTest y se pretende que
-    ///contenga todas las pruebas unitarias CategoriaDataMapperTest.
+    ///Se trata de una clase de prueba para MenuModelTest y se pretende que
+    ///contenga todas las pruebas unitarias MenuModelTest.
     ///</summary>
     [TestClass()]
-    public class CategoriaDataMapperTest
+    public class MenuModelTest
     {
 
 
@@ -67,32 +66,14 @@ namespace DALTestProject
 
 
         /// <summary>
-        ///Una prueba de GetCategorias
-        ///</summary>
-        //[TestMethod()]
-        //public void GetCategoriasTest()
-        //{
-        //    CategoriaDataMapper target = new CategoriaDataMapper(); // TODO: Inicializar en un valor adecuado
-        //    //CategoriaCollection expected = null; // TODO: Inicializar en un valor adecuado
-        //    CategoriaCollection actual;
-        //    actual = target.GetCategorias();
-        //    Assert.AreEqual(4, actual.Count);
-        //    //Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        //}
-
-        /// <summary>
-        ///Una prueba de getElementsByProveedor
+        ///Una prueba de Constructor MenuModel
         ///</summary>
         [TestMethod()]
-        public void getElementsByProveedorTest()
+        public void MenuModelConstructorTest()
         {
-            CategoriaDataMapper target = new CategoriaDataMapper(); // TODO: Inicializar en un valor adecuado
-            PROVEEDOR proveedor = new PROVEEDOR() { UNID_PROVEEDOR = 20121113012552944 }; // TODO: Inicializar en un valor adecuado
-            List<CATEGORIA> expected = null; // TODO: Inicializar en un valor adecuado
-            List<CATEGORIA> actual;
-            actual = target.getElementsByProveedor(proveedor);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            //IDataMapper menuDataMapper = new MenuDataMapper(); // TODO: Inicializar en un valor adecuado
+            //MenuModel target = new MenuModel(menuDataMapper);
+            //Assert.Inconclusive("TODO: Implementar código para comprobar el destino");
         }
     }
 }

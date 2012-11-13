@@ -1,0 +1,15 @@
+﻿<Window xmlns:my="clr-namespace:InventoryApp.View.Recibo"  
+        x:Class="InventoryApp.View.Recibo.DlgAddFacturaArticuloView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DlgAddFacturaArticuloView" Height="Auto" Width="400">
+    <StackPanel>
+        <ContentControl HorizontalAlignment="Stretch">
+            <my:AddFacturaArticulo />
+        </ContentControl>
+        <DockPanel HorizontalAlignment="Stretch" >
+            <Button Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Command="{Binding AddMonedaCommand}" Click="btnFacturaAdd_Click" />
+            <Button Content="Cerrar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Click="btnFacturaDel_Click" />
+        </DockPanel>
+    </StackPanel>
+</Window>

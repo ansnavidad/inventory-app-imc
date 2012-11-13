@@ -36,6 +36,8 @@ namespace InventoryApp.View.CatalogMarca
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
+                    ModifyMarcaView modifyMarcaView = new ModifyMarcaView();
+
                     (new ModifyMarcaView()).ShowDialog();
                 }
             }

@@ -464,21 +464,6 @@ namespace InventoryApp.DAL.POCOS
         }
         private PROVEEDOR _pROVEEDOR2;
     
-        public virtual SOLICITANTE SOLICITANTE
-        {
-            get { return _sOLICITANTE; }
-            set
-            {
-                if (!ReferenceEquals(_sOLICITANTE, value))
-                {
-                    var previousValue = _sOLICITANTE;
-                    _sOLICITANTE = value;
-                    FixupSOLICITANTE(previousValue);
-                }
-            }
-        }
-        private SOLICITANTE _sOLICITANTE;
-    
         public virtual TRANSPORTE TRANSPORTE
         {
             get { return _tRANSPORTE; }
@@ -645,6 +630,21 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private ICollection<MOVIMIENTO_DETALLE> _mOVIMIENTO_DETALLE;
+    
+        public virtual SOLICITANTE SOLICITANTE
+        {
+            get { return _sOLICITANTE; }
+            set
+            {
+                if (!ReferenceEquals(_sOLICITANTE, value))
+                {
+                    var previousValue = _sOLICITANTE;
+                    _sOLICITANTE = value;
+                    FixupSOLICITANTE(previousValue);
+                }
+            }
+        }
+        private SOLICITANTE _sOLICITANTE;
 
         #endregion
         #region Association Fixup
@@ -720,30 +720,6 @@ namespace InventoryApp.DAL.POCOS
             else if (!_settingFK)
             {
                 UNID_PROVEEDOR_DESTINO = null;
-            }
-        }
-    
-        private void FixupSOLICITANTE(SOLICITANTE previousValue)
-        {
-            if (previousValue != null && previousValue.MOVIMENTOes.Contains(this))
-            {
-                previousValue.MOVIMENTOes.Remove(this);
-            }
-    
-            if (SOLICITANTE != null)
-            {
-                if (!SOLICITANTE.MOVIMENTOes.Contains(this))
-                {
-                    SOLICITANTE.MOVIMENTOes.Add(this);
-                }
-                if (UNID_SOLICITANTE != SOLICITANTE.UNID_SOLICITANTE)
-                {
-                    UNID_SOLICITANTE = SOLICITANTE.UNID_SOLICITANTE;
-                }
-            }
-            else if (!_settingFK)
-            {
-                UNID_SOLICITANTE = null;
             }
         }
     
@@ -956,6 +932,30 @@ namespace InventoryApp.DAL.POCOS
             else if (!_settingFK)
             {
                 UNID_FACTURA_VENTA = null;
+            }
+        }
+    
+        private void FixupSOLICITANTE(SOLICITANTE previousValue)
+        {
+            if (previousValue != null && previousValue.MOVIMENTOes.Contains(this))
+            {
+                previousValue.MOVIMENTOes.Remove(this);
+            }
+    
+            if (SOLICITANTE != null)
+            {
+                if (!SOLICITANTE.MOVIMENTOes.Contains(this))
+                {
+                    SOLICITANTE.MOVIMENTOes.Add(this);
+                }
+                if (UNID_SOLICITANTE != SOLICITANTE.UNID_SOLICITANTE)
+                {
+                    UNID_SOLICITANTE = SOLICITANTE.UNID_SOLICITANTE;
+                }
+            }
+            else if (!_settingFK)
+            {
+                UNID_SOLICITANTE = null;
             }
         }
     

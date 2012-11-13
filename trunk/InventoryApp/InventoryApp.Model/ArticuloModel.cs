@@ -14,6 +14,7 @@ namespace InventoryApp.Model
         #region Fields
         private long _unidArticulo;
         private string _articuloName;
+        private EquipoModel _equipoModel;
         private CATEGORIA _categoria;
         private MARCA _marca;
         private MODELO _modelo;
@@ -22,6 +23,25 @@ namespace InventoryApp.Model
         #endregion
 
         #region Props
+        public EquipoModel EquipoModel
+        {
+            get
+            {
+                return _equipoModel;
+            }
+            set
+            {
+                if (_equipoModel != value)
+                {
+                    _equipoModel = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("EquipoModel"));
+                    }
+                }
+            }
+        }
+
         public long UnidArticulo
         {
             get
@@ -158,6 +178,9 @@ namespace InventoryApp.Model
                 this._dataMapper = dataMapper as ArticuloDataMapper;
             }
 
+        }
+        public ArticuloModel()
+        {
         }
         #endregion
 

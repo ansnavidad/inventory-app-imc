@@ -39,6 +39,69 @@ namespace InventoryApp.DAL
             }
             return o;
         }
+
+        public List<ARTICULO> getElementsByCategoria(CATEGORIA categoria)
+        {
+            List<ARTICULO> articulos = new List<ARTICULO>();
+
+            if (categoria != null)
+            {
+                try
+                {
+                    using (var Entity = new TAE2Entities())
+                    {
+                        (from p in Entity.ARTICULOes
+                         where p.UNID_CATEGORIA == categoria.UNID_CATEGORIA
+                            && p.IS_ACTIVE == true
+                         select p).ToList<ARTICULO>().ForEach(o => articulos.Add(new ARTICULO()
+                         {
+                             UNID_ARTICULO = o.UNID_ARTICULO
+                             ,
+                             ARTICULO1 = o.ARTICULO1
+                             ,
+                             UNID_CATEGORIA = o.UNID_CATEGORIA
+                             ,
+                             UNID_EQUIPO = o.UNID_EQUIPO
+                             ,
+                             UNID_MARCA = o.UNID_MARCA
+                             ,
+                             UNID_MODELO = o.UNID_MODELO
+                             ,
+                             EQUIPO = new EQUIPO()
+                                 {
+                                     EQUIPO_NAME = o.EQUIPO.EQUIPO_NAME
+                                     ,
+                                     UNID_EQUIPO = o.EQUIPO.UNID_EQUIPO
+                                 }
+                             ,
+                             MARCA = new MARCA()
+                             {
+                                 UNID_MARCA = o.UNID_MARCA
+                                 ,
+                                 MARCA_NAME = o.MARCA.MARCA_NAME
+                             },
+                             MODELO = new MODELO()
+                             {
+                                 UNID_MODELO = o.MODELO.UNID_MODELO
+                                 ,
+                                 MODELO_NAME = o.MODELO.MODELO_NAME
+                             },
+                             CATEGORIA = new CATEGORIA()
+                             {
+                                 UNID_CATEGORIA=o.CATEGORIA.UNID_CATEGORIA
+                                 ,CATEGORIA_NAME=o.CATEGORIA.CATEGORIA_NAME
+                             }
+                         }));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+
+            return articulos;
+        }
         
         public object getElements()
         {
@@ -84,6 +147,34 @@ namespace InventoryApp.DAL
 
                 return res;
             }
+        }
+
+        public FixupCollection<ARTICULO> getElement(CATEGORIA categoria, EQUIPO equipo)
+        {
+            FixupCollection<ARTICULO> articulos = new FixupCollection<ARTICULO>();
+
+
+            if (categoria != null && equipo != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+
+                    try
+                    {
+                        (from cust in entity.ARTICULOes
+                         where cust.UNID_CATEGORIA == categoria.UNID_CATEGORIA
+                             && cust.UNID_EQUIPO == equipo.UNID_EQUIPO
+                         select cust).ToList<ARTICULO>().ForEach(o => articulos.Add(o));
+                    }
+                    catch (Exception ex)
+                    {
+                        ;
+                    }
+
+                } 
+            }//endif
+
+            return articulos;
         }
 
         public void udpateElement(object element)

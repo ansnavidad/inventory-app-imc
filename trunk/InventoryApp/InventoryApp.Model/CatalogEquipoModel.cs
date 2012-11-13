@@ -72,6 +72,21 @@ namespace InventoryApp.Model
             this.Equipos = ic;
         }
 
+        public void loadItems(CategoriaModel categoria)
+        {
+            FixupCollection<EQUIPO> equipos = (this._dataMapper as EquipoDataMapper).GetArticuloEquipoByCategoria(new CATEGORIA() { UNID_CATEGORIA=categoria.UnidCategoria });
+            FixupCollection<DeleteEquipo> ic = new FixupCollection<DeleteEquipo>();
+
+            if (equipos != null)
+            {
+                if (equipos.Count > 0)
+                {
+                    equipos.ToList<EQUIPO>().ForEach(o=> ic.Add(new DeleteEquipo(o)));
+                }
+            }
+            this.Equipos = ic;
+        }
+
         public void deleteEquipo()
         {
             foreach (DeleteEquipo item in this._equipos)
@@ -89,8 +104,9 @@ namespace InventoryApp.Model
             this._equipos = new FixupCollection<DeleteEquipo>();
             this._selectedEquipo = new EQUIPO();
             this.loadItems();
-
         }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

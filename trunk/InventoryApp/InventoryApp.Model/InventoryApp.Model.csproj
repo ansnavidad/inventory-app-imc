@@ -114,18 +114,24 @@
     <Compile Include="ItemStatusModel.cs" />
     <Compile Include="MarcaModel.cs" />
     <Compile Include="MedioEnvioModel.cs" />
+    <Compile Include="MenuModel.cs" />
+    <Compile Include="ModelBase.cs" />
     <Compile Include="ModeloModel.cs" />
     <Compile Include="MonedaModel.cs" />
     <Compile Include="MovimientoDetalleModel.cs" />
     <Compile Include="MovimientoModel.cs" />
     <Compile Include="PaisModel.cs" />
+
+    <Compile Include="PedimentoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CatalogItemModel.cs" />
     <Compile Include="PropiedadModel.cs" />
     <Compile Include="ProveedorCuentaModel.cs" />
     <Compile Include="ProveedorModel.cs" />
     <Compile Include="ProyectoModel.cs" />
-    <Compile Include="ServicioModel.cs" />
+    <Compile Include="Recibo\FacturaCompraDetalleModel.cs" />
+    <Compile Include="Recibo\FacturaCompraModel.cs" />
+        <Compile Include="ServicioModel.cs" />
     <Compile Include="SolicitanteModel.cs" />
     <Compile Include="TerminoEnvioModel.cs" />
     <Compile Include="TestCode\CatalogItemModelDataMapperTEst.cs" />

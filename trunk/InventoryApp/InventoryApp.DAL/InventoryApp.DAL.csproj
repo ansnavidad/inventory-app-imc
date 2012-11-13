@@ -59,6 +59,7 @@
     <Compile Include="ItemStatusDataMapper.cs" />
     <Compile Include="MarcaDataMapper.cs" />
     <Compile Include="MedioEnvioDataMapper.cs" />
+    <Compile Include="MenuDataMapper.cs" />
     <Compile Include="ModeloDataMapper.cs" />
     <Compile Include="MonedaDataMapper.cs" />
     <Compile Include="MovimientoDataMapper.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="ProveedorCuentaDataMapper.cs" />
     <Compile Include="ProveedorDataMapper.cs" />
     <Compile Include="ProyectoDataMapper.cs" />
+    <Compile Include="Recibo\FacturaCompraDataMapper.cs" />
     <Compile Include="ServicioDataMapper.cs" />
     <Compile Include="Solicitante1DataMapper.cs" />
     <Compile Include="SolicitanteDataMapper.cs" />

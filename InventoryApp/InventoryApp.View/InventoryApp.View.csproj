@@ -395,8 +395,8 @@
     <Compile Include="Recibo\DlgAddFacturaArticuloView.xaml.cs">
       <DependentUpon>DlgAddFacturaArticuloView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Recibo\ReciboView.xaml.cs">
-      <DependentUpon>ReciboView.xaml</DependentUpon>
+    <Compile Include="Recibo\AddReciboView.xaml.cs">
+      <DependentUpon>AddReciboView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Recibo\AddFacturaArticulo.xaml.cs">
       <DependentUpon>AddFacturaArticulo.xaml</DependentUpon>
@@ -406,6 +406,9 @@
     </Compile>
     <Compile Include="Recibo\AddPedimientoView.xaml.cs">
       <DependentUpon>AddPedimientoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\ReciboView.xaml.cs">
+      <DependentUpon>ReciboView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Salidas\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
@@ -908,7 +911,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Recibo\ReciboView.xaml">
+    <Page Include="Recibo\AddReciboView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -921,6 +924,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Recibo\AddPedimientoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\ReciboView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

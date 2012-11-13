@@ -8,6 +8,9 @@
              xmlns:catMarca="clr-namespace:InventoryApp.ViewModel.CatalogMarca;assembly=InventoryApp.ViewModel"
              xmlns:catMarcaViews="clr-namespace:InventoryApp.View.CatalogMarca"
              xmlns:reciboViewModel="clr-namespace:InventoryApp.ViewModel.Recibo;assembly=InventoryApp.ViewModel"
+             xmlns:reciboViews="clr-namespace:InventoryApp.View.Recibo"
+             xmlns:catBancoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogBanco;assembly=InventoryApp.ViewModel"
+             xmlns:bancoViews="clr-namespace:InventoryApp.View.CatalogBanco"
              StartupUri="MainWindow.xaml"
              
              >
@@ -198,6 +201,9 @@
         <!-- marca -->
         <ObjectDataProvider x:Key="catalogMarcaViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
+        <!-- banco -->
+        <ObjectDataProvider x:Key="catalogBancoViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
         
         <reciboViewModel:AddFacturaViewModel x:Key="addFacturaViewModel" />
         <reciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />
@@ -212,6 +218,12 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type catMarca:CatalogMarcaViewModel}">
             <catMarcaViews:MarcaUserControl />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type reciboViewModel:ReciboViewModel}">
+            <reciboViews:ReciboView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type catBancoViewModel:CatalogBancoViewModel}">
+            <bancoViews:BancoUserControl />
         </DataTemplate>
     </Application.Resources>
 </Application>

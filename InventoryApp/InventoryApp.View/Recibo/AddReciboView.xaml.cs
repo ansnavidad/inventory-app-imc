@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace InventoryApp.View.Recibo
 {
     /// <summary>
-    /// Lógica de interacción para ReciboView.xaml
+    /// Lógica de interacción para AddReciboView.xaml
     /// </summary>
-    public partial class ReciboView : UserControl
+    public partial class AddReciboView : UserControl
     {
-        public ReciboView()
+        public AddReciboView()
         {
             InitializeComponent();
         }

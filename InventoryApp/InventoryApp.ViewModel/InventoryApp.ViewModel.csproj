@@ -50,6 +50,9 @@
     <Compile Include="CatalogArticulo\AddArticuloViewModel.cs" />
     <Compile Include="CatalogArticulo\CatalogArticuloViewModel.cs" />
     <Compile Include="CatalogArticulo\ModifyArticuloViewModel.cs" />
+    <Compile Include="CatalogCliente\AddClienteViewModel.cs" />
+    <Compile Include="CatalogCliente\CatalogClienteViewModel.cs" />
+    <Compile Include="CatalogCliente\ModifyClienteViewModel.cs" />
     <Compile Include="CatalogDepartamento\AddDepartamentoViewModel.cs" />
     <Compile Include="CatalogDepartamento\CatalogDepartamentoViewModel.cs" />
     <Compile Include="CatalogDepartamento\ModifyDepartamentoViewModel.cs" />
@@ -93,6 +96,7 @@
     <Compile Include="CatalogModelo\CatalogModeloViewModel.cs" />
     <Compile Include="CatalogModelo\ModifyModeloViewModel.cs" />
     <Compile Include="CatalogTipoEmpresa\CatalogTipoEmpresaViewModel.cs" />
+    <Compile Include="CatalogTransporte\AddTransporteViewModel.cs" />
     <Compile Include="CatalogTransporte\CatalogTransporteViewModel.cs" />
     <Compile Include="CatalogTipoEmpresa\InsertTipoEmpresaViewModel.cs" />
     <Compile Include="CatalogTransporte\InsertTransporteViewModel.cs" />

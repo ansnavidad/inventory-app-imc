@@ -1,4 +1,4 @@
-﻿<Window x:Class="InventoryApp.View.CatalogTransporteView"
+﻿<Window x:Class="InventoryApp.View.CatalogTransporte.CatalogTransporteView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:InventoryApp.ViewModel;assembly=InventoryApp.ViewModel"
@@ -50,5 +50,6 @@
                 <DataGridTextColumn Header="Tipo Empresa" Width="100" x:Name="tipoEmpresaNombre" Binding="{Binding Path=TipoEmpresa.TIPO_EMPRESA_NAME}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
+        
     </Grid>
 </Window>

@@ -64,13 +64,12 @@ namespace InventoryApp.DAL
                     PROVEEDOR_CUENTA proveedorCuenta = (PROVEEDOR_CUENTA)element;
 
                     var modifiedProveedor = entity.PROVEEDOR_CUENTA.First(p => p.UNID_PROVEEDOR_CUENTA == proveedorCuenta.UNID_PROVEEDOR_CUENTA);
-                    modifiedProveedor.UNID_PROVEEDOR = proveedorCuenta.UNID_PROVEEDOR;
+                    
                     modifiedProveedor.UNID_BANCO = proveedorCuenta.UNID_BANCO;
-                    modifiedProveedor.PROVEEDOR = proveedorCuenta.PROVEEDOR;
                     modifiedProveedor.NUMERO_CUENTA = proveedorCuenta.NUMERO_CUENTA;
                     modifiedProveedor.CLABE = proveedorCuenta.CLABE;
                     modifiedProveedor.BENEFICIARIO = proveedorCuenta.BENEFICIARIO;
-                    modifiedProveedor.BANCO = proveedorCuenta.BANCO;
+                    
 
                     entity.SaveChanges();
                 }

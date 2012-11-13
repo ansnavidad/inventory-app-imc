@@ -11,24 +11,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace InventoryApp.View.CatalogTransporte
+namespace InventoryApp.View.CatalogCliente
 {
     /// <summary>
-    /// Lógica de interacción para InsertTransporteView.xaml
+    /// Lógica de interacción para AltaCliente.xaml
     /// </summary>
-    public partial class InsertTransporteView : Window
+    public partial class AltaCliente : Window
     {
-        public InsertTransporteView()
+        public AltaCliente()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtNomreCliente);
         }
 
-        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

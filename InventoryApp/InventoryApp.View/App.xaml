@@ -1,19 +1,11 @@
 ﻿<Application x:Class="InventoryApp.View.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="clr-namespace:InventoryApp.ViewModel.Entradas;assembly=InventoryApp.ViewModel"
-             StartupUri="Entradas/EntradaValidacionRevision.xaml">
+             xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogCliente;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogCliente/CatalogClienteView.xaml">
 
-    <!--StartupUri="CatalogTipoMovimientoView.xaml">-->
-    <!--StartupUri="CatalogItemStatusView.xaml">-->
-    <!--StartupUri="CatalogTipoCotizacionView.xaml">-->
-    <!--StartupUri="CatalogProyectoView.xaml">-->
-             <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTipoMovimiento;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogTipoMovimiento/CatalogTipoMovimientoView.xaml">-->
-
-             <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTransporte;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogTransporte/CatalogTransporteView.xaml">-->
-
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogCliente;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogCliente/CatalogClienteView.xaml">-->
 
     <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTransporte;assembly=InventoryApp.ViewModel"
              StartupUri="CatalogTransporte/CatalogTransporteView.xaml">-->
@@ -88,9 +80,9 @@
              StartupUri="CatalogSolicitante/CatalogSolicitanteView.xaml">-->
     <Application.Resources>
 
-        <vm:EntradaPorValidacionViewModel x:Key="entradaPorValidacionViewModel"></vm:EntradaPorValidacionViewModel>
+        <!--<vm:EntradaPorValidacionViewModel x:Key="entradaPorValidacionViewModel"></vm:EntradaPorValidacionViewModel>
         <ObjectDataProvider x:Key="catalogItemViewModel" ObjectInstance="{StaticResource entradaPorValidacionViewModel}" 
-                            MethodName="CreateCatalogItemViewModel" x:Shared="False"/>
+                            MethodName="CreateCatalogItemViewModel" x:Shared="False"/>-->
 
         
         <!--
@@ -98,9 +90,16 @@
             ObjectDataProvider expone el método CreateAddItemStatusViewModel que regresa el viewModel de addItemStatusViewModel
             De esta forma es posible pasar por parametro el viewmodel de catálogo al constructor de addItemStatusViewModel
         -->
+
+        <vm:CatalogClienteViewModel x:Key="catalogClienteViewModel"></vm:CatalogClienteViewModel>
+        <ObjectDataProvider x:Key="addClienteViewModel" ObjectInstance="{StaticResource catalogClienteViewModel}"
+                            MethodName="CreateAddClienteViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="modifyClienteViewModel" ObjectInstance="{StaticResource catalogClienteViewModel}"
+                            MethodName="CreateModifyClienteViewModel" x:Shared="False"/>
+        
         <!--<vm:CatalogTransporteViewModel x:Key="catalogTransporteViewModel"></vm:CatalogTransporteViewModel>
-        <ObjectDataProvider x:Key="insertTransporteViewModel" ObjectInstance="{StaticResource catalogTransporteViewModel}"
-                            MethodName="CreateInsertTransporteViewModel" x:Shared="False"/>
+        <ObjectDataProvider x:Key="addTransporteViewModel" ObjectInstance="{StaticResource catalogTransporteViewModel}"
+                            MethodName="CreateAddTransporteViewModel" x:Shared="False"/>
         <ObjectDataProvider x:Key="modifyTransporteViewModel" ObjectInstance="{StaticResource catalogTransporteViewModel}"
                             MethodName="CreateModifyTransporteViewModel" x:Shared="False"/>-->
         

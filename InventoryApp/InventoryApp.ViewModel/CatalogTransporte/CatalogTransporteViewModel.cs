@@ -62,10 +62,19 @@ namespace InventoryApp.ViewModel.CatalogTransporte
             this._catalogTransporteModel.loadItems();
         }
 
-        public InsertTransporteViewModel CreateInsertTransporteViewModel()
+        /// <summary>
+        /// Crea una nueva instancia de addItemStatus y se pasa asi mismo como parámetro
+        /// Referenca pag 232 del libro MVVM
+        /// </summary>
+        /// <returns></returns>
+        public AddTransporteViewModel CreateAddTransporteViewModel()
         {
-            return new InsertTransporteViewModel(this);
+            return new AddTransporteViewModel(this);
         }
+        //public InsertTransporteViewModel CreateInsertTransporteViewModel()
+        //{
+        //    return new InsertTransporteViewModel(this);
+        //}
 
         public ModifyTransporteViewModel CreateModifyTransporteViewModel()
         {

@@ -13,6 +13,8 @@ namespace InventoryApp.Model
         #region Fields
 
         private long _unidProveedorCuenta;
+        private long _unidBanco;
+        private long _unidProveedor;
         private string _numeroCuenta;
         private string _clabe;
         private string _beneficiario;
@@ -36,6 +38,44 @@ namespace InventoryApp.Model
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("UnidProveedorCuenta"));
+                    }
+                }
+            }
+        }
+
+        public long UnidBanco
+        {
+            get
+            {
+                return _unidBanco;
+            }
+            set
+            {
+                if (_unidBanco != value)
+                {
+                    _unidBanco = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("UnidBanco"));
+                    }
+                }
+            }
+        }
+
+        public long UnidProveedor
+        {
+            get
+            {
+                return _unidProveedor;
+            }
+            set
+            {
+                if (_unidProveedor != value)
+                {
+                    _unidProveedor = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("UnidProveedor"));
                     }
                 }
             }
@@ -148,7 +188,7 @@ namespace InventoryApp.Model
 
         public void updateProveedorCuenta()
         {
-            this._dataMapper.udpateElement(new PROVEEDOR_CUENTA() { UNID_PROVEEDOR_CUENTA = this._unidProveedorCuenta, UNID_PROVEEDOR = this._proveedor.UNID_PROVEEDOR, UNID_BANCO = this._banco.UNID_BANCO, NUMERO_CUENTA = this._numeroCuenta, CLABE = this._clabe, BENEFICIARIO = this._beneficiario });
+            this._dataMapper.udpateElement(new PROVEEDOR_CUENTA() { UNID_PROVEEDOR_CUENTA = this._unidProveedorCuenta, UNID_BANCO = this._banco.UNID_BANCO, NUMERO_CUENTA = this._numeroCuenta, CLABE = this._clabe, BENEFICIARIO = this._beneficiario });
         }
 
         #region Constructors

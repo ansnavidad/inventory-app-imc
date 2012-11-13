@@ -8,7 +8,7 @@ using InventoryApp.DAL;
 
 namespace InventoryApp.Model
 {
-    public class BancoModel
+    public class BancoModel : INotifyPropertyChanged
     {
         #region Fields
         private long _unidBanco;

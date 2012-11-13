@@ -195,6 +195,7 @@ namespace InventoryApp.Model
                     this._almacenDestino = new ALMACEN();
                     this._proveedorDestino = new PROVEEDOR();
 
+
                     this._unidClienteDestino = _clienteDestino.UNID_CLIENTE;
                     if (PropertyChanged != null)
                     {
@@ -219,7 +220,11 @@ namespace InventoryApp.Model
                     this._clienteProcedencia = new CLIENTE();
                     this._almacenProcedencia = new ALMACEN();
 
-                    this._unidProveedorProcedencia = _proveedorProcedencia.UNID_PROVEEDOR;
+
+                    this._unidProveedorProcedencia = ((_proveedorProcedencia != null) ? _proveedorProcedencia.UNID_PROVEEDOR : (long?)null);
+
+                  
+
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("ProveedorProcedencia"));
@@ -242,8 +247,8 @@ namespace InventoryApp.Model
 
                     this._proveedorProcedencia = new PROVEEDOR();
                     this._almacenProcedencia = new ALMACEN();
-
-                    this._unidClienteProcedencia = _clienteProcedencia.UNID_CLIENTE;
+                    this._unidClienteProcedencia = ((_clienteProcedencia != null) ? _clienteProcedencia.UNID_CLIENTE : (long?)null);
+         
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("ClienteProcedencia"));
@@ -266,8 +271,7 @@ namespace InventoryApp.Model
 
                     this._proveedorProcedencia = new PROVEEDOR();
                     this._clienteProcedencia = new CLIENTE();
-
-                    this._unidAlmacenProcedencia = _almacenProcedencia.UNID_ALMACEN;
+                    this._unidAlmacenProcedencia = ((_almacenProcedencia != null) ? _almacenProcedencia.UNID_ALMACEN : (long?)null);
                      
                     if (PropertyChanged != null)
                     {

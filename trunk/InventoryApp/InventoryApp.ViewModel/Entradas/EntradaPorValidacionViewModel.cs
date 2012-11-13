@@ -173,11 +173,11 @@ namespace InventoryApp.ViewModel.Entradas
             bool _canInsertArticulo = false;
 
             int seleccion = 0;
-            if (this.MovimientoModel.AlmacenProcedencia.UNID_ALMACEN != 0)
+            if (this.MovimientoModel.AlmacenProcedencia != null)
                 seleccion++;
-            if (this.MovimientoModel.ClienteProcedencia.UNID_CLIENTE != 0)
+            if (this.MovimientoModel.ClienteProcedencia != null)
                 seleccion++;
-            if (this.MovimientoModel.ProveedorProcedencia.UNID_PROVEEDOR != 0)
+            if (this.MovimientoModel.ProveedorProcedencia != null)
                 seleccion++;
 
             if (this.ItemModel.ItemModel.Count() != 0 && !this.MovimientoModel.Tt.Equals("") && !this.MovimientoModel.Recibe.Equals("") && seleccion == 1)

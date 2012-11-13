@@ -40,6 +40,8 @@ namespace InventoryApp.View.Entradas
             comboBoxAlmacenDestino.IsEnabled = true;
             comboBoxProveedorDestino.IsEnabled = false;
             comboBoxClienteDestino.IsEnabled = false;
+            comboBoxProveedorDestino.SelectedItem = null;
+            comboBoxClienteDestino.SelectedItem = null;
         }
 
         private void radioButtonCliente_Checked(object sender, RoutedEventArgs e)
@@ -49,6 +51,8 @@ namespace InventoryApp.View.Entradas
             comboBoxAlmacenDestino.IsEnabled = false;
             comboBoxProveedorDestino.IsEnabled = false;
             comboBoxClienteDestino.IsEnabled = true;
+            comboBoxAlmacenDestino.SelectedItem = null;
+            comboBoxProveedorDestino.SelectedItem = null;
         }
 
         private void radioButtonProveedor_Checked(object sender, RoutedEventArgs e)
@@ -60,6 +64,8 @@ namespace InventoryApp.View.Entradas
                 comboBoxAlmacenDestino.IsEnabled = false;
                 comboBoxProveedorDestino.IsEnabled = true;
                 comboBoxClienteDestino.IsEnabled = false;
+                comboBoxAlmacenDestino.SelectedItem = null;
+                comboBoxClienteDestino.SelectedItem = null;
             }
         }
     }

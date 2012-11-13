@@ -15,6 +15,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
+            <RowDefinition Height="300" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -52,5 +53,6 @@
                 <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Banco" x:Name="BANCO" Binding="{Binding Path=Banco.BANCO_NAME}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        
     </Grid>
 </Window>

@@ -49,6 +49,7 @@
     <Compile Include="BancoDataMapper.cs" />
     <Compile Include="CiudadDataMapper.cs" />
     <Compile Include="CategoriaDataMapper.cs" />
+    <Compile Include="ClienteDataMapper.cs" />
     <Compile Include="DepartamentoDataMapper.cs" />
     <Compile Include="EmpresaDataMapper.cs" />
     <Compile Include="EquipoDataMapper.cs" />
@@ -215,9 +216,11 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropiedadDataMapper.cs" />
     <Compile Include="ProveedorCuentaDataMapper.cs" />
     <Compile Include="ProveedorDataMapper.cs" />
     <Compile Include="ProyectoDataMapper.cs" />
+    <Compile Include="ServicioDataMapper.cs" />
     <Compile Include="Solicitante1DataMapper.cs" />
     <Compile Include="SolicitanteDataMapper.cs" />
     <Compile Include="TerminoEnvioDataMapper.cs" />
@@ -227,6 +230,7 @@
     <Compile Include="TipoPedimentoDataMapper.cs" />
     <Compile Include="TransporteDataMapper.cs" />
     <Compile Include="UNID.cs" />
+    <Compile Include="UnidadDataMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">

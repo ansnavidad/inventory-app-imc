@@ -104,6 +104,15 @@
     <Compile Include="CatalogCiudad\ModifyCiudadView.xaml.cs">
       <DependentUpon>ModifyCiudadView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogCliente\AltaCliente.xaml.cs">
+      <DependentUpon>AltaCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogCliente\CatalogClienteView.xaml.cs">
+      <DependentUpon>CatalogClienteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogCliente\ModifyClienteView.xaml.cs">
+      <DependentUpon>ModifyClienteView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogDepartamento\AddDepartamentoView.xaml.cs">
       <DependentUpon>AddDepartamentoView.xaml</DependentUpon>
     </Compile>
@@ -452,6 +461,18 @@
     <Page Include="CatalogCiudad\ModifyCiudadView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogCliente\AltaCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogCliente\CatalogClienteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogCliente\ModifyClienteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogDepartamento\AddDepartamentoView.xaml">
       <Generator>MSBuild:Compile</Generator>

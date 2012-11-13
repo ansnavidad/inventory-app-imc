@@ -16,6 +16,11 @@
         <Label Content="Banco:" Height="28" HorizontalAlignment="Left" Margin="97,155,0,0" Name="label8" VerticalAlignment="Top" />
         <Label Content="Proveedor:" Height="28" HorizontalAlignment="Left" Margin="76,189,0,0" Name="label9" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,158,26,0" Name="comboBox1" VerticalAlignment="Top" Width="165" SelectedItem="{Binding ProveedorCuentaModel.Banco,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding CatalogBancoModel.Banco, Mode=OneWay}" DisplayMemberPath="BANCO_NAME" SelectedValuePath="UNID_BANCO" SelectedIndex="0" />
-        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,191,26,0" Name="comboBox2" VerticalAlignment="Top" Width="165" SelectedItem="{Binding ProveedorCuentaModel.Proveedor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding CatalogProveedorModel.Proveedor, Mode=OneWay}" DisplayMemberPath="PROVEEDOR_NAME" SelectedValuePath="UNID_PROVEEDOR" SelectedIndex="0" />
+        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,191,26,0"
+                  Name="comboBox2" VerticalAlignment="Top" Width="165"
+                  SelectedItem="{Binding ProveedorCuentaModel.Proveedor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding CatalogProveedorModel.Proveedor, Mode=OneWay}"
+                  DisplayMemberPath="PROVEEDOR_NAME" SelectedValuePath="UNID_PROVEEDOR" 
+                  Text="{Binding ProveedorCuentaModel.Proveedor.PROVEEDOR_NAME}" IsEditable="False" IsEnabled="False" />
     </Grid>
 </Window>

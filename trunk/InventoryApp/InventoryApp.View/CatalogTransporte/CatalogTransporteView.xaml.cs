@@ -10,8 +10,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogTransporte;
 
-namespace InventoryApp.View
+namespace InventoryApp.View.CatalogTransporte
 {
     /// <summary>
     /// Lógica de interacción para CatalogTransporteView.xaml
@@ -26,7 +27,13 @@ namespace InventoryApp.View
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
             InsertTransporteView insert = new InsertTransporteView();
-            insert.ShowDialog();
+            CatalogTransporteViewModel viewModel = this.DataContext as CatalogTransporteViewModel;
+            if (viewModel != null)
+            {
+                insert.DataContext = viewModel.CreateAddTransporteViewModel();
+                insert.ShowDialog();
+            }
+            
         }
 
         private void dtGridItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)

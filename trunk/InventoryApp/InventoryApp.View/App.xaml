@@ -11,7 +11,9 @@
              xmlns:reciboViews="clr-namespace:InventoryApp.View.Recibo"
              xmlns:catBancoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogBanco;assembly=InventoryApp.ViewModel"
              xmlns:bancoViews="clr-namespace:InventoryApp.View.CatalogBanco"
-             StartupUri="MainWindow.xaml"
+             xmlns:entradaViewModel="clr-namespace:InventoryApp.ViewModel.Entradas;assembly=InventoryApp.ViewModel"
+             xmlns:entradaViews="clr-namespace:InventoryApp.View.Entradas"
+             StartupUri="Entradas/EntradaValidacionRevision.xaml"
              
              >
     <!--StartupUri="Recibo/ReciboView.xaml"-->
@@ -185,7 +187,10 @@
 
         <rootViewModel:MenuViewModel x:Key="menuViewModel" />
         <rootViewModel:MainWindowViewModel x:Key="mainWindowViewModel" />
+
+        <entradaViewModel:EntradaPorValidacionViewModel x:Key="entradaPorValidacionViewModel" />
         
+
         <vm:CatalogSolicitanteViewModel x:Key="catalogSolicitanteViewModel"></vm:CatalogSolicitanteViewModel>
         <ObjectDataProvider x:Key="addSolicitanteViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>

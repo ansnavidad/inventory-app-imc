@@ -56,7 +56,7 @@
              xmlns:EntradaView="clr-namespace:InventoryApp.View.Entradas"
              xmlns:SalidasViewModel="clr-namespace:InventoryApp.ViewModel.Salidas;assembly=InventoryApp.ViewModel"
              xmlns:SalidasView="clr-namespace:InventoryApp.View.Salidas"
-             StartupUri="Salidas/SalidaRenta.xaml">
+             StartupUri="Salidas/SalidaDemo.xaml">
     <!--StartupUri="Recibo/ReciboView.xaml"-->
     <!--StartupUri="MainWindow.xaml"-->
     <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogPais;assembly=InventoryApp.ViewModel"
@@ -241,6 +241,7 @@
         <EntradaViewModel:EntradaDevolucionViewModel x:Key="entradaDevolucionViewModel" />
         <EntradaViewModel:EntradaDesinstalacionViewModel x:Key="entradaDesinstalacionViewModel" />
         <SalidasViewModel:SalidaRentaViewModel x:Key="salidaRentaViewModel" />
+        <SalidasViewModel:SalidaDemoViewModel x:Key="salidaDemoViewModel" />
         <!--Catálgos-->
         <catArticulo:CatalogArticuloViewModel x:Key="catalogArticuloViewModel"></catArticulo:CatalogArticuloViewModel>
         <ObjectDataProvider x:Key="addArticuloViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"

@@ -679,7 +679,7 @@ namespace InventoryApp.Model
             this._isActive = true;
             if ((dataMapper as MovimientoDataMapper) != null)
             {
-                this._dataMapper = dataMapper as MovimientoDataMapper;
+                this._dataMapper = new MovimientoDataMapper() ;
             }            
             this._almacenDestino = new ALMACEN();
             this._proveedorDestino = new PROVEEDOR();

@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.Salidas
 {
-    public class SalidaRentaViewModel
+    public class SalidaDemoViewModel
     {
         private MovimientoSalidasModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
@@ -27,7 +27,7 @@ namespace InventoryApp.ViewModel.Salidas
         private RelayCommand _addItemCommand;
         private RelayCommand _deleteItemCommand;
 
-        public SalidaRentaViewModel()
+        public SalidaDemoViewModel()
         {            
             try
             {
@@ -42,7 +42,7 @@ namespace InventoryApp.ViewModel.Salidas
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
                 TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
-                mov.UNID_TIPO_MOVIMIENTO = 5;
+                mov.UNID_TIPO_MOVIMIENTO = 6;
                 this._movimientoModel.TipoMovimiento = mov;
                 this._itemModel = new CatalogItemModel(new ItemDataMapper());
                 this._catalogAlmacenDestinoModel = new CatalogAlmacenModel(dataMapper2);
@@ -287,5 +287,5 @@ namespace InventoryApp.ViewModel.Salidas
 
             this.MovimientoModel.CantidadItems = this.ItemModel.ItemModel.Count();            
         }
-    }    
+    }
 }

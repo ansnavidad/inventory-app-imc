@@ -14,6 +14,7 @@ namespace InventoryApp.ViewModel.Salidas
         private RelayCommand _addItemCommand;
         private RelayCommand _addItemsCommand;
         private SalidaRentaViewModel _salidaRentaViewModel;
+        private SalidaDemoViewModel _salidaDemoViewModel;
 
         public CatalogItemViewModel(SalidaRentaViewModel _salidaRentaViewModel)
         {
@@ -23,6 +24,16 @@ namespace InventoryApp.ViewModel.Salidas
             this._salidaRentaViewModel = _salidaRentaViewModel;
 
         }
+
+        public CatalogItemViewModel(SalidaDemoViewModel _salidaDemoViewModel)
+        {
+            IDataMapper dataMapper = new ItemDataMapper();
+            this._catalogItemModel = new CatalogItemModel(dataMapper);
+
+            this._salidaDemoViewModel = _salidaDemoViewModel;
+
+        }
+
 
         public CatalogItemModel CatalogItemModel
         {
@@ -45,6 +56,18 @@ namespace InventoryApp.ViewModel.Salidas
             set
             {
                 _salidaRentaViewModel = value;
+            }
+        }
+
+        public SalidaDemoViewModel SalidaDemoViewModel
+        {
+            get
+            {
+                return _salidaDemoViewModel;
+            }
+            set
+            {
+                _salidaDemoViewModel = value;
             }
         }
         public ICommand AddItemCommand
@@ -89,7 +112,14 @@ namespace InventoryApp.ViewModel.Salidas
 
         public void AttempArticulo()
         {
-            this.CatalogItemModel.loadItems(_salidaRentaViewModel.MovimientoModel.AlmacenProcedencia);
+            if (this._salidaRentaViewModel != null)
+            {
+                this.CatalogItemModel.loadItems(_salidaRentaViewModel.MovimientoModel.AlmacenProcedencia);
+            }
+            else if (this._salidaDemoViewModel != null)
+            {
+                this.CatalogItemModel.loadItems(_salidaDemoViewModel.MovimientoModel.AlmacenProcedencia);
+            }
         }
 
         public bool CanAttempItems()
@@ -105,6 +135,16 @@ namespace InventoryApp.ViewModel.Salidas
         }
 
         public void AttempItems()
+        {
+            if (this._salidaRentaViewModel != null)
+            {
+                passItems(this._salidaRentaViewModel);
+            }else if (this._salidaDemoViewModel != null){
+                passItems(this._salidaDemoViewModel);
+            }
+        }
+
+        public void passItems(SalidaRentaViewModel salida)
         {
             foreach (ItemModel item in this._catalogItemModel.ItemModel)
             {
@@ -131,8 +171,39 @@ namespace InventoryApp.ViewModel.Salidas
 
             }
             this.SalidaRentaViewModel.MovimientoModel.CantidadItems = this.SalidaRentaViewModel.ItemModel.ItemModel.Count();
-
         }
+
+        public void passItems(SalidaDemoViewModel salida)
+        {
+            foreach (ItemModel item in this._catalogItemModel.ItemModel)
+            {
+                if (item.IsChecked)
+                {
+                    bool aux = true;
+
+                    for (int i = 0; i < this._salidaDemoViewModel.ItemModel.ItemModel.Count; i++)
+                    {
+
+                        if (this._salidaDemoViewModel.ItemModel.ItemModel[i].UnidItem == item.UnidItem)
+                            aux = false;
+                    }
+
+                    if (aux)
+                    {
+                        item.IsChecked = false;
+                        this._salidaDemoViewModel.ItemModel.ItemModel.Add(item);
+
+
+
+                    }
+                }
+
+            }
+            this.SalidaDemoViewModel.MovimientoModel.CantidadItems = this.SalidaDemoViewModel.ItemModel.ItemModel.Count();
+        }
+
         #endregion
+
+        
     }
 }

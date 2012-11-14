@@ -24,12 +24,13 @@ namespace InventoryApp.View.Entradas
         {
             InitializeComponent();
             comboCliente.SelectedIndex = 0;
+            comboBoxAlmacenOrigen.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             AddItem it = new AddItem();
-            EntradaDevolucionViewModel entrada = this.DataContext as EntradaDevolucionViewModel;
+            EntradaDesinstalacionViewModel entrada = this.DataContext as EntradaDesinstalacionViewModel;
             it.DataContext = entrada.CreateCatalogItemViewModel();
             it.ShowDialog();
         }

@@ -54,7 +54,7 @@
              xmlns:transporteViews="clr-namespace:InventoryApp.View.CatalogTransporte"
              xmlns:EntradaViewModel="clr-namespace:InventoryApp.ViewModel.Entradas;assembly=InventoryApp.ViewModel"
              xmlns:EntradaView="clr-namespace:InventoryApp.View.Entradas"
-             StartupUri="Entradas/EntradaDevolucion.xaml">
+             StartupUri="Entradas/EntradaDesinstalacion.xaml">
     <!--StartupUri="Recibo/ReciboView.xaml"-->
     <!--StartupUri="MainWindow.xaml"-->
     <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogPais;assembly=InventoryApp.ViewModel"

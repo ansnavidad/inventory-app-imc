@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogTransporte
 {
-    public class CatalogTransporteViewModel
+    public class CatalogTransporteViewModel : IPageViewModel
     {
         private RelayCommand _deleteTransporteCommand;
         private CatalogTransporteModel _catalogTransporteModel;
@@ -120,5 +120,17 @@ namespace InventoryApp.ViewModel.CatalogTransporte
             }
         }
         #endregion
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@ using InventoryApp.DAL;
 
 namespace InventoryApp.ViewModel.CatalogProveedor
 {
-    public class CatalogProveedorViewModel
+    public class CatalogProveedorViewModel : IPageViewModel
     {
         private RelayCommand _deleteProveedorCommand;
 
@@ -126,5 +126,17 @@ namespace InventoryApp.ViewModel.CatalogProveedor
             }
         }
         #endregion
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

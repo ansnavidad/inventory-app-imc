@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogTipoEmpresa
 {
-    public class InsertTipoEmpresaViewModel
+    public class InsertTipoEmpresaViewModel : IPageViewModel
     {
         #region Fields
         private InsertTipoEmpresaModel _tipoEmpresa;
@@ -83,5 +83,17 @@ namespace InventoryApp.ViewModel.CatalogTipoEmpresa
         }
         #endregion
 
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

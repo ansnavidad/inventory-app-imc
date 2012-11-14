@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogTipoMovimiento
 {
-    public class CatalogTipoMovimientoViewModel
+    public class CatalogTipoMovimientoViewModel : IPageViewModel
     {
         private RelayCommand _deleteTipoMovimientoCommand;
         private CatalogTipoMovimientoModel _catalogTipoMovimientoModel;
@@ -115,5 +115,17 @@ namespace InventoryApp.ViewModel.CatalogTipoMovimiento
             }
         }
         #endregion
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

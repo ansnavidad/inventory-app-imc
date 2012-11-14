@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogTerminoEnvio
 {
-    public class CatalogTerminoEnvioViewModel
+    public class CatalogTerminoEnvioViewModel : IPageViewModel
     {
         private RelayCommand _deleteTerminoEnvioCommand;
         private CatalogTerminoEnvioModel _catalogTerminoEnvioModel;
@@ -119,5 +119,17 @@ namespace InventoryApp.ViewModel.CatalogTerminoEnvio
             }
         }
         #endregion
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

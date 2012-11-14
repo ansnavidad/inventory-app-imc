@@ -6,7 +6,7 @@ using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
 
-namespace InventoryApp.ViewModel.CatalogProveedorCenta
+namespace InventoryApp.ViewModel.CatalogProveedorCuenta
 {
     public class AddProveedorCuentaViewModel
     {

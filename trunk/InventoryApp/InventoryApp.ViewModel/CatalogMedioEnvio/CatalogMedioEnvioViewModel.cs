@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogMedioEnvio
 {
-    public class CatalogMedioEnvioViewModel
+    public class CatalogMedioEnvioViewModel : IPageViewModel
     {
         private RelayCommand _deleteMedioEnvioCommand;
 
@@ -118,5 +118,17 @@ namespace InventoryApp.ViewModel.CatalogMedioEnvio
             }
         }
         #endregion
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

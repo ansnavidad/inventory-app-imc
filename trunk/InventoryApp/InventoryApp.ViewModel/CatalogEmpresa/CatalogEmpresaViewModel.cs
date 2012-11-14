@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogEmpresa
 {
-    public class CatalogEmpresaViewModel
+    public class CatalogEmpresaViewModel : IPageViewModel
     {
         private RelayCommand _deleteEmpresaCommand;
 
@@ -122,5 +122,17 @@ namespace InventoryApp.ViewModel.CatalogEmpresa
         }
         #endregion
 
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

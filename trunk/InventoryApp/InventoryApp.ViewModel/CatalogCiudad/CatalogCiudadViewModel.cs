@@ -6,9 +6,9 @@ using InventoryApp.Model;
 using InventoryApp.DAL;
 using System.Windows.Input;
 
-namespace InventoryApp.ViewModel.CatalogCiudad
+namespace InventoryApp.ViewModel.CatalogCiudad 
 {
-    public class CatalogCiudadViewModel
+    public class CatalogCiudadViewModel : IPageViewModel
     {
         private RelayCommand _deleteCiudadCommand;
 
@@ -120,5 +120,17 @@ namespace InventoryApp.ViewModel.CatalogCiudad
             }
         }
         #endregion
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

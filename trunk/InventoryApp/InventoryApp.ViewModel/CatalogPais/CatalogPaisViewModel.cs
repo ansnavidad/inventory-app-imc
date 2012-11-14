@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogPais
 {
-    public class CatalogPaisViewModel
+    public class CatalogPaisViewModel : IPageViewModel
     {
         private RelayCommand _deletePaisCommand;
 
@@ -118,5 +118,17 @@ namespace InventoryApp.ViewModel.CatalogPais
             }
         }
         #endregion
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

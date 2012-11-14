@@ -9,7 +9,7 @@ using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogItemStatus
 {
-    public class CatalogItemStatusViewModel
+    public class CatalogItemStatusViewModel : IPageViewModel
     {
         #region Fields
         private RelayCommand _deleteItemCommand;
@@ -127,5 +127,17 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
             }
         }
         #endregion
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogMoneda
 {
-    public class CatalogMonedaViewModel
+    public class CatalogMonedaViewModel : IPageViewModel
     {
         private RelayCommand _deleteMonedaCommand;
 
@@ -120,5 +120,17 @@ namespace InventoryApp.ViewModel.CatalogMoneda
             }
         }
         #endregion
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

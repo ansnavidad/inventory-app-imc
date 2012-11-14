@@ -8,7 +8,7 @@ using InventoryApp.DAL;
 
 namespace InventoryApp.ViewModel.CatalogPropiedad
 {
-    public class CatalogPropiedadViewModel
+    public class CatalogPropiedadViewModel : IPageViewModel
     {
         #region Fields
         private RelayCommand _deletePropiedadCommand;
@@ -125,5 +125,17 @@ namespace InventoryApp.ViewModel.CatalogPropiedad
             }
         }
         #endregion
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

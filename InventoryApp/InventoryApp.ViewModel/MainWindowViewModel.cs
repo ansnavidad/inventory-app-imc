@@ -9,10 +9,30 @@ using System.ComponentModel;
 using InventoryApp.ViewModel.CatalogMarca;
 using InventoryApp.ViewModel.Recibo;
 using InventoryApp.ViewModel.CatalogBanco;
+using InventoryApp.ViewModel.CatalogCategoria;
+using InventoryApp.ViewModel.CatalogCiudad;
+using InventoryApp.ViewModel.CatalogDepartamento;
+using InventoryApp.ViewModel.CatalogEmpresa;
+using InventoryApp.ViewModel.CatalogEquipo;
+using InventoryApp.ViewModel.CatalogItemStatus;
+using InventoryApp.ViewModel.CatalogMedioEnvio;
+using InventoryApp.ViewModel.CatalogModelo;
+using InventoryApp.ViewModel.CatalogMoneda;
+using InventoryApp.ViewModel.CatalogPais;
+using InventoryApp.ViewModel.CatalogProveedor;
+using InventoryApp.ViewModel.CatalogProveedorCuenta;
+using InventoryApp.ViewModel.CatalogProyecto;
+using InventoryApp.ViewModel.CatalogSolicitante;
+using InventoryApp.ViewModel.CatalogTerminoEnvio;
+using InventoryApp.ViewModel.CatalogTipoCotizacion;
+using InventoryApp.ViewModel.CatalogTipoEmpresa;
+using InventoryApp.ViewModel.CatalogTipoMovimiento;
+using InventoryApp.ViewModel.CatalogTipoPedimento;
+using InventoryApp.ViewModel.CatalogTransporte;
 
 namespace InventoryApp.ViewModel
 {
-    public class MainWindowViewModel:ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
         #region Properties
         public MenuModel SelectedMenu
@@ -112,11 +132,74 @@ namespace InventoryApp.ViewModel
                     case "Artículos":
                         page = new CatalogArticuloViewModel();
                         break;
+                    //case "Marca":
+                    //    page = new ReciboViewModel();
+                    //    break;
                     case "Marca":
-                        page = new ReciboViewModel();
+                        page = new CatalogMarcaViewModel();
                         break;
-                    case "Etc2":
+                    case "Banco":
                         page = new CatalogBancoViewModel();
+                        break;
+                    case "Categoría":
+                        page = new CatalogCategoriaViewModel();
+                        break;
+                    case "Ciudad":
+                        page = new CatalogCiudadViewModel();
+                        break;
+                    case "Departamento":
+                        page = new CatalogDepartamentoViewModel();
+                        break;
+                    case "Empresa":
+                        page = new CatalogEmpresaViewModel();
+                        break;
+                    case "Equipo":
+                        page = new CatalogEquipoViewModel();
+                        break;
+                    case "Item Status":
+                        page = new CatalogItemStatusViewModel();
+                        break;
+                    case "Medio Envio":
+                        page = new CatalogMedioEnvioViewModel();
+                        break;
+                    case "Modelo":
+                        page = new CatalogModeloViewModel();
+                        break;
+                    case "Moneda":
+                        page = new CatalogMonedaViewModel();
+                        break;
+                    case "País":
+                        page = new CatalogPaisViewModel();
+                        break;
+                    case "Proveedor":
+                        page = new CatalogProveedorViewModel();
+                        break;
+                    case "Proveedor Cuenta":
+                        page = new CatalogProveedorCuentaViewModel();
+                        break;
+                    case "Proyecto":
+                        page = new CatalogProyectoViewModel();
+                        break;
+                    case "Solicitante":
+                        page = new CatalogSolicitanteViewModel();
+                        break;
+                    case "Termino Envio":
+                        page = new CatalogTerminoEnvioViewModel();
+                        break;
+                    case "Tipo Cotización":
+                        page = new CatalogTipoCotizacionViewModel();
+                        break;
+                    case "Tipo Empresa":
+                        page = new CatalogTipoEmpresaViewModel();
+                        break;
+                    case "Tipo Movimiento":
+                        page = new CatalogTipoMovimientoViewModel();
+                        break;
+                    case "Tipo Pedimento":
+                        page = new CatalogTipoPedimentoViewModel();
+                        break;
+                    case "Transporte":
+                        page = new CatalogTransporteViewModel();
                         break;
                     default:
                         break;

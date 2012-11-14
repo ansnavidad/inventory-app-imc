@@ -297,8 +297,8 @@ namespace InventoryApp.Model
 
                     this._clienteDestino = null;
                     this._unidClienteDestino = null;
-                    this._almacenProcedencia = null;
-                    this._unidAlmacenProcedencia = null;
+                    this._almacenDestino = null;
+                    this._unidAlmacenDestino = null;
 
                     this._unidProveedorDestino = ((_proveedorDestino != null) ? _proveedorDestino.UNID_PROVEEDOR : (long?)null);
                   
@@ -324,8 +324,8 @@ namespace InventoryApp.Model
 
                     this._proveedorDestino = null;
                     this._unidProveedorDestino = null;
-                    this._almacenProcedencia = null;
-                    this._unidAlmacenProcedencia = null;
+                    this._almacenDestino = null;
+                    this._unidAlmacenDestino = null;
 
                     this._unidClienteDestino = ((_clienteDestino != null) ? _clienteDestino.UNID_CLIENTE : (long?)null);
          
@@ -684,7 +684,7 @@ namespace InventoryApp.Model
             this._almacenDestino = new ALMACEN();
             this._proveedorDestino = new PROVEEDOR();
             this._clienteDestino = null;
-            this._almacenProcedencia = null;
+            this._almacenProcedencia = new ALMACEN();
             this._servicio = new SERVICIO();
             this._transporte = new TRANSPORTE();
             this._cliente = new CLIENTE();

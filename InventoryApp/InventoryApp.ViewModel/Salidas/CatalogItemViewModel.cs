@@ -89,7 +89,7 @@ namespace InventoryApp.ViewModel.Salidas
 
         public void AttempArticulo()
         {
-            this.CatalogItemModel.loadItems();
+            this.CatalogItemModel.loadItems(_salidaRentaViewModel.MovimientoModel.AlmacenProcedencia);
         }
 
         public bool CanAttempItems()

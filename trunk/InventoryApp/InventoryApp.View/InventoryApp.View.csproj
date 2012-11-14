@@ -233,16 +233,16 @@
     <Compile Include="CatalogPropiedad\ModifyPropiedadView.xaml.cs">
       <DependentUpon>ModifyPropiedadView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogProveedorCenta\AltaModificarProveedorCuenta.xaml.cs">
+    <Compile Include="CatalogProveedorCuenta\AltaModificarProveedorCuenta.xaml.cs">
       <DependentUpon>AltaModificarProveedorCuenta.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogProveedorCenta\CatalogProveedorCuentaView.xaml.cs">
+    <Compile Include="CatalogProveedorCuenta\CatalogProveedorCuentaView.xaml.cs">
       <DependentUpon>CatalogProveedorCuentaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogProveedorCenta\ModifyProveedorCuentaView.xaml.cs">
+    <Compile Include="CatalogProveedorCuenta\ModifyProveedorCuentaView.xaml.cs">
       <DependentUpon>ModifyProveedorCuentaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogProveedorCenta\ProveedorCuentaUserControl.xaml.cs">
+    <Compile Include="CatalogProveedorCuenta\ProveedorCuentaUserControl.xaml.cs">
       <DependentUpon>ProveedorCuentaUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogProveedor\AltaModificarProveedor.xaml.cs">
@@ -682,19 +682,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CatalogProveedorCenta\AltaModificarProveedorCuenta.xaml">
+    <Page Include="CatalogProveedorCuenta\AltaModificarProveedorCuenta.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CatalogProveedorCenta\CatalogProveedorCuentaView.xaml">
+    <Page Include="CatalogProveedorCuenta\CatalogProveedorCuentaView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CatalogProveedorCenta\ModifyProveedorCuentaView.xaml">
+    <Page Include="CatalogProveedorCuenta\ModifyProveedorCuentaView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CatalogProveedorCenta\ProveedorCuentaUserControl.xaml">
+    <Page Include="CatalogProveedorCuenta\ProveedorCuentaUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

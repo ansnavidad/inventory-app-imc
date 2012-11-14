@@ -91,9 +91,9 @@
     <Compile Include="CatalogPais\AddPaisViewModel.cs" />
     <Compile Include="CatalogPais\CatalogPaisViewModel.cs" />
     <Compile Include="CatalogPais\ModifyPaisViewModel.cs" />
-    <Compile Include="CatalogProveedorCenta\AddProveedorCuentaViewModel.cs" />
-    <Compile Include="CatalogProveedorCenta\CatalogProveedorCuentaViewModel.cs" />
-    <Compile Include="CatalogProveedorCenta\ModifyProveedorCuentaViewModel.cs" />
+    <Compile Include="CatalogProveedorCuenta\AddProveedorCuentaViewModel.cs" />
+    <Compile Include="CatalogProveedorCuenta\CatalogProveedorCuentaViewModel.cs" />
+    <Compile Include="CatalogProveedorCuenta\ModifyProveedorCuentaViewModel.cs" />
     <Compile Include="CatalogProveedor\AddProveedorViewModel.cs" />
     <Compile Include="CatalogProveedor\CatalogProveedorViewModel.cs" />
     <Compile Include="CatalogProveedor\ModifyProveedorViewModel.cs" />

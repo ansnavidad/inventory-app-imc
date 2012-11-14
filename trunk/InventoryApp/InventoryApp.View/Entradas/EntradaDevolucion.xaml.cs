@@ -24,6 +24,7 @@ namespace InventoryApp.View.Entradas
         {
             InitializeComponent();
             comboCliente.SelectedIndex = 0;
+            comboBoxAlmacenOrigen.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

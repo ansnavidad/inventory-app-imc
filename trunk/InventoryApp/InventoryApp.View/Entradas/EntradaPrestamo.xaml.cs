@@ -23,6 +23,7 @@ namespace InventoryApp.View.Entradas
         public EntradaPrestamo()
         {
             InitializeComponent();
+            comboBoxAlmacenOrigen.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

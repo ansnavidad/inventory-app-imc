@@ -1,7 +1,6 @@
 ﻿<Window x:Class="InventoryApp.View.CatalogTipoMovimiento.ModifyTipoMovimientoView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        DataContext="{DynamicResource modifyTipoMovimientoViewModel}"
         Title="ModifyTipoMovimientoView" Height="300" Width="300" ResizeMode="NoResize" 
         WindowStyle="None" WindowStartupLocation="CenterScreen" Topmost="True">
     <Window.Resources>

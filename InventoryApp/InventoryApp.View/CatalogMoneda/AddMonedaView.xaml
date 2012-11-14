@@ -1,7 +1,6 @@
 ﻿<Window x:Class="InventoryApp.View.CatalogMoneda.AddMonedaView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        DataContext="{DynamicResource addMonedaViewModel}"
         Title="AddMonedaView" Height="267" Width="300">
     <Grid>
         <Grid Name="gridAltaMoneda">

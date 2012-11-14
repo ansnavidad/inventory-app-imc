@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogTerminoEnvio;
 
 namespace InventoryApp.View.CatalogTerminoEnvio
 {
@@ -27,7 +28,16 @@ namespace InventoryApp.View.CatalogTerminoEnvio
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             AltaModificarTerminoEnvio alta = new AltaModificarTerminoEnvio();
-            alta.ShowDialog();
+            try
+            {
+                CatalogTerminoEnvioViewModel terminoEnvioViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogTerminoEnvioViewModel;
+                alta.DataContext = terminoEnvioViewModel.CreateAddTerminoEnvioViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void dtGridItemStatus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -37,7 +47,17 @@ namespace InventoryApp.View.CatalogTerminoEnvio
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyTerminoEnvioView()).ShowDialog();
+                    ModifyTerminoEnvioView dlgModify = new ModifyTerminoEnvioView();
+                    try
+                    {
+                        CatalogTerminoEnvioViewModel terminoEnvioViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogTerminoEnvioViewModel;
+                        dlgModify.DataContext = terminoEnvioViewModel.CreateModifyTerminoEnvioViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }

@@ -11,47 +11,47 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using InventoryApp.ViewModel.CatalogCategoria;
+using InventoryApp.ViewModel.CatalogProveedorCuenta;
 
-namespace InventoryApp.View.CatalogCategoria
+namespace InventoryApp.View.CatalogProveedorCuenta
 {
     /// <summary>
-    /// Lógica de interacción para CategoriaUserControl.xaml
+    /// Lógica de interacción para ProveedorCuentaUserControl.xaml
     /// </summary>
-    public partial class CategoriaUserControl : UserControl
+    public partial class ProveedorCuentaUserControl : UserControl
     {
-        public CategoriaUserControl()
+        public ProveedorCuentaUserControl()
         {
             InitializeComponent();
         }
 
-        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            AltaCategoria alta = new AltaCategoria();
+            AltaModificarProveedorCuenta alta = new AltaModificarProveedorCuenta();
             try
             {
-                CatalogCategoriaViewModel categoriaViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogCategoriaViewModel;
-                alta.DataContext = categoriaViewModel.CreateAddCategoriaViewModel();
+                CatalogProveedorCuentaViewModel proveedorCuentaViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogProveedorCuentaViewModel;
+                alta.DataContext = proveedorCuentaViewModel.CreateAddProveedorCuentaViewModel();
                 alta.ShowDialog();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
-        private void dtGridCategoria_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+
+        private void dtGridItemStatus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)
             {
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    ModifyCategoriaView dlgModify = new ModifyCategoriaView();
+                    ModifyProveedorCuentaView dlgModify = new ModifyProveedorCuentaView();
                     try
                     {
-                        CatalogCategoriaViewModel categoriaViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogCategoriaViewModel;
-                        dlgModify.DataContext = categoriaViewModel.CreateModifyCategoriaViewModel();
+                        CatalogProveedorCuentaViewModel proveedorViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogProveedorCuentaViewModel;
+                        dlgModify.DataContext = proveedorViewModel.CreateModifyProveedorCuentaViewModel();
                         dlgModify.ShowDialog();
                     }
                     catch (Exception ex)

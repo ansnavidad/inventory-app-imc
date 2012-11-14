@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="371" d:DesignWidth="305" Width="502"
+             d:DesignHeight="371" d:DesignWidth="305"
              DataContext="{StaticResource catalogEmpresaViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>

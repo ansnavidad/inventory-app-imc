@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogMoneda;
 
 namespace InventoryApp.View.CatalogMoneda
 {
@@ -26,8 +27,17 @@ namespace InventoryApp.View.CatalogMoneda
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            AddMonedaView add = new AddMonedaView();
-            add.ShowDialog();
+            AddMonedaView alta = new AddMonedaView();
+            try
+            {
+                CatalogMonedaViewModel monedaViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogMonedaViewModel;
+                alta.DataContext = monedaViewModel.CreateAddMonedaViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void dtGridMoneda_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -37,7 +47,17 @@ namespace InventoryApp.View.CatalogMoneda
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyMonedaView()).ShowDialog();
+                    ModifyMonedaView dlgModify = new ModifyMonedaView();
+                    try
+                    {
+                        CatalogMonedaViewModel monedaViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogMonedaViewModel;
+                        dlgModify.DataContext = monedaViewModel.CreateModifyMonedaViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }

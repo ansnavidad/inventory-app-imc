@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogProveedor;
 
 namespace InventoryApp.View.CatalogProveedor
 {
@@ -27,7 +28,16 @@ namespace InventoryApp.View.CatalogProveedor
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             AltaModificarProveedor alta = new AltaModificarProveedor();
-            alta.ShowDialog();
+            try
+            {
+                CatalogProveedorViewModel proveedorViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogProveedorViewModel;
+                alta.DataContext = proveedorViewModel.CreateAddProveedorViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void dtGridItemStatus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -37,7 +47,17 @@ namespace InventoryApp.View.CatalogProveedor
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyProveedorView()).ShowDialog();
+                    ModifyProveedorView dlgModify = new ModifyProveedorView();
+                    try
+                    {
+                        CatalogProveedorViewModel proveedorViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogProveedorViewModel;
+                        dlgModify.DataContext = proveedorViewModel.CreateModifyProveedorViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }

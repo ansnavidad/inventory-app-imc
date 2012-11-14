@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogEmpresa;
 
 namespace InventoryApp.View.CatalogEmpresa
 {
@@ -24,6 +25,22 @@ namespace InventoryApp.View.CatalogEmpresa
             InitializeComponent();
         }
 
+        private void btnNuevo_Click(object sender, RoutedEventArgs e)
+        {
+            AltaEmpresa alta = new AltaEmpresa();
+            try
+            {
+                CatalogEmpresaViewModel empresaViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogEmpresaViewModel;
+                alta.DataContext = empresaViewModel.CreateAddEmpresaViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         private void dtGridEmpresa_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)
@@ -31,15 +48,19 @@ namespace InventoryApp.View.CatalogEmpresa
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyEmpresaView()).ShowDialog();
+                    ModifyEmpresaView dlgModify = new ModifyEmpresaView();
+                    try
+                    {
+                        CatalogEmpresaViewModel empresaViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogEmpresaViewModel;
+                        dlgModify.DataContext = empresaViewModel.CreateModifyEmpresaViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
-        }
-
-        private void btnNuevo_Click(object sender, RoutedEventArgs e)
-        {
-            AltaEmpresa alta = new AltaEmpresa();
-            alta.ShowDialog();
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)

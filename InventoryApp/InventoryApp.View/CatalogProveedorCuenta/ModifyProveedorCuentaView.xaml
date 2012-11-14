@@ -1,0 +1,25 @@
+﻿<Window x:Class="InventoryApp.View.CatalogProveedorCuenta.ModifyProveedorCuentaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ModifyProveedorCuentaView" Height="333" Width="362">
+    <Grid>
+        <Button Content="Guardar" Command="{Binding ModifyProveedorCuentaCommand, Mode=OneWay}" Height="23" HorizontalAlignment="Left" Margin="68,244,0,27" Name="btnAgregar" Width="75" Click="btnAgregar_Click" />
+        <Button Content="Cancelar" Height="23" HorizontalAlignment="Stretch" Margin="218,247,47,24" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
+        <Label Content="MODIFICACIÓN DE PROVEEDOR CUENTA" Height="28" HorizontalAlignment="Stretch" Margin="58,12,39,254" Name="lblTitulo" VerticalAlignment="Stretch" />
+        <Label Content="Benecifiario:" Height="28" HorizontalAlignment="Left" Margin="22,45,0,0" Name="label2" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="97,47,0,0" Name="textBoxNombre" VerticalAlignment="Top" Width="217" Text="{Binding ProveedorCuentaModel.Beneficiario, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="512"/>
+        <Label Content="Clabe:" Height="28" HorizontalAlignment="Left" Margin="50,74,0,0" Name="label3" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="97,82,0,0" Name="textBox1" VerticalAlignment="Top" Width="217" Text="{Binding ProveedorCuentaModel.Clabe, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="32"/>
+        <Label Content="Num. de Cuenta:" Height="28" HorizontalAlignment="Left" Margin="0,110,0,0" Name="label4" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="97,112,0,0" Name="textBox2" VerticalAlignment="Top" Width="127" Text="{Binding ProveedorCuentaModel.NumeroCuenta, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="32"/>
+        <Label Content="Banco:" Height="28" HorizontalAlignment="Left" Margin="97,155,0,0" Name="label8" VerticalAlignment="Top" />
+        <Label Content="Proveedor:" Height="28" HorizontalAlignment="Left" Margin="76,189,0,0" Name="label9" VerticalAlignment="Top" />
+        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,158,26,0" Name="comboBox1" VerticalAlignment="Top" Width="165" SelectedItem="{Binding ProveedorCuentaModel.Banco,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding CatalogBancoModel.Banco, Mode=OneWay}" DisplayMemberPath="BANCO_NAME" SelectedValuePath="UNID_BANCO" SelectedIndex="0" />
+        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,191,26,0"
+                  Name="comboBox2" VerticalAlignment="Top" Width="165"
+                  SelectedItem="{Binding ProveedorCuentaModel.Proveedor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding CatalogProveedorModel.Proveedor, Mode=OneWay}"
+                  DisplayMemberPath="PROVEEDOR_NAME" SelectedValuePath="UNID_PROVEEDOR" 
+                  Text="{Binding ProveedorCuentaModel.Proveedor.PROVEEDOR_NAME}" IsEditable="False" IsEnabled="False" />
+    </Grid>
+</Window>

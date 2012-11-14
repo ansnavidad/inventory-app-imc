@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogSolicitante;
 
 namespace InventoryApp.View.CatalogSolicitante
 {
@@ -24,6 +25,21 @@ namespace InventoryApp.View.CatalogSolicitante
             InitializeComponent();
         }
 
+        private void btnNuevo_Click(object sender, RoutedEventArgs e)
+        {
+            AltaSolicitante alta = new AltaSolicitante();
+            try
+            {
+                CatalogSolicitanteViewModel solicitanteViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogSolicitanteViewModel;
+                alta.DataContext = solicitanteViewModel.CreateAddSolicitanteViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private void dtGridSolicitante_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)
@@ -31,15 +47,19 @@ namespace InventoryApp.View.CatalogSolicitante
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifySolicitanteView()).ShowDialog();
+                    ModifySolicitanteView dlgModify = new ModifySolicitanteView();
+                    try
+                    {
+                        CatalogSolicitanteViewModel solicitanteViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogSolicitanteViewModel;
+                        dlgModify.DataContext = solicitanteViewModel.CreateModifySolicitanteViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
-        }
-
-        private void btnNuevo_Click(object sender, RoutedEventArgs e)
-        {
-            AltaSolicitante alta = new AltaSolicitante();
-            alta.ShowDialog();
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)

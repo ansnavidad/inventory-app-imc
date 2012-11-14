@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogTipoEmpresa;
 
 namespace InventoryApp.View.CatalogTipoEmpresa
 {
@@ -26,8 +27,17 @@ namespace InventoryApp.View.CatalogTipoEmpresa
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            InsertTipoEmpresaView insert = new InsertTipoEmpresaView();
-            insert.ShowDialog();
+            InsertTipoEmpresaView alta = new InsertTipoEmpresaView();
+            try
+            {
+                CatalogTipoEmpresaViewModel tipoEmpresaViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogTipoEmpresaViewModel;
+                alta.DataContext = tipoEmpresaViewModel.CreateInsertTipoEmpresaViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void dtGridItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -37,7 +47,17 @@ namespace InventoryApp.View.CatalogTipoEmpresa
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyTipoEmpresaView()).ShowDialog();
+                    ModifyTipoEmpresaView dlgModify = new ModifyTipoEmpresaView();
+                    try
+                    {
+                        CatalogTipoEmpresaViewModel tipoEmpresaViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogTipoEmpresaViewModel;
+                        dlgModify.DataContext = tipoEmpresaViewModel.CreateModifyTipoEmpresaViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }

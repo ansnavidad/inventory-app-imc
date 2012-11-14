@@ -14,7 +14,8 @@ namespace InventoryApp.ViewModel.Salidas
         private RelayCommand _addItemCommand;
         private RelayCommand _addItemsCommand;
         private SalidaRentaViewModel _salidaRentaViewModel;
-        private SalidaDemoViewModel _salidaDemoViewModel;
+        private SalidaRevisionViewModel _salidaRevisionViewModel;
+	    private SalidaDemoViewModel _salidaDemoViewModel;
 
         public CatalogItemViewModel(SalidaRentaViewModel _salidaRentaViewModel)
         {
@@ -25,7 +26,16 @@ namespace InventoryApp.ViewModel.Salidas
 
         }
 
-        public CatalogItemViewModel(SalidaDemoViewModel _salidaDemoViewModel)
+        public CatalogItemViewModel(SalidaRevisionViewModel _salidaRevisionViewModel)
+        {
+            IDataMapper dataMapper = new ItemDataMapper();
+            this._catalogItemModel = new CatalogItemModel(dataMapper);
+
+            this._salidaRevisionViewModel = _salidaRevisionViewModel;
+
+        }
+
+		public CatalogItemViewModel(SalidaDemoViewModel _salidaDemoViewModel)
         {
             IDataMapper dataMapper = new ItemDataMapper();
             this._catalogItemModel = new CatalogItemModel(dataMapper);
@@ -33,7 +43,6 @@ namespace InventoryApp.ViewModel.Salidas
             this._salidaDemoViewModel = _salidaDemoViewModel;
 
         }
-
 
         public CatalogItemModel CatalogItemModel
         {
@@ -59,7 +68,19 @@ namespace InventoryApp.ViewModel.Salidas
             }
         }
 
-        public SalidaDemoViewModel SalidaDemoViewModel
+        public SalidaRevisionViewModel SalidaRevisionViewModel
+        {
+            get
+            {
+                return _salidaRevisionViewModel;
+            }
+            set
+            {
+                _salidaRevisionViewModel = value;
+            }
+        }
+		
+		public SalidaDemoViewModel SalidaDemoViewModel
         {
             get
             {
@@ -70,6 +91,7 @@ namespace InventoryApp.ViewModel.Salidas
                 _salidaDemoViewModel = value;
             }
         }
+
         public ICommand AddItemCommand
         {
             get
@@ -112,11 +134,15 @@ namespace InventoryApp.ViewModel.Salidas
 
         public void AttempArticulo()
         {
-            if (this._salidaRentaViewModel != null)
+            if (_salidaRentaViewModel != null)
             {
                 this.CatalogItemModel.loadItems(_salidaRentaViewModel.MovimientoModel.AlmacenProcedencia);
             }
-            else if (this._salidaDemoViewModel != null)
+            else if(_salidaRevisionViewModel != null)
+            {
+                this.CatalogItemModel.loadItems(_salidaRevisionViewModel.MovimientoModel.AlmacenProcedencia);
+            } 
+			else if (_salidaDemoViewModel != null)
             {
                 this.CatalogItemModel.loadItems(_salidaDemoViewModel.MovimientoModel.AlmacenProcedencia);
             }
@@ -136,74 +162,81 @@ namespace InventoryApp.ViewModel.Salidas
 
         public void AttempItems()
         {
-            if (this._salidaRentaViewModel != null)
+            if (_salidaRentaViewModel != null)
             {
-                passItems(this._salidaRentaViewModel);
-            }else if (this._salidaDemoViewModel != null){
-                passItems(this._salidaDemoViewModel);
-            }
-        }
-
-        public void passItems(SalidaRentaViewModel salida)
-        {
-            foreach (ItemModel item in this._catalogItemModel.ItemModel)
-            {
-                if (item.IsChecked)
+                foreach (ItemModel item in this._catalogItemModel.ItemModel)
                 {
-                    bool aux = true;
-
-                    for (int i = 0; i < this._salidaRentaViewModel.ItemModel.ItemModel.Count; i++)
+                    if (item.IsChecked)
                     {
+                        bool aux = true;
 
-                        if (this._salidaRentaViewModel.ItemModel.ItemModel[i].UnidItem == item.UnidItem)
-                            aux = false;
-                    }
+                        for (int i = 0; i < this._salidaRentaViewModel.ItemModel.ItemModel.Count; i++)
+                        {
+                            if (this._salidaRentaViewModel.ItemModel.ItemModel[i].UnidItem == item.UnidItem)
+                                aux = false;
+                        }
 
-                    if (aux)
-                    {
-                        item.IsChecked = false;
-                        this._salidaRentaViewModel.ItemModel.ItemModel.Add(item);
-
-
-
+                        if (aux)
+                        {
+                            item.IsChecked = false;
+                            this._salidaRentaViewModel.ItemModel.ItemModel.Add(item);
+                        }
                     }
                 }
-
+                this.SalidaRentaViewModel.MovimientoModel.CantidadItems = this.SalidaRentaViewModel.ItemModel.ItemModel.Count();
             }
+            else if (_salidaRevisionViewModel != null) 
+            {
+                foreach (ItemModel item in this._catalogItemModel.ItemModel)
+                {
+                    if (item.IsChecked)
+                    {
+                        bool aux = true;
+
+                        for (int i = 0; i < this._salidaRevisionViewModel.ItemModel.ItemModel.Count; i++)
+                        {
+                            if (this._salidaRevisionViewModel.ItemModel.ItemModel[i].UnidItem == item.UnidItem)
+                                aux = false;
+                        }
+
+                        if (aux)
+                        {
+                            item.IsChecked = false;
+                            this._salidaRevisionViewModel.ItemModel.ItemModel.Add(item);
+                        }
+                    }
+                }
+                this.SalidaRevisionViewModel.MovimientoModel.CantidadItems = this.SalidaRevisionViewModel.ItemModel.ItemModel.Count();
+            } 
+            else if(_salidaDemoViewModel != null)
+            {
+			    foreach (ItemModel item in this._catalogItemModel.ItemModel)
+                {
+                    if (item.IsChecked)
+                    {
+                        bool aux = true;
+
+                        for (int i = 0; i < this._salidaRentaViewModel.ItemModel.ItemModel.Count; i++)
+                        {
+
+                            if (this._salidaRentaViewModel.ItemModel.ItemModel[i].UnidItem == item.UnidItem)
+                                aux = false;
+                        }
+
+                        if (aux)
+                        {
+                            item.IsChecked = false;
+                            this._salidaRentaViewModel.ItemModel.ItemModel.Add(item);
+
+
+
+                        }
+                    }
+
+                }
             this.SalidaRentaViewModel.MovimientoModel.CantidadItems = this.SalidaRentaViewModel.ItemModel.ItemModel.Count();
+			}
         }
-
-        public void passItems(SalidaDemoViewModel salida)
-        {
-            foreach (ItemModel item in this._catalogItemModel.ItemModel)
-            {
-                if (item.IsChecked)
-                {
-                    bool aux = true;
-
-                    for (int i = 0; i < this._salidaDemoViewModel.ItemModel.ItemModel.Count; i++)
-                    {
-
-                        if (this._salidaDemoViewModel.ItemModel.ItemModel[i].UnidItem == item.UnidItem)
-                            aux = false;
-                    }
-
-                    if (aux)
-                    {
-                        item.IsChecked = false;
-                        this._salidaDemoViewModel.ItemModel.ItemModel.Add(item);
-
-
-
-                    }
-                }
-
-            }
-            this.SalidaDemoViewModel.MovimientoModel.CantidadItems = this.SalidaDemoViewModel.ItemModel.ItemModel.Count();
-        }
-
         #endregion
-
-        
     }
 }

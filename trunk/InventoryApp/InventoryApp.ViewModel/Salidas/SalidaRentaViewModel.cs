@@ -7,48 +7,58 @@ using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
 
-namespace InventoryApp.ViewModel.Entradas
+namespace InventoryApp.ViewModel.Salidas
 {
-    public class EntradaPorValidacionViewModel
+    public class SalidaRentaViewModel
     {
-        private MovimientoModel _movimientoModel;
+        private MovimientoSalidasModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
         private UltimoMovimientoModel _ultimoMovimientoModel;
         private CatalogSolicitanteModel _catalogSolicitanteModel;
-        private CatalogAlmacenModel _catalogAlmacenModel;
+        private CatalogAlmacenModel _catalogAlmacenDestinoModel;
         private CatalogAlmacenModel _catalogAlmacenProcedenciaModel;
-        private CatalogProveedorModel _catalogProveedorProcedenciaModel;
-        private CatalogClienteModel _catalogClienteProcedenciaModel;
+        private CatalogProveedorModel _catalogProveedorDestinoModel;
+        private CatalogClienteModel _catalogClienteModel;
+        private CatalogClienteModel _catalogClienteDestinoModel;
+        private CatalogTransporteModel _catalogTransporteModel;
         private CatalogItemModel _itemModel;
+        private CatalogServicioModel _catalogServicioModel;
+        private CatalogTipoPedimentoModel _catalogTipoPedimentoModel;
         private RelayCommand _addItemCommand;
         private RelayCommand _deleteItemCommand;
 
-        public EntradaPorValidacionViewModel()
-        {
+        public SalidaRentaViewModel()
+        {            
             try
             {
                 IDataMapper dataMapper = new SolicitanteDataMapper();
                 IDataMapper dataMapper2 = new AlmacenDataMapper();
                 IDataMapper dataMapper3 = new ProveedorDataMapper();
                 IDataMapper dataMapper4 = new ClienteDataMapper();
+                IDataMapper dataMapper5 = new ServicioDataMapper();
+                IDataMapper dataMapper6 = new TipoPedimentoDataMapper();
+                IDataMapper dataMapper7 = new TransporteDataMapper();
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
-                this._movimientoModel = new MovimientoModel(new MovimientoDataMapper());
+                this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
                 TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
                 mov.UNID_TIPO_MOVIMIENTO = 1;
                 this._movimientoModel.TipoMovimiento = mov;
                 this._itemModel = new CatalogItemModel(new ItemDataMapper());
-                this._catalogAlmacenModel = new CatalogAlmacenModel(dataMapper2);
+                this._catalogAlmacenDestinoModel = new CatalogAlmacenModel(dataMapper2);
                 this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
-                this._catalogProveedorProcedenciaModel = new CatalogProveedorModel(dataMapper3);
-                this._catalogClienteProcedenciaModel = new CatalogClienteModel(dataMapper4);
+                this._catalogProveedorDestinoModel = new CatalogProveedorModel(dataMapper3);
+                this._catalogClienteDestinoModel = new CatalogClienteModel(dataMapper4);
+                this._catalogServicioModel = new CatalogServicioModel(dataMapper5);
+                this._catalogTipoPedimentoModel = new CatalogTipoPedimentoModel(dataMapper6);
+                this._catalogTransporteModel = new CatalogTransporteModel(dataMapper7);
+                this._catalogClienteModel = new CatalogClienteModel(dataMapper4);
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
             }   
@@ -66,7 +76,6 @@ namespace InventoryApp.ViewModel.Entradas
                 return _addItemCommand;
             }
         }
-
         public ICommand DeleteItemCommand
         {
             get
@@ -78,43 +87,88 @@ namespace InventoryApp.ViewModel.Entradas
                 return _deleteItemCommand;
             }
         }
-
-        public CatalogProveedorModel CatalogProveedorProcedenciaModel
+        public CatalogProveedorModel CatalogProveedorDestinoModel
         {
             get
             {
-                return _catalogProveedorProcedenciaModel;
+                return _catalogProveedorDestinoModel;
 
             }
             set
             {
-                _catalogProveedorProcedenciaModel = value;
+                _catalogProveedorDestinoModel = value;
             }
         }
-
-        public CatalogAlmacenModel CatalogAlmacenModel
+        public CatalogAlmacenModel CatalogAlmacenDestinoModel
         {
             get
             {
-                return _catalogAlmacenModel;
+                return _catalogAlmacenDestinoModel;
 
             }
             set
             {
-                _catalogAlmacenModel = value;
+                _catalogAlmacenDestinoModel = value;
             }
         }
-
-        public CatalogClienteModel CatalogClienteProcedenciaModel
+        public CatalogServicioModel CatalogServicioModel
         {
             get
             {
-                return _catalogClienteProcedenciaModel;
+                return _catalogServicioModel;
 
             }
             set
             {
-                _catalogClienteProcedenciaModel = value;
+                _catalogServicioModel = value;
+            }
+        }
+        public CatalogTipoPedimentoModel CatalogTipoPedimentoModel
+        {
+            get
+            {
+                return _catalogTipoPedimentoModel;
+
+            }
+            set
+            {
+                _catalogTipoPedimentoModel = value;
+            }
+        }
+        public CatalogTransporteModel CatalogTransporteModel
+        {
+            get
+            {
+                return _catalogTransporteModel;
+
+            }
+            set
+            {
+                _catalogTransporteModel = value;
+            }
+        }
+        public CatalogClienteModel CatalogClienteDestinoModel
+        {
+            get
+            {
+                return _catalogClienteDestinoModel;
+
+            }
+            set
+            {
+                _catalogClienteDestinoModel = value;
+            }
+        }
+        public CatalogClienteModel CatalogClienteModel
+        {
+            get
+            {
+                return _catalogClienteModel;
+
+            }
+            set
+            {
+                _catalogClienteModel = value;
             }
         }
         public CatalogAlmacenModel CatalogAlmacenProcedenciaModel
@@ -129,7 +183,7 @@ namespace InventoryApp.ViewModel.Entradas
                 _catalogAlmacenProcedenciaModel = value;
             }
         }
-        public MovimientoModel MovimientoModel
+        public MovimientoSalidasModel MovimientoModel
         {
             get
             {
@@ -153,7 +207,6 @@ namespace InventoryApp.ViewModel.Entradas
                 _itemModel = value;
             }
         }
-
         public CatalogSolicitanteModel CatalogSolicitanteModel
         {
             get
@@ -165,15 +218,18 @@ namespace InventoryApp.ViewModel.Entradas
                 _catalogSolicitanteModel = value;
             }
         }
-
-
+        
         public void loadItems()
         {
             this._catalogSolicitanteModel.loadSolicitante();
-            this._catalogAlmacenModel.loadItems();
+            this._catalogAlmacenDestinoModel.loadItems();
             this._catalogAlmacenProcedenciaModel.loadItems();
-            this._catalogProveedorProcedenciaModel.loadItems();
-            this._catalogClienteProcedenciaModel.loadCliente();
+            this._catalogProveedorDestinoModel.loadItems();
+            this._catalogClienteDestinoModel.loadCliente();
+            this._catalogServicioModel.loadItems();
+            this._catalogTipoPedimentoModel.loadItems();
+            this._catalogTransporteModel.loadItems();
+            this._catalogClienteModel.loadCliente();
         }
 
         public CatalogItemViewModel CreateCatalogItemViewModel()
@@ -186,11 +242,11 @@ namespace InventoryApp.ViewModel.Entradas
             bool _canInsertArticulo = false;
 
             int seleccion = 0;
-            if (this.MovimientoModel.AlmacenProcedencia != null)
+            if (this.MovimientoModel.AlmacenDestino != null)
                 seleccion++;
-            if (this.MovimientoModel.ClienteProcedencia != null)
+            if (this.MovimientoModel.ClienteDestino != null)
                 seleccion++;
-            if (this.MovimientoModel.ProveedorProcedencia != null)
+            if (this.MovimientoModel.ProveedorDestino != null)
                 seleccion++;
 
             if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && !String.IsNullOrEmpty(this.MovimientoModel.Recibe) && seleccion == 1)
@@ -207,7 +263,7 @@ namespace InventoryApp.ViewModel.Entradas
             {
                 this._movimientoDetalleModel = new MovimientoDetalleModel(new MovimientoDetalleDataMapper(), this._movimientoModel.UnidMovimiento, item.UnidItem);
                 this._movimientoDetalleModel.saveArticulo();
-                this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem, this._movimientoModel.UnidAlmacenProcedencia, this._movimientoModel.UnidClienteProcedencia, this._movimientoModel.UnidProveedorProcedencia, this._movimientoDetalleModel.UnidMovimientoDetalle);
+                this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem, this._movimientoModel.UnidAlmacenDestino, this._movimientoModel.UnidProveedorDestino, this._movimientoModel.UnidProveedorDestino, this._movimientoDetalleModel.UnidMovimientoDetalle);
                 this._ultimoMovimientoModel.saveArticulo();
             }            
         }
@@ -229,8 +285,7 @@ namespace InventoryApp.ViewModel.Entradas
                     i++;
             }
 
-            this.MovimientoModel.CantidadItems = this.ItemModel.ItemModel.Count();
-            
+            this.MovimientoModel.CantidadItems = this.ItemModel.ItemModel.Count();            
         }
-    }
+    }    
 }

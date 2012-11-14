@@ -23,6 +23,8 @@ namespace InventoryApp.View.Entradas
         public EntradaValidacionRevision()
         {
             InitializeComponent();
+            comboBoxAlmacenOrigen.SelectedIndex = 1;
+            comboBoxAlmacenOrigen.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

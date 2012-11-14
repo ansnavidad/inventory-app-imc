@@ -105,6 +105,7 @@
     <Compile Include="DeleteTipoPedimento.cs" />
     <Compile Include="DeleteTransporte.cs" />
     <Compile Include="DeleteUnidad.cs" />
+    <Compile Include="DepartamentoESModel.cs" />
     <Compile Include="DepartamentoModel.cs" />
     <Compile Include="EmpresaModel.cs" />
     <Compile Include="EquipoModel.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="MonedaModel.cs" />
     <Compile Include="MovimientoDetalleModel.cs" />
     <Compile Include="MovimientoModel.cs" />
+    <Compile Include="MovimientoSalidasModel.cs" />
     <Compile Include="PaisModel.cs" />
 
     <Compile Include="PedimentoModel.cs" />
@@ -139,6 +141,7 @@
     <Compile Include="TipoMovimientoModel.cs" />
     <Compile Include="TipoPedimentoModel.cs" />
     <Compile Include="TransporteModel.cs" />
+    <Compile Include="UltimoMovimientoModel.cs" />
     <Compile Include="UnidadModel.cs" />
   </ItemGroup>
   <ItemGroup>

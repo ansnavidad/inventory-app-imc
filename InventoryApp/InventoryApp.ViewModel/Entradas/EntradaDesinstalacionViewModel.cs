@@ -9,9 +9,9 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.Entradas
 {
-    public class EntradaPorValidacionViewModel
+    public class EntradaDesinstalacionViewModel
     {
-        private MovimientoModel _movimientoModel;
+          private MovimientoModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
         private CatalogSolicitanteModel _catalogSolicitanteModel;
         private CatalogAlmacenModel _catalogAlmacenModel;
@@ -19,35 +19,38 @@ namespace InventoryApp.ViewModel.Entradas
         private CatalogProveedorModel _catalogProveedorProcedenciaModel;
         private CatalogClienteModel _catalogClienteProcedenciaModel;
         private CatalogItemModel _itemModel;
+        private CatalogTransporteModel _catalogTransporteModel;
         private RelayCommand _addItemCommand;
         private RelayCommand _deleteItemCommand;
 
-        public EntradaPorValidacionViewModel()
-        {
+        public EntradaDesinstalacionViewModel()
+        {            
             try
             {
                 IDataMapper dataMapper = new SolicitanteDataMapper();
                 IDataMapper dataMapper2 = new AlmacenDataMapper();
                 IDataMapper dataMapper3 = new ProveedorDataMapper();
                 IDataMapper dataMapper4 = new ClienteDataMapper();
+                IDataMapper dataMapper5 = new TransporteDataMapper();
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoModel(new MovimientoDataMapper());
                 TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
-                mov.UNID_TIPO_MOVIMIENTO = 1;
+                mov.UNID_TIPO_MOVIMIENTO = 4;
                 this._movimientoModel.TipoMovimiento = mov;
                 this._itemModel = new CatalogItemModel(new ItemDataMapper());
                 this._catalogAlmacenModel = new CatalogAlmacenModel(dataMapper2);
                 this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
                 this._catalogProveedorProcedenciaModel = new CatalogProveedorModel(dataMapper3);
                 this._catalogClienteProcedenciaModel = new CatalogClienteModel(dataMapper4);
+                this._catalogTransporteModel = new CatalogTransporteModel(dataMapper5);
             }
             catch (ArgumentException a)
             {
 
                 ;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
             }   
@@ -101,6 +104,19 @@ namespace InventoryApp.ViewModel.Entradas
             set
             {
                 _catalogAlmacenModel = value;
+            }
+        }
+
+        public CatalogTransporteModel CatalogTransporteModel
+        {
+            get
+            {
+                return _catalogTransporteModel;
+
+            }
+            set
+            {
+                _catalogTransporteModel = value;
             }
         }
 

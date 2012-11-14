@@ -8,6 +8,7 @@ namespace InventoryApp.DAL
 {
     public class ClienteDataMapper : IDataMapper
     {
+        //
         public List<CLIENTE> getClienteList()
         {
             List<CLIENTE> clientes = new List<CLIENTE>();

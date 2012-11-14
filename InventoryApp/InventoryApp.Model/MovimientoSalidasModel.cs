@@ -6,27 +6,28 @@ using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
 using System.ComponentModel;
 
-
 namespace InventoryApp.Model
 {
-    public class MovimientoModel : INotifyPropertyChanged
+    public class MovimientoSalidasModel
     {
         #region Fields
         private long _unidMovimiento;
         private int _cantidaditems;
         private DateTime _fechaMovimiento;
         private TIPO_MOVIMIENTO _tipoMovimiento;
-        private ALMACEN _almacenDestino;
-        private long? _unidAlmacenDestino;
-        
-        private PROVEEDOR _proveedorProcedencia;
-        private long? _unidProveedorProcedencia;
-        private CLIENTE _clienteProcedencia;
-        private long? _unidClienteProcedencia;
         private ALMACEN _almacenProcedencia;
         private long? _unidAlmacenProcedencia;
+        
+        private ALMACEN _almacenDestino;
+        private long? _unidAlmacenDestino;        
+        private PROVEEDOR _proveedorDestino;
+        private long? _unidProveedorDestino;
+        private CLIENTE _clienteDestino;
+        private long? _unidClienteDestino;        
+
         private SERVICIO _servicio;
         private long? _unidServicio;
+
         private string _tt;
         private string _contacto;
         private TRANSPORTE _transporte;
@@ -37,6 +38,10 @@ namespace InventoryApp.Model
         private string _nombreSitio;
         private string _recibe;
         private string _guia;
+        private string _pedimentoExpo;
+        private string _pedimentoImpo;
+        private TIPO_PEDIMENTO _tipoPedimento;
+        private long? _unidTipoPedimento;
         private CLIENTE _cliente;
         private long? _unidCliente;
         private PROVEEDOR _proveedor;
@@ -56,7 +61,6 @@ namespace InventoryApp.Model
             get
             {
                 return _solicitante;
-;
             }
             set
             {
@@ -71,7 +75,25 @@ namespace InventoryApp.Model
                 }
             }
         }
-
+        public TIPO_PEDIMENTO TipoPedimento
+        {
+            get
+            {
+                return _tipoPedimento;
+            }
+            set
+            {
+                if (_tipoPedimento != value)
+                {
+                    _tipoPedimento = value;
+                    this._unidTipoPedimento = _tipoPedimento.UNID_TIPO_PEDIMENTO;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("TipoPedimento"));
+                    }
+                }
+            }
+        }
         public long? UnidAlmacenProcedencia
         {
             get
@@ -90,17 +112,35 @@ namespace InventoryApp.Model
                 }
             }
         }
-        public long? UnidClienteProcedencia
+        public long? UnidTipoPedimento
         {
             get
             {
-                return _unidClienteProcedencia;
+                return _unidTipoPedimento;
             }
             set
             {
-                if (_unidClienteProcedencia != value)
+                if (_unidTipoPedimento != value)
                 {
-                    _unidClienteProcedencia = value;
+                    _unidTipoPedimento = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("UnidTipoPedimento"));
+                    }
+                }
+            }
+        }
+        public long? UnidClienteDestino
+        {
+            get
+            {
+                return _unidClienteDestino;
+            }
+            set
+            {
+                if (_unidClienteDestino != value)
+                {
+                    _unidClienteDestino = value;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("UnidClienteProcedencia"));
@@ -108,17 +148,17 @@ namespace InventoryApp.Model
                 }
             }
         }
-        public long? UnidProveedorProcedencia
+        public long? UnidProveedorDestino
         {
             get
             {
-                return _unidProveedorProcedencia;
+                return _unidProveedorDestino;
             }
             set
             {
-                if (_unidProveedorProcedencia != value)
+                if (_unidProveedorDestino != value)
                 {
-                    _unidProveedorProcedencia = value;
+                    _unidProveedorDestino = value;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("UnidProveedorProcedencia"));
@@ -144,7 +184,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public long UnidMovimiento
         {
             get
@@ -163,7 +202,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public int CantidadItems
         {
             get
@@ -182,8 +220,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
-
         public DateTime FechaMovimiento
         {
             get
@@ -202,7 +238,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public TIPO_MOVIMIENTO TipoMovimiento
         {
             get
@@ -222,7 +257,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public ALMACEN AlmacenDestino
         {
             get
@@ -235,7 +269,13 @@ namespace InventoryApp.Model
                 {
                     _almacenDestino = value;
 
-                    this._unidAlmacenDestino = _almacenDestino.UNID_ALMACEN;
+                    this._proveedorDestino = null;
+                    this._unidProveedorDestino = null;
+                    this._clienteDestino = null;
+                    this._unidClienteDestino = null;
+
+                    this._unidAlmacenDestino = ((_almacenDestino != null) ? _almacenDestino.UNID_ALMACEN : (long?)null);
+
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("AlmacenDestino"));
@@ -243,63 +283,59 @@ namespace InventoryApp.Model
                 }
             }
         }
-
-        
-        public PROVEEDOR ProveedorProcedencia
+        public PROVEEDOR ProveedorDestino
         {
             get
             {
-                return _proveedorProcedencia;
+                return _proveedorDestino;
             }
             set
             {
-                if (_proveedorProcedencia != value)
+                if (_proveedorDestino != value)
                 {
-                    _proveedorProcedencia = value;
+                    _proveedorDestino = value;
 
-                    this._clienteProcedencia = null;
-                    this._unidClienteProcedencia = null;
+                    this._clienteDestino = null;
+                    this._unidClienteDestino = null;
                     this._almacenProcedencia = null;
                     this._unidAlmacenProcedencia = null;
 
-                    this._unidProveedorProcedencia = ((_proveedorProcedencia != null) ? _proveedorProcedencia.UNID_PROVEEDOR : (long?)null);
+                    this._unidProveedorDestino = ((_proveedorDestino != null) ? _proveedorDestino.UNID_PROVEEDOR : (long?)null);
                   
 
                     if (PropertyChanged != null)
                     {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("ProveedorProcedencia"));
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("ProveedorDestino"));
                     }
                 }
             }
         }
-
-        public CLIENTE ClienteProcedencia
+        public CLIENTE ClienteDestino
         {
             get
             {
-                return _clienteProcedencia;
+                return _clienteDestino;
             }
             set
             {
-                if (_clienteProcedencia != value)
+                if (_clienteDestino != value)
                 {
-                    _clienteProcedencia = value;
+                    _clienteDestino = value;
 
-                    this._proveedorProcedencia = null;
-                    this._unidProveedorProcedencia = null;
+                    this._proveedorDestino = null;
+                    this._unidProveedorDestino = null;
                     this._almacenProcedencia = null;
                     this._unidAlmacenProcedencia = null;
 
-                    this._unidClienteProcedencia = ((_clienteProcedencia != null) ? _clienteProcedencia.UNID_CLIENTE : (long?)null);
+                    this._unidClienteDestino = ((_clienteDestino != null) ? _clienteDestino.UNID_CLIENTE : (long?)null);
          
                     if (PropertyChanged != null)
                     {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("ClienteProcedencia"));
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("ClienteDestino"));
                     }
                 }
             }
         }
-
         public ALMACEN AlmacenProcedencia
         {
             get
@@ -312,12 +348,7 @@ namespace InventoryApp.Model
                 {
                     _almacenProcedencia = value;
 
-                    this._proveedorProcedencia = null;
-                    this._unidProveedorProcedencia = null;
-                    this._clienteProcedencia = null;
-                    this._unidClienteProcedencia = null;
-
-                    this._unidAlmacenProcedencia = ((_almacenProcedencia != null) ? _almacenProcedencia.UNID_ALMACEN : (long?)null);
+                    this._unidAlmacenProcedencia = _almacenProcedencia.UNID_ALMACEN;
                     
                     if (PropertyChanged != null)
                     {
@@ -326,7 +357,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public SERVICIO Servicio
         {
             get
@@ -346,7 +376,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public string Tt
         {
             get
@@ -365,7 +394,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public string Contacto
         {
             get
@@ -384,7 +412,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public TRANSPORTE Transporte
         {
             get
@@ -404,7 +431,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public bool IsActive
         {
             get
@@ -423,7 +449,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public string DireccionEnvio
         {
             get
@@ -442,7 +467,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public string SitioEnlace
         {
             get
@@ -461,7 +485,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public string NombreSitio
         {
             get
@@ -480,7 +503,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public string Recibe
         {
             get
@@ -499,7 +521,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public string Guia
         {
             get
@@ -518,7 +539,42 @@ namespace InventoryApp.Model
                 }
             }
         }
-
+        public string PedimentoExpo
+        {
+            get
+            {
+                return _pedimentoExpo;
+            }
+            set
+            {
+                if (_pedimentoExpo != value)
+                {
+                    _pedimentoExpo = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("PedimentoExpo"));
+                    }
+                }
+            }
+        }
+        public string PedimentoImpo
+        {
+            get
+            {
+                return _pedimentoImpo;
+            }
+            set
+            {
+                if (_pedimentoImpo != value)
+                {
+                    _pedimentoImpo = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("PedimentoImpo"));
+                    }
+                }
+            }
+        }
         public CLIENTE Cliente
         {
             get
@@ -538,7 +594,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public PROVEEDOR Proveedor
         {
             get
@@ -558,7 +613,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
         public FACTURA_VENTA FacturaVenta
         {
             get
@@ -586,15 +640,16 @@ namespace InventoryApp.Model
             if (_dataMapper != null)
             {
                 _dataMapper.insertElement(new MOVIMENTO() { 
+                    
                     UNID_MOVIMIENTO = this._unidMovimiento, 
                     FECHA_MOVIMIENTO = this._fechaMovimiento, 
                     UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO, 
                     UNID_ALMACEN_DESTINO = this._unidAlmacenDestino, 
-                    UNID_PROVEEDOR_DESTINO = null, 
-                    UNID_CLIENTE_DESTINO = null, 
+                    UNID_PROVEEDOR_DESTINO = this._unidProveedorDestino, 
+                    UNID_CLIENTE_DESTINO = this._unidClienteDestino, 
                     UNID_ALMACEN_PROCEDENCIA = this._unidAlmacenProcedencia, 
-                    UNID_CLIENTE_PROCEDENCIA = this._unidClienteProcedencia, 
-                    UNID_PROVEEDOR_PROCEDENCIA = this._unidProveedorProcedencia, 
+                    UNID_CLIENTE_PROCEDENCIA = null, 
+                    UNID_PROVEEDOR_PROCEDENCIA = null, 
                     UNID_SERVICIO = this._unidServicio, 
                     TT = this._tt, 
                     CONTACTO = this._contacto, 
@@ -608,15 +663,16 @@ namespace InventoryApp.Model
                     UNID_CLIENTE = this._unidCliente, 
                     UNID_PROVEEDOR = this._unidProveedor, 
                     UNID_FACTURA_VENTA = this._unidFacturaVenta,
-                    UNID_SOLICITANTE = this._unidSolicitante
+                    UNID_SOLICITANTE = this._unidSolicitante, 
+                    PEDIMIENTO_EXPO = null, 
+                    PEDIMIENTO_IMPO = null
                     });
-                //_dataMapper.insertElement(new MOVIMENTO() {UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe, UNID_ALMACEN_DESTINO = this._unidSolicitante});
-          
+                //_dataMapper.insertElement(new MOVIMENTO() {UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe, UNID_ALMACEN_DESTINO = this._unidSolicitante});          
             }
         }
 
         #region Constructors
-        public MovimientoModel(IDataMapper dataMapper)
+        public MovimientoSalidasModel(IDataMapper dataMapper)
         {
             this._unidMovimiento = UNID.getNewUNID();
             this._fechaMovimiento = DateTime.Now;
@@ -624,12 +680,10 @@ namespace InventoryApp.Model
             if ((dataMapper as MovimientoDataMapper) != null)
             {
                 this._dataMapper = dataMapper as MovimientoDataMapper;
-            }
-
-            
+            }            
             this._almacenDestino = new ALMACEN();
-            this._proveedorProcedencia = new PROVEEDOR();
-            this._clienteProcedencia = null;
+            this._proveedorDestino = new PROVEEDOR();
+            this._clienteDestino = null;
             this._almacenProcedencia = null;
             this._servicio = new SERVICIO();
             this._transporte = new TRANSPORTE();
@@ -637,8 +691,7 @@ namespace InventoryApp.Model
             this._proveedor = new PROVEEDOR();
             this._facturaVenta = new FACTURA_VENTA();
             this._solicitante = null;
-        
-            
+            this._tipoPedimento = new TIPO_PEDIMENTO();
         }
         #endregion
 

@@ -49,8 +49,7 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     MOVIMIENTO_DETALLE mov = (MOVIMIENTO_DETALLE)element;
-                    mov.UNID_MOVIMIENTO_DETALLE = UNID.getNewUNID();
-
+                    
                     entity.MOVIMIENTO_DETALLE.AddObject(mov);
                     entity.SaveChanges();
                 }

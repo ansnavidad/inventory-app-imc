@@ -231,6 +231,7 @@
     <Compile Include="TipoMovimientoDataMapper.cs" />
     <Compile Include="TipoPedimentoDataMapper.cs" />
     <Compile Include="TransporteDataMapper.cs" />
+    <Compile Include="UltimoMovimientoDataMapper.cs" />
     <Compile Include="UNID.cs" />
     <Compile Include="UnidadDataMapper.cs" />
   </ItemGroup>

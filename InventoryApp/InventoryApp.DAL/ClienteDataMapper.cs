@@ -8,7 +8,6 @@ namespace InventoryApp.DAL
 {
     public class ClienteDataMapper : IDataMapper
     {
-        //
         public List<CLIENTE> getClienteList()
         {
             List<CLIENTE> clientes = new List<CLIENTE>();
@@ -21,9 +20,9 @@ namespace InventoryApp.DAL
                      select ctes).ToList<CLIENTE>().ForEach(o => clientes.Add(new CLIENTE()
                      {
                          UNID_CLIENTE = o.UNID_CLIENTE
-                         ,
+                     ,
                          CLIENTE1 = o.CLIENTE1
-                         ,
+                     ,
                          IS_ACTIVE = o.IS_ACTIVE
                      }));
                 }
@@ -54,6 +53,7 @@ namespace InventoryApp.DAL
                 return res;
             }
         }
+
 
         public object getElement(object element)
         {

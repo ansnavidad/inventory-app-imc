@@ -143,6 +143,7 @@
     <Compile Include="Salidas\CatalogItemViewModel.cs" />
     <Compile Include="Salidas\SalidaDemoViewModel.cs" />
     <Compile Include="Salidas\SalidaRentaViewModel.cs" />
+    <Compile Include="Salidas\SalidaRevisionViewModel.cs" />
     <Compile Include="ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>

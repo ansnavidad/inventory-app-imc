@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogTipoMovimiento;
 
 namespace InventoryApp.View.CatalogTipoMovimiento
 {
@@ -27,7 +28,16 @@ namespace InventoryApp.View.CatalogTipoMovimiento
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             AltaTipoMovimiento alta = new AltaTipoMovimiento();
-            alta.ShowDialog();
+            try
+            {
+                CatalogTipoMovimientoViewModel tipoMovimientoViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogTipoMovimientoViewModel;
+                alta.DataContext = tipoMovimientoViewModel.CreateAddTipoMovimientoViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void dtGridMovimiento_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -37,7 +47,17 @@ namespace InventoryApp.View.CatalogTipoMovimiento
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyTipoMovimientoView()).ShowDialog();
+                    ModifyTipoMovimientoView dlgModify = new ModifyTipoMovimientoView();
+                    try
+                    {
+                        CatalogTipoMovimientoViewModel tipoMovimientoViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogTipoMovimientoViewModel;
+                        dlgModify.DataContext = tipoMovimientoViewModel.CreateModifyTipoMovimientoViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }

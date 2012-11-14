@@ -61,7 +61,6 @@ namespace InventoryApp.View.CatalogBanco
 
                         throw ex;
                     }
-
                 }
             }
         }

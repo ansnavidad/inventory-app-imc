@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogDepartamento;
 
 namespace InventoryApp.View.CatalogDepartamento
 {
@@ -26,8 +27,18 @@ namespace InventoryApp.View.CatalogDepartamento
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            AddDepartamentoView add = new AddDepartamentoView();
-            add.ShowDialog();
+            AddDepartamentoView alta = new AddDepartamentoView();
+            try
+            {
+                CatalogDepartamentoViewModel departamentoViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogDepartamentoViewModel;
+                alta.DataContext = departamentoViewModel.CreateAddDepartamentoViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         private void dtGridDepartamento_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -37,7 +48,17 @@ namespace InventoryApp.View.CatalogDepartamento
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyDepartamentoView()).ShowDialog();
+                    ModifyDepartamentoView dlgModify = new ModifyDepartamentoView();
+                    try
+                    {
+                        CatalogDepartamentoViewModel departamentoViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogDepartamentoViewModel;
+                        dlgModify.DataContext = departamentoViewModel.CreateDepartamentoViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }

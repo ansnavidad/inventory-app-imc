@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogPais;
 
 namespace InventoryApp.View.CatalogPais
 {
@@ -27,7 +28,16 @@ namespace InventoryApp.View.CatalogPais
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             AltaModificarPais alta = new AltaModificarPais();
-            alta.ShowDialog();
+            try
+            {
+                CatalogPaisViewModel paisViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogPaisViewModel;
+                alta.DataContext = paisViewModel.CreateAddPaisViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void dtGridItemStatus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -37,7 +47,17 @@ namespace InventoryApp.View.CatalogPais
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyPaisView()).ShowDialog();
+                    ModifyPaisView dlgModify = new ModifyPaisView();
+                    try
+                    {
+                        CatalogPaisViewModel paisViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogPaisViewModel;
+                        dlgModify.DataContext = paisViewModel.CreateModifyPaisViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }

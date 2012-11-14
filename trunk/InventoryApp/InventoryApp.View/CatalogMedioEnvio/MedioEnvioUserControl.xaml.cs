@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogMedioEnvio;
 
 namespace InventoryApp.View.CatalogMedioEnvio
 {
@@ -27,7 +28,16 @@ namespace InventoryApp.View.CatalogMedioEnvio
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             AltaModificarMedioEnvio alta = new AltaModificarMedioEnvio();
-            alta.ShowDialog();
+            try
+            {
+                CatalogMedioEnvioViewModel medioEnvioViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogMedioEnvioViewModel;
+                alta.DataContext = medioEnvioViewModel.CreateAddMedioEnvioViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void dtGridItemStatus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -37,7 +47,17 @@ namespace InventoryApp.View.CatalogMedioEnvio
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyMedioEnvioView()).ShowDialog();
+                    ModifyMedioEnvioView dlgModify = new ModifyMedioEnvioView();
+                    try
+                    {
+                        CatalogMedioEnvioViewModel medioEnvioViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogMedioEnvioViewModel;
+                        dlgModify.DataContext = medioEnvioViewModel.CreateModifyMedioEnvioViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }

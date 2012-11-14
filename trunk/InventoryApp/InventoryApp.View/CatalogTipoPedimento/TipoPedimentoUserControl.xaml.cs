@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogTipoPedimento;
 
 namespace InventoryApp.View.CatalogTipoPedimento
 {
@@ -27,7 +28,16 @@ namespace InventoryApp.View.CatalogTipoPedimento
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             AltaModificarTipoPedimento alta = new AltaModificarTipoPedimento();
-            alta.ShowDialog();
+            try
+            {
+                CatalogTipoPedimentoViewModel tipoPedimentoViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogTipoPedimentoViewModel;
+                alta.DataContext = tipoPedimentoViewModel.CreateAddTipoPedimentoViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void dtGridItemStatus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -37,7 +47,17 @@ namespace InventoryApp.View.CatalogTipoPedimento
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyTipoPedimentoView()).ShowDialog();
+                    ModifyTipoPedimentoView dlgModify = new ModifyTipoPedimentoView();
+                    try
+                    {
+                        CatalogTipoPedimentoViewModel tipoPedimentoViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogTipoPedimentoViewModel;
+                        dlgModify.DataContext = tipoPedimentoViewModel.CreateModifyTipoPedimentoViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }

@@ -28,9 +28,17 @@ namespace InventoryApp.View.CatalogMarca
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             AddMarca alta = new AddMarca();
-            CatalogMarcaViewModel marcaViewModel = (CatalogMarcaViewModel)this.DataContext;
-            alta.DataContext = marcaViewModel.CreateAddMarcaViewModel();
-            alta.ShowDialog();
+            try
+            {
+                CatalogMarcaViewModel marcaViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogMarcaViewModel;
+                alta.DataContext = marcaViewModel.CreateAddMarcaViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         private void dtGridMarca_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -40,10 +48,17 @@ namespace InventoryApp.View.CatalogMarca
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    ModifyMarcaView modifyMarcaView = new ModifyMarcaView();
-                    CatalogMarcaViewModel marcaViewModel = (CatalogMarcaViewModel)this.DataContext;
-                    modifyMarcaView.DataContext = marcaViewModel.CreateModifyMarcaViewModel();
-                    modifyMarcaView.ShowDialog();
+                    ModifyMarcaView dlgModify = new ModifyMarcaView();
+                    try
+                    {
+                        CatalogMarcaViewModel marcaViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogMarcaViewModel;
+                        dlgModify.DataContext = marcaViewModel.CreateModifyMarcaViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }

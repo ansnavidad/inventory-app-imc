@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="305" d:DesignWidth="312" Height="376" Width="500"
+             d:DesignHeight="305" d:DesignWidth="312"
              DataContext="{StaticResource catalogCiudadViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -36,7 +36,7 @@
                   Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogCiudadModel.Ciudad}" 
                   SelectedItem="{Binding CatalogCiudadModel.SelectedCiudad, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
-                  RowStyle="{StaticResource RowStyle}">
+                  RowStyle="{StaticResource RowStyle}" SelectionChanged="dtGridItemStatus_SelectionChanged">
             <DataGrid.Columns>
                 <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected"/>-->
                 <DataGridTemplateColumn Header="" Width="Auto">

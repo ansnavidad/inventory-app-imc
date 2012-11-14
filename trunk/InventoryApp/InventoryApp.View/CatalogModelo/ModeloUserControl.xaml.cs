@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogModelo;
 
 namespace InventoryApp.View.CatalogModelo
 {
@@ -27,7 +28,16 @@ namespace InventoryApp.View.CatalogModelo
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             AddModeloView alta = new AddModeloView();
-            alta.ShowDialog();
+            try
+            {
+                CatalogModeloViewModel modeloViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogModeloViewModel;
+                alta.DataContext = modeloViewModel.CreateAddModeloViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void dtGridModelo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -37,7 +47,17 @@ namespace InventoryApp.View.CatalogModelo
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyModeloView()).ShowDialog();
+                    ModifyModeloView dlgModify = new ModifyModeloView();
+                    try
+                    {
+                        CatalogModeloViewModel modeloViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogModeloViewModel;
+                        dlgModify.DataContext = modeloViewModel.CreateModifyModeloViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }

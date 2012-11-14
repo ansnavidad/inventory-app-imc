@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogItemStatus;
 
 namespace InventoryApp.View.CatalogItemStatus
 {
@@ -27,7 +28,17 @@ namespace InventoryApp.View.CatalogItemStatus
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             AltaItemStatus alta = new AltaItemStatus();
-            alta.ShowDialog();
+            try
+            {
+                CatalogItemStatusViewModel itemStatusViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogItemStatusViewModel;
+                alta.DataContext = itemStatusViewModel.CreateAddItemStatusViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         private void dtGridItemStatus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -37,7 +48,17 @@ namespace InventoryApp.View.CatalogItemStatus
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyItemStatusView()).ShowDialog();
+                    ModifyItemStatusView dlgModify = new ModifyItemStatusView();
+                    try
+                    {
+                        CatalogItemStatusViewModel equipoViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogItemStatusViewModel;
+                        dlgModify.DataContext = equipoViewModel.CreateModifyItemStatusViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }

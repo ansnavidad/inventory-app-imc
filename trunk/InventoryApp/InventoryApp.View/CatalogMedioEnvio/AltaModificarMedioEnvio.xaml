@@ -1,7 +1,6 @@
 ﻿<Window x:Class="InventoryApp.View.CatalogMedioEnvio.AltaModificarMedioEnvio"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        DataContext="{DynamicResource addMedioEnvioViewModel}"
         Title="AltaModificarMedioEnvio" Height="300" Width="300">
     <Grid Name="gridAlta" >
         <Grid.ColumnDefinitions>

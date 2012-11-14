@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogTipoCotizacion;
 
 namespace InventoryApp.View.CatalogTipoCotizacion
 {
@@ -27,7 +28,16 @@ namespace InventoryApp.View.CatalogTipoCotizacion
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             AltaTipoCotizacion alta = new AltaTipoCotizacion();
-            alta.ShowDialog();
+            try
+            {
+                CatalogTipoCotizacionViewModel solicitanteViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogTipoCotizacionViewModel;
+                alta.DataContext = solicitanteViewModel.CreateAddTipoCotizacionViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void dtGridCotizacion_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -37,7 +47,17 @@ namespace InventoryApp.View.CatalogTipoCotizacion
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyTipoCotizacionView()).ShowDialog();
+                    ModifyTipoCotizacionView dlgModify = new ModifyTipoCotizacionView();
+                    try
+                    {
+                        CatalogTipoCotizacionViewModel tipoCotizacionViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogTipoCotizacionViewModel;
+                        dlgModify.DataContext = tipoCotizacionViewModel.CreateModifyTipoCotizacionViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }

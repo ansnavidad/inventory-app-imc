@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogTransporte;
 
 namespace InventoryApp.View.CatalogTransporte
 {
@@ -27,7 +28,16 @@ namespace InventoryApp.View.CatalogTransporte
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
             InsertTransporteView insert = new InsertTransporteView();
-            insert.ShowDialog();
+            try
+            {
+                CatalogTransporteViewModel transporteViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogTransporteViewModel;
+                insert.DataContext = transporteViewModel.CreateAddTransporteViewModel();
+                insert.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void dtGridItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -37,7 +47,17 @@ namespace InventoryApp.View.CatalogTransporte
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    (new ModifyTransporteView()).ShowDialog();
+                    ModifyTransporteView dlgModify = new ModifyTransporteView();
+                    try
+                    {
+                        CatalogTransporteViewModel transporteViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogTransporteViewModel;
+                        dlgModify.DataContext = transporteViewModel.CreateModifyTransporteViewModel();
+                        dlgModify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
         }

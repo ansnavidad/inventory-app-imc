@@ -52,7 +52,9 @@
              xmlns:tipoPedimentoViews="clr-namespace:InventoryApp.View.CatalogTipoPedimento"
              xmlns:catTransporteViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTransporte;assembly=InventoryApp.ViewModel"
              xmlns:transporteViews="clr-namespace:InventoryApp.View.CatalogTransporte"
-             StartupUri="MainWindow.xaml">
+             xmlns:EntradaViewModel="clr-namespace:InventoryApp.ViewModel.Entradas;assembly=InventoryApp.ViewModel"
+             xmlns:EntradaView="clr-namespace:InventoryApp.View.Entradas"
+             StartupUri="Entradas/EntradaDevolucion.xaml">
     <!--StartupUri="Recibo/ReciboView.xaml"-->
     <!--StartupUri="MainWindow.xaml"-->
     <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogPais;assembly=InventoryApp.ViewModel"
@@ -232,7 +234,10 @@
                             MethodName="CreateModifySolicitanteViewModel" x:Shared="False"/>-->
 
         
-        
+        <EntradaViewModel:EntradaPorValidacionViewModel x:Key="entradaPorValidacionViewModel" />
+        <EntradaViewModel:EntradaPrestamoViewModel x:Key="entradaPrestamoViewModel" />
+        <EntradaViewModel:EntradaDevolucionViewModel x:Key="entradaDevolucionViewModel" />
+        <EntradaViewModel:EntradaDesinstalacionViewModel x:Key="entradaDesinstalacionViewModel" />
         <!--Catálgos-->
         <catArticulo:CatalogArticuloViewModel x:Key="catalogArticuloViewModel"></catArticulo:CatalogArticuloViewModel>
         <ObjectDataProvider x:Key="addArticuloViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"

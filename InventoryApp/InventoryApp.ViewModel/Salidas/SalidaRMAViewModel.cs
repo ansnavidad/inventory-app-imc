@@ -6,11 +6,12 @@ using InventoryApp.Model;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
+
 namespace InventoryApp.ViewModel.Salidas
 {
-    public class SalidaPrestamoViewModel
+    class SalidaRMAViewModel
     {
-        private MovimientoSalidasModel _movimientoModel;
+         private MovimientoSalidasModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
         private UltimoMovimientoModel _ultimoMovimientoModel;
         private CatalogSolicitanteModel _catalogSolicitanteModel;
@@ -26,7 +27,7 @@ namespace InventoryApp.ViewModel.Salidas
         private RelayCommand _addItemCommand;
         private RelayCommand _deleteItemCommand;
 
-        public SalidaPrestamoViewModel()
+        public SalidaRMAViewModel()
         {            
             try
             {

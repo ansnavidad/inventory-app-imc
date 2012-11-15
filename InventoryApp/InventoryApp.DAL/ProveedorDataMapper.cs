@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
+using System.Data;
 
 namespace InventoryApp.DAL
 {
@@ -11,18 +12,21 @@ namespace InventoryApp.DAL
     {
         public object getElements()
         {
-            object res = null;            
+            object res = null;
+           
+           
             using (var Entity = new TAE2Entities())
             {
                 var query = (from p in Entity.PROVEEDORs
                              where p.IS_ACTIVE ==true
                              select p).ToList();
-
+                
 
                 foreach (PROVEEDOR trans in ((List<PROVEEDOR>)query))
                 {
                     trans.PAI = trans.PAI;
                     trans.CIUDAD = trans.CIUDAD;
+                    trans.CATEGORIAs = trans.CATEGORIAs;
                 }
 
                 if (query.Count>0)
@@ -91,9 +95,15 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     PROVEEDOR proveedor = (PROVEEDOR)element;
-
                     proveedor.UNID_PROVEEDOR = UNID.getNewUNID();
-
+                    //foreach (var item in proveedor.CATEGORIAs)
+                    //{
+                    //    entity.ObjectStateManager.ChangeObjectState(item, EntityState.Unchanged);
+                    //}
+                    //entity.PROVEEDORs.Attach(proveedor);
+                    //entity.SaveChanges();
+                    //entity.PROVEEDORs.ApplyCurrentValues(proveedor);
+                    //entity.SaveChanges();
                     entity.PROVEEDORs.AddObject(proveedor);
                     entity.SaveChanges();
                 }

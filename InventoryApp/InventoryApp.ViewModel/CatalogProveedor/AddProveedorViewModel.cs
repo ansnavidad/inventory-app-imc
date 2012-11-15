@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogProveedor
 {
@@ -16,11 +17,22 @@ namespace InventoryApp.ViewModel.CatalogProveedor
         private CatalogProveedorViewModel _catalogProveedorViewModel;
         private CatalogCiudadModel _catalogCiudadModel;
         private CatalogPaisModel _catalogPaisModel;
-
+        private CatalogCategoriaModel _catalogCategoriaModel;
         #endregion
 
-        //Exponer la propiedad item status
+        //Exponer la propiedad proveedor
         #region Props
+        public CatalogCategoriaModel CatalogCategoriaModel
+        {
+            get
+            {
+                return _catalogCategoriaModel;
+            }
+            set
+            {
+                _catalogCategoriaModel = value;
+            }
+        }
         public CatalogCiudadModel CatalogCiudadModel
         {
             get
@@ -83,6 +95,20 @@ namespace InventoryApp.ViewModel.CatalogProveedor
             try
             {
 
+                this._catalogCategoriaModel = new CatalogCategoriaModel(new CategoriaDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            try
+            {
+
                 this._catalogCiudadModel = new CatalogCiudadModel(new CiudadDataMapper());
             }
             catch (ArgumentException ae)
@@ -127,6 +153,13 @@ namespace InventoryApp.ViewModel.CatalogProveedor
 
         public void AttempAddProveedor()
         {
+            //foreach (DeleteCategoria item in this._catalogCategoriaModel.Categoria)
+            //{
+            //    if (item.IsChecked == true)
+            //    {
+            //        this._proveedorEnvio._cat.Add((CATEGORIA)item);
+            //    }
+            //}
             this._proveedorEnvio.saveProveedor();
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya que

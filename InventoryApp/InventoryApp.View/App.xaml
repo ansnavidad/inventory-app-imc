@@ -240,10 +240,19 @@
         <EntradaViewModel:EntradaPrestamoViewModel x:Key="entradaPrestamoViewModel" />
         <EntradaViewModel:EntradaDevolucionViewModel x:Key="entradaDevolucionViewModel" />
         <EntradaViewModel:EntradaDesinstalacionViewModel x:Key="entradaDesinstalacionViewModel" />
+        
         <SalidasViewModel:SalidaRentaViewModel x:Key="salidaRentaViewModel" />
         <SalidasViewModel:SalidaRevisionViewModel x:Key="salidaRevisionViewModel" />
         <SalidasViewModel:SalidaDemoViewModel x:Key="salidaDemoViewModel" />
         <SalidasViewModel:SalidaPrestamoViewModel x:Key="salidaPrestamoViewModel" />
+
+        <SalidasViewModel:SalidaConfiguracionViewModel x:Key="salidaConfiguracionViewModel" />
+        <SalidasViewModel:SalidaCorrectivoViewModel x:Key="salidaCorrectivoViewModel" />
+        <SalidasViewModel:SalidaObsequioViewModel x:Key="salidaObsequioViewModel" />
+        <SalidasViewModel:SalidaOfficeViewModel x:Key="salidaOfficeViewModel" />
+        <SalidasViewModel:SalidaPruebasViewModel x:Key="salidaPruebasViewModel" />
+        <SalidasViewModel:SalidaRMAViewModel x:Key="salidaRMAViewModel" />
+        <SalidasViewModel:SalidaVentaViewModel x:Key="salidaVentaViewModel" />
         <!--Catálgos-->
         <catArticulo:CatalogArticuloViewModel x:Key="catalogArticuloViewModel"></catArticulo:CatalogArticuloViewModel>
         <ObjectDataProvider x:Key="addArticuloViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"

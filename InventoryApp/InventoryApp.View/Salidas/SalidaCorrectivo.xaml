@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             DataContext="{StaticResource salidaCorrectivoViewModel}"
+             
              mc:Ignorable="d" 
             d:DesignHeight="1123" d:DesignWidth="622">
     <ScrollViewer>
@@ -15,7 +15,7 @@
             <Label Content="Fecha:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,66,550,0" Name="label2" VerticalAlignment="Top" />
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,44,342,0" Name="textBlockFolio" VerticalAlignment="Top" Width="201" Text="{Binding MovimientoModel.UnidMovimiento, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,69,342,0" Name="textBlock2" VerticalAlignment="Top" Width="201" Text="{Binding MovimientoModel.FechaMovimiento, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            <Label Content="Pedimento Exportación:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,225,209,0" Name="label5" VerticalAlignment="Top" />
+            <Label Content="Pedimento Exportación:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,236,209,0" Name="label5" VerticalAlignment="Top" />
             <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="12,726,14,84" Name="dtGridTipoPedimento" VerticalAlignment="Stretch" ItemsSource="{Binding ItemModel.ItemModel}">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="25" />
@@ -32,10 +32,10 @@
             <Label Content="Área del solicitante:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,110,179,0" Name="label9" VerticalAlignment="Top" />
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,113,53,0" Name="textBlockArea" Text="{Binding MovimientoModel.Solicitante.Departamento.DEPARTAMENTO_NAME, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" />
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" HorizontalAlignment="Left" Margin="21,407,0,0" Name="border1" VerticalAlignment="Top" Width="587"></Border>
-            <Label Content="Cliente:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,168,520,0" Name="label13" VerticalAlignment="Top" />
-            <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,191,378,0" Name="comboBox1" VerticalAlignment="Top" Width="176" SelectedIndex="0" DisplayMemberPath="CLIENTE1" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogClienteModel.Cliente}"  SelectedItem="{Binding MovimientoModel.Cliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_CLIENTE"/>
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,191,41,0" MaxLength="254" Name="textBox3" Width="162" VerticalAlignment="Top" Text="{Binding MovimientoModel.NombreSitio, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            <Label Content="Nombre de sitio:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,191,209,0" Name="label15" VerticalAlignment="Top" />
+            <Label Content="Cliente:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,184,520,0" Name="label13" VerticalAlignment="Top" />
+            <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,207,378,0" Name="comboBox1" VerticalAlignment="Top" Width="176" SelectedIndex="0" DisplayMemberPath="CLIENTE1" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogClienteModel.Cliente}"  SelectedItem="{Binding MovimientoModel.Cliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_CLIENTE"/>
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,202,41,0" MaxLength="254" Name="textBox3" Width="162" VerticalAlignment="Top" Text="{Binding MovimientoModel.NombreSitio, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="Nombre de sitio:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,202,209,0" Name="label15" VerticalAlignment="Top" />
             <Label Content="Servicio:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,109,510,0" Name="label16" VerticalAlignment="Top" />
             <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,132,378,0" Name="comboBoxServicio" VerticalAlignment="Top" Width="176" SelectedIndex="0" DisplayMemberPath="SERVICIO_NAME" ItemsSource="{Binding CatalogServicioModel.Servicio, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  SelectedItem="{Binding MovimientoModel.Servicio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_SERVICIO"/>
             <Label Content="Dirección:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,347,541,0" Name="label18" VerticalAlignment="Top" />
@@ -69,8 +69,10 @@
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border5" Margin="20,652,14,468">
                 <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border3"></Border>
             </Border>
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,225,41,0" MaxLength="254" Name="textBox2" Text="{Binding MovimientoModel.PedimentoExpo, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="161" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,236,41,0" MaxLength="254" Name="textBox2" Text="{Binding MovimientoModel.PedimentoExpo, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="161" />
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border6" Margin="25,527,15,600" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,165,40,0" MaxLength="254" Name="textBox4" Text="{Binding MovimientoModel.SitioEnlace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="162" />
+            <Label Content="Sitio y/o enlace:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,165,208,0" Name="label4" VerticalAlignment="Top" />
         </Grid>
     </ScrollViewer>
 </UserControl>

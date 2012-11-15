@@ -42,7 +42,7 @@ namespace InventoryApp.ViewModel.Salidas
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
                 TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
-                mov.UNID_TIPO_MOVIMIENTO = 7;
+                mov.UNID_TIPO_MOVIMIENTO = 14;
                 this._movimientoModel.TipoMovimiento = mov;
                 this._itemModel = new CatalogItemModel(new ItemDataMapper());
                 this._catalogAlmacenDestinoModel = new CatalogAlmacenModel(dataMapper2);

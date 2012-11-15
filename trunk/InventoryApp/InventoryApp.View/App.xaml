@@ -57,7 +57,7 @@
              xmlns:EntradaViewModel="clr-namespace:InventoryApp.ViewModel.Entradas;assembly=InventoryApp.ViewModel"
              xmlns:SalidasViewModel="clr-namespace:InventoryApp.ViewModel.Salidas;assembly=InventoryApp.ViewModel"
              xmlns:SalidasView="clr-namespace:InventoryApp.View.Salidas"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Salidas/SalidaCorrectivo.xaml">
 
     <Application.Resources>
         <!--

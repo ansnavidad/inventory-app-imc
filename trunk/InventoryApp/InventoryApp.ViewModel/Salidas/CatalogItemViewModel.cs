@@ -510,7 +510,7 @@ namespace InventoryApp.ViewModel.Salidas
                         }
                     }
                 }
-                this.SalidaPruebasViewModel.MovimientoModel.CantidadItems = this.SalidaPruebasViewModel.ItemModel.ItemModel.Count();
+                this._salidaPruebasViewModel.MovimientoModel.CantidadItems = this._salidaPruebasViewModel.ItemModel.ItemModel.Count();
             }
             else if (_salidaConfiguracionViewModel != null)
             {

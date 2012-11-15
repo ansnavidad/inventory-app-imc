@@ -37,8 +37,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
-            <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
-            <Button Content="ELIMINAR" Height="23" HorizontalAlignment="Stretch"
+            <Button Content="Nuevo" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+            <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch"
                     Margin="5,0" Name="btnEliminar" VerticalAlignment="Stretch"
                     Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteClienteCommand,Mode=OneWay}"/>
         </Grid>

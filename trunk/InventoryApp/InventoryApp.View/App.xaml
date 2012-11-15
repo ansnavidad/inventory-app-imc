@@ -52,189 +52,22 @@
              xmlns:tipoPedimentoViews="clr-namespace:InventoryApp.View.CatalogTipoPedimento"
              xmlns:catTransporteViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTransporte;assembly=InventoryApp.ViewModel"
              xmlns:transporteViews="clr-namespace:InventoryApp.View.CatalogTransporte"
+             xmlns:catPropiedadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogPropiedad;assembly=InventoryApp.ViewModel"
+             xmlns:propiedadViews="clr-namespace:InventoryApp.View.CatalogPropiedad"
              xmlns:EntradaViewModel="clr-namespace:InventoryApp.ViewModel.Entradas;assembly=InventoryApp.ViewModel"
-             xmlns:EntradaView="clr-namespace:InventoryApp.View.Entradas"
              xmlns:SalidasViewModel="clr-namespace:InventoryApp.ViewModel.Salidas;assembly=InventoryApp.ViewModel"
              xmlns:SalidasView="clr-namespace:InventoryApp.View.Salidas"
-             StartupUri="Salidas/SalidaPrestamo.xaml">
-    <!--StartupUri="Recibo/ReciboView.xaml"-->
-    <!--StartupUri="MainWindow.xaml"-->
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogPais;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogPais/CatalogPaisView.xaml">-->
+             StartupUri="MainWindow.xaml">
 
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogMoneda;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogMoneda/CatalogMonedaView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogModelo;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogModelo/CatalogModeloView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogMedioEnvio;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogMedioEnvio/CatalogMedioEnvioView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogMarca;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogMarca/CatalogMarcaView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogEquipo;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogEquipo/CatalogEquipoView.xaml">-->
-    
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogEmpresa;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogEmpresa/CatalogEmpresaView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogDepartamento;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogDepartamento/CatalogDepartamentoView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogCiudad;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogCiudad/CatalogCiudadView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogBanco;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogBanco/CatalogBancoView.xaml">-->
-    
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTipoMovimiento;assembly=InventoryApp.ViewModel"
-    StartupUri="CatalogTipoMovimiento/CatalogTipoMovimientoView.xaml">-->
-    
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogItemStatus;assembly=InventoryApp.ViewModel"
-    StartupUri="CatalogItemStatus/CatalogItemStatusView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogProyecto;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogProyecto/CatalogProyectoView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTipoCotizacion;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogTipoCotizacion/CatalogTipoCotizacionView.xaml">-->
-    
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTipoMovimiento;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogTipoMovimiento/CatalogTipoMovimientoView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogCategoria;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogCategoria/CatalogCategoriaView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogEmpresa;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogEmpresa/CatalogEmpresaView.xaml">-->
-    
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogSolicitante;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogSolicitante/CatalogSolicitanteView.xaml">-->
     <Application.Resources>
         <!--
             Se crean los recursos que se utilizarán.
             ObjectDataProvider expone el método CreateAddItemStatusViewModel que regresa el viewModel de addItemStatusViewModel
             De esta forma es posible pasar por parametro el viewmodel de catálogo al constructor de addItemStatusViewModel
         -->
-        <!--<vm:CatalogPaisViewModel x:Key="catalogPaisViewModel" />
-        <ObjectDataProvider x:Key="addPaisViewModel" ObjectInstance="{StaticResource catalogPaisViewModel}" 
-                            MethodName="CreateAddPaisViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyPaisViewModel" ObjectInstance="{StaticResource catalogPaisViewModel}" 
-                            MethodName="CreateModifyPaisViewModel" x:Shared="False"/>-->
-        
-        <!--<vm:CatalogMonedaViewModel x:Key="catalogMonedaViewModel" />
-        <ObjectDataProvider x:Key="addMonedaViewModel" ObjectInstance="{StaticResource catalogMonedaViewModel}" 
-                            MethodName="CreateAddMonedaViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyMonedaViewModel" ObjectInstance="{StaticResource catalogMonedaViewModel}" 
-                            MethodName="CreateModifyMonedaViewModel" x:Shared="False"/>-->
-        
-        <!--<vm:CatalogModeloViewModel x:Key="catalogModeloViewModel" />
-        <ObjectDataProvider x:Key="addModeloViewModel" ObjectInstance="{StaticResource catalogModeloViewModel}" 
-                            MethodName="CreateAddModeloViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyModeloViewModel" ObjectInstance="{StaticResource catalogModeloViewModel}" 
-                            MethodName="CreateModifyModeloViewModel" x:Shared="False"/>-->
-
-        <!--<vm:CatalogMedioEnvioViewModel x:Key="catalogMedioEnvioViewModel" />
-        <ObjectDataProvider x:Key="addMedioEnvioViewModel" ObjectInstance="{StaticResource catalogMedioEnvioViewModel}" 
-                            MethodName="CreateAddMedioEnvioViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyMedioEnvioViewModel" ObjectInstance="{StaticResource catalogMedioEnvioViewModel}" 
-                            MethodName="CreateModifyMedioEnvioViewModel" x:Shared="False"/>-->
-        
-        <!--<vm:CatalogMarcaViewModel x:Key="catalogMarcaViewModel" />
-        <ObjectDataProvider x:Key="addMarcaViewModel" ObjectInstance="{StaticResource catalogMarcaViewModel}" 
-                            MethodName="CreateAddMarcaViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyMarcaViewModel" ObjectInstance="{StaticResource catalogMarcaViewModel}" 
-                            MethodName="CreateModifyMarcaViewModel" x:Shared="False"/>-->
-        
-        <!--<vm:CatalogEquipoViewModel x:Key="catalogEquipoViewModel"></vm:CatalogEquipoViewModel>
-        <ObjectDataProvider x:Key="addEquipoViewModel" ObjectInstance="{StaticResource catalogEquipoViewModel}"
-                            MethodName="CreateAddEquipoViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyEquipoViewModel" ObjectInstance="{StaticResource catalogEquipoViewModel }"
-                            MethodName="CreateModifyEquipoViewModel" x:Shared="False"/>-->
-        
-        <!--<vm:CatalogEmpresaViewModel x:Key="catalogEmpresaViewModel"></vm:CatalogEmpresaViewModel>
-        <ObjectDataProvider x:Key="addEmpresaViewModel" ObjectInstance="{StaticResource catalogEmpresaViewModel}"
-                            MethodName="CreateAddEmpresaViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyEmpresaViewModel" ObjectInstance="{StaticResource catalogEmpresaViewModel }"
-                            MethodName="CreateModifyEmpresaViewModel" x:Shared="False"/>-->
-
-        <!--<vm:CatalogDepartamentoViewModel x:Key="catalogDepartamentoViewModel"></vm:CatalogDepartamentoViewModel>
-        <ObjectDataProvider x:Key="addDepartamentoViewModel" ObjectInstance="{StaticResource catalogDepartamentoViewModel}"
-                            MethodName="CreateAddDepartamentoViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyDepartamentoViewModel" ObjectInstance="{StaticResource catalogDepartamentoViewModel }"
-                            MethodName="CreateDepartamentoViewModel" x:Shared="False"/>-->
-        
-        <!--<vm:CatalogCiudadViewModel x:Key="catalogCiudadViewModel"></vm:CatalogCiudadViewModel>
-        <ObjectDataProvider x:Key="addCiudadViewModel" ObjectInstance="{StaticResource catalogCiudadViewModel}"
-                            MethodName="CreateAddCiudadViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyCiudadViewModel" ObjectInstance="{StaticResource catalogCiudadViewModel }"
-                            MethodName="CreateModifyCiudadViewModel" x:Shared="False"/>-->
-        
-        <!--<vm:CatalogArticuloViewModel x:Key="catalogArticuloViewModel" />
-        <ObjectDataProvider x:Key="addArticuloViewModel" ObjectInstance="{StaticResource catalogArticuloViewModel}" 
-                            MethodName="CreateAddArticuloViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyArticuloViewModel" ObjectInstance="{StaticResource catalogArticuloViewModel}" 
-                            MethodName="CreateModifyArticuloViewModel" x:Shared="False"/>-->
-        
-        <!--<vm:CatalogBancoViewModel x:Key="catalogBancoViewModel"></vm:CatalogBancoViewModel>
-        <ObjectDataProvider x:Key="addBancoViewModel" ObjectInstance="{StaticResource catalogBancoViewModel}" 
-                            MethodName="CreateAddBancoViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyBancoViewModel" ObjectInstance="{StaticResource catalogBancoViewModel}" 
-                            MethodName="CreateBancoViewModel" x:Shared="False"/>-->
-        
-        <!--<vm:CatalogItemStatusViewModel x:Key="catalogItemStatusViewModel"></vm:CatalogItemStatusViewModel>
-        <ObjectDataProvider x:Key="addItemStatusViewModel" ObjectInstance="{StaticResource catalogItemStatusViewModel}" 
-                            MethodName="CreateAddItemStatusViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyItemStatusViewModel" ObjectInstance="{StaticResource catalogItemStatusViewModel}" 
-                            MethodName="CreateModifyItemStatusViewModel" x:Shared="False"/>-->
-        
-        <!--<vm:CatalogProyectoViewModel x:Key="catalogProyectoViewModel"></vm:CatalogProyectoViewModel>
-        <ObjectDataProvider x:Key="addProyectoViewModel" ObjectInstance="{StaticResource catalogProyectoViewModel }"
-                            MethodName="CreateAddProyectoViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyProyectoViewModel" ObjectInstance="{StaticResource catalogProyectoViewModel }"
-                            MethodName="CreateModifyProyectoViewModel" x:Shared="False"/>-->
-
-        <!--<vm:CatalogTipoCotizacionViewModel x:Key="catalogTipoCotizacionViewModel"></vm:CatalogTipoCotizacionViewModel>
-        <ObjectDataProvider x:Key="addTipoCotizacionViewModel" ObjectInstance="{StaticResource catalogTipoCotizacionViewModel}"
-                            MethodName="CreateAddTipoCotizacionViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyTipoCotizacionViewModel" ObjectInstance="{StaticResource catalogTipoCotizacionViewModel }"
-                            MethodName="CreateModifyTipoCotizacionViewModel" x:Shared="False"/>-->
-
-        <!--<vm:CatalogTipoMovimientoViewModel x:Key="catalogTipoMovimientoViewModel"></vm:CatalogTipoMovimientoViewModel>
-        <ObjectDataProvider x:Key="addTipoMovimientoViewModel" ObjectInstance="{StaticResource catalogTipoMovimientoViewModel}"
-                            MethodName="CreateAddTipoMovimientoViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyTipoMovimientoViewModel" ObjectInstance="{StaticResource catalogTipoMovimientoViewModel }"
-                            MethodName="CreateModifyTipoMovimientoViewModel" x:Shared="False"/>-->
-        
-        <!--<vm:CatalogCategoriaViewModel x:Key="catalogCategoriaViewModel"></vm:CatalogCategoriaViewModel>
-        <ObjectDataProvider x:Key="addCategoriaViewModel" ObjectInstance="{StaticResource catalogCategoriaViewModel}"
-                            MethodName="CreateAddCategoriaViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyCategoriaViewModel" ObjectInstance="{StaticResource catalogCategoriaViewModel }"
-                            MethodName="CreateModifyCategoriaViewModel" x:Shared="False"/>-->
-
-        <!--<vm:CatalogProveedorCuentaViewModel x:Key="catalogProveedorCuentaViewModel" />
-        <ObjectDataProvider x:Key="addProveedorCuentaViewModel" ObjectInstance="{StaticResource catalogProveedorCuentaViewModel}" 
-                            MethodName="CreateAddProveedorCuentaViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyProveedorCuentaViewModel" ObjectInstance="{StaticResource catalogProveedorCuentaViewModel}" 
-                            MethodName="CreateModifyProveedorCuentaViewModel" x:Shared="False"/>-->
-
-        <!--<vm:CatalogEmpresaViewModel x:Key="catalogEmpresaViewModel"></vm:CatalogEmpresaViewModel>
-        <ObjectDataProvider x:Key="addEmpresaViewModel" ObjectInstance="{StaticResource catalogEmpresaViewModel}"
-                            MethodName="CreateAddEmpresaViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyEmpresaViewModel" ObjectInstance="{StaticResource catalogEmpresaViewModel }"
-                            MethodName="CreateModifyEmpresaViewModel" x:Shared="False"/>-->
 
         <rootViewModel:MenuViewModel x:Key="menuViewModel" />
         <rootViewModel:MainWindowViewModel x:Key="mainWindowViewModel" />
-        
-        <!--<vm:CatalogSolicitanteViewModel x:Key="catalogSolicitanteViewModel"></vm:CatalogSolicitanteViewModel>
-        <ObjectDataProvider x:Key="addSolicitanteViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
-                            MethodName="GetCurrentPage" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifySolicitanteViewModel" ObjectInstance="{StaticResource catalogSolicitanteViewModel}"
-                            MethodName="CreateModifySolicitanteViewModel" x:Shared="False"/>-->
-
         
         <EntradaViewModel:EntradaPorValidacionViewModel x:Key="entradaPorValidacionViewModel" />
         <EntradaViewModel:EntradaPrestamoViewModel x:Key="entradaPrestamoViewModel" />
@@ -340,6 +173,14 @@
         <ObjectDataProvider x:Key="catalogTransporteViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
+        <!-- cliente -->
+        <ObjectDataProvider x:Key="catalogClienteViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- propiedad -->
+        <ObjectDataProvider x:Key="catalogPropiedadViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
         <reciboViewModel:AddFacturaViewModel x:Key="addFacturaViewModel" />
         <reciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />
         
@@ -420,5 +261,11 @@
         <DataTemplate DataType="{x:Type catTransporteViewModel:CatalogTransporteViewModel}">
             <transporteViews:TransporteUserControl />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type catClienteViewModel:CatalogClienteViewModel}">
+            <clienteViews:ClienteUserControl />
+        </DataTemplate>
+        <!--<DataTemplate DataType="{x:Type catPropiedadViewModel:CatalogPropiedadViewModel}">
+            <propiedadViews:PropiedadUserControl />
+        </DataTemplate>-->
     </Application.Resources>
 </Application>

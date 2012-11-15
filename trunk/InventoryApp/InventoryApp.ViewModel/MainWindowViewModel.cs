@@ -29,6 +29,8 @@ using InventoryApp.ViewModel.CatalogTipoEmpresa;
 using InventoryApp.ViewModel.CatalogTipoMovimiento;
 using InventoryApp.ViewModel.CatalogTipoPedimento;
 using InventoryApp.ViewModel.CatalogTransporte;
+using InventoryApp.ViewModel.CatalogCliente;
+using InventoryApp.ViewModel.CatalogPropiedad;
 
 namespace InventoryApp.ViewModel
 {
@@ -147,6 +149,9 @@ namespace InventoryApp.ViewModel
                     case "Ciudad":
                         page = new CatalogCiudadViewModel();
                         break;
+                    case "Cliente":
+                        page = new CatalogClienteViewModel();
+                        break;
                     case "Departamento":
                         page = new CatalogDepartamentoViewModel();
                         break;
@@ -170,6 +175,9 @@ namespace InventoryApp.ViewModel
                         break;
                     case "País":
                         page = new CatalogPaisViewModel();
+                        break;
+                    case "Propiedad":
+                        page = new CatalogPropiedadViewModel();
                         break;
                     case "Proveedor":
                         page = new CatalogProveedorViewModel();

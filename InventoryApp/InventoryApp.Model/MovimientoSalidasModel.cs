@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace InventoryApp.Model
 {
-    public class MovimientoSalidasModel
+    public class MovimientoSalidasModel : INotifyPropertyChanged
     {
         #region Fields
         private long _unidMovimiento;
@@ -664,8 +664,8 @@ namespace InventoryApp.Model
                     UNID_PROVEEDOR = this._unidProveedor, 
                     UNID_FACTURA_VENTA = this._unidFacturaVenta,
                     UNID_SOLICITANTE = this._unidSolicitante, 
-                    PEDIMIENTO_EXPO = null, 
-                    PEDIMIENTO_IMPO = null
+                    PEDIMIENTO_EXPO = this._pedimentoExpo, 
+                    PEDIMIENTO_IMPO = this._pedimentoImpo
                     });
                 //_dataMapper.insertElement(new MOVIMENTO() {UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe, UNID_ALMACEN_DESTINO = this._unidSolicitante});          
             }

@@ -470,6 +470,12 @@
     <Compile Include="Salidas\SalidaVenta.xaml.cs">
       <DependentUpon>SalidaVenta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Traspasos\AddItem.xaml.cs">
+      <DependentUpon>AddItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Traspasos\TraspasoStock.xaml.cs">
+      <DependentUpon>TraspasoStock.xaml</DependentUpon>
+    </Compile>
     <Page Include="CatalogAlmacenEmail\AltaAlmacenEmail.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1040,6 +1046,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Style\WindowTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Traspasos\AddItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Traspasos\TraspasoStock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

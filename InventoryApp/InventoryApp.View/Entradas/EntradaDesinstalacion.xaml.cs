@@ -24,6 +24,7 @@ namespace InventoryApp.View.Entradas
         {
             InitializeComponent();
             comboCliente.SelectedIndex = 0;
+            comboBoxAlmacenOrigen.SelectedIndex = 0; //EL ORIGEN ES EN REALIDAD EL DESTINO
             
         }
 

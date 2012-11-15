@@ -58,8 +58,8 @@
              xmlns:SalidasView="clr-namespace:InventoryApp.View.Salidas"
              xmlns:TraspasosViewModel="clr-namespace:InventoryApp.ViewModel.Traspasos;assembly=InventoryApp.ViewModel"
              xmlns:TraspasosView="clr-namespace:InventoryApp.View.Traspasos"
-             
-             StartupUri="Entradas/EntradaDesinstalacion.xaml">
+             StartupUri="Entradas/EntradaDevolucion.xaml">
+    
     <!--StartupUri="Recibo/ReciboView.xaml"-->
     <!--StartupUri="MainWindow.xaml"-->
     <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogPais;assembly=InventoryApp.ViewModel"

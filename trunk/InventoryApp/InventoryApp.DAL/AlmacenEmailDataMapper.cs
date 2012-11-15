@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
-using InventoryApp.DAL;
 
 namespace InventoryApp.DAL
 {
-    public class AlmacenDataMapper : IDataMapper
+    public class AlmacenEmailDataMapper : IDataMapper
     {
         public object getElements()
         {
             using (var Entity = new TAE2Entities())
             {
-                var res = (from p in Entity.ALMACENs
+                var res = (from p in Entity.ALMACEN_EMAIL
                            where p.IS_ACTIVE == true
                            select p).ToList();
-                foreach (ALMACEN alm in ((List<ALMACEN>)res))
+                foreach (ALMACEN_EMAIL alm in ((List<ALMACEN_EMAIL>)res))
                 {
-                    alm.CIUDAD = alm.CIUDAD;
+                    alm.ALMACEN = alm.ALMACEN;
                 }
                 return res;
             }
@@ -29,9 +28,9 @@ namespace InventoryApp.DAL
             object res = null;
             using (var entitie = new TAE2Entities())
             {
-                ALMACEN almacen = (ALMACEN)element;
-                var query = (from cust in entitie.ALMACENs
-                             where cust.UNID_ALMACEN == almacen.UNID_ALMACEN
+                ALMACEN_EMAIL almacenEmail = (ALMACEN_EMAIL)element;
+                var query = (from cust in entitie.ALMACEN_EMAIL
+                             where cust.UNID_ALMACEN_EMAIL == almacenEmail.UNID_ALMACEN_EMAIL
                              select cust).ToList();
                 if (query.Count > 0)
                 {
@@ -47,13 +46,11 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    ALMACEN almacen = (ALMACEN)element;
-                    var modifiedAlmacen = entity.ALMACENs.First(p => p.UNID_ALMACEN == almacen.UNID_ALMACEN);
-                    modifiedAlmacen.ALMACEN_NAME = almacen.ALMACEN_NAME;
-                    modifiedAlmacen.CONTACTO = almacen.CONTACTO;
-                    modifiedAlmacen.TECNICO = almacen.TECNICO;
-                    modifiedAlmacen.DIRECCION = almacen.DIRECCION;
-                    modifiedAlmacen.UNID_CIUDAD = almacen.UNID_CIUDAD;
+                    ALMACEN_EMAIL almacenEmail = (ALMACEN_EMAIL)element;
+                    var modifiedAlmacenEmail = entity.ALMACEN_EMAIL.First(p => p.UNID_ALMACEN_EMAIL == almacenEmail.UNID_ALMACEN_EMAIL);
+                    modifiedAlmacenEmail.EMAIL = almacenEmail.EMAIL;
+                    modifiedAlmacenEmail.UNID_ALMACEN = almacenEmail.UNID_ALMACEN;
+                    modifiedAlmacenEmail.IS_DEFAULT = almacenEmail.IS_DEFAULT;
                     entity.SaveChanges();
                 }
             }
@@ -65,9 +62,9 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    ALMACEN almacen = (ALMACEN)element;
-                    almacen.UNID_ALMACEN = UNID.getNewUNID();
-                    entity.ALMACENs.AddObject(almacen);
+                    ALMACEN_EMAIL almacenEmail = (ALMACEN_EMAIL)element;
+                    almacenEmail.UNID_ALMACEN_EMAIL = UNID.getNewUNID();
+                    entity.ALMACEN_EMAIL.AddObject(almacenEmail);
                     entity.SaveChanges();
                 }
             }
@@ -79,9 +76,9 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    ALMACEN almacen = (ALMACEN)element;
-                    var modifiedAlamacen = entity.ALMACENs.First(p => p.UNID_ALMACEN == almacen.UNID_ALMACEN);
-                    modifiedAlamacen.IS_ACTIVE = false;
+                    ALMACEN_EMAIL almacenEmail = (ALMACEN_EMAIL)element;
+                    var modifiedAlmacenEmail = entity.ALMACEN_EMAIL.First(p => p.UNID_ALMACEN_EMAIL == almacenEmail.UNID_ALMACEN_EMAIL);
+                    modifiedAlmacenEmail.IS_ACTIVE = false;
                     entity.SaveChanges();
                 }
             }

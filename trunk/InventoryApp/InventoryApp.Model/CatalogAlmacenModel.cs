@@ -10,11 +10,11 @@ namespace InventoryApp.Model
 {
     public class CatalogAlmacenModel : INotifyPropertyChanged
     {
-        private FixupCollection<ALMACEN> _almacen;
+        private FixupCollection<DeleteAlmacen> _almacen;
         private ALMACEN _selectedAlmacen;
         private IDataMapper _dataMapper;
 
-        public FixupCollection<ALMACEN> Almacen
+        public FixupCollection<DeleteAlmacen> Almacen
         {
             get
             {
@@ -56,25 +56,37 @@ namespace InventoryApp.Model
         {         
             object element = this._dataMapper.getElements();
 
-            FixupCollection<ALMACEN> ic = new FixupCollection<ALMACEN>();
+            FixupCollection<DeleteAlmacen> ic = new FixupCollection<DeleteAlmacen>();
+
             if (element != null)
             {
                 if (((List<ALMACEN>)element).Count > 0)
                 {
                     foreach (ALMACEN item in (List<ALMACEN>)element)
                     {
-                        ic.Add(item);
+                        DeleteAlmacen aux = new DeleteAlmacen(item);
+                        ic.Add(aux);
                     }
                 }
-            }            
-            
-            this.Almacen = ic;            
+            }
+            this.Almacen = ic;
+        }
+
+        public void deleteAlamacen()
+        {
+            foreach (DeleteAlmacen item in this._almacen)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item);
+                }
+            }
         }
 
         public CatalogAlmacenModel(IDataMapper dataMapper)
         {
             this._dataMapper = new AlmacenDataMapper();
-            this._almacen = new FixupCollection<ALMACEN>();
+            this._almacen = new FixupCollection<DeleteAlmacen>();
             this._selectedAlmacen = new ALMACEN();
             this.loadItems();
         }

@@ -16,6 +16,7 @@ namespace InventoryApp.ViewModel.Salidas
         private SalidaRentaViewModel _salidaRentaViewModel;
         private SalidaRevisionViewModel _salidaRevisionViewModel;
 	    private SalidaDemoViewModel _salidaDemoViewModel;
+        private SalidaPrestamoViewModel _salidaPrestamoViewModel;
 
         public CatalogItemViewModel(SalidaRentaViewModel _salidaRentaViewModel)
         {
@@ -43,6 +44,16 @@ namespace InventoryApp.ViewModel.Salidas
             this._salidaDemoViewModel = _salidaDemoViewModel;
 
         }
+
+        public CatalogItemViewModel(SalidaPrestamoViewModel _salidaPrestamoViewModel)
+        {
+            IDataMapper dataMapper = new ItemDataMapper();
+            this._catalogItemModel = new CatalogItemModel(dataMapper);
+
+            this._salidaPrestamoViewModel = _salidaPrestamoViewModel;
+
+        }
+
 
         public CatalogItemModel CatalogItemModel
         {
@@ -89,6 +100,18 @@ namespace InventoryApp.ViewModel.Salidas
             set
             {
                 _salidaDemoViewModel = value;
+            }
+        }
+
+        public SalidaPrestamoViewModel SalidaPrestamoViewModel
+        {
+            get
+            {
+                return _salidaPrestamoViewModel;
+            }
+            set
+            {
+                _salidaPrestamoViewModel = value;
             }
         }
 
@@ -145,6 +168,10 @@ namespace InventoryApp.ViewModel.Salidas
 			else if (_salidaDemoViewModel != null)
             {
                 this.CatalogItemModel.loadItems(_salidaDemoViewModel.MovimientoModel.AlmacenProcedencia);
+            }
+            else if (_salidaPrestamoViewModel != null)
+            {
+                this.CatalogItemModel.loadItems(_salidaPrestamoViewModel.MovimientoModel.AlmacenProcedencia);
             }
         }
 
@@ -236,6 +263,34 @@ namespace InventoryApp.ViewModel.Salidas
                 }
             this.SalidaRentaViewModel.MovimientoModel.CantidadItems = this.SalidaRentaViewModel.ItemModel.ItemModel.Count();
 			}
+            else if (_salidaPrestamoViewModel != null)
+            {
+                foreach (ItemModel item in this._catalogItemModel.ItemModel)
+                {
+                    if (item.IsChecked)
+                    {
+                        bool aux = true;
+
+                        for (int i = 0; i < this._salidaPrestamoViewModel.ItemModel.ItemModel.Count; i++)
+                        {
+
+                            if (this._salidaPrestamoViewModel.ItemModel.ItemModel[i].UnidItem == item.UnidItem)
+                                aux = false;
+                        }
+
+                        if (aux)
+                        {
+                            item.IsChecked = false;
+                            this._salidaPrestamoViewModel.ItemModel.ItemModel.Add(item);
+
+
+
+                        }
+                    }
+
+                }
+                this.SalidaPrestamoViewModel.MovimientoModel.CantidadItems = this.SalidaPrestamoViewModel.ItemModel.ItemModel.Count();
+            }
         }
         #endregion
     }

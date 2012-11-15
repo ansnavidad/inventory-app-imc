@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.Salidas
 {
-    class SalidaPruebasViewModel
+    public class SalidaPruebasViewModel
     {
          private MovimientoSalidasModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;

@@ -128,6 +128,9 @@
     <Compile Include="CatalogCliente\CatalogClienteView.xaml.cs">
       <DependentUpon>CatalogClienteView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogCliente\ClienteUserControl.xaml.cs">
+      <DependentUpon>ClienteUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogCliente\ModifyClienteView.xaml.cs">
       <DependentUpon>ModifyClienteView.xaml</DependentUpon>
     </Compile>
@@ -250,6 +253,9 @@
     </Compile>
     <Compile Include="CatalogPropiedad\ModifyPropiedadView.xaml.cs">
       <DependentUpon>ModifyPropiedadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogPropiedad\PropiedadUserControl.xaml.cs">
+      <DependentUpon>PropiedadUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogProveedorCuenta\AltaModificarProveedorCuenta.xaml.cs">
       <DependentUpon>AltaModificarProveedorCuenta.xaml</DependentUpon>
@@ -560,6 +566,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CatalogCliente\ClienteUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogCliente\ModifyClienteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -721,6 +731,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogPropiedad\ModifyPropiedadView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogPropiedad\PropiedadUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

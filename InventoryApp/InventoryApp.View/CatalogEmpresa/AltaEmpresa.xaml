@@ -1,7 +1,6 @@
 ﻿<Window x:Class="InventoryApp.View.CatalogEmpresa.AltaEmpresa"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        DataContext="{DynamicResource addEmpresaViewModel}"
         Title="AltaEmpresa" Height="280" Width="350" WindowStyle="ToolWindow" ResizeMode="CanResizeWithGrip" 
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
@@ -20,12 +19,13 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="31*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
@@ -39,28 +39,28 @@
             <Button Content="Cancelar" Grid.Column="2" Grid.Row="6" Height="23" 
                     HorizontalAlignment="Stretch" Margin="5,0" Name="btnCancelar"
                     VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click"/>
-            <Label Content="Nombre Empresa:" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,12,0,0" Name="lblNombreEmpresa" 
+            <Label Content="Nombre Empresa :" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,12,0,0" Name="lblNombreEmpresa" 
                    VerticalAlignment="Stretch" Grid.Column="1" />
             <TextBox Grid.Column="2" Grid.Row="1" Height="23" 
-                     HorizontalAlignment="Left" Margin="0,16,0,0" 
+                     HorizontalAlignment="Left" Margin="3,16,0,0" 
                      Name="txtNomreEmpesa" VerticalAlignment="Stretch" Width="120"
                      Text="{Binding AddEmpresa.EmpresaName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="512" />
-            <Label Content="Dirección:" Grid.Row="2" Height="28" HorizontalAlignment="Right" Margin="0,4,0,28" Name="lblDireccion" 
+            <Label Content="Dirección :" Grid.Row="2" Height="28" HorizontalAlignment="Right" Margin="0,4,0,28" Name="lblDireccion" 
                    VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="2" />
             <TextBox Grid.Column="2" Grid.Row="2" Height="23" 
-                     HorizontalAlignment="Left" Margin="0,6,0,2" 
+                     HorizontalAlignment="Left" Margin="3,6,0,2" 
                      Name="txtDireccion" VerticalAlignment="Stretch" Width="120" 
                      Text="{Binding AddEmpresa.Direccion, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"   MaxLength="1024"/>
-            <Label Content="Razón Social:" Grid.Row="3" Height="28" HorizontalAlignment="Right" Margin="0,6,0,26" Name="lblRazonSocial" 
+            <Label Content="Razón Social :" Grid.Row="3" Height="28" HorizontalAlignment="Right" Margin="0,6,0,26" Name="lblRazonSocial" 
                    VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="2" />
             <TextBox Grid.Column="2" Grid.Row="3" Height="23"
-                     HorizontalAlignment="Left" Margin="0,8,0,0"
+                     HorizontalAlignment="Left" Margin="2,6,0,0"
                      Name="txtRazonSocial" VerticalAlignment="Stretch" Width="120"
-                     Text="{Binding AddEmpresa.RazonSocial, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  MaxLength="254"/>
-            <Label Content="RFC:" Grid.Row="4" Height="28" HorizontalAlignment="Right" Margin="0,6" Name="lblRfc" 
+                     Text="{Binding AddEmpresa.RazonSocial, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  MaxLength="254" />
+            <Label Content="RFC :" Grid.Row="4" Height="28" HorizontalAlignment="Right" Margin="0,6" Name="lblRfc" 
                    VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="2" />
             <TextBox Grid.Column="2" Grid.Row="4" Height="23" 
-                     HorizontalAlignment="Left" Margin="0,6,0,2" 
+                     HorizontalAlignment="Left" Margin="2,4,0,3" 
                      Name="txtRfc" VerticalAlignment="Stretch" Width="120" 
                      Text="{Binding AddEmpresa.Rfc, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="16" />
         </Grid>

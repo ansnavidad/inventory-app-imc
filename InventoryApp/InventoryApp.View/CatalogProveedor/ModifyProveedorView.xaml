@@ -1,31 +1,80 @@
 ﻿<Window x:Class="InventoryApp.View.CatalogProveedor.ModifyProveedorView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"      
-        Title="ModifyProveedorView"  Height="391" Width="588">
+        Title="ModifyProveedorView"  Height="400" Width="720" WindowStyle="ToolWindow" ResizeMode="CanResizeWithGrip" 
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
-        <Button Content="Guardar" Command="{Binding ModifyProveedorCommand, Mode=OneWay}" Height="23" HorizontalAlignment="Stretch" Margin="61,307,430,21" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Click="btnAgregar_Click" />
-        <Button Content="Cancelar" Height="23" HorizontalAlignment="Stretch" Margin="437,307,54,21" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
-        <Label Content="CAMBIO DE PROVEEDOR" Height="28" HorizontalAlignment="Stretch" Margin="85,12,71,312" Name="lblTitulo" VerticalAlignment="Stretch" Width="184" />
-        <Label Content="Nombre:" Height="28" HorizontalAlignment="Left" Margin="40,52,0,0" Name="label2" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="97,54,0,0" Name="textBoxNombre" VerticalAlignment="Top" Width="217" Text="{Binding ProveedorModel.ProveedorName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="254"/>
-        <Label Content="Contacto:" Height="28" HorizontalAlignment="Left" Margin="35,81,0,0" Name="label3" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="97,83,0,0" Name="textBox1" VerticalAlignment="Top" Width="217" Text="{Binding ProveedorModel.Contacto, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="254"/>
-        <Label Content="Teléfono 1:" Height="28" HorizontalAlignment="Left" Margin="27,110,0,0" Name="label4" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="97,112,0,0" Name="textBox2" VerticalAlignment="Top" Width="105" Text="{Binding ProveedorModel.Tel1, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="13"/>
-        <Label Content="Teléfono 2:" Height="28" HorizontalAlignment="Left" Margin="27,139,0,0" Name="label5" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="97,141,0,0" Name="textBox3" VerticalAlignment="Top" Width="105" Text="{Binding ProveedorModel.Tel2, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="13"/>
-        <Label Content="Mail:" Height="28" HorizontalAlignment="Left" Margin="61,168,0,0" Name="label6" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="97,170,0,0" Name="textBox4" VerticalAlignment="Top" Width="217" Text="{Binding ProveedorModel.Mail, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="512"/>
-        <Label Content="Calle:" Height="28" HorizontalAlignment="Left" Margin="58,197,0,0" Name="label7" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="97,199,0,0" Name="textBox5" VerticalAlignment="Top" Width="217" Text="{Binding ProveedorModel.Calle, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="1024"/>
-        <Label Content="País:" Height="28" HorizontalAlignment="Left" Margin="12,226,0,0" Name="label8" VerticalAlignment="Top" />
-        <Label Content="Ciudad:" Height="28" HorizontalAlignment="Left" Margin="0,260,0,0" Name="label9" VerticalAlignment="Top" />
-        <Label Content="CP:" Height="28" HorizontalAlignment="Left" Margin="176,226,0,0" Name="label10" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="211,228,0,0" Name="textBox8" VerticalAlignment="Top" Width="124" Text="{Binding ProveedorModel.CodigoPostal, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="8"/>
-        <Label Content="RFC:" Height="28" HorizontalAlignment="Left" Margin="172,260,0,0" Name="label11" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="211,262,0,0" Name="textBox9" VerticalAlignment="Top" Width="124" Text="{Binding ProveedorModel.RFC, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="16"/>
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="50,228,0,0" Name="comboBox1" VerticalAlignment="Top" Width="120" SelectedItem="{Binding ProveedorModel.Pais,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding CatalogPaisModel.Pais, Mode=OneWay}" DisplayMemberPath="PAIS" SelectedValuePath="UNID_PAIS" SelectedIndex="0" />
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="50,260,0,0" Name="comboBox2" VerticalAlignment="Top" Width="120" SelectedItem="{Binding ProveedorModel.Ciudad,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding CatalogCiudadModel.Ciudad, Mode=OneWay}" DisplayMemberPath="CIUDAD1" SelectedValuePath="UNID_CIUDAD" SelectedIndex="0" />
-        <DataGrid AutoGenerateColumns="False" Height="234" HorizontalAlignment="Left" Margin="341,54,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="214" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="31*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="270"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="8*" />
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="7" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Content="MODIFICAR PROVEEDOR" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <Button Content="Guardar" Command="{Binding ModifyProveedorCommand, Mode=OneWay}" Height="23" HorizontalAlignment="Stretch" 
+                Margin="82,12,42,4" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Click="btnAgregar_Click" Grid.Column="2" Grid.Row="8" />
+        <Button Content="Cancelar" Height="23" HorizontalAlignment="Stretch" Margin="97,12,98,5" Name="btnCancelar" 
+                VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" Grid.Column="3" Grid.Row="8" />
+        <Label Content="Nombre :" Height="28" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="15,12,0,0" Name="label2" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="75,14,0,0" Grid.Row="1" Grid.Column="1" Name="textBoxNombre" VerticalAlignment="Top" Width="318" 
+                 Text="{Binding ProveedorModel.ProveedorName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="254" Grid.ColumnSpan="2" />
+        <Label Content="Contacto :" Height="28" HorizontalAlignment="Left" Margin="11,12,0,0" Grid.Row="2" Grid.Column="1" Name="label3" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,14,7,0" Grid.Row="2" Grid.Column="1" Name="textBox1" VerticalAlignment="Top" Width="317" 
+                 Text="{Binding ProveedorModel.Contacto, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="254" Grid.ColumnSpan="2" />
+        <Label Content="Teléfono 1:" Height="28" HorizontalAlignment="Left" Margin="7,12,0,0" Grid.Row="4" Grid.Column="1" Name="label4" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,14,4,0" Grid.Row="4" Grid.Column="1" Name="textBox2" VerticalAlignment="Top" Width="120" 
+                 Text="{Binding ProveedorModel.Tel1, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="13" />
+        <Label Content="Teléfono 2:" Height="28" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Margin="5,12,0,0" Name="label5" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="73,14,0,0" Name="textBox3" VerticalAlignment="Top" Width="120" 
+                 Text="{Binding ProveedorModel.Tel2, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="13" Grid.Column="2" Grid.Row="4" />
+        <Label Content="Mail:" Height="28" HorizontalAlignment="Left" Margin="39,11,0,0" Name="label6" VerticalAlignment="Top" 
+               Grid.Row="3" Grid.Column="1" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="76,13,0,0" Grid.Row="3" Grid.Column="1" Name="textBox4" VerticalAlignment="Top" Width="217" 
+                 Text="{Binding ProveedorModel.Mail, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="512" Grid.ColumnSpan="2" />
+        <Label Content="Calle:" Height="28" HorizontalAlignment="Left" Grid.Row="6" Grid.Column="1" Margin="36,14,0,0" Name="label7" VerticalAlignment="Top" Grid.RowSpan="2" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,14,7,0" Grid.Row="6" Name="textBox5" VerticalAlignment="Top" Width="318" 
+                 Text="{Binding ProveedorModel.Calle, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="1024" Grid.Column="1" Grid.ColumnSpan="2" />
+        <Label Content="País:" Height="28" HorizontalAlignment="Left" Grid.Row="5" Margin="41,9,0,0" Name="label8" VerticalAlignment="Top" Grid.Column="1" />
+        <Label Content="Ciudad:" Height="28" HorizontalAlignment="Left" Grid.Row="5" Margin="23,11,0,0" Name="label9" VerticalAlignment="Top" Grid.Column="2" />
+        <Label Content="CP:" Height="28" HorizontalAlignment="Left" Grid.Row="7" Margin="43,12,0,0" Name="label10" VerticalAlignment="Top" Grid.Column="1" />
+        <TextBox Height="23" HorizontalAlignment="Left" Grid.Row="7" Margin="74,13,0,0" Name="textBox8" VerticalAlignment="Top" Width="124" 
+                 Text="{Binding ProveedorModel.CodigoPostal, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="8" Grid.Column="1" />
+        <Label Content="RFC:" Height="28" HorizontalAlignment="Left" Grid.Row="7" Grid.Column="2" Margin="35,12,0,0" Name="label11" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="69,13,0,0" Grid.Row="7" Name="textBox9" VerticalAlignment="Top" Width="124" 
+                 Text="{Binding ProveedorModel.RFC, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="16" Grid.Column="2" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="76,12,0,0" Grid.Row="5" Name="comboBox1" VerticalAlignment="Top" Width="120" 
+                  SelectedItem="{Binding ProveedorModel.Pais,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                  ItemsSource="{Binding CatalogPaisModel.Pais, Mode=OneWay}" DisplayMemberPath="PAIS" SelectedValuePath="UNID_PAIS" 
+                  SelectedIndex="0" Grid.Column="1" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="73,12,0,0" Grid.Row="5" Name="comboBox2" VerticalAlignment="Top" Width="120" 
+                  SelectedItem="{Binding ProveedorModel.Ciudad,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                  ItemsSource="{Binding CatalogCiudadModel.Ciudad, Mode=OneWay}" DisplayMemberPath="CIUDAD1" 
+                  SelectedValuePath="UNID_CIUDAD" SelectedIndex="0" Grid.Column="2" />
+        <DataGrid AutoGenerateColumns="False" Height="234" HorizontalAlignment="Left" Margin="31,20,0,0" Name="dataGrid1" 
+                  VerticalAlignment="Top" Width="214" Grid.Column="3" Grid.Row="1" Grid.RowSpan="7" />
     </Grid>
 </Window>

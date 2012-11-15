@@ -14,8 +14,6 @@
              xmlns:categoriaViews="clr-namespace:InventoryApp.View.CatalogCategoria"
              xmlns:catCiudadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogCiudad;assembly=InventoryApp.ViewModel"
              xmlns:ciudadViews="clr-namespace:InventoryApp.View.CatalogCiudad"
-             xmlns:catClienteViewModel="clr-namespace:InventoryApp.ViewModel.CatalogCliente;assembly=InventoryApp.ViewModel"
-             xmlns:clienteViews="clr-namespace:InventoryApp.View.CatalogCliente"
              xmlns:catDepartamentoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogDepartamento;assembly=InventoryApp.ViewModel"
              xmlns:departamentoViews="clr-namespace:InventoryApp.View.CatalogDepartamento"
              xmlns:catEmpresaViewModel="clr-namespace:InventoryApp.ViewModel.CatalogEmpresa;assembly=InventoryApp.ViewModel"
@@ -62,6 +60,8 @@
              xmlns:servicioViews="clr-namespace:InventoryApp.View.CatalogServicio"
              xmlns:catUnidadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogUnidad;assembly=InventoryApp.ViewModel"
              xmlns:unidadViews="clr-namespace:InventoryApp.View.CatalogUnidad"
+             xmlns:catClienteViewModel="clr-namespace:InventoryApp.ViewModel.CatalogCliente;assembly=InventoryApp.ViewModel"
+             xmlns:clienteViews="clr-namespace:InventoryApp.View.CatalogCliente"
              xmlns:EntradaViewModel="clr-namespace:InventoryApp.ViewModel.Entradas;assembly=InventoryApp.ViewModel"
              xmlns:SalidasViewModel="clr-namespace:InventoryApp.ViewModel.Salidas;assembly=InventoryApp.ViewModel"
              xmlns:SalidasView="clr-namespace:InventoryApp.View.Salidas"
@@ -285,10 +285,6 @@
         <ObjectDataProvider x:Key="catalogTransporteViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
-        <!-- cliente -->
-        <ObjectDataProvider x:Key="catalogClienteViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
-                            MethodName="GetCurrentPage" x:Shared="False"/>
-
         <!-- propiedad -->
         <ObjectDataProvider x:Key="catalogPropiedadViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
@@ -307,6 +303,10 @@
 
         <!-- unidad -->
         <ObjectDataProvider x:Key="catalogUnidadViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- cliente -->
+        <ObjectDataProvider x:Key="catalogClienteViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
         <reciboViewModel:AddFacturaViewModel x:Key="addFacturaViewModel" />
@@ -389,9 +389,6 @@
         <DataTemplate DataType="{x:Type catTransporteViewModel:CatalogTransporteViewModel}">
             <transporteViews:TransporteUserControl />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type catClienteViewModel:CatalogClienteViewModel}">
-            <clienteViews:ClienteUserControl />
-        </DataTemplate>
         <DataTemplate DataType="{x:Type catAlmacenViewModel:CatalogAlmacenViewModel}">
             <almacenViews:AlmacenUserControl />
         </DataTemplate>
@@ -406,6 +403,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type catUnidadViewModel:CatalogUnidadViewModel}">
             <unidadViews:UnidadUserControl />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type catClienteViewModel:CatalogClienteViewModel}">
+            <clienteViews:ClienteUserControl />
         </DataTemplate>
     </Application.Resources>
 </Application>

@@ -4,21 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="500">
-    <Grid Name="GridPrincipal"  DataContext="{StaticResource catalogClienteViewModel}">
+             d:DesignHeight="300" d:DesignWidth="500"
+             DataContext="{StaticResource catalogClienteViewModel}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Border Grid.ColumnSpan="2" BorderBrush="#e5e5e5" BorderThickness="0,0,0,1" >
-            <TextBlock Text="CONSULTA DE DATOS  [ CLIENTE ]" FontFamily="Arial" FontSize="15" Margin="0,0,0,0" Padding="5,10,0,10" Background="#eaedf4" Foreground="#525354"></TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Content="CONSULTA CLIENTE" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <!--<Label Content="CONSULTA DE ITEM STATUS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />-->
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1"
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridCliente"
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogClienteModel.Cliente}"
                   SelectedItem="{Binding CatalogClienteModel.SelectedCliente, Mode=TwoWay}"
-                  MouseDoubleClick="dtGridCliente_MouseDoubleClick">
+                  MouseDoubleClick="dtGridCliente_MouseDoubleClick"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />-->
                 <DataGridTemplateColumn Header="" Width="Auto">
@@ -31,10 +45,10 @@
                 <DataGridTextColumn Header="Cliente" Width="*" x:Name="nombreCliente" Binding="{Binding Path=CLIENTE1}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-            <Button Content="NUEVO" Height="23" HorizontalAlignment="Stretch" Margin="399,4,25,4" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
-            <Button Content="ELIMINAR" Height="23" HorizontalAlignment="Stretch"
-                    Margin="305,4,119,4" Name="btnEliminar" VerticalAlignment="Stretch"
-                    Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteClienteCommand,Mode=OneWay}"/>
+            <Button Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="112,4,62,4" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" Grid.Column="2" />
+            <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch"
+                    Margin="21,4,154,3" Name="btnEliminar" VerticalAlignment="Stretch"
+                    Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteClienteCommand,Mode=OneWay}" Grid.Column="2" />
 
     </Grid>
 </UserControl>

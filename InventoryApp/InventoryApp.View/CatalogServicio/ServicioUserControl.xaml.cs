@@ -11,32 +11,31 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using InventoryApp.ViewModel.CatalogPropiedad;
+using InventoryApp.ViewModel.CatalogServicio;
 
-namespace InventoryApp.View.CatalogPropiedad
+namespace InventoryApp.View.CatalogServicio
 {
     /// <summary>
-    /// Lógica de interacción para PropiedadUserControl.xaml
+    /// Lógica de interacción para ServicioUserControl.xaml
     /// </summary>
-    public partial class PropiedadUserControl : UserControl
+    public partial class ServicioUserControl : UserControl
     {
-        public PropiedadUserControl()
+        public ServicioUserControl()
         {
             InitializeComponent();
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            AltaPropiedad alta = new AltaPropiedad();
+            AltaServicio alta = new AltaServicio();
             try
             {
-                CatalogPropiedadViewModel propiedadViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogPropiedadViewModel;
-                alta.DataContext = propiedadViewModel.CreateAddPropiedadViewModel();
+                CatalogServicioViewModel proyectoViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogServicioViewModel;
+                alta.DataContext = proyectoViewModel.CreateAddServicioViewModel();
                 alta.ShowDialog();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -46,23 +45,22 @@ namespace InventoryApp.View.CatalogPropiedad
 
         }
 
-        private void dtGridPropiedad_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void dtGridServicio_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)
             {
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    ModifyPropiedadView dlgModify = new ModifyPropiedadView();
+                    ModifyServicioView dlgModify = new ModifyServicioView();
                     try
                     {
-                        CatalogPropiedadViewModel propiedadViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogPropiedadViewModel;
-                        dlgModify.DataContext = propiedadViewModel.CreateModifyPropiedadViewModel();
+                        CatalogServicioViewModel servicioViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogServicioViewModel;
+                        dlgModify.DataContext = servicioViewModel.CreateModifyServicioViewModel();
                         dlgModify.ShowDialog();
                     }
                     catch (Exception ex)
                     {
-
                         throw ex;
                     }
                 }

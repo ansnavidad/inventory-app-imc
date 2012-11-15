@@ -56,6 +56,9 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </ApplicationDefinition>
+    <Compile Include="CatalogAlmacenEmail\AlmacenEmailUserControl.xaml.cs">
+      <DependentUpon>AlmacenEmailUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogAlmacenEmail\AltaAlmacenEmail.xaml.cs">
       <DependentUpon>AltaAlmacenEmail.xaml</DependentUpon>
     </Compile>
@@ -64,6 +67,9 @@
     </Compile>
     <Compile Include="CatalogAlmacenEmail\ModifyAlmacenEmailView.xaml.cs">
       <DependentUpon>ModifyAlmacenEmailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogAlmacen\AlmacenUserControl.xaml.cs">
+      <DependentUpon>AlmacenUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogAlmacen\AltaAlmacen.xaml.cs">
       <DependentUpon>AltaAlmacen.xaml</DependentUpon>
@@ -302,6 +308,9 @@
     <Compile Include="CatalogServicio\ModifyServicioView.xaml.cs">
       <DependentUpon>ModifyServicioView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogServicio\ServicioUserControl.xaml.cs">
+      <DependentUpon>ServicioUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogSolicitante\AltaSolicitante.xaml.cs">
       <DependentUpon>AltaSolicitante.xaml</DependentUpon>
     </Compile>
@@ -392,6 +401,9 @@
     <Compile Include="CatalogUnidad\ModifyUnidadView.xaml.cs">
       <DependentUpon>ModifyUnidadView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogUnidad\UnidadUserControl.xaml.cs">
+      <DependentUpon>UnidadUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entradas\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
@@ -470,6 +482,10 @@
     <Compile Include="Salidas\SalidaVenta.xaml.cs">
       <DependentUpon>SalidaVenta.xaml</DependentUpon>
     </Compile>
+     <Page Include="CatalogAlmacenEmail\AlmacenEmailUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Compile Include="Traspasos\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
@@ -487,6 +503,10 @@
     <Page Include="CatalogAlmacenEmail\ModifyAlmacenEmailView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogAlmacen\AlmacenUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogAlmacen\AltaAlmacen.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -804,6 +824,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CatalogServicio\ServicioUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogSolicitante\AltaSolicitante.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -921,6 +945,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogUnidad\ModifyUnidadView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogUnidad\UnidadUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

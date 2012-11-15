@@ -1,38 +1,48 @@
 ﻿<Window x:Class="InventoryApp.View.CatalogUnidad.ModifyUnidadView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        DataContext="{DynamicResource modifyUnidadViewModel}"
-        Title="ModifyUnidadView" Height="300" Width="300">
-    <Grid Name="gridAlta" >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="150"/>
-        </Grid.ColumnDefinitions>
+        Title="ModifyUnidadView" Height="200" Width="350" WindowStyle="ToolWindow" ResizeMode="CanResizeWithGrip" 
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="31*" />
         </Grid.RowDefinitions>
-        <Button Content="Guardar" Grid.Row="4" Height="23"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Content="MODIFICAR UNIDAD" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <Button Content="Guardar" Grid.Row="3" Height="23"
                 HorizontalAlignment="Stretch" Margin="5,0"
                 Name="btnAgregar" VerticalAlignment="Stretch" Width="75"
                 Command="{Binding ModifyUnidadCommand,Mode=OneWay}"
-                Click="btnAgregar_Click"  />
-        <Button Content="Cancelar" Grid.Column="1" Grid.Row="4"
+                Click="btnAgregar_Click" Grid.Column="1" />
+        <Button Content="Cancelar" Grid.Column="2" Grid.Row="3"
                 Height="23" HorizontalAlignment="Stretch" Margin="5,0"
                 Name="btnCancelar" VerticalAlignment="Stretch" Width="75"
                 Click="btnCancelar_Click" />
-        <Label Content="Nombre unidad :" Grid.Row="2" Height="28" HorizontalAlignment="Right" Margin="5,0" Name="lblNombreUnidad" VerticalAlignment="Stretch" FontFamily="Arial Rounded MT" FontStretch="Normal" Foreground="#848484" FontSize="11.5" />
-        <TextBox Grid.Column="1" Grid.Row="2" Height="23"
-                 HorizontalAlignment="Left" Margin="5,0"
+        <Label Content="Nombre Unidad :" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,21,148,1" Name="lblNombreUnidad" 
+               VerticalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="2" />
+        <TextBox Grid.Column="2" Grid.Row="1" Height="23"
+                 HorizontalAlignment="Left" Margin="3,24,0,3"
                  Name="txtNombreUnidad" VerticalAlignment="Stretch" Width="120"
                  Text="{Binding ModiUnidad.UnidadName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                  MaxLength="254"/>
-        <!--<Label Content="MODIFICAR DE ITEM STATUS" Height="28" HorizontalAlignment="Stretch" Margin="5,0" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184" />-->
-        <Border Grid.ColumnSpan="2" BorderBrush="#e5e5e5" BorderThickness="0,0,0,1" >
-            <TextBlock Text="MODIFICAR  [ UNIDAD  ]" FontFamily="Arial" FontSize="15" Margin="0,0,0,0" Padding="5,10,0,10" Background="#eaedf4" Foreground="#525354"></TextBlock>
-        </Border>
     </Grid>
 </Window>

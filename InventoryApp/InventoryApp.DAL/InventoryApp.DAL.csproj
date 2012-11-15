@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlmacenDataMapper.cs" />
+    <Compile Include="AlmacenEmailDataMapper.cs" />
     <Compile Include="ArticuloDataMapper.cs" />
     <Compile Include="BancoDataMapper.cs" />
     <Compile Include="CiudadDataMapper.cs" />

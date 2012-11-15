@@ -56,6 +56,24 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </ApplicationDefinition>
+    <Compile Include="CatalogAlmacenEmail\AltaAlmacenEmail.xaml.cs">
+      <DependentUpon>AltaAlmacenEmail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogAlmacenEmail\CatalogAlmacenEmailView.xaml.cs">
+      <DependentUpon>CatalogAlmacenEmailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogAlmacenEmail\ModifyAlmacenEmailView.xaml.cs">
+      <DependentUpon>ModifyAlmacenEmailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogAlmacen\AltaAlmacen.xaml.cs">
+      <DependentUpon>AltaAlmacen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogAlmacen\CatalogAlmacenView.xaml.cs">
+      <DependentUpon>CatalogAlmacenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogAlmacen\ModifyAlmacenView.xaml.cs">
+      <DependentUpon>ModifyAlmacenView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogArticulo\AddArticuloView.xaml.cs">
       <DependentUpon>AddArticuloView.xaml</DependentUpon>
     </Compile>
@@ -446,6 +464,30 @@
     <Compile Include="Salidas\SalidaVenta.xaml.cs">
       <DependentUpon>SalidaVenta.xaml</DependentUpon>
     </Compile>
+    <Page Include="CatalogAlmacenEmail\AltaAlmacenEmail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogAlmacenEmail\CatalogAlmacenEmailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogAlmacenEmail\ModifyAlmacenEmailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogAlmacen\AltaAlmacen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogAlmacen\CatalogAlmacenView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogAlmacen\ModifyAlmacenView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CatalogArticulo\AddArticuloView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

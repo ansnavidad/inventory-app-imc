@@ -39,8 +39,7 @@
                   SelectedItem="{Binding CatalogSolicitanteModel.SelectedSolicitante, Mode=TwoWay}"
                   MouseDoubleClick="dtGridSolicitante_MouseDoubleClick" 
                   Grid.Column="0" Grid.ColumnSpan="3"
-                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
-                  RowStyle="{StaticResource RowStyle}">
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <!--<DataGridCheckBoxColumn Header="" IsReadOnly="False" Width="25" x:Name="ISCHECK" Binding="{Binding Path=Is_Check}"></DataGridCheckBoxColumn>-->
                 <DataGridTemplateColumn Header="" Width="Auto">

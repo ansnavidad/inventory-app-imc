@@ -482,7 +482,7 @@
     <Compile Include="Salidas\SalidaVenta.xaml.cs">
       <DependentUpon>SalidaVenta.xaml</DependentUpon>
     </Compile>
-     <Page Include="CatalogAlmacenEmail\AlmacenEmailUserControl.xaml">
+    <Page Include="CatalogAlmacenEmail\AlmacenEmailUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

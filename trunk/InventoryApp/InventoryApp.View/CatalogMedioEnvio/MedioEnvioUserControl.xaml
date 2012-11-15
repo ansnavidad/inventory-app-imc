@@ -36,8 +36,7 @@
                   Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding MedioEnvioModel.MedioEnvio}" 
                   SelectedItem="{Binding MedioEnvioModel.SelectedMedioEnvio, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick"
                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
-                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
-                  RowStyle="{StaticResource RowStyle}">
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected"/>-->
                 <DataGridTemplateColumn Header="" Width="Auto">

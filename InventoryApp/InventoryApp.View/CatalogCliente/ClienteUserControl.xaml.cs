@@ -36,7 +36,6 @@ namespace InventoryApp.View.CatalogCliente
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

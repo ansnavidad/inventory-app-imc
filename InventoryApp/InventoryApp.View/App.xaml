@@ -196,8 +196,7 @@
         <!--<TraspasosViewModel:TraspasoStockViewModel x:Key="traspasoStockViewModel" />-->
         
         <!--Catálgos-->
-        <catArticulo:CatalogArticuloViewModel x:Key="catalogArticuloViewModel"></catArticulo:CatalogArticuloViewModel>
-        <ObjectDataProvider x:Key="addArticuloViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+        <ObjectDataProvider x:Key="catalogArticuloViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
         <!-- marca -->
         <ObjectDataProvider x:Key="catalogMarcaViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"

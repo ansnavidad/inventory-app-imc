@@ -158,6 +158,8 @@
     <Compile Include="Salidas\SalidaRevisionViewModel.cs" />
     <Compile Include="Salidas\SalidaRMAViewModel.cs" />
     <Compile Include="Salidas\SalidaVentaViewModel.cs" />
+    <Compile Include="Traspasos\CatalogItemViewModel.cs" />
+    <Compile Include="Traspasos\TraspasoStockViewModel.cs" />
     <Compile Include="ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>

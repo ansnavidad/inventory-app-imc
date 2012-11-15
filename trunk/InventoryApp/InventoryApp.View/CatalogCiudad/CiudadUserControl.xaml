@@ -36,7 +36,7 @@
                   Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogCiudadModel.Ciudad}" 
                   SelectedItem="{Binding CatalogCiudadModel.SelectedCiudad, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
-                  RowStyle="{StaticResource RowStyle}" SelectionChanged="dtGridItemStatus_SelectionChanged">
+                  SelectionChanged="dtGridItemStatus_SelectionChanged">
             <DataGrid.Columns>
                 <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected"/>-->
                 <DataGridTemplateColumn Header="" Width="Auto">

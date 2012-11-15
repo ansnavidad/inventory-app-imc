@@ -37,8 +37,7 @@
                   CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItems" 
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogArticuloModel.Articulos}" 
                   MouseDoubleClick="dtGridItems_MouseDoubleClick" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
-                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
-                  RowStyle="{StaticResource RowStyle}">
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
                 <DataGridTemplateColumn Header="" Width="Auto">

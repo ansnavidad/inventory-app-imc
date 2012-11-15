@@ -38,8 +38,7 @@
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogDepartamentoModel.Departamento}" 
                   MouseDoubleClick="dtGridDepartamento_MouseDoubleClick"
                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
-                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
-                  RowStyle="{StaticResource RowStyle}">
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />-->
                 <DataGridTemplateColumn Header="" Width="Auto">

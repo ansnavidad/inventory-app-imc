@@ -52,93 +52,27 @@
              xmlns:tipoPedimentoViews="clr-namespace:InventoryApp.View.CatalogTipoPedimento"
              xmlns:catTransporteViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTransporte;assembly=InventoryApp.ViewModel"
              xmlns:transporteViews="clr-namespace:InventoryApp.View.CatalogTransporte"
+             xmlns:catPropiedadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogPropiedad;assembly=InventoryApp.ViewModel"
+             xmlns:propiedadViews="clr-namespace:InventoryApp.View.CatalogPropiedad"
+             xmlns:catAlmacenViewModel="clr-namespace:InventoryApp.ViewModel.CatalogAlmacen;assembly=InventoryApp.ViewModel"
+             xmlns:almacenViews="clr-namespace:InventoryApp.View.CatalogAlmacen"
+             xmlns:catAlmacenEmailViewModel="clr-namespace:InventoryApp.ViewModel.CatalogAlmacenEmail;assembly=InventoryApp.ViewModel"
+             xmlns:almacenEmailViews="clr-namespace:InventoryApp.View.CatalogAlmacenEmail"
+             xmlns:catServicioViewModel="clr-namespace:InventoryApp.ViewModel.CatalogServicio;assembly=InventoryApp.ViewModel"
+             xmlns:servicioViews="clr-namespace:InventoryApp.View.CatalogServicio"
+             xmlns:catUnidadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogUnidad;assembly=InventoryApp.ViewModel"
+             xmlns:unidadViews="clr-namespace:InventoryApp.View.CatalogUnidad"
              xmlns:EntradaViewModel="clr-namespace:InventoryApp.ViewModel.Entradas;assembly=InventoryApp.ViewModel"
-             xmlns:EntradaView="clr-namespace:InventoryApp.View.Entradas"
              xmlns:SalidasViewModel="clr-namespace:InventoryApp.ViewModel.Salidas;assembly=InventoryApp.ViewModel"
              xmlns:SalidasView="clr-namespace:InventoryApp.View.Salidas"
-             xmlns:TraspasosViewModel="clr-namespace:InventoryApp.ViewModel.Traspasos;assembly=InventoryApp.ViewModel"
-             xmlns:TraspasosView="clr-namespace:InventoryApp.View.Traspasos"
-             StartupUri="Entradas/EntradaDevolucion.xaml">
-    
-    <!--StartupUri="Recibo/ReciboView.xaml"-->
-    <!--StartupUri="MainWindow.xaml"-->
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogPais;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogPais/CatalogPaisView.xaml">-->
+             StartupUri="MainWindow.xaml">
 
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogMoneda;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogMoneda/CatalogMonedaView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogModelo;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogModelo/CatalogModeloView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogMedioEnvio;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogMedioEnvio/CatalogMedioEnvioView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogMarca;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogMarca/CatalogMarcaView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogEquipo;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogEquipo/CatalogEquipoView.xaml">-->
-    
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogEmpresa;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogEmpresa/CatalogEmpresaView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogDepartamento;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogDepartamento/CatalogDepartamentoView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogCiudad;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogCiudad/CatalogCiudadView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogBanco;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogBanco/CatalogBancoView.xaml">-->
-    
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTipoMovimiento;assembly=InventoryApp.ViewModel"
-    StartupUri="CatalogTipoMovimiento/CatalogTipoMovimientoView.xaml">-->
-    
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogItemStatus;assembly=InventoryApp.ViewModel"
-    StartupUri="CatalogItemStatus/CatalogItemStatusView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogProyecto;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogProyecto/CatalogProyectoView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTipoCotizacion;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogTipoCotizacion/CatalogTipoCotizacionView.xaml">-->
-    
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogTipoMovimiento;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogTipoMovimiento/CatalogTipoMovimientoView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogCategoria;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogCategoria/CatalogCategoriaView.xaml">-->
-
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogEmpresa;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogEmpresa/CatalogEmpresaView.xaml">-->
-    
-    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogSolicitante;assembly=InventoryApp.ViewModel"
-             StartupUri="CatalogSolicitante/CatalogSolicitanteView.xaml">-->
     <Application.Resources>
         <!--
             Se crean los recursos que se utilizarán.
             ObjectDataProvider expone el método CreateAddItemStatusViewModel que regresa el viewModel de addItemStatusViewModel
             De esta forma es posible pasar por parametro el viewmodel de catálogo al constructor de addItemStatusViewModel
         -->
-        <!--<vm:CatalogPaisViewModel x:Key="catalogPaisViewModel" />
-        <ObjectDataProvider x:Key="addPaisViewModel" ObjectInstance="{StaticResource catalogPaisViewModel}" 
-                            MethodName="CreateAddPaisViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyPaisViewModel" ObjectInstance="{StaticResource catalogPaisViewModel}" 
-                            MethodName="CreateModifyPaisViewModel" x:Shared="False"/>-->
-        
-        <!--<vm:CatalogMonedaViewModel x:Key="catalogMonedaViewModel" />
-        <ObjectDataProvider x:Key="addMonedaViewModel" ObjectInstance="{StaticResource catalogMonedaViewModel}" 
-                            MethodName="CreateAddMonedaViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyMonedaViewModel" ObjectInstance="{StaticResource catalogMonedaViewModel}" 
-                            MethodName="CreateModifyMonedaViewModel" x:Shared="False"/>-->
-        
-        <!--<vm:CatalogModeloViewModel x:Key="catalogModeloViewModel" />
-        <ObjectDataProvider x:Key="addModeloViewModel" ObjectInstance="{StaticResource catalogModeloViewModel}" 
-                            MethodName="CreateAddModeloViewModel" x:Shared="False"/>
-        <ObjectDataProvider x:Key="modifyModeloViewModel" ObjectInstance="{StaticResource catalogModeloViewModel}" 
-                            MethodName="CreateModifyModeloViewModel" x:Shared="False"/>-->
 
         <!--<vm:CatalogMedioEnvioViewModel x:Key="catalogMedioEnvioViewModel" />
         <ObjectDataProvider x:Key="addMedioEnvioViewModel" ObjectInstance="{StaticResource catalogMedioEnvioViewModel}" 
@@ -250,6 +184,7 @@
         <SalidasViewModel:SalidaRevisionViewModel x:Key="salidaRevisionViewModel" />
         <SalidasViewModel:SalidaDemoViewModel x:Key="salidaDemoViewModel" />
         <SalidasViewModel:SalidaPrestamoViewModel x:Key="salidaPrestamoViewModel" />
+
         <SalidasViewModel:SalidaConfiguracionViewModel x:Key="salidaConfiguracionViewModel" />
         <SalidasViewModel:SalidaCorrectivoViewModel x:Key="salidaCorrectivoViewModel" />
         <SalidasViewModel:SalidaObsequioViewModel x:Key="salidaObsequioViewModel" />
@@ -258,7 +193,7 @@
         <SalidasViewModel:SalidaRMAViewModel x:Key="salidaRMAViewModel" />
         <SalidasViewModel:SalidaVentaViewModel x:Key="salidaVentaViewModel" />
 
-        <TraspasosViewModel:TraspasoStockViewModel x:Key="traspasoStockViewModel" />
+        <!--<TraspasosViewModel:TraspasoStockViewModel x:Key="traspasoStockViewModel" />-->
         
         <!--Catálgos-->
         <catArticulo:CatalogArticuloViewModel x:Key="catalogArticuloViewModel"></catArticulo:CatalogArticuloViewModel>
@@ -273,6 +208,10 @@
 
         <!-- categoria -->
         <ObjectDataProvider x:Key="catalogCategoriaViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- ciudad -->
+        <ObjectDataProvider x:Key="catalogCiudadViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
         <!-- departamento -->
@@ -345,6 +284,30 @@
 
         <!-- transporte -->
         <ObjectDataProvider x:Key="catalogTransporteViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- cliente -->
+        <ObjectDataProvider x:Key="catalogClienteViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- propiedad -->
+        <ObjectDataProvider x:Key="catalogPropiedadViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- almacen -->
+        <ObjectDataProvider x:Key="catalogAlmacenViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- almacenEmail -->
+        <ObjectDataProvider x:Key="catalogAlmacenEmailViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- servicio -->
+        <ObjectDataProvider x:Key="catalogServicioViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- unidad -->
+        <ObjectDataProvider x:Key="catalogUnidadViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
         <reciboViewModel:AddFacturaViewModel x:Key="addFacturaViewModel" />
@@ -426,6 +389,24 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type catTransporteViewModel:CatalogTransporteViewModel}">
             <transporteViews:TransporteUserControl />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type catClienteViewModel:CatalogClienteViewModel}">
+            <clienteViews:ClienteUserControl />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type catAlmacenViewModel:CatalogAlmacenViewModel}">
+            <almacenViews:AlmacenUserControl />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type catPropiedadViewModel:CatalogPropiedadViewModel}">
+            <propiedadViews:PropiedadUserControl />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type catAlmacenEmailViewModel:CatalogAlmacenEmailViewModel}">
+            <almacenEmailViews:AlmacenEmailUserControl />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type catServicioViewModel:CatalogServicioViewModel}">
+            <servicioViews:ServicioUserControl />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type catUnidadViewModel:CatalogUnidadViewModel}">
+            <unidadViews:UnidadUserControl />
         </DataTemplate>
     </Application.Resources>
 </Application>

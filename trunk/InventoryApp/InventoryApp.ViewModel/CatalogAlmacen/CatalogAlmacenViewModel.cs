@@ -8,7 +8,7 @@ using InventoryApp.DAL;
 
 namespace InventoryApp.ViewModel.CatalogAlmacen
 {
-    public class CatalogAlmacenViewModel
+    public class CatalogAlmacenViewModel : IPageViewModel
     {
         private RelayCommand _deleteAlmacenCommand;
         private CatalogAlmacenModel _catalogAlmacenModel;
@@ -118,5 +118,17 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             }
         }
         #endregion
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="InventoryApp.View.CatalogCategoria.CategoriaUserControl"
+﻿<UserControl x:Class="InventoryApp.View.CatalogUnidad.UnidadUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="375" d:DesignWidth="500"
-             DataContext="{StaticResource catalogCategoriaViewModel}">
+             DataContext="{StaticResource catalogUnidadViewModel}"
+             d:DesignHeight="300" d:DesignWidth="500">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -25,23 +25,24 @@
             <ColumnDefinition Width="250"/>
         </Grid.ColumnDefinitions>
         <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
-            <Label Content="CONSULTA CATEGORIA " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+            <Label Content="CONSULTA UNIDAD " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <Button Content="Nuevo" Grid.Row="0" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" 
-                VerticalAlignment="Stretch" Width="75" Click="btnAgregar_Click"  />
-        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
-                    Margin="0,0,170,0" Name="btnEliminar" VerticalAlignment="Stretch" Command="{Binding DeleteCategoriaCommand,Mode=OneWay}"
-                    Width="75" Click="btnEliminar_Click" />
         <!--<Label Content="CONSULTA DE ITEM STATUS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />-->
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False"
-                  HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridCategoria"
-                  VerticalAlignment="Stretch" ItemsSource="{Binding CatalogCategoriaModel.Categoria}"
-                  SelectedItem="{Binding CatalogCategoriaModel.SelectedCategoria, Mode=TwoWay}"
-                  MouseDoubleClick="dtGridCategoria_MouseDoubleClick" 
+        <Button Content="Nuevo" Grid.Row="0" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" 
+                VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click"  />
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
+                    Name="btnEliminar" VerticalAlignment="Stretch" Margin="0,0,170,0"
+                    Width="75" Click="btnEliminar_Click" Command="{Binding DeleteUnidadCommand,Mode=OneWay}"/>
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" 
+                  HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridUnidad"
+                  VerticalAlignment="Stretch" ItemsSource="{Binding CatalogUnidadModel.Unidad}"
+                  SelectedItem="{Binding CatalogUnidadModel.SelectedUnidad, Mode=TwoWay}"
+                  MouseDoubleClick="dtGridUnidad_MouseDoubleClick" 
                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
-                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
+                  RowStyle="{StaticResource RowStyle}">
             <DataGrid.Columns>
-                <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />-->
+                <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
                 <DataGridTemplateColumn Header="" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -49,7 +50,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Categoría" Width="*" x:Name="nombreCategoria" Binding="{Binding Path=CATEGORIA_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Unidad" Width="*" x:Name="nombreUnidad" Binding="{Binding Path=UNIDAD1}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

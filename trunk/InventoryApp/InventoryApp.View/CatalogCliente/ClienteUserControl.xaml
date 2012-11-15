@@ -8,7 +8,6 @@
     <Grid Name="GridPrincipal"  DataContext="{StaticResource catalogClienteViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="300" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Border Grid.ColumnSpan="2" BorderBrush="#e5e5e5" BorderThickness="0,0,0,1" >
@@ -32,16 +31,10 @@
                 <DataGridTextColumn Header="Cliente" Width="*" x:Name="nombreCliente" Binding="{Binding Path=CLIENTE1}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Name="gridBtn" Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200"/>
-            </Grid.ColumnDefinitions>
-            <Button Content="NUEVO" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+            <Button Content="NUEVO" Height="23" HorizontalAlignment="Stretch" Margin="399,4,25,4" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
             <Button Content="ELIMINAR" Height="23" HorizontalAlignment="Stretch"
-                    Margin="5,0" Name="btnEliminar" VerticalAlignment="Stretch"
+                    Margin="305,4,119,4" Name="btnEliminar" VerticalAlignment="Stretch"
                     Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteClienteCommand,Mode=OneWay}"/>
-        </Grid>
+
     </Grid>
 </UserControl>

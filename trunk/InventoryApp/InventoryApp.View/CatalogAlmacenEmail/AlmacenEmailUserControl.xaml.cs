@@ -11,27 +11,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using InventoryApp.ViewModel.CatalogPropiedad;
+using InventoryApp.ViewModel.CatalogAlmacenEmail;
 
-namespace InventoryApp.View.CatalogPropiedad
+namespace InventoryApp.View.CatalogAlmacenEmail
 {
     /// <summary>
-    /// Lógica de interacción para PropiedadUserControl.xaml
+    /// Lógica de interacción para AlmacenEmailUserControl.xaml
     /// </summary>
-    public partial class PropiedadUserControl : UserControl
+    public partial class AlmacenEmailUserControl : UserControl
     {
-        public PropiedadUserControl()
+        public AlmacenEmailUserControl()
         {
             InitializeComponent();
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            AltaPropiedad alta = new AltaPropiedad();
+            AltaAlmacenEmail alta = new AltaAlmacenEmail();
             try
             {
-                CatalogPropiedadViewModel propiedadViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogPropiedadViewModel;
-                alta.DataContext = propiedadViewModel.CreateAddPropiedadViewModel();
+                CatalogAlmacenEmailViewModel almacenEmailViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogAlmacenEmailViewModel;
+                alta.DataContext = almacenEmailViewModel.CreateAddAlmacenEmailViewModel();
                 alta.ShowDialog();
             }
             catch (Exception ex)
@@ -46,18 +46,18 @@ namespace InventoryApp.View.CatalogPropiedad
 
         }
 
-        private void dtGridPropiedad_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void dtGridAlmacenEmail_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)
             {
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    ModifyPropiedadView dlgModify = new ModifyPropiedadView();
+                    ModifyAlmacenEmailView dlgModify = new ModifyAlmacenEmailView();
                     try
                     {
-                        CatalogPropiedadViewModel propiedadViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogPropiedadViewModel;
-                        dlgModify.DataContext = propiedadViewModel.CreateModifyPropiedadViewModel();
+                        CatalogAlmacenEmailViewModel almacenEmailViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogAlmacenEmailViewModel;
+                        dlgModify.DataContext = almacenEmailViewModel.CreateModifyAlmacenEmailViewModel();
                         dlgModify.ShowDialog();
                     }
                     catch (Exception ex)

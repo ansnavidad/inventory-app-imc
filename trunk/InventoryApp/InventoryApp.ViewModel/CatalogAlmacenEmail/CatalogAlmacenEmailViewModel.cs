@@ -8,7 +8,7 @@ using InventoryApp.DAL;
 
 namespace InventoryApp.ViewModel.CatalogAlmacenEmail
 {
-    public class CatalogAlmacenEmailViewModel
+    public class CatalogAlmacenEmailViewModel : IPageViewModel
     {
         private RelayCommand _deleteAlmacenEmailCommand;
         private CatalogAlmacenEmailModel _catalogAlmacenEmailModel;
@@ -116,5 +116,17 @@ namespace InventoryApp.ViewModel.CatalogAlmacenEmail
             }
         }
         #endregion
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

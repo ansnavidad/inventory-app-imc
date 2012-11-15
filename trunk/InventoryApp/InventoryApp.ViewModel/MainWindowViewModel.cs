@@ -31,6 +31,10 @@ using InventoryApp.ViewModel.CatalogTipoPedimento;
 using InventoryApp.ViewModel.CatalogTransporte;
 using InventoryApp.ViewModel.CatalogCliente;
 using InventoryApp.ViewModel.CatalogPropiedad;
+using InventoryApp.ViewModel.CatalogAlmacen;
+using InventoryApp.ViewModel.CatalogAlmacenEmail;
+using InventoryApp.ViewModel.CatalogServicio;
+using InventoryApp.ViewModel.CatalogUnidad;
 
 namespace InventoryApp.ViewModel
 {
@@ -131,6 +135,12 @@ namespace InventoryApp.ViewModel
             {
                 switch (this._SelectedMenu.MenuName)
                 {
+                    case "Almacen":
+                        page = new CatalogAlmacenViewModel();
+                        break;
+                    case "Almacen Email":
+                        page = new CatalogAlmacenEmailViewModel();
+                        break;
                     case "Artículos":
                         page = new CatalogArticuloViewModel();
                         break;
@@ -188,6 +198,9 @@ namespace InventoryApp.ViewModel
                     case "Proyecto":
                         page = new CatalogProyectoViewModel();
                         break;
+                    case "Servicio":
+                        page = new CatalogServicioViewModel();
+                        break;
                     case "Solicitante":
                         page = new CatalogSolicitanteViewModel();
                         break;
@@ -208,6 +221,9 @@ namespace InventoryApp.ViewModel
                         break;
                     case "Transporte":
                         page = new CatalogTransporteViewModel();
+                        break;
+                    case "Unidad":
+                        page = new CatalogUnidadViewModel();
                         break;
                     default:
                         break;

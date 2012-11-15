@@ -11,27 +11,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using InventoryApp.ViewModel.CatalogPropiedad;
+using InventoryApp.ViewModel.CatalogAlmacen;
 
-namespace InventoryApp.View.CatalogPropiedad
+namespace InventoryApp.View.CatalogAlmacen
 {
     /// <summary>
-    /// Lógica de interacción para PropiedadUserControl.xaml
+    /// Lógica de interacción para AlmacenUserControl.xaml
     /// </summary>
-    public partial class PropiedadUserControl : UserControl
+    public partial class AlmacenUserControl : UserControl
     {
-        public PropiedadUserControl()
+        public AlmacenUserControl()
         {
             InitializeComponent();
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            AltaPropiedad alta = new AltaPropiedad();
+            AltaAlmacen alta = new AltaAlmacen();
             try
             {
-                CatalogPropiedadViewModel propiedadViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogPropiedadViewModel;
-                alta.DataContext = propiedadViewModel.CreateAddPropiedadViewModel();
+                CatalogAlmacenViewModel almacenViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogAlmacenViewModel;
+                alta.DataContext = almacenViewModel.CreateAddAlmacenViewModel();
                 alta.ShowDialog();
             }
             catch (Exception ex)
@@ -46,18 +46,18 @@ namespace InventoryApp.View.CatalogPropiedad
 
         }
 
-        private void dtGridPropiedad_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void dtGridAlmacen_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)
             {
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    ModifyPropiedadView dlgModify = new ModifyPropiedadView();
+                    ModifyAlmacenView dlgModify = new ModifyAlmacenView();
                     try
                     {
-                        CatalogPropiedadViewModel propiedadViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogPropiedadViewModel;
-                        dlgModify.DataContext = propiedadViewModel.CreateModifyPropiedadViewModel();
+                        CatalogAlmacenViewModel almacenViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogAlmacenViewModel;
+                        dlgModify.DataContext = almacenViewModel.CreateModifyAlmacenViewModel();
                         dlgModify.ShowDialog();
                     }
                     catch (Exception ex)

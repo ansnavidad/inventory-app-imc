@@ -29,7 +29,7 @@
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
-            <Label Content="MODIFICAR EMPRESA " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+            <Label Style="{StaticResource titleLabel}" Content="MODIFICAR EMPRESA " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
             <Button Content="Guardar" Grid.Row="6" Height="23" TabIndex="4"
                     HorizontalAlignment="Stretch" Margin="40,14,35,13" 

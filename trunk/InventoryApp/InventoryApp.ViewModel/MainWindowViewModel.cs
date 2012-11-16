@@ -238,6 +238,44 @@ namespace InventoryApp.ViewModel
                     case "Entrada por Desinstalación":
                         page = new Entradas.EntradaDesinstalacionViewModel();
                         break;
+
+
+                    case "Salida Renta":
+                        page = new Salidas.SalidaRentaViewModel();
+                        break;
+                    case "Salida Demo":
+                        page = new Salidas.SalidaDemoViewModel();
+                        break;
+                    case "Salida Prestamo":
+                        page = new Salidas.SalidaPrestamoViewModel();
+                        break;
+                    case "Salida Venta":
+                        page = new Salidas.SalidaVentaViewModel();
+                        break;
+                    case "Salida RMA":
+                        page = new Salidas.SalidaRMAViewModel();
+                        break;
+                    case "Salida Revisión'":
+                        page = new Salidas.SalidaRevisionViewModel();
+                        break;
+                    case "Salida Pruebas":
+                        page = new Salidas.SalidaPruebasViewModel();
+                        break;
+                    case "Salida Configuración":
+                        page = new Salidas.SalidaConfiguracionViewModel();
+                        break;
+                    case "Salida Obsequio":
+                        page = new Salidas.SalidaObsequioViewModel();
+                        break;
+                    case "Salida Correctivo":
+                        page = new Salidas.SalidaCorrectivoViewModel();
+                        break;
+                    case "Entregado (Licencia Office)":
+                        page = new Salidas.SalidaOfficeViewModel();
+                        break;
+                    case "Traspaso Entre Almacenes":
+                        page = new Traspasos.TraspasoStockViewModel();
+                        break;
                     default:
                         break;
                 }

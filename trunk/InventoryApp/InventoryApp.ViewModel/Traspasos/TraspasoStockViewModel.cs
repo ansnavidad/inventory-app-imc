@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.Traspasos
 {
-    public class TraspasoStockViewModel
+    public class TraspasoStockViewModel : IPageViewModel
     {
         private MovimientoSalidasModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
@@ -263,6 +263,18 @@ namespace InventoryApp.ViewModel.Traspasos
 
             this.MovimientoModel.CantidadItems = this.ItemModel.ItemModel.Count();
             
+        }
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

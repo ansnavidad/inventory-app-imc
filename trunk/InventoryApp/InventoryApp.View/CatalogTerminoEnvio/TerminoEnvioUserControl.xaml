@@ -46,10 +46,10 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="162" Header="Clave" x:Name="CLAVE" Binding="{Binding Path=CLAVE}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="162" Header="Termino" x:Name="TERMINO" Binding="{Binding Path=TERMINO}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="188" Header="Significado" x:Name="SIGNIFICADO" Binding="{Binding Path=SIGNIFICADO}"></DataGridTextColumn>
-                <DataGridCheckBoxColumn Header="Genera Lotes" IsReadOnly="True" Width="85" x:Name="GENERA_LOTES" Binding="{Binding Path=GENERA_LOTES}"></DataGridCheckBoxColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="200" Header="Clave" x:Name="CLAVE" Binding="{Binding Path=CLAVE}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="200" Header="Termino" x:Name="TERMINO" Binding="{Binding Path=TERMINO}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="200" Header="Significado" x:Name="SIGNIFICADO" Binding="{Binding Path=SIGNIFICADO}"></DataGridTextColumn>
+                <DataGridCheckBoxColumn Header="Genera Lotes" IsReadOnly="True" Width="100" x:Name="GENERA_LOTES" Binding="{Binding Path=GENERA_LOTES}"></DataGridCheckBoxColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

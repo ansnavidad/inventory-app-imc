@@ -24,6 +24,8 @@ namespace InventoryApp.ViewModel.Salidas
         private CatalogItemModel _itemModel;
         private CatalogServicioModel _catalogServicioModel;
         private CatalogTipoPedimentoModel _catalogTipoPedimentoModel;
+        private CatalogMonedaModel _catalogMonedaModel;
+        private FacturaVentaModel _facturaVentaModel;
         private RelayCommand _addItemCommand;
         private RelayCommand _deleteItemCommand;
 
@@ -38,6 +40,8 @@ namespace InventoryApp.ViewModel.Salidas
                 IDataMapper dataMapper5 = new ServicioDataMapper();
                 IDataMapper dataMapper6 = new TipoPedimentoDataMapper();
                 IDataMapper dataMapper7 = new TransporteDataMapper();
+                IDataMapper dataMapper8 = new MonedaDataMapper();
+                IDataMapper dataMapper9 = new FacturaVentaDataMapper();
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
@@ -53,6 +57,8 @@ namespace InventoryApp.ViewModel.Salidas
                 this._catalogTipoPedimentoModel = new CatalogTipoPedimentoModel(dataMapper6);
                 this._catalogTransporteModel = new CatalogTransporteModel(dataMapper7);
                 this._catalogClienteModel = new CatalogClienteModel(dataMapper4);
+                this._catalogMonedaModel = new CatalogMonedaModel(dataMapper8);
+                this._facturaVentaModel = new FacturaVentaModel(dataMapper9);
             }
             catch (ArgumentException a)
             {
@@ -109,6 +115,32 @@ namespace InventoryApp.ViewModel.Salidas
             set
             {
                 _catalogAlmacenDestinoModel = value;
+            }
+        }
+
+        public FacturaVentaModel FacturaVentaModel
+        {
+            get
+            {
+                return _facturaVentaModel;
+
+            }
+            set
+            {
+                _facturaVentaModel = value;
+            }
+        }
+
+        public CatalogMonedaModel CatalogMonedaModel
+        {
+            get
+            {
+                return _catalogMonedaModel;
+
+            }
+            set
+            {
+                _catalogMonedaModel = value;
             }
         }
         public CatalogServicioModel CatalogServicioModel
@@ -257,10 +289,13 @@ namespace InventoryApp.ViewModel.Salidas
 
         public void AttempArticulo()
         {
+            this._facturaVentaModel.saveFactura();
+            this._movimientoModel.UnidFacturaVenta = this.FacturaVentaModel.UnidFacturaVenta;
             this._movimientoModel.saveArticulo();
 
             foreach (ItemModel item in this._itemModel.ItemModel)
             {
+                
                 this._movimientoDetalleModel = new MovimientoDetalleModel(new MovimientoDetalleDataMapper(), this._movimientoModel.UnidMovimiento, item.UnidItem);
                 this._movimientoDetalleModel.saveArticulo();
                 this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem, this._movimientoModel.UnidAlmacenDestino, this._movimientoModel.UnidClienteDestino, this._movimientoModel.UnidProveedorDestino, this._movimientoDetalleModel.UnidMovimientoDetalle);

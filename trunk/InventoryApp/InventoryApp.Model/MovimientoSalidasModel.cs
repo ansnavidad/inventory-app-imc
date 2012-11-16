@@ -184,6 +184,25 @@ namespace InventoryApp.Model
                 }
             }
         }
+
+        public long? UnidFacturaVenta
+        {
+            get
+            {
+                return _unidFacturaVenta;
+            }
+            set
+            {
+                if (_unidFacturaVenta != value)
+                {
+                    _unidFacturaVenta = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("UnidFacturaVenta"));
+                    }
+                }
+            }
+        }
         public long UnidMovimiento
         {
             get

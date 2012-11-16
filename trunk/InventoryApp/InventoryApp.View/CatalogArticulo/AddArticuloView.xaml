@@ -30,7 +30,7 @@
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
-            <Label Content="ALTA ARTICULO " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+            <Label Content="ALTA ARTÍCULO " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
         <!--Nombre Artículo-->
         <Label Content="Nombre Artículo :" Grid.Row="1" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="48,11,0,0" 
@@ -39,7 +39,7 @@
                  UpdateSourceTrigger=PropertyChanged}" Height="23" HorizontalAlignment="Left" Margin="3,14,0,0" Name="textBox2" 
                  VerticalAlignment="Top" Width="120" />
         <!--Categoría-->
-        <Label Content="Categoria :" Grid.Row="2" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="84,2,0,0" 
+        <Label Content="Categoría :" Grid.Row="2" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="84,2,0,0" 
                Name="label3" VerticalAlignment="Top" Grid.ColumnSpan="2" />
         <ComboBox SelectedIndex="0" Grid.Row="2" Grid.Column="2"
                   SelectedItem="{Binding Articulo.Categoria,Mode=TwoWay}" 

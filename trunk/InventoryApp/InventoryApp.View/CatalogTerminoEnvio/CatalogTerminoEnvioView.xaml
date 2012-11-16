@@ -23,7 +23,7 @@
             <ColumnDefinition Width="250"/>
         </Grid.ColumnDefinitions>
         <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
-            <Label Content="CONSULTA TERMINO DE ENVIO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+            <Label Content="CONSULTA TÉRMINO DE ENVIO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
         <Button Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" Grid.Row="0" Grid.Column="2" 
                 VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
@@ -46,7 +46,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="162" Header="Clave" x:Name="CLAVE" Binding="{Binding Path=CLAVE}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="162" Header="Termino" x:Name="TERMINO" Binding="{Binding Path=TERMINO}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="162" Header="Término" x:Name="TERMINO" Binding="{Binding Path=TERMINO}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="188" Header="Significado" x:Name="SIGNIFICADO" Binding="{Binding Path=SIGNIFICADO}"></DataGridTextColumn>
                 <DataGridCheckBoxColumn Header="Genera Lotes" IsReadOnly="True" Width="85" x:Name="GENERA_LOTES" Binding="{Binding Path=GENERA_LOTES}"></DataGridCheckBoxColumn>
             </DataGrid.Columns>

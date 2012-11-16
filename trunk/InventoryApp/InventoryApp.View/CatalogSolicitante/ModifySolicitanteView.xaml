@@ -54,7 +54,8 @@
                       VerticalAlignment="Stretch" Width="120"
                       SelectedItem="{Binding ModiSolicitante.Empresa,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                       ItemsSource="{Binding CatalogEmpresaModel.Empresa, Mode=OneWay}"
-                      DisplayMemberPath="EMPRESA_NAME" SelectedValuePath="UNID_EMPRESA" Text="{Binding ModiSolicitante.Empresa.EMPRESA_NAME}" Grid.Column="2" />
+                      DisplayMemberPath="EMPRESA_NAME" SelectedValuePath="UNID_EMPRESA" 
+                      Text="{Binding ModiSolicitante.Empresa.EMPRESA_NAME}" Grid.Column="2" />
             <Label Content="Departamento :" Grid.Column="3" Grid.Row="2" Height="25" HorizontalAlignment="Center" Margin="8,13,142,2" 
                    Name="lblDepartamento" Width="100" Grid.ColumnSpan="2" />
             <ComboBox Grid.Row="2" Height="23" HorizontalAlignment="Stretch"

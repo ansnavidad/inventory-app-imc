@@ -16,10 +16,23 @@ namespace InventoryApp.ViewModel.CatalogProveedor
         private CatalogProveedorViewModel _catalogProveedorViewModel;
         private CatalogCiudadModel _catalogCiudadModel;
         private CatalogPaisModel _catalogPaisModel;
+        private CatalogCategoriaModel _catalogCategoriaModel;
         #endregion
 
         //Exponer la propiedad item status
         #region Props
+        public CatalogCategoriaModel CatalogCategoriaModel
+        {
+            get
+            {
+                return _catalogCategoriaModel;
+            }
+            set
+            {
+                _catalogCategoriaModel = value;
+            }
+        }
+
         public CatalogCiudadModel CatalogCiudadModel 
         {
             get
@@ -89,6 +102,20 @@ namespace InventoryApp.ViewModel.CatalogProveedor
             this._proveedorModel.Contacto = selectedProveedorModel.Contacto;
             this._proveedorModel.CodigoPostal = selectedProveedorModel.CodigoPostal;
             this._proveedorModel.Calle = selectedProveedorModel.Calle;
+
+            try
+            {
+
+                this._catalogCategoriaModel = new CatalogCategoriaModel(new CategoriaDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             try
             {

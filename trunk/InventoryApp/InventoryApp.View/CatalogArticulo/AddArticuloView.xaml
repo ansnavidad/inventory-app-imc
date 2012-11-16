@@ -41,26 +41,39 @@
         <!--Categoría-->
         <Label Content="Categoria :" Grid.Row="2" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="84,2,0,0" 
                Name="label3" VerticalAlignment="Top" Grid.ColumnSpan="2" />
-        <ComboBox SelectedIndex="0" Grid.Row="2" Grid.Column="2" SelectedItem="{Binding Articulo.Categoria,Mode=TwoWay}" 
-                  ItemsSource="{Binding CatalogCategoriaModel.Categoria, Mode=OneWay}" DisplayMemberPath="CATEGORIA_NAME" 
-                  SelectedValuePath="UNID_CATEGORIA" Height="23" HorizontalAlignment="Left" Margin="3,3,0,0" 
+        <ComboBox SelectedIndex="0" Grid.Row="2" Grid.Column="2"
+                  SelectedItem="{Binding Articulo.Categoria,Mode=TwoWay}" 
+                  ItemsSource="{Binding CatalogCategoriaModel.Categoria, Mode=OneWay}"
+                  DisplayMemberPath="CATEGORIA_NAME" SelectedValuePath="UNID_CATEGORIA"
+                  Height="23" HorizontalAlignment="Left" Margin="3,3,0,0" 
                   Name="comboBox1" VerticalAlignment="Top" Width="120" />
         <!--Equipo-->
         <Label Content="Equipo :" Grid.Row="3" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="97,2,0,0" Name="label6" VerticalAlignment="Top" />
-        <ComboBox SelectedIndex="0" Grid.Row="3" Grid.Column="2"   DisplayMemberPath="EQUIPO_NAME" Height="23" HorizontalAlignment="Left" 
-                  ItemsSource="{Binding CatalogEquipoModel.Equipos, Mode=OneWay}" Margin="2,3,0,0" Name="comboBox4" 
-                  SelectedItem="{Binding Articulo.Equipo, Mode=TwoWay}" SelectedValuePath="UNID_EQUIPO" VerticalAlignment="Top" Width="120" />
+        <ComboBox SelectedIndex="0" Grid.Row="3" Grid.Column="2"
+                  SelectedItem="{Binding Articulo.Equipo, Mode=TwoWay}"
+                  ItemsSource="{Binding CatalogEquipoModel.Equipos, Mode=OneWay}"
+                  DisplayMemberPath="EQUIPO_NAME" Height="23" HorizontalAlignment="Left" 
+                  Margin="2,3,0,0" Name="comboBox4" 
+                  SelectedValuePath="UNID_EQUIPO" VerticalAlignment="Top"
+                  Width="120" />
         <!--Marca-->
         <Label Content="Marca :" Grid.Row="5" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="101,3,0,0" Name="label4" VerticalAlignment="Top" Grid.RowSpan="2" />
-        <ComboBox SelectedIndex="0" Grid.Row="5" Grid.Column="2" DisplayMemberPath="MARCA_NAME" Height="23" HorizontalAlignment="Left" 
-                  ItemsSource="{Binding CatalogMarcaModel.Marcas, Mode=OneWay}" Margin="3,3,0,0" Name="comboBox2" 
-                  SelectedItem="{Binding Articulo.Marca, Mode=TwoWay}" SelectedValuePath="UNID_MARCA" VerticalAlignment="Top" Width="120" />
+        <ComboBox SelectedIndex="0" Grid.Row="5" Grid.Column="2"
+                  SelectedItem="{Binding Articulo.Marca, Mode=TwoWay}"
+                  DisplayMemberPath="MARCA_NAME" Height="23" HorizontalAlignment="Left" 
+                  ItemsSource="{Binding CatalogMarcaModel.Marcas, Mode=OneWay}" 
+                  Margin="3,3,0,0" Name="comboBox2" 
+                  SelectedValuePath="UNID_MARCA" 
+                  VerticalAlignment="Top" Width="120" />
         <!--Modelo-->
         <Label Content="Modelo :" Grid.Row="4" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="92,3,0,0" Name="label5" VerticalAlignment="Top" Grid.RowSpan="2" />
-        <ComboBox Grid.Row="4" Grid.Column="2" DisplayMemberPath="MODELO_NAME" Height="23" HorizontalAlignment="Left" 
-                  ItemsSource="{Binding CatalogModeloModel.Modelos, Mode=OneWay}" Margin="2,3,0,0" Name="comboBox3" 
-                  SelectedItem="{Binding Articulo.Modelo, Mode=TwoWay}" SelectedValuePath="UNID_MODELO" VerticalAlignment="Top" 
-                  Width="120" SelectedIndex="0" />
+        <ComboBox SelectedIndex="0" Grid.Row="4" Grid.Column="2"
+                  SelectedItem="{Binding Articulo.Modelo, Mode=TwoWay}"
+                  ItemsSource="{Binding CatalogModeloModel.Modelos, Mode=OneWay}" 
+                  DisplayMemberPath="MODELO_NAME" Height="23" HorizontalAlignment="Left" 
+                  Margin="2,3,0,0" Name="comboBox3" 
+                  SelectedValuePath="UNID_MODELO" VerticalAlignment="Top" 
+                  Width="120"/>
         <Button Content="Guardar" Grid.Row="7" Grid.Column="1"  Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnAgregar" 
                 VerticalAlignment="Stretch" Width="75" Command="{Binding AddItemCommand,Mode=OneWay}" Click="btnAgregar_Click" />
         <Button Content="Cancelar" Grid.Column="2" Grid.Row="7" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />

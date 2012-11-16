@@ -21,6 +21,7 @@ namespace InventoryApp.View.CatalogArticulo
         public AddArticuloView()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.textBox2);
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)

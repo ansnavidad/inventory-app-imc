@@ -21,6 +21,7 @@ namespace InventoryApp.View.CatalogPais
         public AltaModificarPais()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtNombrePais);
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

@@ -21,6 +21,7 @@ namespace InventoryApp.View.CatalogBanco
         public AddBancoView()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtNomreBanco);
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)

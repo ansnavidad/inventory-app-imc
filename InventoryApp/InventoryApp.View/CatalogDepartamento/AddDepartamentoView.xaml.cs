@@ -21,6 +21,7 @@ namespace InventoryApp.View.CatalogDepartamento
         public AddDepartamentoView()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtNombreDepartamento);
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)

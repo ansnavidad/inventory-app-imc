@@ -49,8 +49,8 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Empresa" Width="*" x:Name="nombreEmpresa" Binding="{Binding Path=EMPRESA_NAME}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Direccion" Width="*" x:Name="direccion" Binding="{Binding Path=DIRECCION}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Razon social" Width="*" x:Name="razonSocial" Binding="{Binding Path=RAZON_SOCIAL}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Dirección" Width="*" x:Name="direccion" Binding="{Binding Path=DIRECCION}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Razón social" Width="*" x:Name="razonSocial" Binding="{Binding Path=RAZON_SOCIAL}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="RFC" Width="*" x:Name="rfc" Binding="{Binding Path=RFC}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>

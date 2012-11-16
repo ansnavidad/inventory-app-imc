@@ -50,8 +50,6 @@
              xmlns:tipoPedimentoViews="clr-namespace:InventoryApp.View.CatalogTipoPedimento"
              xmlns:catTransporteViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTransporte;assembly=InventoryApp.ViewModel"
              xmlns:transporteViews="clr-namespace:InventoryApp.View.CatalogTransporte"
-             xmlns:catPropiedadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogPropiedad;assembly=InventoryApp.ViewModel"
-             xmlns:propiedadViews="clr-namespace:InventoryApp.View.CatalogPropiedad"
              xmlns:catAlmacenViewModel="clr-namespace:InventoryApp.ViewModel.CatalogAlmacen;assembly=InventoryApp.ViewModel"
              xmlns:almacenViews="clr-namespace:InventoryApp.View.CatalogAlmacen"
              xmlns:catAlmacenEmailViewModel="clr-namespace:InventoryApp.ViewModel.CatalogAlmacenEmail;assembly=InventoryApp.ViewModel"
@@ -62,6 +60,8 @@
              xmlns:unidadViews="clr-namespace:InventoryApp.View.CatalogUnidad"
              xmlns:catClienteViewModel="clr-namespace:InventoryApp.ViewModel.CatalogCliente;assembly=InventoryApp.ViewModel"
              xmlns:clienteViews="clr-namespace:InventoryApp.View.CatalogCliente"
+             xmlns:catPropiedadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogPropiedad;assembly=InventoryApp.ViewModel"
+             xmlns:propiedadViews="clr-namespace:InventoryApp.View.CatalogPropiedad"
              xmlns:EntradaViewModel="clr-namespace:InventoryApp.ViewModel.Entradas;assembly=InventoryApp.ViewModel"
              xmlns:SalidasViewModel="clr-namespace:InventoryApp.ViewModel.Salidas;assembly=InventoryApp.ViewModel"
              xmlns:SalidasView="clr-namespace:InventoryApp.View.Salidas"
@@ -285,10 +285,6 @@
         <ObjectDataProvider x:Key="catalogTransporteViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
-        <!-- propiedad -->
-        <ObjectDataProvider x:Key="catalogPropiedadViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
-                            MethodName="GetCurrentPage" x:Shared="False"/>
-
         <!-- almacen -->
         <ObjectDataProvider x:Key="catalogAlmacenViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
@@ -307,6 +303,10 @@
 
         <!-- cliente -->
         <ObjectDataProvider x:Key="catalogClienteViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- cliente -->
+        <ObjectDataProvider x:Key="catalogPropiedadViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
         <reciboViewModel:AddFacturaViewModel x:Key="addFacturaViewModel" />
@@ -392,9 +392,6 @@
         <DataTemplate DataType="{x:Type catAlmacenViewModel:CatalogAlmacenViewModel}">
             <almacenViews:AlmacenUserControl />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type catPropiedadViewModel:CatalogPropiedadViewModel}">
-            <propiedadViews:PropiedadUserControl />
-        </DataTemplate>
         <DataTemplate DataType="{x:Type catAlmacenEmailViewModel:CatalogAlmacenEmailViewModel}">
             <almacenEmailViews:AlmacenEmailUserControl />
         </DataTemplate>
@@ -406,6 +403,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type catClienteViewModel:CatalogClienteViewModel}">
             <clienteViews:ClienteUserControl />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type catPropiedadViewModel:CatalogPropiedadViewModel}">
+            <propiedadViews:PropiedadUserControl />
         </DataTemplate>
     </Application.Resources>
 </Application>

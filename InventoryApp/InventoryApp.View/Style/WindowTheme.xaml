@@ -4,10 +4,10 @@
         <Setter Property="Background" Value="#ed5d1e" />
     </Style>
     <Style x:Key="titleLabel" TargetType="{x:Type Label}">
-        <Setter Property="Foreground" Value="#848484"></Setter>
+        <Setter Property="Foreground" Value="#F2F2F2"></Setter>
         <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
         <Setter Property="FontStretch" Value="Normal"></Setter>
-        <Setter Property="FontSize" Value="17"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
     </Style>
 </ResourceDictionary>
 

@@ -30,7 +30,7 @@
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
-            <Label Content="ALTA ARTÍCULO " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+            <Label Style="{StaticResource titleLabel}" Content="ALTA ARTÍCULO " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
         <!--Nombre Artículo-->
         <Label Content="Nombre Artículo :" Grid.Row="1" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="48,11,0,0" 

@@ -1,8 +1,8 @@
 ﻿<Window x:Class="InventoryApp.View.CatalogAlmacenEmail.AltaAlmacenEmail"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Nuevo almacén email " Height="250" Width="350" WindowStyle="ToolWindow" ResizeMode="CanResizeWithGrip" 
-        WindowStartupLocation="CenterScreen">
+        Title="Nuevo almacén email " Height="250" Width="350" 
+        WindowStyle="ToolWindow" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

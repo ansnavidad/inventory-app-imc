@@ -74,7 +74,23 @@
                   SelectedItem="{Binding ProveedorModel.Ciudad,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                   ItemsSource="{Binding CatalogCiudadModel.Ciudad, Mode=OneWay}" DisplayMemberPath="CIUDAD1" 
                   SelectedValuePath="UNID_CIUDAD" SelectedIndex="0" Grid.Column="2" />
-        <DataGrid AutoGenerateColumns="False" Height="234" HorizontalAlignment="Left" Margin="31,20,0,0" Name="dataGrid1" 
-                  VerticalAlignment="Top" Width="214" Grid.Column="3" Grid.Row="1" Grid.RowSpan="7" />
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False"
+                  HorizontalAlignment="Left" Margin="35,23,0,0" Name="dtGridCategoria"
+                  VerticalAlignment="Top" ItemsSource="{Binding CatalogCategoriaModel.Categoria}"
+                  SelectedItem="{Binding CatalogCategoriaModel.SelectedCategoria, Mode=TwoWay}"
+                  Grid.Row="1" Grid.Column="3" Grid.RowSpan="7" Width="214" Height="234" 
+                  Style="{StaticResource GridStyle}"
+                  ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Categoría" Width="*" x:Name="nombreCategoria" Binding="{Binding Path=CATEGORIA_NAME}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

@@ -22,11 +22,11 @@ namespace InventoryApp.View.CatalogSolicitante
         {
             InitializeComponent();
             FocusManager.SetFocusedElement(this, this.txtNomreSolicitante);
-            
             this.txtNomreSolicitante.SelectAll();
             this.txtEmail.SelectAll();
             this.txtValidador.SelectAll();
-            
+            cbEmpresa.SelectedIndex = 0;
+            cbDepartamento.SelectedIndex = 0;
         }
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)

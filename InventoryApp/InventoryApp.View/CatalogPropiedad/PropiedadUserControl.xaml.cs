@@ -28,8 +28,6 @@ namespace InventoryApp.View.CatalogPropiedad
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             AltaPropiedad alta = new AltaPropiedad();
-            alta.ShowDialog();
-
             try
             {
                 CatalogPropiedadViewModel propiedadViewModel = (this.DataContext as ObjectDataProvider).Data as CatalogPropiedadViewModel;

@@ -55,6 +55,7 @@
     <Compile Include="EmpresaDataMapper.cs" />
     <Compile Include="EquipoDataMapper.cs" />
     <Compile Include="EstatusDataMapper.cs" />
+    <Compile Include="FacturaVentaDataMapper.cs" />
     <Compile Include="IDataMapper.cs" />
     <Compile Include="ItemDataMapper.cs" />
     <Compile Include="ItemStatusDataMapper.cs" />

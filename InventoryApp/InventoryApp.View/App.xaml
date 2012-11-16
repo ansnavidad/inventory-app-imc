@@ -65,8 +65,15 @@
              xmlns:EntradaViewModel="clr-namespace:InventoryApp.ViewModel.Entradas;assembly=InventoryApp.ViewModel"
              xmlns:SalidasViewModel="clr-namespace:InventoryApp.ViewModel.Salidas;assembly=InventoryApp.ViewModel"
              xmlns:SalidasView="clr-namespace:InventoryApp.View.Salidas"
+             xmlns:TraspasosViewModel="clr-namespace:InventoryApp.ViewModel.Traspasos;assembly=InventoryApp.ViewModel"
+             xmlns:TraspasosView="clr-namespace:InventoryApp.View.Traspasos"
              StartupUri="MainWindow.xaml">
-
+    
+    <!--StartupUri="Recibo/ReciboView.xaml"-->
+    <!--StartupUri="MainWindow.xaml"-->
+    <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogPais;assembly=InventoryApp.ViewModel"
+             StartupUri="CatalogPais/CatalogPaisView.xaml">-->
+             
     <Application.Resources>
         <!--
             Se crean los recursos que se utilizarán.

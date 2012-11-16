@@ -48,7 +48,7 @@
                 </DataGridTemplateColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="140" Header="Nombre" x:Name="NOMBRE" Binding="{Binding Path=TIPO_PEDIMENTO_NAME}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="140" Header="Clave" x:Name="CLAVE" Binding="{Binding Path=CLAVE}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="140" Header="Regimen" x:Name="REGIMEN" Binding="{Binding Path=REGIMEN}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="140" Header="Régimen" x:Name="REGIMEN" Binding="{Binding Path=REGIMEN}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="177" Header="Nota" x:Name="NOTA" Binding="{Binding Path=NOTA}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>

@@ -35,6 +35,7 @@ using InventoryApp.ViewModel.CatalogAlmacen;
 using InventoryApp.ViewModel.CatalogAlmacenEmail;
 using InventoryApp.ViewModel.CatalogServicio;
 using InventoryApp.ViewModel.CatalogUnidad;
+using System.Windows;
 
 namespace InventoryApp.ViewModel
 {
@@ -224,6 +225,18 @@ namespace InventoryApp.ViewModel
                         break;
                     case "Unidad":
                         page = new CatalogUnidadViewModel();
+                        break;
+                    case "Entrada por Validación":
+                        page = new Entradas.EntradaPorValidacionViewModel();  
+                        break;
+                    case "Entrada por Prestamo":
+                        page = new Entradas.EntradaPrestamoViewModel();
+                        break;
+                    case "Entrada por Devolución":
+                        page = new Entradas.EntradaDevolucionViewModel();
+                        break;
+                    case "Entrada por Desinstalación":
+                        page = new Entradas.EntradaDesinstalacionViewModel();
                         break;
                     default:
                         break;

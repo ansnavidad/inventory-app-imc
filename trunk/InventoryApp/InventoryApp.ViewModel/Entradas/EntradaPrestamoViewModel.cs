@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.Entradas
 {
-    public class EntradaPrestamoViewModel
+    public class EntradaPrestamoViewModel : IPageViewModel
     {
         private MovimientoModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
@@ -247,6 +247,18 @@ namespace InventoryApp.ViewModel.Entradas
 
             this.MovimientoModel.CantidadItems = this.ItemModel.ItemModel.Count();
             
+        }
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

@@ -102,6 +102,7 @@
         <SalidasViewModel:SalidaPruebasViewModel x:Key="salidaPruebasViewModel" />
         <SalidasViewModel:SalidaRMAViewModel x:Key="salidaRMAViewModel" />
         <SalidasViewModel:SalidaVentaViewModel x:Key="salidaVentaViewModel" />
+        <TraspasosViewModel:TraspasoStockViewModel x:Key="traspasoStockViewModel" />
 
         <!--<TraspasosViewModel:TraspasoStockViewModel x:Key="traspasoStockViewModel" />-->
         
@@ -235,6 +236,58 @@
         <ObjectDataProvider x:Key="EntradaDesinstalacionViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
+        <!-- Salida Renta -->
+        <ObjectDataProvider x:Key="SalidaRentaViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Salida DEmo -->
+        <ObjectDataProvider x:Key="SalidaDEmoViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Entrada por Desinstalación -->
+        <ObjectDataProvider x:Key="SalidaPrestamoViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Entrada por Desinstalación -->
+        <ObjectDataProvider x:Key="SalidaVentaViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Entrada por Desinstalación -->
+        <ObjectDataProvider x:Key="SalidaRMAViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Entrada por Desinstalación -->
+        <ObjectDataProvider x:Key="SalidaRevisionViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Entrada por Desinstalación -->
+        <ObjectDataProvider x:Key="SalidaPruebasViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Entrada por Desinstalación -->
+        <ObjectDataProvider x:Key="SalidaConfiguracionViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Entrada por Desinstalación -->
+        <ObjectDataProvider x:Key="SalidaObsequioViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Entrada por Desinstalación -->
+        <ObjectDataProvider x:Key="SalidaCorrectivoViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Entrada por Desinstalación -->
+        <ObjectDataProvider x:Key="SalidaOfficeViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Entrada por Desinstalación -->
+        <ObjectDataProvider x:Key="TraspasoStockVieModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+
+
+
+
         <reciboViewModel:AddFacturaViewModel x:Key="addFacturaViewModel" />
         <reciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />
         
@@ -346,5 +399,45 @@
         <DataTemplate DataType="{x:Type EntradaViewModel:EntradaDesinstalacionViewModel}">
             <EntradaView:EntradaDesinstalacion />
         </DataTemplate>
+        
+        
+        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaRentaViewModel}">
+            <SalidasView:SalidaRenta />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaDemoViewModel}">
+            <SalidasView:SalidaDemo />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaPrestamoViewModel}">
+            <SalidasView:SalidaPrestamo />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaVentaViewModel}">
+            <SalidasView:SalidaVenta />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaRMAViewModel}">
+            <SalidasView:SalidaRMA />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaRevisionViewModel}">
+            <SalidasView:SalidaRevision/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaPruebasViewModel}">
+            <SalidasView:SalidaPruebas/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaConfiguracionViewModel}">
+            <SalidasView:SalidaConfiguracion/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaObsequioViewModel}">
+            <SalidasView:SalidaObsequio />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaCorrectivoViewModel}">
+            <SalidasView:SalidaCorrectivo />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaOfficeViewModel}">
+            <SalidasView:SalidaOffice />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type TraspasosViewModel:TraspasoStockViewModel}">
+            <TraspasosView:TraspasoStock/>
+        </DataTemplate>
+        
+        
     </Application.Resources>
 </Application>

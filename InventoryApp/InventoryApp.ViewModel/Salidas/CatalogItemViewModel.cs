@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.Salidas
 {
-    public class CatalogItemViewModel
+    public class CatalogItemViewModel : IPageViewModel
     {
         private CatalogItemModel _catalogItemModel;
         private RelayCommand _addItemCommand;
@@ -606,5 +606,17 @@ namespace InventoryApp.ViewModel.Salidas
             }
         }
         #endregion
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

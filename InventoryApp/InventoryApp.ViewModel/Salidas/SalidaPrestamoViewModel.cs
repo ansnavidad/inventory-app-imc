@@ -8,7 +8,7 @@ using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
 namespace InventoryApp.ViewModel.Salidas
 {
-    public class SalidaPrestamoViewModel
+    public class SalidaPrestamoViewModel : IPageViewModel
     {
         private MovimientoSalidasModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
@@ -285,6 +285,18 @@ namespace InventoryApp.ViewModel.Salidas
             }
 
             this.MovimientoModel.CantidadItems = this.ItemModel.ItemModel.Count();            
+        }
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

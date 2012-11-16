@@ -21,6 +21,7 @@ namespace InventoryApp.View.CatalogCiudad
         public AltaModificarCiudad()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtNombreCuidad);
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

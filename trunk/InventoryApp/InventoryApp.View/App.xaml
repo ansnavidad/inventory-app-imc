@@ -110,7 +110,7 @@
         <ObjectDataProvider x:Key="modifyCiudadViewModel" ObjectInstance="{StaticResource catalogCiudadViewModel }"
                             MethodName="CreateModifyCiudadViewModel" x:Shared="False"/>-->
         
-        <!--<vm:CatalogArticuloViewModel x:Key="catalogArticuloViewModel" />
+        <!--<vm:CatalogArticulo x:Key="catalogArticuloViewModel" />
         <ObjectDataProvider x:Key="addArticuloViewModel" ObjectInstance="{StaticResource catalogArticuloViewModel}" 
                             MethodName="CreateAddArticuloViewModel" x:Shared="False"/>
         <ObjectDataProvider x:Key="modifyArticuloViewModel" ObjectInstance="{StaticResource catalogArticuloViewModel}" 

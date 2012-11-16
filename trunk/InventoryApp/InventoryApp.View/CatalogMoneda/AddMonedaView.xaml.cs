@@ -21,6 +21,7 @@ namespace InventoryApp.View.CatalogMoneda
         public AddMonedaView()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtNomreMoneda);
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)

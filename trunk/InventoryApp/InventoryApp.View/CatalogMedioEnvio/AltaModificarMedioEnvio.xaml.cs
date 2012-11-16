@@ -21,6 +21,7 @@ namespace InventoryApp.View.CatalogMedioEnvio
         public AltaModificarMedioEnvio()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtNombreMedioEnvio);
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

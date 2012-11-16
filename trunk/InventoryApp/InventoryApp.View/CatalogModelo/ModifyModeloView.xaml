@@ -30,13 +30,13 @@
         </Border>
         <Button Content="Guardar" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnAgregar" 
                 VerticalAlignment="Stretch" Width="75" Command="{Binding ModifyItemCommand,Mode=OneWay}" 
-                Click="btnAgregar_Click" Grid.Column="1" />
+                Click="btnAgregar_Click" Grid.Column="1" TabIndex="1" />
         <Button Content="Cancelar" Grid.Column="2" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="5,0" 
                 Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
         <Label Content="Nombre Modelo :" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,24,0,8" Name="lblNombreStatus" 
                VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="2" />
         <TextBox MaxLength="254" Grid.Column="2" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="0,27,0,0" 
-                 Name="txtNomreStatus" VerticalAlignment="Stretch" Width="120" 
+                 Name="txtNomreStatus" VerticalAlignment="Stretch" Width="120"  TabIndex="0"
                  Text="{Binding Modelo.ModeloName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </Window>

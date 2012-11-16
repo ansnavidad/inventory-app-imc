@@ -21,6 +21,7 @@ namespace InventoryApp.View.CatalogEquipo
         public AddEquipoView()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtNomreStatus);
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)

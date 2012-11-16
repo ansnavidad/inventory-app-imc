@@ -21,6 +21,8 @@ namespace InventoryApp.View.CatalogMarca
         public ModifyMarcaView()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtNomreStatus);
+            this.txtNomreStatus.SelectAll();
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)

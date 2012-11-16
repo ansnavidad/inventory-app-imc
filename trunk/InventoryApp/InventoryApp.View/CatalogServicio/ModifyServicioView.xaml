@@ -43,6 +43,6 @@
                  HorizontalAlignment="Left" Margin="4,24,0,3"
                  Name="txtNomreServicio" VerticalAlignment="Stretch" Width="120"
                  Text="{Binding ModiServicio.ServicioName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                 MaxLength="254"/>
+                 MaxLength="128"/>
     </Grid>
 </Window>

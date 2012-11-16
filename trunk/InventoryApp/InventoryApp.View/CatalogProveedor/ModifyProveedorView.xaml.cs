@@ -21,6 +21,7 @@ namespace InventoryApp.View.CatalogProveedor
         public ModifyProveedorView()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.textBoxNombre);
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)

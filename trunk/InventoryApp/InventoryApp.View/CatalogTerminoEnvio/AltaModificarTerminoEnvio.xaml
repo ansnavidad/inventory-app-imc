@@ -43,7 +43,8 @@
         <TextBox Height="23" HorizontalAlignment="Right" Margin="0,7,19,0" Name="textBoxTermino" VerticalAlignment="Top" Width="124" 
                  Text="{Binding TerminoEnvio.Termino, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="512" Grid.Column="2" Grid.Row="2" />
         <Label Content="Significado :" Height="28" HorizontalAlignment="Left" Margin="69,5,0,0" Name="label4" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="3,7,0,0" Name="textBoxSignificado" VerticalAlignment="Top" Width="124" Text="{Binding TerminoEnvio.Significado, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="1024" Grid.Column="2" Grid.Row="3" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="3,7,0,0" Name="textBoxSignificado" VerticalAlignment="Top" Width="124" Text="{Binding TerminoEnvio.Significado, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                 MaxLength="2024" Grid.Column="2" Grid.Row="3" />
         <Label Content="Genera Lotes :" Grid.Column="1" Margin="58,6,133,4" Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="2"></Label>
         <CheckBox Height="16" HorizontalAlignment="Left" Margin="8,14,0,0" Name="checkBox1" VerticalAlignment="Top" IsChecked="{Binding TerminoEnvio.GeneraLotes , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="4" />
     </Grid>

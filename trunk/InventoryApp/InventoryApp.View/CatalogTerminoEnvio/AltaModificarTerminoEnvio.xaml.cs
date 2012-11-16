@@ -21,6 +21,7 @@ namespace InventoryApp.View.CatalogTerminoEnvio
         public AltaModificarTerminoEnvio()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.textBoxNombre);
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

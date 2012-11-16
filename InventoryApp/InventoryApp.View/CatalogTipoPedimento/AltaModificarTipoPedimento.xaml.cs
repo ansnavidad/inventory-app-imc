@@ -21,6 +21,7 @@ namespace InventoryApp.View.CatalogTipoPedimento
         public AltaModificarTipoPedimento()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.textBoxSignificado);
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)

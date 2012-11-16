@@ -39,10 +39,8 @@
                 Click="btnCancelar_Click" />
         <Label Content="Nombre Unidad :" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,21,148,1" Name="lblNombreUnidad" 
                VerticalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="2" />
-        <TextBox Grid.Column="2" Grid.Row="1" Height="23"
-                 HorizontalAlignment="Left" Margin="3,24,0,3"
-                 Name="txtNombreUnidad" VerticalAlignment="Stretch" Width="120"
-                 Text="{Binding ModiUnidad.UnidadName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                 MaxLength="254"/>
+        <TextBox Grid.Column="2" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="3,24,0,3"
+                 Name="txtNombreUnidad" VerticalAlignment="Stretch" Width="120" MaxLength="32"
+                 Text="{Binding ModiUnidad.UnidadName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

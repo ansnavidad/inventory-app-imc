@@ -45,10 +45,9 @@
                 <DataGridTextColumn Header="Cliente" Width="*" x:Name="nombreCliente" Binding="{Binding Path=CLIENTE1}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-            <Button Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="112,4,62,4" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" Grid.Column="2" />
-            <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch"
-                    Margin="21,4,154,3" Name="btnEliminar" VerticalAlignment="Stretch"
-                    Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteClienteCommand,Mode=OneWay}" Grid.Column="2" />
-
+        <Button Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="112,4,62,4" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" Grid.Column="2" />
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch"
+                Margin="21,4,154,3" Name="btnEliminar" VerticalAlignment="Stretch"
+                Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteClienteCommand,Mode=OneWay}" Grid.Column="2" />
     </Grid>
 </UserControl>

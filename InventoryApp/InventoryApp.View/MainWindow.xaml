@@ -5,7 +5,7 @@
         Title="Sistema de almacén" Height="500"  Width="700">
     <Grid Name="mainGrid" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="180" />
+            <ColumnDefinition Width="205" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -13,7 +13,7 @@
             <RowDefinition Height="40" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10" Grid.Row="2" Grid.Column="1">
+        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,13,0,0" Grid.Row="2" Grid.Column="1">
             <DockPanel Name="contentDockPanel">
                 <ContentControl  Name="contentControl1" Height="{Binding ElementName=svContainer, Path=ActualHeight}" Width="{Binding ElementName=svContainer, Path=ActualWidth}"  Content="{Binding CurrentPageViewModel}"/>
             </DockPanel>
@@ -38,7 +38,7 @@
             
         </Grid>
 
-        <Grid Grid.Row="2"  HorizontalAlignment="Stretch" Margin="2,13,0,11" Name="grid2" Height="AUTO" VerticalAlignment="Stretch">
+        <Grid Grid.Row="2"  HorizontalAlignment="Stretch" Margin="2,12,0,0" Name="grid2" Height="AUTO" VerticalAlignment="Stretch">
             <ContentControl>
                 <my:MenuView DataContext="{Binding MenuViewModel}" />
             </ContentControl>

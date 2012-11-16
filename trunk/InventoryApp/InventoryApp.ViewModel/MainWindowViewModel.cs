@@ -255,7 +255,7 @@ namespace InventoryApp.ViewModel
                     case "Salida RMA":
                         page = new Salidas.SalidaRMAViewModel();
                         break;
-                    case "Salida Revisión'":
+                    case "Salida Revisión":
                         page = new Salidas.SalidaRevisionViewModel();
                         break;
                     case "Salida Pruebas":

@@ -67,5 +67,23 @@ namespace InventoryApp.View.Salidas
             comboBoxAlmacenDestino.SelectedItem = null;
             comboBoxProveedorDestino.SelectedItem = null;
         }
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("La Salida con el folio " + this.textBlockFolio.Text + "\n se ha registrado exitosamente.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            this.Content = null;
+            this.Content = new SalidaObsequio();
+            this.DataContext = new SalidaObsequioViewModel();
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Se ha cancelado la salida.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            this.Content = null;
+            this.Content = new SalidaObsequio();
+            this.DataContext = new SalidaObsequioViewModel();
+        }
     }
 }

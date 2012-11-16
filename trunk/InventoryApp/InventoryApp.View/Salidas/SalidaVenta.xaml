@@ -61,8 +61,8 @@
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,827,370,0" Name="textBlockCantidad" Text="{Binding MovimientoModel.CantidadItems, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="97" />
             <Button Content="AGREGAR ITEMS" Height="28" HorizontalAlignment="Right" Margin="0,815,142,0" Name="buttonAgregarItems" VerticalAlignment="Top" Width="120" Click="buttonAgregarItems_Click" />
             <Button Content="BORRAR ITEMS" Height="28" HorizontalAlignment="Right" Margin="0,815,14,0" Name="button1" VerticalAlignment="Top" Width="120" Command="{Binding DeleteItemCommand, Mode=OneWay}"/>
-            <Button Command="{Binding AddItemCommand, Mode=OneWay}" Content="GUARDAR SALIDA" Height="39" HorizontalAlignment="Right" Margin="0,1187,419,0" Name="btnAgregar" VerticalAlignment="Top" Width="119" />
-            <Button Content="CANCELAR SALIDA" Height="39" HorizontalAlignment="Right" Margin="0,1187,76,0" Name="btnCancelar" VerticalAlignment="Top" Width="119" />
+            <Button Command="{Binding AddItemCommand, Mode=OneWay}" Content="GUARDAR SALIDA" Height="39" HorizontalAlignment="Right" Margin="0,1187,419,0" Name="btnAgregar" VerticalAlignment="Top" Width="119" Click="btnAgregar_Click" />
+            <Button Content="CANCELAR SALIDA" Height="39" HorizontalAlignment="Right" Margin="0,1187,76,0" Name="btnCancelar" VerticalAlignment="Top" Width="119" Click="btnCancelar_Click" />
             <Label Content="Técnico instalador:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,282,246,0" Name="label3" VerticalAlignment="Top" />
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,285,120,0" Name="textBlockTecnicoI" Text="{Binding MovimientoModel.AlmacenProcedencia.TECNICO, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" />
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border5" Margin="16,641,18,679">

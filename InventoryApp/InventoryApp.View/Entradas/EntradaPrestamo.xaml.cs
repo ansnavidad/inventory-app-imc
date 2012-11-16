@@ -69,5 +69,23 @@ namespace InventoryApp.View.Entradas
                 comboBoxClienteDestino.SelectedItem = null;
             }
         }
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("La Entrada con el folio " + this.textBlockFolio.Text + "\n se ha registrado exitosamente.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            this.Content = null;
+            this.Content = new EntradaPrestamo();
+            this.DataContext = new EntradaPrestamoViewModel();
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Se ha cancelado la entrada.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            this.Content = null;
+            this.Content = new EntradaPrestamo();
+            this.DataContext = new EntradaPrestamoViewModel();
+        }
     }
 }

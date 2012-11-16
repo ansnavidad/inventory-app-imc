@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             
+             DataContext="{StaticResource salidaCorrectivoViewModel}"
              mc:Ignorable="d" 
             d:DesignHeight="1123" d:DesignWidth="622">
     <ScrollViewer>
@@ -61,8 +61,8 @@
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,703,378,0" Name="textBlockCantidad" Text="{Binding MovimientoModel.CantidadItems, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"   VerticalAlignment="Top" Width="97" />
             <Button Content="AGREGAR ITEMS" Height="28" HorizontalAlignment="Right" Margin="0,691,150,0" Name="buttonAgregarItems" VerticalAlignment="Top" Width="120" Click="buttonAgregarItems_Click" />
             <Button Content="BORRAR ITEMS" Height="28" HorizontalAlignment="Right" Margin="0,691,22,0" Name="button1" VerticalAlignment="Top" Width="120" Command="{Binding DeleteItemCommand, Mode=OneWay}"/>
-            <Button Command="{Binding AddItemCommand, Mode=OneWay}" Content="GUARDAR SALIDA" Height="39" HorizontalAlignment="Right" Margin="0,1063,427,0" Name="btnAgregar" VerticalAlignment="Top" Width="119" />
-            <Button Content="CANCELAR SALIDA" Height="39" HorizontalAlignment="Right" Margin="0,1063,84,0" Name="btnCancelar" VerticalAlignment="Top" Width="119" />
+            <Button Command="{Binding AddItemCommand, Mode=OneWay}" Content="GUARDAR SALIDA" Height="39" HorizontalAlignment="Right" Margin="0,1063,427,0" Name="btnAgregar" VerticalAlignment="Top" Width="119" Click="btnAgregar_Click" />
+            <Button Content="CANCELAR SALIDA" Height="39" HorizontalAlignment="Right" Margin="0,1063,84,0" Name="btnCancelar" VerticalAlignment="Top" Width="119" Click="btnCancelar_Click" />
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" Margin="14,1045,14,0" Name="border4" VerticalAlignment="Top"></Border>
             <Label Content="Técnico instalador:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,282,246,0" Name="label3" VerticalAlignment="Top" />
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,285,120,0" Name="textBlockTecnicoI" Text="{Binding MovimientoModel.AlmacenProcedencia.TECNICO, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" />

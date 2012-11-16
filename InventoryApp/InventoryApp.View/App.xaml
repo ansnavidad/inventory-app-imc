@@ -63,6 +63,7 @@
              xmlns:catPropiedadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogPropiedad;assembly=InventoryApp.ViewModel"
              xmlns:propiedadViews="clr-namespace:InventoryApp.View.CatalogPropiedad"
              xmlns:EntradaViewModel="clr-namespace:InventoryApp.ViewModel.Entradas;assembly=InventoryApp.ViewModel"
+             xmlns:EntradaView="clr-namespace:InventoryApp.View.Entradas"
              xmlns:SalidasViewModel="clr-namespace:InventoryApp.ViewModel.Salidas;assembly=InventoryApp.ViewModel"
              xmlns:SalidasView="clr-namespace:InventoryApp.View.Salidas"
              xmlns:TraspasosViewModel="clr-namespace:InventoryApp.ViewModel.Traspasos;assembly=InventoryApp.ViewModel"
@@ -214,8 +215,24 @@
         <ObjectDataProvider x:Key="catalogClienteViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
-        <!-- cliente -->
+        <!-- Propiedad -->
         <ObjectDataProvider x:Key="catalogPropiedadViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Entrada por Validación -->
+        <ObjectDataProvider x:Key="EntradaPorValidacionViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Entrada por Prestamo -->
+        <ObjectDataProvider x:Key="EntradaPrestamoViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Entrada por Devolución -->
+        <ObjectDataProvider x:Key="EntradaDevolucionViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Entrada por Desinstalación -->
+        <ObjectDataProvider x:Key="EntradaDesinstalacionViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
         <reciboViewModel:AddFacturaViewModel x:Key="addFacturaViewModel" />
@@ -315,6 +332,19 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type catPropiedadViewModel:CatalogPropiedadViewModel}">
             <propiedadViews:PropiedadUserControl />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type EntradaViewModel:EntradaPorValidacionViewModel}">
+            <EntradaView:EntradaValidacionRevision />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type EntradaViewModel:EntradaPrestamoViewModel}">
+            <EntradaView:EntradaPrestamo />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type EntradaViewModel:EntradaDevolucionViewModel}">
+            <EntradaView:EntradaDevolucion />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type EntradaViewModel:EntradaDesinstalacionViewModel}">
+            <EntradaView:EntradaDesinstalacion />
         </DataTemplate>
     </Application.Resources>
 </Application>

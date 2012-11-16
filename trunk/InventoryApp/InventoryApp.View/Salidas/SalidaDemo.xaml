@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             DataContext="{StaticResource salidaDemoViewModel}"
+              DataContext="{StaticResource salidaDemoViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="1123" d:DesignWidth="622" >
     <ScrollViewer>
@@ -50,10 +50,10 @@
             <TextBox Height="23" HorizontalAlignment="Right" Margin="0,597,336,0" MaxLength="254" Name="textBoxGuía" Text="{Binding MovimientoModel.Guia, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="172" />
             <Label Content="Guía:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,597,511,0" Name="label19" VerticalAlignment="Top" />
             <Label Content="Almacén Procedencia:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,262,432,0" Name="label6" VerticalAlignment="Top" />
-            <RadioButton Content="Almacén" Height="16" HorizontalAlignment="Left" Margin="231,443,0,0" Name="radioButtonAlmacén" VerticalAlignment="Top" Checked="radioButtonAlmacén_Checked" />
+            <RadioButton Content="Almacén" HorizontalAlignment="Left" Margin="231,443,0,671" Name="radioButtonAlmacén" Checked="radioButtonAlmacén_Checked" Visibility="Hidden" />
             <RadioButton Content="Cliente" Height="16" HorizontalAlignment="Left" Margin="429,443,0,0" Name="radioButtonCliente" VerticalAlignment="Top" Checked="radioButtonCliente_Checked" />
             <RadioButton Content="Proveedor" Height="16" HorizontalAlignment="Right" Margin="0,443,521,0" Name="radioButtonProveedor" VerticalAlignment="Top" Checked="radioButtonProveedor_Checked" IsChecked="True"/>
-            <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,465,216,0" Name="comboBoxAlmacenDestino" VerticalAlignment="Top" Width="159" IsEnabled="False" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenDestinoModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenDestino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN"/>
+            <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,465,216,0" Name="comboBoxAlmacenDestino" VerticalAlignment="Top" Width="159" IsEnabled="False" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenDestinoModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenDestino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN" Visibility="Hidden" />
             <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,465,18,0" Name="comboBoxClienteDestino" VerticalAlignment="Top" Width="159" IsEnabled="False" DisplayMemberPath="CLIENTE1" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogClienteDestinoModel.Cliente}"  SelectedItem="{Binding MovimientoModel.ClienteDestino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_CLIENTE"/>
             <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,465,416,0" Name="comboBoxProveedorDestino" VerticalAlignment="Top" Width="159" DisplayMemberPath="PROVEEDOR_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogProveedorDestinoModel.Proveedor}"  SelectedItem="{Binding MovimientoModel.ProveedorDestino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_PROVEEDOR" SelectedIndex="0"/>
             <Label Content="Destino:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,387,10,0" Name="label17" VerticalAlignment="Top" />

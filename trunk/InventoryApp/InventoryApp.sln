@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{A9260538-7D0E-4513-AC8A-A54A995AAA7A}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -97,6 +99,12 @@ Global
 		{7F03F887-13C3-49F5-95F1-D41A81EA1D1D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7F03F887-13C3-49F5-95F1-D41A81EA1D1D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7F03F887-13C3-49F5-95F1-D41A81EA1D1D}.Release|x86.ActiveCfg = Release|Any CPU
+		{A9260538-7D0E-4513-AC8A-A54A995AAA7A}.Debug|Any CPU.ActiveCfg = Debug
+		{A9260538-7D0E-4513-AC8A-A54A995AAA7A}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{A9260538-7D0E-4513-AC8A-A54A995AAA7A}.Debug|x86.ActiveCfg = Debug
+		{A9260538-7D0E-4513-AC8A-A54A995AAA7A}.Release|Any CPU.ActiveCfg = Release
+		{A9260538-7D0E-4513-AC8A-A54A995AAA7A}.Release|Mixed Platforms.ActiveCfg = Release
+		{A9260538-7D0E-4513-AC8A-A54A995AAA7A}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

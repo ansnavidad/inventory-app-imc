@@ -18,8 +18,8 @@
         <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,63,352,0" Name="textBlock2" Text="{Binding MovimientoModel.FechaMovimiento, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="200" />
         <Label Content="TT:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,148,537,0" Name="label5" VerticalAlignment="Top" />
         <Label Content="Rebice:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,119,537,0" Name="label6" VerticalAlignment="Top" />
-        <TextBox TabIndex="0" Height="23" HorizontalAlignment="Right" Margin="0,121,400,0" MaxLength="254" Name="txtRecibe"  Text="{Binding MovimientoModel.Recibe, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="131" VerticalAlignment="Top" />
-        <TextBox TabIndex="1" Height="23" HorizontalAlignment="Right" Margin="0,153,400,0" MaxLength="254" Name="textBoxTT" Text="{Binding MovimientoModel.Tt, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="131" VerticalAlignment="Top" />
+        <TextBox TabIndex="0" Height="23" HorizontalAlignment="Right" Margin="0,121,400,0" MaxLength="512" Name="txtRecibe"  Text="{Binding MovimientoModel.Recibe, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="131" VerticalAlignment="Top" />
+        <TextBox TabIndex="1" Height="23" HorizontalAlignment="Right" Margin="0,153,400,0" MaxLength="32" Name="textBoxTT" Text="{Binding MovimientoModel.Tt, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="131" VerticalAlignment="Top" />
         
         
 

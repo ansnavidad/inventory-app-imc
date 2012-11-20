@@ -46,28 +46,28 @@
                      HorizontalAlignment="Left" Margin="3,14,0,3"
                      Name="txtNomreAlmacen" VerticalAlignment="Stretch" Width="120"
                      Text="{Binding ModiAlmacen.AlmacenName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                     MaxLength="254" />
+                     MaxLength="512" />
         <Label Content="Contacto :" Grid.Row="2" Height="25" HorizontalAlignment="Right" Name="lblEmpresa" 
                VerticalAlignment="Bottom" Grid.Column="1" />
         <TextBox Grid.Column="2" Grid.Row="2" Height="23"
                      HorizontalAlignment="Left" Margin="3,5,0,2"
                      Name="txtContacto" VerticalAlignment="Stretch" Width="120"
                      Text="{Binding ModiAlmacen.Contacto, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                     MaxLength="254" />
+                     MaxLength="512" />
         <Label Content="Dirección :" Grid.Row="3" Height="25" HorizontalAlignment="Right" Margin="0,0,1,2" Name="lblDepartamento" 
                VerticalAlignment="Bottom" Grid.Column="1" />
         <TextBox Grid.Column="2" Grid.Row="3" Height="23"
                      HorizontalAlignment="Left" Margin="4,5,0,2"
                      Name="txtDireccion" VerticalAlignment="Stretch" Width="120"
                      Text="{Binding ModiAlmacen.Direccion, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                     MaxLength="254" />
+                     MaxLength="1024" />
         <Label Content="Técnico :" Grid.Row="4" Height="28" HorizontalAlignment="Right" Margin="0,3,0,29" Name="lblTecnico" 
                VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="2" />
         <TextBox Grid.Column="2" Grid.Row="4" Height="23"
                      HorizontalAlignment="Left" Margin="4,4,0,3"
                      Name="txtTecnico" VerticalAlignment="Stretch" Width="120"
                      Text="{Binding ModiAlmacen.Tecnico, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                     MaxLength="128" />
+                     MaxLength="512" />
         <Label Content="Ciudad :" Grid.Row="5" Height="28" HorizontalAlignment="Right" Margin="0,2,0,0" Name="lblValidador" 
                VerticalAlignment="Stretch" Grid.Column="1" />
         <ComboBox SelectedItem="{Binding ModiAlmacen.Ciudad,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"

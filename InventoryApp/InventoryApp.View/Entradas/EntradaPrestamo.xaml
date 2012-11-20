@@ -17,8 +17,8 @@
         <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,63,352,0" Name="textBlock2" Text="{Binding MovimientoModel.FechaMovimiento, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="200" />
         <Label Content="TT:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,148,537,0" Name="label5" VerticalAlignment="Top" />
         <Label Content="Rebice:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,119,537,0" Name="label6" VerticalAlignment="Top" />
-        <TextBox TabIndex="0" Height="23" HorizontalAlignment="Right" Margin="0,121,400,0" MaxLength="254" Name="txtRecibe"  Text="{Binding MovimientoModel.Recibe, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="131" VerticalAlignment="Top" />
-        <TextBox TabIndex="1" Height="23" HorizontalAlignment="Right" Margin="0,153,400,0" MaxLength="254" Name="textBoxTT" Text="{Binding MovimientoModel.Tt, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="131" VerticalAlignment="Top" />
+        <TextBox TabIndex="0" Height="23" HorizontalAlignment="Right" Margin="0,121,400,0" MaxLength="512" Name="txtRecibe"  Text="{Binding MovimientoModel.Recibe, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="131" VerticalAlignment="Top" />
+        <TextBox TabIndex="1" Height="23" HorizontalAlignment="Right" Margin="0,153,400,0" MaxLength="32" Name="textBoxTT" Text="{Binding MovimientoModel.Tt, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="131" VerticalAlignment="Top" />
 
 
 
@@ -57,7 +57,7 @@
         <ComboBox TabIndex="8" DisplayMemberPath="TRANSPORTE_NAME" Height="23" HorizontalAlignment="Right" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogTransporteModel.Transporte}" Margin="0,365,421,0" Name="comboBox1" SelectedIndex="0" SelectedItem="{Binding MovimientoModel.Transporte, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_TRANSPORTE" VerticalAlignment="Top" Width="159" />
         <Label Content="Transporte:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,343,504,0" Name="label4" VerticalAlignment="Top" />
         <TextBox TabIndex="9" Height="23" HorizontalAlignment="Right" Margin="0,365,222,0" MaxLength="254" Name="textBox1" Text="{Binding MovimientoModel.Contacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="159" />
-        <TextBox TabIndex="10" Height="23" HorizontalAlignment="Right" Margin="0,365,25,0" MaxLength="254" Name="textBox2" Text="{Binding MovimientoModel.Guia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="159" />
+        <TextBox TabIndex="10" Height="23" HorizontalAlignment="Right" Margin="0,365,25,0" MaxLength="32" Name="textBox2" Text="{Binding MovimientoModel.Guia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="159" />
         <Label Content="Contacto:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,343,316,0" Name="label10" VerticalAlignment="Top" />
         <Label Content="Guia:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,343,144,0" Name="label11" VerticalAlignment="Top" />
     </Grid>

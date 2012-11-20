@@ -39,7 +39,7 @@
         <TextBox Height="23" HorizontalAlignment="Left" Margin="6,17,0,0" MaxLength="3" Name="textBoxNombre" 
                  Text="{Binding TerminoEnvio.Clave, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="39" Grid.Column="2" Grid.Row="1" />
         <Label Content="Término :" Height="28" HorizontalAlignment="Left" Margin="84,4,0,0" Name="label3" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" />
-        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,7,17,0" Name="textBoxTermino" 
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,6,14,0" Name="textBoxTermino" 
                  Text="{Binding TerminoEnvio.Termino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="124" 
                  MaxLength="512" Grid.Column="2" Grid.Row="2" />
         <Label Content="Significado :" Height="30" HorizontalAlignment="Left" Margin="70,3,0,0" Name="label4" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" />

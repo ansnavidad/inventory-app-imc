@@ -43,6 +43,6 @@
                      HorizontalAlignment="Left" Margin="2,23,0,4"
                      Name="txtNomrePropiedad" VerticalAlignment="Stretch" Width="120" 
                      Text="{Binding AddPropiedad.PropiedadName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                     MaxLength="254" />
+                     MaxLength="512" />
     </Grid>
 </Window>

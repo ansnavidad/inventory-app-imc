@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             
+             DataContext="{StaticResource salidaVentaViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="1323" d:DesignWidth="662">
-    <ScrollViewer>
+    
         <Grid Name="gridAlta" Width="622">
 
             <!--<Label Content="ALTA DE ITEM STATUS" Height="28" HorizontalAlignment="Stretch" Margin="5,0" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184"  />-->
@@ -85,5 +85,5 @@
             <TextBox Height="23" HorizontalAlignment="Right" Margin="0,655,398,0" MaxLength="254" Name="textBox6" Text="{Binding FacturaVentaModel.Folio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="106" />
             <Label Content="Folio Factura:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Left" Margin="16,653,0,0" Name="label23" VerticalAlignment="Top" />
         </Grid>
-    </ScrollViewer>
+  
 </UserControl>

@@ -6,7 +6,7 @@
              DataContext="{StaticResource salidaConfiguracionViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="1123" d:DesignWidth="622">
-    <ScrollViewer>
+   
         <Grid Name="gridAlta" Width="622">
 
             <!--<Label Content="ALTA DE ITEM STATUS" Height="28" HorizontalAlignment="Stretch" Margin="5,0" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184"  />-->
@@ -72,5 +72,4 @@
             <TextBox Height="23" HorizontalAlignment="Right" Margin="0,225,41,0" MaxLength="254" Name="textBox2" Text="{Binding MovimientoModel.PedimentoExpo, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="161" />
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border6" Margin="25,527,15,600" />
         </Grid>
-    </ScrollViewer>
 </UserControl>

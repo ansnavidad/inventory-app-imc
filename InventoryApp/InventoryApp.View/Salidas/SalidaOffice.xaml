@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              DataContext="{StaticResource salidaOfficeViewModel}"
              d:DesignHeight="953" d:DesignWidth="622">
-    <ScrollViewer>
+  
         <Grid Name="gridAlta" Width="622">
 
             <!--<Label Content="ALTA DE ITEM STATUS" Height="28" HorizontalAlignment="Stretch" Margin="5,0" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184"  />-->
@@ -58,5 +58,5 @@
             </Border>
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border6" Margin="19,372,21,755" />
         </Grid>
-    </ScrollViewer>
+  
 </UserControl>

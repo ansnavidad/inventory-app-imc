@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              DataContext="{StaticResource salidaRevisionViewModel}"
            d:DesignHeight="906" d:DesignWidth="622">
-    <ScrollViewer>
+
         <Grid Name="gridAlta" Width="622">
 
             <!--<Label Content="ALTA DE ITEM STATUS" Height="28" HorizontalAlignment="Stretch" Margin="5,0" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184"  />-->
@@ -55,5 +55,5 @@
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,165,104,0" Name="textBlockTecnicoI" Text="{Binding MovimientoModel.AlmacenProcedencia.TECNICO, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="148" />
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border6" Margin="25,431,15,696" />
         </Grid>
-    </ScrollViewer>
+ 
 </UserControl>

@@ -66,14 +66,18 @@
         <Label Content="RFC:" Height="28" HorizontalAlignment="Left" Grid.Row="7" Grid.Column="2" Margin="35,12,0,0" Name="label11" VerticalAlignment="Top" />
         <TextBox Height="23" TabIndex="9" HorizontalAlignment="Left" Margin="69,13,0,0" Grid.Row="7" Name="textBox9" VerticalAlignment="Top" Width="124" 
                  Text="{Binding ProveedorModel.RFC, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="16" Grid.Column="2" />
-        <ComboBox Height="23" TabIndex="5" HorizontalAlignment="Left" Margin="76,12,0,0" Grid.Row="5" Name="comboBox1" VerticalAlignment="Top" Width="120" 
-                  SelectedItem="{Binding ProveedorModel.Pais,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-                  ItemsSource="{Binding CatalogPaisModel.Pais, Mode=OneWay}" DisplayMemberPath="PAIS" SelectedValuePath="UNID_PAIS" 
-                  SelectedIndex="0" Grid.Column="1" />
-        <ComboBox Height="23" TabIndex="6" HorizontalAlignment="Left" Margin="73,12,0,0" Grid.Row="5" Name="comboBox2" VerticalAlignment="Top" Width="120" 
-                  SelectedItem="{Binding ProveedorModel.Ciudad,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-                  ItemsSource="{Binding CatalogCiudadModel.Ciudad, Mode=OneWay}" DisplayMemberPath="CIUDAD1" 
-                  SelectedValuePath="UNID_CIUDAD" SelectedIndex="0" Grid.Column="2" />
+        <ComboBox SelectedItem="{Binding ProveedorModel.Pais,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                  ItemsSource="{Binding CatalogPaisModel.Pais, Mode=OneWay}"
+                  Text="{Binding ProveedorModel.Pais.PAIS,Mode=TwoWay}"
+                  DisplayMemberPath="PAIS" SelectedValuePath="UNID_PAIS" 
+                  Height="23" TabIndex="5" HorizontalAlignment="Left" Margin="76,12,0,0"
+                  Grid.Row="5" Name="comboBox1" VerticalAlignment="Top" Width="120" Grid.Column="1" />
+        <ComboBox SelectedItem="{Binding ProveedorModel.Ciudad,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                  ItemsSource="{Binding CatalogCiudadModel.Ciudad, Mode=OneWay}" 
+                  Text="{Binding ProveedorModel.Ciudad.CIUDAD1,Mode=TwoWay}"
+                  DisplayMemberPath="CIUDAD1" SelectedValuePath="UNID_CIUDAD" 
+                  Height="23" TabIndex="6" HorizontalAlignment="Left" Grid.Column="2" 
+                  Margin="73,12,0,0" Grid.Row="5" Name="comboBox2" VerticalAlignment="Top" Width="120" />
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False"
                   HorizontalAlignment="Left" Margin="35,23,0,0" Name="dtGridCategoria"
                   VerticalAlignment="Top" ItemsSource="{Binding CatalogCategoriaModel.Categoria}"

@@ -11,7 +11,7 @@ namespace InventoryApp.Model
     public class CatalogAlmacenModel : INotifyPropertyChanged
     {
         private FixupCollection<DeleteAlmacen> _almacen;
-        private ALMACEN _selectedAlmacen;
+        private DeleteAlmacen _selectedAlmacen;
         private IDataMapper _dataMapper;
 
         public FixupCollection<DeleteAlmacen> Almacen
@@ -33,7 +33,7 @@ namespace InventoryApp.Model
             }
         }
 
-        public ALMACEN SelectedAlmacen
+        public DeleteAlmacen SelectedAlmacen
         {
             get
             {
@@ -87,7 +87,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new AlmacenDataMapper();
             this._almacen = new FixupCollection<DeleteAlmacen>();
-            this._selectedAlmacen = new ALMACEN();
+            //this._selectedAlmacen = new ALMACEN();
             this.loadItems();
         }
 

@@ -52,11 +52,12 @@
                    IsChecked="{Binding ModiAlmacenEmail.IsDefault}"/>
         <Label Content="Almacén :" Grid.Row="3" Height="28" HorizontalAlignment="Right" Margin="0,3,1,19" Name="lblAlmacen" 
                VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="2" />
-        <ComboBox Grid.Row="3" Height="23" HorizontalAlignment="Left"
-                      Margin="3,4,0,3" Name="cbAlmacen"
-                      VerticalAlignment="Stretch" Width="120"
-                      SelectedItem="{Binding ModiAlmacenEmail.Almacen,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                      ItemsSource="{Binding CatalogAlmacenModel.Almacen, Mode=OneWay}"
-                      DisplayMemberPath="ALMACEN_NAME" SelectedValuePath="UNID_ALMACEN" SelectedIndex="0" Grid.Column="2" />
+        <ComboBox SelectedItem="{Binding ModiAlmacenEmail.Almacen,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding CatalogAlmacenModel.Almacen, Mode=OneWay}"
+                  Text="{Binding ModiAlmacenEmail.Almacen.ALMACEN_NAME,Mode=TwoWay}"
+                  DisplayMemberPath="ALMACEN_NAME" SelectedValuePath="UNID_ALMACEN"
+                  Grid.Column="2" Margin="3,4,0,3" Name="cbAlmacen"
+                  VerticalAlignment="Stretch" Width="120"
+                  Grid.Row="3" Height="23" HorizontalAlignment="Left"/>
     </Grid>
 </Window>

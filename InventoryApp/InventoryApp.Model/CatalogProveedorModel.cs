@@ -11,7 +11,7 @@ namespace InventoryApp.Model
     public class CatalogProveedorModel : INotifyPropertyChanged
     {
         private FixupCollection<DeleteProveedor> _proveedor;
-        private PROVEEDOR _selectedProveedor;
+        private DeleteProveedor _selectedProveedor;
         private IDataMapper _dataMapper;
 
         public FixupCollection<DeleteProveedor> Proveedor
@@ -33,7 +33,7 @@ namespace InventoryApp.Model
             }
         }
 
-        public PROVEEDOR SelectedProveedor
+        public DeleteProveedor SelectedProveedor
         {
             get
             {
@@ -87,7 +87,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new ProveedorDataMapper();
             this._proveedor = new FixupCollection<DeleteProveedor>();
-            this._selectedProveedor = new PROVEEDOR();
+            //this._selectedProveedor = new PROVEEDOR();
             this.loadItems();
         }
 

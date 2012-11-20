@@ -83,10 +83,10 @@ namespace InventoryApp.ViewModel.CatalogArticulo
             {
                 articuloModel.ArticuloName = this._catalogArticuloModel.SelectedArticulo.ARTICULO1;
                 articuloModel.UnidArticulo = this._catalogArticuloModel.SelectedArticulo.UNID_ARTICULO;
-                articuloModel.Categoria = this._catalogArticuloModel.SelectedArticulo.CATEGORIA;
-                articuloModel.Marca = this._catalogArticuloModel.SelectedArticulo.MARCA;
-                articuloModel.Modelo = this._catalogArticuloModel.SelectedArticulo.MODELO;
-                articuloModel.Equipo = this._catalogArticuloModel.SelectedArticulo.EQUIPO;
+                articuloModel.Categoria = this._catalogArticuloModel.SelectedArticulo.Categoria;
+                articuloModel.Marca = this._catalogArticuloModel.SelectedArticulo.Marca;
+                articuloModel.Modelo = this._catalogArticuloModel.SelectedArticulo.Modelo;
+                articuloModel.Equipo = this._catalogArticuloModel.SelectedArticulo.Equipo;
 
             }
             return new ModifyArticuloViewModel(this, articuloModel);

@@ -70,12 +70,13 @@
                      MaxLength="128" />
         <Label Content="Ciudad :" Grid.Row="5" Height="28" HorizontalAlignment="Right" Margin="0,2,0,0" Name="lblValidador" 
                VerticalAlignment="Stretch" Grid.Column="1" />
-        <ComboBox Grid.Row="5" Height="23" HorizontalAlignment="Left"
-                      Margin="5,5,0,2" Name="cbCiudad"
-                      VerticalAlignment="Stretch" Width="120"
-                      SelectedItem="{Binding ModiAlmacen.Ciudad,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                      ItemsSource="{Binding CatalogCiudadModel.Ciudad, Mode=OneWay}"
-                      DisplayMemberPath="CIUDAD1" SelectedValuePath="UNID_CIUDAD"  Grid.Column="2"
-                      SelectedIndex="0"/>
+        <ComboBox SelectedItem="{Binding ModiAlmacen.Ciudad,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding CatalogCiudadModel.Ciudad, Mode=OneWay}"
+                  Text="{Binding ModiAlmacen.Ciudad.CIUDAD1,Mode=TwoWay}"
+                  DisplayMemberPath="CIUDAD1" SelectedValuePath="UNID_CIUDAD"
+                  Grid.Row="5" Height="23" HorizontalAlignment="Left"
+                  Margin="5,5,0,2" Name="cbCiudad"
+                  VerticalAlignment="Stretch" Width="120" Grid.Column="2"
+                  />
     </Grid>
 </Window>

@@ -11,7 +11,7 @@ namespace InventoryApp.Model
     public class CatalogArticuloModel : INotifyPropertyChanged
     {
         private FixupCollection<DeleteArticulo> _articulos;
-        private ARTICULO _selectedarticulo;
+        private DeleteArticulo _selectedarticulo;
         private IDataMapper _dataMapper;
 
         public FixupCollection<DeleteArticulo> Articulos
@@ -33,7 +33,7 @@ namespace InventoryApp.Model
             }
         }
 
-        public ARTICULO SelectedArticulo
+        public DeleteArticulo SelectedArticulo
         {
             get
             {
@@ -106,7 +106,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new ArticuloDataMapper();
             this._articulos = new FixupCollection<DeleteArticulo>();
-            this._selectedarticulo = new ARTICULO();
+            //this._selectedarticulo = new DeleteArticulo();
             this.loadItems();
             //this.loadItems(new ItemDataMapper());
         }

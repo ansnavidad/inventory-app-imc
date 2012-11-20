@@ -83,7 +83,7 @@ namespace InventoryApp.ViewModel.CatalogTransporte
             {
                 transporteModel.TransporteName = this._catalogTransporteModel.SelectedTransporte.TRANSPORTE_NAME;
                 transporteModel.UnidTransporte = this._catalogTransporteModel.SelectedTransporte.UNID_TRANSPORTE;
-                transporteModel.TipoEmpresa = this._catalogTransporteModel.SelectedTransporte.TIPO_EMPRESA;
+                transporteModel.TipoEmpresa = this._catalogTransporteModel.SelectedTransporte.TipoEmpresa;
                 
 
             }

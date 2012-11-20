@@ -10,7 +10,7 @@ namespace InventoryApp.Model
 {
     public class CatalogSolicitanteModel : INotifyPropertyChanged
     {
-        private SOLICITANTE _selectedSolicitante;
+        private DeleteSolicitante _selectedSolicitante;
         private FixupCollection<DeleteSolicitante> _solicitante;
         private IDataMapper _dataMapper;
 
@@ -33,7 +33,7 @@ namespace InventoryApp.Model
             }
         }
 
-        public SOLICITANTE SelectedSolicitante
+        public DeleteSolicitante SelectedSolicitante
         {
             get
             {
@@ -56,7 +56,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new SolicitanteDataMapper();
             this._solicitante = new FixupCollection<DeleteSolicitante>();
-            this._selectedSolicitante = new SOLICITANTE();
+            //this._selectedSolicitante = new SOLICITANTE();
             this.loadSolicitante();
         }
         public void loadSolicitante()

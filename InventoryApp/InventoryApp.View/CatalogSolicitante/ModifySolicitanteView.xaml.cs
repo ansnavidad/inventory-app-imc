@@ -25,8 +25,6 @@ namespace InventoryApp.View.CatalogSolicitante
             this.txtNomreSolicitante.SelectAll();
             this.txtEmail.SelectAll();
             this.txtValidador.SelectAll();
-            cbEmpresa.SelectedIndex = 0;
-            cbDepartamento.SelectedIndex = 0;
         }
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)

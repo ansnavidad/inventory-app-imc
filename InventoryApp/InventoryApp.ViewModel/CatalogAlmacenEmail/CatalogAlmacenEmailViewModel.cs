@@ -81,7 +81,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacenEmail
                 almacenEmailModel.UnidAlmacenEmail = this._catalogAlmacenEmailModel.SelectedAlmacenEmail.UNID_ALMACEN_EMAIL;
                 almacenEmailModel.Email = this._catalogAlmacenEmailModel.SelectedAlmacenEmail.EMAIL;
                 almacenEmailModel.IsDefault = this._catalogAlmacenEmailModel.SelectedAlmacenEmail.IS_DEFAULT;
-                almacenEmailModel.Almacen = this._catalogAlmacenEmailModel.SelectedAlmacenEmail.ALMACEN;
+                almacenEmailModel.Almacen = this._catalogAlmacenEmailModel.SelectedAlmacenEmail.Almacen;
             }
             return new ModifyAlmacenEmailViewModel(this, almacenEmailModel);
         }

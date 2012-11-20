@@ -11,7 +11,7 @@ namespace InventoryApp.Model
     public class CatalogProveedorCuentaModel : INotifyPropertyChanged
     {
         private FixupCollection<DeleteProveedorCuenta> _proveedorCuenta;
-        private PROVEEDOR_CUENTA _selectedProveedorCuenta;
+        private DeleteProveedorCuenta _selectedProveedorCuenta;
         private IDataMapper _dataMapper;
 
         public FixupCollection<DeleteProveedorCuenta> ProveedorCuenta
@@ -33,7 +33,7 @@ namespace InventoryApp.Model
             }
         }
 
-        public PROVEEDOR_CUENTA SelectedProveedorCuenta
+        public DeleteProveedorCuenta SelectedProveedorCuenta
         {
             get
             {
@@ -87,7 +87,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new ProveedorCuentaDataMapper();
             this._proveedorCuenta = new FixupCollection<DeleteProveedorCuenta>();
-            this._selectedProveedorCuenta = new PROVEEDOR_CUENTA();
+            //this._selectedProveedorCuenta = new PROVEEDOR_CUENTA();
             this.loadItems();
         }
 

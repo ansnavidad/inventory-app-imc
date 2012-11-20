@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
 using System.Data;
+using System.Data.Entity;
 
 namespace InventoryApp.DAL
 {
@@ -93,9 +94,11 @@ namespace InventoryApp.DAL
             if (element != null)
             {
                 using (var entity = new TAE2Entities())
-                {
+                { 
                     PROVEEDOR proveedor = (PROVEEDOR)element;
                     proveedor.UNID_PROVEEDOR = UNID.getNewUNID();
+
+                    
                     //foreach (var item in proveedor.CATEGORIAs)
                     //{
                     //    entity.ObjectStateManager.ChangeObjectState(item, EntityState.Unchanged);

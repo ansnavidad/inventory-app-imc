@@ -11,7 +11,7 @@ namespace InventoryApp.Model
     public class CatalogAlmacenEmailModel : INotifyPropertyChanged
     {
         private FixupCollection<DeleteAlmacenEmail> _almacenEmail;
-        private ALMACEN_EMAIL _selectedAlmacenEmail;
+        private DeleteAlmacenEmail _selectedAlmacenEmail;
         private IDataMapper _dataMapper;
 
         public FixupCollection<DeleteAlmacenEmail> AlmacenEmail
@@ -33,7 +33,7 @@ namespace InventoryApp.Model
             }
         }
 
-        public ALMACEN_EMAIL SelectedAlmacenEmail
+        public DeleteAlmacenEmail SelectedAlmacenEmail
         {
             get
             {
@@ -87,7 +87,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new AlmacenEmailDataMapper();
             this._almacenEmail = new FixupCollection<DeleteAlmacenEmail>();
-            this._selectedAlmacenEmail = new ALMACEN_EMAIL();
+            //this._selectedAlmacenEmail = new ALMACEN_EMAIL();
             this.loadItems();
         }
     

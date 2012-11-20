@@ -23,6 +23,7 @@ namespace InventoryApp.View.Entradas
         public EntradaValidacionRevision()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtRecibe);
             comboBoxAlmacenOrigen.SelectedIndex = 1;
             comboBoxAlmacenOrigen.SelectedIndex = 0;
         }

@@ -23,6 +23,7 @@ namespace InventoryApp.View.Entradas
         public EntradaDevolucion()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtRecibe);
             comboCliente.SelectedIndex = 0;
             comboBoxAlmacenOrigen.SelectedIndex = 0;
         }

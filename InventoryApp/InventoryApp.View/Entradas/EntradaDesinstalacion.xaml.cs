@@ -23,6 +23,7 @@ namespace InventoryApp.View.Entradas
         public EntradaDesinstalacion()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtRecibe);
             comboCliente.SelectedIndex = 0;
             comboBoxAlmacenOrigen.SelectedIndex = 0; //EL ORIGEN ES EN REALIDAD EL DESTINO
             

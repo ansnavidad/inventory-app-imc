@@ -80,7 +80,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             {
                 almacenModel.UnidAlmacen = this._catalogAlmacenModel.SelectedAlmacen.UNID_ALMACEN;
                 almacenModel.AlmacenName = this._catalogAlmacenModel.SelectedAlmacen.ALMACEN_NAME;
-                almacenModel.Ciudad = this._catalogAlmacenModel.SelectedAlmacen.CIUDAD;
+                almacenModel.Ciudad = this._catalogAlmacenModel.SelectedAlmacen.Ciudad;
                 almacenModel.Contacto = this._catalogAlmacenModel.SelectedAlmacen.CONTACTO;
                 almacenModel.Direccion = this._catalogAlmacenModel.SelectedAlmacen.DIRECCION;
                 almacenModel.Tecnico = this._catalogAlmacenModel.SelectedAlmacen.TECNICO;

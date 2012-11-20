@@ -89,8 +89,8 @@ namespace InventoryApp.ViewModel.CatalogProveedor
                 proveedorModel.RFC = this._proveedorModel.SelectedProveedor.RFC;
                 proveedorModel.Tel1 = this._proveedorModel.SelectedProveedor.TEL1;
                 proveedorModel.Tel2 = this._proveedorModel.SelectedProveedor.TEL2;
-                proveedorModel.Ciudad = this._proveedorModel.SelectedProveedor.CIUDAD;
-                proveedorModel.Pais = this._proveedorModel.SelectedProveedor.PAI;                
+                proveedorModel.Ciudad = this._proveedorModel.SelectedProveedor.Ciudad;
+                proveedorModel.Pais = this._proveedorModel.SelectedProveedor.Pais;                
                 proveedorModel.UnidProveedor = this._proveedorModel.SelectedProveedor.UNID_PROVEEDOR;
             }
             return new ModifyProveedorViewModel(this, proveedorModel);

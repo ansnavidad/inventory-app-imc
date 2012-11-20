@@ -46,20 +46,17 @@
                  Text="{Binding ProveedorCuentaModel.NumeroCuenta, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="32"/>
         <Label Content="Banco:" Height="28" HorizontalAlignment="Left" Margin="65,4,0,0" Grid.Row="4" Grid.Column="1" Name="label8" VerticalAlignment="Top" Grid.RowSpan="2" />
         <Label Content="Proveedor:" Height="28" HorizontalAlignment="Left" Margin="43,3,0,0" Grid.Row="5" Grid.Column="1" Name="label9" VerticalAlignment="Top" Grid.RowSpan="2" />
-        <ComboBox SelectedIndex="0"
-                  SelectedItem="{Binding ProveedorCuentaModel.Banco,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+        <ComboBox SelectedItem="{Binding ProveedorCuentaModel.Banco,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                   ItemsSource="{Binding CatalogBancoModel.Banco, Mode=OneWay}" 
-                  DisplayMemberPath="BANCO_NAME" 
-                  SelectedValuePath="UNID_BANCO"
+                  Text="{Binding ProveedorCuentaModel.Banco.BANCO_NAME,Mode=TwoWay}"
+                  DisplayMemberPath="BANCO_NAME" SelectedValuePath="UNID_BANCO"
                   Height="23" HorizontalAlignment="Right" Margin="0,4,62,0" Grid.Row="4"
                   Grid.Column="2" Name="comboBox1" VerticalAlignment="Top" Width="165" />
-        <ComboBox SelectedIndex="0"
-                  SelectedItem="{Binding ProveedorCuentaModel.Proveedor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        <ComboBox SelectedItem="{Binding ProveedorCuentaModel.Proveedor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                   ItemsSource="{Binding CatalogProveedorModel.Proveedor, Mode=OneWay}"
-                  Height="23" HorizontalAlignment="Right" Margin="0,4,62,0" Grid.Row="5" Grid.Column="2"
-                  Name="comboBox2" VerticalAlignment="Top" Width="165"
+                  Text="{Binding ProveedorCuentaModel.Proveedor.PROVEEDOR_NAME,Mode=TwoWay}"
                   DisplayMemberPath="PROVEEDOR_NAME" SelectedValuePath="UNID_PROVEEDOR" 
-                  Text="{Binding ProveedorCuentaModel.Proveedor.PROVEEDOR_NAME,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-                  IsEditable="False" IsEnabled="False" />
+                  Height="23" HorizontalAlignment="Right" Margin="0,4,62,0" Grid.Row="5" Grid.Column="2"
+                  Name="comboBox2" VerticalAlignment="Top" Width="165" IsEnabled="False" />
     </Grid>
 </Window>

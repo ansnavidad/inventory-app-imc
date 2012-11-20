@@ -38,16 +38,12 @@
         <TextBox MaxLength="128" Grid.Column="2" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="4,15,0,3" Name="txtNomreStatus"
                  VerticalAlignment="Stretch" Width="120" 
                  Text="{Binding Transporte.TransporteName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-        <ComboBox SelectedIndex="0"
-                  SelectedItem="{Binding Transporte.TipoEmpresa, Mode=TwoWay}"
+        <ComboBox SelectedItem="{Binding Transporte.TipoEmpresa, Mode=TwoWay}"
                   ItemsSource="{Binding CatalogTipoEmpresaModel.TipoEmpresas, Mode=OneWay}"
-                  DisplayMemberPath="TIPO_EMPRESA_NAME"
-                  SelectedValuePath="UNID_TIPO_EMPRESA"
-                  Grid.Column="2" Grid.Row="2"
-                  Height="23" HorizontalAlignment="Left"
-                  Margin="3,13,0,0" Name="comboBox2"
                   Text="{Binding Transporte.TipoEmpresa.TIPO_EMPRESA_NAME, Mode=TwoWay}"
-                  VerticalAlignment="Top" Width="120" />
+                  DisplayMemberPath="TIPO_EMPRESA_NAME" SelectedValuePath="UNID_TIPO_EMPRESA"
+                  Grid.Column="2" Grid.Row="2" Height="23" HorizontalAlignment="Left"
+                  Margin="3,13,0,0" Name="comboBox2" VerticalAlignment="Top" Width="120" />
         <Label Content=" Tipo Empresa :" Height="28" HorizontalAlignment="Right" Margin="0,11,2,1" Name="label1" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="1" />
     </Grid>
 </Window>

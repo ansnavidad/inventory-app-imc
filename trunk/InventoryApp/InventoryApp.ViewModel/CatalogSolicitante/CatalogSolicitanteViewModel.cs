@@ -80,8 +80,8 @@ namespace InventoryApp.ViewModel.CatalogSolicitante
             {
                 solicitanteModel.UnidSolicitante = this._catalogSolicitanteModel.SelectedSolicitante.UNID_SOLICITANTE;
                 solicitanteModel.SolicitanteName = this._catalogSolicitanteModel.SelectedSolicitante.SOLICITANTE_NAME;
-                solicitanteModel.Empresa = this._catalogSolicitanteModel.SelectedSolicitante.EMPRESA;
-                solicitanteModel.Departamento = this._catalogSolicitanteModel.SelectedSolicitante.DEPARTAMENTO;
+                solicitanteModel.Empresa = this._catalogSolicitanteModel.SelectedSolicitante.Empresa;
+                solicitanteModel.Departamento = this._catalogSolicitanteModel.SelectedSolicitante.Departamento;
                 solicitanteModel.Email = this._catalogSolicitanteModel.SelectedSolicitante.EMAIL;
                 solicitanteModel.Validador = this._catalogSolicitanteModel.SelectedSolicitante.VALIDADOR;
             }

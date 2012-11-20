@@ -81,11 +81,11 @@ namespace InventoryApp.ViewModel.CatalogProveedorCuenta
             ProveedorCuentaModel proveedorCuentaModel = new ProveedorCuentaModel(new ProveedorCuentaDataMapper());
             if (this._proveedorCuentaModel != null && this._proveedorCuentaModel.SelectedProveedorCuenta != null)
             {
-                proveedorCuentaModel.Banco = this._proveedorCuentaModel.SelectedProveedorCuenta.BANCO;
+                proveedorCuentaModel.Banco = this._proveedorCuentaModel.SelectedProveedorCuenta.Banco;
                 proveedorCuentaModel.Beneficiario = this._proveedorCuentaModel.SelectedProveedorCuenta.BENEFICIARIO;
                 proveedorCuentaModel.Clabe = this._proveedorCuentaModel.SelectedProveedorCuenta.CLABE;
                 proveedorCuentaModel.NumeroCuenta = this._proveedorCuentaModel.SelectedProveedorCuenta.NUMERO_CUENTA;
-                proveedorCuentaModel.Proveedor = this._proveedorCuentaModel.SelectedProveedorCuenta.PROVEEDOR;
+                proveedorCuentaModel.Proveedor = this._proveedorCuentaModel.SelectedProveedorCuenta.Proveedor;
                 proveedorCuentaModel.UnidProveedorCuenta = this._proveedorCuentaModel.SelectedProveedorCuenta.UNID_PROVEEDOR_CUENTA;
             }
             return new ModifyProveedorCuentaViewModel(this, proveedorCuentaModel);

@@ -10,7 +10,7 @@ namespace InventoryApp.Model
 {
     public class CatalogTransporteModel : INotifyPropertyChanged
     {
-        private TRANSPORTE _selectedTransporte;
+        private DeleteTransporte _selectedTransporte;
         private FixupCollection<DeleteTransporte> _transporte;
         private IDataMapper _dataMapper;
 
@@ -33,7 +33,7 @@ namespace InventoryApp.Model
             }
         }
 
-        public TRANSPORTE SelectedTransporte
+        public DeleteTransporte SelectedTransporte
         {
             get
             {
@@ -56,7 +56,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new TransporteDataMapper();
             this._transporte = new FixupCollection<DeleteTransporte>();
-            this._selectedTransporte = new TRANSPORTE();
+            //this._selectedTransporte = new TRANSPORTE();
             this.loadItems();
             
         }

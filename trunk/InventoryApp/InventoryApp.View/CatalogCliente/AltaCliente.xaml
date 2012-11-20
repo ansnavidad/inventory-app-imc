@@ -43,6 +43,6 @@
                      HorizontalAlignment="Left" Margin="3,24,0,3"
                      Name="txtNomreCliente" VerticalAlignment="Stretch" Width="120" 
                      Text="{Binding AddClienteModel.ClienteName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                     MaxLength="254" />
+                     MaxLength="512" />
     </Grid>
 </Window>

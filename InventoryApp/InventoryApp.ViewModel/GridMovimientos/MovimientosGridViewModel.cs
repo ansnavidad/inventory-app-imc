@@ -20,7 +20,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
         private CatalogClienteModel _catalogClienteProcedenciaModel;
         private CatalogTipoPedimentoModel _catalogTipoPedimentoModel;        
         private CatalogItemModel _itemModel;
-
+        
         public MovimientosGridViewModel()
         {
             try

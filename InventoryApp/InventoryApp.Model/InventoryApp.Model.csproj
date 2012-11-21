@@ -63,6 +63,8 @@
     <Compile Include="CatalogMedioEnvioModel.cs" />
     <Compile Include="CatalogModeloModel.cs" />
     <Compile Include="CatalogMonedaModel.cs" />
+    <Compile Include="CatalogMovimiento.cs" />
+    <Compile Include="CatalogMovimientoModel.cs" />
     <Compile Include="CatalogPaisModel.cs" />
     <Compile Include="CatalogPropiedadModel.cs" />
     <Compile Include="CatalogProveedorCuentaModel.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="ModeloModel.cs" />
     <Compile Include="MonedaModel.cs" />
     <Compile Include="MovimientoDetalleModel.cs" />
+    <Compile Include="MovimientoGridModel.cs" />
     <Compile Include="MovimientoModel.cs" />
     <Compile Include="MovimientoSalidasModel.cs" />
     <Compile Include="PaisModel.cs" />

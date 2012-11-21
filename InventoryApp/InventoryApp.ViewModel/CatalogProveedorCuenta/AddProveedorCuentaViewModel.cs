@@ -119,7 +119,7 @@ namespace InventoryApp.ViewModel.CatalogProveedorCuenta
         public bool CanAttempAddProveedorCuenta()
         {
             bool _canAddProveedorCuenta = true;
-            if (String.IsNullOrEmpty(this._proveedorCuentaModel.Beneficiario) || String.IsNullOrEmpty(this._proveedorCuentaModel.Clabe) || String.IsNullOrEmpty(this._proveedorCuentaModel.NumeroCuenta))
+            if (String.IsNullOrEmpty(this._proveedorCuentaModel.Beneficiario) || String.IsNullOrEmpty(this._proveedorCuentaModel.Clabe) || String.IsNullOrEmpty(this._proveedorCuentaModel.NumeroCuenta) || this._proveedorCuentaModel.Proveedor == null)
                 _canAddProveedorCuenta = false;
 
             return _canAddProveedorCuenta;

@@ -5,19 +5,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              DataContext="{StaticResource movimientosGridViewModel}"
              mc:Ignorable="d"              
-             d:DesignHeight="533" d:DesignWidth="832">
-    <ScrollViewer>
+             d:DesignHeight="900" d:DesignWidth="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
         <Grid>
-            <Label Content="Últimos Movimientos Realizados" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="33" Margin="262,6,271,0" Name="label1" VerticalAlignment="Top" />
-            
-
-
-
-
-
-            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Margin="27,45,26,28" Name="dtGridMovimiento"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Style="{StaticResource titleLabel}" Content="Últimos Movimientos Realizados" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Margin="0" Name="dtGridMovimiento"
                   ItemsSource="{Binding CatalogMovimientoModel.CatalogMovimiento}"
-                  >
+                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Ultimo Movimiento" Width="*" x:Name="tipoMoviento" Binding="{Binding Path=TipoMovimiento}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Fecha" Width="*" x:Name="fecha" Binding="{Binding Path=Fecha}" IsReadOnly="True"/>
@@ -27,12 +40,5 @@
                                         
                 </DataGrid.Columns>
             </DataGrid>
-
-
-
-
-
-
         </Grid>
-    </ScrollViewer>
 </UserControl>

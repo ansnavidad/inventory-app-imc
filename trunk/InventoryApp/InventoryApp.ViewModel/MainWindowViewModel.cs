@@ -112,6 +112,7 @@ namespace InventoryApp.ViewModel
         public MainWindowViewModel()
         {
             this._MenuViewModel = new MenuViewModel(this.ChagePage);
+            this._CurrentPageViewModel = new GridMovimientos.MovimientosGridViewModel();
         }
 
         #region Methods
@@ -226,6 +227,7 @@ namespace InventoryApp.ViewModel
                     case "Unidad":
                         page = new CatalogUnidadViewModel();
                         break;
+                    //Entradas
                     case "Entrada por Validación":
                         page = new Entradas.EntradaPorValidacionViewModel();  
                         break;
@@ -238,8 +240,7 @@ namespace InventoryApp.ViewModel
                     case "Entrada por Desinstalación":
                         page = new Entradas.EntradaDesinstalacionViewModel();
                         break;
-
-
+                    //Salidad
                     case "Salida Renta":
                         page = new Salidas.SalidaRentaViewModel();
                         break;
@@ -273,6 +274,7 @@ namespace InventoryApp.ViewModel
                     case "Entregado (Licencia Office)":
                         page = new Salidas.SalidaOfficeViewModel();
                         break;
+                    //Traspasos
                     case "Traspaso Entre Almacenes":
                         page = new Traspasos.TraspasoStockViewModel();
                         break;

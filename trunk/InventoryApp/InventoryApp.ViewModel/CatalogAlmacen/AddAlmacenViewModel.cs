@@ -93,7 +93,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             if (String.IsNullOrEmpty(this._addAlmacen.AlmacenName) ||
                 String.IsNullOrEmpty(this._addAlmacen.Contacto) ||
                 String.IsNullOrEmpty(this._addAlmacen.Direccion)||
-                String.IsNullOrEmpty(this._addAlmacen.Tecnico))
+                String.IsNullOrEmpty(this._addAlmacen.Tecnico) || this._addAlmacen.Ciudad == null)
                 _canAddAlmacen = false;
             return _canAddAlmacen;
         }

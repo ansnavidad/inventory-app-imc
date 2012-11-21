@@ -90,7 +90,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacenEmail
         public bool CanAttempAddAlmacenEmail()
         {
             bool _canAddAlmacenEmail = true;
-            if (String.IsNullOrEmpty(this._addAlmacenEmail.Email))
+            if (String.IsNullOrEmpty(this._addAlmacenEmail.Email) || this._addAlmacenEmail.Almacen == null)
                 _canAddAlmacenEmail = false;
             return _canAddAlmacenEmail;
         }

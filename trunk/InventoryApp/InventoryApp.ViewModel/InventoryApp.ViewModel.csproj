@@ -132,6 +132,7 @@
     <Compile Include="CatalogItemStatus\ModifyItemStatusViewModel.cs" />
     <Compile Include="CatalogTipoEmpresa\ModifyTipoEmpresaViewModel.cs" />
     <Compile Include="CatalogTransporte\ModifyTransporteViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientosGridViewModel.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="MenuViewModel.cs" />

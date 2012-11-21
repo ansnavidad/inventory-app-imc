@@ -118,7 +118,9 @@ namespace InventoryApp.ViewModel.CatalogSolicitante
             bool _canAddSolicitante = true;
             if (String.IsNullOrEmpty(this._addSolicitante.SolicitanteName) ||
                 String.IsNullOrEmpty(this._addSolicitante.Email) ||
-                String.IsNullOrEmpty(this._addSolicitante.Validador))
+                String.IsNullOrEmpty(this._addSolicitante.Validador) ||
+                this._addSolicitante.Departamento == null ||
+                this._addSolicitante.Empresa == null)
                 _canAddSolicitante = false;
 
             return _canAddSolicitante;

@@ -79,7 +79,8 @@ namespace InventoryApp.ViewModel.CatalogTransporte
         public bool CanAttempInsertTransporte()
         {
             bool _canInsertTransporte = true;
-            if (String.IsNullOrEmpty(this._addTransporte.TrasnporteName))
+            if (String.IsNullOrEmpty(this._addTransporte.TrasnporteName) ||
+                this._addTransporte.TipoEmpresa == null)
                 _canInsertTransporte = false;
 
             return _canInsertTransporte;

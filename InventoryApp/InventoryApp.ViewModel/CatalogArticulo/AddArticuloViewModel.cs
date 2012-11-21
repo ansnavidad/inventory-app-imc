@@ -134,7 +134,11 @@ namespace InventoryApp.ViewModel.CatalogArticulo
         public bool CanAttempArticulo()
         {
             bool _canInsertArticulo = true;
-            if (String.IsNullOrEmpty(this._articulo.ArticuloName))
+            if (String.IsNullOrEmpty(this._articulo.ArticuloName) ||
+                this._articulo.Categoria == null ||
+                this._articulo.Equipo == null ||
+                this._articulo.Marca == null ||
+                this._articulo.Modelo == null)
                 _canInsertArticulo = false;
 
             return _canInsertArticulo;

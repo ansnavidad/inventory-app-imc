@@ -11,7 +11,7 @@
 
             <!--<Label Content="ALTA DE ITEM STATUS" Height="28" HorizontalAlignment="Stretch" Margin="5,0" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184"  />-->
             <Label Content="Folio:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,41,550,0" Name="lblNombreStatus" VerticalAlignment="Top" />
-            <Label Content="Salida Configuracion" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="33" HorizontalAlignment="Right" Margin="0,12,146,0" Name="label1" VerticalAlignment="Top" Width="252" />
+            <Label Content="Salida Configuración" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="33" HorizontalAlignment="Right" Margin="0,12,146,0" Name="label1" VerticalAlignment="Top" Width="252" />
             <Label Content="Fecha:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,66,550,0" Name="label2" VerticalAlignment="Top" />
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,44,342,0" Name="textBlockFolio" VerticalAlignment="Top" Width="201" Text="{Binding MovimientoModel.UnidMovimiento, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,69,342,0" Name="textBlock2" VerticalAlignment="Top" Width="201" Text="{Binding MovimientoModel.FechaMovimiento, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>

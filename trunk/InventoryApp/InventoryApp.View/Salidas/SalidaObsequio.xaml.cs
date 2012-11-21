@@ -73,8 +73,8 @@ namespace InventoryApp.View.Salidas
             MessageBox.Show("La Salida con el folio " + this.textBlockFolio.Text + "\n se ha registrado exitosamente.", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
             this.Content = null;
-            this.Content = new SalidaObsequio();
-            this.DataContext = new SalidaObsequioViewModel();
+            this.Content = new GridMovimientos.GridMovimientos();
+            this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -82,8 +82,8 @@ namespace InventoryApp.View.Salidas
             MessageBox.Show("Se ha cancelado la salida.", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
             this.Content = null;
-            this.Content = new SalidaObsequio();
-            this.DataContext = new SalidaObsequioViewModel();
+            this.Content = new GridMovimientos.GridMovimientos();
+            this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
         }
     }
 }

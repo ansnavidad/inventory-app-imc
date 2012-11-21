@@ -71,5 +71,23 @@ namespace InventoryApp.View.Traspasos
                 comboBoxClienteDestino.SelectedItem = null;
             }
         }
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("El traspaso con el folio " + this.textBlockFolio.Text + "\n se ha registrado exitosamente.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            this.Content = null;
+            this.Content = new GridMovimientos.GridMovimientos();
+            this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Se ha cancelado el traspaso.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            this.Content = null;
+            this.Content = new GridMovimientos.GridMovimientos();
+            this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
+        }
     }
 }

@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             DataContext="{StaticResource traspasoStockViewModel}"
+             
              mc:Ignorable="d" 
             d:DesignHeight="932" d:DesignWidth="637">
     <ScrollViewer>
         <Grid Name="gridAlta" Width="618" >
-            <Button TabIndex="19" Content="ACEPTAR"  Command="{Binding AddItemCommand, Mode=OneWay}"  Height="23" Margin="0,895,477,0" Name="btnAgregar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" />
-            <Button TabIndex="20" Content="CANCELAR" Height="23" Margin="0,895,109,0" Name="btnCancelar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" />
+            <Button TabIndex="19" Content="ACEPTAR"  Command="{Binding AddItemCommand, Mode=OneWay}"  Height="23" Margin="0,895,477,0" Name="btnAgregar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" Click="btnAgregar_Click" />
+            <Button TabIndex="20" Content="CANCELAR" Height="23" Margin="0,895,109,0" Name="btnCancelar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" Click="btnCancelar_Click" />
 
             <Label Content="Folio:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" HorizontalAlignment="Right" Margin="0,37,553,0" Name="lblNombreStatus" Height="28" VerticalAlignment="Top" />
             <Label Content="Traspaso Stock" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,12,141,0" Name="label1" VerticalAlignment="Top" Width="241" />

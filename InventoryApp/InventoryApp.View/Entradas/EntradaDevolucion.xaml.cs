@@ -77,8 +77,8 @@ namespace InventoryApp.View.Entradas
             MessageBox.Show("La Entrada con el folio " + this.textBlockFolio.Text + "\n se ha registrado exitosamente.", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
             this.Content = null;
-            this.Content = new EntradaDevolucion();
-            this.DataContext = new EntradaDevolucionViewModel();
+            this.Content = new GridMovimientos.GridMovimientos();
+            this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -86,8 +86,8 @@ namespace InventoryApp.View.Entradas
             MessageBox.Show("Se ha cancelado la entrada.", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
             this.Content = null;
-            this.Content = new EntradaDevolucion();
-            this.DataContext = new EntradaDevolucionViewModel();
+            this.Content = new GridMovimientos.GridMovimientos();
+            this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
         }
     }
 }

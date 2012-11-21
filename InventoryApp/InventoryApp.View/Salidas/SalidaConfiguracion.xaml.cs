@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using InventoryApp.ViewModel.Salidas;
+using InventoryApp.ViewModel.GridMovimientos;
+using InventoryApp.View.GridMovimientos;
 
 namespace InventoryApp.View.Salidas
 {
@@ -74,8 +76,8 @@ namespace InventoryApp.View.Salidas
             MessageBox.Show("La Salida con el folio " + this.textBlockFolio.Text + "\n se ha registrado exitosamente.", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
             this.Content = null;
-            this.Content = new SalidaConfiguracion();
-            this.DataContext = new SalidaConfiguracionViewModel();
+            this.Content = new GridMovimientos.GridMovimientos();
+            this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -83,8 +85,8 @@ namespace InventoryApp.View.Salidas
             MessageBox.Show("Se ha cancelado la salida.", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
             this.Content = null;
-            this.Content = new SalidaConfiguracion();
-            this.DataContext = new SalidaConfiguracionViewModel();
+            this.Content = new GridMovimientos.GridMovimientos();
+            this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
         }
     }
 }

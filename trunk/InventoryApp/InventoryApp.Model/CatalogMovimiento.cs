@@ -10,7 +10,7 @@ namespace InventoryApp.Model
     public class CatalogMovimiento : MOVIMENTO, INotifyPropertyChanged
     {
         private int _totalItems;
-        private DateTime _fecha;
+        private string _fecha;
         private string _destino;
         private string _procedencia;
         private string _tipoMovimiento;
@@ -67,7 +67,7 @@ namespace InventoryApp.Model
                 }
             }
         }
-        public DateTime Fecha
+        public string Fecha
         {
             get { return this._fecha; }
             set
@@ -84,7 +84,8 @@ namespace InventoryApp.Model
         public CatalogMovimiento(MOVIMENTO m)
         {            
             this._totalItems = m.MOVIMIENTO_DETALLE.Count;
-            this._fecha = m.FECHA_MOVIMIENTO;
+            
+            this._fecha = m.FECHA_MOVIMIENTO.Year + "/" + m.FECHA_MOVIMIENTO.Month + "/" + m.FECHA_MOVIMIENTO.Day;
 
             if (m.ALMACEN != null)
                 this._destino = m.ALMACEN.ALMACEN_NAME;

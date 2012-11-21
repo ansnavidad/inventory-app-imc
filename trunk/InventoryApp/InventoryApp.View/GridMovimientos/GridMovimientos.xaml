@@ -8,7 +8,7 @@
              d:DesignHeight="533" d:DesignWidth="832">
     <ScrollViewer>
         <Grid>
-            <Label Content="Grid Movimientos" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="33" HorizontalAlignment="Right" Margin="0,6,349,0" Name="label1" VerticalAlignment="Top" Width="154" />
+            <Label Content="Últimos Movimientos Realizados" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="33" Margin="262,6,271,0" Name="label1" VerticalAlignment="Top" />
             
 
 
@@ -19,11 +19,12 @@
                   ItemsSource="{Binding CatalogMovimientoModel.CatalogMovimiento}"
                   >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Total Items" Width="*" x:Name="totalItems" Binding="{Binding Path=TotalItems}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Ultimo Movimiento" Width="*" x:Name="tipoMoviento" Binding="{Binding Path=TipoMovimiento}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Fecha" Width="*" x:Name="fecha" Binding="{Binding Path=Fecha}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Origen" Width="*" x:Name="procedencia" Binding="{Binding Path=Procedencia}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Destino" Width="*" x:Name="destino" Binding="{Binding Path=Destino}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Procedencia" Width="*" x:Name="procedencia" Binding="{Binding Path=Procedencia}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Tipo de Movimiento" Width="*" x:Name="tipoMoviento" Binding="{Binding Path=TipoMovimiento}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Total Items" Width="*" x:Name="totalItems" Binding="{Binding Path=TotalItems}" IsReadOnly="True"/>                   
+                                        
                 </DataGrid.Columns>
             </DataGrid>
 

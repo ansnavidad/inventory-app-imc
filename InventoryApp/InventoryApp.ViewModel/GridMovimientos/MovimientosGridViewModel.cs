@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.GridMovimientos
 {
-    public class MovimientosGridViewModel
+    public class MovimientosGridViewModel : IPageViewModel
     {
         private MovimientoGridModel _movimientoGridModel;
         private CatalogMovimientoModel _catalogMovimientoModel;
@@ -179,6 +179,18 @@ namespace InventoryApp.ViewModel.GridMovimientos
             this._catalogProveedorProcedenciaModel.loadItems();
             this._catalogClienteProcedenciaModel.loadCliente();
             this._catalogTipoPedimentoModel.loadItems();            
-        }        
+        }
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

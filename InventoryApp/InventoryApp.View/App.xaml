@@ -288,8 +288,9 @@
         <ObjectDataProvider x:Key="TraspasoStockVieModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
-
-
+        <!-- Grid Movimientos -->
+        <ObjectDataProvider x:Key="MovimientosGrid" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
 
 
         <reciboViewModel:AddFacturaViewModel x:Key="addFacturaViewModel" />
@@ -441,7 +442,9 @@
         <DataTemplate DataType="{x:Type TraspasosViewModel:TraspasoStockViewModel}">
             <TraspasosView:TraspasoStock/>
         </DataTemplate>
-        
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientosGridViewModel}">
+            <GridMovimientosView:GridMovimientos/>
+        </DataTemplate>
         
     </Application.Resources>
 </Application>

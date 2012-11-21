@@ -23,7 +23,7 @@
                     <DataGridTextColumn Header="Fecha" Width="*" x:Name="fecha" Binding="{Binding Path=Fecha}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Origen" Width="*" x:Name="procedencia" Binding="{Binding Path=Procedencia}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Destino" Width="*" x:Name="destino" Binding="{Binding Path=Destino}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Total Items" Width="*" x:Name="totalItems" Binding="{Binding Path=TotalItems}" IsReadOnly="True"/>                   
+                    <DataGridTextColumn Header="Total Items" Width=".5*" x:Name="totalItems" Binding="{Binding Path=TotalItems}" IsReadOnly="True"/>                   
                                         
                 </DataGrid.Columns>
             </DataGrid>

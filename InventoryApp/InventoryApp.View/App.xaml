@@ -70,7 +70,7 @@
              xmlns:TraspasosView="clr-namespace:InventoryApp.View.Traspasos"
              xmlns:GridMovimientosViewModel="clr-namespace:InventoryApp.ViewModel.GridMovimientos;assembly=InventoryApp.ViewModel"
              xmlns:GridMovimientosView="clr-namespace:InventoryApp.View.GridMovimientos"
-             StartupUri="GridMovimientos/GridMovimientos.xaml">
+             StartupUri="MainWindow.xaml">
     
     <!--StartupUri="Recibo/ReciboView.xaml"-->
     <!--StartupUri="MainWindow.xaml"-->

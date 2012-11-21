@@ -74,10 +74,10 @@ namespace InventoryApp.View.Entradas
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("La Entrada con el folio " + this.textBlockFolio.Text + "\n se ha registrado exitosamente.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("La Entrada con el folio " + this.textBlockFolio.Text + "\n se ha registrado exitosamente.", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
             //this.Content = null;
-            //this.Content = new EntradaValidacionRevision();
+           
             //this.DataContext = new EntradaPorValidacionViewModel();
         }
 
@@ -85,7 +85,7 @@ namespace InventoryApp.View.Entradas
         {
             MessageBox.Show("Se ha cancelado la entrada.", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            this.Content = null;
+            //this.Content = null;
             this.Content = new EntradaValidacionRevision();
             this.DataContext = new EntradaPorValidacionViewModel();
         }

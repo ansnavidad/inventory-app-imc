@@ -74,6 +74,9 @@ namespace InventoryApp.View.Entradas
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
+            // Estas dos lineas son para que ejecute el Relay Command
+            EntradaDevolucionViewModel entrada = this.DataContext as EntradaDevolucionViewModel;
+            entrada.AttempArticulo();
             MessageBox.Show("La Entrada con el folio " + this.textBlockFolio.Text + "\n se ha registrado exitosamente.", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
             this.Content = null;

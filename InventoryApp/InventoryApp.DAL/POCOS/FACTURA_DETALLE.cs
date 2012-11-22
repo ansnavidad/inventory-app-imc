@@ -30,13 +30,21 @@ namespace InventoryApp.DAL.POCOS
             get { return _uNID_FACTURA; }
             set
             {
-                if (_uNID_FACTURA != value)
+                try
                 {
-                    if (FACTURA != null && FACTURA.UNID_FACTURA != value)
+                    _settingFK = true;
+                    if (_uNID_FACTURA != value)
                     {
-                        FACTURA = null;
+                        if (FACTURA != null && FACTURA.UNID_FACTURA != value)
+                        {
+                            FACTURA = null;
+                        }
+                        _uNID_FACTURA = value;
                     }
-                    _uNID_FACTURA = value;
+                }
+                finally
+                {
+                    _settingFK = false;
                 }
             }
         }
@@ -47,13 +55,21 @@ namespace InventoryApp.DAL.POCOS
             get { return _uNID_ARTICULO; }
             set
             {
-                if (_uNID_ARTICULO != value)
+                try
                 {
-                    if (ARTICULO != null && ARTICULO.UNID_ARTICULO != value)
+                    _settingFK = true;
+                    if (_uNID_ARTICULO != value)
                     {
-                        ARTICULO = null;
+                        if (ARTICULO != null && ARTICULO.UNID_ARTICULO != value)
+                        {
+                            ARTICULO = null;
+                        }
+                        _uNID_ARTICULO = value;
                     }
-                    _uNID_ARTICULO = value;
+                }
+                finally
+                {
+                    _settingFK = false;
                 }
             }
         }
@@ -94,13 +110,21 @@ namespace InventoryApp.DAL.POCOS
             get { return _uNID_UNIDAD; }
             set
             {
-                if (_uNID_UNIDAD != value)
+                try
                 {
-                    if (UNIDAD != null && UNIDAD.UNID_UNIDAD != value)
+                    _settingFK = true;
+                    if (_uNID_UNIDAD != value)
                     {
-                        UNIDAD = null;
+                        if (UNIDAD != null && UNIDAD.UNID_UNIDAD != value)
+                        {
+                            UNIDAD = null;
+                        }
+                        _uNID_UNIDAD = value;
                     }
-                    _uNID_UNIDAD = value;
+                }
+                finally
+                {
+                    _settingFK = false;
                 }
             }
         }
@@ -111,6 +135,31 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
+    
+        public virtual Nullable<long> UNID_PEDIMENTO
+        {
+            get { return _uNID_PEDIMENTO; }
+            set
+            {
+                try
+                {
+                    _settingFK = true;
+                    if (_uNID_PEDIMENTO != value)
+                    {
+                        if (PEDIMENTO != null && PEDIMENTO.UNID_PEDIMENTO != value)
+                        {
+                            PEDIMENTO = null;
+                        }
+                        _uNID_PEDIMENTO = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
+        }
+        private Nullable<long> _uNID_PEDIMENTO;
 
         #endregion
         #region Navigation Properties
@@ -191,9 +240,26 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private FACTURA _fACTURA;
+    
+        public virtual PEDIMENTO PEDIMENTO
+        {
+            get { return _pEDIMENTO; }
+            set
+            {
+                if (!ReferenceEquals(_pEDIMENTO, value))
+                {
+                    var previousValue = _pEDIMENTO;
+                    _pEDIMENTO = value;
+                    FixupPEDIMENTO(previousValue);
+                }
+            }
+        }
+        private PEDIMENTO _pEDIMENTO;
 
         #endregion
         #region Association Fixup
+    
+        private bool _settingFK = false;
     
         private void FixupARTICULO(ARTICULO previousValue)
         {
@@ -252,6 +318,30 @@ namespace InventoryApp.DAL.POCOS
                 {
                     UNID_FACTURA = FACTURA.UNID_FACTURA;
                 }
+            }
+        }
+    
+        private void FixupPEDIMENTO(PEDIMENTO previousValue)
+        {
+            if (previousValue != null && previousValue.FACTURA_DETALLE.Contains(this))
+            {
+                previousValue.FACTURA_DETALLE.Remove(this);
+            }
+    
+            if (PEDIMENTO != null)
+            {
+                if (!PEDIMENTO.FACTURA_DETALLE.Contains(this))
+                {
+                    PEDIMENTO.FACTURA_DETALLE.Add(this);
+                }
+                if (UNID_PEDIMENTO != PEDIMENTO.UNID_PEDIMENTO)
+                {
+                    UNID_PEDIMENTO = PEDIMENTO.UNID_PEDIMENTO;
+                }
+            }
+            else if (!_settingFK)
+            {
+                UNID_PEDIMENTO = null;
             }
         }
     

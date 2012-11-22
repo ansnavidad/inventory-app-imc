@@ -89,6 +89,38 @@ namespace InventoryApp.DAL.POCOS
         }
         private TIPO_PEDIMENTO _tIPO_PEDIMENTO;
     
+        public virtual ICollection<FACTURA_DETALLE> FACTURA_DETALLE
+        {
+            get
+            {
+                if (_fACTURA_DETALLE == null)
+                {
+                    var newCollection = new FixupCollection<FACTURA_DETALLE>();
+                    newCollection.CollectionChanged += FixupFACTURA_DETALLE;
+                    _fACTURA_DETALLE = newCollection;
+                }
+                return _fACTURA_DETALLE;
+            }
+            set
+            {
+                if (!ReferenceEquals(_fACTURA_DETALLE, value))
+                {
+                    var previousValue = _fACTURA_DETALLE as FixupCollection<FACTURA_DETALLE>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupFACTURA_DETALLE;
+                    }
+                    _fACTURA_DETALLE = value;
+                    var newValue = value as FixupCollection<FACTURA_DETALLE>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupFACTURA_DETALLE;
+                    }
+                }
+            }
+        }
+        private ICollection<FACTURA_DETALLE> _fACTURA_DETALLE;
+    
         public virtual LOTE LOTE
         {
             get { return _lOTE; }
@@ -143,6 +175,28 @@ namespace InventoryApp.DAL.POCOS
                 if (UNID_LOTE != LOTE.UNID_LOTE)
                 {
                     UNID_LOTE = LOTE.UNID_LOTE;
+                }
+            }
+        }
+    
+        private void FixupFACTURA_DETALLE(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (FACTURA_DETALLE item in e.NewItems)
+                {
+                    item.PEDIMENTO = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (FACTURA_DETALLE item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.PEDIMENTO, this))
+                    {
+                        item.PEDIMENTO = null;
+                    }
                 }
             }
         }

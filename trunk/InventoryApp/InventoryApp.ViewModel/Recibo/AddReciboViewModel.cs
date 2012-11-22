@@ -9,7 +9,7 @@ using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.Recibo
 {
-    public class AddReciboViewModel:ViewModelBase
+    public class AddReciboViewModel:ViewModelBase,  IPageViewModel
     {
         public ObservableCollection<SolicitanteModel> Solicitantes
         {
@@ -214,6 +214,18 @@ namespace InventoryApp.ViewModel.Recibo
             }
 
             return clientes;
+        }
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

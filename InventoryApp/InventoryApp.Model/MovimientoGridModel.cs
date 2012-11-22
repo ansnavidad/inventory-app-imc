@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace InventoryApp.Model
 {
-    public class MovimientoGridModel
+    public class MovimientoGridModel : INotifyPropertyChanged
     {
         #region Fields        
         

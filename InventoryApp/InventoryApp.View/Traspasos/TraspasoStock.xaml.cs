@@ -74,6 +74,9 @@ namespace InventoryApp.View.Traspasos
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
+            // Estas dos lineas son para que ejecute el Relay Command
+            TraspasoStockViewModel traspaso = this.DataContext as TraspasoStockViewModel;
+            traspaso.AttempArticulo();   
             MessageBox.Show("El traspaso con el folio " + this.textBlockFolio.Text + "\n se ha registrado exitosamente.", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
             this.Content = null;

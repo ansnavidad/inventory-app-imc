@@ -225,7 +225,8 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoDetalleModel.saveArticulo();
                 this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem, this._movimientoModel.UnidAlmacenDestino, null, null, this._movimientoDetalleModel.UnidMovimientoDetalle);
                 this._ultimoMovimientoModel.saveArticulo();
-            }            
+            }
+            
         }
 
         public bool CanAttempDeleteArticulo()

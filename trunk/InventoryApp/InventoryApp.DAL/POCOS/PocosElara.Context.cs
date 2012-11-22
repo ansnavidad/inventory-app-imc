@@ -234,6 +234,12 @@ namespace InventoryApp.DAL.POCOS
         }
         private ObjectSet<COTIZACION> _cOTIZACIONs;
     
+        public ObjectSet<sysdiagram> sysdiagrams
+        {
+            get { return _sysdiagrams  ?? (_sysdiagrams = CreateObjectSet<sysdiagram>("sysdiagrams")); }
+        }
+        private ObjectSet<sysdiagram> _sysdiagrams;
+    
         public ObjectSet<CIUDAD> CIUDADs
         {
             get { return _cIUDADs  ?? (_cIUDADs = CreateObjectSet<CIUDAD>("CIUDADs")); }
@@ -269,6 +275,24 @@ namespace InventoryApp.DAL.POCOS
             get { return _mOVIMIENTO_DETALLE  ?? (_mOVIMIENTO_DETALLE = CreateObjectSet<MOVIMIENTO_DETALLE>("MOVIMIENTO_DETALLE")); }
         }
         private ObjectSet<MOVIMIENTO_DETALLE> _mOVIMIENTO_DETALLE;
+    
+        public ObjectSet<RECIBO> RECIBOes
+        {
+            get { return _rECIBOes  ?? (_rECIBOes = CreateObjectSet<RECIBO>("RECIBOes")); }
+        }
+        private ObjectSet<RECIBO> _rECIBOes;
+    
+        public ObjectSet<RECIBO_MOVIMIENTO> RECIBO_MOVIMIENTO
+        {
+            get { return _rECIBO_MOVIMIENTO  ?? (_rECIBO_MOVIMIENTO = CreateObjectSet<RECIBO_MOVIMIENTO>("RECIBO_MOVIMIENTO")); }
+        }
+        private ObjectSet<RECIBO_MOVIMIENTO> _rECIBO_MOVIMIENTO;
+    
+        public ObjectSet<RECIBO_STATUS> RECIBO_STATUS
+        {
+            get { return _rECIBO_STATUS  ?? (_rECIBO_STATUS = CreateObjectSet<RECIBO_STATUS>("RECIBO_STATUS")); }
+        }
+        private ObjectSet<RECIBO_STATUS> _rECIBO_STATUS;
     
         public ObjectSet<ULTIMO_MOVIMIENTO> ULTIMO_MOVIMIENTO
         {

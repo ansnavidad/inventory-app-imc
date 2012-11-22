@@ -645,6 +645,38 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private ICollection<MOVIMIENTO_DETALLE> _mOVIMIENTO_DETALLE;
+    
+        public virtual ICollection<RECIBO_MOVIMIENTO> RECIBO_MOVIMIENTO
+        {
+            get
+            {
+                if (_rECIBO_MOVIMIENTO == null)
+                {
+                    var newCollection = new FixupCollection<RECIBO_MOVIMIENTO>();
+                    newCollection.CollectionChanged += FixupRECIBO_MOVIMIENTO;
+                    _rECIBO_MOVIMIENTO = newCollection;
+                }
+                return _rECIBO_MOVIMIENTO;
+            }
+            set
+            {
+                if (!ReferenceEquals(_rECIBO_MOVIMIENTO, value))
+                {
+                    var previousValue = _rECIBO_MOVIMIENTO as FixupCollection<RECIBO_MOVIMIENTO>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupRECIBO_MOVIMIENTO;
+                    }
+                    _rECIBO_MOVIMIENTO = value;
+                    var newValue = value as FixupCollection<RECIBO_MOVIMIENTO>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupRECIBO_MOVIMIENTO;
+                    }
+                }
+            }
+        }
+        private ICollection<RECIBO_MOVIMIENTO> _rECIBO_MOVIMIENTO;
 
         #endregion
         #region Association Fixup
@@ -972,6 +1004,28 @@ namespace InventoryApp.DAL.POCOS
             if (e.OldItems != null)
             {
                 foreach (MOVIMIENTO_DETALLE item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.MOVIMENTO, this))
+                    {
+                        item.MOVIMENTO = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupRECIBO_MOVIMIENTO(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (RECIBO_MOVIMIENTO item in e.NewItems)
+                {
+                    item.MOVIMENTO = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (RECIBO_MOVIMIENTO item in e.OldItems)
                 {
                     if (ReferenceEquals(item.MOVIMENTO, this))
                     {

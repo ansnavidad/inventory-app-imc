@@ -97,16 +97,6 @@ namespace InventoryApp.DAL
                 { 
                     PROVEEDOR proveedor = (PROVEEDOR)element;
                     proveedor.UNID_PROVEEDOR = UNID.getNewUNID();
-
-                   
-                    //foreach (var item in proveedor.CATEGORIAs)
-                    //{
-                    //    entity.ObjectStateManager.ChangeObjectState(item, EntityState.Unchanged);
-                    //}
-                    //entity.PROVEEDORs.Attach(proveedor);
-                    //entity.SaveChanges();
-                    //entity.PROVEEDORs.ApplyCurrentValues(proveedor);
-                    //entity.SaveChanges();
                     entity.PROVEEDORs.AddObject(proveedor);
                     entity.SaveChanges();
                 }

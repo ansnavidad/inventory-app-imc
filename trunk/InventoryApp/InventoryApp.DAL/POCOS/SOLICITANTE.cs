@@ -147,6 +147,38 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private ICollection<MOVIMENTO> _mOVIMENTOes;
+    
+        public virtual ICollection<RECIBO> RECIBOes
+        {
+            get
+            {
+                if (_rECIBOes == null)
+                {
+                    var newCollection = new FixupCollection<RECIBO>();
+                    newCollection.CollectionChanged += FixupRECIBOes;
+                    _rECIBOes = newCollection;
+                }
+                return _rECIBOes;
+            }
+            set
+            {
+                if (!ReferenceEquals(_rECIBOes, value))
+                {
+                    var previousValue = _rECIBOes as FixupCollection<RECIBO>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupRECIBOes;
+                    }
+                    _rECIBOes = value;
+                    var newValue = value as FixupCollection<RECIBO>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupRECIBOes;
+                    }
+                }
+            }
+        }
+        private ICollection<RECIBO> _rECIBOes;
 
         #endregion
         #region Association Fixup
@@ -204,6 +236,28 @@ namespace InventoryApp.DAL.POCOS
             if (e.OldItems != null)
             {
                 foreach (MOVIMENTO item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.SOLICITANTE, this))
+                    {
+                        item.SOLICITANTE = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupRECIBOes(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (RECIBO item in e.NewItems)
+                {
+                    item.SOLICITANTE = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (RECIBO item in e.OldItems)
                 {
                     if (ReferenceEquals(item.SOLICITANTE, this))
                     {

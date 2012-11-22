@@ -151,6 +151,38 @@ namespace InventoryApp.DAL.POCOS
         }
         private PROVEEDOR _pROVEEDOR;
     
+        public virtual ICollection<RECIBO_MOVIMIENTO> RECIBO_MOVIMIENTO
+        {
+            get
+            {
+                if (_rECIBO_MOVIMIENTO == null)
+                {
+                    var newCollection = new FixupCollection<RECIBO_MOVIMIENTO>();
+                    newCollection.CollectionChanged += FixupRECIBO_MOVIMIENTO;
+                    _rECIBO_MOVIMIENTO = newCollection;
+                }
+                return _rECIBO_MOVIMIENTO;
+            }
+            set
+            {
+                if (!ReferenceEquals(_rECIBO_MOVIMIENTO, value))
+                {
+                    var previousValue = _rECIBO_MOVIMIENTO as FixupCollection<RECIBO_MOVIMIENTO>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupRECIBO_MOVIMIENTO;
+                    }
+                    _rECIBO_MOVIMIENTO = value;
+                    var newValue = value as FixupCollection<RECIBO_MOVIMIENTO>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupRECIBO_MOVIMIENTO;
+                    }
+                }
+            }
+        }
+        private ICollection<RECIBO_MOVIMIENTO> _rECIBO_MOVIMIENTO;
+    
         public virtual ICollection<FACTURA_DETALLE> FACTURA_DETALLE
         {
             get
@@ -272,6 +304,28 @@ namespace InventoryApp.DAL.POCOS
             else if (!_settingFK)
             {
                 UNID_LOTE = null;
+            }
+        }
+    
+        private void FixupRECIBO_MOVIMIENTO(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (RECIBO_MOVIMIENTO item in e.NewItems)
+                {
+                    item.FACTURA = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (RECIBO_MOVIMIENTO item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.FACTURA, this))
+                    {
+                        item.FACTURA = null;
+                    }
+                }
             }
         }
     

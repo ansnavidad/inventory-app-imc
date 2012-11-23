@@ -72,7 +72,7 @@
              xmlns:GridMovimientosView="clr-namespace:InventoryApp.View.GridMovimientos"
              
              
-             StartupUri="Recibo/CatalogReciboView.xaml"
+             StartupUri="MainWindow.xaml"
              >
     
     <!--StartupUri="Recibo/ReciboView.xaml"-->
@@ -309,10 +309,11 @@
         <ObjectDataProvider x:Key="MovimientosGrid" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
+        <!-- Grid Movimientos -->
+        <ObjectDataProvider x:Key="CatalogReciboViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
 
-        <!--<reciboViewModel:AddFacturaViewModel x:Key="addFacturaViewModel" />
-        <reciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />-->
-        
+
     
         <!--CONVERTERS-->
         <rootViewModel:BoolToVisibilityValueConverter x:Key="boolVisibilityConverter" />
@@ -464,6 +465,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientosGridViewModel}">
             <GridMovimientosView:GridMovimientos/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type reciboViewModel:CatalogReciboViewModel}">
+            <reciboViews:CatalogReciboView/>
         </DataTemplate>
         
     </Application.Resources>

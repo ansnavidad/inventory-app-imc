@@ -101,7 +101,31 @@ namespace InventoryApp.DAL
                 }
             }
         }
+        public void insertRelacion(object element, List<long> unidCategoria)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    PROVEEDOR proveedor = (PROVEEDOR)element;
+                    proveedor.UNID_PROVEEDOR = UNID.getNewUNID();
+                    entity.PROVEEDORs.AddObject(proveedor);
+                    entity.SaveChanges();
 
+                    if (unidCategoria.Count > 0)
+                    {
+                        foreach (var item in unidCategoria)
+                        {
+                            PROVEEDOR_CATEGORIA proveedorCategoria = new PROVEEDOR_CATEGORIA();
+                            proveedorCategoria.UNID_CATEGORIA = item;
+                            proveedorCategoria.UNID_PROVEEDOR = proveedor.UNID_PROVEEDOR;
+                            entity.PROVEEDOR_CATEGORIA.AddObject(proveedorCategoria);
+                            entity.SaveChanges();
+                        }
+                    }
+                }
+            }
+        }
         public void deleteElement(object element)
         {
             if (element != null)

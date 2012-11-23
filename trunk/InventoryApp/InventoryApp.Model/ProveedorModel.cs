@@ -22,7 +22,7 @@ namespace InventoryApp.Model
         private PAI _pais;
         private string _codigoPostal;
         private string _RFC;
-        public FixupCollection<CATEGORIA> _cat;
+        public List<long> _unidsCategorias;
         private ProveedorDataMapper _dataMapper;
         #endregion
 
@@ -242,7 +242,20 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new PROVEEDOR() { IS_ACTIVE = true, CALLE = this._calle, CODIGO_POSTAL = this._codigoPostal, CONTACTO = this._contacto, MAIL = this._mail, PROVEEDOR_NAME = this._proveedorName, RFC = this._RFC, TEL1 = this._tel1, TEL2 = this._tel2, UNID_CIUDAD = this._ciudad.UNID_CIUDAD, UNID_PAIS = this._pais.UNID_PAIS/*, CATEGORIAs = this._cat*/});
+                _dataMapper.insertRelacion(new PROVEEDOR()
+                {
+                    IS_ACTIVE = true,
+                    CALLE = this._calle,
+                    CODIGO_POSTAL = this._codigoPostal,
+                    CONTACTO = this._contacto,
+                    MAIL = this._mail,
+                    PROVEEDOR_NAME = this._proveedorName,
+                    RFC = this._RFC,
+                    TEL1 = this._tel1,
+                    TEL2 = this._tel2,
+                    UNID_CIUDAD = this._ciudad.UNID_CIUDAD,
+                    UNID_PAIS = this._pais.UNID_PAIS
+                }, this._unidsCategorias);
             }
         }
 
@@ -258,7 +271,7 @@ namespace InventoryApp.Model
             {
                 this._dataMapper = dataMapper as ProveedorDataMapper;
             }
-            this._cat = new FixupCollection<CATEGORIA>();
+            this._unidsCategorias = new List<long>();
         }
         #endregion
 

@@ -153,13 +153,13 @@ namespace InventoryApp.ViewModel.CatalogProveedor
 
         public void AttempAddProveedor()
         {
-            //foreach (DeleteCategoria item in this._catalogCategoriaModel.Categoria)
-            //{
-            //    if (item.IsChecked == true)
-            //    {
-            //        this._proveedorEnvio._cat.Add((CATEGORIA)item);
-            //    }
-            //}
+            foreach (DeleteCategoria item in this._catalogCategoriaModel.Categoria)
+            {
+                if (item.IsChecked == true)
+                {
+                    this._proveedorEnvio._unidsCategorias.Add(item.UNID_CATEGORIA);
+                }
+            }
             this._proveedorEnvio.saveProveedor();
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya que

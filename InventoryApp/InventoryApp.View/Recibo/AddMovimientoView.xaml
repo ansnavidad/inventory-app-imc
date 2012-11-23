@@ -1,0 +1,133 @@
+﻿<UserControl x:Class="InventoryApp.View.Recibo.AddMovimientoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="302" d:DesignWidth="658">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/TextStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary>
+                    <GridLength x:Key="descColWidth">120</GridLength>
+                    <GridLength x:Key="captureColWidth">200</GridLength>
+                    <GridLength x:Key="capRowHeight">27</GridLength>
+                    <sys:Int32 x:Key="allCapColumnSpan">5</sys:Int32>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <DockPanel>
+        <Border BorderBrush="Silver" BorderThickness="1" DockPanel.Dock="Top"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TextBlock  Margin="10,0" Text="Recibo Agregar Movimiento" />
+        </Border>
+
+        <Grid DockPanel.Dock="Top" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock  Grid.Column="0" Grid.Row="1"  Margin="10,0" Text="Tipo de Origen" Style="{StaticResource textCapTitle1}"  />
+            <ComboBox   Grid.Column="1" Grid.Row="1" Height="23"    Name="cbTipoOrigen" Width="137" ItemsSource="{Binding TiposOrigen}" SelectedItem="{Binding SelectedTipoOrigen}" DisplayMemberPath="TipoOrigenName" />
+
+            <TextBlock  Grid.Column="3" Grid.Row="1"  Margin="10,0" Text="Origen" Style="{StaticResource textCapTitle1}"  />
+            <ComboBox   Grid.Column="4" Grid.Row="1" Height="23" Name="cbOrigen" Width="137" ItemsSource="{Binding Origenes}" DisplayMemberPath="OrigenName" SelectedItem="{Binding SelectedOrigen}"/>
+
+            <TextBlock  Grid.Column="0" Grid.Row="3"  Margin="10,0" Text="Destino" Style="{StaticResource textCapTitle1}"  />
+            <ComboBox   Grid.Column="1" Grid.Row="3" Height="23"    Name="cbDestino" Width="137" ItemsSource="{Binding Almacenes}" DisplayMemberPath="AlmacenName" SelectedItem="{Binding SelectedAlmacenDestino}"/>
+
+            <TextBlock  Grid.Column="0" Grid.Row="5"  Margin="10,0" Text="Recibe" Style="{StaticResource textCapTitle1}"  />
+            <TextBlock  Grid.Column="1" Grid.Row="5"  Margin="10,0" Text="{Binding SelectedAlmacenDestino.Recibe}" Style="{StaticResource textCapTitle1}"  />
+
+            <DockPanel  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="{StaticResource allCapColumnSpan}">
+                <Button Content="Agregar Desde Factura" Height="23"   HorizontalAlignment="Right" Margin="0,0,0,0" Click="Button_Click" />
+            </DockPanel>
+
+            <DataGrid  Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="{StaticResource allCapColumnSpan}"
+                  AutoGenerateColumns="False" CanUserAddRows="False"
+                  HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridBanco"
+                  SelectedItem="{Binding CatalogBancoModel.SelectedBanco, Mode=TwoWay}"
+                  VerticalAlignment="Stretch" ItemsSource="{Binding CatalogBancoModel.Banco}" 
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
+                  RowStyle="{StaticResource RowStyle}">
+                <DataGrid.Columns>
+                    <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
+                    <DataGridTemplateColumn Header="" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Número Factura" Width="*" x:Name="numeroFactura" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Equipo" Width="*" x:Name="equipoName" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Model" Width="*" x:Name="modeloName" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Marca" Width="*" x:Name="marcaName" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="SKU" Width="*" x:Name="sku" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Serie" Width="*" x:Name="Serie" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Costo Unitario" Width="*" x:Name="costoUnitario" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Status" Width="*" x:Name="status" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+    <!--<Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+            </Grid.ColumnDefinitions>
+            
+            
+            
+        </Grid>
+    </Grid>-->
+</UserControl>

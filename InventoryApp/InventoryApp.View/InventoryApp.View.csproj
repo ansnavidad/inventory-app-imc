@@ -458,6 +458,18 @@
     <Compile Include="MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Recibo\AddMovimientoDetalleView.xaml.cs">
+      <DependentUpon>AddMovimientoDetalleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\AddMovimientoView.xaml.cs">
+      <DependentUpon>AddMovimientoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\CatalogReciboView.xaml.cs">
+      <DependentUpon>CatalogReciboView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\ChooseFacturaArticuloView.xaml.cs">
+      <DependentUpon>ChooseFacturaArticuloView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Recibo\DlgAddFacturaArticuloView.xaml.cs">
       <DependentUpon>DlgAddFacturaArticuloView.xaml</DependentUpon>
     </Compile>
@@ -472,6 +484,18 @@
     </Compile>
     <Compile Include="Recibo\AddPedimientoView.xaml.cs">
       <DependentUpon>AddPedimientoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\DlgAddFacturaView.xaml.cs">
+      <DependentUpon>DlgAddFacturaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\DlgAddMovimientoDetalleView.xaml.cs">
+      <DependentUpon>DlgAddMovimientoDetalleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\DlgAddMovimientoView.xaml.cs">
+      <DependentUpon>DlgAddMovimientoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\DlgAddReciboView.xaml.cs">
+      <DependentUpon>DlgAddReciboView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Recibo\ReciboView.xaml.cs">
       <DependentUpon>ReciboView.xaml</DependentUpon>
@@ -1031,6 +1055,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Recibo\AddMovimientoDetalleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\AddMovimientoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\CatalogReciboView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\ChooseFacturaArticuloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Recibo\DlgAddFacturaArticuloView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1048,6 +1088,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Recibo\AddPedimientoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgAddFacturaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgAddMovimientoDetalleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgAddMovimientoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgAddReciboView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1109,6 +1165,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Page Include="Style\TextStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Style\WindowTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

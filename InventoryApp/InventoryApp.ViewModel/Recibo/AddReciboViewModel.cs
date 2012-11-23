@@ -6,11 +6,14 @@ using System.Collections.ObjectModel;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.Model.Recibo;
 
 namespace InventoryApp.ViewModel.Recibo
 {
-    public class AddReciboViewModel:ViewModelBase,  IPageViewModel
+    public class AddReciboViewModel : ViewModelBase
     {
+        private CatalogReciboViewModel _CatalogReciboViewModel;
+
         public ObservableCollection<SolicitanteModel> Solicitantes
         {
             get { return _Solicitantes; }
@@ -146,8 +149,29 @@ namespace InventoryApp.ViewModel.Recibo
         private string _PedimentoExpo;
         public const string PedimentoExpoPropertyName = "PedimentoExpo";
 
+        public ObservableCollection<FacturaCompraModel> Facturas
+        {
+            get { return _Facturas; }
+            set
+            {
+                if (_Facturas != value)
+                {
+                    _Facturas = value;
+                    OnPropertyChanged(FacturasPropertyName);
+                }
+            }
+        }
+        private ObservableCollection<FacturaCompraModel> _Facturas;
+        public const string FacturasPropertyName = "Facturas";
+
         public AddReciboViewModel()
         {
+            this.init();
+        }
+
+        public AddReciboViewModel(CatalogReciboViewModel catalogReciboViewModel)
+        {
+            this._CatalogReciboViewModel = catalogReciboViewModel;
             this.init();
         }
 
@@ -155,6 +179,7 @@ namespace InventoryApp.ViewModel.Recibo
         {
             this._Solicitantes = this.GetSolicitantes();
             this._Clientes = this.GetClientes();
+            this._Facturas = new ObservableCollection<FacturaCompraModel>();
         }
 
         public ObservableCollection<SolicitanteModel> GetSolicitantes()
@@ -172,18 +197,18 @@ namespace InventoryApp.ViewModel.Recibo
                     SolicitanteName = o.SOLICITANTE_NAME
                     ,
                     Empresa = new EMPRESA()
-                        {
-                            UNID_EMPRESA = o.EMPRESA.UNID_EMPRESA
-                            ,
-                            EMPRESA_NAME = o.EMPRESA.EMPRESA_NAME
-                        }
+                    {
+                        UNID_EMPRESA = o.EMPRESA.UNID_EMPRESA
+                        ,
+                        EMPRESA_NAME = o.EMPRESA.EMPRESA_NAME
+                    }
                     ,
                     Departamento = new DEPARTAMENTO()
-                        {
-                            UNID_DEPARTAMENTO = o.DEPARTAMENTO.UNID_DEPARTAMENTO
-                            ,
-                            DEPARTAMENTO_NAME = o.DEPARTAMENTO.DEPARTAMENTO_NAME
-                        }
+                    {
+                        UNID_DEPARTAMENTO = o.DEPARTAMENTO.UNID_DEPARTAMENTO
+                        ,
+                        DEPARTAMENTO_NAME = o.DEPARTAMENTO.DEPARTAMENTO_NAME
+                    }
                 }));
             }
             catch (Exception)
@@ -204,8 +229,9 @@ namespace InventoryApp.ViewModel.Recibo
                 List<CLIENTE> listCliente = solDataMapper.getClienteList();
                 listCliente.ForEach(o => clientes.Add(new ClienteModel(solDataMapper)
                 {
-                    UnidCliente=o.UNID_CLIENTE
-                    ,ClienteName=o.CLIENTE1
+                    UnidCliente = o.UNID_CLIENTE
+                    ,
+                    ClienteName = o.CLIENTE1
                 }));
             }
             catch (Exception)
@@ -216,16 +242,18 @@ namespace InventoryApp.ViewModel.Recibo
             return clientes;
         }
 
-        public string PageName
+        public AddFacturaViewModel CreateAddFacturaViewModel()
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            AddFacturaViewModel addFacturaViewModel = new AddFacturaViewModel(this);
+            return addFacturaViewModel;
         }
+
+        public AddMovimientoViewModel CreateAddMovimientoViewModel()
+        {
+            AddMovimientoViewModel addFacturaViewModel = new AddMovimientoViewModel(this);
+            return addFacturaViewModel;
+        }
+
+
     }
 }

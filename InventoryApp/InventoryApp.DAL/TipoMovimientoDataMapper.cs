@@ -17,9 +17,9 @@ namespace InventoryApp.DAL
 
             using (var entity = new TAE2Entities())
             {
-                var query=(from cust in entity.TIPO_MOVIMIENTO
-                           where cust.IS_ACTIVE ==true
-                           select cust).ToList();
+                var query = (from cust in entity.TIPO_MOVIMIENTO
+                             where cust.IS_ACTIVE == true
+                             select cust).ToList();
 
                 if (query.Count > 0)
                 {
@@ -35,13 +35,13 @@ namespace InventoryApp.DAL
 
             FixupCollection<TIPO_MOVIMIENTO> tp = new FixupCollection<TIPO_MOVIMIENTO>();
 
-            if (element!=null)
+            if (element != null)
             {
                 using (var entity = new TAE2Entities())
                 {
                     TIPO_MOVIMIENTO ETipo = (TIPO_MOVIMIENTO)element;
 
-                    var query=(from cust in entity.TIPO_MOVIMIENTO
+                    var query = (from cust in entity.TIPO_MOVIMIENTO
                                  where cust.UNID_TIPO_MOVIMIENTO == ETipo.UNID_TIPO_MOVIMIENTO
                                  select cust).ToList();
                     if (query.Count > 0)
@@ -49,14 +49,14 @@ namespace InventoryApp.DAL
                         res = query;
                     }
                     return res;
-                }    
+                }
             }
             return res;
         }
 
         public void udpateElement(object element)
         {
-            if (element!=null)
+            if (element != null)
             {
                 using (var entity = new TAE2Entities())
                 {
@@ -78,7 +78,7 @@ namespace InventoryApp.DAL
 
                 }
             }
-            
+
         }
 
         public void insertElement(object element)
@@ -94,7 +94,7 @@ namespace InventoryApp.DAL
                     entity.TIPO_MOVIMIENTO.AddObject(tipo);
 
                     entity.SaveChanges();
-                    
+
                 }
             }
         }
@@ -114,6 +114,27 @@ namespace InventoryApp.DAL
                     entity.SaveChanges();
                 }
             }
+        }
+
+
+        public List<TIPO_MOVIMIENTO> getListElements()
+        {
+            List<TIPO_MOVIMIENTO> elements = new List<TIPO_MOVIMIENTO>();
+
+            try
+            {
+                using (var Entity = new TAE2Entities())
+                {
+                    (from p in Entity.TIPO_MOVIMIENTO
+                     select p).ToList<TIPO_MOVIMIENTO>().ForEach(o => elements.Add(o));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return elements;
         }
     }
 }

@@ -1,0 +1,15 @@
+﻿<Window x:Class="InventoryApp.View.Recibo.DlgAddReciboView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:my="clr-namespace:InventoryApp.View.Recibo"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DlgAddReciboView" Height="300" Width="700">
+    <DockPanel>
+        <ContentControl HorizontalAlignment="Stretch" Name="contentControl1" VerticalAlignment="Stretch" DockPanel.Dock="Top">
+            <my:AddReciboView />
+        </ContentControl>
+        <DockPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" DockPanel.Dock="Bottom" >
+            <Button Content="Agregar" Height="23" Width="75" HorizontalAlignment="Left" />
+            <Button Content="Cancelar" Height="23"  Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" />
+        </DockPanel>
+    </DockPanel>
+</Window>

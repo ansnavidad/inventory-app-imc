@@ -13,6 +13,36 @@ namespace InventoryApp.Model.Recibo
         private IDataMapper _DataMapper;
 
         #region Properties
+        public long UnidFactura
+        {
+            get { return _UnidFactura; }
+            set
+            {
+                if (_UnidFactura != value)
+                {
+                    _UnidFactura = value;
+                    OnPropertyChanged(UnidFacturaPropertyName);
+                }
+            }
+        }
+        private long _UnidFactura;
+        public const string UnidFacturaPropertyName = "UnidFactura";
+
+        public string NumeroPedimento
+        {
+            get { return _NumeroPedimento; }
+            set
+            {
+                if (_NumeroPedimento != value)
+                {
+                    _NumeroPedimento = value;
+                    OnPropertyChanged(NumeroPedimentoPropertyName);
+                }
+            }
+        }
+        private string _NumeroPedimento;
+        public const string NumeroPedimentoPropertyName = "NumeroPedimento";
+
         public string NumeroFactura
         {
             get { return _NumeroFactura; }
@@ -28,10 +58,48 @@ namespace InventoryApp.Model.Recibo
         private string _NumeroFactura;
         public const string NumeroFacturaPropertyName = "NumeroFactura";
 
+        public double PorIva
+        {
+            get { return _PorIva; }
+            set
+            {
+                if (_PorIva != value)
+                {
+                    _PorIva = value;
+                    OnPropertyChanged(PorIvaPropertyName);
+                }
+            }
+        }
+        private double _PorIva;
+        public const string PorIvaPropertyName = "PorIva";
+
+        public double Iva
+        {
+            get
+            {
+                double _iva = 0d;
+
+                _iva = this.Importe * (this._PorIva / 100);
+
+                return _iva;
+            }
+        }
+
+        public double Total
+        {
+            get
+            {
+                double _total;
+                _total = this.Importe + this.Iva;
+                return _total;
+            }
+        }
+
         public DateTime FechaFactura
         {
-            get { 
-                return _FechaFactura; 
+            get
+            {
+                return _FechaFactura;
             }
             set
             {
@@ -104,6 +172,26 @@ namespace InventoryApp.Model.Recibo
         }
         private ObservableCollection<FacturaCompraDetalleModel> _FacturaDetalle;
         public const string FacturaDetallePropertyName = "FacturaDetalle";
+
+        //importe es el total de la factura
+        public double Importe
+        {
+            get
+            {
+                double _importe = 0d;
+                try
+                {
+                    _importe = (from o in _FacturaDetalle
+                                select o).Sum(o => (o.Cantidad * o.PrecioUnitario) + (o.Cantidad * o.ImpuestoUnitario));
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                return _importe;
+            }
+        }
+
         #endregion
 
         #region Constructors
@@ -116,7 +204,7 @@ namespace InventoryApp.Model.Recibo
         {
             this._DataMapper = dataMapper as FacturaCompraDataMapper;
             this.FacturaDetalle = new ObservableCollection<FacturaCompraDetalleModel>();
-        } 
+        }
         #endregion
 
 

@@ -138,7 +138,10 @@
     <Compile Include="MenuViewModel.cs" />
     <Compile Include="Recibo\AddFacturaViewModel.cs" />
     <Compile Include="Recibo\AddFacturaArticuloViewModel.cs" />
+    <Compile Include="Recibo\AddMovimientoDetalleViewModel.cs" />
+    <Compile Include="Recibo\AddMovimientoViewModel.cs" />
     <Compile Include="Recibo\AddReciboViewModel.cs" />
+    <Compile Include="Recibo\CatalogReciboViewModel.cs" />
     <Compile Include="Recibo\FacturaCompraViewModel.cs" />
     <Compile Include="Entradas\EntradaPorValidacionViewModel.cs" />
     <Compile Include="Entradas\EntradaDesinstalacionViewModel.cs" />

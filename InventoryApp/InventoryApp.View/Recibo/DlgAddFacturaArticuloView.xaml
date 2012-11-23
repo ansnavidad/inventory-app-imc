@@ -2,7 +2,7 @@
         x:Class="InventoryApp.View.Recibo.DlgAddFacturaArticuloView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="DlgAddFacturaArticuloView" Height="Auto" Width="400">
+        Title="DlgAddFacturaArticuloView" Height="Auto" Width="400" ResizeMode="NoResize" SizeToContent="Manual" WindowState="Normal" WindowStartupLocation="CenterOwner">
     <StackPanel>
         <ContentControl HorizontalAlignment="Stretch">
             <my:AddFacturaArticulo />

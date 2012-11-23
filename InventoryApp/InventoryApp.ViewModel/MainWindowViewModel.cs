@@ -279,9 +279,9 @@ namespace InventoryApp.ViewModel
                         page = new Traspasos.TraspasoStockViewModel();
                         break;
                     //Juan
-                    case "Nuevo Recibo":
-                        page = new Recibo.AddReciboViewModel();
-                        break;
+                   // case "Nuevo Recibo":
+                     //   page = new Recibo.AddReciboViewModel();
+                       // break;
                     default:
                         break;
                 }

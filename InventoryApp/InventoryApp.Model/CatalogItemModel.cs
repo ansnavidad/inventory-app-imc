@@ -13,6 +13,7 @@ namespace InventoryApp.Model
     {
         private FixupCollection<ItemModel> _itemModel;
         private string _serie;
+        private string _sku;
         private ItemDataMapper _dataMapper;
 
         public FixupCollection<ItemModel> ItemModel
@@ -45,9 +46,30 @@ namespace InventoryApp.Model
                 if (_serie != value)
                 {
                     _serie = value;
+                    _sku = "";
                     if (PropertyChanged != null)
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("Serie"));
+                    }
+                }
+            }
+        }
+
+        public string SKU
+        {
+            get
+            {
+                return _sku;
+            }
+            set
+            {
+                if (_sku != value)
+                {
+                    _sku = value;
+                    _serie = "";
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("SKU"));
                     }
                 }
             }
@@ -90,7 +112,7 @@ namespace InventoryApp.Model
         {
             try
             {
-                object element = this._dataMapper.getElements_EntradasSalidasSerie(this._serie);
+                object element = this._dataMapper.getElements_EntradasSalidasSerie(this._serie, this._sku);
 
                 if (element != null)
                 {

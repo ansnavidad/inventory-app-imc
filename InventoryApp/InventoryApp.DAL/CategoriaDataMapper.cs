@@ -109,12 +109,16 @@ namespace InventoryApp.DAL
                 {
                     CATEGORIA categoria = (CATEGORIA)element;
 
-                    categoria.UNID_CATEGORIA = UNID.getNewUNID();
+                    var validacion = (from cust in entity.CATEGORIAs
+                                      where cust.CATEGORIA_NAME == categoria.CATEGORIA_NAME
+                                      select cust).ToList();
 
-                    entity.CATEGORIAs.AddObject(categoria);
-
-                    entity.SaveChanges();
-
+                    if (validacion.Count == 0)
+                    {
+                        categoria.UNID_CATEGORIA = UNID.getNewUNID();
+                        entity.CATEGORIAs.AddObject(categoria);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

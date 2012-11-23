@@ -86,12 +86,16 @@ namespace InventoryApp.DAL
                 {
                     TIPO_COTIZACION tipo = (TIPO_COTIZACION)element;
 
-                    tipo.UNID_TIPO_COTIZACION = UNID.getNewUNID();
+                    var validacion = (from cust in entity.TIPO_COTIZACION
+                                      where cust.TIPO_COTIZACION_NAME == tipo.TIPO_COTIZACION_NAME
+                                      select cust).ToList();
 
-                    entity.TIPO_COTIZACION.AddObject(tipo);
-
-                    entity.SaveChanges();
-
+                    if (validacion.Count == 0)
+                    {
+                        tipo.UNID_TIPO_COTIZACION = UNID.getNewUNID();
+                        entity.TIPO_COTIZACION.AddObject(tipo);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

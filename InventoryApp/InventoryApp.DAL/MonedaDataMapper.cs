@@ -67,9 +67,17 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     MONEDA moneda = (MONEDA)element;
-                    moneda.UNID_MONEDA = UNID.getNewUNID();
-                    entity.MONEDAs.AddObject(moneda);
-                    entity.SaveChanges();
+
+                    var validacion = (from cust in entity.MONEDAs
+                                      where cust.MONEDA_NAME == moneda.MONEDA_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        moneda.UNID_MONEDA = UNID.getNewUNID();
+                        entity.MONEDAs.AddObject(moneda);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

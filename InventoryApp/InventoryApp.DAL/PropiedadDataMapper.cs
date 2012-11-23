@@ -64,9 +64,17 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     PROPIEDAD propiedad = (PROPIEDAD)element;
-                    propiedad.UNID_PROPIEDAD = UNID.getNewUNID();
-                    entity.PROPIEDADs.AddObject(propiedad);
-                    entity.SaveChanges();
+
+                    var validacion = (from cust in entity.PROPIEDADs
+                                      where cust.PROPIEDAD1 == propiedad.PROPIEDAD1
+                                      select cust).ToList();
+                    
+                    if (validacion.Count == 0)
+                    {
+                        propiedad.UNID_PROPIEDAD = UNID.getNewUNID();
+                        entity.PROPIEDADs.AddObject(propiedad);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

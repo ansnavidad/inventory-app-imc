@@ -77,7 +77,6 @@ namespace InventoryApp.DAL
                         entity.ALMACENs.AddObject(almacen);
                         entity.SaveChanges();    
                     }
-
                 }
             }
         }

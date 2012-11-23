@@ -75,10 +75,17 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     ITEM_STATUS itemStatus = (ITEM_STATUS)element;
-                    itemStatus.UNID_ITEM_STATUS = UNID.getNewUNID();
 
-                    entity.ITEM_STATUS.AddObject(itemStatus);
-                    entity.SaveChanges();
+                    var validacion = (from cust in entity.ITEM_STATUS
+                                      where cust.ITEM_STATUS_NAME == itemStatus.ITEM_STATUS_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        itemStatus.UNID_ITEM_STATUS = UNID.getNewUNID();
+                        entity.ITEM_STATUS.AddObject(itemStatus);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

@@ -77,10 +77,17 @@ namespace InventoryApp.DAL
                 using (var oAWEntities = new TAE2Entities())
                 {
                     TRANSPORTE tra = (TRANSPORTE)element;
-                    tra.UNID_TRANSPORTE = UNID.getNewUNID();
 
-                    oAWEntities.TRANSPORTEs.AddObject(tra);
-                    oAWEntities.SaveChanges();
+                    var validacion = (from cust in oAWEntities.TRANSPORTEs
+                                      where cust.TRANSPORTE_NAME == tra.TRANSPORTE_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        tra.UNID_TRANSPORTE = UNID.getNewUNID();
+                        oAWEntities.TRANSPORTEs.AddObject(tra);
+                        oAWEntities.SaveChanges();
+                    }
                 }
             }
         }

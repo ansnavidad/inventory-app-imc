@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.Recibo
 {
-    public class CatalogReciboViewModel:ViewModelBase
+    public class CatalogReciboViewModel : ViewModelBase, IPageViewModel
     {
         
         public ICommand AddReciboCmd
@@ -86,6 +86,18 @@ namespace InventoryApp.ViewModel.Recibo
 
             return CanAttempt;
         }
-    
+
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }//endclass
 }

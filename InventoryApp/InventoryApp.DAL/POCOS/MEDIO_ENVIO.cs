@@ -15,17 +15,23 @@ using System.Collections.Specialized;
 
 namespace InventoryApp.DAL.POCOS
 {
-    public partial class PROVEEDOR_CATEGORIA
+    public partial class MEDIO_ENVIO
     {
         #region Primitive Properties
     
-        public virtual long UNID_PROVEEDOR
+        public virtual long UNID_MEDIO_ENVIO
         {
             get;
             set;
         }
     
-        public virtual long UNID_CATEGORIA
+        public virtual string MEDIO_ENVIO_NAME
+        {
+            get;
+            set;
+        }
+    
+        public virtual bool IS_ACTIVE
         {
             get;
             set;

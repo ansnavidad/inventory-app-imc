@@ -20,15 +20,7 @@ namespace InventoryApp.DAL
                     var query = (from prov in entity.PROVEEDORs
                                  where prov.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR
                                  select prov).First<PROVEEDOR>();
-
-                    query.CATEGORIAs.ToList<CATEGORIA>().ForEach(o => res.Add(new CATEGORIA()
-                    {
-                        UNID_CATEGORIA = o.UNID_CATEGORIA
-                        ,
-                        CATEGORIA_NAME = o.CATEGORIA_NAME
-                        ,
-                        IS_ACTIVE = o.IS_ACTIVE
-                    }));
+                    
                 }
 
             }

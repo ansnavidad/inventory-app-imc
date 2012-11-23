@@ -32,5 +32,10 @@ namespace InventoryApp.View.Recibo
         {
             this.Close();
         }
+
+        private void AddFacturaArticulo_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

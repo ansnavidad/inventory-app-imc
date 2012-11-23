@@ -5,7 +5,7 @@
         Title="DlgAddFacturaArticuloView" Height="Auto" Width="400" ResizeMode="NoResize" SizeToContent="Manual" WindowState="Normal" WindowStartupLocation="CenterOwner">
     <StackPanel>
         <ContentControl HorizontalAlignment="Stretch">
-            <my:AddFacturaArticulo />
+            <my:AddFacturaArticulo Loaded="AddFacturaArticulo_Loaded" />
         </ContentControl>
         <DockPanel HorizontalAlignment="Stretch" >
             <Button Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Command="{Binding AddMonedaCommand}" Click="btnFacturaAdd_Click" />

@@ -16,7 +16,7 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var query = (from p in Entity.TIPO_PEDIMENTO
-                             where p.IS_ACTIVE ==true
+                             where p.IS_ACTIVE == true
                              select p).ToList();
 
                 if (query.Count > 0)
@@ -38,11 +38,11 @@ namespace InventoryApp.DAL
 
                 using (var Entity = new TAE2Entities())
                 {
-                   var query= (from p in Entity.TIPO_PEDIMENTO
-                                where p.UNID_TIPO_PEDIMENTO == Eprov.UNID_TIPO_PEDIMENTO
-                                select p).ToList();
+                    var query = (from p in Entity.TIPO_PEDIMENTO
+                                 where p.UNID_TIPO_PEDIMENTO == Eprov.UNID_TIPO_PEDIMENTO
+                                 select p).ToList();
 
-                   if (query.Count > 0)
+                    if (query.Count > 0)
                     {
                         o = query;
                     }
@@ -100,6 +100,26 @@ namespace InventoryApp.DAL
                     entity.SaveChanges();
                 }
             }
+        }
+
+        public List<TIPO_PEDIMENTO> getListElements()
+        {
+            List<TIPO_PEDIMENTO> tipoPedimentos = new List<TIPO_PEDIMENTO>();
+
+            try
+            {
+                using (var Entity = new TAE2Entities())
+                {
+                    (from p in Entity.TIPO_PEDIMENTO
+                     select p).ToList<TIPO_PEDIMENTO>().ForEach(o => tipoPedimentos.Add(o));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return tipoPedimentos;
         }
     }
 }

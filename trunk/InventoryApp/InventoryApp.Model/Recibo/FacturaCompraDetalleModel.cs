@@ -99,6 +99,21 @@ namespace InventoryApp.Model.Recibo
         private int _Cantidad;
         public const string CantidadPropertyName = "Cantidad";
 
+        public int CantidadElegida
+        {
+            get { return _CantidadElegida; }
+            set
+            {
+                if (_CantidadElegida != value)
+                {
+                    _CantidadElegida = value;
+                    OnPropertyChanged(CantidadElegidaPropertyName);
+                }
+            }
+        }
+        private int _CantidadElegida;
+        public const string CantidadElegidaPropertyName = "CantidadElegida";
+
         public double PrecioUnitario
         {
             get { return _PrecioUnitario; }
@@ -172,7 +187,7 @@ namespace InventoryApp.Model.Recibo
             }
         }
         private bool _IsActive;
-        public const string IsActivePropertyName = "IsActive";  
+        public const string IsActivePropertyName = "IsActive";
         #endregion
 
     }

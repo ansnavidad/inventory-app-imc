@@ -71,10 +71,9 @@
              xmlns:GridMovimientosViewModel="clr-namespace:InventoryApp.ViewModel.GridMovimientos;assembly=InventoryApp.ViewModel"
              xmlns:GridMovimientosView="clr-namespace:InventoryApp.View.GridMovimientos"
              
-             xmlns:ReciboViewModel="clr-namespace:InventoryApp.ViewModel.Recibo;assembly=InventoryApp.ViewModel"
-             xmlns:ReciboView="clr-namespace:InventoryApp.View.Recibo"
              
-             StartupUri="MainWindow.xaml">
+             StartupUri="Recibo/CatalogReciboView.xaml"
+             >
     
     <!--StartupUri="Recibo/ReciboView.xaml"-->
     <!--StartupUri="MainWindow.xaml"-->
@@ -89,9 +88,12 @@
         -->
         <rootViewModel:MenuViewModel x:Key="menuViewModel" />
         <rootViewModel:MainWindowViewModel x:Key="mainWindowViewModel" />
-
+        <reciboViewModel:CatalogReciboViewModel x:Key="catalogReciboViewModel" />
         <!--Juan-->
-        <ReciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />
+            <!--<ReciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />-->
+        <reciboViewModel:AddFacturaViewModel x:Key="addFacturaViewModel" />
+        <reciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />
+        <reciboViewModel:AddMovimientoViewModel x:Key="addMovimientoViewModel" />
         
         <!--Movimientos-->        
         <EntradaViewModel:EntradaPorValidacionViewModel x:Key="entradaPorValidacionViewModel" />
@@ -316,18 +318,18 @@
         <rootViewModel:BoolToVisibilityValueConverter x:Key="boolVisibilityConverter" />
         
         <!-- DataTemplates -->
-        <DataTemplate DataType="{x:Type ReciboViewModel:AddReciboViewModel}">
+        <!--<DataTemplate DataType="{x:Type ReciboViewModel:AddReciboViewModel}">
             <ReciboView:AddReciboView />
-        </DataTemplate>
+        </DataTemplate>-->
         <DataTemplate DataType="{x:Type catArticulo:CatalogArticuloViewModel}">
             <catArticuloViews:ArticuloUserControl />
         </DataTemplate>
         <DataTemplate DataType="{x:Type catMarca:CatalogMarcaViewModel}">
             <catMarcaViews:MarcaUserControl />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type reciboViewModel:ReciboViewModel}">
+        <!--<DataTemplate DataType="{x:Type reciboViewModel:ReciboViewModel}">
             <reciboViews:ReciboView />
-        </DataTemplate>
+        </DataTemplate>-->
         <DataTemplate DataType="{x:Type catBancoViewModel:CatalogBancoViewModel}">
             <bancoViews:BancoUserControl />
         </DataTemplate>

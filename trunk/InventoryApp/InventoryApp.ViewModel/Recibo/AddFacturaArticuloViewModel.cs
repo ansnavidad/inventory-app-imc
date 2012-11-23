@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.Recibo
 {
-    public class AddFacturaArticuloViewModel:ViewModelBase
+    public class AddFacturaArticuloViewModel : ViewModelBase
     {
         private AddFacturaViewModel _AddFacturaViewModel;
         private RelayCommand _AddDetalle;
@@ -104,7 +104,7 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private ArticuloModel _SelectedArticulo;    
+        private ArticuloModel _SelectedArticulo;
         public const string SelectedArticuloPropertyName = "SelectedArticulo";
 
         public int Cantidad
@@ -212,7 +212,7 @@ namespace InventoryApp.ViewModel.Recibo
             }
             this._AddFacturaViewModel = factura;
             this.init(factura);
-        } 
+        }
         #endregion
 
         #region Methods
@@ -236,21 +236,28 @@ namespace InventoryApp.ViewModel.Recibo
                 articulos.ForEach(o => articuloModels.Add(new ArticuloModel()
                 {
                     UnidArticulo = o.UNID_ARTICULO
-                    ,ArticuloName = o.ARTICULO1
-                    ,EquipoModel = new EquipoModel(new EquipoDataMapper())
+                    ,
+                    ArticuloName = o.ARTICULO1
+                    ,
+                    EquipoModel = new EquipoModel(new EquipoDataMapper())
                     {
-                        UnidEquipo=o.EQUIPO.UNID_EQUIPO
-                        ,EquipoName=o.EQUIPO.EQUIPO_NAME
+                        UnidEquipo = o.EQUIPO.UNID_EQUIPO
+                        ,
+                        EquipoName = o.EQUIPO.EQUIPO_NAME
                     }
-                    ,Categoria=new CATEGORIA()
+                    ,
+                    Categoria = new CATEGORIA()
                     {
-                        CATEGORIA_NAME=o.CATEGORIA.CATEGORIA_NAME
-                        ,UNID_CATEGORIA=o.CATEGORIA.UNID_CATEGORIA
+                        CATEGORIA_NAME = o.CATEGORIA.CATEGORIA_NAME
+                        ,
+                        UNID_CATEGORIA = o.CATEGORIA.UNID_CATEGORIA
                     }
-                    ,Marca=new MARCA()
+                    ,
+                    Marca = new MARCA()
                     {
-                        UNID_MARCA=o.MARCA.UNID_MARCA
-                        ,MARCA_NAME=o.MARCA.MARCA_NAME
+                        UNID_MARCA = o.MARCA.UNID_MARCA
+                        ,
+                        MARCA_NAME = o.MARCA.MARCA_NAME
                     }
                 }));
             }
@@ -291,7 +298,8 @@ namespace InventoryApp.ViewModel.Recibo
             try
             {
                 CategoriaDataMapper catDataMapper = new CategoriaDataMapper();
-                List<CATEGORIA> categoriaResult = catDataMapper.getElementsByProveedor(new PROVEEDOR() {
+                List<CATEGORIA> categoriaResult = catDataMapper.getElementsByProveedor(new PROVEEDOR()
+                {
                     UNID_PROVEEDOR = this._AddFacturaViewModel.SelectedProveedor.UnidProveedor
                 });
                 categoriaResult.ForEach(o => categorias.Add(new CategoriaModel(catDataMapper)
@@ -334,12 +342,17 @@ namespace InventoryApp.ViewModel.Recibo
         {
             FacturaCompraDetalleModel facturaDetalle = new FacturaCompraDetalleModel()
             {
-                UnidFacturaCompraDetalle=DAL.UNID.getNewUNID()
-                ,Articulo=this._SelectedArticulo
-                ,Cantidad=this._Cantidad
-                ,PrecioUnitario=this._PrecioUnitario
-                ,ImpuestoUnitario=this._PrecioUnitario
-                ,Unidad=this._SelectedUnidad
+                UnidFacturaCompraDetalle = DAL.UNID.getNewUNID()
+                ,
+                Articulo = this._SelectedArticulo
+                ,
+                Cantidad = this._Cantidad
+                ,
+                PrecioUnitario = this._PrecioUnitario
+                ,
+                ImpuestoUnitario = this._PrecioUnitario
+                ,
+                Unidad = this._SelectedUnidad
             };
             this._AddFacturaViewModel.FacturaDetalles.Add(facturaDetalle);
         }
@@ -348,7 +361,7 @@ namespace InventoryApp.ViewModel.Recibo
         {
             bool canAddDetalle = false;
 
-            if (this.SelectedCategoria != null && this.SelectedArticulo != null
+            if (this.SelectedCategoria != null && this.SelectedArticulo != null && this._Cantidad > 0
                 )
             {
                 canAddDetalle = true;
@@ -356,6 +369,6 @@ namespace InventoryApp.ViewModel.Recibo
 
             return canAddDetalle;
         }
-        #endregion  
+        #endregion
     }
 }

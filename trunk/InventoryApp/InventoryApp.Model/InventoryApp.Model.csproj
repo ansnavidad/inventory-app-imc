@@ -139,8 +139,17 @@
     <Compile Include="ProveedorCuentaModel.cs" />
     <Compile Include="ProveedorModel.cs" />
     <Compile Include="ProyectoModel.cs" />
+    <Compile Include="Recibo\AlmacenModel.cs" />
     <Compile Include="Recibo\FacturaCompraDetalleModel.cs" />
     <Compile Include="Recibo\FacturaCompraModel.cs" />
+    <Compile Include="Recibo\IOrigenModel.cs" />
+    <Compile Include="Recibo\Movimiento.cs" />
+    <Compile Include="Recibo\OrigenClienteModel.cs" />
+    <Compile Include="Recibo\OrigenProveedorModel.cs" />
+    <Compile Include="Recibo\ReciboItemModel.cs" />
+    <Compile Include="Recibo\ReciboModel.cs" />
+    <Compile Include="Recibo\ReciboStatusModel.cs" />
+    <Compile Include="Recibo\TipoOrigenModel.cs" />
     <Compile Include="ServicioModel.cs" />
     <Compile Include="SolicitanteModel.cs" />
     <Compile Include="TerminoEnvioModel.cs" />

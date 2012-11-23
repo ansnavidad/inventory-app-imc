@@ -235,6 +235,7 @@
     <Compile Include="ProveedorCuentaDataMapper.cs" />
     <Compile Include="ProveedorDataMapper.cs" />
     <Compile Include="ProyectoDataMapper.cs" />
+    <Compile Include="ReciboDataMapper.cs" />
     <Compile Include="Recibo\FacturaCompraDataMapper.cs" />
     <Compile Include="ServicioDataMapper.cs" />
     <Compile Include="Solicitante1DataMapper.cs" />

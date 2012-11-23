@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.Recibo;
 
 namespace InventoryApp.View.Recibo
 {
@@ -23,5 +24,33 @@ namespace InventoryApp.View.Recibo
         {
             InitializeComponent();
         }
+
+        private void btnFacturaAdd_Click(object sender, RoutedEventArgs e)
+        {
+            DlgAddFacturaView addFactura = new DlgAddFacturaView();
+            AddReciboViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addFactura.DataContext = viewModel.CreateAddFacturaViewModel(); ;
+            addFactura.Show();
+        }
+
+        private void ConvertObjectSource()
+        {
+
+        }
+
+        private AddReciboViewModel ConvertDataContext(object dataSource)
+        {
+            AddReciboViewModel viewModel = dataSource as AddReciboViewModel;
+            return viewModel;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DlgAddMovimientoView addMovimientoView = new DlgAddMovimientoView();
+            AddReciboViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addMovimientoView.DataContext = viewModel.CreateAddMovimientoViewModel();
+            addMovimientoView.ShowDialog();
+        }
+
     }
 }

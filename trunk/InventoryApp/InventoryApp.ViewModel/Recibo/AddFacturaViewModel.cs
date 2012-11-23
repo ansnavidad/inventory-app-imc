@@ -12,34 +12,87 @@ using System.Collections.Specialized;
 
 namespace InventoryApp.ViewModel.Recibo
 {
-    public class AddFacturaViewModel:ViewModelBase
+    public class AddFacturaViewModel : ViewModelBase
     {
+        private AddReciboViewModel _AddReciboViewModel;
+
         public ICommand AddFacturaCommand
         {
-            get 
+            get
             {
                 if (_AddFacturaCommand == null)
                 {
-                    _AddFacturaCommand = new RelayCommand(p=>this.AttemptAddFactura(),p=>this.CanAttemptAddFactura());
+                    _AddFacturaCommand = new RelayCommand(p => this.AttemptAddFactura(), p => this.CanAttemptAddFactura());
                 }
-                return _AddFacturaCommand; 
+                return _AddFacturaCommand;
             }
         }
         private RelayCommand _AddFacturaCommand;
 
-        public ICommand DeleteFacturaDetalle
+        public ICommand AddFacturaArticuloCommand
         {
             get
             {
-                if (_DeleteFacturaDetalle != null)
+                if (_AddFacturaArticuloCommand == null)
                 {
-                    _DeleteFacturaDetalle = new RelayCommand(p => this.AttemptDeleteFacturaDetalle(), p => this.CanAttemptDeleteFacturaDetalle());
+                    _AddFacturaArticuloCommand = new RelayCommand(p => this.AttemptAddFacturaArticuloCommand(), p => this.CanAddFacturaArticuloCommand());
                 }
-                return _DeleteFacturaDetalle;
+                return _AddFacturaArticuloCommand;
             }
         }
-        private RelayCommand _DeleteFacturaDetalle;
-        public const string DeleteFacturaDetallePropertyName = "DeleteFacturaDetalle";
+        private RelayCommand _AddFacturaArticuloCommand;
+
+        public ICommand DeleteFacturaArticuloCommand
+        {
+            get
+            {
+                if (_DeleteFacturaArticuloCommand == null)
+                {
+                    _DeleteFacturaArticuloCommand = new RelayCommand(p => this.AttemptDeleteFacturaArticuloCommand(), p => this.CanAttemptDeleteFacturaArticuloCommand());
+                }
+                return _DeleteFacturaArticuloCommand;
+            }
+        }
+        private RelayCommand _DeleteFacturaArticuloCommand;
+        public const string DeleteFacturaDetallePropertyName = "DeleteFacturaArticuloCommand";
+
+        public long UnidFactura
+        {
+            get
+            {
+                if (_UnidFactura == null)
+                {
+                    _UnidFactura = DAL.UNID.getNewUNID();
+                }
+                return _UnidFactura;
+            }
+            set
+            {
+                if (_UnidFactura != value)
+                {
+                    _UnidFactura = value;
+                    OnPropertyChanged(UnidFacturaPropertyName);
+                }
+            }
+        }
+        private long _UnidFactura;
+        public const string UnidFacturaPropertyName = "UnidFactura";
+
+        //porcentaje de iva
+        public double PorIva
+        {
+            get { return _PorIva; }
+            set
+            {
+                if (_PorIva != value)
+                {
+                    _PorIva = value;
+                    OnPropertyChanged(PorIvaPropertyName);
+                }
+            }
+        }
+        private double _PorIva;
+        public const string PorIvaPropertyName = "PorIva";
 
         public String NumeroFactura
         {
@@ -58,7 +111,14 @@ namespace InventoryApp.ViewModel.Recibo
 
         public DateTime FechaFactura
         {
-            get { return _FechaFactura; }
+            get
+            {
+                if (_FechaFactura == null)
+                {
+                    _FechaFactura = DateTime.Now;
+                }
+                return _FechaFactura;
+            }
             set
             {
                 if (_FechaFactura != value)
@@ -86,6 +146,51 @@ namespace InventoryApp.ViewModel.Recibo
         private ObservableCollection<ProveedorModel> _Proveedores;
         public const string ProveedoresPropertyName = "Proveedores";
 
+        public string NumeroPedimento
+        {
+            get { return _NumeroPedimento; }
+            set
+            {
+                if (_NumeroPedimento != value)
+                {
+                    _NumeroPedimento = value;
+                    OnPropertyChanged(NumeroPedimentoPropertyName);
+                }
+            }
+        }
+        private string _NumeroPedimento;
+        public const string NumeroPedimentoPropertyName = "NumeroPedimento";
+
+        public TipoPedimentoModel SelectedTipoPedimento
+        {
+            get { return _SelectedTipoPedimento; }
+            set
+            {
+                if (_SelectedTipoPedimento != value)
+                {
+                    _SelectedTipoPedimento = value;
+                    OnPropertyChanged(SelectedTipoPedimentoPropertyName);
+                }
+            }
+        }
+        private TipoPedimentoModel _SelectedTipoPedimento;
+        public const string SelectedTipoPedimentoPropertyName = "SelectedTipoPedimento";
+
+        public ObservableCollection<TipoPedimentoModel> TipoPedimentos
+        {
+            get { return _TipoPedimentos; }
+            set
+            {
+                if (_TipoPedimentos != value)
+                {
+                    _TipoPedimentos = value;
+                    OnPropertyChanged(TipoPedimentosPropertyName);
+                }
+            }
+        }
+        private ObservableCollection<TipoPedimentoModel> _TipoPedimentos;
+        public const string TipoPedimentosPropertyName = "TipoPedimentos";
+
         public ProveedorModel SelectedProveedor
         {
             get { return _SelectedProveedor; }
@@ -100,7 +205,7 @@ namespace InventoryApp.ViewModel.Recibo
                     }
                     else
                     {
-                        
+
                     }
                 }
             }
@@ -168,14 +273,42 @@ namespace InventoryApp.ViewModel.Recibo
         private ObservableCollection<FacturaCompraDetalleModel> _FacturaDetalles;
         public const string FacturaDetallesPropertyName = "FacturaDetalles";
 
+        #region Constructors
         public AddFacturaViewModel()
         {
             this.init();
         }
 
+        public AddFacturaViewModel(AddReciboViewModel addReciboViewModel)
+        {
+            this._AddReciboViewModel = addReciboViewModel;
+            this.init();
+        }
+        #endregion
+
         #region Methods
         public void AttemptAddFactura()
         {
+            if (this._AddReciboViewModel != null)
+            {
+                FacturaCompraModel factura = new FacturaCompraModel()
+                {
+                    UnidFactura = this.UnidFactura
+                    ,
+                    Proveedor = this.SelectedProveedor
+                    ,
+                    FechaFactura = this.FechaFactura
+                    ,
+                    NumeroFactura = this.NumeroFactura
+                    ,
+                    Moneda = this.SelectedMoneda
+                    ,
+                    FacturaDetalle = this._FacturaDetalles
+                    ,
+                    PorIva = this.PorIva
+                };
+                this._AddReciboViewModel.Facturas.Add(factura);
+            }
         }
 
         public bool CanAttemptAddFactura()
@@ -194,13 +327,49 @@ namespace InventoryApp.ViewModel.Recibo
             return canAddFactura;
         }
 
-        public void AttemptDeleteFacturaDetalle()
+        public void AttemptDeleteFacturaArticuloCommand()
         {
         }
 
-        public bool CanAttemptDeleteFacturaDetalle()
+        public bool CanAttemptDeleteFacturaArticuloCommand()
         {
             bool canDeleteFacturaDetalle = false;
+
+            if (this._FacturaDetalles != null && this._FacturaDetalles.Count > 0)
+            {
+                int res = 0;
+                try
+                {
+                    res = (from o in this._FacturaDetalles
+                           where o.IsSelected == true
+                           select o).ToList().Count;
+                }
+                catch (Exception)
+                {
+                    res = 0;
+                }
+
+                if (res > 0)
+                {
+                    canDeleteFacturaDetalle = true;
+                }
+            }
+
+            return canDeleteFacturaDetalle;
+        }
+
+        public void AttemptAddFacturaArticuloCommand()
+        {
+        }
+
+        public bool CanAddFacturaArticuloCommand()
+        {
+            bool canDeleteFacturaDetalle = false;
+
+            if (this.SelectedProveedor != null)
+            {
+                canDeleteFacturaDetalle = true;
+            }
 
             return canDeleteFacturaDetalle;
         }
@@ -211,6 +380,8 @@ namespace InventoryApp.ViewModel.Recibo
             this._Proveedores = this.GetProveedores();
             this._Monedas = this.GetMonedas();
             this._FacturaDetalles = new ObservableCollection<FacturaCompraDetalleModel>();
+            this._TipoPedimentos = this.GetPedimentos();
+            this._FechaFactura = DateTime.Now;
             this._FacturaDetalles.CollectionChanged += delegate(object sender, NotifyCollectionChangedEventArgs e)
             {
                 if ((sender as ObservableCollection<FacturaCompraDetalleModel>).Count > 0)
@@ -232,9 +403,11 @@ namespace InventoryApp.ViewModel.Recibo
             {
                 ProveedorDataMapper provDataMapper = new ProveedorDataMapper();
                 List<PROVEEDOR> listProveedor = (List<PROVEEDOR>)provDataMapper.getElements();
-                listProveedor.ForEach(o=>proveedores.Add(new ProveedorModel(provDataMapper){
-                    UnidProveedor=o.UNID_PROVEEDOR
-                    ,ProveedorName=o.PROVEEDOR_NAME
+                listProveedor.ForEach(o => proveedores.Add(new ProveedorModel(provDataMapper)
+                {
+                    UnidProveedor = o.UNID_PROVEEDOR
+                    ,
+                    ProveedorName = o.PROVEEDOR_NAME
                 }));
             }
             catch (Exception)
@@ -255,9 +428,11 @@ namespace InventoryApp.ViewModel.Recibo
                 List<MONEDA> listProveedor = (List<MONEDA>)monDataMapper.getElements();
                 listProveedor.ForEach(o => monedas.Add(new MonedaModel(monDataMapper)
                 {
-                    UnidMoneda=o.UNID_MONEDA
-                    ,MonedaName=o.MONEDA_NAME
-                    ,MonedaAbr=o.MONEDA_ABR
+                    UnidMoneda = o.UNID_MONEDA
+                    ,
+                    MonedaName = o.MONEDA_NAME
+                    ,
+                    MonedaAbr = o.MONEDA_ABR
                 }));
             }
             catch (Exception)
@@ -266,6 +441,30 @@ namespace InventoryApp.ViewModel.Recibo
             }
 
             return monedas;
+        }
+
+        private ObservableCollection<TipoPedimentoModel> GetPedimentos()
+        {
+            ObservableCollection<TipoPedimentoModel> tipoPedimentos = new ObservableCollection<TipoPedimentoModel>();
+
+            try
+            {
+                TipoPedimentoDataMapper tpDataMapper = new TipoPedimentoDataMapper();
+                List<TIPO_PEDIMENTO> listTipoPedimento = new List<TIPO_PEDIMENTO>();
+                listTipoPedimento = tpDataMapper.getListElements();
+                listTipoPedimento.ForEach(o => tipoPedimentos.Add(new TipoPedimentoModel(tpDataMapper)
+                {
+                    UnidTipoPedimento = o.UNID_TIPO_PEDIMENTO
+                    ,
+                    TipoPedimentoName = o.TIPO_PEDIMENTO_NAME
+                }));
+            }
+            catch (Exception ex)
+            {
+                ;
+            }
+
+            return tipoPedimentos;
         }
 
         public AddFacturaArticuloViewModel CreateAddFacturaArticuloViewModel()

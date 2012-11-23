@@ -26,8 +26,7 @@ namespace InventoryApp.DAL
                 foreach (PROVEEDOR trans in ((List<PROVEEDOR>)query))
                 {
                     trans.PAI = trans.PAI;
-                    trans.CIUDAD = trans.CIUDAD;
-                    trans.CATEGORIAs = trans.CATEGORIAs;
+                    trans.CIUDAD = trans.CIUDAD;                    
                 }
 
                 if (query.Count>0)

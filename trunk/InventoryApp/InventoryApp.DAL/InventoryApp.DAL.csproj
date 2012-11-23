@@ -173,6 +173,9 @@
     <Compile Include="POCOS\PROVEEDOR.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
+    <Compile Include="POCOS\PROVEEDOR_CATEGORIA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
     <Compile Include="POCOS\PROVEEDOR_CUENTA.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
@@ -198,9 +201,6 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\SOLICITANTE1.cs">
-      <DependentUpon>PocosElara.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POCOS\sysdiagram.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\TERMINO_ENVIO.cs">

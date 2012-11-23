@@ -17,12 +17,17 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    var query = (from prov in entity.PROVEEDORs
-                                 where prov.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR
-                                 select prov).First<PROVEEDOR>();
-                    
-                }
+                    var query = (from provL in entity.PROVEEDOR_CATEGORIA
+                                 join cat in entity.CATEGORIAs on provL.UNID_CATEGORIA equals cat.UNID_CATEGORIA
+                                 join prov in entity.PROVEEDORs on provL.UNID_PROVEEDOR equals prov.UNID_PROVEEDOR
+                                 where provL.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR
+                                 select cat).ToList<CATEGORIA>();
 
+                    foreach (CATEGORIA c in query)
+                    {
+                        res.Add(c);
+                    }
+                }
             }
             catch (Exception)
             {

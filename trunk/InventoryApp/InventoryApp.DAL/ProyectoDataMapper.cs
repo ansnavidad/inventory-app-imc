@@ -84,12 +84,16 @@ namespace InventoryApp.DAL
                 {
                     PROYECTO Proyecto = (PROYECTO)element;
 
-                    Proyecto.UNID_PROYECTO = UNID.getNewUNID();
+                    var validacion = (from cust in entity.PROYECTOes
+                                      where cust.PROYECTO_NAME == Proyecto.PROYECTO_NAME
+                                      select cust).ToList();
 
-                    entity.PROYECTOes.AddObject(Proyecto);
-
-                    entity.SaveChanges();
-
+                    if (validacion.Count == 0)
+                    {
+                        Proyecto.UNID_PROYECTO = UNID.getNewUNID();
+                        entity.PROYECTOes.AddObject(Proyecto);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

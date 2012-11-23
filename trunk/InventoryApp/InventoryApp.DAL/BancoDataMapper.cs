@@ -64,10 +64,17 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     BANCO banco = (BANCO)element;
-                     banco.UNID_BANCO = UNID.getNewUNID();
 
-                    entity.BANCOes.AddObject(banco);
-                    entity.SaveChanges();
+                    var validacion = (from cust in entity.BANCOes
+                                      where cust.BANCO_NAME == banco.BANCO_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        banco.UNID_BANCO = UNID.getNewUNID();
+                        entity.BANCOes.AddObject(banco);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

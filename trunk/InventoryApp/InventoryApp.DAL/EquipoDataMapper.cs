@@ -95,9 +95,17 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     EQUIPO equipo = (EQUIPO)element;
-                    equipo.UNID_EQUIPO = UNID.getNewUNID();
-                    entity.EQUIPOes.AddObject(equipo);
-                    entity.SaveChanges();
+
+                    var validacion = (from cust in entity.EQUIPOes
+                                      where cust.EQUIPO_NAME == equipo.EQUIPO_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        equipo.UNID_EQUIPO = UNID.getNewUNID();
+                        entity.EQUIPOes.AddObject(equipo);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

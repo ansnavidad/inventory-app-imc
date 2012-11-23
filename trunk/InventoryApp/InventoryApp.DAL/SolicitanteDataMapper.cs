@@ -101,11 +101,16 @@ namespace InventoryApp.DAL
                 {
                     SOLICITANTE Sol = (SOLICITANTE)element;
 
-                    Sol.UNID_SOLICITANTE = UNID.getNewUNID();
+                    var validacion = (from cust in entitie.SOLICITANTEs
+                                      where cust.SOLICITANTE_NAME == Sol.SOLICITANTE_NAME
+                                      select cust).ToList();
 
-                    entitie.SOLICITANTEs.AddObject(Sol);
-
-                    entitie.SaveChanges();
+                    if (validacion.Count == 0)
+                    {
+                        Sol.UNID_SOLICITANTE = UNID.getNewUNID();
+                        entitie.SOLICITANTEs.AddObject(Sol);
+                        entitie.SaveChanges();
+                    }
                 }
             }
         }

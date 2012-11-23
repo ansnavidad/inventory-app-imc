@@ -89,11 +89,16 @@ namespace InventoryApp.Model
                 {
                     EMPRESA empresa = (EMPRESA)element;
 
-                    empresa.UNID_EMPRESA = UNID.getNewUNID();
+                    var validacion = (from cust in entitie.EMPRESAs
+                                      where cust.EMPRESA_NAME == empresa.EMPRESA_NAME
+                                      select cust).ToList();
 
-                    entitie.EMPRESAs.AddObject(empresa);
-
-                    entitie.SaveChanges();
+                    if (validacion.Count == 0)
+                    {
+                        empresa.UNID_EMPRESA = UNID.getNewUNID();
+                        entitie.EMPRESAs.AddObject(empresa);
+                        entitie.SaveChanges();
+                    }
                 }            
             }
         }

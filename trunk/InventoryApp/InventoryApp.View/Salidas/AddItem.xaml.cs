@@ -33,5 +33,22 @@ namespace InventoryApp.View.Salidas
             this.Close();
         }
 
+        private void radioButton1_Checked(object sender, RoutedEventArgs e)
+        {
+            this.txtNumSerie.Text = "";
+            this.txtSKU.Text = "";
+
+            this.txtSKU.IsEnabled = false;
+            this.txtNumSerie.IsEnabled = true;
+        }
+
+        private void radioButton2_Checked(object sender, RoutedEventArgs e)
+        {
+            this.txtNumSerie.Text = "";
+            this.txtSKU.Text = "";
+
+            this.txtSKU.IsEnabled = true;
+            this.txtNumSerie.IsEnabled = false;
+        }
     }
 }

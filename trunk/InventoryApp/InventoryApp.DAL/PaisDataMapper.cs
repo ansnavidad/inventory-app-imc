@@ -73,9 +73,16 @@ namespace InventoryApp.DAL
                 {
                     PAI pais = (PAI)element;
 
-                    pais.UNID_PAIS = UNID.getNewUNID();
-                    entity.PAIS.AddObject(pais);
-                    entity.SaveChanges();
+                    var validacion = (from cust in entity.PAIS
+                                      where cust.PAIS == pais.PAIS
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        pais.UNID_PAIS = UNID.getNewUNID();
+                        entity.PAIS.AddObject(pais);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

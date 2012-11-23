@@ -77,10 +77,16 @@ namespace InventoryApp.DAL
                 {
                     TIPO_PEDIMENTO tipoPedimento = (TIPO_PEDIMENTO)element;
 
-                    tipoPedimento.UNID_TIPO_PEDIMENTO = UNID.getNewUNID();
+                    var validacion = (from cust in entity.TIPO_PEDIMENTO
+                                      where cust.TIPO_PEDIMENTO_NAME == tipoPedimento.TIPO_PEDIMENTO_NAME
+                                      select cust).ToList();
 
-                    entity.TIPO_PEDIMENTO.AddObject(tipoPedimento);
-                    entity.SaveChanges();
+                    if (validacion.Count == 0)
+                    {
+                        tipoPedimento.UNID_TIPO_PEDIMENTO = UNID.getNewUNID();
+                        entity.TIPO_PEDIMENTO.AddObject(tipoPedimento);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

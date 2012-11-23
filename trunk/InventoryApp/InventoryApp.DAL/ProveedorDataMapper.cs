@@ -95,9 +95,17 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 { 
                     PROVEEDOR proveedor = (PROVEEDOR)element;
-                    proveedor.UNID_PROVEEDOR = UNID.getNewUNID();
-                    entity.PROVEEDORs.AddObject(proveedor);
-                    entity.SaveChanges();
+
+                    var validacion = (from cust in entity.PROVEEDORs
+                                      where cust.PROVEEDOR_NAME == proveedor.PROVEEDOR_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        proveedor.UNID_PROVEEDOR = UNID.getNewUNID();
+                        entity.PROVEEDORs.AddObject(proveedor);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

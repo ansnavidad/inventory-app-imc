@@ -70,9 +70,17 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     MARCA marca = (MARCA)element;
-                    marca.UNID_MARCA = UNID.getNewUNID();
-                    entity.MARCAs.AddObject(marca);
-                    entity.SaveChanges();
+
+                    var validacion = (from cust in entity.MARCAs
+                                      where cust.MARCA_NAME == marca.MARCA_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        marca.UNID_MARCA = UNID.getNewUNID();
+                        entity.MARCAs.AddObject(marca);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

@@ -76,10 +76,16 @@ namespace InventoryApp.DAL
                 {
                     TERMINO_ENVIO terminoEnvio = (TERMINO_ENVIO)element;
 
-                    terminoEnvio.UNID_TERMINO_ENVIO = UNID.getNewUNID();
+                    var validacion = (from cust in entity.TERMINO_ENVIO
+                                      where cust.TERMINO == terminoEnvio.TERMINO
+                                      select cust).ToList();
 
-                    entity.TERMINO_ENVIO.AddObject(terminoEnvio);
-                    entity.SaveChanges();
+                    if (validacion.Count == 0)
+                    {
+                        terminoEnvio.UNID_TERMINO_ENVIO = UNID.getNewUNID();
+                        entity.TERMINO_ENVIO.AddObject(terminoEnvio);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

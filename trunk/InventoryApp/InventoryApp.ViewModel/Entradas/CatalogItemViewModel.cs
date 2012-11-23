@@ -137,7 +137,7 @@ namespace InventoryApp.ViewModel.Entradas
         public bool CanAttempArticulo()
         {
             bool _canInsertArticulo = false;
-            if (!String.IsNullOrEmpty(this._catalogItemModel.Serie))
+            if (!String.IsNullOrEmpty(this._catalogItemModel.Serie) || !String.IsNullOrEmpty(this._catalogItemModel.SKU))
                 _canInsertArticulo = true;
 
             return _canInsertArticulo;

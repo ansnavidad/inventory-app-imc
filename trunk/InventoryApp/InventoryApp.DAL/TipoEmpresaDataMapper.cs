@@ -69,10 +69,17 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     TIPO_EMPRESA tra = (TIPO_EMPRESA)element;
-                    tra.UNID_TIPO_EMPRESA = UNID.getNewUNID();
 
-                    entity.TIPO_EMPRESA.AddObject(tra);
-                    entity.SaveChanges();
+                    var validacion = (from cust in entity.TIPO_EMPRESA
+                                      where cust.TIPO_EMPRESA_NAME == tra.TIPO_EMPRESA_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        tra.UNID_TIPO_EMPRESA = UNID.getNewUNID();
+                        entity.TIPO_EMPRESA.AddObject(tra);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

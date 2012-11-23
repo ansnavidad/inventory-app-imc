@@ -70,9 +70,17 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     MEDIO_ENVIO medioEnvio = (MEDIO_ENVIO)element;
-                    medioEnvio.UNID_MEDIO_ENVIO = UNID.getNewUNID();
-                    entity.MEDIO_ENVIO.AddObject(medioEnvio);
-                    entity.SaveChanges();
+
+                    var validacion = (from cust in entity.MEDIO_ENVIO
+                                      where cust.MEDIO_ENVIO_NAME == medioEnvio.MEDIO_ENVIO_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        medioEnvio.UNID_MEDIO_ENVIO = UNID.getNewUNID();
+                        entity.MEDIO_ENVIO.AddObject(medioEnvio);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

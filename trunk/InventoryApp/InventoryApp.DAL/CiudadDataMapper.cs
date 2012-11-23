@@ -74,9 +74,16 @@ namespace InventoryApp.DAL
                 {
                     CIUDAD ciudad = (CIUDAD)element;
 
-                    ciudad.UNID_CIUDAD = UNID.getNewUNID();
-                    entity.CIUDADs.AddObject(ciudad);
-                    entity.SaveChanges();
+                    var validacion = (from cust in entity.CIUDADs
+                                      where cust.CIUDAD1 == ciudad.CIUDAD1
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        ciudad.UNID_CIUDAD = UNID.getNewUNID();
+                        entity.CIUDADs.AddObject(ciudad);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

@@ -42,29 +42,54 @@ namespace InventoryApp.DAL
             return o;
         }
 
-        public object getElements_EntradasSalidasSerie(string numSerie)
+        public object getElements_EntradasSalidasSerie(string numSerie, string SKU)
         {
             object o = null;
+                
                 using (var Entity = new TAE2Entities())
                 {
-                    var res = (from cust in Entity.ITEMs
-                               where cust.NUMERO_SERIE == numSerie && cust.IS_ACTIVE == true
-                               select cust).ToList();
-
-                    if (((List<ITEM>)res).Count > 0)
+                    if (!numSerie.Equals(""))
                     {
-                        foreach (ITEM trans in ((List<ITEM>)res))
+                        var res = (from cust in Entity.ITEMs
+                                   where cust.NUMERO_SERIE == numSerie && cust.IS_ACTIVE == true
+                                   select cust).ToList();
+
+                        if (((List<ITEM>)res).Count > 0)
                         {
-                            trans.ARTICULO = trans.ARTICULO;
-                            //trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
-                            trans.ITEM_STATUS = trans.ITEM_STATUS;
-                            trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
-                            trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
-                            trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
-                            trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            foreach (ITEM trans in ((List<ITEM>)res))
+                            {
+                                trans.ARTICULO = trans.ARTICULO;
+                                //trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
+                                trans.ITEM_STATUS = trans.ITEM_STATUS;
+                                trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                                trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                                trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                                trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            }
+                            o = (object)res;
                         }
-                        o = (object)res;
                     }
+                    else {
+
+                        var res = (from cust in Entity.ITEMs
+                                   where cust.SKU == SKU && cust.IS_ACTIVE == true
+                                   select cust).ToList();
+
+                        if (((List<ITEM>)res).Count > 0)
+                        {
+                            foreach (ITEM trans in ((List<ITEM>)res))
+                            {
+                                trans.ARTICULO = trans.ARTICULO;
+                                //trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
+                                trans.ITEM_STATUS = trans.ITEM_STATUS;
+                                trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                                trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                                trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                                trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            }
+                            o = (object)res;
+                        }
+                    }                    
                 }
             
             return o;

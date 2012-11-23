@@ -66,9 +66,18 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     ALMACEN almacen = (ALMACEN)element;
-                    almacen.UNID_ALMACEN = UNID.getNewUNID();
-                    entity.ALMACENs.AddObject(almacen);
-                    entity.SaveChanges();
+
+                    var validacion = (from cust in entity.ALMACENs
+                                      where cust.ALMACEN_NAME == almacen.ALMACEN_NAME
+                                      select cust).ToList();
+                    
+                    if (validacion.Count == 0)
+                    {
+                        almacen.UNID_ALMACEN = UNID.getNewUNID();
+                        entity.ALMACENs.AddObject(almacen);
+                        entity.SaveChanges();    
+                    }
+
                 }
             }
         }

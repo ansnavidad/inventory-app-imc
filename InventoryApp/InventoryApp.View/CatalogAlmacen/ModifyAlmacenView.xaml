@@ -61,23 +61,15 @@
                      Name="txtDireccion" VerticalAlignment="Stretch" Width="120"
                      Text="{Binding ModiAlmacen.Direccion, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                      MaxLength="1024" />
-        <Label Content="Técnico :" Grid.Row="4" Height="28" HorizontalAlignment="Right" Margin="0,3,0,29" Name="lblTecnico" 
+        <Label Content="Mail :" Grid.Row="4" Height="28" HorizontalAlignment="Right" Margin="0,3,0,29" Name="lblTecnico" 
                VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="2" />
         <TextBox Grid.Column="2" Grid.Row="4" Height="23"
                      HorizontalAlignment="Left" Margin="4,4,0,3"
                      Name="txtTecnico" VerticalAlignment="Stretch" Width="120"
-                     Text="{Binding ModiAlmacen.Tecnico, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding ModiAlmacen.Mail, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                      MaxLength="512" />
-        <Label Content="Ciudad :" Grid.Row="5" Height="28" HorizontalAlignment="Right" Margin="0,2,0,0" Name="lblValidador" 
+        <Label Content="Mail Default :" Grid.Row="5" Height="28" HorizontalAlignment="Right" Margin="0,2,0,0" Name="lblValidador" 
                VerticalAlignment="Stretch" Grid.Column="1" />
-        <ComboBox SelectedItem="{Binding ModiAlmacen.Ciudad,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                  ItemsSource="{Binding CatalogCiudadModel.Ciudad, Mode=OneWay}"
-                  Text="{Binding ModiAlmacen.Ciudad.CIUDAD1,Mode=TwoWay}"
-                  DisplayMemberPath="CIUDAD1" SelectedValuePath="UNID_CIUDAD"
-                  Grid.Row="5" Height="23" HorizontalAlignment="Left"
-                  Margin="5,5,0,2" Name="cbCiudad"
-                  VerticalAlignment="Stretch" Width="120" Grid.Column="2"
-                  />
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" Grid.RowSpan="8" Height="234" HorizontalAlignment="Left" ItemsSource="{Binding CatalogCategoriaModel.Categoria}" Margin="2,30,0,0" Name="dtGridCategoria" SelectedItem="{Binding CatalogCategoriaModel.SelectedCategoria, Mode=TwoWay}" Style="{StaticResource GridStyle}" VerticalAlignment="Top" Width="279" Grid.Column="3" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="" Width="Auto">
@@ -90,5 +82,6 @@
                 <DataGridTextColumn x:Name="nombreCategoria" Binding="{Binding Path=CATEGORIA_NAME}" Header="Técnicos" IsReadOnly="True" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="4,4,0,3" MaxLength="512" Name="textBox1" Text="{Binding ModiAlmacen.MailDefault, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="120" Grid.Column="2" Grid.Row="5" />
     </Grid>
 </Window>

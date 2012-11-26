@@ -51,9 +51,7 @@
              xmlns:catTransporteViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTransporte;assembly=InventoryApp.ViewModel"
              xmlns:transporteViews="clr-namespace:InventoryApp.View.CatalogTransporte"
              xmlns:catAlmacenViewModel="clr-namespace:InventoryApp.ViewModel.CatalogAlmacen;assembly=InventoryApp.ViewModel"
-             xmlns:almacenViews="clr-namespace:InventoryApp.View.CatalogAlmacen"
-             xmlns:catAlmacenEmailViewModel="clr-namespace:InventoryApp.ViewModel.CatalogAlmacenEmail;assembly=InventoryApp.ViewModel"
-             xmlns:almacenEmailViews="clr-namespace:InventoryApp.View.CatalogAlmacenEmail"
+             xmlns:almacenViews="clr-namespace:InventoryApp.View.CatalogAlmacen"             
              xmlns:catServicioViewModel="clr-namespace:InventoryApp.ViewModel.CatalogServicio;assembly=InventoryApp.ViewModel"
              xmlns:servicioViews="clr-namespace:InventoryApp.View.CatalogServicio"
              xmlns:catUnidadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogUnidad;assembly=InventoryApp.ViewModel"
@@ -394,10 +392,7 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type catAlmacenViewModel:CatalogAlmacenViewModel}">
             <almacenViews:AlmacenUserControl />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type catAlmacenEmailViewModel:CatalogAlmacenEmailViewModel}">
-            <almacenEmailViews:AlmacenEmailUserControl />
-        </DataTemplate>
+        </DataTemplate>        
         <DataTemplate DataType="{x:Type catServicioViewModel:CatalogServicioViewModel}">
             <servicioViews:ServicioUserControl />
         </DataTemplate>

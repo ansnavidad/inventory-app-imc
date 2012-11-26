@@ -354,8 +354,8 @@ namespace InventoryApp.ViewModel.Recibo
                 listAlmacen.ForEach(o => almacenes.Add(new InventoryApp.Model.Recibo.AlmacenModel()
                 {
                     UnidAlmacen=o.UNID_ALMACEN
-                    ,AlmacenName=o.ALMACEN_NAME
-                    ,Recibe=o.TECNICO
+                    ,AlmacenName=o.ALMACEN_NAME                 
+                    
                 }));
             }
             catch (Exception)

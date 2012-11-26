@@ -83,18 +83,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </ApplicationDefinition>
-    <Compile Include="CatalogAlmacenEmail\AlmacenEmailUserControl.xaml.cs">
-      <DependentUpon>AlmacenEmailUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CatalogAlmacenEmail\AltaAlmacenEmail.xaml.cs">
-      <DependentUpon>AltaAlmacenEmail.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CatalogAlmacenEmail\CatalogAlmacenEmailView.xaml.cs">
-      <DependentUpon>CatalogAlmacenEmailView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CatalogAlmacenEmail\ModifyAlmacenEmailView.xaml.cs">
-      <DependentUpon>ModifyAlmacenEmailView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CatalogAlmacen\AlmacenUserControl.xaml.cs">
       <DependentUpon>AlmacenUserControl.xaml</DependentUpon>
     </Compile>
@@ -350,6 +338,18 @@
     <Compile Include="CatalogSolicitante\SolicitanteUserControl.xaml.cs">
       <DependentUpon>SolicitanteUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogTecnico\AltaTecnico.xaml.cs">
+      <DependentUpon>AltaTecnico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTecnico\CatalogTecnicoView.xaml.cs">
+      <DependentUpon>CatalogTecnicoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTecnico\ModifyTecnicoView.xaml.cs">
+      <DependentUpon>ModifyTecnicoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTecnico\TecnicoUserControl.xaml.cs">
+      <DependentUpon>TecnicoUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogTerminoEnvio\AltaModificarTerminoEnvio.xaml.cs">
       <DependentUpon>AltaModificarTerminoEnvio.xaml</DependentUpon>
     </Compile>
@@ -536,28 +536,12 @@
     <Compile Include="Salidas\SalidaVenta.xaml.cs">
       <DependentUpon>SalidaVenta.xaml</DependentUpon>
     </Compile>
-    <Page Include="CatalogAlmacenEmail\AlmacenEmailUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Compile Include="Traspasos\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Traspasos\TraspasoStock.xaml.cs">
       <DependentUpon>TraspasoStock.xaml</DependentUpon>
     </Compile>
-    <Page Include="CatalogAlmacenEmail\AltaAlmacenEmail.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="CatalogAlmacenEmail\CatalogAlmacenEmailView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="CatalogAlmacenEmail\ModifyAlmacenEmailView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CatalogAlmacen\AlmacenUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -895,6 +879,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CatalogSolicitante\SolicitanteUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTecnico\AltaTecnico.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTecnico\CatalogTecnicoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTecnico\ModifyTecnicoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTecnico\TecnicoUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1240,6 +1240,7 @@
     <Resource Include="Images\Header.png" />
     <Resource Include="Images\Logo.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

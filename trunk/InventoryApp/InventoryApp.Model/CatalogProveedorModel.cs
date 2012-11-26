@@ -11,6 +11,7 @@ namespace InventoryApp.Model
     public class CatalogProveedorModel : INotifyPropertyChanged
     {
         private FixupCollection<DeleteProveedor> _proveedor;
+        private FixupCollection<DeleteCategoria> _categoria;
         private DeleteProveedor _selectedProveedor;
         private IDataMapper _dataMapper;
 
@@ -28,6 +29,24 @@ namespace InventoryApp.Model
                     if (PropertyChanged != null)
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("Proveedor"));
+                    }
+                }
+            }
+        }
+        public FixupCollection<DeleteCategoria> Categoria
+        {
+            get
+            {
+                return _categoria;
+            }
+            set
+            {
+                if (_categoria != value)
+                {
+                    _categoria = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Categoria"));
                     }
                 }
             }
@@ -71,6 +90,25 @@ namespace InventoryApp.Model
             }
             this.Proveedor = ic;
         }
+        public void loadProvvedorCategoria()
+        {
+            object element = this._dataMapper.getElement(this._selectedProveedor);
+
+            FixupCollection<DeleteCategoria> ic = new FixupCollection<DeleteCategoria>();
+
+            if (element != null)
+            {
+                if (((List<CATEGORIA>)element).Count > 0)
+                {
+                    foreach (CATEGORIA item in (List<CATEGORIA>)element)
+                    {
+                        DeleteCategoria aux = new DeleteCategoria(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.Categoria = ic;
+        }
 
         public void deleteProveedor()
         {
@@ -87,6 +125,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new ProveedorDataMapper();
             this._proveedor = new FixupCollection<DeleteProveedor>();
+            this._categoria = new FixupCollection<DeleteCategoria>();
             //this._selectedProveedor = new PROVEEDOR();
             this.loadItems();
         }

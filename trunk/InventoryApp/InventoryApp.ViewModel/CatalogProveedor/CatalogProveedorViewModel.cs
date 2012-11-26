@@ -81,6 +81,7 @@ namespace InventoryApp.ViewModel.CatalogProveedor
             ProveedorModel proveedorModel = new ProveedorModel(new ProveedorDataMapper());
             if (this._proveedorModel != null && this._proveedorModel.SelectedProveedor != null)
             {
+                
                 proveedorModel.Calle = this._proveedorModel.SelectedProveedor.CALLE;
                 proveedorModel.CodigoPostal = this._proveedorModel.SelectedProveedor.CODIGO_POSTAL;
                 proveedorModel.Contacto = this._proveedorModel.SelectedProveedor.CONTACTO;
@@ -92,6 +93,7 @@ namespace InventoryApp.ViewModel.CatalogProveedor
                 proveedorModel.Ciudad = this._proveedorModel.SelectedProveedor.Ciudad;
                 proveedorModel.Pais = this._proveedorModel.SelectedProveedor.Pais;                
                 proveedorModel.UnidProveedor = this._proveedorModel.SelectedProveedor.UNID_PROVEEDOR;
+                
             }
             return new ModifyProveedorViewModel(this, proveedorModel);
         }

@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogProveedor
 {
@@ -102,11 +103,23 @@ namespace InventoryApp.ViewModel.CatalogProveedor
             this._proveedorModel.Contacto = selectedProveedorModel.Contacto;
             this._proveedorModel.CodigoPostal = selectedProveedorModel.CodigoPostal;
             this._proveedorModel.Calle = selectedProveedorModel.Calle;
-
             try
             {
-
+                object ret = this._proveedorModel.GetProveedorCategoria(selectedProveedorModel.UnidProveedor);
                 this._catalogCategoriaModel = new CatalogCategoriaModel(new CategoriaDataMapper());
+                //muestra los valores de las categorias que estan relacionadas
+                foreach (var item in this._catalogCategoriaModel.Categoria)
+                {
+                    foreach (var ite in ((List<CATEGORIA>)ret))
+                    {
+                        if (item.UNID_CATEGORIA== ite.UNID_CATEGORIA)
+                        {
+                            item.IsChecked = true;
+                            this._proveedorModel._auxUnidsCategorias.Add(ite.UNID_CATEGORIA);
+                        }
+                    }
+                }
+
             }
             catch (ArgumentException ae)
             {
@@ -164,6 +177,14 @@ namespace InventoryApp.ViewModel.CatalogProveedor
 
         public void AttempModifyProveedor()
         {
+            //modificar para actualizar las relaciones proveedor categoria
+            foreach (DeleteCategoria pc in this._catalogCategoriaModel.Categoria)
+            {
+                if (pc.IsChecked == true)
+                {
+                    this._proveedorModel._unidsCategorias.Add(pc.UNID_CATEGORIA);
+                }   
+            }
             this._proveedorModel.updateProveedor();
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya que

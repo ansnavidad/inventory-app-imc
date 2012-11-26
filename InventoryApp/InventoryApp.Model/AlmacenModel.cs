@@ -144,8 +144,17 @@ namespace InventoryApp.Model
                                                          ALMACEN_NAME= this._almacenName,
                                                          CONTACTO=this._contacto,
                                                          DIRECCION=this._direccion,
-                                                         TECNICO=this._tecnico,
-                                                         UNID_CIUDAD=this._ciudad.UNID_CIUDAD
+                                                         
+
+                                                         
+
+
+
+
+
+
+
+
                                                          });
             }
         }

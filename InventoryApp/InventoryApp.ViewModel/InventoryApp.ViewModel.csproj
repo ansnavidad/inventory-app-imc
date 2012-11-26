@@ -81,6 +81,9 @@
     <Compile Include="CatalogServicio\AddServicioViewModel.cs" />
     <Compile Include="CatalogServicio\CatalogServicioViewModel.cs" />
     <Compile Include="CatalogServicio\ModifyServicioViewModel.cs" />
+    <Compile Include="CatalogTecnico\AddTecnicoViewModel.cs" />
+    <Compile Include="CatalogTecnico\CatalogTecnicoViewModel.cs" />
+    <Compile Include="CatalogTecnico\ModifyTecnicoViewModel.cs" />
     <Compile Include="CatalogUnidad\AddUnidadViewModel.cs" />
     <Compile Include="CatalogUnidad\CatalogUnidadViewModel.cs" />
     <Compile Include="CatalogUnidad\ModifyUnidadViewModel.cs" />

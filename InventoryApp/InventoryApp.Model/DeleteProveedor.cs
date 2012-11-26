@@ -12,7 +12,7 @@ namespace InventoryApp.Model
         private bool _isChecked;
         private PAI _pais;
         private CIUDAD _ciudad;
-
+        
         public PAI Pais
         {
             get { return this._pais; }
@@ -41,7 +41,6 @@ namespace InventoryApp.Model
             }
         }
 
-
         public bool IsChecked
         {
             get { return this._isChecked; }
@@ -56,9 +55,7 @@ namespace InventoryApp.Model
             }
         }
 
-       
-
-        public DeleteProveedor( PROVEEDOR proveedor) 
+        public DeleteProveedor(PROVEEDOR proveedor) 
         {
             this.UNID_PROVEEDOR = proveedor.UNID_PROVEEDOR;
             this.PROVEEDOR_NAME = proveedor.PROVEEDOR_NAME;

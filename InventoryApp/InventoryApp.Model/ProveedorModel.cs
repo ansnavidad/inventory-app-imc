@@ -22,7 +22,9 @@ namespace InventoryApp.Model
         private PAI _pais;
         private string _codigoPostal;
         private string _RFC;
+        private CATEGORIA _categoria;
         public List<long> _unidsCategorias;
+        public List<long> _auxUnidsCategorias;
         private ProveedorDataMapper _dataMapper;
         #endregion
 
@@ -235,6 +237,25 @@ namespace InventoryApp.Model
                 }
             }
         }
+
+        public CATEGORIA Categoria
+        {
+            get
+            {
+                return _categoria;
+            }
+            set
+            {
+                if (_categoria != value)
+                {
+                    _categoria = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Categoria"));
+                    }
+                }
+            }
+        }
         
         #endregion
 
@@ -261,9 +282,39 @@ namespace InventoryApp.Model
 
         public void updateProveedor()
         {
-            this._dataMapper.udpateElement(new PROVEEDOR() { UNID_PROVEEDOR = this._unidProveedor, CALLE = this._calle, CODIGO_POSTAL = this._codigoPostal, CONTACTO = this._contacto, MAIL = this._mail, PROVEEDOR_NAME = this._proveedorName, RFC = this._RFC, TEL1 = this._tel1, TEL2 = this._tel2, UNID_CIUDAD = this._ciudad.UNID_CIUDAD, UNID_PAIS = this._pais.UNID_PAIS });
+            //this._dataMapper.udpateElement(new PROVEEDOR() { UNID_PROVEEDOR = this._unidProveedor,
+            //                                                 CALLE = this._calle,
+            //                                                 CODIGO_POSTAL = this._codigoPostal,
+            //                                                 CONTACTO = this._contacto,
+            //                                                 MAIL = this._mail,
+            //                                                 PROVEEDOR_NAME = this._proveedorName,
+            //                                                 RFC = this._RFC,
+            //                                                 TEL1 = this._tel1,
+            //                                                 TEL2 = this._tel2,
+            //                                                 UNID_CIUDAD = this._ciudad.UNID_CIUDAD,
+            //                                                 UNID_PAIS = this._pais.UNID_PAIS
+            //                                                });
+            this._dataMapper.updateRelacion(new PROVEEDOR()
+            {
+                UNID_PROVEEDOR = this._unidProveedor,
+                CALLE = this._calle,
+                CODIGO_POSTAL = this._codigoPostal,
+                CONTACTO = this._contacto,
+                MAIL = this._mail,
+                PROVEEDOR_NAME = this._proveedorName,
+                RFC = this._RFC,
+                TEL1 = this._tel1,
+                TEL2 = this._tel2,
+                UNID_CIUDAD = this._ciudad.UNID_CIUDAD,
+                UNID_PAIS = this._pais.UNID_PAIS
+            },this._unidsCategorias,
+            this._auxUnidsCategorias);
         }
 
+        public object GetProveedorCategoria(long obj)
+        {
+            return this._dataMapper.getElementProveedorCategoria(obj);   
+        }
         #region Constructors
         public ProveedorModel(IDataMapper dataMapper)
         {
@@ -271,7 +322,9 @@ namespace InventoryApp.Model
             {
                 this._dataMapper = dataMapper as ProveedorDataMapper;
             }
+            //varibles que guardan los ids de categorias
             this._unidsCategorias = new List<long>();
+            this._auxUnidsCategorias = new List<long>();
         }
         #endregion
 

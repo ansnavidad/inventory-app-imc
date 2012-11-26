@@ -47,7 +47,11 @@ namespace InventoryApp.DAL
                 var query = (from p in Entity.TECNICOes
                              where p.IS_ACTIVE == true
                              select p).ToList();
-
+                foreach (TECNICO tec in ((List<TECNICO>)query))
+                {
+                    tec.CIUDAD = tec.CIUDAD;
+                }
+                
                 if (query.Count > 0)
                 {
                     o = query;

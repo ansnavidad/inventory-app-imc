@@ -15,20 +15,11 @@ namespace InventoryApp.DAL
         {
             object res = null;
            
-           
             using (var Entity = new TAE2Entities())
             {
                 var query = (from p in Entity.PROVEEDORs
                              where p.IS_ACTIVE == true
                              select p).ToList();
-                //var query = (from p in Entity.PROVEEDORs
-                //             join relation in Entity.PROVEEDOR_CATEGORIA
-                //             on p.UNID_PROVEEDOR equals relation.UNID_PROVEEDOR
-                //             join c in Entity.CATEGORIAs
-                //             on relation.UNID_CATEGORIA equals c.UNID_CATEGORIA
-                //             where p.IS_ACTIVE == true
-                //             select c).ToList();
-
                 foreach (PROVEEDOR trans in ((List<PROVEEDOR>)query))
                 {
                     trans.PAI = trans.PAI;
@@ -68,12 +59,10 @@ namespace InventoryApp.DAL
             }
             return o;
         }
+
         public object getElementProveedorCategoria(long element)
         {
             object o = null;
-            if (element != null)
-            {
-                //PROVEEDOR Eprov = (PROVEEDOR)element;
                 using (var Entity = new TAE2Entities())
                 {
                     var query = (from p in Entity.PROVEEDORs
@@ -86,7 +75,7 @@ namespace InventoryApp.DAL
                     o = query;
                     
                 }
-            }
+
             return o;
         }
 
@@ -139,7 +128,7 @@ namespace InventoryApp.DAL
                     modifiedProveedor.PROVEEDOR_NAME = proveedor.PROVEEDOR_NAME;
                     entity.SaveChanges();
                     //ELIMINA TODAS LAS RELACIONES QUE EXISTEN
-                    if (unidCategoria.Count > 0)
+                    if (auxUnidCategoria.Count > 0)
                     {
                         foreach (var e in auxUnidCategoria)
                         {
@@ -193,6 +182,7 @@ namespace InventoryApp.DAL
                 }
             }
         }
+
         public void insertRelacion(object element, List<long> unidCategoria)
         {
             if (element != null)
@@ -218,6 +208,7 @@ namespace InventoryApp.DAL
                 }
             }
         }
+
         public void deleteElement(object element)
         {
             if (element != null)

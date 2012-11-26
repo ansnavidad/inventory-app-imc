@@ -15,6 +15,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
         private RelayCommand _addAlmacenCommand;
         private CatalogAlmacenViewModel _catalogAlmacenViewModel;
         private CatalogCiudadModel _catalogCiudadModel;
+        private CatalogTecnicoModel _catalogTecnicoModel;
         #endregion
 
         //Exponer la propiedad almacen cuidad
@@ -28,6 +29,17 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             set
             {
                 _addAlmacen = value;
+            }
+        }
+        public CatalogTecnicoModel CatalogTecnicoModel
+        {
+            get
+            {
+                return _catalogTecnicoModel;
+            }
+            set
+            {
+                _catalogTecnicoModel = value;
             }
         }
         public CatalogCiudadModel CatalogCiudadModel
@@ -77,6 +89,19 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             {
                 throw ex;
             }
+            try
+            {
+
+                this._catalogTecnicoModel = new CatalogTecnicoModel (new TecnicoDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
         }
         #endregion
@@ -101,6 +126,14 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
 
         public void AttempAddAlmacen()
         {
+            foreach (DeleteTecnico item in this._catalogTecnicoModel.Tecnico)
+            {
+                if (item.IsChecked == true)
+                {
+                    this._addAlmacen._unidsTecnicos.Add(item.UNID_TECNICO);
+                }
+            }
+
             this._addAlmacen.saveAlmacen();
 
             if (this._catalogAlmacenViewModel != null)

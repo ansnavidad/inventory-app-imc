@@ -16,7 +16,10 @@ namespace InventoryApp.Model
         private string _contacto;
         private string _mail;
         private string _mailDefault;        
-        private string _direccion;        
+        private string _direccion;
+        private TECNICO _tecnico;
+        public List<long> _unidsTecnicos;
+        public List<long> _auxUnidsTecnicos;
         private AlmacenDataMapper _dataMapper;
         #endregion
 
@@ -134,6 +137,25 @@ namespace InventoryApp.Model
                 }
             }
         }
+
+        public TECNICO Tecnico
+        {
+            get
+            {
+                return _tecnico;
+            }
+            set
+            {
+                if (_tecnico != value)
+                {
+                    _tecnico = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Tecnico"));
+                    }
+                }
+            }
+        }
         
         #endregion
 
@@ -141,29 +163,50 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new ALMACEN() {IS_ACTIVE=true,
-                                                         ALMACEN_NAME= this._almacenName,
-                                                         CONTACTO=this._contacto,
-                                                         MAIL=this._mail,
-                                                         MAIL_DEFAULT=this._mailDefault,
-                                                         DIRECCION=this._direccion
-                                                         });
+                //_dataMapper.insertElement(new ALMACEN() {IS_ACTIVE=true,
+                //                                         ALMACEN_NAME= this._almacenName,
+                //                                         CONTACTO=this._contacto,
+                //                                         MAIL=this._mail,
+                //                                         MAIL_DEFAULT=this._mailDefault,
+                //                                         DIRECCION=this._direccion
+                //                                         });
+                _dataMapper.insertRelacion(new ALMACEN()
+                {
+                    IS_ACTIVE = true,
+                    ALMACEN_NAME = this._almacenName,
+                    CONTACTO = this._contacto,
+                    MAIL = this._mail,
+                    MAIL_DEFAULT = this._mailDefault,
+                    DIRECCION = this._direccion
+                },this._unidsTecnicos);
             }
         }
 
         public void updateAlmacen()
         {
-            this._dataMapper.udpateElement(new ALMACEN()
+            //this._dataMapper.udpateElement(new ALMACEN()
+            //{
+            //    UNID_ALMACEN=this._unidAlmacen,
+            //    ALMACEN_NAME = this._almacenName,
+            //    CONTACTO = this._contacto,
+            //    MAIL = this._mail,
+            //    MAIL_DEFAULT = this._mailDefault,
+            //    DIRECCION = this._direccion
+            //});
+            this._dataMapper.updateRelacion(new ALMACEN()
             {
-                UNID_ALMACEN=this._unidAlmacen,
+                UNID_ALMACEN = this._unidAlmacen,
                 ALMACEN_NAME = this._almacenName,
                 CONTACTO = this._contacto,
                 MAIL = this._mail,
                 MAIL_DEFAULT = this._mailDefault,
                 DIRECCION = this._direccion
-            });
+            },this._unidsTecnicos,this._auxUnidsTecnicos);
         }
-
+        public object GetAlmacenCategoria(long obj)
+        {
+            return this._dataMapper.getElementAlmacenTecnico(obj);
+        }
         #region Constructors
         public AlmacenModel(IDataMapper dataMapper)
         {
@@ -171,6 +214,9 @@ namespace InventoryApp.Model
             {
                 this._dataMapper = dataMapper as AlmacenDataMapper;
             }
+            //varibles que guardan los ids de tecnicos
+            this._unidsTecnicos = new List<long>();
+            this._auxUnidsTecnicos = new List<long>();
             
         }
         #endregion

@@ -70,7 +70,13 @@
                      MaxLength="512" />
         <Label Content="Mail Default :" Grid.Row="5" Height="28" HorizontalAlignment="Right" Margin="0,2,0,0" Name="lblValidador" 
                VerticalAlignment="Stretch" Grid.Column="1" />
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" Grid.RowSpan="8" Height="234" HorizontalAlignment="Left" ItemsSource="{Binding CatalogCategoriaModel.Categoria}" Margin="2,30,0,0" Name="dtGridCategoria" SelectedItem="{Binding CatalogCategoriaModel.SelectedCategoria, Mode=TwoWay}" Style="{StaticResource GridStyle}" VerticalAlignment="Top" Width="279" Grid.Column="3" Grid.Row="1">
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" 
+                  ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
+                  ItemsSource="{Binding CatalogTecnicoModel.Tecnico}"
+                  SelectedItem="{Binding CatalogTecnicoModel.SelectedTecnico, Mode=TwoWay}"
+                  Margin="2,30,0,0" Name="dtGridTecnico" Height="234" Grid.RowSpan="8"  
+                  Style="{StaticResource GridStyle}" VerticalAlignment="Top" Width="279"
+                  Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" >
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
@@ -79,7 +85,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn x:Name="nombreCategoria" Binding="{Binding Path=CATEGORIA_NAME}" Header="Técnicos" IsReadOnly="True" Width="*" />
+                <DataGridTextColumn x:Name="nombreTecnico" Binding="{Binding Path=TECNICO_NAME}" Header="Técnicos" IsReadOnly="True" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
         <TextBox Height="23" HorizontalAlignment="Left" Margin="4,4,0,3" MaxLength="512" Name="textBox1" Text="{Binding ModiAlmacen.MailDefault, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="120" Grid.Column="2" Grid.Row="5" />

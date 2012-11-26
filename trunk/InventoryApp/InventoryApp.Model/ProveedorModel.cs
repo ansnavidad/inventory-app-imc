@@ -282,18 +282,6 @@ namespace InventoryApp.Model
 
         public void updateProveedor()
         {
-            //this._dataMapper.udpateElement(new PROVEEDOR() { UNID_PROVEEDOR = this._unidProveedor,
-            //                                                 CALLE = this._calle,
-            //                                                 CODIGO_POSTAL = this._codigoPostal,
-            //                                                 CONTACTO = this._contacto,
-            //                                                 MAIL = this._mail,
-            //                                                 PROVEEDOR_NAME = this._proveedorName,
-            //                                                 RFC = this._RFC,
-            //                                                 TEL1 = this._tel1,
-            //                                                 TEL2 = this._tel2,
-            //                                                 UNID_CIUDAD = this._ciudad.UNID_CIUDAD,
-            //                                                 UNID_PAIS = this._pais.UNID_PAIS
-            //                                                });
             this._dataMapper.updateRelacion(new PROVEEDOR()
             {
                 UNID_PROVEEDOR = this._unidProveedor,

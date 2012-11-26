@@ -69,7 +69,13 @@
                      Name="txtTecnico" VerticalAlignment="Stretch" Width="120"
                      Text="{Binding AddAlmacen.Mail, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                      MaxLength="512" />
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" Grid.RowSpan="8" Height="234" HorizontalAlignment="Left" ItemsSource="{Binding CatalogCategoriaModel.Categoria}" Margin="13,17,0,0" Name="dtGridCategoria" SelectedItem="{Binding CatalogCategoriaModel.SelectedCategoria, Mode=TwoWay}" Style="{StaticResource GridStyle}" VerticalAlignment="Top" Width="279" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2">
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left"
+                  ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"  
+                  ItemsSource="{Binding CatalogTecnicoModel.Tecnico}" 
+                  SelectedItem="{Binding CatalogTecnicoModel.SelectedTecnico, Mode=TwoWay}"
+                  Style="{StaticResource GridStyle}" VerticalAlignment="Top" Width="279"
+                  Margin="13,17,0,0" Name="dtGridTecnico" Height="234"
+                  Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="8">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
@@ -78,7 +84,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn x:Name="nombreCategoria" Binding="{Binding Path=CATEGORIA_NAME}" Header="Técnicos" IsReadOnly="True" Width="*" />
+                <DataGridTextColumn x:Name="nombreTecnico" Binding="{Binding Path=TECNICO_NAME}" Header="Técnicos" IsReadOnly="True" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Mail Default:" Height="28" HorizontalAlignment="Right" Margin="0,0,0,2" Name="label1" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="5" />

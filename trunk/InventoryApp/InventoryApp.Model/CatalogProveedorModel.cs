@@ -90,7 +90,8 @@ namespace InventoryApp.Model
             }
             this.Proveedor = ic;
         }
-        public void loadProvvedorCategoria()
+
+        public void loadProveedorCategoria()
         {
             object element = this._dataMapper.getElement(this._selectedProveedor);
 

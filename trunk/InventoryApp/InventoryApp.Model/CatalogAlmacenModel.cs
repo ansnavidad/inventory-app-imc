@@ -11,6 +11,7 @@ namespace InventoryApp.Model
     public class CatalogAlmacenModel : INotifyPropertyChanged
     {
         private FixupCollection<DeleteAlmacen> _almacen;
+        private FixupCollection<DeleteTecnico> _tecnico;
         private DeleteAlmacen _selectedAlmacen;
         private IDataMapper _dataMapper;
 
@@ -28,6 +29,25 @@ namespace InventoryApp.Model
                     if (PropertyChanged != null)
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("Almacen"));
+                    }
+                }
+            }
+        }
+
+        public FixupCollection<DeleteTecnico> Tecnico
+        {
+            get
+            {
+                return _tecnico;
+            }
+            set
+            {
+                if (_tecnico != value)
+                {
+                    _tecnico = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Tecnico"));
                     }
                 }
             }
@@ -72,6 +92,26 @@ namespace InventoryApp.Model
             this.Almacen = ic;
         }
 
+        public void loadAlmacenTecnico()
+        {
+            object element = this._dataMapper.getElement(this._selectedAlmacen);
+
+            FixupCollection<DeleteTecnico> ic = new FixupCollection<DeleteTecnico>();
+
+            if (element != null)
+            {
+                if (((List<TECNICO>)element).Count > 0)
+                {
+                    foreach (TECNICO item in (List<TECNICO>)element)
+                    {
+                        DeleteTecnico aux = new DeleteTecnico(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.Tecnico= ic;
+        }
+
         public void deleteAlamacen()
         {
             foreach (DeleteAlmacen item in this._almacen)
@@ -87,6 +127,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new AlmacenDataMapper();
             this._almacen = new FixupCollection<DeleteAlmacen>();
+            this._tecnico = new FixupCollection<DeleteTecnico>();
             //this._selectedAlmacen = new ALMACEN();
             this.loadItems();
         }

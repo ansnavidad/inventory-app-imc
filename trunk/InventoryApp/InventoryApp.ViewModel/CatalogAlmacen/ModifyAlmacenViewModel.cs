@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogAlmacen
 {
@@ -15,6 +16,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
         private RelayCommand _modifyAlmacenCommand;
         private CatalogAlmacenViewModel _catalogAlmacenViewModel;
         private CatalogCiudadModel _catalogCiudadModel;
+        private CatalogTecnicoModel _catalogTecnicoModel;
         #endregion
 
         //Exponer la propiedad almacen y cuidad
@@ -28,6 +30,17 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             set
             {
                 _modiAlmacen = value;
+            }
+        }
+        public CatalogTecnicoModel CatalogTecnicoModel
+        {
+            get
+            {
+                return _catalogTecnicoModel;
+            }
+            set
+            {
+                _catalogTecnicoModel = value;
             }
         }
         public CatalogCiudadModel CatalogCiudadModel
@@ -73,8 +86,33 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
 
             try
             {
-
                 this._catalogCiudadModel = new CatalogCiudadModel(new CiudadDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            try
+            {
+                object ret = this._modiAlmacen.GetAlmacenCategoria(selectedAlmacenModel.UnidAlmacen);
+                this._catalogTecnicoModel = new CatalogTecnicoModel(new TecnicoDataMapper());
+                //muestra los valores de las tecnicos que estan relacionadas
+                foreach (var item in this._catalogTecnicoModel.Tecnico)
+                {
+                    foreach (var ite in ((List<TECNICO>)ret))
+                    {
+                        if (item.UNID_TECNICO == ite.UNID_TECNICO)
+                        {
+                            item.IsChecked = true;
+                            this._modiAlmacen._auxUnidsTecnicos.Add(ite.UNID_TECNICO);
+                        }
+                    }
+                }
             }
             catch (ArgumentException ae)
             {
@@ -107,6 +145,14 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
 
         public void AttempModifyAlmacen()
         {
+            //modificar para actualizar las relaciones proveedor categoria
+            foreach (DeleteTecnico at in this._catalogTecnicoModel.Tecnico)
+            {
+                if (at.IsChecked == true)
+                {
+                    this._modiAlmacen._unidsTecnicos.Add(at.UNID_TECNICO);
+                }
+            }
             this._modiAlmacen.updateAlmacen();
 
             if (this._catalogAlmacenViewModel != null)

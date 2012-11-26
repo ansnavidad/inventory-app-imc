@@ -51,7 +51,7 @@
                 <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Almacén" x:Name="nombreAlmacen"
                                     Binding="{Binding Path=ALMACEN_NAME}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Contacto" x:Name="Contacto" Binding="{Binding Path=CONTACTO}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Técnico" x:Name="Tecnico" Binding="{Binding Path=TECNICO}"></DataGridTextColumn>
+                
                 <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Dirección" x:Name="Direccion" Binding="{Binding Path=DIRECCION}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Ciudad" x:Name="Ciudad" Binding="{Binding Path=Ciudad.CIUDAD1}"></DataGridTextColumn>
             </DataGrid.Columns>

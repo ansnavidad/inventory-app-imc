@@ -65,11 +65,12 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             this._modiAlmacen = new AlmacenModel(new AlmacenDataMapper());
             this._catalogAlmacenViewModel = catalogAlmacenViewModel;
             this._modiAlmacen.UnidAlmacen = selectedAlmacenModel.UnidAlmacen;
-            this._modiAlmacen.AlmacenName = selectedAlmacenModel.AlmacenName;
-            this._modiAlmacen.Ciudad = selectedAlmacenModel.Ciudad;
+            this._modiAlmacen.AlmacenName = selectedAlmacenModel.AlmacenName;            
             this._modiAlmacen.Contacto = selectedAlmacenModel.Contacto;
             this._modiAlmacen.Direccion = selectedAlmacenModel.Direccion;
-            this._modiAlmacen.Tecnico = selectedAlmacenModel.Tecnico;
+            this._modiAlmacen.Mail = selectedAlmacenModel.Mail;
+            this._modiAlmacen.MailDefault = selectedAlmacenModel.MailDefault;
+
             try
             {
 
@@ -98,7 +99,8 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             if (String.IsNullOrEmpty(this._modiAlmacen.AlmacenName) ||
                 String.IsNullOrEmpty(this._modiAlmacen.Contacto) ||
                 String.IsNullOrEmpty(this._modiAlmacen.Direccion) ||
-                String.IsNullOrEmpty(this._modiAlmacen.Tecnico))
+                String.IsNullOrEmpty(this._modiAlmacen.Mail) ||
+                String.IsNullOrEmpty(this._modiAlmacen.MailDefault))
                 _canAddAlmacen = false;
             return _canAddAlmacen;
         }

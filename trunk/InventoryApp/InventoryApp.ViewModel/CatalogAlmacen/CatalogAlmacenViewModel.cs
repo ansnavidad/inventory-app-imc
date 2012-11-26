@@ -79,11 +79,11 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             if (this._catalogAlmacenModel != null && this._catalogAlmacenModel.SelectedAlmacen != null)
             {
                 almacenModel.UnidAlmacen = this._catalogAlmacenModel.SelectedAlmacen.UNID_ALMACEN;
-                almacenModel.AlmacenName = this._catalogAlmacenModel.SelectedAlmacen.ALMACEN_NAME;
-                almacenModel.Ciudad = this._catalogAlmacenModel.SelectedAlmacen.Ciudad;
+                almacenModel.AlmacenName = this._catalogAlmacenModel.SelectedAlmacen.ALMACEN_NAME;                
                 almacenModel.Contacto = this._catalogAlmacenModel.SelectedAlmacen.CONTACTO;
                 almacenModel.Direccion = this._catalogAlmacenModel.SelectedAlmacen.DIRECCION;
-                almacenModel.Tecnico = this._catalogAlmacenModel.SelectedAlmacen.TECNICO;
+                almacenModel.Mail = this._catalogAlmacenModel.SelectedAlmacen.MAIL;
+                almacenModel.MailDefault = this._catalogAlmacenModel.SelectedAlmacen.MAIL_DEFAULT;
             }
             return new ModifyAlmacenViewModel(this, almacenModel);
         }

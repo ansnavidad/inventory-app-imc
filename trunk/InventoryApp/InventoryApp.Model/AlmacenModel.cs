@@ -14,9 +14,9 @@ namespace InventoryApp.Model
         private long _unidAlmacen;
         private string _almacenName;
         private string _contacto;
-        private string _tecnico;
-        private string _direccion;
-        private CIUDAD _ciudad;
+        private string _mail;
+        private string _mailDefault;        
+        private string _direccion;        
         private AlmacenDataMapper _dataMapper;
         #endregion
 
@@ -78,20 +78,39 @@ namespace InventoryApp.Model
             }
         }
 
-        public string Tecnico
+        public string Mail
         {
             get
             {
-                return _tecnico;
+                return _mail;
             }
             set
             {
-                if (_tecnico != value)
+                if (_mail != value)
                 {
-                    _tecnico = value;
+                    _mail = value;
                     if (PropertyChanged != null)
                     {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("Tecnico"));
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Mail"));
+                    }
+                }
+            }
+        }
+
+        public string MailDefault
+        {
+            get
+            {
+                return _mailDefault;
+            }
+            set
+            {
+                if (_mailDefault != value)
+                {
+                    _mailDefault = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("MailDefault"));
                     }
                 }
             }
@@ -115,25 +134,7 @@ namespace InventoryApp.Model
                 }
             }
         }
-
-        public CIUDAD Ciudad
-        {
-            get
-            {
-                return _ciudad;
-            }
-            set
-            {
-                if (_ciudad != value)
-                {
-                    _ciudad = value;
-                    if (PropertyChanged != null)
-                    {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("Ciudad"));
-                    }
-                }
-            }
-        }
+        
         #endregion
 
         public void saveAlmacen()
@@ -143,18 +144,9 @@ namespace InventoryApp.Model
                 _dataMapper.insertElement(new ALMACEN() {IS_ACTIVE=true,
                                                          ALMACEN_NAME= this._almacenName,
                                                          CONTACTO=this._contacto,
-                                                         DIRECCION=this._direccion,
-                                                         
-
-                                                         
-
-
-
-
-
-
-
-
+                                                         MAIL=this._mail,
+                                                         MAIL_DEFAULT=this._mailDefault,
+                                                         DIRECCION=this._direccion
                                                          });
             }
         }
@@ -166,9 +158,9 @@ namespace InventoryApp.Model
                 UNID_ALMACEN=this._unidAlmacen,
                 ALMACEN_NAME = this._almacenName,
                 CONTACTO = this._contacto,
-                DIRECCION = this._direccion,
-                TECNICO = this._tecnico,
-                UNID_CIUDAD = this._ciudad.UNID_CIUDAD
+                MAIL = this._mail,
+                MAIL_DEFAULT = this._mailDefault,
+                DIRECCION = this._direccion
             });
         }
 

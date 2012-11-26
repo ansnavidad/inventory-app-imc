@@ -32,7 +32,6 @@ using InventoryApp.ViewModel.CatalogTransporte;
 using InventoryApp.ViewModel.CatalogCliente;
 using InventoryApp.ViewModel.CatalogPropiedad;
 using InventoryApp.ViewModel.CatalogAlmacen;
-using InventoryApp.ViewModel.CatalogAlmacenEmail;
 using InventoryApp.ViewModel.CatalogServicio;
 using InventoryApp.ViewModel.CatalogUnidad;
 using System.Windows;
@@ -139,9 +138,6 @@ namespace InventoryApp.ViewModel
                 {
                     case "Almacen":
                         page = new CatalogAlmacenViewModel();
-                        break;
-                    case "Almacen Email":
-                        page = new CatalogAlmacenEmailViewModel();
                         break;
                     case "Artículos":
                         page = new CatalogArticuloViewModel();

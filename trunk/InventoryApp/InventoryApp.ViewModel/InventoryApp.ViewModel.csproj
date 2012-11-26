@@ -43,9 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoolToVisibilityValueConverter.cs" />
-    <Compile Include="CatalogAlmacenEmail\AddAlmacenEmailViewModel.cs" />
-    <Compile Include="CatalogAlmacenEmail\CatalogAlmacenEmailViewModel.cs" />
-    <Compile Include="CatalogAlmacenEmail\ModifyAlmacenEmailViewModel.cs" />
     <Compile Include="CatalogAlmacen\AddAlmacenViewModel.cs" />
     <Compile Include="CatalogAlmacen\CatalogAlmacenViewModel.cs" />
     <Compile Include="CatalogAlmacen\ModifyAlmacenViewModel.cs" />

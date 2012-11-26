@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlmacenDataMapper.cs" />
-    <Compile Include="AlmacenEmailDataMapper.cs" />
     <Compile Include="ArticuloDataMapper.cs" />
     <Compile Include="BancoDataMapper.cs" />
     <Compile Include="CiudadDataMapper.cs" />
@@ -71,7 +70,7 @@
     <Compile Include="POCOS\ALMACEN.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
-    <Compile Include="POCOS\ALMACEN_EMAIL.cs">
+    <Compile Include="POCOS\ALMACEN_TECNICO.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\ARTICULO.cs">
@@ -203,6 +202,9 @@
     <Compile Include="POCOS\SOLICITANTE1.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
+    <Compile Include="POCOS\TECNICO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
     <Compile Include="POCOS\TERMINO_ENVIO.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
@@ -240,6 +242,7 @@
     <Compile Include="ServicioDataMapper.cs" />
     <Compile Include="Solicitante1DataMapper.cs" />
     <Compile Include="SolicitanteDataMapper.cs" />
+    <Compile Include="TecnicoDataMapper.cs" />
     <Compile Include="TerminoEnvioDataMapper.cs" />
     <Compile Include="TipoCotizacionDataMapper.cs" />
     <Compile Include="TipoEmpresaDataMapper.cs" />

@@ -28,6 +28,10 @@ namespace InventoryApp.Model
         private SERVICIO _servicio;
         private long? _unidServicio;
 
+
+        private TECNICO _tecnico;
+        private long? _unidTecnico;
+
         private string _tt;
         private string _contacto;
         private TRANSPORTE _transporte;
@@ -90,6 +94,44 @@ namespace InventoryApp.Model
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("TipoPedimento"));
+                    }
+                }
+            }
+        }
+
+        public TECNICO Tecnico
+        {
+            get
+            {
+                return _tecnico;
+            }
+            set
+            {
+                if (_tecnico != value)
+                {
+                    _tecnico = value;
+                    this._unidTecnico = _tecnico.UNID_TECNICO;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Tecnico"));
+                    }
+                }
+            }
+        }
+        public long? UnidTecnico
+        {
+            get
+            {
+                return _unidTecnico;
+            }
+            set
+            {
+                if (_unidTecnico != value)
+                {
+                    _unidTecnico = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("UnidTecnico"));
                     }
                 }
             }

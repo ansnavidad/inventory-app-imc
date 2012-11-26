@@ -43,11 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlmacenEmailModel.cs" />
     <Compile Include="AlmacenModel.cs" />
     <Compile Include="ArticuloModel.cs" />
     <Compile Include="BancoModel.cs" />
-    <Compile Include="CatalogAlmacenEmailModel.cs" />
     <Compile Include="CatalogAlmacenModel.cs" />
     <Compile Include="CatalogArticuloModel.cs" />
     <Compile Include="CatalogBancoModel.cs" />
@@ -73,6 +71,7 @@
     <Compile Include="CatalogServicioModel.cs" />
     <Compile Include="CatalogSolicitante1Model.cs" />
     <Compile Include="CatalogSolicitanteModel.cs" />
+    <Compile Include="CatalogTecnicoModel.cs" />
     <Compile Include="CatalogTerminoEnvioModel.cs" />
     <Compile Include="CatalogTipoCotizacionModel.cs" />
     <Compile Include="CatalogTipoEmpresaModel.cs" />
@@ -84,7 +83,6 @@
     <Compile Include="CiudadModel.cs" />
     <Compile Include="ClienteModel.cs" />
     <Compile Include="DeleteAlmacen.cs" />
-    <Compile Include="DeleteAlmacenEmail.cs" />
     <Compile Include="DeleteArticulo.cs" />
     <Compile Include="DeleteBanco.cs" />
     <Compile Include="DeleteCategoria.cs" />
@@ -105,6 +103,7 @@
     <Compile Include="DeleteProyecto.cs" />
     <Compile Include="DeleteServicio.cs" />
     <Compile Include="DeleteSolicitante.cs" />
+    <Compile Include="DeleteTecnico.cs" />
     <Compile Include="DeleteTerminoEnvio.cs" />
     <Compile Include="DeleteTipoCotizacion.cs" />
     <Compile Include="DeleteTipoEmpresa.cs" />
@@ -152,6 +151,7 @@
     <Compile Include="Recibo\TipoOrigenModel.cs" />
     <Compile Include="ServicioModel.cs" />
     <Compile Include="SolicitanteModel.cs" />
+    <Compile Include="TecnicoModel.cs" />
     <Compile Include="TerminoEnvioModel.cs" />
     <Compile Include="TestCode\CatalogItemModelDataMapperTEst.cs" />
     <Compile Include="TipoCotizacionModel.cs" />

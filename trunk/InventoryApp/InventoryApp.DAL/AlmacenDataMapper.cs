@@ -16,10 +16,7 @@ namespace InventoryApp.DAL
                 var res = (from p in Entity.ALMACENs
                            where p.IS_ACTIVE == true
                            select p).ToList();
-                foreach (ALMACEN alm in ((List<ALMACEN>)res))
-                {
-                    alm.CIUDAD = alm.CIUDAD;
-                }
+
                 return res;
             }
         }
@@ -51,9 +48,10 @@ namespace InventoryApp.DAL
                     var modifiedAlmacen = entity.ALMACENs.First(p => p.UNID_ALMACEN == almacen.UNID_ALMACEN);
                     modifiedAlmacen.ALMACEN_NAME = almacen.ALMACEN_NAME;
                     modifiedAlmacen.CONTACTO = almacen.CONTACTO;
-                    modifiedAlmacen.TECNICO = almacen.TECNICO;
+                    modifiedAlmacen.MAIL = almacen.MAIL;
                     modifiedAlmacen.DIRECCION = almacen.DIRECCION;
-                    modifiedAlmacen.UNID_CIUDAD = almacen.UNID_CIUDAD;
+                    modifiedAlmacen.MAIL_DEFAULT = almacen.MAIL_DEFAULT;                    
+                    
                     entity.SaveChanges();
                 }
             }

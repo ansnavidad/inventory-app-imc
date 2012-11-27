@@ -418,9 +418,28 @@ namespace InventoryApp.DAL.POCOS
     
         public virtual Nullable<long> UNID_TECNICO
         {
-            get;
-            set;
+            get { return _uNID_TECNICO; }
+            set
+            {
+                try
+                {
+                    _settingFK = true;
+                    if (_uNID_TECNICO != value)
+                    {
+                        if (TECNICO != null && TECNICO.UNID_TECNICO != value)
+                        {
+                            TECNICO = null;
+                        }
+                        _uNID_TECNICO = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
         }
+        private Nullable<long> _uNID_TECNICO;
 
         #endregion
         #region Navigation Properties
@@ -589,6 +608,21 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private SERVICIO _sERVICIO;
+    
+        public virtual TECNICO TECNICO
+        {
+            get { return _tECNICO; }
+            set
+            {
+                if (!ReferenceEquals(_tECNICO, value))
+                {
+                    var previousValue = _tECNICO;
+                    _tECNICO = value;
+                    FixupTECNICO(previousValue);
+                }
+            }
+        }
+        private TECNICO _tECNICO;
     
         public virtual TIPO_MOVIMIENTO TIPO_MOVIMIENTO
         {
@@ -950,6 +984,30 @@ namespace InventoryApp.DAL.POCOS
             else if (!_settingFK)
             {
                 UNID_SERVICIO = null;
+            }
+        }
+    
+        private void FixupTECNICO(TECNICO previousValue)
+        {
+            if (previousValue != null && previousValue.MOVIMENTOes.Contains(this))
+            {
+                previousValue.MOVIMENTOes.Remove(this);
+            }
+    
+            if (TECNICO != null)
+            {
+                if (!TECNICO.MOVIMENTOes.Contains(this))
+                {
+                    TECNICO.MOVIMENTOes.Add(this);
+                }
+                if (UNID_TECNICO != TECNICO.UNID_TECNICO)
+                {
+                    UNID_TECNICO = TECNICO.UNID_TECNICO;
+                }
+            }
+            else if (!_settingFK)
+            {
+                UNID_TECNICO = null;
             }
         }
     

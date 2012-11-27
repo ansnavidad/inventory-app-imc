@@ -71,6 +71,38 @@ namespace InventoryApp.DAL.POCOS
         #endregion
         #region Navigation Properties
     
+        public virtual ICollection<MOVIMENTO> MOVIMENTOes
+        {
+            get
+            {
+                if (_mOVIMENTOes == null)
+                {
+                    var newCollection = new FixupCollection<MOVIMENTO>();
+                    newCollection.CollectionChanged += FixupMOVIMENTOes;
+                    _mOVIMENTOes = newCollection;
+                }
+                return _mOVIMENTOes;
+            }
+            set
+            {
+                if (!ReferenceEquals(_mOVIMENTOes, value))
+                {
+                    var previousValue = _mOVIMENTOes as FixupCollection<MOVIMENTO>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupMOVIMENTOes;
+                    }
+                    _mOVIMENTOes = value;
+                    var newValue = value as FixupCollection<MOVIMENTO>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupMOVIMENTOes;
+                    }
+                }
+            }
+        }
+        private ICollection<MOVIMENTO> _mOVIMENTOes;
+    
         public virtual CIUDAD CIUDAD
         {
             get { return _cIUDAD; }
@@ -112,6 +144,28 @@ namespace InventoryApp.DAL.POCOS
             else if (!_settingFK)
             {
                 UNID_CIUDAD = null;
+            }
+        }
+    
+        private void FixupMOVIMENTOes(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (MOVIMENTO item in e.NewItems)
+                {
+                    item.TECNICO = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (MOVIMENTO item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.TECNICO, this))
+                    {
+                        item.TECNICO = null;
+                    }
+                }
             }
         }
 

@@ -64,8 +64,7 @@
             <Button TabIndex="23" Command="{Binding AddItemCommand, Mode=OneWay}" Content="GUARDAR SALIDA" Height="39" HorizontalAlignment="Right" Margin="0,1187,419,0" Name="btnAgregar" VerticalAlignment="Top" Width="119" Click="btnAgregar_Click" />
             <Button TabIndex="24" Content="CANCELAR SALIDA" Height="39" HorizontalAlignment="Right" Margin="0,1187,76,0" Name="btnCancelar" VerticalAlignment="Top" Width="119" Click="btnCancelar_Click" />
             <Label Content="Técnico instalador:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,282,246,0" Name="label3" VerticalAlignment="Top" />
-            <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,285,120,0" Name="textBlockTecnicoI" Text="{Binding MovimientoModel.AlmacenProcedencia.TECNICO, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" />
-            <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border5" Margin="16,641,18,679">
+        <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border5" Margin="16,641,18,679">
                 <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border3"></Border>
             </Border>
             <TextBox TabIndex="4" Height="23" HorizontalAlignment="Right" Margin="0,225,41,0" MaxLength="254" Name="textBox2" Text="{Binding MovimientoModel.PedimentoExpo, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="161" />
@@ -84,6 +83,7 @@
             <Label Content="Tipo de Cambio:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Left" Margin="386,683,0,0" Name="label24" VerticalAlignment="Top" />
             <TextBox TabIndex="15" Height="23" HorizontalAlignment="Right" Margin="0,655,398,0" MaxLength="32" Name="textBox6" Text="{Binding FacturaVentaModel.Folio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="106" />
             <Label Content="Folio Factura:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Left" Margin="16,653,0,0" Name="label23" VerticalAlignment="Top" />
-        </Grid>
+        <ComboBox DisplayMemberPath="TECNICO_NAME" Height="23" HorizontalAlignment="Right" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogTecnicoModel.Tecnico}" Margin="0,282,41,0" Name="comboBox3" SelectedIndex="0" SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_TECNICO" TabIndex="4" VerticalAlignment="Top" Width="176" />
+    </Grid>
   
 </UserControl>

@@ -51,9 +51,9 @@
         <Button TabIndex="12" Command="{Binding AddItemCommand, Mode=OneWay}" Content="GUARDAR SALIDA" Height="39" HorizontalAlignment="Right" Margin="0,837,424,0" Name="btnAgregar" VerticalAlignment="Top" Width="119" Click="btnAgregar_Click" />
         <Button TabIndex="13" Content="CANCELAR SALIDA" Height="39" HorizontalAlignment="Right" Margin="0,837,81,0" Name="btnCancelar" VerticalAlignment="Top" Width="119" Click="btnCancelar_Click" />
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" Margin="17,819,11,0" Name="border4" VerticalAlignment="Top"></Border>
-            <Label Content="Técnico instalador:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,162,258,0" Name="label3" VerticalAlignment="Top" />
-            <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,165,104,0" Name="textBlockTecnicoI" Text="{Binding MovimientoModel.AlmacenProcedencia.TECNICO, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="148" />
-            <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border6" Margin="25,431,15,696" />
-        </Grid>
+            <Label Content="Técnico instalador:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,162,217,0" Name="label3" VerticalAlignment="Top" />
+        <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border6" Margin="25,431,15,696" />
+        <ComboBox DisplayMemberPath="TECNICO_NAME" Height="23" HorizontalAlignment="Right" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogTecnicoModel.Tecnico}" Margin="0,162,42,0" Name="comboBox3" SelectedIndex="0" SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_TECNICO" TabIndex="4" VerticalAlignment="Top" Width="176" />
+    </Grid>
  
 </UserControl>

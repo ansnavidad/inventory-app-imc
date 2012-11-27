@@ -26,6 +26,7 @@ namespace InventoryApp.ViewModel.Salidas
         private CatalogTipoPedimentoModel _catalogTipoPedimentoModel;
         private CatalogMonedaModel _catalogMonedaModel;
         private FacturaVentaModel _facturaVentaModel;
+        private CatalogTecnicoModel _catalogTecnicoModel;
         private RelayCommand _addItemCommand;
         private RelayCommand _deleteItemCommand;
 
@@ -42,6 +43,7 @@ namespace InventoryApp.ViewModel.Salidas
                 IDataMapper dataMapper7 = new TransporteDataMapper();
                 IDataMapper dataMapper8 = new MonedaDataMapper();
                 IDataMapper dataMapper9 = new FacturaVentaDataMapper();
+                IDataMapper dataMapper10 = new TecnicoDataMapper();
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
@@ -59,6 +61,7 @@ namespace InventoryApp.ViewModel.Salidas
                 this._catalogClienteModel = new CatalogClienteModel(dataMapper4);
                 this._catalogMonedaModel = new CatalogMonedaModel(dataMapper8);
                 this._facturaVentaModel = new FacturaVentaModel(dataMapper9);
+                this._catalogTecnicoModel = new CatalogTecnicoModel(dataMapper10);
             }
             catch (ArgumentException a)
             {
@@ -91,6 +94,21 @@ namespace InventoryApp.ViewModel.Salidas
                     _deleteItemCommand = new RelayCommand(p => this.AttempDeleteArticulo(), p => this.CanAttempDeleteArticulo());
                 }
                 return _deleteItemCommand;
+            }
+        }
+        public CatalogTecnicoModel CatalogTecnicoModel
+        {
+            get
+            {
+                return _catalogTecnicoModel;
+
+            }
+            set
+            {
+                if (_catalogTecnicoModel != value)
+                {
+                    _catalogTecnicoModel = value;
+                }
             }
         }
         public CatalogProveedorModel CatalogProveedorDestinoModel

@@ -26,7 +26,8 @@ namespace InventoryApp.View.Entradas
             FocusManager.SetFocusedElement(this, this.txtRecibe);
             comboCliente.SelectedIndex = 0;
             comboBoxAlmacenOrigen.SelectedIndex = 0; //EL ORIGEN ES EN REALIDAD EL DESTINO
-            
+            comboBoxSolicitante.SelectedIndex = 1;
+            comboBoxSolicitante.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

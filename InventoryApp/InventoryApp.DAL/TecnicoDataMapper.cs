@@ -23,6 +23,23 @@ namespace InventoryApp.DAL
                 return res;
             }
         }
+
+        public object getTecnicosByAlmancenFirst(ALMACEN a)
+        {
+
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.TECNICOes
+                           join enlace in Entity.ALMACEN_TECNICO on p.UNID_TECNICO equals enlace.UNID_TECNICO
+                           join almacen in Entity.ALMACENs on enlace.UNID_ALMACEN equals almacen.UNID_ALMACEN
+                           join almacen2 in Entity.ALMACENs on almacen.UNID_ALMACEN equals a.UNID_ALMACEN
+                           where (p.IS_ACTIVE == true)
+                           select p).ToList().First();
+
+                return res;
+            }
+        }
+
         public object getElements()
         {
             object o = null;

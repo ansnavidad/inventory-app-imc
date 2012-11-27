@@ -6,6 +6,12 @@ using InventoryApp.Model;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
+using InventoryApp.ViewModel;
+using System.Windows.Input;
+using System.ComponentModel;
+
+
 
 namespace InventoryApp.ViewModel.Entradas
 {
@@ -21,6 +27,7 @@ namespace InventoryApp.ViewModel.Entradas
         private CatalogClienteModel _catalogClienteProcedenciaModel;
         private CatalogItemModel _itemModel;
         private CatalogTransporteModel _catalogTransporteModel;
+        private CatalogTecnicoModel _catalogTecnicoModel;
         private RelayCommand _addItemCommand;
         private RelayCommand _deleteItemCommand;
 
@@ -33,6 +40,7 @@ namespace InventoryApp.ViewModel.Entradas
                 IDataMapper dataMapper3 = new ProveedorDataMapper();
                 IDataMapper dataMapper4 = new ClienteDataMapper();
                 IDataMapper dataMapper5 = new TransporteDataMapper();
+                IDataMapper dataMapper6 = new TecnicoDataMapper();
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoModel(new MovimientoDataMapper());
@@ -45,10 +53,10 @@ namespace InventoryApp.ViewModel.Entradas
                 this._catalogProveedorProcedenciaModel = new CatalogProveedorModel(dataMapper3);
                 this._catalogClienteProcedenciaModel = new CatalogClienteModel(dataMapper4);
                 this._catalogTransporteModel = new CatalogTransporteModel(dataMapper5);
+                this._catalogTecnicoModel = new CatalogTecnicoModel(dataMapper6);
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
             catch(Exception ex)
@@ -104,7 +112,13 @@ namespace InventoryApp.ViewModel.Entradas
             }
             set
             {
-                _catalogAlmacenModel = value;
+                if (_catalogAlmacenModel != value)
+                {
+                    _catalogAlmacenModel = value;
+                    OnPropertyChanged("CatalogAlmacenModel");
+
+                    this.Tecnicos = this.GetTecnicosByAlmacen(this.MovimientoModel.AlmacenDestino);                    
+                }
             }
         }
 
@@ -119,6 +133,57 @@ namespace InventoryApp.ViewModel.Entradas
             {
                 _catalogTransporteModel = value;
             }
+        }
+
+        public CatalogTecnicoModel CatalogTecnicoModel
+        {
+            get
+            {
+                return _catalogTecnicoModel;
+
+            }
+            set
+            {
+                if (_catalogTecnicoModel != value)
+                {
+                    _catalogTecnicoModel = value;                    
+                }               
+            }
+        }
+
+        private ObservableCollection<TECNICO> _tecnicos;
+        public ObservableCollection<TECNICO> Tecnicos
+        {
+            get { return _tecnicos; }
+            set
+            {
+                if (_tecnicos != value)
+                {
+                    _tecnicos = value;
+                    OnPropertyChanged("Técnico");
+                }
+            }
+        }
+
+        private ObservableCollection<TECNICO> GetTecnicosByAlmacen(ALMACEN alm)
+        {
+            ObservableCollection<TECNICO> almCollec = new ObservableCollection<TECNICO>();
+            try
+            {
+                TecnicoDataMapper artDataMapper = new TecnicoDataMapper();
+                List<TECNICO> tecnicoss = (List<TECNICO>)artDataMapper.getTecnicosByAlmancen(alm);
+
+                foreach(TECNICO t in tecnicoss){
+                    
+                    almCollec.Add(t);
+                }
+            }
+            catch (Exception)
+            {
+                ;
+            }
+
+            return almCollec;
         }
 
         public CatalogClienteModel CatalogClienteProcedenciaModel
@@ -189,6 +254,7 @@ namespace InventoryApp.ViewModel.Entradas
             this._catalogAlmacenModel.loadItems();
             this._catalogAlmacenProcedenciaModel.loadItems();
             this._catalogProveedorProcedenciaModel.loadItems();
+            this._catalogTecnicoModel.loadItems();
             this._catalogClienteProcedenciaModel.loadCliente();
         }
 
@@ -258,6 +324,16 @@ namespace InventoryApp.ViewModel.Entradas
             set
             {
                 throw new NotImplementedException();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var eh = this.PropertyChanged;
+            if (eh != null)
+            {
+                eh(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

@@ -22,6 +22,7 @@ namespace InventoryApp.ViewModel.Salidas
         private CatalogClienteModel _catalogClienteDestinoModel;
         private CatalogTransporteModel _catalogTransporteModel;
         private CatalogItemModel _itemModel;
+        private CatalogTecnicoModel _catalogTecnicoModel;
         private CatalogServicioModel _catalogServicioModel;
         private CatalogTipoPedimentoModel _catalogTipoPedimentoModel;
         private RelayCommand _addItemCommand;
@@ -38,6 +39,7 @@ namespace InventoryApp.ViewModel.Salidas
                 IDataMapper dataMapper5 = new ServicioDataMapper();
                 IDataMapper dataMapper6 = new TipoPedimentoDataMapper();
                 IDataMapper dataMapper7 = new TransporteDataMapper();
+                IDataMapper dataMapper8 = new TecnicoDataMapper();
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
@@ -53,6 +55,7 @@ namespace InventoryApp.ViewModel.Salidas
                 this._catalogTipoPedimentoModel = new CatalogTipoPedimentoModel(dataMapper6);
                 this._catalogTransporteModel = new CatalogTransporteModel(dataMapper7);
                 this._catalogClienteModel = new CatalogClienteModel(dataMapper4);
+                this._catalogTecnicoModel = new CatalogTecnicoModel(dataMapper8);
             }
             catch (ArgumentException a)
             {
@@ -85,6 +88,21 @@ namespace InventoryApp.ViewModel.Salidas
                     _deleteItemCommand = new RelayCommand(p => this.AttempDeleteArticulo(), p => this.CanAttempDeleteArticulo());
                 }
                 return _deleteItemCommand;
+            }
+        }
+        public CatalogTecnicoModel CatalogTecnicoModel
+        {
+            get
+            {
+                return _catalogTecnicoModel;
+
+            }
+            set
+            {
+                if (_catalogTecnicoModel != value)
+                {
+                    _catalogTecnicoModel = value;
+                }
             }
         }
         public CatalogProveedorModel CatalogProveedorDestinoModel
@@ -230,6 +248,7 @@ namespace InventoryApp.ViewModel.Salidas
             this._catalogTipoPedimentoModel.loadItems();
             this._catalogTransporteModel.loadItems();
             this._catalogClienteModel.loadCliente();
+            this._catalogTecnicoModel.loadItems();
         }
 
         public CatalogItemViewModel CreateCatalogItemViewModel()

@@ -12,7 +12,7 @@ namespace InventoryApp.ViewModel.Salidas
 {
     public class SalidaConfiguracionViewModel : IPageViewModel
     {
-         private MovimientoSalidasModel _movimientoModel;
+        private MovimientoSalidasModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
         private UltimoMovimientoModel _ultimoMovimientoModel;
         private CatalogSolicitanteModel _catalogSolicitanteModel;
@@ -25,6 +25,7 @@ namespace InventoryApp.ViewModel.Salidas
         private CatalogItemModel _itemModel;
         private CatalogServicioModel _catalogServicioModel;
         private CatalogTipoPedimentoModel _catalogTipoPedimentoModel;
+        private CatalogTecnicoModel _catalogTecnicoModel;
         private RelayCommand _addItemCommand;
         private RelayCommand _deleteItemCommand;
 
@@ -39,6 +40,7 @@ namespace InventoryApp.ViewModel.Salidas
                 IDataMapper dataMapper5 = new ServicioDataMapper();
                 IDataMapper dataMapper6 = new TipoPedimentoDataMapper();
                 IDataMapper dataMapper7 = new TransporteDataMapper();
+                IDataMapper dataMapper8 = new TecnicoDataMapper();
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
@@ -54,6 +56,7 @@ namespace InventoryApp.ViewModel.Salidas
                 this._catalogTipoPedimentoModel = new CatalogTipoPedimentoModel(dataMapper6);
                 this._catalogTransporteModel = new CatalogTransporteModel(dataMapper7);
                 this._catalogClienteModel = new CatalogClienteModel(dataMapper4);
+                this._catalogTecnicoModel = new CatalogTecnicoModel(dataMapper8);
             }
             catch (ArgumentException a)
             {
@@ -122,6 +125,18 @@ namespace InventoryApp.ViewModel.Salidas
             set
             {
                 _catalogServicioModel = value;
+            }
+        }
+        public CatalogTecnicoModel CatalogTecnicoModel
+        {
+            get
+            {
+                return _catalogTecnicoModel;
+
+            }
+            set
+            {
+                _catalogTecnicoModel = value;
             }
         }
         public CatalogTipoPedimentoModel CatalogTipoPedimentoModel
@@ -231,6 +246,7 @@ namespace InventoryApp.ViewModel.Salidas
             this._catalogTipoPedimentoModel.loadItems();
             this._catalogTransporteModel.loadItems();
             this._catalogClienteModel.loadCliente();
+            this._catalogTecnicoModel.loadItems();
         }
 
         public CatalogItemViewModel CreateCatalogItemViewModel()

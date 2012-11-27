@@ -32,7 +32,8 @@ namespace InventoryApp.DAL
                     trans.SOLICITANTE = trans.SOLICITANTE;
                     trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
                     trans.TRANSPORTE = trans.TRANSPORTE;
-                    trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;                    
+                    trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                    trans.TECNICO = trans.TECNICO;  
                 }
 
                 return (object)res;

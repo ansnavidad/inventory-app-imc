@@ -25,6 +25,7 @@ namespace InventoryApp.Model
                 }
             }
         }
+
         public bool IsChecked
         {
             get { return this._isChecked; }
@@ -38,7 +39,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
 
         public DeleteTecnico(TECNICO tecnico)
         {

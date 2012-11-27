@@ -24,6 +24,7 @@ namespace InventoryApp.ViewModel.CatalogSolicitante
                 return _deleteSolicitanteCommand;
             }
         }
+
         public CatalogSolicitanteViewModel()
         {
             try

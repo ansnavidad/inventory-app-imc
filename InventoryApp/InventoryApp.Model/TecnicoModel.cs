@@ -101,13 +101,22 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new TECNICO() { IS_ACTIVE = true, MAIL = this._mail, TECNICO_NAME = this._tecnicoName, UNID_CIUDAD = this._ciudad.UNID_CIUDAD });
+                _dataMapper.insertElement(new TECNICO() { IS_ACTIVE = true,
+                                                          MAIL = this._mail,
+                                                          TECNICO_NAME = this._tecnicoName,
+                                                          UNID_CIUDAD = this._ciudad.UNID_CIUDAD
+                                                         });
             }
         }
 
         public void updateTipoPedimento()
         {
-            this._dataMapper.udpateElement(new TECNICO() { UNID_TECNICO = this._unidTecnico, IS_ACTIVE = true, MAIL = this._mail, TECNICO_NAME = this._tecnicoName, UNID_CIUDAD = this._ciudad.UNID_CIUDAD});
+            this._dataMapper.udpateElement(new TECNICO() { UNID_TECNICO = this._unidTecnico,
+                                                           IS_ACTIVE = true,
+                                                           MAIL = this._mail,
+                                                           TECNICO_NAME = this._tecnicoName,
+                                                           UNID_CIUDAD = this._ciudad.UNID_CIUDAD
+                                                          });
         }
 
         #region Constructors

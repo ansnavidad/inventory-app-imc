@@ -59,6 +59,7 @@ namespace InventoryApp.Model
             //this._selectedSolicitante = new SOLICITANTE();
             this.loadSolicitante();
         }
+
         public void loadSolicitante()
         {
 

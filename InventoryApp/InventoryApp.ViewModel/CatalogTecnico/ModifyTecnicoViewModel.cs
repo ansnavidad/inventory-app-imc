@@ -107,7 +107,7 @@ namespace InventoryApp.ViewModel.CatalogTecnico
 
             if (this._catalogTecnicoViewModel != null)
             {
-                this._catalogTecnicoViewModel.loadI();
+                this._catalogTecnicoViewModel.loadTecnico();
             }
         }
         #endregion

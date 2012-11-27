@@ -67,7 +67,9 @@
              xmlns:TraspasosViewModel="clr-namespace:InventoryApp.ViewModel.Traspasos;assembly=InventoryApp.ViewModel"
              xmlns:TraspasosView="clr-namespace:InventoryApp.View.Traspasos"
              xmlns:GridMovimientosViewModel="clr-namespace:InventoryApp.ViewModel.GridMovimientos;assembly=InventoryApp.ViewModel"
-             xmlns:GridMovimientosView="clr-namespace:InventoryApp.View.GridMovimientos"             
+             xmlns:GridMovimientosView="clr-namespace:InventoryApp.View.GridMovimientos"                          
+             xmlns:TecnicoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTecnico;assembly=InventoryApp.ViewModel"
+             xmlns:TecnicoView="clr-namespace:InventoryApp.View.CatalogTecnico"                  
              StartupUri="MainWindow.xaml"
              >
     
@@ -137,6 +139,10 @@
         <ObjectDataProvider x:Key="catalogCategoriaViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
+        <!-- técnico -->
+        <ObjectDataProvider x:Key="catalogTecnicoViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+        
         <!-- ciudad -->
         <ObjectDataProvider x:Key="catalogCiudadViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
@@ -371,6 +377,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type catSolicitanteViewModel:CatalogSolicitanteViewModel}">
             <solicitanteViews:SolicitanteUserControl />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type TecnicoViewModel:CatalogTecnicoViewModel}">
+            <TecnicoView:TecnicoUserControl />
         </DataTemplate>
         <DataTemplate DataType="{x:Type catTerminoEnvioViewModel:CatalogTerminoEnvioViewModel}">
             <terminoEnvioViews:TerminoEnvioUserControl />

@@ -34,6 +34,7 @@ using InventoryApp.ViewModel.CatalogPropiedad;
 using InventoryApp.ViewModel.CatalogAlmacen;
 using InventoryApp.ViewModel.CatalogServicio;
 using InventoryApp.ViewModel.CatalogUnidad;
+using InventoryApp.ViewModel.CatalogTecnico;
 using System.Windows;
 
 namespace InventoryApp.ViewModel
@@ -142,9 +143,9 @@ namespace InventoryApp.ViewModel
                     case "Artículos":
                         page = new CatalogArticuloViewModel();
                         break;
-                    //case "Marca":
-                    //    page = new ReciboViewModel();
-                    //    break;
+                    case "Técnico":
+                        page = new CatalogTecnicoViewModel();
+                        break;
                     case "Marca":
                         page = new CatalogMarcaViewModel();
                         break;

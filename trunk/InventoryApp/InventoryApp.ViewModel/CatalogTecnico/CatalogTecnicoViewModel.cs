@@ -13,6 +13,18 @@ namespace InventoryApp.ViewModel.CatalogTecnico
         private RelayCommand _deleteTecnicoCommand;
         private CatalogTecnicoModel _catalogTecnicoModel;
 
+        public ICommand DeleteTecnicoCommand
+        {
+            get
+            {
+                if (_deleteTecnicoCommand == null)
+                {
+                    _deleteTecnicoCommand = new RelayCommand(p => this.AttempDeleteTecnico(), p => this.CanAttempDeleteTecnico());
+                }
+                return _deleteTecnicoCommand;
+            }
+        }
+
         public CatalogTecnicoViewModel()
         {
             try
@@ -32,23 +44,6 @@ namespace InventoryApp.ViewModel.CatalogTecnico
             
         }
 
-        public ICommand DeleteTecnicoCommand
-        {
-            get
-            {
-                if (_deleteTecnicoCommand == null)
-                {
-                    _deleteTecnicoCommand = new RelayCommand(p => this.AttempDeleteTecnico(), p => this.CanAttempDeleteTecnico());
-                }
-                return _deleteTecnicoCommand;
-            }
-        }
-
-        public void loadI()
-        {
-            this._catalogTecnicoModel.loadItems();
-        }
-
         public CatalogTecnicoModel CatalogTecnicoModel
         {
             get
@@ -59,6 +54,11 @@ namespace InventoryApp.ViewModel.CatalogTecnico
             {
                 _catalogTecnicoModel = value;
             }
+        }
+
+        public void loadTecnico()
+        {
+            this._catalogTecnicoModel.loadItems();
         }
 
 

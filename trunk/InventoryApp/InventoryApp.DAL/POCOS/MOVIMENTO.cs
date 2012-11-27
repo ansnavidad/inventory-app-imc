@@ -415,6 +415,12 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private Nullable<long> _uNID_SOLICITANTE;
+    
+        public virtual Nullable<long> UNID_TECNICO
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

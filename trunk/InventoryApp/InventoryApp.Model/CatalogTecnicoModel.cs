@@ -31,6 +31,7 @@ namespace InventoryApp.Model
                 }
             }
         }
+
         public DeleteTecnico SelectedTecnico
         {
             get
@@ -58,6 +59,7 @@ namespace InventoryApp.Model
             this.loadItems();
             
         }
+
         public void loadItems()
         {
 

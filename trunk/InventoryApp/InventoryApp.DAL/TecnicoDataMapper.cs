@@ -23,21 +23,6 @@ namespace InventoryApp.DAL
                 return res;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public object getElements()
         {
             object o = null;

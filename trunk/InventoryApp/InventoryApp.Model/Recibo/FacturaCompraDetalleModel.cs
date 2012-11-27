@@ -7,7 +7,7 @@ using InventoryApp.DAL.POCOS;
 namespace InventoryApp.Model.Recibo
 {
     public class FacturaCompraDetalleModel : ModelBase
-    {
+    { 
         #region Properties
         public bool IsSelected
         {

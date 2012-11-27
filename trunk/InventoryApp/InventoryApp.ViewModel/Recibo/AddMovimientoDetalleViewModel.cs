@@ -95,7 +95,7 @@ namespace InventoryApp.ViewModel.Recibo
                            where o.IsSelected == true
                            select o).ToList();
                 sel.ForEach(o => {
-                    for (int i = 0; i < o.CantidadElegida; i++)
+                    for (int i = 0; i < o.Cantidad; i++)
                     {
                         this._AddMovimientoViewModel.Items.Add(new ReciboItemModel()
                         {

@@ -81,7 +81,7 @@ namespace InventoryApp.ViewModel.CatalogTecnico
                 tecnicoModel.TecnicoName = this._catalogTecnicoModel.SelectedTecnico.TECNICO_NAME;
                 tecnicoModel.UnidTecnico = this._catalogTecnicoModel.SelectedTecnico.UNID_TECNICO;
                 tecnicoModel.Mail = this._catalogTecnicoModel.SelectedTecnico.MAIL;
-                tecnicoModel.Ciudad = this._catalogTecnicoModel.SelectedTecnico.CIUDAD;
+                tecnicoModel.Ciudad = this._catalogTecnicoModel.SelectedTecnico.Ciudad;
             }
             return new ModifyTecnicoViewModel(this, tecnicoModel);
         }

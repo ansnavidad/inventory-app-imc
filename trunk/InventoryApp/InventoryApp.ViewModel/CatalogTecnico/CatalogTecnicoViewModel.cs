@@ -61,7 +61,6 @@ namespace InventoryApp.ViewModel.CatalogTecnico
             this._catalogTecnicoModel.loadItems();
         }
 
-
         /// <summary>
         /// Crea una nueva instancia de AddTipoMovimiento y se pasa asi mismo como parámetro
         /// </summary>

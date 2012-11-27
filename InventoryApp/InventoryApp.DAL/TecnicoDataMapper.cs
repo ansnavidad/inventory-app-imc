@@ -54,6 +54,10 @@ namespace InventoryApp.DAL
                 
                 if (query.Count > 0)
                 {
+                    foreach (TECNICO t in query) {
+
+                        t.CIUDAD = t.CIUDAD;
+                    }
                     o = query;
                 }
 

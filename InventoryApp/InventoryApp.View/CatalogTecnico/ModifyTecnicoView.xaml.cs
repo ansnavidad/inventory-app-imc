@@ -9,7 +9,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace InventoryApp.View.CatalogTecnico
@@ -17,11 +16,22 @@ namespace InventoryApp.View.CatalogTecnico
     /// <summary>
     /// Lógica de interacción para ModifyTecnicoView.xaml
     /// </summary>
-    public partial class ModifyTecnicoView : UserControl
+    public partial class ModifyTecnicoView : Window
     {
         public ModifyTecnicoView()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.textBoxNombre);
+        }
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

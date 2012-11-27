@@ -39,6 +39,7 @@ namespace InventoryApp.Model
             }
         }
 
+
         public DeleteTecnico(TECNICO tecnico)
         {
             this._ciudad = tecnico.CIUDAD;

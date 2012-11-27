@@ -14,6 +14,7 @@ namespace InventoryApp.ViewModel.CatalogTecnico
         private TecnicoModel _addTecnico;
         private RelayCommand _addTecnicoCommand;
         private CatalogTecnicoViewModel _catalogTecnicoViewModel;
+        private CatalogCiudadModel _catalogCiudadModel;
         #endregion
         //Exponer la propiedad de tipo de cotizacion
         #region Props
@@ -29,7 +30,19 @@ namespace InventoryApp.ViewModel.CatalogTecnico
             }
         }
 
-        public ICommand AddTipoMovimientoCommand
+        public CatalogCiudadModel CatalogCiudadModel
+        {
+            get
+            {
+                return _catalogCiudadModel;
+            }
+            set
+            {
+                _catalogCiudadModel = value;
+            }
+        }
+
+        public ICommand AddTecnicoCommand
         {
             get
             {
@@ -51,6 +64,19 @@ namespace InventoryApp.ViewModel.CatalogTecnico
         {
             this._addTecnico = new TecnicoModel(new TecnicoDataMapper());
             this._catalogTecnicoViewModel = catalogTecnicoViewModel;
+
+            try{
+                
+                this._catalogCiudadModel = new CatalogCiudadModel(new CiudadDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         #endregion
 
@@ -78,13 +104,14 @@ namespace InventoryApp.ViewModel.CatalogTecnico
         public void AttempAddTecnico()
         {
             this._addTecnico.saveTecnico();
+            
 
             //Puede ser que para pruebas unitarias catalogTipoMovimientoViewModel sea nulo ya que
             //es una dependencia inyectada
-            //if (this._catalogTecnicoViewModel != null)
-            //{
-            //    this._catalogTipoMovimientoViewModel.loadTipoCotizacion();
-            //}
+            if (this._catalogTecnicoViewModel != null)
+            {
+                this._catalogTecnicoViewModel.loadI();
+            }
         }
         #endregion
     }

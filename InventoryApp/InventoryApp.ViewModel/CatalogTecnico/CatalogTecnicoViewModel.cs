@@ -44,6 +44,11 @@ namespace InventoryApp.ViewModel.CatalogTecnico
             }
         }
 
+        public void loadI()
+        {
+            this._catalogTecnicoModel.loadItems();
+        }
+
         public CatalogTecnicoModel CatalogTecnicoModel
         {
             get

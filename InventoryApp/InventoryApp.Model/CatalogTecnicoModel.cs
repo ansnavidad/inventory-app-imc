@@ -10,7 +10,7 @@ namespace InventoryApp.Model
 {
     public class CatalogTecnicoModel : INotifyPropertyChanged
     {
-        private TECNICO _selectedTecnico;
+        private DeleteTecnico _selectedTecnico;
         private FixupCollection<DeleteTecnico> _tecnico;
         private IDataMapper _dataMapper;
 
@@ -31,7 +31,7 @@ namespace InventoryApp.Model
                 }
             }
         }
-        public TECNICO SelectedTecnico
+        public DeleteTecnico SelectedTecnico
         {
             get
             {
@@ -54,7 +54,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new TecnicoDataMapper();
             this._tecnico = new FixupCollection<DeleteTecnico>();
-            this._selectedTecnico = new TECNICO();
+            //this._selectedTecnico = new DeleteTecnico();
             this.loadItems();
             
         }

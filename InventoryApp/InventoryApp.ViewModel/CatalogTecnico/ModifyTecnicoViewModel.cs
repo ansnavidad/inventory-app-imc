@@ -14,6 +14,7 @@ namespace InventoryApp.ViewModel.CatalogTecnico
         private TecnicoModel _modiTecnico;
         private RelayCommand _modifyTecnicoCommand;
         private CatalogTecnicoViewModel _catalogTecnicoViewModel;
+        private CatalogCiudadModel _catalogCiudadModel;
         #endregion
 
         //Exponer la propiedad item status
@@ -27,6 +28,18 @@ namespace InventoryApp.ViewModel.CatalogTecnico
             set
             {
                 _modiTecnico = value;
+            }
+        }
+
+        public CatalogCiudadModel CatalogCiudadModel
+        {
+            get
+            {
+                return _catalogCiudadModel;
+            }
+            set
+            {
+                _catalogCiudadModel = value;
             }
         }
 
@@ -55,7 +68,21 @@ namespace InventoryApp.ViewModel.CatalogTecnico
             this._modiTecnico.Ciudad = selectedTecnicoModel.Ciudad;
             this._modiTecnico.Mail = selectedTecnicoModel.Mail;
             this._modiTecnico.TecnicoName = selectedTecnicoModel.TecnicoName;
-            this._modiTecnico.UnidTecnico = selectedTecnicoModel.UnidTecnico;            
+            this._modiTecnico.UnidTecnico = selectedTecnicoModel.UnidTecnico;
+
+            try
+            {
+
+                this._catalogCiudadModel = new CatalogCiudadModel(new CiudadDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         #endregion
 
@@ -77,6 +104,11 @@ namespace InventoryApp.ViewModel.CatalogTecnico
         public void AttempModifyTecnico()
         {
             this._modiTecnico.updateTipoPedimento();
+
+            if (this._catalogTecnicoViewModel != null)
+            {
+                this._catalogTecnicoViewModel.loadI();
+            }
         }
         #endregion
     }

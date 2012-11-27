@@ -113,7 +113,7 @@ namespace InventoryApp.Model
         #region Constructors
         public TecnicoModel(IDataMapper dataMapper)
         {
-            if ((dataMapper as TipoPedimentoDataMapper) != null)
+            if ((dataMapper as TecnicoDataMapper) != null)
             {
                 this._dataMapper = dataMapper as TecnicoDataMapper;
             }

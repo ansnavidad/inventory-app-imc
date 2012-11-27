@@ -68,7 +68,7 @@
                   AutoGenerateColumns="False" CanUserAddRows="False"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridBanco"
                   SelectedItem="{Binding CatalogBancoModel.SelectedBanco, Mode=TwoWay}"
-                  VerticalAlignment="Stretch" ItemsSource="{Binding CatalogBancoModel.Banco}" 
+                  VerticalAlignment="Stretch" ItemsSource="{Binding Items}" 
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                   RowStyle="{StaticResource RowStyle}">
                 <DataGrid.Columns>
@@ -80,8 +80,8 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Número Factura" Width="*" x:Name="numeroFactura" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Equipo" Width="*" x:Name="equipoName" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Número Factura" Width="*" x:Name="numeroFactura" Binding="{Binding Path=FacturaDetalle.Numero}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Equipo" Width="*" x:Name="equipoName" Binding="{Binding Path=Articulo.EquipoModel.EquipoName}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Model" Width="*" x:Name="modeloName" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Marca" Width="*" x:Name="marcaName" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="SKU" Width="*" x:Name="sku" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>

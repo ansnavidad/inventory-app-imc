@@ -51,7 +51,6 @@
                   Text="{Binding ModiTecnico.Ciudad.CIUDAD1,Mode=TwoWay}"
                   DisplayMemberPath="CIUDAD1" SelectedValuePath="UNID_CIUDAD" 
                   Height="23" TabIndex="6" HorizontalAlignment="Left" Grid.Column="1" 
-                  SelectedIndex="0"
                   Margin="65,1,0,0" Grid.Row="5" Name="comboBox2" VerticalAlignment="Top" Width="120" />
     </Grid>
 </Window>

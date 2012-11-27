@@ -17,7 +17,7 @@ namespace InventoryApp.ViewModel.CatalogTecnico
         private CatalogCiudadModel _catalogCiudadModel;
         #endregion
 
-        //Exponer la propiedad item status
+        //Exponer la propiedad tecnico y ciudad
         #region Props
         public TecnicoModel ModiTecnico
         {

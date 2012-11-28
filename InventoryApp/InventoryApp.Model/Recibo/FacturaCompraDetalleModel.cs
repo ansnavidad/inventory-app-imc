@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.DAL;
+using InventoryApp.DAL.Recibo;
 
 namespace InventoryApp.Model.Recibo
 {
     public class FacturaCompraDetalleModel : ModelBase
-    { 
+    {
+        private IDataMapper _DataMapper;
+
         #region Properties
         public bool IsSelected
         {
@@ -188,6 +192,50 @@ namespace InventoryApp.Model.Recibo
         }
         private bool _IsActive;
         public const string IsActivePropertyName = "IsActive";
+
+        public PedimentoModel Pedimento
+        {
+            get { return _Pedimento; }
+            set
+            {
+                if (_Pedimento != value)
+                {
+                    _Pedimento = value;
+                    OnPropertyChanged(PedimentoPropertyName);
+                }
+            }
+        }
+        private PedimentoModel _Pedimento;
+        public const string PedimentoPropertyName = "Pedimento";
+
+        #endregion
+
+        public void saveFacturaDetalle()
+        {
+            if (_DataMapper != null)
+            {
+                _DataMapper.insertElement(new FACTURA_DETALLE()
+                {
+                    IS_ACTIVE = true, 
+                    UNID_FACTURA_DETALE= this._UnidFacturaCompraDetalle, 
+                    UNID_FACTURA= this._Factura.UnidFactura, 
+                    UNID_ARTICULO = this._Articulo.UnidArticulo,
+                    CANTIDAD= this._Cantidad,
+                    PRECIO_UNITARIO = this._PrecioUnitario, 
+                    IMPUESTO_UNITARIO=this._ImpuestoUnitario,
+                    NUMERO=this._Numero,
+                    DESCRIPCION=this._Descripcion,
+                    UNID_UNIDAD=this._Unidad.UnidUnidad,
+                    UNID_PEDIMENTO=this._Pedimento.UnidPedimentoModel
+                });
+            }
+        }
+        #region Constructors
+
+        public FacturaCompraDetalleModel()
+        {
+            this._DataMapper = new FacturaCompraDetalleDataMapper();
+        }
         #endregion
 
     }

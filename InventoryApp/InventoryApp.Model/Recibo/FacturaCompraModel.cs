@@ -14,7 +14,6 @@ namespace InventoryApp.Model.Recibo
         private IDataMapper _DataMapper;
 
         #region Properties
-        //private FacturaCompraDataMapper _dataMapper;
         public long UnidFactura
         {
             get { return _UnidFactura; }

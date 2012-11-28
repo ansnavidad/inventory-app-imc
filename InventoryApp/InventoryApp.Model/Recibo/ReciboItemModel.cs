@@ -52,7 +52,7 @@ namespace InventoryApp.Model.Recibo
         private string _NumeroSerie;
         public const string NumeroSeriePropertyName = "NumeroSerie";
 
-        public string Satus
+        public string Status
         {
             get { return _Status; }
             set

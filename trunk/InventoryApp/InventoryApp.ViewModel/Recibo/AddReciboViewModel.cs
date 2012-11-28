@@ -27,7 +27,30 @@ namespace InventoryApp.ViewModel.Recibo
         private RelayCommand _AddMovimientoCmd;
 
         private void AttemptAddMovimientoCmd()
-        {   
+        {
+            LoteModel lot = new LoteModel(new LoteDataMapper());
+            lot.UnidLote = UNID.getNewUNID();
+            lot.UnidPOM = UNID.getNewUNID();
+            lot.saveLote();
+
+            foreach (FacturaCompraModel item in this.Facturas)
+            {
+                item.UnidLote = lot.UnidLote;
+                item.UnidFactura = UNID.getNewUNID();
+                item.saveFactura();
+
+                foreach (FacturaCompraDetalleModel fac in item.FacturaDetalle)
+                {
+                    fac.Factura = item;
+                    fac.saveFacturaDetalle();
+                    
+                    
+                }
+            }
+            
+
+            this.Facturas.Count();
+            
         }
 
         private bool CanAttemptAddMovimientoCmd()

@@ -223,10 +223,10 @@ namespace InventoryApp.Model.Recibo
                     CANTIDAD= this._Cantidad,
                     PRECIO_UNITARIO = this._PrecioUnitario, 
                     IMPUESTO_UNITARIO=this._ImpuestoUnitario,
-                    NUMERO=this._Numero,
-                    DESCRIPCION=this._Descripcion,
+                    //NUMERO=this._Numero,
+                    //DESCRIPCION=this._Descripcion,
                     UNID_UNIDAD=this._Unidad.UnidUnidad,
-                    UNID_PEDIMENTO=this._Pedimento.UnidPedimentoModel
+                    //UNID_PEDIMENTO=this._Pedimento.UnidPedimentoModel
                 });
             }
         }

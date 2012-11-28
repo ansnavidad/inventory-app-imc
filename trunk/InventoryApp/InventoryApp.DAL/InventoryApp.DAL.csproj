@@ -240,6 +240,7 @@
     <Compile Include="ProyectoDataMapper.cs" />
     <Compile Include="ReciboDataMapper.cs" />
     <Compile Include="Recibo\FacturaCompraDataMapper.cs" />
+    <Compile Include="Recibo\FacturaCompraDetalleDataMapper.cs" />
     <Compile Include="ServicioDataMapper.cs" />
     <Compile Include="Solicitante1DataMapper.cs" />
     <Compile Include="SolicitanteDataMapper.cs" />

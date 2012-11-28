@@ -105,6 +105,12 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
+    
+        public virtual string STATUS
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

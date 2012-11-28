@@ -69,7 +69,7 @@
             <TextBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding ImpuestoUnitario,Mode=TwoWay}" />
 
             <TextBlock Grid.Column="0" Grid.Row="7" Height="23" HorizontalAlignment="Left" Text="Unidad" VerticalAlignment="Top" />
-            <ComboBox Grid.Column="1" Grid.Row="7" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Unidades}" SelectedItem="{Binding SelectedUnidad, Mode=TwoWay}" DisplayMemberPath="Unidad"/>
+            <ComboBox Grid.Column="1" Grid.Row="7" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Unidades}" SelectedItem="{Binding SelectedUnidad, Mode=TwoWay}"  DisplayMemberPath="UnidadName"/>
             <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,2,0,0" Text="Costo Unitario" VerticalAlignment="Top" Grid.Row="8" />
             <TextBox Grid.Column="1" HorizontalAlignment="Left" Margin="0,2,0,0" Text="{Binding CostoUnitario, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Row="8" />
         </Grid>

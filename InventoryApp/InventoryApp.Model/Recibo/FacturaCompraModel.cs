@@ -230,6 +230,7 @@ namespace InventoryApp.Model.Recibo
         public FacturaCompraModel()
             : this(null)
         {
+            this._DataMapper = new FacturaCompraDataMapper();
         }
 
         public FacturaCompraModel(IDataMapper dataMapper)

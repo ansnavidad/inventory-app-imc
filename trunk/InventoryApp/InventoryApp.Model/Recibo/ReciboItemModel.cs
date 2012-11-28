@@ -52,6 +52,21 @@ namespace InventoryApp.Model.Recibo
         private string _NumeroSerie;
         public const string NumeroSeriePropertyName = "NumeroSerie";
 
+        public string Satus
+        {
+            get { return _Status; }
+            set
+            {
+                if (_Status != value)
+                {
+                    _Status = value;
+                    OnPropertyChanged(StatusPropertyName);
+                }
+            }
+        }
+        private string _Status;
+        public const string StatusPropertyName = "Status";
+
         public double CostoUnitario
         {
             get { return _CostoUnitario; }

@@ -149,6 +149,20 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
+        private double _CostoUnitario;
+        public const string CostoUnitarioPropertyName = "CostoUnitario";
+        public double CostoUnitario
+        {
+            get { return _CostoUnitario; }
+            set
+            {
+                if (_CostoUnitario != value)
+                {
+                    _CostoUnitario = value;
+                    OnPropertyChanged(CostoUnitarioPropertyName);
+                }
+            }
+        }
         private double _ImpuestoUnitario;
         public const string ImpuestoUnitarioPropertyName = "ImpuestoUnitario";
 

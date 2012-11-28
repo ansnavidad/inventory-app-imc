@@ -7,11 +7,36 @@ using InventoryApp.Model;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.Model.Recibo;
+using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.Recibo
 {
     public class AddReciboViewModel : ViewModelBase
     {
+        public ICommand AddMovimientoCmd
+        {
+            get
+            {
+                if (_AddMovimientoCmd == null)
+                {
+                    _AddMovimientoCmd = new RelayCommand(p => this.AttemptAddMovimientoCmd(), p => this.CanAttemptAddMovimientoCmd());
+                }
+                return _AddMovimientoCmd;
+            }
+        }
+        private RelayCommand _AddMovimientoCmd;
+
+        private void AttemptAddMovimientoCmd()
+        {   
+        }
+
+        private bool CanAttemptAddMovimientoCmd()
+        {
+            bool canAttempt = true;
+
+           
+            return canAttempt;
+        }
         private CatalogReciboViewModel _CatalogReciboViewModel;
 
         public ObservableCollection<SolicitanteModel> Solicitantes

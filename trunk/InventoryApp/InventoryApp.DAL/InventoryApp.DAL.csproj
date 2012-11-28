@@ -58,6 +58,7 @@
     <Compile Include="IDataMapper.cs" />
     <Compile Include="ItemDataMapper.cs" />
     <Compile Include="ItemStatusDataMapper.cs" />
+    <Compile Include="LoteDataMapper.cs" />
     <Compile Include="MarcaDataMapper.cs" />
     <Compile Include="MedioEnvioDataMapper.cs" />
     <Compile Include="MenuDataMapper.cs" />

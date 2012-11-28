@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model.Recibo;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.Recibo
 {
@@ -91,6 +92,15 @@ namespace InventoryApp.ViewModel.Recibo
         {
             if (this._AddMovimientoViewModel != null)
             {
+                FacturaCompraDetalleModel aux = new FacturaCompraDetalleModel();
+                foreach (FacturaCompraDetalleModel fac in this._SelectedFactura.FacturaDetalle)
+                {
+                    if (fac.IsSelected)
+                    {
+                        aux = fac;
+                        aux.Factura = this.SelectedFactura;
+                    }
+                }
                 var sel = (from o in this._SelectedFactura.FacturaDetalle
                            where o.IsSelected == true
                            select o).ToList();
@@ -100,7 +110,7 @@ namespace InventoryApp.ViewModel.Recibo
                         this._AddMovimientoViewModel.Items.Add(new ReciboItemModel()
                         {
                             Articulo = o.Articulo,
-                            FacturaDetalle = o,
+                            FacturaDetalle = aux
                         });
                     }
                 });

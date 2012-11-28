@@ -120,6 +120,7 @@
     <Compile Include="InsertTransporteModel.cs" />
     <Compile Include="ItemModel.cs" />
     <Compile Include="ItemStatusModel.cs" />
+    <Compile Include="LoteModel.cs" />
     <Compile Include="MarcaModel.cs" />
     <Compile Include="MedioEnvioModel.cs" />
     <Compile Include="MenuModel.cs" />

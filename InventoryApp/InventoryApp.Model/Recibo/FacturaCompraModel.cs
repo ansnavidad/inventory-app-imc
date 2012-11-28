@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.DAL;
 using InventoryApp.DAL.Recibo;
 using System.Collections.ObjectModel;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.Model.Recibo
 {
@@ -13,6 +14,7 @@ namespace InventoryApp.Model.Recibo
         private IDataMapper _DataMapper;
 
         #region Properties
+        private FacturaCompraDataMapper _dataMapper;
         public long UnidFactura
         {
             get { return _UnidFactura; }
@@ -27,6 +29,21 @@ namespace InventoryApp.Model.Recibo
         }
         private long _UnidFactura;
         public const string UnidFacturaPropertyName = "UnidFactura";
+
+        public long UnidLote
+        {
+            get { return _UnidLote; }
+            set
+            {
+                if (_UnidLote != value)
+                {
+                    _UnidLote = value;
+                    OnPropertyChanged(UnidLotePropertyName);
+                }
+            }
+        }
+        private long _UnidLote;
+        public const string UnidLotePropertyName = "UnidLote";
 
         public string NumeroPedimento
         {
@@ -189,6 +206,21 @@ namespace InventoryApp.Model.Recibo
                     throw;
                 }
                 return _importe;
+            }
+        }
+
+        public void saveFactura()
+        {
+            if (_dataMapper != null)
+            {
+                _dataMapper.insertElement(new FACTURA() { IS_ACTIVE = true,
+                                                          UNID_FACTURA=this._UnidFactura,
+                                                          UNID_LOTE=this._UnidLote,
+                                                          FACTURA_NUMERO=this._NumeroFactura,
+                                                          FECHA_FACTURA=this._FechaFactura,
+                                                          UNID_PROVEEDOR=this._Proveedor.UnidProveedor,
+                                                          UNID_MONEDA=this._Moneda.UnidMoneda
+                                                        });
             }
         }
 

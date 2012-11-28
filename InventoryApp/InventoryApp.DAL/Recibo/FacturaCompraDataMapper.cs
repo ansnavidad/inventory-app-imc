@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.DAL.Recibo
 {
@@ -24,7 +25,15 @@ namespace InventoryApp.DAL.Recibo
 
         public void insertElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    FACTURA factura = (FACTURA)element;
+                    entity.FACTURAs.AddObject(factura);
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void deleteElement(object element)

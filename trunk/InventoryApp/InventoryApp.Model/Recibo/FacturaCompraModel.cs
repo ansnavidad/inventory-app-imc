@@ -14,7 +14,7 @@ namespace InventoryApp.Model.Recibo
         private IDataMapper _DataMapper;
 
         #region Properties
-        private FacturaCompraDataMapper _dataMapper;
+        //private FacturaCompraDataMapper _dataMapper;
         public long UnidFactura
         {
             get { return _UnidFactura; }
@@ -209,23 +209,24 @@ namespace InventoryApp.Model.Recibo
             }
         }
 
-        public void saveFactura()
-        {
-            if (_dataMapper != null)
-            {
-                _dataMapper.insertElement(new FACTURA() { IS_ACTIVE = true,
-                                                          UNID_FACTURA=this._UnidFactura,
-                                                          UNID_LOTE=this._UnidLote,
-                                                          FACTURA_NUMERO=this._NumeroFactura,
-                                                          FECHA_FACTURA=this._FechaFactura,
-                                                          UNID_PROVEEDOR=this._Proveedor.UnidProveedor,
-                                                          UNID_MONEDA=this._Moneda.UnidMoneda
-                                                        });
-            }
-        }
-
         #endregion
 
+        public void saveFactura()
+        {
+            if (_DataMapper != null)
+            {
+                _DataMapper.insertElement(new FACTURA()
+                {
+                    IS_ACTIVE = true,
+                    UNID_FACTURA = this._UnidFactura,
+                    UNID_LOTE = this._UnidLote,
+                    FACTURA_NUMERO = this._NumeroFactura,
+                    FECHA_FACTURA = this._FechaFactura,
+                    UNID_PROVEEDOR = this._Proveedor.UnidProveedor,
+                    UNID_MONEDA = this._Moneda.UnidMoneda
+                });
+            }
+        }
         #region Constructors
         public FacturaCompraModel()
             : this(null)
@@ -238,7 +239,5 @@ namespace InventoryApp.Model.Recibo
             this.FacturaDetalle = new ObservableCollection<FacturaCompraDetalleModel>();
         }
         #endregion
-
-
     }
 }

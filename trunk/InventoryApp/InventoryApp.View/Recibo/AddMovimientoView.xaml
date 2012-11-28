@@ -86,8 +86,8 @@
                     <DataGridTextColumn Header="Marca" Width="*" x:Name="marcaName" Binding="{Binding Path=BANCO_NAME}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="SKU" Width="*" x:Name="sku" IsReadOnly="False" Binding="{Binding Path=Sku}" />
                     <DataGridTextColumn Header="Serie" Width="*" x:Name="Serie" IsReadOnly="False" Binding="{Binding Path=NumeroSerie}"/>
-                    <DataGridTextColumn Header="Costo Unitario" Width="*" x:Name="costoUnitario" Binding="{Binding Path=CostoUnitario}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Status" Width="*" x:Name="status" Binding="{Binding Path=Status}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Costo Unitario" Width="*" x:Name="costoUnitario" Binding="{Binding Path=CostoUnitario}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Status" Width="*" x:Name="status" Binding="{Binding Path=Status}" IsReadOnly="False"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

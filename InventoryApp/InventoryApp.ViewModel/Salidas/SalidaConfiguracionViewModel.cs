@@ -6,11 +6,14 @@ using InventoryApp.Model;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
-
+using System.Collections.ObjectModel;
+using InventoryApp.ViewModel;
+using System.Windows.Input;
+using System.ComponentModel;
 
 namespace InventoryApp.ViewModel.Salidas
 {
-    public class SalidaConfiguracionViewModel : IPageViewModel
+    public class SalidaConfiguracionViewModel : IPageViewModel, INotifyPropertyChanged
     {
         private MovimientoSalidasModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
@@ -47,6 +50,7 @@ namespace InventoryApp.ViewModel.Salidas
                 TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
                 mov.UNID_TIPO_MOVIMIENTO = 12;
                 this._movimientoModel.TipoMovimiento = mov;
+                this._movimientoModel.PropertyChanged += OnPropertyChanged2;
                 this._itemModel = new CatalogItemModel(new ItemDataMapper());
                 this._catalogAlmacenDestinoModel = new CatalogAlmacenModel(dataMapper2);
                 this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
@@ -316,5 +320,52 @@ namespace InventoryApp.ViewModel.Salidas
                 throw new NotImplementedException();
             }
         }
+
+        private ObservableCollection<TECNICO> _tecnicos;
+        public ObservableCollection<TECNICO> Tecnicos
+        {
+            get { return _tecnicos; }
+            set
+            {
+                if (_tecnicos != value)
+                {
+                    _tecnicos = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Tecnicos"));
+                    }
+                }
+            }
+        }
+
+        private ObservableCollection<TECNICO> GetTecnicosByAlmacen(ALMACEN alm)
+        {
+            ObservableCollection<TECNICO> almCollec = new ObservableCollection<TECNICO>();
+            try
+            {
+                TecnicoDataMapper artDataMapper = new TecnicoDataMapper();
+                List<TECNICO> tecnicoss = (List<TECNICO>)artDataMapper.getTecnicosByAlmancen(alm);
+
+                foreach (TECNICO t in tecnicoss)
+                {
+
+                    almCollec.Add(t);
+                }
+            }
+            catch (Exception)
+            {
+                ;
+            }
+
+            return almCollec;
+        }
+
+        private void OnPropertyChanged2(object sender, PropertyChangedEventArgs ev)
+        {
+            if (ev.PropertyName.Equals("AlmacenProcedencia"))
+                this.Tecnicos = this.GetTecnicosByAlmacen(this.MovimientoModel.AlmacenProcedencia);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

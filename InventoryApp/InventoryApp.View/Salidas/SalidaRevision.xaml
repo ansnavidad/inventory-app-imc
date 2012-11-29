@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             mc:Ignorable="d"              
              DataContext="{StaticResource salidaRevisionViewModel}"
            d:DesignHeight="906" d:DesignWidth="622">
 
@@ -33,8 +33,7 @@
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" HorizontalAlignment="Left" Margin="21,311,0,0" Name="border1" VerticalAlignment="Top" Width="587"></Border>
         <TextBox TabIndex="2" Height="23" HorizontalAlignment="Right" Margin="0,231,353,0" MaxLength="512" Name="textBox3" Width="162" VerticalAlignment="Top" Text="{Binding MovimientoModel.Recibe, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="Recibe:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,231,521,0" Name="label15" VerticalAlignment="Top" />
-        <ComboBox TabIndex="1" Height="23" HorizontalAlignment="Right" Margin="0,162,407,0" Name="comboBoxAlmacenOrigen" VerticalAlignment="Top" Width="176" SelectedIndex="0" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenProcedenciaModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenProcedencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN" />
-            <Label Content="TT:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,271,523,0" Name="label11" VerticalAlignment="Top" />
+        <Label Content="TT:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,271,523,0" Name="label11" VerticalAlignment="Top" />
         <TextBox TabIndex="3" Height="23" HorizontalAlignment="Right" Margin="0,271,353,0" MaxLength="32" Name="textBox1" Text="{Binding MovimientoModel.Tt, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="162" />
             <Label Content="Almacén Procedencia:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,139,461,0" Name="label6" VerticalAlignment="Top" />
         <RadioButton TabIndex="6" Content="Almacén" Height="16" HorizontalAlignment="Left" Margin="231,347,0,0" Name="radioButtonAlmacén" VerticalAlignment="Top" Checked="radioButtonAlmacén_Checked" Visibility="Hidden" />
@@ -53,7 +52,8 @@
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" Margin="17,819,11,0" Name="border4" VerticalAlignment="Top"></Border>
             <Label Content="Técnico instalador:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,162,217,0" Name="label3" VerticalAlignment="Top" />
         <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border6" Margin="25,431,15,696" />
-        <ComboBox DisplayMemberPath="TECNICO_NAME" Height="23" HorizontalAlignment="Right" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogTecnicoModel.Tecnico}" Margin="0,162,42,0" Name="comboBox3" SelectedIndex="0" SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_TECNICO" TabIndex="4" VerticalAlignment="Top" Width="176" />
+        <ComboBox TabIndex="3" Height="23" HorizontalAlignment="Right" Margin="0,162,390,0" Name="comboBoxAlmacenOrigen" VerticalAlignment="Top" Width="176" SelectedIndex="0" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenProcedenciaModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenProcedencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN"/>
+        <ComboBox DisplayMemberPath="TECNICO_NAME" Height="23" HorizontalAlignment="Right" ItemsSource="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=Tecnicos}" Margin="0,162,42,0" Name="comboBox3" SelectedIndex="0" SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_TECNICO" TabIndex="4" VerticalAlignment="Top" Width="176" />
     </Grid>
  
 </UserControl>

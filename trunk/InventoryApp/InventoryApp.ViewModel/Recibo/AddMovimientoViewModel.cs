@@ -373,9 +373,9 @@ namespace InventoryApp.ViewModel.Recibo
                 MovimientoModel movimiento = new MovimientoModel()
                 {
                     UnidAlmacenDestino = this._SelectedAlmacenDestino.UnidAlmacen,
-                    //esto est con codigo por no esta un combobox pata el tipo de movimiento
+                    //este codigo esta harcodeado para el tipo de movimiento
                     TipoMovimiento = new TIPO_MOVIMIENTO() { UNID_TIPO_MOVIMIENTO = 5, TIPO_MOVIMIENTO_NAME = "Salida Renta", SIGNO_MOVIMIENTO = "-", IS_ACTIVE = true },
-                     UnidClienteProcedencia= this._AddReciboViewModel.SelectedCliente.UnidCliente // no estoy seguro que sea el cliente indicado duda
+                    UnidClienteProcedencia= this._AddReciboViewModel.SelectedCliente.UnidCliente // no estoy seguro que sea el cliente indicado duda
 
                 };
                 this._AddReciboViewModel.Movimiento.Add(movimiento);

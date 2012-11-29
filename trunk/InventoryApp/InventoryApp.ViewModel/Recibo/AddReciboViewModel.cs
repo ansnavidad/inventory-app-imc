@@ -56,7 +56,6 @@ namespace InventoryApp.ViewModel.Recibo
             }
             //items
             
-
             this.Facturas.Count();
             
         }

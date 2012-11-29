@@ -32,21 +32,29 @@ namespace InventoryApp.ViewModel.Recibo
             lot.UnidLote = UNID.getNewUNID();
             lot.UnidPOM = UNID.getNewUNID();
             lot.saveLote();
-
+            //factura
             foreach (FacturaCompraModel item in this.Facturas)
             {
                 item.UnidLote = lot.UnidLote;
                 item.UnidFactura = UNID.getNewUNID();
                 item.saveFactura();
-
+                //factura detalle
                 foreach (FacturaCompraDetalleModel fac in item.FacturaDetalle)
                 {
                     fac.Factura = item;
                     fac.saveFacturaDetalle();
-                    
-                    
                 }
             }
+            //movimientos
+            MovimientoModel movimi = new MovimientoModel(new MovimientoDataMapper());
+            
+            foreach (MovimientoModel mov in this.Movimiento)
+            {
+                mov.UnidMovimiento = movimi.UnidMovimiento;
+                mov.FechaMovimiento = movimi.FechaMovimiento;
+                mov.saveArticulo();
+            }
+            //items
             
 
             this.Facturas.Count();
@@ -212,6 +220,21 @@ namespace InventoryApp.ViewModel.Recibo
         private ObservableCollection<FacturaCompraModel> _Facturas;
         public const string FacturasPropertyName = "Facturas";
 
+        public ObservableCollection<MovimientoModel> Movimiento
+        {
+            get { return _Movimiento; }
+            set
+            {
+                if (_Movimiento != value)
+                {
+                    _Movimiento = value;
+                    OnPropertyChanged(MovimientoPropertyName);
+                }
+            }
+        }
+        private ObservableCollection<MovimientoModel> _Movimiento;
+        public const string MovimientoPropertyName = "Movimiento";
+
         public AddReciboViewModel()
         {
             this.init();
@@ -228,6 +251,7 @@ namespace InventoryApp.ViewModel.Recibo
             this._Solicitantes = this.GetSolicitantes();
             this._Clientes = this.GetClientes();
             this._Facturas = new ObservableCollection<FacturaCompraModel>();
+            this._Movimiento = new ObservableCollection<MovimientoModel>();
         }
 
         public ObservableCollection<SolicitanteModel> GetSolicitantes()

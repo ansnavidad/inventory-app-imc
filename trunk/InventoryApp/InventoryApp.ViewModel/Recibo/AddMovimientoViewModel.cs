@@ -370,7 +370,15 @@ namespace InventoryApp.ViewModel.Recibo
         {
             if (this._AddReciboViewModel != null)
             {
-                
+                MovimientoModel movimiento = new MovimientoModel()
+                {
+                    UnidAlmacenDestino = this._SelectedAlmacenDestino.UnidAlmacen,
+                    //esto est con codigo por no esta un combobox pata el tipo de movimiento
+                    TipoMovimiento = new TIPO_MOVIMIENTO() { UNID_TIPO_MOVIMIENTO = 5, TIPO_MOVIMIENTO_NAME = "Salida Renta", SIGNO_MOVIMIENTO = "-", IS_ACTIVE = true },
+                     UnidClienteProcedencia= this._AddReciboViewModel.SelectedCliente.UnidCliente // no estoy seguro que sea el cliente indicado duda
+
+                };
+                this._AddReciboViewModel.Movimiento.Add(movimiento);
             }
         }
 
@@ -384,6 +392,27 @@ namespace InventoryApp.ViewModel.Recibo
             }
 
             return canAttempt;
+        }
+
+        public void init()
+        {
+            //this._CanSelecteProveedor = true;
+            //this._Proveedores = this.GetProveedores();
+            //this._Monedas = this.GetMonedas();
+            //this._FacturaDetalles = new ObservableCollection<FacturaCompraDetalleModel>();
+            //this._TipoPedimentos = this.GetPedimentos();
+            //this._FechaFactura = DateTime.Now;
+            //this._FacturaDetalles.CollectionChanged += delegate(object sender, NotifyCollectionChangedEventArgs e)
+            //{
+            //    if ((sender as ObservableCollection<FacturaCompraDetalleModel>).Count > 0)
+            //    {
+            //        this.CanSelecteProveedor = false;
+            //    }
+            //    else
+            //    {
+            //        this.CanSelecteProveedor = true;
+            //    }
+            //};
         }
     }
 }

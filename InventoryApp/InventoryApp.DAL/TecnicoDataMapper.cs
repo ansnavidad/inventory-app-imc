@@ -17,7 +17,7 @@ namespace InventoryApp.DAL
                            join enlace in Entity.ALMACEN_TECNICO on p.UNID_TECNICO equals enlace.UNID_TECNICO
                            join almacen in Entity.ALMACENs on enlace.UNID_ALMACEN equals almacen.UNID_ALMACEN
                            join almacen2 in Entity.ALMACENs on almacen.UNID_ALMACEN equals a.UNID_ALMACEN
-                           where (p.IS_ACTIVE == true)
+                           where (p.IS_ACTIVE == true && a.UNID_ALMACEN == almacen.UNID_ALMACEN)
                            select p).ToList();
 
                 return res;

@@ -1,7 +1,7 @@
 ﻿<Window xmlns:my="clr-namespace:InventoryApp.View.Recibo"  x:Class="InventoryApp.View.Recibo.DlgAddFacturaView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="DlgAddFacturaView" Height="Auto" Width="700">
+        Title="Agregar Factura" Height="Auto" Width="700">
     <Grid>
         <DockPanel>
             <ContentControl HorizontalAlignment="Stretch" Name="contentControl1" VerticalAlignment="Stretch" DockPanel.Dock="Top">

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"             
-             DataContext="{StaticResource salidaPruebasViewModel}"
+             DataContext="{StaticResource salidaRentaViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="1123" d:DesignWidth="622">
     
@@ -63,7 +63,7 @@
         <Button TabIndex="20" Command="{Binding AddItemCommand, Mode=OneWay}" Content="GUARDAR SALIDA" Height="39" HorizontalAlignment="Right" Margin="0,1063,427,0" Name="btnAgregar" VerticalAlignment="Top" Width="119" Click="btnAgregar_Click" />
         <Button TabIndex="21" Content="CANCELAR SALIDA" Height="39" HorizontalAlignment="Right" Margin="0,1063,84,0" Name="btnCancelar" VerticalAlignment="Top" Width="119" Click="btnCancelar_Click" />
         <Border BorderBrush="Silver" BorderThickness="3" Height="3" Margin="14,1045,14,0" Name="border4" VerticalAlignment="Top"></Border>
-        <Label Content="Técnico instalador:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,282,222,0" Name="label3" VerticalAlignment="Top" />
+        <!--<Label Content="Técnico instalador:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,282,222,0" Name="label3" VerticalAlignment="Top" />-->
         <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border5" Margin="20,652,14,468">
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border3"></Border>
         </Border>
@@ -72,7 +72,7 @@
         <TextBox TabIndex="4" Height="23" HorizontalAlignment="Right" Margin="0,157,40,0" MaxLength="1024" Name="textBox4" Text="{Binding MovimientoModel.SitioEnlace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="162" />
             <Label Content="Sitio y/o enlace:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,157,208,0" Name="label4" VerticalAlignment="Top" />
         <ComboBox TabIndex="3" Height="23" HorizontalAlignment="Right" Margin="0,285,378,0" Name="comboBoxAlmacenOrigen" VerticalAlignment="Top" Width="176" SelectedIndex="0" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenProcedenciaModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenProcedencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN"/>
-        <ComboBox DisplayMemberPath="TECNICO_NAME" Height="23" HorizontalAlignment="Right" ItemsSource="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=Tecnicos}" Margin="0,287,42,0" Name="comboBox3" SelectedIndex="0" SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_TECNICO" TabIndex="4" VerticalAlignment="Top" Width="176" />
+        <!--<ComboBox DisplayMemberPath="TECNICO_NAME" Height="23" HorizontalAlignment="Right" ItemsSource="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=Tecnicos}" Margin="0,287,42,0" Name="comboBox3" SelectedIndex="0" SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_TECNICO" TabIndex="4" VerticalAlignment="Top" Width="176" />-->
     </Grid>
     
 </UserControl>

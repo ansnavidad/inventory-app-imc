@@ -6,8 +6,68 @@ using System.Collections.ObjectModel;
 
 namespace InventoryApp.Model.Recibo
 {
-    public class Movimiento:ModelBase
+    public class MovimientoModel:ModelBase
     {
+        public bool IsChecked
+        {
+            get { return _IsChecked; }
+            set
+            {
+                if (_IsChecked != value)
+                {
+                    _IsChecked = value;
+                    OnPropertyChanged(IsCheckedPropertyName);
+                }
+            }
+        }
+        private bool _IsChecked;
+        public const string IsCheckedPropertyName = "IsChecked";
+
+        public long UnidMovimiento
+        {
+            get { return _UnidMovimiento; }
+            set
+            {
+                if (_UnidMovimiento != value)
+                {
+                    _UnidMovimiento = value;
+                    OnPropertyChanged(UnidMovimientoPropertyName);
+                }
+            }
+        }
+        private long _UnidMovimiento;
+        public const string UnidMovimientoPropertyName = "UnidMovimiento";
+
+        public DateTime FechaCaptura
+        {
+            get { return _FechaCaptura; }
+            set
+            {
+                if (_FechaCaptura != value)
+                {
+                    _FechaCaptura = value;
+                    OnPropertyChanged(FechaCapturaPropertyName);
+                }
+            }
+        }
+        private DateTime _FechaCaptura;
+        public const string FechaCapturaPropertyName = "FechaCaptura";
+
+        public IOrigenModel Origen
+        {
+            get { return _Origen; }
+            set
+            {
+                if (_Origen != value)
+                {
+                    _Origen = value;
+                    OnPropertyChanged(SelectedOrigenPropertyName);
+                }
+            }
+        }
+        private IOrigenModel _Origen;
+        public const string SelectedOrigenPropertyName = "Origen";
+
         public TipoPedimentoModel TipoPedimento
         {
             get { return _TipoPedimento; }
@@ -82,6 +142,29 @@ namespace InventoryApp.Model.Recibo
         }
         private AlmacenModel _DestinoAlmacen;
         public const string DestinoAlmacenPropertyName = "DestinoAlmacen";
+
+        public FacturaCompraModel Factura
+        {
+            get { return _Factura; }
+            set
+            {
+                if (_Factura != value)
+                {
+                    _Factura = value;
+                    OnPropertyChanged(FacturaPropertyName);
+                }
+            }
+        }
+        private FacturaCompraModel _Factura;
+        public const string FacturaPropertyName = "Factura";
+
+        //FacturaCompraModel
+
+        public int CantidadItems
+        {
+            get { return this._Items.Count; }
+        }
+        
 
         public ObservableCollection<ReciboItemModel> Items
         {

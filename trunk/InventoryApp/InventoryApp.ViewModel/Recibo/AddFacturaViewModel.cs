@@ -60,7 +60,7 @@ namespace InventoryApp.ViewModel.Recibo
         {
             get
             {
-                if (_UnidFactura == null)
+                if (_UnidFactura == 0)
                 {
                     _UnidFactura = DAL.UNID.getNewUNID();
                 }
@@ -306,6 +306,8 @@ namespace InventoryApp.ViewModel.Recibo
                     FacturaDetalle = this._FacturaDetalles
                     ,
                     PorIva = this.PorIva
+                    ,
+                    NumeroPedimento=this.NumeroPedimento
                 };
                 this._AddReciboViewModel.Facturas.Add(factura);
             }
@@ -329,6 +331,17 @@ namespace InventoryApp.ViewModel.Recibo
 
         public void AttemptDeleteFacturaArticuloCommand()
         {
+
+            try
+            {
+                (from o in this._FacturaDetalles
+                 where o.IsSelected == true
+                 select o).ToList().ForEach(o => this._FacturaDetalles.Remove(o));
+            }
+            catch (Exception)
+            {
+                ;
+            }
         }
 
         public bool CanAttemptDeleteFacturaArticuloCommand()

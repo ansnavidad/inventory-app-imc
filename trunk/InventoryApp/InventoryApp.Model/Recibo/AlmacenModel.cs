@@ -5,7 +5,7 @@ using System.Text;
 
 namespace InventoryApp.Model.Recibo
 {
-    public class AlmacenModel:ModelBase
+    public class AlmacenModel:ModelBase,IOrigenModel
     {
         public long UnidAlmacen
         {
@@ -54,6 +54,11 @@ namespace InventoryApp.Model.Recibo
 
         public AlmacenModel()
         {
+        }
+
+        public string OrigenName
+        {
+            get { return this._AlmacenName; }
         }
     }
 }

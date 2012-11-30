@@ -51,5 +51,35 @@ namespace InventoryApp.Model.Recibo
         }
         private ReciboStatusModel _ReciboStatus;
         public const string ReciboStatusPropertyName = "ReciboStatus";
+
+        public string TroubleTicket
+        {
+            get { return _TroubleTicket; }
+            set
+            {
+                if (_TroubleTicket != value)
+                {
+                    _TroubleTicket = value;
+                    OnPropertyChanged(TroubleTicketPropertyName);
+                }
+            }
+        }
+        private string _TroubleTicket;
+        public const string TroubleTicketPropertyName = "TroubleTicket";
+
+        public string PO
+        {
+            get { return _PO; }
+            set
+            {
+                if (_PO != value)
+                {
+                    _PO = value;
+                    OnPropertyChanged(POPropertyName);
+                }
+            }
+        }
+        private string _PO;
+        public const string POPropertyName = "PO";
     }
 }

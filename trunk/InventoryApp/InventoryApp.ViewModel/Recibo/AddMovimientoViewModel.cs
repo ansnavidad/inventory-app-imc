@@ -13,6 +13,10 @@ namespace InventoryApp.ViewModel.Recibo
 {
     public class AddMovimientoViewModel:ViewModelBase
     {
+        private const string TipoOrigenCliente = "Cliente";
+        private const string TipoOrigenAlmacen = "Almacen";
+        private const string TipoOrigenProveedor = "Proveedor";
+
         public ICommand AddMovimientoCmd
         {
             get
@@ -27,6 +31,55 @@ namespace InventoryApp.ViewModel.Recibo
         private RelayCommand _AddMovimientoCmd;
 
         private AddReciboViewModel _AddReciboViewModel;
+        public AddReciboViewModel AddReciboViewModel
+        {
+            get { return _AddReciboViewModel; }
+        }
+        
+
+        public long UnidMovimiento
+        {
+            get 
+            {
+                if (_UnidMovimiento == 0)
+                {
+                    _UnidMovimiento = DAL.UNID.getNewUNID();
+                }
+                return _UnidMovimiento; 
+            }
+            set
+            {
+                if (_UnidMovimiento != value)
+                {
+                    _UnidMovimiento = value;
+                    OnPropertyChanged(UnidMovimientoPropertyName);
+                }
+            }
+        }
+        private long _UnidMovimiento;
+        public const string UnidMovimientoPropertyName = "UnidMovimiento";
+
+        public DateTime FechaCaptura
+        {
+            get 
+            {
+                if (_FechaCaptura == DateTime.MinValue)
+                {
+                    _FechaCaptura = DateTime.Now;
+                }
+                return _FechaCaptura; 
+            }
+            set
+            {
+                if (_FechaCaptura != value)
+                {
+                    _FechaCaptura = value;
+                    OnPropertyChanged(FechaCapturaPropertyName);
+                }
+            }
+        }
+        private DateTime _FechaCaptura;
+        public const string FechaCapturaPropertyName = "FechaCaptura";
 
         public ObservableCollection<TipoPedimentoModel> TipoPedimentos
         {
@@ -51,7 +104,7 @@ namespace InventoryApp.ViewModel.Recibo
         private ObservableCollection<TipoPedimentoModel> _TipoPedimentos;
         public const string TipoPedimentosPropertyName = "TipoPedimentos";
 
-        public TipoMovimientoModel SelectedTipoPedimento
+        public TipoPedimentoModel SelectedTipoPedimento
         {
             get { return _SelectedTipoMovimiento; }
             set
@@ -63,7 +116,7 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private TipoMovimientoModel _SelectedTipoMovimiento;
+        private TipoPedimentoModel _SelectedTipoMovimiento;
         public const string SelectedTipoMovimientoPropertyName = "SelectedTipoPedimento";
 
         public ObservableCollection<OrigenClienteModel> Clientes
@@ -229,16 +282,22 @@ namespace InventoryApp.ViewModel.Recibo
 
                     switch (this.SelectedTipoOrigen.TipoOrigenName)
                     {
-                        case "Cliente":
+                        case TipoOrigenCliente:
                             {
 
                                 this.Clientes.ToList().ForEach(o => origenes.Add(o));
                                 return origenes;   
                             }
-                        case "Proveedor":
+                        case TipoOrigenProveedor:
                             {
 
                                 this.Proveedores.ToList().ForEach(o => origenes.Add(o));
+                                return origenes;
+                            }
+                        case TipoOrigenAlmacen:
+                            {
+
+                                this.Almacenes.ToList().ForEach(o => origenes.Add(o));
                                 return origenes;
                             }
                     }
@@ -249,6 +308,58 @@ namespace InventoryApp.ViewModel.Recibo
         private ObservableCollection<IOrigenModel> _Origenes;
         public const string OrigenesPropertyName = "Origenes";
 
+        public FacturaCompraModel SelectedFactura
+        {
+            get { return _SelectedFactura; }
+            set
+            {
+                if (_SelectedFactura != value)
+                {
+                    _SelectedFactura = value;
+                    OnPropertyChanged(SelectedFacturaPropertyName);
+
+                    this.SelectedOrigen = new Model.Recibo.OrigenProveedorModel() 
+                    {
+                        UnidProveedor = _SelectedFactura.Proveedor.UnidProveedor,
+                        ProveedorName=_SelectedFactura.Proveedor.ProveedorName
+                    }; ;
+
+                    this.Items = new ObservableCollection<ReciboItemModel>();
+                    long unid = DAL.UNID.getNewUNID();
+                    this._SelectedFactura.FacturaDetalle.ToList().ForEach(o =>
+                    {
+                        for (int i = 0; i < o.Cantidad; i++)
+                        {
+                            unid++;
+                            this.Items.Add(new ReciboItemModel()
+                            {
+                                Articulo = o.Articulo,
+                                FacturaDetalle = o,
+                                UnidMovimiento = this.UnidMovimiento,
+                                UnidItem = unid,
+                                UnidMovimientoDetalle = unid
+                            });
+                        }
+                    });
+                }
+            }
+        }
+        private FacturaCompraModel _SelectedFactura;
+        public const string SelectedFacturaPropertyName = "SelectedFactura";
+
+        public ObservableCollection<FacturaCompraModel> FacturasDisponibles
+        {
+            get 
+            {
+                ObservableCollection<FacturaCompraModel> facturas = new ObservableCollection<FacturaCompraModel>();
+                (from o in this.AddReciboViewModel.Facturas
+                 where !this.AddReciboViewModel.Movimientos.Any(f => f.Factura.UnidFactura == o.UnidFactura)
+                 select o).ToList().ForEach(o => facturas.Add(o));
+
+                return facturas;
+            }
+        }
+
         public AddMovimientoViewModel()
         {
 
@@ -258,6 +369,7 @@ namespace InventoryApp.ViewModel.Recibo
         {
             this._AddReciboViewModel = addReciboViewModel;
             this._Items = new ObservableCollection<ReciboItemModel>();
+            this.SelectedTipoOrigen = new TipoOrigenModel(TipoOrigenProveedor);
         }
 
         public AddMovimientoDetalleViewModel CreateAddMovimientoDetalleViewModel()
@@ -335,9 +447,9 @@ namespace InventoryApp.ViewModel.Recibo
         {
             ObservableCollection<TipoOrigenModel> tiposOrigen = new ObservableCollection<TipoOrigenModel>()
             {
-                new TipoOrigenModel("Cliente")
-                ,new TipoOrigenModel("Proveedor")
-                ,new TipoOrigenModel("Almacen")
+                new TipoOrigenModel(TipoOrigenCliente)
+                ,new TipoOrigenModel(TipoOrigenAlmacen)
+                ,new TipoOrigenModel(TipoOrigenProveedor)
             };
 
             return tiposOrigen;
@@ -370,15 +482,29 @@ namespace InventoryApp.ViewModel.Recibo
         {
             if (this._AddReciboViewModel != null)
             {
-                MovimientoModel movimiento = new MovimientoModel()
+                InventoryApp.Model.Recibo.MovimientoModel movimiento = new InventoryApp.Model.Recibo.MovimientoModel()
                 {
-                    UnidAlmacenDestino = this._SelectedAlmacenDestino.UnidAlmacen,
-                    //este codigo esta harcodeado para el tipo de movimiento
-                    TipoMovimiento = new TIPO_MOVIMIENTO() { UNID_TIPO_MOVIMIENTO = 5, TIPO_MOVIMIENTO_NAME = "Salida Renta", SIGNO_MOVIMIENTO = "-", IS_ACTIVE = true },
-                    UnidClienteProcedencia= this._AddReciboViewModel.SelectedCliente.UnidCliente // no estoy seguro que sea el cliente indicado duda
-
+                    DestinoAlmacen=this._SelectedAlmacenDestino
+                    ,
+                    OrigenAlmacen = this.SelectedTipoOrigen.TipoOrigenName.ToLower() == TipoOrigenAlmacen.ToLower() ? this._SelectedOrigen as InventoryApp.Model.Recibo.AlmacenModel : null
+                    ,
+                    OrigenCliente = this.SelectedTipoOrigen.TipoOrigenName.ToLower() == TipoOrigenCliente.ToLower() ? this._SelectedOrigen as InventoryApp.Model.Recibo.OrigenClienteModel : null
+                    ,
+                    OrigenProveedor = this.SelectedTipoOrigen.TipoOrigenName.ToLower() == TipoOrigenProveedor.ToLower() ? this._SelectedOrigen as InventoryApp.Model.Recibo.OrigenProveedorModel : null
+                    ,
+                    TipoPedimento=this.SelectedTipoPedimento
+                    ,
+                    Items=this.Items
+                    ,
+                    UnidMovimiento=this.UnidMovimiento
+                    ,
+                    FechaCaptura=this.FechaCaptura
+                    ,
+                    Factura=this.SelectedFactura
+                    ,
+                    Origen=this.SelectedOrigen
                 };
-                this._AddReciboViewModel.Movimiento.Add(movimiento);
+                this._AddReciboViewModel.Movimientos.Add(movimiento);
             }
         }
 

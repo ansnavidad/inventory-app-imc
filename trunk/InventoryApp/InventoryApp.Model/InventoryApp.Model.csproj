@@ -143,7 +143,7 @@
     <Compile Include="Recibo\FacturaCompraDetalleModel.cs" />
     <Compile Include="Recibo\FacturaCompraModel.cs" />
     <Compile Include="Recibo\IOrigenModel.cs" />
-    <Compile Include="Recibo\Movimiento.cs" />
+    <Compile Include="Recibo\MovimientoModel.cs" />
     <Compile Include="Recibo\OrigenClienteModel.cs" />
     <Compile Include="Recibo\OrigenProveedorModel.cs" />
     <Compile Include="Recibo\ReciboItemModel.cs" />

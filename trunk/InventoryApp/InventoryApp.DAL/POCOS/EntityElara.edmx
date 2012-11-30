@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TAE2Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="TAE2Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="TAE2ModelStoreContainer">
           <EntitySet Name="MENU" EntityType="TAE2Model.Store.MENU" store:Type="Tables" Schema="APP" />
           <EntitySet Name="ROL" EntityType="TAE2Model.Store.ROL" store:Type="Tables" Schema="APP" />
@@ -683,8 +683,8 @@
           </Key>
           <Property Name="UNID_ITEM" Type="bigint" Nullable="false" />
           <Property Name="UNID_ARTICULO" Type="bigint" Nullable="false" />
-          <Property Name="SKU" Type="nvarchar" Nullable="false" MaxLength="32" />
-          <Property Name="NUMERO_SERIE" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="SKU" Type="nvarchar" MaxLength="32" />
+          <Property Name="NUMERO_SERIE" Type="nvarchar" MaxLength="32" />
           <Property Name="UNID_ITEM_STATUS" Type="bigint" Nullable="false" />
           <Property Name="COSTO_UNITARIO" Type="float" Nullable="false" />
           <Property Name="UNID_FACTURA_DETALE" Type="bigint" Nullable="false" />
@@ -1583,99 +1583,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Se encontraron errores durante la generación:
-      advertencia 6013: La tabla o vista 'TAE2.dbo.STG_ARTICULO' no tiene una clave principal definida y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-      
-      <EntityType Name="STG_ARTICULO">
-        <Property Name="Categoria" Type="nvarchar" MaxLength="64" />
-        <Property Name="Equipo" Type="nvarchar" MaxLength="64" />
-        <Property Name="Marca" Type="nvarchar" MaxLength="64" />
-        <Property Name="Modelo" Type="nvarchar" MaxLength="64" />
-        <Property Name="Descripcion" Type="nvarchar" MaxLength="128" />
-      </EntityType>
-      Se encontraron errores durante la generación:
-      advertencia 6013: La tabla o vista 'TAE2.dbo.STG_LAYOUT' no tiene una clave principal definida y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-      
-      <EntityType Name="STG_LAYOUT">
-        <Property Name="Categoria" Type="nvarchar" MaxLength="64" />
-        <Property Name="Equipo" Type="nvarchar" MaxLength="64" />
-        <Property Name="Marca" Type="nvarchar" MaxLength="64" />
-        <Property Name="Modelo" Type="nvarchar" MaxLength="64" />
-        <Property Name="Descripcion" Type="nvarchar" MaxLength="128" />
-        <Property Name="Númeroserie" Type="nvarchar" MaxLength="32" />
-        <Property Name="Sku" Type="nvarchar" MaxLength="32" />
-        <Property Name="Unidadmedida" Type="nvarchar" MaxLength="8" />
-        <Property Name="Cantidad" Type="nvarchar" MaxLength="8" />
-        <Property Name="Propiedad" Type="nvarchar" MaxLength="32" />
-        <Property Name="Preciounitario" Type="nvarchar" MaxLength="16" />
-        <Property Name="Ivapor" Type="nvarchar" MaxLength="8" />
-        <Property Name="Tipocambio" Type="nvarchar" MaxLength="16" />
-        <Property Name="Moneda" Type="nvarchar" MaxLength="8" />
-        <Property Name="Total" Type="nvarchar" MaxLength="16" />
-        <Property Name="Costofinal" Type="nvarchar" MaxLength="16" />
-        <Property Name="FechaGarantía" Type="nvarchar" MaxLength="16" />
-        <Property Name="UltimoStatusEquipo" Type="nvarchar" MaxLength="8" />
-        <Property Name="Arrendado" Type="nvarchar" MaxLength="8" />
-        <Property Name="FechaAlta" Type="nvarchar" MaxLength="16" />
-        <Property Name="Proveedor" Type="nvarchar" MaxLength="32" />
-        <Property Name="Rfc" Type="nvarchar" MaxLength="16" />
-        <Property Name="Proyecto" Type="nvarchar" MaxLength="32" />
-        <Property Name="TipoPedimento" Type="nvarchar" MaxLength="32" />
-        <Property Name="ClavePedimento" Type="nvarchar" MaxLength="32" />
-        <Property Name="Regimen" Type="nvarchar" MaxLength="32" />
-        <Property Name="NumeroPedimento" Type="nvarchar" MaxLength="32" />
-        <Property Name="NumeroFactura" Type="nvarchar" MaxLength="16" />
-        <Property Name="Pom" Type="nvarchar" MaxLength="16" />
-        <Property Name="TipoOrigen" Type="nvarchar" MaxLength="32" />
-        <Property Name="UltimoOrigen" Type="nvarchar" MaxLength="32" />
-        <Property Name="TipoDestino" Type="nvarchar" MaxLength="32" />
-        <Property Name="UltimoDestino" Type="nvarchar" MaxLength="32" />
-        <Property Name="FechaUltimoMovimiento" Type="nvarchar" MaxLength="16" />
-        <Property Name="Folio" Type="nvarchar" MaxLength="16" />
-        <Property Name="Solicitante" Type="nvarchar" MaxLength="64" />
-        <Property Name="AreaSolicitante" Type="nvarchar" MaxLength="32" />
-        <Property Name="ProyectoUltimoMovimiento" Type="nvarchar" MaxLength="64" />
-        <Property Name="Cliente" Type="nvarchar" MaxLength="64" />
-        <Property Name="Recibe" Type="nvarchar" MaxLength="32" />
-        <Property Name="TotalFacturaCompra" Type="nvarchar" MaxLength="16" />
-        <Property Name="IvaFacturaCompra" Type="nvarchar" MaxLength="16" />
-        <Property Name="IvaPorCompra" Type="nvarchar" MaxLength="16" />
-        <Property Name="FacturaVenta" Type="nvarchar" MaxLength="32" />
-        <Property Name="TotalFacturaVenta" Type="nvarchar" MaxLength="16" />
-        <Property Name="IvaFacturaVenta" Type="nvarchar" MaxLength="16" />
-        <Property Name="IvaPorVenta" Type="nvarchar" MaxLength="16" />
-        <Property Name="PedimentoExpo" Type="nvarchar" MaxLength="32" />
-        <Property Name="MonedaVenta" Type="nvarchar" MaxLength="8" />
-        <Property Name="TipoCambioVenta" Type="nvarchar" MaxLength="16" />
-        <Property Name="DireccionEnvio" Type="nvarchar" MaxLength="128" />
-        <Property Name="SitioEnlace" Type="nvarchar" MaxLength="32" />
-        <Property Name="NombreSitio" Type="nvarchar" MaxLength="32" />
-        <Property Name="Contacto" Type="nvarchar" MaxLength="32" />
-        <Property Name="TT" Type="nvarchar" MaxLength="16" />
-        <Property Name="ProveedorEnvio" Type="nvarchar" MaxLength="32" />
-        <Property Name="Guia" Type="nvarchar" MaxLength="16" />
-        <Property Name="MedirTiempoInactividad" Type="nvarchar" MaxLength="16" />
-        <Property Name="TecnicoInstalador" Type="nvarchar" MaxLength="32" />
-      </EntityType>
-      Se encontraron errores durante la generación:
-      advertencia 6013: La tabla o vista 'TAE2.dbo.STG_PROVEEDOR' no tiene una clave principal definida y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-      
-      <EntityType Name="STG_PROVEEDOR">
-        <Property Name="Proveedor" Type="nvarchar" MaxLength="32" />
-        <Property Name="Categoria" Type="nvarchar" MaxLength="64" />
-        <Property Name="Pais" Type="nvarchar" MaxLength="64" />
-        <Property Name="Ciudad" Type="nvarchar" MaxLength="64" />
-      </EntityType>
-      Se encontraron errores durante la generación:
-      advertencia 6013: La tabla o vista 'TAE2.dbo.STG_SOLICITANTE' no tiene una clave principal definida y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-      
-      <EntityType Name="STG_SOLICITANTE">
-        <Property Name="Solicitante" Type="nvarchar" MaxLength="64" />
-        <Property Name="Departamento" Type="nvarchar" MaxLength="64" />
-        <Property Name="Empresa" Type="nvarchar" MaxLength="64" />
-      </EntityType>-->
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TAE2Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">

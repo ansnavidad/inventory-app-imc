@@ -6,28 +6,8 @@ using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.DAL
 {
-    public class ReciboDataMapper:IDataMapper
+    public class ReciboMovimientoDataMapper:IDataMapper
     {
-        public List<RECIBO> getListElements()
-        {
-            List<RECIBO> recibos = new List<RECIBO>();
-
-            try
-            {
-                using (var Entity = new TAE2Entities())
-                {
-                    (from p in Entity.RECIBOes
-                     select p).ToList<RECIBO>().ForEach(o => recibos.Add(o));
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return recibos;
-        }
-
         public object getElements()
         {
             throw new NotImplementedException();
@@ -45,13 +25,13 @@ namespace InventoryApp.DAL
 
         public void insertElement(object element)
         {
-            if (element != null && (element as RECIBO) != null)
+            if (element != null && (element as RECIBO_MOVIMIENTO) != null)
             {
                 using (var entity = new TAE2Entities())
                 {
-                    RECIBO item = (RECIBO)element;
+                    RECIBO_MOVIMIENTO item = (RECIBO_MOVIMIENTO)element;
 
-                    entity.RECIBOes.AddObject(item);
+                    entity.RECIBO_MOVIMIENTO.AddObject(item);
                     entity.SaveChanges();
                 }
             }

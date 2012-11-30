@@ -104,13 +104,18 @@ namespace InventoryApp.ViewModel.Recibo
                 var sel = (from o in this._SelectedFactura.FacturaDetalle
                            where o.IsSelected == true
                            select o).ToList();
+                long unid = DAL.UNID.getNewUNID();
                 sel.ForEach(o => {
                     for (int i = 0; i < o.Cantidad; i++)
                     {
+                        unid++;
                         this._AddMovimientoViewModel.Items.Add(new ReciboItemModel()
                         {
                             Articulo = o.Articulo,
-                            FacturaDetalle = aux
+                            FacturaDetalle = aux,
+                            UnidMovimiento=_AddMovimientoViewModel.UnidMovimiento,
+                            UnidItem=unid,
+                            UnidMovimientoDetalle=unid
                         });
                     }
                 });

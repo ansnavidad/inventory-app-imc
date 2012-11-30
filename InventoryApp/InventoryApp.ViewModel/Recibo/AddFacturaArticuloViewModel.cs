@@ -375,7 +375,7 @@ namespace InventoryApp.ViewModel.Recibo
         {
             bool canAddDetalle = false;
 
-            if (this.SelectedCategoria != null && this.SelectedArticulo != null && this._Cantidad > 0
+            if (this.SelectedCategoria != null && this.SelectedArticulo != null && this._Cantidad > 0 && this.SelectedUnidad!=null
                 )
             {
                 canAddDetalle = true;

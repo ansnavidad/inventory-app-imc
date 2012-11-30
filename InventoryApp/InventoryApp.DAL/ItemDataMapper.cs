@@ -175,7 +175,16 @@ namespace InventoryApp.DAL
 
         public void insertElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null && (element as ITEM)!=null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ITEM item = (ITEM)element;
+
+                    entity.ITEMs.AddObject(item);
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void deleteElement(object element)

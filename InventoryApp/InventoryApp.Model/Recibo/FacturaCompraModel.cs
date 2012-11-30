@@ -14,6 +14,21 @@ namespace InventoryApp.Model.Recibo
         private IDataMapper _DataMapper;
 
         #region Properties
+        public bool IsChecked
+        {
+            get { return _IsChecked; }
+            set
+            {
+                if (_IsChecked != value)
+                {
+                    _IsChecked = value;
+                    OnPropertyChanged(IsCheckedPropertyName);
+                }
+            }
+        }
+        private bool _IsChecked;
+        public const string IsCheckedPropertyName = "IsChecked";
+
         public long UnidFactura
         {
             get { return _UnidFactura; }

@@ -41,6 +41,16 @@ namespace InventoryApp.ViewModel.Recibo
         private ObservableCollection<ReciboModel> _Recibos;
         public const string RecibosPropertyName = "Recibos";
 
+        public CatalogReciboViewModel()
+        {
+            this.init();
+        }
+
+        private void init()
+        {
+            this._Recibos = this.GetRecibos();
+        }
+
         public ObservableCollection<ReciboModel> GetRecibos()
         {
             ObservableCollection<ReciboModel> recibos = new ObservableCollection<ReciboModel>();
@@ -53,9 +63,10 @@ namespace InventoryApp.ViewModel.Recibo
                     {
                         FechaCreacion = (DateTime)o.FECHA_CREACION
                         ,
-                        ReciboStatus = new ReciboStatusModel() { UnidReciboStatus = (long)o.UNID_RECIBO_STATUS, StatusName = o.RECIBO_STATUS.RECIBO_STATUS_NAME }
-                        ,
                         UnidRecibo = o.UNID_RECIBO
+                        ,
+                        TroubleTicket=o.TT
+                        ,PO=o.PO
                     }));
             }
             catch (Exception ex)
@@ -73,6 +84,11 @@ namespace InventoryApp.ViewModel.Recibo
             return addReciboViewModel;
         }
 
+        public void updateCollection()
+        {
+            this.Recibos = this.GetRecibos();
+        }
+
         private void AttemptAddReciboCmd()
         {
 
@@ -86,7 +102,6 @@ namespace InventoryApp.ViewModel.Recibo
 
             return CanAttempt;
         }
-
 
         public string PageName
         {

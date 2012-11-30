@@ -29,34 +29,33 @@
         </Border>
         <Button  Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" VerticalAlignment="Stretch" 
                  Width="75"  Grid.Row="0" Grid.Column="2" Command="{Binding AddReciboCmd}" Click="btnNuevo_Click" />
-        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
+        <!--<Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
                     Margin="0,0,170,0" Name="btnEliminar" VerticalAlignment="Stretch"
-                    Width="75" Command="{Binding DeleteMonedaCommand,Mode=OneWay}"/>
+                    Width="75" Command="{Binding DeleteMonedaCommand,Mode=OneWay}"/>-->
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridMoneda"
                   SelectedItem="{Binding CatalogMonedaModel.SelectedMoneda, Mode=TwoWay}"
-                  VerticalAlignment="Stretch" ItemsSource="{Binding CatalogMonedaModel.Moneda}"
-                  
+                  VerticalAlignment="Stretch" ItemsSource="{Binding Recibos}"
                   Grid.Column="0" Grid.ColumnSpan="3"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                   RowStyle="{StaticResource RowStyle}">
             <DataGrid.Columns>
                 <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />-->
-                <DataGridTemplateColumn Header="" Width="Auto">
+                <!--<DataGridTemplateColumn Header="" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Fecha Creación" Width="*" x:Name="fechaCreacion" 
-                                    Binding="{Binding Path=MONEDA_NAME}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Status" Width="*" x:Name="status" 
-                                    Binding="{Binding Path=MONEDA_ABR}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Items Capturados" Width="*" x:Name="itemsCap" 
-                                    Binding="{Binding Path=MONEDA_ABR}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Items Por Capturar" Width="*" x:Name="itemsxCap" 
-                                    Binding="{Binding Path=MONEDA_ABR}" IsReadOnly="True"/>
+                </DataGridTemplateColumn>-->
+                <DataGridTextColumn Header="Fecha Creación" Width="150" x:Name="fechaCreacion" 
+                                    Binding="{Binding FechaCreacion}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Folio" Width="150" x:Name="folio" 
+                                    Binding="{Binding UnidRecibo}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="PO" Width="150" x:Name="po" 
+                                    Binding="{Binding PO}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="TroubleTicket" Width="*" x:Name="tt" 
+                                    Binding="{Binding TroubleTicket}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

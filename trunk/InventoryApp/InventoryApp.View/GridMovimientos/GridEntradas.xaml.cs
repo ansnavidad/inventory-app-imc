@@ -23,5 +23,28 @@ namespace InventoryApp.View.GridMovimientos
         {
             InitializeComponent();
         }
+
+        private void btnNuevo_Click(object sender, RoutedEventArgs e)
+        {
+            Entradas.EntradaValidacionRevision dlg = new Entradas.EntradaValidacionRevision();
+            InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasViewModel viewModel = this.DataContext as InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasViewModel;
+            dlg.DataContext = new InventoryApp.ViewModel.Entradas.EntradaPorValidacionViewModel(viewModel);
+            dlg.ShowDialog();
+
+            //Entradas.EntradaPrestamo dlg = new Entradas.EntradaPrestamo();
+            //InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasViewModel viewModel = this.DataContext as InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasViewModel;
+            //dlg.DataContext = new InventoryApp.ViewModel.Entradas.EntradaPrestamoViewModel(viewModel);
+            //dlg.ShowDialog();
+
+            //Entradas.EntradaDesinstalacion dlg = new Entradas.EntradaDesinstalacion();
+            //InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasViewModel viewModel = this.DataContext as InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasViewModel;
+            //dlg.DataContext = new InventoryApp.ViewModel.Entradas.EntradaDesinstalacionViewModel(viewModel);
+            //dlg.ShowDialog();
+
+            //Entradas.EntradaDevolucion dlg = new Entradas.EntradaDevolucion();
+            //InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasViewModel viewModel = this.DataContext as InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasViewModel;
+            //dlg.DataContext = new InventoryApp.ViewModel.Entradas.EntradaDevolucionViewModel(viewModel);
+            //dlg.ShowDialog();
+        }
     }
 }

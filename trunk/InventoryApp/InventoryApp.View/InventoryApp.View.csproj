@@ -449,8 +449,17 @@
     <Compile Include="CatalogTransporte\TransporteUserControl.xaml.cs">
       <DependentUpon>TransporteUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GridMovimientos\EntradasDesinstalacion.xaml.cs">
+      <DependentUpon>EntradasDesinstalacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\EntradasDevolucion.xaml.cs">
+      <DependentUpon>EntradasDevolucion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GridMovimientos\GridEntradas.xaml.cs">
       <DependentUpon>GridEntradas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridEntradasPrestamo.xaml.cs">
+      <DependentUpon>GridEntradasPrestamo.xaml</DependentUpon>
     </Compile>
     <Compile Include="GridMovimientos\GridMovimientos.xaml.cs">
       <DependentUpon>GridMovimientos.xaml</DependentUpon>
@@ -1036,7 +1045,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GridMovimientos\EntradasDesinstalacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\EntradasDevolucion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GridMovimientos\GridEntradas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridEntradasPrestamo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

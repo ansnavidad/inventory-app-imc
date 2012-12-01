@@ -227,16 +227,16 @@ namespace InventoryApp.ViewModel
                         break;
                     //Entradas
                     case "Entrada por Validación":
-                        page = new Entradas.EntradaPorValidacionViewModel();  
+                        page = new GridMovimientos.MovimientoGridEntradasViewModel();  
                         break;
                     case "Entrada por Prestamo":
-                        page = new Entradas.EntradaPrestamoViewModel();
+                        page = new GridMovimientos.MovimientoGridEntradasPrestamoViewModel(); 
                         break;
                     case "Entrada por Devolución":
-                        page = new Entradas.EntradaDevolucionViewModel();
+                        page = new GridMovimientos.MovimientoGridEntradasDevolucionViewModel(); 
                         break;
                     case "Entrada por Desinstalación":
-                        page = new Entradas.EntradaDesinstalacionViewModel();
+                        page = new GridMovimientos.MovimientoGridEntradasDesinstalacionViewModel(); 
                         break;
                     //Salidad
                     case "Salida Renta":

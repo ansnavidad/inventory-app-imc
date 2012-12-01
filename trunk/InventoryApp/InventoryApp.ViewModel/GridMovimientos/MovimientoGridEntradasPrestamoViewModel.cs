@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.GridMovimientos
 {
-    public class MovimientoGridEntradasViewModel : IPageViewModel
+    public class MovimientoGridEntradasPrestamoViewModel : IPageViewModel
     {
         private MovimientoGridModel _movimientoGridModel;
         private CatalogMovimientoModel _catalogMovimientoModel;
@@ -18,10 +18,10 @@ namespace InventoryApp.ViewModel.GridMovimientos
         private CatalogAlmacenModel _catalogAlmacenProcedenciaModel;
         private CatalogProveedorModel _catalogProveedorProcedenciaModel;
         private CatalogClienteModel _catalogClienteProcedenciaModel;
-        private CatalogTipoPedimentoModel _catalogTipoPedimentoModel;        
+        private CatalogTipoPedimentoModel _catalogTipoPedimentoModel;
         private CatalogItemModel _itemModel;
-        
-        public MovimientoGridEntradasViewModel()
+
+        public MovimientoGridEntradasPrestamoViewModel()
         {
             try
             {
@@ -29,7 +29,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 IDataMapper dataMapper2 = new AlmacenDataMapper();
                 IDataMapper dataMapper3 = new ProveedorDataMapper();
                 IDataMapper dataMapper4 = new ClienteDataMapper();
-                IDataMapper dataMapper5 = new TipoPedimentoDataMapper();                
+                IDataMapper dataMapper5 = new TipoPedimentoDataMapper();
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._catalogMovimientoModel = new CatalogMovimientoModel(new MovimientoDataMapper(), "entradas");
@@ -42,7 +42,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 this._catalogProveedorProcedenciaModel = new CatalogProveedorModel(dataMapper3);
                 this._catalogClienteProcedenciaModel = new CatalogClienteModel(dataMapper4);
                 this._catalogTipoPedimentoModel = new CatalogTipoPedimentoModel(dataMapper5);
-                
+
             }
             catch (ArgumentException a)
             {
@@ -52,8 +52,8 @@ namespace InventoryApp.ViewModel.GridMovimientos
             catch (Exception ex)
             {
                 throw ex;
-            }   
-            
+            }
+
         }
 
         public CatalogMovimientoModel CatalogMovimientoModel
@@ -138,7 +138,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
             get
             {
                 return _movimientoGridModel;
-                
+
             }
             set
             {
@@ -178,7 +178,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
             this._catalogAlmacenProcedenciaModel.loadItems();
             this._catalogProveedorProcedenciaModel.loadItems();
             this._catalogClienteProcedenciaModel.loadCliente();
-            this._catalogTipoPedimentoModel.loadItems();            
+            this._catalogTipoPedimentoModel.loadItems();
         }
 
         public void updateItems()

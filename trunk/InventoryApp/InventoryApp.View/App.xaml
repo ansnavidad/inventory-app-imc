@@ -115,17 +115,21 @@
 
         <GridMovimientosViewModel:MovimientosGridViewModel x:Key="movimientosGridViewModel" />
         <GridMovimientosViewModel:MovimientoGridEntradasViewModel x:Key="movimientosEntradasGridViewModel" />
+        <GridMovimientosViewModel:MovimientoGridEntradasPrestamoViewModel x:Key="movimientosEntradasPrestamoGridViewModel" />
+        <GridMovimientosViewModel:MovimientoGridEntradasDesinstalacionViewModel x:Key="movimientosEntradasDesinstalacionGridViewModel" />
+        <GridMovimientosViewModel:MovimientoGridEntradasDevolucionViewModel x:Key="movimientosEntradasDevolucionGridViewModel" />
+
         <GridMovimientosViewModel:MovimientoGridSalidasViewModel x:Key="movimientosSalidasGridViewModel" />
 
         <!--<TraspasosViewModel:TraspasoStockViewModel x:Key="traspasoStockViewModel" />-->
 
 
         <!--Juan-->
-        
-        
-        
-        
-        
+
+
+
+
+   
 
         <!--Catálgos-->
         <ObjectDataProvider x:Key="catalogArticuloViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
@@ -417,7 +421,7 @@
             <propiedadViews:PropiedadUserControl />
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type EntradaViewModel:EntradaPorValidacionViewModel}">
+        <!--<DataTemplate DataType="{x:Type EntradaViewModel:EntradaPorValidacionViewModel}">
             <EntradaView:EntradaValidacionRevision />
         </DataTemplate>
         <DataTemplate DataType="{x:Type EntradaViewModel:EntradaPrestamoViewModel}">
@@ -428,7 +432,7 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type EntradaViewModel:EntradaDesinstalacionViewModel}">
             <EntradaView:EntradaDesinstalacion />
-        </DataTemplate>
+        </DataTemplate>-->
         
         
         <DataTemplate DataType="{x:Type SalidasViewModel:SalidaRentaViewModel}">
@@ -470,6 +474,23 @@
         <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientosGridViewModel}">
             <GridMovimientosView:GridMovimientos/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridEntradasViewModel}">
+            <GridMovimientosView:GridEntradas/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridEntradasPrestamoViewModel}">
+            <GridMovimientosView:GridEntradasPrestamo/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridEntradasDesinstalacionViewModel}">
+            <GridMovimientosView:EntradasDesinstalacion/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridEntradasDevolucionViewModel}">
+            <GridMovimientosView:EntradasDevolucion/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type reciboViewModel:CatalogReciboViewModel}">
             <reciboViews:CatalogReciboView/>
         </DataTemplate>

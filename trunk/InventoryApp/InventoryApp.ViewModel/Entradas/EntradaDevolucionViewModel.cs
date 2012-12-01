@@ -23,6 +23,7 @@ namespace InventoryApp.ViewModel.Entradas
         private CatalogTransporteModel _catalogTransporteModel;
         private RelayCommand _addItemCommand;
         private RelayCommand _deleteItemCommand;
+        private InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasDevolucionViewModel _movimientoEntradas;
 
         public EntradaDevolucionViewModel()
         {            
@@ -57,6 +58,42 @@ namespace InventoryApp.ViewModel.Entradas
             }   
             
         }
+
+        public EntradaDevolucionViewModel(InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasDevolucionViewModel entrada)
+        {
+            try
+            {
+                IDataMapper dataMapper = new SolicitanteDataMapper();
+                IDataMapper dataMapper2 = new AlmacenDataMapper();
+                IDataMapper dataMapper3 = new ProveedorDataMapper();
+                IDataMapper dataMapper4 = new ClienteDataMapper();
+                IDataMapper dataMapper5 = new TransporteDataMapper();
+
+                this._movimientoEntradas = entrada;
+                this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
+                this._movimientoModel = new MovimientoModel(new MovimientoDataMapper());
+                TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
+                mov.UNID_TIPO_MOVIMIENTO = 3;
+                this._movimientoModel.TipoMovimiento = mov;
+                this._itemModel = new CatalogItemModel(new ItemDataMapper());
+                this._catalogAlmacenModel = new CatalogAlmacenModel(dataMapper2);
+                this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
+                this._catalogProveedorProcedenciaModel = new CatalogProveedorModel(dataMapper3);
+                this._catalogClienteProcedenciaModel = new CatalogClienteModel(dataMapper4);
+                this._catalogTransporteModel = new CatalogTransporteModel(dataMapper5);
+            }
+            catch (ArgumentException a)
+            {
+
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
 
         public ICommand AddItemCommand
         {
@@ -218,6 +255,7 @@ namespace InventoryApp.ViewModel.Entradas
         public void AttempArticulo()
         {
             this._movimientoModel.saveArticulo();
+            this._movimientoEntradas.updateItems();
 
             foreach (ItemModel item in this._itemModel.ItemModel)
             {

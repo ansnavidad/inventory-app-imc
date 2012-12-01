@@ -18,7 +18,7 @@ namespace InventoryApp.View.Entradas
     /// <summary>
     /// Lógica de interacción para EntradaDevolucion.xaml
     /// </summary>
-    public partial class EntradaDesinstalacion : UserControl
+    public partial class EntradaDesinstalacion : Window
     {
         public EntradaDesinstalacion()
         {
@@ -78,21 +78,13 @@ namespace InventoryApp.View.Entradas
         {
             // Estas dos lineas son para que ejecute el Relay Command
             EntradaDesinstalacionViewModel entrada = this.DataContext as EntradaDesinstalacionViewModel;
-            entrada.AttempArticulo();
             MessageBox.Show("La Entrada con el folio " + this.textBlockFolio.Text + "\n se ha registrado exitosamente.", "", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            this.Content = null;
-            this.Content = new GridMovimientos.GridMovimientos();
-            this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
+            this.Close();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Se ha cancelado la entrada.", "", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            this.Content = null;
-            this.Content = new GridMovimientos.GridMovimientos();
-            this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
+            this.Close();
         }
     }
 }

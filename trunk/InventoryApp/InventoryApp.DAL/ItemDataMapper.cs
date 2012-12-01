@@ -50,16 +50,34 @@ namespace InventoryApp.DAL
                 {
                     if (!numSerie.Equals(""))
                     {
+                        List<ITEM> final = new List<ITEM>();
+                        
                         var res = (from i in Entity.ITEMs
                                    join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
-                                   join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN 
+                                   where i.NUMERO_SERIE == numSerie && u1.UNID_ALMACEN == null && i.IS_ACTIVE == true
+                                   select i).ToList();                        
+
+                        if (((List<ITEM>)res).Count > 0)
+                        {
+                            foreach (ITEM trans in ((List<ITEM>)res))
+                            {
+                                trans.ARTICULO = trans.ARTICULO;
+                                //trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
+                                trans.ITEM_STATUS = trans.ITEM_STATUS;
+                                trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                                trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                                trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                                trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                                final.Add(trans);
+                            }                           
+                        }
+
+                        res = (from i in Entity.ITEMs
+                                   join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                                   join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
                                    where i.NUMERO_SERIE == numSerie && u2.UNID_ALMACEN != almacen.UNID_ALMACEN && i.IS_ACTIVE == true
                                    select i).ToList();
 
-                        //var res = (from cust in Entity.ITEMs
-                        //           where cust.NUMERO_SERIE == numSerie && cust.IS_ACTIVE == true
-                        //           select cust).ToList();
-
                         if (((List<ITEM>)res).Count > 0)
                         {
                             foreach (ITEM trans in ((List<ITEM>)res))
@@ -71,16 +89,18 @@ namespace InventoryApp.DAL
                                 trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
                                 trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
                                 trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
-                            }
-                            o = (object)res;
+                                final.Add(trans);
+                            }                            
                         }
+                        o = (object)final;
                     }
                     else {
 
+                        List<ITEM> final = new List<ITEM>();
+
                         var res = (from i in Entity.ITEMs
                                    join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
-                                   join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
-                                   where i.SKU == SKU && u2.UNID_ALMACEN != almacen.UNID_ALMACEN && i.IS_ACTIVE == true
+                                   where i.SKU == SKU && u1.UNID_ALMACEN == null && i.IS_ACTIVE == true
                                    select i).ToList();
 
                         if (((List<ITEM>)res).Count > 0)
@@ -94,9 +114,31 @@ namespace InventoryApp.DAL
                                 trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
                                 trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
                                 trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                                final.Add(trans);
                             }
-                            o = (object)res;
                         }
+
+                        res = (from i in Entity.ITEMs
+                               join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                               join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
+                               where i.SKU == SKU && u2.UNID_ALMACEN == almacen.UNID_ALMACEN && i.IS_ACTIVE == true
+                               select i).ToList();
+
+                        if (((List<ITEM>)res).Count > 0)
+                        {
+                            foreach (ITEM trans in ((List<ITEM>)res))
+                            {
+                                trans.ARTICULO = trans.ARTICULO;
+                                //trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
+                                trans.ITEM_STATUS = trans.ITEM_STATUS;
+                                trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                                trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                                trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                                trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                                final.Add(trans);
+                            }
+                        }
+                        o = (object)final;
                     }                    
                 }
             
@@ -192,6 +234,110 @@ namespace InventoryApp.DAL
                         }
                         o = (object)res;
                     }
+                }
+            }
+            return o;
+        }
+
+        public object getElements_EntradasSalidasSerie(PROVEEDOR proveedor, CLIENTE cliente, string numSerie, string SKU)
+        {
+            object o = null;
+
+            using (var Entity = new TAE2Entities())
+            {
+                if (proveedor != null)
+                {
+                    if (!numSerie.Equals(""))
+                    {
+                        var res = (from i in Entity.ITEMs
+                                   join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                                   join u2 in Entity.PROVEEDORs on u1.UNID_PROVEEDOR equals u2.UNID_PROVEEDOR
+                                   where i.NUMERO_SERIE == numSerie && u2.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR && i.IS_ACTIVE == true
+                                   select i).ToList();
+
+                        if (((List<ITEM>)res).Count > 0)
+                        {
+                            foreach (ITEM trans in ((List<ITEM>)res))
+                            {
+                                trans.ARTICULO = trans.ARTICULO;
+                                trans.ITEM_STATUS = trans.ITEM_STATUS;
+                                trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                                trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                                trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                                trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            }
+                            o = (object)res;
+                        }
+                    }
+                    else {
+
+                        var res = (from i in Entity.ITEMs
+                                   join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                                   join u2 in Entity.PROVEEDORs on u1.UNID_PROVEEDOR equals u2.UNID_PROVEEDOR
+                                   where i.SKU == SKU && u2.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR && i.IS_ACTIVE == true
+                                   select i).ToList();
+
+                        if (((List<ITEM>)res).Count > 0)
+                        {
+                            foreach (ITEM trans in ((List<ITEM>)res))
+                            {
+                                trans.ARTICULO = trans.ARTICULO;
+                                trans.ITEM_STATUS = trans.ITEM_STATUS;
+                                trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                                trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                                trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                                trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            }
+                            o = (object)res;
+                        }
+                    }
+                }
+                else
+                {
+                    if (!numSerie.Equals(""))
+                    {
+                        var res = (from i in Entity.ITEMs
+                                   join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                                   join u2 in Entity.CLIENTEs on u1.UNID_CLIENTE equals u2.UNID_CLIENTE
+                                   where i.NUMERO_SERIE == numSerie && u2.UNID_CLIENTE == cliente.UNID_CLIENTE && i.IS_ACTIVE == true
+                                   select i).ToList();
+
+                        if (((List<ITEM>)res).Count > 0)
+                        {
+                            foreach (ITEM trans in ((List<ITEM>)res))
+                            {
+                                trans.ARTICULO = trans.ARTICULO;
+                                trans.ITEM_STATUS = trans.ITEM_STATUS;
+                                trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                                trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                                trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                                trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            }
+                            o = (object)res;
+                        }
+                    }
+                    else
+                    {
+                        var res = (from i in Entity.ITEMs
+                                   join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                                   join u2 in Entity.CLIENTEs on u1.UNID_CLIENTE equals u2.UNID_CLIENTE
+                                   where i.SKU == SKU && u2.UNID_CLIENTE == cliente.UNID_CLIENTE && i.IS_ACTIVE == true
+                                   select i).ToList();
+
+                        if (((List<ITEM>)res).Count > 0)
+                        {
+                            foreach (ITEM trans in ((List<ITEM>)res))
+                            {
+                                trans.ARTICULO = trans.ARTICULO;
+                                trans.ITEM_STATUS = trans.ITEM_STATUS;
+                                trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                                trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                                trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                                trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            }
+                            o = (object)res;
+                        }
+                    }                    
                 }
             }
             return o;

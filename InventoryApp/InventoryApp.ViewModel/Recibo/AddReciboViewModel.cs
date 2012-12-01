@@ -130,6 +130,16 @@ namespace InventoryApp.ViewModel.Recibo
                     };
                     MovimientoDetalleDataMapper mdDataMapper = new MovimientoDetalleDataMapper();
                     mdDataMapper.insertElement(movDetalle);
+
+                    //Actualizar el último movimiento
+                    DAL.POCOS.ULTIMO_MOVIMIENTO ulitmoMovto = new DAL.POCOS.ULTIMO_MOVIMIENTO()
+                    {
+                        UNID_ITEM=item.UnidItem,
+                        UNID_ALMACEN=mov.DestinoAlmacen.UnidAlmacen,
+                        UNID_MOVIMIENTO_DETALLE=item.UnidMovimientoDetalle
+                    };
+                    UltimoMovimientoDataMapper umDataMapper = new UltimoMovimientoDataMapper();
+                    umDataMapper.udpateElement(ulitmoMovto);
                 }
 
                 //Agregar recibodetalle

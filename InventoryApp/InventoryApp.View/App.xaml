@@ -70,7 +70,7 @@
              xmlns:GridMovimientosView="clr-namespace:InventoryApp.View.GridMovimientos"                          
              xmlns:TecnicoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTecnico;assembly=InventoryApp.ViewModel"
              xmlns:TecnicoView="clr-namespace:InventoryApp.View.CatalogTecnico"                  
-             StartupUri="MainWindow.xaml"
+             StartupUri="GridMovimientos/GridEntradas.xaml"
              >
     
     <!--StartupUri="Recibo/ReciboView.xaml"-->
@@ -114,6 +114,7 @@
         <TraspasosViewModel:TraspasoStockViewModel x:Key="traspasoStockViewModel" />
 
         <GridMovimientosViewModel:MovimientosGridViewModel x:Key="movimientosGridViewModel" />
+        <GridMovimientosViewModel:MovimientoGridEntradasViewModel x:Key="movimientosEntradasGridViewModel" />
         
         <!--<TraspasosViewModel:TraspasoStockViewModel x:Key="traspasoStockViewModel" />-->
 

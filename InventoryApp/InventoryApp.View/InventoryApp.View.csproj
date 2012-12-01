@@ -449,6 +449,9 @@
     <Compile Include="CatalogTransporte\TransporteUserControl.xaml.cs">
       <DependentUpon>TransporteUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GridMovimientos\GridEntradas.xaml.cs">
+      <DependentUpon>GridEntradas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GridMovimientos\GridMovimientos.xaml.cs">
       <DependentUpon>GridMovimientos.xaml</DependentUpon>
     </Compile>
@@ -1027,6 +1030,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogTransporte\TransporteUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridEntradas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

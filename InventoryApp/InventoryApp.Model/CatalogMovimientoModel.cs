@@ -12,7 +12,7 @@ namespace InventoryApp.Model
     {
         private FixupCollection<CatalogMovimiento> _catalogMovimiento;
         private MOVIMENTO _selectedMovimiento;
-        private IDataMapper _dataMapper;
+        private MovimientoDataMapper _dataMapper;
 
         public FixupCollection<CatalogMovimiento> CatalogMovimiento
         {
@@ -72,6 +72,25 @@ namespace InventoryApp.Model
             this.CatalogMovimiento = ic;
         }
 
+        public void loadItemsEntrada()
+        {
+            object element = this._dataMapper.getEntradasElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
         public CatalogMovimientoModel(IDataMapper dataMapper)
         {
             this._dataMapper = new MovimientoDataMapper();
@@ -80,6 +99,13 @@ namespace InventoryApp.Model
             this.loadItems();
         }
 
+        public CatalogMovimientoModel(IDataMapper dataMapper, string opc)
+        {
+            this._dataMapper = new MovimientoDataMapper();
+            this._catalogMovimiento = new FixupCollection<CatalogMovimiento>();
+            this._selectedMovimiento = new MOVIMENTO();
+            this.loadItemsEntrada();
+        }
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

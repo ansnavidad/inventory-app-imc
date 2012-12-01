@@ -35,6 +35,7 @@ using InventoryApp.ViewModel.CatalogAlmacen;
 using InventoryApp.ViewModel.CatalogServicio;
 using InventoryApp.ViewModel.CatalogUnidad;
 using InventoryApp.ViewModel.CatalogTecnico;
+using InventoryApp.ViewModel.GridMovimientos;
 using System.Windows;
 
 namespace InventoryApp.ViewModel
@@ -136,7 +137,7 @@ namespace InventoryApp.ViewModel
             if (this._SelectedMenu != null && this._SelectedMenu.IsLeaf)
             {
                 switch (this._SelectedMenu.MenuName)
-                {
+                {                                 
                     case "Almacen":
                         page = new CatalogAlmacenViewModel();
                         break;

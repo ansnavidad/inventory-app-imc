@@ -42,7 +42,7 @@ namespace InventoryApp.DAL
             return o;
         }
 
-        public object getElements_EntradasSalidasSerie(string numSerie, string SKU)
+        public object getElements_EntradasSalidasSerie(ALMACEN almacen, string numSerie, string SKU)
         {
             object o = null;
                 
@@ -50,9 +50,15 @@ namespace InventoryApp.DAL
                 {
                     if (!numSerie.Equals(""))
                     {
-                        var res = (from cust in Entity.ITEMs
-                                   where cust.NUMERO_SERIE == numSerie && cust.IS_ACTIVE == true
-                                   select cust).ToList();
+                        var res = (from i in Entity.ITEMs
+                                   join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                                   join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN 
+                                   where i.NUMERO_SERIE == numSerie && u2.UNID_ALMACEN != almacen.UNID_ALMACEN && i.IS_ACTIVE == true
+                                   select i).ToList();
+
+                        //var res = (from cust in Entity.ITEMs
+                        //           where cust.NUMERO_SERIE == numSerie && cust.IS_ACTIVE == true
+                        //           select cust).ToList();
 
                         if (((List<ITEM>)res).Count > 0)
                         {
@@ -71,9 +77,11 @@ namespace InventoryApp.DAL
                     }
                     else {
 
-                        var res = (from cust in Entity.ITEMs
-                                   where cust.SKU == SKU && cust.IS_ACTIVE == true
-                                   select cust).ToList();
+                        var res = (from i in Entity.ITEMs
+                                   join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                                   join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
+                                   where i.SKU == SKU && u2.UNID_ALMACEN != almacen.UNID_ALMACEN && i.IS_ACTIVE == true
+                                   select i).ToList();
 
                         if (((List<ITEM>)res).Count > 0)
                         {
@@ -94,6 +102,69 @@ namespace InventoryApp.DAL
             
             return o;
         }
+
+        public object getElements_EntradasSalidasSerie2(ALMACEN almacen, string numSerie, string SKU)
+        {
+            object o = null;
+
+            using (var Entity = new TAE2Entities())
+            {
+                if (!numSerie.Equals(""))
+                {
+                    var res = (from i in Entity.ITEMs
+                               join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                               join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
+                               where i.NUMERO_SERIE == numSerie && u2.UNID_ALMACEN == almacen.UNID_ALMACEN && i.IS_ACTIVE == true
+                               select i).ToList();
+
+                    //var res = (from cust in Entity.ITEMs
+                    //           where cust.NUMERO_SERIE == numSerie && cust.IS_ACTIVE == true
+                    //           select cust).ToList();
+
+                    if (((List<ITEM>)res).Count > 0)
+                    {
+                        foreach (ITEM trans in ((List<ITEM>)res))
+                        {
+                            trans.ARTICULO = trans.ARTICULO;
+                            //trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
+                            trans.ITEM_STATUS = trans.ITEM_STATUS;
+                            trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                            trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                            trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                            trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                        }
+                        o = (object)res;
+                    }
+                }
+                else
+                {
+
+                    var res = (from i in Entity.ITEMs
+                               join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                               join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
+                               where i.SKU == SKU && u2.UNID_ALMACEN == almacen.UNID_ALMACEN && i.IS_ACTIVE == true
+                               select i).ToList();
+
+                    if (((List<ITEM>)res).Count > 0)
+                    {
+                        foreach (ITEM trans in ((List<ITEM>)res))
+                        {
+                            trans.ARTICULO = trans.ARTICULO;
+                            //trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
+                            trans.ITEM_STATUS = trans.ITEM_STATUS;
+                            trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                            trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                            trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                            trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                        }
+                        o = (object)res;
+                    }
+                }
+            }
+
+            return o;
+        }
+
         public object getElements_EntradasSalidasSerie(CLIENTE cliente, string numSerie)
         {
             object o = null;

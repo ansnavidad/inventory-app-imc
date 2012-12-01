@@ -75,11 +75,44 @@ namespace InventoryApp.Model
             }
         }
 
+        //public void loadItems(ALMACEN almacenDirecto)
+        //{
+        //    try
+        //    {
+        //        object element = this._dataMapper.getElements_EntradasSalidasSerie(almacenDirecto, this._serie);
+
+        //        if (element != null)
+        //        {
+
+        //            FixupCollection<ItemModel> ic = new FixupCollection<ItemModel>();
+
+        //            foreach (ITEM elemento in (List<ITEM>)element)
+        //            {
+        //                ItemModel aux = new ItemModel(elemento);
+        //                ic.Add(aux);
+        //            }
+        //            if (ic != null)
+        //            {
+        //                this.ItemModel = ic;
+        //            }
+        //        }
+        //    }
+        //    catch (ArgumentException ae)
+        //    {
+
+        //        ;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
         public void loadItems(ALMACEN almacenDirecto)
         {
             try
             {
-                object element = this._dataMapper.getElements_EntradasSalidasSerie(almacenDirecto, this._serie);
+                object element = this._dataMapper.getElements_EntradasSalidasSerie(almacenDirecto, this._serie, this._sku);
 
                 if (element != null)
                 {
@@ -108,11 +141,11 @@ namespace InventoryApp.Model
             }
         }
 
-        public void loadItems()
+        public void loadItems(ALMACEN almacenDirecto, string Rafa)
         {
             try
             {
-                object element = this._dataMapper.getElements_EntradasSalidasSerie(this._serie, this._sku);
+                object element = this._dataMapper.getElements_EntradasSalidasSerie2(almacenDirecto, this._serie, this._sku);
 
                 if (element != null)
                 {

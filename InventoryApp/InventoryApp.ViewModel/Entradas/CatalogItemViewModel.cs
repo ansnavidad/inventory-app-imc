@@ -145,7 +145,22 @@ namespace InventoryApp.ViewModel.Entradas
 
         public void AttempArticulo()
         {
-            this.CatalogItemModel.loadItems();
+            if (_entradaPorValidacionViewModel != null)
+            {
+                this.CatalogItemModel.loadItems(_entradaPorValidacionViewModel.MovimientoModel.AlmacenDestino);
+            }
+            else if (EntradaPrestamoViewModel != null)
+            {
+                this.CatalogItemModel.loadItems(_entradaPrestamoViewModel.MovimientoModel.AlmacenDestino); 
+            }
+            else if (_entradaDevolucionViewModel != null)
+            {
+                this.CatalogItemModel.loadItems(_entradaDevolucionViewModel.MovimientoModel.AlmacenDestino); 
+            }
+            else if (_entradaDesinstalacionViewModel != null)
+            {
+                this.CatalogItemModel.loadItems(_entradaDesinstalacionViewModel.MovimientoModel.AlmacenDestino); 
+            }            
         }
 
         public bool CanAttempItems()

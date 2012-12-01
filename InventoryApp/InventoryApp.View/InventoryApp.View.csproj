@@ -455,6 +455,9 @@
     <Compile Include="GridMovimientos\GridMovimientos.xaml.cs">
       <DependentUpon>GridMovimientos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GridMovimientos\GridSalidas.xaml.cs">
+      <DependentUpon>GridSalidas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ItemACView.xaml.cs">
       <DependentUpon>ItemACView.xaml</DependentUpon>
     </Compile>
@@ -1040,6 +1043,10 @@
     <Page Include="GridMovimientos\GridMovimientos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

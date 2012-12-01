@@ -291,47 +291,47 @@ namespace InventoryApp.ViewModel.Salidas
         {
             if (_salidaRentaViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_salidaRentaViewModel.MovimientoModel.AlmacenProcedencia);
+                this.CatalogItemModel.loadItems(_salidaRentaViewModel.MovimientoModel.AlmacenProcedencia, "Rafa estuvo aquí");
             }
             else if(_salidaRevisionViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_salidaRevisionViewModel.MovimientoModel.AlmacenProcedencia);
+                this.CatalogItemModel.loadItems(_salidaRevisionViewModel.MovimientoModel.AlmacenProcedencia, "Rafa estuvo aquí");
             } 
 			else if (_salidaDemoViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_salidaDemoViewModel.MovimientoModel.AlmacenProcedencia);
+                this.CatalogItemModel.loadItems(_salidaDemoViewModel.MovimientoModel.AlmacenProcedencia, "Rafa estuvo aquí");
             }
             else if (_salidaPrestamoViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_salidaPrestamoViewModel.MovimientoModel.AlmacenProcedencia);
+                this.CatalogItemModel.loadItems(_salidaPrestamoViewModel.MovimientoModel.AlmacenProcedencia, "Rafa estuvo aquí");
             }
             else if (_salidaVentaViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_salidaVentaViewModel.MovimientoModel.AlmacenProcedencia);
+                this.CatalogItemModel.loadItems(_salidaVentaViewModel.MovimientoModel.AlmacenProcedencia, "Rafa estuvo aquí");
             }
             else if (_salidaRMAViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_salidaRMAViewModel.MovimientoModel.AlmacenProcedencia);
+                this.CatalogItemModel.loadItems(_salidaRMAViewModel.MovimientoModel.AlmacenProcedencia, "Rafa estuvo aquí");
             }
             else if (_salidaPruebasViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_salidaPruebasViewModel.MovimientoModel.AlmacenProcedencia);
+                this.CatalogItemModel.loadItems(_salidaPruebasViewModel.MovimientoModel.AlmacenProcedencia, "Rafa estuvo aquí");
             }
             else if (_salidaConfiguracionViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_salidaConfiguracionViewModel.MovimientoModel.AlmacenProcedencia);
+                this.CatalogItemModel.loadItems(_salidaConfiguracionViewModel.MovimientoModel.AlmacenProcedencia, "Rafa estuvo aquí");
             }
             else if (_salidaObsequioViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_salidaObsequioViewModel.MovimientoModel.AlmacenProcedencia);
+                this.CatalogItemModel.loadItems(_salidaObsequioViewModel.MovimientoModel.AlmacenProcedencia, "Rafa estuvo aquí");
             }
             else if (_salidaCorrectivoViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_salidaCorrectivoViewModel.MovimientoModel.AlmacenProcedencia);
+                this.CatalogItemModel.loadItems(_salidaCorrectivoViewModel.MovimientoModel.AlmacenProcedencia, "Rafa estuvo aquí");
             }
             else if (_salidaOfficeViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_salidaOfficeViewModel.MovimientoModel.AlmacenProcedencia);
+                this.CatalogItemModel.loadItems(_salidaOfficeViewModel.MovimientoModel.AlmacenProcedencia, "Rafa estuvo aquí");
             }
         }
 

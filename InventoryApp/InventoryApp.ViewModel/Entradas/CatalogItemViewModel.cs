@@ -147,19 +147,19 @@ namespace InventoryApp.ViewModel.Entradas
         {
             if (_entradaPorValidacionViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_entradaPorValidacionViewModel.MovimientoModel.AlmacenDestino);
+                this.CatalogItemModel.loadItems(_entradaPorValidacionViewModel.MovimientoModel.ProveedorProcedencia, _entradaPorValidacionViewModel.MovimientoModel.ClienteProcedencia);
             }
             else if (EntradaPrestamoViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_entradaPrestamoViewModel.MovimientoModel.AlmacenDestino); 
+                this.CatalogItemModel.loadItems(_entradaPrestamoViewModel.MovimientoModel.ProveedorProcedencia, _entradaPrestamoViewModel.MovimientoModel.ClienteProcedencia); 
             }
             else if (_entradaDevolucionViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_entradaDevolucionViewModel.MovimientoModel.AlmacenDestino); 
+                this.CatalogItemModel.loadItems(_entradaDevolucionViewModel.MovimientoModel.ProveedorProcedencia, _entradaDevolucionViewModel.MovimientoModel.ClienteProcedencia); 
             }
             else if (_entradaDesinstalacionViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_entradaDesinstalacionViewModel.MovimientoModel.AlmacenDestino); 
+                this.CatalogItemModel.loadItems(_entradaDesinstalacionViewModel.MovimientoModel.ProveedorProcedencia, _entradaDesinstalacionViewModel.MovimientoModel.ClienteProcedencia); 
             }            
         }
 

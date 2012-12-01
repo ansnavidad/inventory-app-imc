@@ -91,6 +91,29 @@ namespace InventoryApp.Model
             }
             this.CatalogMovimiento = ic;
         }
+
+
+        public void Updateitemsentrada()
+        {
+            object element = this._dataMapper.getEntradasElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+
         public void loadItemsSalida()
         {
             object element = this._dataMapper.getSalidasElements();
@@ -110,6 +133,7 @@ namespace InventoryApp.Model
             }
             this.CatalogMovimiento = ic;
         }
+
 
         public CatalogMovimientoModel(IDataMapper dataMapper)
         {

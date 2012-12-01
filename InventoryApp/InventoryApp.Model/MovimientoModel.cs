@@ -567,7 +567,8 @@ namespace InventoryApp.Model
                 if (_cliente != value)
                 {
                     _cliente = value;
-                    this._unidCliente = _cliente.UNID_CLIENTE;
+
+                    //this._unidCliente = _cliente.UNID_CLIENTE;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Cliente"));
@@ -624,30 +625,30 @@ namespace InventoryApp.Model
             {
                 _dataMapper.insertElement(new MOVIMENTO() { 
                     UNID_MOVIMIENTO = this._unidMovimiento, 
-                    FECHA_MOVIMIENTO = this._fechaMovimiento, 
-                    UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO, 
-                    //UNID_ALMACEN_DESTINO = this._unidAlmacenDestino, 
-                    //UNID_PROVEEDOR_DESTINO = null, 
-                    //UNID_CLIENTE_DESTINO = null, 
-                    //UNID_ALMACEN_PROCEDENCIA = this._unidAlmacenProcedencia, 
-                    //UNID_CLIENTE_PROCEDENCIA = this._unidClienteProcedencia, 
-                    //UNID_PROVEEDOR_PROCEDENCIA = this._unidProveedorProcedencia, 
-                    //UNID_SERVICIO = this._unidServicio, 
-                    //TT = this._tt, 
-                    //CONTACTO = this._contacto, 
-                    //UNID_TRANSPORTE = this._unidTransporte, 
-                    IS_ACTIVE = this._isActive, 
-                    //DIRECCION_ENVIO = this._direccionEnvio, 
-                    //SITIO_ENLACE = this._sitioEnlace, 
-                    //NOMBRE_SITIO = this._nombreSitio, 
-                    //RECIBE = this._recibe, 
-                    //GUIA = this._guia, 
-                    //UNID_CLIENTE = this._unidCliente, 
-                    //UNID_PROVEEDOR = this._unidProveedor, 
-                    //UNID_FACTURA_VENTA = this._unidFacturaVenta,
-                    //UNID_SOLICITANTE = this._unidSolicitante,
-                    //UNID_TECNICO = this._unidTecnico
-                    });
+                    FECHA_MOVIMIENTO = this._fechaMovimiento,
+                    UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,
+                    UNID_ALMACEN_DESTINO = this._unidAlmacenDestino,
+                    UNID_PROVEEDOR_DESTINO = null,
+                    UNID_CLIENTE_DESTINO = null,
+                    UNID_ALMACEN_PROCEDENCIA = this._unidAlmacenProcedencia,
+                    UNID_CLIENTE_PROCEDENCIA = this._unidClienteProcedencia,
+                    UNID_PROVEEDOR_PROCEDENCIA = this._unidProveedorProcedencia,
+                    UNID_SERVICIO = this._unidServicio,
+                    TT = this._tt,
+                    CONTACTO = this._contacto,
+                    UNID_TRANSPORTE = this._unidTransporte,
+                    IS_ACTIVE = this._isActive,
+                    DIRECCION_ENVIO = this._direccionEnvio,
+                    SITIO_ENLACE = this._sitioEnlace,
+                    NOMBRE_SITIO = this._nombreSitio,
+                    RECIBE = this._recibe,
+                    GUIA = this._guia,
+                    UNID_CLIENTE = this._unidCliente,
+                    UNID_PROVEEDOR = this._unidProveedor,
+                    UNID_FACTURA_VENTA = this._unidFacturaVenta,
+                    UNID_SOLICITANTE = this._unidSolicitante,
+                    UNID_TECNICO = this._unidTecnico
+                });
                 //_dataMapper.insertElement(new MOVIMENTO() {UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe, UNID_ALMACEN_DESTINO = this._unidSolicitante});
             }
         }

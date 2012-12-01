@@ -35,7 +35,6 @@
                 <ImageBrush ImageSource="Images/header.png" />
             </Grid.Background>
             <Label Content="elr.tracking@elara.com" HorizontalContentAlignment="Right" Height="28" HorizontalAlignment="Stretch" Margin="263,-1,13,0" Name="label1" VerticalAlignment="Stretch" />
-            
         </Grid>
 
         <Grid Grid.Row="2"  HorizontalAlignment="Stretch" Margin="0,11,0,0" Name="grid2" Height="AUTO" VerticalAlignment="Stretch">
@@ -44,9 +43,7 @@
             </ContentControl>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5,0,0,0" Name="grid3" VerticalAlignment="Stretch">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="1,6,0,-2" Name="stackPanel2" VerticalAlignment="Stretch">
-
-            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="1,6,0,-2" Name="stackPanel2" VerticalAlignment="Stretch"></StackPanel>
         </Grid>
         <Border BorderBrush="#FF1626F2" BorderThickness="1" Grid.Row="2" Height="3" HorizontalAlignment="Stretch" Margin="0,9,0,0" 
                 Name="border1" VerticalAlignment="Top" Width="auto" Grid.ColumnSpan="2">

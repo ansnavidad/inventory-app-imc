@@ -280,6 +280,9 @@ namespace InventoryApp.ViewModel
                    case "Nuevo Recibo":
                         page = new Recibo.CatalogReciboViewModel();
                       break;
+                   case "Home":
+                      page = new GridMovimientos.MovimientosGridViewModel();
+                      break;
                     default:
                         break;
                 }

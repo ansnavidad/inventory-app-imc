@@ -500,6 +500,9 @@
     <Compile Include="GridMovimientos\GridSalidaVenta.xaml.cs">
       <DependentUpon>GridSalidaVenta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GridMovimientos\GridTraspasoStock.xaml.cs">
+      <DependentUpon>GridTraspasoStock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ItemACView.xaml.cs">
       <DependentUpon>ItemACView.xaml</DependentUpon>
     </Compile>
@@ -1146,6 +1149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GridMovimientos\GridSalidaVenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridTraspasoStock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -275,7 +275,7 @@ namespace InventoryApp.ViewModel
                         break;
                     //Traspasos
                     case "Traspaso Entre Almacenes":
-                        page = new Traspasos.TraspasoStockViewModel();
+                        page = new GridMovimientos.MovimientoGridTraspasoStockViewModel();
                         break;
                     //Juan
                    case "Nuevo Recibo":

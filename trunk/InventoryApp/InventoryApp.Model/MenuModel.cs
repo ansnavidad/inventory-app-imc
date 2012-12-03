@@ -172,7 +172,8 @@ namespace InventoryApp.Model
         public event EventHandler<EventArgs> SelectedItemChanged;
         public void OnSelectedItemChanged()
         {
-            if (SelectedItemChanged != null && this._IsLeaf && this._IsSelected)
+            //if (SelectedItemChanged != null && this._IsLeaf && this._IsSelected)
+            if (SelectedItemChanged != null && this._IsSelected)
             {
                 SelectedItemChanged(this, new EventArgs());
             }

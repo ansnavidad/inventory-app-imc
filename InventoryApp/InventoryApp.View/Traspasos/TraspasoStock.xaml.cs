@@ -18,7 +18,7 @@ namespace InventoryApp.View.Traspasos
     /// <summary>
     /// Lógica de interacción para TraspasoStock.xaml
     /// </summary>
-    public partial class TraspasoStock : UserControl
+    public partial class TraspasoStock : Window
     {
         public TraspasoStock()
         {

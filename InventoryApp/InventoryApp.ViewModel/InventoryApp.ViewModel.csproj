@@ -148,6 +148,7 @@
     <Compile Include="GridMovimientos\MovimientoGridSalidaRMAViewModel.cs" />
     <Compile Include="GridMovimientos\MovimientoGridSalidasViewModel.cs" />
     <Compile Include="GridMovimientos\MovimientoGridSalidaVentaViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridTraspasoStockViewModel.cs" />
     <Compile Include="GridMovimientos\MovimientosGridViewModel.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />

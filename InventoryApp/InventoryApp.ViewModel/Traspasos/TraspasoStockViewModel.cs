@@ -6,6 +6,7 @@ using InventoryApp.Model;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
+using InventoryApp.ViewModel.GridMovimientos;
 
 namespace InventoryApp.ViewModel.Traspasos
 {
@@ -22,6 +23,7 @@ namespace InventoryApp.ViewModel.Traspasos
         private CatalogItemModel _itemModel;
         private CatalogTransporteModel _catalogTransporteModel;
         private CatalogServicioModel _catalogServicioModel;
+        private MovimientoGridTraspasoStockViewModel _movimientoTraspaso;
         private RelayCommand _addItemCommand;
         private RelayCommand _deleteItemCommand;
 
@@ -39,8 +41,8 @@ namespace InventoryApp.ViewModel.Traspasos
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
                 TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
-                mov.UNID_TIPO_MOVIMIENTO = 1;
-                this._movimientoModel.TipoMovimiento = mov;
+                mov.UNID_TIPO_MOVIMIENTO = 17;
+                this._movimientoModel.TipoMovimiento = mov;                
                 this._itemModel = new CatalogItemModel(new ItemDataMapper());
                 this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
                 this._catalogAlmacenDestinoModel = new CatalogAlmacenModel(dataMapper2);
@@ -59,6 +61,43 @@ namespace InventoryApp.ViewModel.Traspasos
                 throw ex;
             }   
             
+        }
+
+        public TraspasoStockViewModel(MovimientoGridTraspasoStockViewModel traspaso)
+        {
+            try
+            {
+                IDataMapper dataMapper = new SolicitanteDataMapper();
+                IDataMapper dataMapper2 = new AlmacenDataMapper();
+                IDataMapper dataMapper3 = new ProveedorDataMapper();
+                IDataMapper dataMapper4 = new ClienteDataMapper();
+                IDataMapper dataMapper5 = new TransporteDataMapper();
+                IDataMapper dataMapper6 = new ServicioDataMapper();
+
+                this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
+                this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
+                TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
+                mov.UNID_TIPO_MOVIMIENTO = 17;
+                this._movimientoModel.TipoMovimiento = mov;
+                this._movimientoTraspaso = traspaso;
+                this._itemModel = new CatalogItemModel(new ItemDataMapper());
+                this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
+                this._catalogAlmacenDestinoModel = new CatalogAlmacenModel(dataMapper2);
+                this._catalogProveedorDestinoModel = new CatalogProveedorModel(dataMapper3);
+                this._catalogClienteDestinoModel = new CatalogClienteModel(dataMapper4);
+                this._catalogTransporteModel = new CatalogTransporteModel(dataMapper5);
+                this._catalogServicioModel = new CatalogServicioModel(dataMapper6);
+            }
+            catch (ArgumentException a)
+            {
+
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         public ICommand AddItemCommand

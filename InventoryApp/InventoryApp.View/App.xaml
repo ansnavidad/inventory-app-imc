@@ -130,9 +130,10 @@
         <GridMovimientosViewModel:MovimientoGridSalidaRevisionViewModel x:Key="movimientoGridSalidaRevisionViewModel" />
         <GridMovimientosViewModel:MovimientoGridSalidaRMAViewModel x:Key="movimientoGridSalidaRMAViewModel" />        
         <GridMovimientosViewModel:MovimientoGridSalidaVentaViewModel x:Key="movimientoGridSalidaVentaViewModel" />
-     
+
         <GridMovimientosViewModel:MovimientoGridSalidasViewModel x:Key="movimientosSalidasGridViewModel" />
 
+        <GridMovimientosViewModel:MovimientoGridTraspasoStockViewModel x:Key="movimientoGridTraspasoStockViewModel" />
         <!--<TraspasosViewModel:TraspasoStockViewModel x:Key="traspasoStockViewModel" />-->
 
 
@@ -552,7 +553,11 @@
         <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaVentaViewModel}">
             <GridMovimientosView:GridSalidaVenta/>
         </DataTemplate>
-        
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridTraspasoStockViewModel}">
+            <GridMovimientosView:GridTraspasoStock/>
+        </DataTemplate>
+
 
 
 

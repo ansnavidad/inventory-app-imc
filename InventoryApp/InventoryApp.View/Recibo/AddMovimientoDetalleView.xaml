@@ -61,7 +61,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Categoria" Width="110" x:Name="numeroFactura" Binding="{Binding Path=Articulo.Categoria.CATEGORIA_NAME}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Equipo" Width="110" x:Name="equipoName" Binding="{Binding Path=Articulo.Equipo.EQUIPO_NAME}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Equipo" Width="110" x:Name="equipoName" Binding="{Binding Path=Articulo.Equipo.EQUIPO_NAME}" IsReadOnly="True"/>                    
                     <DataGridTextColumn Header="Marca" Width="110" x:Name="modeloName" Binding="{Binding Path=Articulo.Modelo.MODELO_NAME}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Articulo" Width="170" x:Name="marcaName" Binding="{Binding Path=Articulo.ArticuloName}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Cantidad Disponible" Width="120" x:Name="cantidad" Binding="{Binding Path=Cantidad}" IsReadOnly="False"/>

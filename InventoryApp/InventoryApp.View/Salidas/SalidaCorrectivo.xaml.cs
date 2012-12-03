@@ -18,7 +18,7 @@ namespace InventoryApp.View.Salidas
     /// <summary>
     /// Lógica de interacción para SalidaCorrectivo.xaml
     /// </summary>
-    public partial class SalidaCorrectivo : UserControl
+    public partial class SalidaCorrectivo : Window
     {
         public SalidaCorrectivo()
         {

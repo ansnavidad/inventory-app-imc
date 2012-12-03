@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="InventoryApp.View.Salidas.SalidaRMA"
+﻿<Window x:Class="InventoryApp.View.Salidas.SalidaRMA"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -73,4 +73,4 @@
         <!--<ComboBox DisplayMemberPath="TECNICO_NAME" Height="23" HorizontalAlignment="Right" ItemsSource="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=Tecnicos}" Margin="0,283,41,0" Name="comboBox3" SelectedIndex="0" SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_TECNICO" TabIndex="4" VerticalAlignment="Top" Width="176" />-->
     </Grid>
    
-</UserControl>
+</Window>

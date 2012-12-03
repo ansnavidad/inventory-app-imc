@@ -240,37 +240,38 @@ namespace InventoryApp.ViewModel
                         break;
                     //Salidad
                     case "Salida Renta":
-                        page = new Salidas.SalidaRentaViewModel();
+                        //page = new Salidas.SalidaRentaViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaRentaViewModel();
                         break;
                     case "Salida Demo":
-                        page = new Salidas.SalidaDemoViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaDemoViewModel();
                         break;
                     case "Salida Prestamo":
-                        page = new Salidas.SalidaPrestamoViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaPrestamoViewModel();
                         break;
                     case "Salida Venta":
-                        page = new Salidas.SalidaVentaViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaVentaViewModel();
                         break;
                     case "Salida RMA":
-                        page = new Salidas.SalidaRMAViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaRMAViewModel();
                         break;
                     case "Salida Revisión":
-                        page = new Salidas.SalidaRevisionViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaRevisionViewModel();
                         break;
                     case "Salida Pruebas":
-                        page = new Salidas.SalidaPruebasViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaPruebasViewModel();
                         break;
                     case "Salida Configuración":
-                        page = new Salidas.SalidaConfiguracionViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaConfiguracionViewModel();
                         break;
                     case "Salida Obsequio":
-                        page = new Salidas.SalidaObsequioViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaObsequioViewModel();
                         break;
                     case "Salida Correctivo":
-                        page = new Salidas.SalidaCorrectivoViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaCorrectivoViewModel();
                         break;
                     case "Entregado (Licencia Office)":
-                        page = new Salidas.SalidaOfficeViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaOfficeViewModel();
                         break;
                     //Traspasos
                     case "Traspaso Entre Almacenes":

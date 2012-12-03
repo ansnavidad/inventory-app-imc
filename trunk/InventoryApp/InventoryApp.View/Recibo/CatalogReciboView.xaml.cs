@@ -38,5 +38,13 @@ namespace InventoryApp.View.Recibo
             CatalogReciboViewModel viewModel = dataSource as CatalogReciboViewModel;
             return viewModel;
         }
+
+        private void dtGridMoneda_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DlgModifyReciboView dlg = new DlgModifyReciboView();
+            CatalogReciboViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            dlg.DataContext = viewModel.CreateModifyReciboViewModel();
+            dlg.ShowDialog();
+        }
     }
 }

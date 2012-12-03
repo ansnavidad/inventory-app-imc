@@ -545,6 +545,9 @@
     <Compile Include="Recibo\DlgAddReciboView.xaml.cs">
       <DependentUpon>DlgAddReciboView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Recibo\DlgModifyReciboView.xaml.cs">
+      <DependentUpon>DlgModifyReciboView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Recibo\ReciboView.xaml.cs">
       <DependentUpon>ReciboView.xaml</DependentUpon>
     </Compile>
@@ -1216,6 +1219,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Recibo\DlgAddReciboView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgModifyReciboView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

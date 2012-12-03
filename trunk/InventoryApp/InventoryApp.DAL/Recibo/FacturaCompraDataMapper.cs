@@ -8,6 +8,66 @@ namespace InventoryApp.DAL.Recibo
 {
     public class FacturaCompraDataMapper:IDataMapper
     {
+        public List<FACTURA> GetFacturaList(RECIBO recibo)
+        {
+            List<FACTURA> listFactura = new List<FACTURA>();
+
+            using (var entity = new TAE2Entities())
+            {
+                //entity.ContextOptions.ProxyCreationEnabled = false;
+                RECIBO selRecibo = (from o in entity.RECIBOes
+                                    where o.UNID_RECIBO == recibo.UNID_RECIBO
+                                    select o).FirstOrDefault();
+
+                //var res = selRecibo.RECIBO_MOVIMIENTO.cl
+                selRecibo.RECIBO_MOVIMIENTO.ToList().ForEach(rm =>
+                {
+                    //Generar las facturas detalles
+                    FixupCollection<FACTURA_DETALLE> facturasDetalle = new FixupCollection<FACTURA_DETALLE>();
+                    rm.FACTURA.FACTURA_DETALLE.ToList().ForEach(fd =>
+                    {
+                        facturasDetalle.Add(new FACTURA_DETALLE()
+                        {
+                            UNID_FACTURA_DETALE = fd.UNID_FACTURA_DETALE,
+                            UNID_FACTURA = fd.UNID_FACTURA,
+                            ARTICULO = new ARTICULO()
+                            {
+                                UNID_ARTICULO=fd.ARTICULO.UNID_ARTICULO,
+                                ARTICULO1=fd.ARTICULO.ARTICULO1,
+                                CATEGORIA=fd.ARTICULO.CATEGORIA,
+                                EQUIPO=fd.ARTICULO.EQUIPO,
+                                MARCA=fd.ARTICULO.MARCA,
+                                MODELO=fd.ARTICULO.MODELO
+                            },
+                            CANTIDAD=fd.CANTIDAD,
+                            DESCRIPCION=fd.DESCRIPCION,
+                            IMPUESTO_UNITARIO=fd.IMPUESTO_UNITARIO,
+                            IS_ACTIVE=fd.IS_ACTIVE,
+                            NUMERO=fd.NUMERO,
+                            PEDIMENTO=fd.PEDIMENTO,
+                            PRECIO_UNITARIO=fd.PRECIO_UNITARIO,
+                            UNIDAD=fd.UNIDAD
+                        });
+                    });
+
+                    listFactura.Add(new FACTURA() 
+                    {
+                        UNID_FACTURA=rm.FACTURA.UNID_FACTURA,
+                        FACTURA_DETALLE=facturasDetalle,
+                        FACTURA_NUMERO=rm.FACTURA.FACTURA_NUMERO,
+                        FECHA_FACTURA=rm.FACTURA.FECHA_FACTURA,
+                        IS_ACTIVE=rm.FACTURA.IS_ACTIVE,
+                        MONEDA=rm.FACTURA.MONEDA,
+                        PROVEEDOR=rm.FACTURA.PROVEEDOR,
+                        IVA_POR=rm.FACTURA.IVA_POR,
+                        NUMERO_PEDIMENTO=rm.FACTURA.NUMERO_PEDIMENTO
+                    });
+                });
+            }
+
+            return listFactura;
+        }
+
         public object getElements()
         {
             throw new NotImplementedException();

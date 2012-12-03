@@ -180,5 +180,39 @@ namespace InventoryApp.Model.Recibo
         }
         private ObservableCollection<ReciboItemModel> _Items;
         public const string ItemsPropertyName = "Items";
+
+        //Indica cuantos items tienen sku diferente de vaio
+        public int ContItemSku 
+        {
+            get
+            {
+                int _ContItemSku = 0;
+                var res = (from o in this._Items
+                           where !String.IsNullOrEmpty(o.Sku)
+                           select o).ToList();
+                if (res != null)
+                {
+                    _ContItemSku = res.Count;
+                }
+                return _ContItemSku;
+            }
+        }
+
+        //Indica cuantos items tienen numero de serie diferente de vaio
+        public int ContItemSerie
+        {
+            get
+            {
+                int _ContItemSerie = 0;
+                var res = (from o in this._Items
+                           where !String.IsNullOrEmpty(o.NumeroSerie)
+                           select o).ToList();
+                if (res != null)
+                {
+                    _ContItemSerie = res.Count;
+                }
+                return _ContItemSerie;
+            }
+        }
     }
 }

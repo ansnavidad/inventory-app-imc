@@ -81,5 +81,35 @@ namespace InventoryApp.Model.Recibo
         }
         private string _PO;
         public const string POPropertyName = "PO";
+
+        public SolicitanteModel Solicitante
+        {
+            get { return _Solicitante; }
+            set
+            {
+                if (_Solicitante != value)
+                {
+                    _Solicitante = value;
+                    OnPropertyChanged(SolicitantePropertyName);
+                }
+            }
+        }
+        private SolicitanteModel _Solicitante;
+        public const string SolicitantePropertyName = "Solicitante";
+
+        public ClienteModel Cliente
+        {
+            get { return _Cliente; }
+            set
+            {
+                if (_Cliente != value)
+                {
+                    _Cliente = value;
+                    OnPropertyChanged(ClientePropertyName);
+                }
+            }
+        }
+        private ClienteModel _Cliente;
+        public const string ClientePropertyName = "Cliente";
     }
 }

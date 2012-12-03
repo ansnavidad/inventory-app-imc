@@ -7,7 +7,7 @@
              mc:Ignorable="d"              
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <GridLength x:Key="descColWidth">120</GridLength>
+        <GridLength x:Key="descColWidth">150</GridLength>
         <GridLength x:Key="captureColWidth">200</GridLength>
         <GridLength x:Key="capRowHeight">27</GridLength>
         <sys:Int32 x:Key="allCapColumnSpan">5</sys:Int32>
@@ -65,7 +65,7 @@
             <TextBlock Grid.Column="0" Grid.Row="5" Height="23" HorizontalAlignment="Left" Text="Precio Unitario" VerticalAlignment="Top" />
             <TextBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding PrecioUnitario,Mode=TwoWay}" />
 
-            <TextBlock Grid.Column="0" Grid.Row="6" Height="23" HorizontalAlignment="Left" Text="Impuesto Unitario" VerticalAlignment="Top" />
+            <TextBlock Grid.Column="0" Grid.Row="6" Height="23" HorizontalAlignment="Left" Text="Monto Impuesto Unitario" VerticalAlignment="Top" />
             <TextBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding ImpuestoUnitario,Mode=TwoWay}" />
 
             <TextBlock Grid.Column="0" Grid.Row="7" Height="23" HorizontalAlignment="Left" Text="Unidad" VerticalAlignment="Top" />

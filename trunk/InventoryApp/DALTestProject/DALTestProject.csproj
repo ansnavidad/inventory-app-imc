@@ -70,6 +70,7 @@
     <Compile Include="EquipoDataMapperTest.cs" />
     <Compile Include="EstatusDataMapperTest.cs" />
     <Compile Include="EmpresaDataMapperTest.cs" />
+    <Compile Include="FacturaCompraDataMapperTest.cs" />
     <Compile Include="ItemDataMapperTest.cs" />
     <Compile Include="ItemStatusDataMapperTest.cs" />
     <Compile Include="MarcaDataMapperTest.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="MonedaDataMapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProyectoDataMapperTest.cs" />
+    <Compile Include="ReciboDataMapperTest.cs" />
     <Compile Include="SolicitanteDataMapperTest.cs" />
     <Compile Include="TipoCotizacionDataMapperTest.cs" />
     <Compile Include="TipoMovimientoDataMapperTest.cs" />

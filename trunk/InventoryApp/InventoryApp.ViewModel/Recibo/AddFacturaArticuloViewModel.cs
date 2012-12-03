@@ -272,6 +272,11 @@ namespace InventoryApp.ViewModel.Recibo
                         UNID_MARCA = o.MARCA.UNID_MARCA
                         ,
                         MARCA_NAME = o.MARCA.MARCA_NAME
+                    },
+                    Modelo = new MODELO()
+                    {
+                        UNID_MODELO=o.MODELO.UNID_MODELO
+                        ,MODELO_NAME=o.MODELO.MODELO_NAME
                     }
                 }));
             }

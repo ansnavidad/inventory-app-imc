@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Globalization;
+using System.Threading;
 using InventoryApp.ViewModel;
 
 namespace InventoryApp.View
@@ -23,18 +25,9 @@ namespace InventoryApp.View
         public MainWindow()
         {
             InitializeComponent();
+            //CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
+            //ci.DateTimeFormat.ShortDatePattern = "dd-MM-yyyy";
+            //Thread.CurrentThread.CurrentCulture = ci;
         }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        //private void expander3_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //IPageViewModel page = new InventoryApp.ViewModel.GridMovimientos.MovimientosGridViewModel();
-
-        //    //this.contentControl1.Content = page;
-        //}
     }
 }

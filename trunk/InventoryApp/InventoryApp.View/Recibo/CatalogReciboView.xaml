@@ -34,9 +34,10 @@
                     Width="75" Command="{Binding DeleteMonedaCommand,Mode=OneWay}"/>-->
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridMoneda"
-                  SelectedItem="{Binding CatalogMonedaModel.SelectedMoneda, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedRecibo, Mode=TwoWay}"
                   VerticalAlignment="Stretch" ItemsSource="{Binding Recibos}"
                   Grid.Column="0" Grid.ColumnSpan="3"
+                  MouseDoubleClick="dtGridMoneda_MouseDoubleClick"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                   RowStyle="{StaticResource RowStyle}">
             <DataGrid.Columns>

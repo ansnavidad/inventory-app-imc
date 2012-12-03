@@ -32,6 +32,41 @@ namespace InventoryApp.DAL
             }
         }
 
+        public List<SOLICITANTE> GetSolicitanteList(EMPRESA empresa)
+        {
+            List<SOLICITANTE> listSolicitantes = new List<SOLICITANTE>();
+            using (var entitie = new TAE2Entities())
+            {
+
+                EMPRESA emp = (from e in entitie.EMPRESAs
+                             where e.UNID_EMPRESA == empresa.UNID_EMPRESA
+                             select e).First<EMPRESA>();
+
+                emp.SOLICITANTEs.ToList().ForEach(s => 
+                {
+                    listSolicitantes.Add(new SOLICITANTE()
+                    {
+                        UNID_SOLICITANTE = s.UNID_SOLICITANTE,
+                        SOLICITANTE_NAME = s.SOLICITANTE_NAME,
+                        DEPARTAMENTO = new DEPARTAMENTO()
+                        {
+                            UNID_DEPARTAMENTO = s.DEPARTAMENTO.UNID_DEPARTAMENTO,
+                            DEPARTAMENTO_NAME = s.DEPARTAMENTO.DEPARTAMENTO_NAME
+                        },
+                        EMPRESA = new EMPRESA()
+                        {
+                            UNID_EMPRESA=s.EMPRESA.UNID_EMPRESA,
+                            EMPRESA_NAME=s.EMPRESA.EMPRESA_NAME
+                        }
+                    });
+                });
+            }
+
+            return listSolicitantes;
+        }
+
+         
+
         public object getElement(object element)
         {
             

@@ -785,6 +785,8 @@
           <Property Name="UNID_PROVEEDOR" Type="bigint" />
           <Property Name="UNID_MONEDA" Type="bigint" />
           <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="NUMERO_PEDIMENTO" Type="nvarchar" MaxLength="64" />
+          <Property Name="IVA_POR" Type="float" />
         </EntityType>
         <EntityType Name="FACTURA_DETALLE">
           <Key>
@@ -2444,6 +2446,8 @@
           <NavigationProperty Name="RECIBO_MOVIMIENTO" Relationship="TAE2Model.LOT_FACTURA_INV_RECIBO_MOVIMIENTO_FK1" FromRole="FACTURA" ToRole="RECIBO_MOVIMIENTO" />
           <NavigationProperty Name="FACTURA_DETALLE" Relationship="TAE2Model.LOT_FACTURA_LOT_FACTURA_DETALLE_FK1" FromRole="FACTURA" ToRole="FACTURA_DETALLE" />
           <NavigationProperty Name="LOTE" Relationship="TAE2Model.LOT_LOTE_LOT_FACTURA_FK1" FromRole="FACTURA" ToRole="LOTE" />
+          <Property Type="String" Name="NUMERO_PEDIMENTO" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="IVA_POR" />
         </EntityType>
         <EntityType Name="FACTURA_DETALLE">
           <Key>
@@ -3721,6 +3725,8 @@
           <EntitySetMapping Name="FACTURAs">
             <EntityTypeMapping TypeName="TAE2Model.FACTURA">
               <MappingFragment StoreEntitySet="FACTURA">
+                <ScalarProperty Name="IVA_POR" ColumnName="IVA_POR" />
+                <ScalarProperty Name="NUMERO_PEDIMENTO" ColumnName="NUMERO_PEDIMENTO" />
                 <ScalarProperty Name="UNID_FACTURA" ColumnName="UNID_FACTURA" />
                 <ScalarProperty Name="UNID_LOTE" ColumnName="UNID_LOTE" />
                 <ScalarProperty Name="FACTURA_NUMERO" ColumnName="FACTURA_NUMERO" />

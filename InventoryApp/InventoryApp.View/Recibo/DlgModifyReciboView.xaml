@@ -1,0 +1,15 @@
+﻿<Window x:Class="InventoryApp.View.Recibo.DlgModifyReciboView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:InventoryApp.View.Recibo"
+        Title="Modificar Recibo" Height="600" Width="700">
+    <DockPanel>
+        <ContentControl HorizontalAlignment="Stretch" Name="contentControl1" VerticalAlignment="Stretch" DockPanel.Dock="Top">
+            <my:AddReciboView />
+        </ContentControl>
+        <DockPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" DockPanel.Dock="Bottom" >
+            <Button Content="Guardar"  Height="23" Width="75" HorizontalAlignment="Left" Click="Button_Click" />
+            <Button Content="Cancelar" Height="23"  Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Click="Button_Click_1" />
+        </DockPanel>
+    </DockPanel>
+</Window>

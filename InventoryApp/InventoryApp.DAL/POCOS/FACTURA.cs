@@ -117,6 +117,18 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
+    
+        public virtual string NUMERO_PEDIMENTO
+        {
+            get;
+            set;
+        }
+    
+        public virtual Nullable<double> IVA_POR
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

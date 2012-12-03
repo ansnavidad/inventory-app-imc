@@ -116,6 +116,7 @@ namespace InventoryApp.ViewModel.Recibo
                 if (_FechaFactura == null)
                 {
                     _FechaFactura = DateTime.Now;
+                    
                 }
                 return _FechaFactura;
             }
@@ -378,6 +379,7 @@ namespace InventoryApp.ViewModel.Recibo
         public bool CanAddFacturaArticuloCommand()
         {
             bool canDeleteFacturaDetalle = false;
+
 
             if (this.SelectedProveedor != null)
             {

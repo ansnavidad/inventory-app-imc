@@ -13,6 +13,7 @@ namespace InventoryApp.ViewModel.Recibo
 {
     public class AddReciboViewModel : ViewModelBase
     {
+        private const int MovimientoRecibo = 16;
         #region RelayCommands
         public ICommand AddMovimientoCmd
         {
@@ -63,7 +64,8 @@ namespace InventoryApp.ViewModel.Recibo
                 UNID_RECIBO = this.UnidRecibo,
                 FECHA_CREACION = this.FechaCreacion,
                 TT = this.TroubleTicket,
-                PO=this.PO
+                PO = this.PO,
+                UNID_SOLICITANTE = (this.SelectedSolicitante.UnidSolicitante == 0) ? (long?)null : this.SelectedSolicitante.UnidSolicitante
             };
             ReciboDataMapper reciboDataMapper = new ReciboDataMapper();
             reciboDataMapper.insertElement(recibo);
@@ -88,7 +90,7 @@ namespace InventoryApp.ViewModel.Recibo
                     ,
                     TT = this.TroubleTicket
                     ,
-                    UNID_TIPO_MOVIMIENTO = 1
+                    UNID_TIPO_MOVIMIENTO = MovimientoRecibo
                 };
                 MovimientoDataMapper movDataMapper = new MovimientoDataMapper();
                 movDataMapper.insertElement(movimiento);
@@ -334,7 +336,7 @@ namespace InventoryApp.ViewModel.Recibo
         } 
         #endregion
 
-        private CatalogReciboViewModel _CatalogReciboViewModel;
+        protected CatalogReciboViewModel _CatalogReciboViewModel;
 
         public DateTime FechaCreacion
         {
@@ -376,7 +378,7 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private long _UnidRecibo;
+        protected long _UnidRecibo;
         public const string UnidReciboPropertyName = "UnidRecibo";
 
         public ObservableCollection<SolicitanteModel> Solicitantes
@@ -391,7 +393,7 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private ObservableCollection<SolicitanteModel> _Solicitantes;
+        protected ObservableCollection<SolicitanteModel> _Solicitantes;
         public const string SolicitantesPropertyName = "Solicitantes";
 
         public SolicitanteModel SelectedSolicitante
@@ -406,7 +408,7 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private SolicitanteModel _SelectedSolicitante;
+        protected SolicitanteModel _SelectedSolicitante;
         public const string SelectedSolicitantePropertyName = "SelectedSolicitante";
 
         public ObservableCollection<ClienteModel> Clientes
@@ -421,8 +423,39 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private ObservableCollection<ClienteModel> _Clientes;
+        protected ObservableCollection<ClienteModel> _Clientes;
         public const string ClientesPropertyName = "Clientes";
+
+        public ObservableCollection<Model.EmpresaModel> Empresas
+        {
+            get { return _Empresas; }
+            set
+            {
+                if (_Empresas != value)
+                {
+                    _Empresas = value;
+                    OnPropertyChanged(EmpresasPropertyName);
+                }
+            }
+        }
+        protected ObservableCollection<Model.EmpresaModel> _Empresas;
+        public const string EmpresasPropertyName = "Empresas";
+
+        public Model.EmpresaModel SelectedEmpresa
+        {
+            get { return _SelectedEmpresa; }
+            set
+            {
+                if (_SelectedEmpresa != value)
+                {
+                    _SelectedEmpresa = value;
+                    OnPropertyChanged(SelectedEmpresaPropertyName);
+                    this.Solicitantes = this.GetSolicitantes(_SelectedEmpresa);
+                }
+            }
+        }
+        protected Model.EmpresaModel _SelectedEmpresa;
+        public const string SelectedEmpresaPropertyName = "SelectedEmpresa";
 
         public ClienteModel SelectedCliente
         {
@@ -436,7 +469,7 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private ClienteModel _SelectedCliente;
+        protected ClienteModel _SelectedCliente;
         public const string SelectedClientePropertyName = "SelectedCliente";
 
         public string TroubleTicket
@@ -451,7 +484,7 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private string _TroubleTicket;
+        protected string _TroubleTicket;
         public const string TroubleTicketPropertyName = "TroubleTicket";
 
         public string PO
@@ -466,7 +499,7 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private string _PO;
+        protected string _PO;
         public const string POPropertyName = "PO";
 
         public ObservableCollection<PedimentoModel> Pedimentos
@@ -481,7 +514,7 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private ObservableCollection<PedimentoModel> _Pedimentos;
+        protected ObservableCollection<PedimentoModel> _Pedimentos;
         public const string PedimentosPropertyName = "Pedimentos";
 
         public string PedimentoImpo
@@ -496,7 +529,7 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private string _PedimentoImpo;
+        protected string _PedimentoImpo;
         public const string PedimentoImpoPropertyName = "PedimentoImpo";
 
         public string PedimentoExpo
@@ -511,7 +544,7 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private string _PedimentoExpo;
+        protected string _PedimentoExpo;
         public const string PedimentoExpoPropertyName = "PedimentoExpo";
 
         public ObservableCollection<FacturaCompraModel> Facturas
@@ -526,7 +559,7 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private ObservableCollection<FacturaCompraModel> _Facturas;
+        protected ObservableCollection<FacturaCompraModel> _Facturas;
         public const string FacturasPropertyName = "Facturas";
 
         public ObservableCollection<InventoryApp.Model.Recibo.MovimientoModel> Movimientos
@@ -541,7 +574,7 @@ namespace InventoryApp.ViewModel.Recibo
                 }
             }
         }
-        private ObservableCollection<InventoryApp.Model.Recibo.MovimientoModel> _Movimiento;
+        protected ObservableCollection<InventoryApp.Model.Recibo.MovimientoModel> _Movimiento;
         public const string MovimientoPropertyName = "MovimientoModel";
 
         public AddReciboViewModel()
@@ -557,10 +590,39 @@ namespace InventoryApp.ViewModel.Recibo
 
         public void init()
         {
-            this._Solicitantes = this.GetSolicitantes();
+            this._Solicitantes = new ObservableCollection<SolicitanteModel>();//this.GetSolicitantes();
             this._Clientes = this.GetClientes();
             this._Facturas = new ObservableCollection<FacturaCompraModel>();
             this._Movimiento = new ObservableCollection<InventoryApp.Model.Recibo.MovimientoModel>();
+            this._Empresas = this.GetEmpresas();
+        }
+
+        private ObservableCollection<Model.EmpresaModel> GetEmpresas()
+        {
+            ObservableCollection<Model.EmpresaModel> empresas = new ObservableCollection<EmpresaModel>();
+            EmpresaDataMapper emDataMapper = new EmpresaDataMapper();
+
+            try
+            {
+                List<EMPRESA> listEmpresa = (List<EMPRESA>)emDataMapper.getElements();
+                if (listEmpresa != null)
+                {
+                    listEmpresa.ForEach(o =>
+                    {
+                        empresas.Add(new EmpresaModel(emDataMapper)
+                        {
+                            UnidEmpresa = o.UNID_EMPRESA,
+                            EmpresaName = o.EMPRESA_NAME
+                        });
+                    });
+                }
+            }
+            catch (Exception)
+            {
+                ;
+            }
+
+            return empresas;
         }
 
         public ObservableCollection<SolicitanteModel> GetSolicitantes()
@@ -571,6 +633,48 @@ namespace InventoryApp.ViewModel.Recibo
             {
                 SolicitanteDataMapper solDataMapper = new SolicitanteDataMapper();
                 List<SOLICITANTE> listSolicitante = (List<SOLICITANTE>)solDataMapper.getElements();
+                listSolicitante.ForEach(o => solicitantes.Add(new SolicitanteModel(solDataMapper)
+                {
+                    UnidSolicitante = o.UNID_SOLICITANTE
+                    ,
+                    SolicitanteName = o.SOLICITANTE_NAME
+                    ,
+                    Empresa = new EMPRESA()
+                    {
+                        UNID_EMPRESA = o.EMPRESA.UNID_EMPRESA
+                        ,
+                        EMPRESA_NAME = o.EMPRESA.EMPRESA_NAME
+                    }
+                    ,
+                    Departamento = new DEPARTAMENTO()
+                    {
+                        UNID_DEPARTAMENTO = o.DEPARTAMENTO.UNID_DEPARTAMENTO
+                        ,
+                        DEPARTAMENTO_NAME = o.DEPARTAMENTO.DEPARTAMENTO_NAME
+                    }
+                }));
+            }
+            catch (Exception)
+            {
+                ;
+            }
+
+            return solicitantes;
+        }
+
+        public ObservableCollection<SolicitanteModel> GetSolicitantes(Model.EmpresaModel empresa)
+        {
+            ObservableCollection<SolicitanteModel> solicitantes = new ObservableCollection<SolicitanteModel>();
+
+            try
+            {
+                SolicitanteDataMapper solDataMapper = new SolicitanteDataMapper();
+                List<SOLICITANTE> listSolicitante = (List<SOLICITANTE>)solDataMapper.GetSolicitanteList(new EMPRESA() 
+                {
+                    UNID_EMPRESA=empresa.UnidEmpresa,
+                    EMPRESA_NAME=empresa.EmpresaName
+                });
+
                 listSolicitante.ForEach(o => solicitantes.Add(new SolicitanteModel(solDataMapper)
                 {
                     UnidSolicitante = o.UNID_SOLICITANTE

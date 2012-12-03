@@ -7,6 +7,7 @@ using InventoryApp.Model.Recibo;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
+using InventoryApp.Model;
 
 namespace InventoryApp.ViewModel.Recibo
 {
@@ -41,6 +42,21 @@ namespace InventoryApp.ViewModel.Recibo
         private ObservableCollection<ReciboModel> _Recibos;
         public const string RecibosPropertyName = "Recibos";
 
+        public ReciboModel SelectedRecibo
+        {
+            get { return _SelectedRecibo; }
+            set
+            {
+                if (_SelectedRecibo != value)
+                {
+                    _SelectedRecibo = value;
+                    OnPropertyChanged(SelectedReciboPropertyName);
+                }
+            }
+        }
+        private ReciboModel _SelectedRecibo;
+        public const string SelectedReciboPropertyName = "SelectedRecibo";
+
         public CatalogReciboViewModel()
         {
             this.init();
@@ -61,13 +77,27 @@ namespace InventoryApp.ViewModel.Recibo
                 List<RECIBO> reciboList = rmp.getListElements();
                 reciboList.ForEach(o => recibos.Add(new ReciboModel()
                     {
-                        FechaCreacion = (DateTime)o.FECHA_CREACION
-                        ,
-                        UnidRecibo = o.UNID_RECIBO
-                        ,
-                        TroubleTicket=o.TT
-                        ,PO=o.PO
-                    }));
+                        FechaCreacion = (DateTime)o.FECHA_CREACION,
+                        UnidRecibo = o.UNID_RECIBO,
+                        TroubleTicket = o.TT,
+                        PO = o.PO,
+                        Solicitante = (o.SOLICITANTE!=null)? new SolicitanteModel(new SolicitanteDataMapper())
+                        {
+                            UnidSolicitante = o.SOLICITANTE.UNID_SOLICITANTE,
+                            SolicitanteName = o.SOLICITANTE.SOLICITANTE_NAME,
+                            Empresa = new EMPRESA()
+                            {
+                                UNID_EMPRESA = o.SOLICITANTE.EMPRESA.UNID_EMPRESA,
+                                EMPRESA_NAME = o.SOLICITANTE.EMPRESA.EMPRESA_NAME
+                            },
+                            Departamento = new DEPARTAMENTO()
+                            {
+                                UNID_DEPARTAMENTO=o.SOLICITANTE.DEPARTAMENTO.UNID_DEPARTAMENTO,
+                                DEPARTAMENTO_NAME = o.SOLICITANTE.DEPARTAMENTO.DEPARTAMENTO_NAME
+                            }
+                        }:null
+                    })
+                );
             }
             catch (Exception ex)
             {
@@ -82,6 +112,12 @@ namespace InventoryApp.ViewModel.Recibo
             AddReciboViewModel addReciboViewModel = new AddReciboViewModel(this);
 
             return addReciboViewModel;
+        }
+
+        public ModifyReciboViewModel CreateModifyReciboViewModel()
+        {
+            ModifyReciboViewModel modifyReciboViewModel = new ModifyReciboViewModel(this);
+            return modifyReciboViewModel;
         }
 
         public void updateCollection()

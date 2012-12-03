@@ -237,7 +237,9 @@ namespace InventoryApp.Model.Recibo
                     FACTURA_NUMERO = this._NumeroFactura,
                     FECHA_FACTURA = this._FechaFactura,
                     UNID_PROVEEDOR = this._Proveedor.UnidProveedor,
-                    UNID_MONEDA = this._Moneda.UnidMoneda
+                    UNID_MONEDA = this._Moneda.UnidMoneda,
+                    NUMERO_PEDIMENTO=this._NumeroPedimento,
+                    IVA_POR=this._PorIva
                 });
             }
         }

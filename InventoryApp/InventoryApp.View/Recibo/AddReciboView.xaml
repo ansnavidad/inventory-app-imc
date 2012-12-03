@@ -57,20 +57,23 @@
             <TextBlock Grid.Column="3" Grid.Row="1" Height="23" HorizontalAlignment="Left"  Text="Fecha" VerticalAlignment="Top" />
             <TextBlock Grid.Column="4" Grid.Row="1" Height="23" HorizontalAlignment="Left"  Text="{Binding FechaCreacion}" VerticalAlignment="Top"  />
 
-            <TextBlock Grid.Column="0" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Solicitante" VerticalAlignment="Top" />
-            <ComboBox Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Solicitantes}" SelectedItem="{Binding SelectedSolicitante, Mode=TwoWay}" DisplayMemberPath="SolicitanteName"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Empresa" VerticalAlignment="Top" />
+            <ComboBox Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Empresas}" SelectedItem="{Binding SelectedEmpresa, Mode=TwoWay}" DisplayMemberPath="EmpresaName"/>
+            
+            <TextBlock Grid.Column="0" Grid.Row="3" Height="23" HorizontalAlignment="Left" Text="Solicitante" VerticalAlignment="Top" />
+            <ComboBox Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Solicitantes}" SelectedItem="{Binding SelectedSolicitante, Mode=TwoWay}" DisplayMemberPath="SolicitanteName"/>
 
             <TextBlock Grid.Column="3" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Area Solicitante" VerticalAlignment="Top" />
             <TextBlock Grid.Column="4" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="{Binding SelectedSolicitante.Departamento.DEPARTAMENTO_NAME}" VerticalAlignment="Top" />
 
-            <TextBlock Grid.Column="0" Grid.Row="3" Height="23" HorizontalAlignment="Left" Text="Cliente" VerticalAlignment="Top" />
-            <ComboBox Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Clientes}" SelectedItem="{Binding SelectedCliente, Mode=TwoWay}" DisplayMemberPath="ClienteName"/>
+            <!--<TextBlock Grid.Column="0" Grid.Row="4" Height="23" HorizontalAlignment="Left" Text="Cliente" VerticalAlignment="Top" />
+            <ComboBox Grid.Column="1" Grid.Row="4" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Clientes}" SelectedItem="{Binding SelectedCliente, Mode=TwoWay}" DisplayMemberPath="ClienteName"/>-->
 
-            <TextBlock Grid.Column="0" Grid.Row="4" Height="23" HorizontalAlignment="Left" Text="Trouble Ticket" VerticalAlignment="Top" />
-            <TextBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding TroubleTicket,Mode=TwoWay}" />
+            <TextBlock Grid.Column="0" Grid.Row="5" Height="23" HorizontalAlignment="Left" Text="Trouble Ticket" VerticalAlignment="Top" />
+            <TextBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding TroubleTicket,Mode=TwoWay}" />
 
-            <TextBlock Grid.Column="3" Grid.Row="4" Height="23" HorizontalAlignment="Left" Text="PO" VerticalAlignment="Top" />
-            <TextBox Grid.Column="4" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding PO,Mode=TwoWay}" />
+            <TextBlock Grid.Column="3" Grid.Row="5" Height="23" HorizontalAlignment="Left" Text="PO" VerticalAlignment="Top" />
+            <TextBox Grid.Column="4" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding PO,Mode=TwoWay}" />
         </Grid>
 
         <!-- información del pedimento -->
@@ -191,10 +194,13 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Folio" Width="150" DisplayMemberBinding="{Binding Path=UnidMovimiento}" />
+                        <GridViewColumn Header="Factura" Width="150" DisplayMemberBinding="{Binding Path=Factura.NumeroFactura}" />
                         <GridViewColumn Header="Fecha" Width="150" DisplayMemberBinding="{Binding Path=FechaCaptura}" />
                         <GridViewColumn Header="Origen" Width="150" DisplayMemberBinding="{Binding Path=Origen.OrigenName}" />
                         <GridViewColumn Header="Destino" Width="150" DisplayMemberBinding="{Binding Path=DestinoAlmacen.AlmacenName}" />
                         <GridViewColumn Header="Cantidad Items" Width="150" DisplayMemberBinding="{Binding Path=CantidadItems}" />
+                        <GridViewColumn Header="Sku Capturados" Width="150" DisplayMemberBinding="{Binding Path=ContItemSku}" />
+                        <GridViewColumn Header="# Serie Capturados" Width="150" DisplayMemberBinding="{Binding Path=ContItemSerie}" />
                     </GridView>
                 </ListView.View>
             </ListView>

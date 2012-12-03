@@ -55,7 +55,7 @@
             <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding NumeroFactura, Mode=TwoWay}" />
 
             <TextBlock Grid.Column="3" Grid.Row="1" Height="23" HorizontalAlignment="Left" Text="Fecha de Factura" VerticalAlignment="Top" />
-            <DatePicker Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding FechaFactura, Mode=TwoWay}" />
+            <DatePicker Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectedDate="{Binding FechaFactura, Mode=TwoWay}" />
 
             <TextBlock Grid.Column="0" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Proveedor" VerticalAlignment="Top" />
             <ComboBox Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Proveedores}" SelectedItem="{Binding SelectedProveedor,Mode=TwoWay}" DisplayMemberPath="ProveedorName" Text="{Binding SelectedProveedor.ProveedorName}" IsEnabled="{Binding CanSelecteProveedor}" />

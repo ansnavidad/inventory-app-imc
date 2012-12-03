@@ -18,7 +18,7 @@ namespace InventoryApp.View.Salidas
     /// <summary>
     /// Lógica de interacción para SalidaRevision.xaml
     /// </summary>
-    public partial class SalidaRevision : UserControl
+    public partial class SalidaRevision : Window
     {
         public SalidaRevision()
         {

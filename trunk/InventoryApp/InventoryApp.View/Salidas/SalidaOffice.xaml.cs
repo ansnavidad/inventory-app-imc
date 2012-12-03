@@ -18,7 +18,7 @@ namespace InventoryApp.View.Salidas
     /// <summary>
     /// Lógica de interacción para SalidaOffice.xaml
     /// </summary>
-    public partial class SalidaOffice : UserControl
+    public partial class SalidaOffice : Window
     {
         public SalidaOffice()
         {

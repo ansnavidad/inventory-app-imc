@@ -119,6 +119,18 @@
         <GridMovimientosViewModel:MovimientoGridEntradasDesinstalacionViewModel x:Key="movimientosEntradasDesinstalacionGridViewModel" />
         <GridMovimientosViewModel:MovimientoGridEntradasDevolucionViewModel x:Key="movimientosEntradasDevolucionGridViewModel" />
 
+        <GridMovimientosViewModel:MovimientoGridSalidaConfiguracionViewModel x:Key="movimientoGridSalidaConfiguracionViewModel" />
+        <GridMovimientosViewModel:MovimientoGridSalidaCorrectivoViewModel x:Key="movimientoGridSalidaCorrectivoViewModel" />
+        <GridMovimientosViewModel:MovimientoGridSalidaDemoViewModel x:Key="movimientoGridSalidaDemoViewModel" />
+        <GridMovimientosViewModel:MovimientoGridSalidaObsequioViewModel x:Key="movimientoGridSalidaObsequioViewModel" />
+        <GridMovimientosViewModel:MovimientoGridSalidaOfficeViewModel x:Key="movimientoGridSalidaOfficeViewModel" />
+        <GridMovimientosViewModel:MovimientoGridSalidaPrestamoViewModel x:Key="movimientoGridSalidaPrestamoViewModel" />
+        <GridMovimientosViewModel:MovimientoGridSalidaPruebasViewModel x:Key="movimientoGridSalidaPruebasViewModel" />
+        <GridMovimientosViewModel:MovimientoGridSalidaRentaViewModel x:Key="movimientoGridSalidaRentaViewModel" />
+        <GridMovimientosViewModel:MovimientoGridSalidaRevisionViewModel x:Key="movimientoGridSalidaRevisionViewModel" />
+        <GridMovimientosViewModel:MovimientoGridSalidaRMAViewModel x:Key="movimientoGridSalidaRMAViewModel" />        
+        <GridMovimientosViewModel:MovimientoGridSalidaVentaViewModel x:Key="movimientoGridSalidaVentaViewModel" />
+     
         <GridMovimientosViewModel:MovimientoGridSalidasViewModel x:Key="movimientosSalidasGridViewModel" />
 
         <!--<TraspasosViewModel:TraspasoStockViewModel x:Key="traspasoStockViewModel" />-->
@@ -490,6 +502,69 @@
         <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridEntradasDevolucionViewModel}">
             <GridMovimientosView:EntradasDevolucion/>
         </DataTemplate>
+
+
+
+
+
+
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaConfiguracionViewModel}">
+            <GridMovimientosView:GridSalidaConfiguracion/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaCorrectivoViewModel}">
+            <GridMovimientosView:GridSalidaCorrectivo/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaDemoViewModel}">
+            <GridMovimientosView:GridSalidaDemo/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaObsequioViewModel}">
+            <GridMovimientosView:GridSalidaObsequio/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaOfficeViewModel}">
+            <GridMovimientosView:GridSalidaOffice/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaPrestamoViewModel}">
+            <GridMovimientosView:GridSalidaPrestamo/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaPruebasViewModel}">
+            <GridMovimientosView:GridSalidaPruebas/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaRentaViewModel}">
+            <GridMovimientosView:GridSalidaRenta/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaRevisionViewModel}">
+            <GridMovimientosView:GridSalidaRevision/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaRMAViewModel}">
+            <GridMovimientosView:GridSalidaRMA/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaVentaViewModel}">
+            <GridMovimientosView:GridSalidaVenta/>
+        </DataTemplate>
+        
+
+
+
+
+
+
+
+
+
+
+
+
 
         <DataTemplate DataType="{x:Type reciboViewModel:CatalogReciboViewModel}">
             <reciboViews:CatalogReciboView/>

@@ -18,7 +18,7 @@ namespace InventoryApp.View.Salidas
     /// <summary>
     /// Lógica de interacción para SalidaObsequio.xaml
     /// </summary>
-    public partial class SalidaObsequio : UserControl
+    public partial class SalidaObsequio : Window
     {
         public SalidaObsequio()
         {

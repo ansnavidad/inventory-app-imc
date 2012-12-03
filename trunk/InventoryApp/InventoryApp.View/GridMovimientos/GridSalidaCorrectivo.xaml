@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="InventoryApp.View.GridMovimientos.GridSalidaCorrectivo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             DataContext="{StaticResource movimientoGridSalidaCorrectivoViewModel}"
+             mc:Ignorable="d"              
+             d:DesignHeight="900" d:DesignWidth="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Style="{StaticResource titleLabel}" Content="Últimas Salidas Realizadas" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <Button  Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" VerticalAlignment="Stretch" 
+                 Width="75"  Grid.Row="0" Grid.Column="2" Command="{Binding AddReciboCmd}" Click="btnNuevo_Click" />
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Margin="0" Name="dtGridMovimiento"
+                  ItemsSource="{Binding CatalogMovimientoModel.CatalogMovimiento}"
+                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Últimas Salidas" Width="*" x:Name="tipoMoviento" Binding="{Binding Path=TipoMovimiento}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Fecha" Width="*" x:Name="fecha" Binding="{Binding Path=Fecha}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Origen" Width="*" x:Name="procedencia" Binding="{Binding Path=Procedencia}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Destino" Width="*" x:Name="destino" Binding="{Binding Path=Destino}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Total Items" Width=".5*" x:Name="totalItems" Binding="{Binding Path=TotalItems}" IsReadOnly="True"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

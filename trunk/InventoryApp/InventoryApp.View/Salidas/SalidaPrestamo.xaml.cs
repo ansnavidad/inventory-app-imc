@@ -18,7 +18,7 @@ namespace InventoryApp.View.Salidas
     /// <summary>
     /// Lógica de interacción para SalidaPrestamo.xaml
     /// </summary>
-    public partial class SalidaPrestamo : UserControl
+    public partial class SalidaPrestamo : Window
     {
         public SalidaPrestamo()
         {

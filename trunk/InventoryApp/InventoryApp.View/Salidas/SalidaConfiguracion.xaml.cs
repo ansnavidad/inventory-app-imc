@@ -20,7 +20,7 @@ namespace InventoryApp.View.Salidas
     /// <summary>
     /// Lógica de interacción para SalidaConfiguracion.xaml
     /// </summary>
-    public partial class SalidaConfiguracion : UserControl
+    public partial class SalidaConfiguracion : Window
     {
         public SalidaConfiguracion()
         {

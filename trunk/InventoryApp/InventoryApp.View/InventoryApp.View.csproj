@@ -464,8 +464,41 @@
     <Compile Include="GridMovimientos\GridMovimientos.xaml.cs">
       <DependentUpon>GridMovimientos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GridMovimientos\GridSalidaConfiguracion.xaml.cs">
+      <DependentUpon>GridSalidaConfiguracion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaCorrectivo.xaml.cs">
+      <DependentUpon>GridSalidaCorrectivo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaDemo.xaml.cs">
+      <DependentUpon>GridSalidaDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaObsequio.xaml.cs">
+      <DependentUpon>GridSalidaObsequio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaOffice.xaml.cs">
+      <DependentUpon>GridSalidaOffice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaPrestamo.xaml.cs">
+      <DependentUpon>GridSalidaPrestamo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaPruebas.xaml.cs">
+      <DependentUpon>GridSalidaPruebas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaRenta.xaml.cs">
+      <DependentUpon>GridSalidaRenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaRevision.xaml.cs">
+      <DependentUpon>GridSalidaRevision.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaRMA.xaml.cs">
+      <DependentUpon>GridSalidaRMA.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GridMovimientos\GridSalidas.xaml.cs">
       <DependentUpon>GridSalidas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaVenta.xaml.cs">
+      <DependentUpon>GridSalidaVenta.xaml</DependentUpon>
     </Compile>
     <Compile Include="ItemACView.xaml.cs">
       <DependentUpon>ItemACView.xaml</DependentUpon>
@@ -1065,7 +1098,51 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="GridMovimientos\GridSalidaConfiguracion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaCorrectivo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaObsequio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaOffice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaPrestamo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaPruebas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaRenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaRevision.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaRMA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GridMovimientos\GridSalidas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaVenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

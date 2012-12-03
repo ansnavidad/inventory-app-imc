@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using InventoryApp.ViewModel;
 using System.Windows.Input;
 using System.ComponentModel;
+using InventoryApp.ViewModel.GridMovimientos;
 
 namespace InventoryApp.ViewModel.Salidas
 {
@@ -29,6 +30,7 @@ namespace InventoryApp.ViewModel.Salidas
         private CatalogServicioModel _catalogServicioModel;
         private CatalogTipoPedimentoModel _catalogTipoPedimentoModel;
         private CatalogTecnicoModel _catalogTecnicoModel;
+        private MovimientoGridSalidaOfficeViewModel _movimientoSalida;
         private RelayCommand _addItemCommand;
         private RelayCommand _deleteItemCommand;
 
@@ -71,6 +73,48 @@ namespace InventoryApp.ViewModel.Salidas
                 throw ex;
             }   
             
+        }
+
+        public SalidaOfficeViewModel(MovimientoGridSalidaOfficeViewModel salida)
+        {
+            try
+            {
+                IDataMapper dataMapper = new SolicitanteDataMapper();
+                IDataMapper dataMapper2 = new AlmacenDataMapper();
+                IDataMapper dataMapper3 = new ProveedorDataMapper();
+                IDataMapper dataMapper4 = new ClienteDataMapper();
+                IDataMapper dataMapper5 = new ServicioDataMapper();
+                IDataMapper dataMapper6 = new TipoPedimentoDataMapper();
+                IDataMapper dataMapper7 = new TransporteDataMapper();
+                IDataMapper dataMapper8 = new TecnicoDataMapper();
+
+                this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
+                this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
+                TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
+                mov.UNID_TIPO_MOVIMIENTO = 1;
+                this._movimientoModel.TipoMovimiento = mov;
+                this._movimientoSalida = salida;
+                this._movimientoModel.PropertyChanged += OnPropertyChanged2;
+                this._itemModel = new CatalogItemModel(new ItemDataMapper());
+                this._catalogAlmacenDestinoModel = new CatalogAlmacenModel(dataMapper2);
+                this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
+                this._catalogProveedorDestinoModel = new CatalogProveedorModel(dataMapper3);
+                this._catalogClienteDestinoModel = new CatalogClienteModel(dataMapper4);
+                this._catalogServicioModel = new CatalogServicioModel(dataMapper5);
+                this._catalogTipoPedimentoModel = new CatalogTipoPedimentoModel(dataMapper6);
+                this._catalogTransporteModel = new CatalogTransporteModel(dataMapper7);
+                this._catalogClienteModel = new CatalogClienteModel(dataMapper4);
+                this._catalogTecnicoModel = new CatalogTecnicoModel(dataMapper8);
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         public ICommand AddItemCommand

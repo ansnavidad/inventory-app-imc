@@ -6,6 +6,8 @@
              DataContext="{StaticResource entradaPrestamoViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="803" d:DesignWidth="637">
+    
+    <ScrollViewer>
     <Grid Name="gridAlta" Width="618" >
         <Button TabIndex="14" Content="ACEPTAR"  Command="{Binding AddItemCommand, Mode=OneWay}"  Height="23" Margin="348,679,0,0" Name="btnAgregar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Left" Click="btnAgregar_Click" />
         <Button TabIndex="15" Content="CANCELAR" Height="23" Margin="0,679,109,0" Name="btnCancelar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" Click="btnCancelar_Click" />
@@ -61,4 +63,5 @@
         <Label Content="Contacto:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,343,316,0" Name="label10" VerticalAlignment="Top" />
         <Label Content="Guia:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,343,144,0" Name="label11" VerticalAlignment="Top" />
     </Grid>
+    </ScrollViewer>
 </Window>

@@ -7,6 +7,7 @@
              mc:Ignorable="d" 
 
              d:DesignHeight="793" d:DesignWidth="622">
+    <ScrollViewer>
     <Grid Name="gridAlta" Width="618" >
         <Button TabIndex="11" Content="ACEPTAR" Command="{Binding AddItemCommand, Mode=OneWay}"  Height="23" Margin="0,653,431,0" Name="btnAgregar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" Click="btnAgregar_Click" />
         <Button TabIndex="12" Content="CANCELAR" Height="23" Margin="0,653,109,0" Name="btnCancelar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" Click="btnCancelar_Click" />
@@ -56,4 +57,5 @@
         <Label Content="Almacén de destino:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,197,482,0" Name="label3" VerticalAlignment="Top" />
 
     </Grid>
+    </ScrollViewer>
 </Window>

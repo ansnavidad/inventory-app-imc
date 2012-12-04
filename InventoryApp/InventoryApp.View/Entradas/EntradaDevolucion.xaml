@@ -6,6 +6,7 @@
              DataContext="{StaticResource entradaDevolucionViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="891" d:DesignWidth="637">
+    <ScrollViewer>
     <Grid Name="gridAlta" Width="618" >
         <Button TabIndex="15" Content="ACEPTAR"  Command="{Binding AddItemCommand, Mode=OneWay}"  Height="23" Margin="0,679,195,0" Name="btnAgregar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" Click="btnAgregar_Click" />
         <Button TabIndex="16" Content="CANCELAR" Height="23" Margin="0,679,109,0" Name="btnCancelar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" Click="btnCancelar_Click" />
@@ -63,4 +64,5 @@
         <ComboBox TabIndex="2" DisplayMemberPath="CLIENTE1" Height="23" HorizontalAlignment="Right" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogClienteProcedenciaModel.Cliente}"  Margin="0,95,24,0" Name="comboCliente"  SelectedItem="{Binding MovimientoModel.Cliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_CLIENTE" VerticalAlignment="Top" Width="131" />
         <Label Content="Cliente:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,94,161,0" Name="label12" VerticalAlignment="Top" />
     </Grid>
+    </ScrollViewer>
 </Window>

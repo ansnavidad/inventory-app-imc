@@ -448,7 +448,7 @@
         </DataTemplate>-->
         
         
-        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaRentaViewModel}">
+        <!--<DataTemplate DataType="{x:Type SalidasViewModel:SalidaRentaViewModel}">
             <SalidasView:SalidaRenta />
         </DataTemplate>
         <DataTemplate DataType="{x:Type SalidasViewModel:SalidaDemoViewModel}">
@@ -483,7 +483,7 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type TraspasosViewModel:TraspasoStockViewModel}">
             <TraspasosView:TraspasoStock/>
-        </DataTemplate>
+        </DataTemplate>-->
         <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientosGridViewModel}">
             <GridMovimientosView:GridMovimientos/>
         </DataTemplate>

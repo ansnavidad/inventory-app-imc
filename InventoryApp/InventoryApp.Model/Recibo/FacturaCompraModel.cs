@@ -9,7 +9,7 @@ using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.Model.Recibo
 {
-    public class FacturaCompraModel : ModelBase
+    public class FacturaCompraModel : ModelBase,IModelChangeTrack
     {
         private IDataMapper _DataMapper;
 
@@ -115,6 +115,7 @@ namespace InventoryApp.Model.Recibo
                 return _iva;
             }
         }
+        public const string IvaPropertyName = "Iva";
 
         public double Total
         {
@@ -125,6 +126,7 @@ namespace InventoryApp.Model.Recibo
                 return _total;
             }
         }
+        public const string TotalPropertyName = "Total";
 
         public DateTime FechaFactura
         {
@@ -198,6 +200,9 @@ namespace InventoryApp.Model.Recibo
                 {
                     _FacturaDetalle = value;
                     OnPropertyChanged(FacturaDetallePropertyName);
+                    OnPropertyChanged(ImportePropertyName);
+                    OnPropertyChanged(IvaPropertyName);
+                    OnPropertyChanged(TotalPropertyName);
                 }
             }
         }
@@ -213,7 +218,7 @@ namespace InventoryApp.Model.Recibo
                 try
                 {
                     _importe = (from o in _FacturaDetalle
-                                select o).Sum(o => (o.Cantidad * o.PrecioUnitario) + (o.Cantidad * o.ImpuestoUnitario));
+                                select o).Sum(o => (o.Cantidad * o.CostoUnitario) );
                 }
                 catch (Exception)
                 {
@@ -222,7 +227,7 @@ namespace InventoryApp.Model.Recibo
                 return _importe;
             }
         }
-
+        public const string ImportePropertyName = "Importe";
         #endregion
 
         public void saveFactura()
@@ -254,7 +259,41 @@ namespace InventoryApp.Model.Recibo
         {
             this._DataMapper = dataMapper as FacturaCompraDataMapper;
             this.FacturaDetalle = new ObservableCollection<FacturaCompraDetalleModel>();
+            this.IsNew = true;
+            this.IsModified = false;
         }
         #endregion
+
+        public bool IsModified
+        {
+            get
+            {
+                return _IsModified;
+            }
+            set
+            {
+                if (_IsModified != value)
+                {
+                    _IsModified = value;
+                }
+            }
+        }
+        private bool _IsModified;
+
+        public bool IsNew
+        {
+            get
+            {
+                return _IsNew;
+            }
+            set
+            {
+                if (_IsNew != value)
+                {
+                    _IsNew = value;
+                }
+            }
+        }
+        private bool _IsNew;
     }
 }

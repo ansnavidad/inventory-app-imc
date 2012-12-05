@@ -116,6 +116,7 @@
     <Compile Include="EmpresaModel.cs" />
     <Compile Include="EquipoModel.cs" />
     <Compile Include="FacturaVentaModel.cs" />
+    <Compile Include="IModelChangeTrack.cs" />
     <Compile Include="InsertTipoEmpresaModel.cs" />
     <Compile Include="InsertTransporteModel.cs" />
     <Compile Include="ItemModel.cs" />

@@ -13,7 +13,7 @@ namespace InventoryApp.ViewModel.Recibo
 {
     public class AddFacturaArticuloViewModel : ViewModelBase
     {
-        private AddFacturaViewModel _AddFacturaViewModel;
+        private IFacturaViewModel _AddFacturaViewModel;
         private RelayCommand _AddDetalle;
 
         public ICommand AddMonedaCommand
@@ -116,6 +116,7 @@ namespace InventoryApp.ViewModel.Recibo
                 {
                     _Cantidad = value;
                     OnPropertyChanged(CantidadPropertyName);
+                    OnPropertyChanged(PrecioFinalPropertyName);
                 }
             }
         }
@@ -139,18 +140,12 @@ namespace InventoryApp.ViewModel.Recibo
 
         public double ImpuestoUnitario
         {
-            get { return _ImpuestoUnitario; }
-            set
-            {
-                if (_ImpuestoUnitario != value)
-                {
-                    _ImpuestoUnitario = value;
-                    OnPropertyChanged(ImpuestoUnitarioPropertyName);
-                }
+            get { 
+                return this._AddFacturaViewModel.PorIva; 
             }
         }
-        private double _CostoUnitario;
-        public const string CostoUnitarioPropertyName = "CostoUnitario";
+        public const string ImpuestoUnitarioPropertyName = "ImpuestoUnitario";
+
         public double CostoUnitario
         {
             get { return _CostoUnitario; }
@@ -160,11 +155,22 @@ namespace InventoryApp.ViewModel.Recibo
                 {
                     _CostoUnitario = value;
                     OnPropertyChanged(CostoUnitarioPropertyName);
+                    OnPropertyChanged(PrecioFinalPropertyName);
                 }
             }
         }
-        private double _ImpuestoUnitario;
-        public const string ImpuestoUnitarioPropertyName = "ImpuestoUnitario";
+        private double _CostoUnitario;
+        public const string CostoUnitarioPropertyName = "CostoUnitario";
+        
+
+        public double PrecioFinal
+        {
+            get 
+            { 
+                return this.Cantidad* (this.CostoUnitario * (((this.ImpuestoUnitario/100))+1));
+            }
+        }
+        public const string PrecioFinalPropertyName = "PrecioFinal";
 
         public ObservableCollection<UnidadModel> Unidades
         {
@@ -218,7 +224,7 @@ namespace InventoryApp.ViewModel.Recibo
         {
         }
 
-        public AddFacturaArticuloViewModel(AddFacturaViewModel factura)
+        public AddFacturaArticuloViewModel(IFacturaViewModel factura)
         {
             if (factura != null && factura.SelectedProveedor != null)
             {
@@ -230,7 +236,7 @@ namespace InventoryApp.ViewModel.Recibo
         #endregion
 
         #region Methods
-        public void init(AddFacturaViewModel factura)
+        public void init(IFacturaViewModel factura)
         {
             this._AddFacturaViewModel = factura;
             this._Categorias = this.GetCategoriasByProveedor();
@@ -367,11 +373,12 @@ namespace InventoryApp.ViewModel.Recibo
                 ,
                 Cantidad = this._Cantidad
                 ,
-                PrecioUnitario = this._PrecioUnitario
-                ,
-                ImpuestoUnitario = this._PrecioUnitario
+                CostoUnitario = this.CostoUnitario
                 ,
                 Unidad = this._SelectedUnidad
+                ,
+                ImpuestoUnitario=this._AddFacturaViewModel.PorIva
+                
             };
             this._AddFacturaViewModel.FacturaDetalles.Add(facturaDetalle);
         }

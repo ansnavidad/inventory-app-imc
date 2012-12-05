@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="700">
     <UserControl.Resources>
@@ -66,52 +65,12 @@
             <TextBlock Grid.Column="3" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Area Solicitante" VerticalAlignment="Top" />
             <TextBlock Grid.Column="4" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="{Binding SelectedSolicitante.Departamento.DEPARTAMENTO_NAME}" VerticalAlignment="Top" />
 
-            <!--<TextBlock Grid.Column="0" Grid.Row="4" Height="23" HorizontalAlignment="Left" Text="Cliente" VerticalAlignment="Top" />
-            <ComboBox Grid.Column="1" Grid.Row="4" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Clientes}" SelectedItem="{Binding SelectedCliente, Mode=TwoWay}" DisplayMemberPath="ClienteName"/>-->
-
             <TextBlock Grid.Column="0" Grid.Row="5" Height="23" HorizontalAlignment="Left" Text="Trouble Ticket" VerticalAlignment="Top" />
             <TextBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding TroubleTicket,Mode=TwoWay}" />
 
             <TextBlock Grid.Column="3" Grid.Row="5" Height="23" HorizontalAlignment="Left" Text="PO" VerticalAlignment="Top" />
             <TextBox Grid.Column="4" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding PO,Mode=TwoWay}" />
         </Grid>
-
-        <!-- información del pedimento -->
-        <!--<Grid Grid.Column="1" Grid.Row="3"  HorizontalAlignment="Stretch" Name="grid1" VerticalAlignment="Stretch" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="{StaticResource capRowHeight}" />
-                <RowDefinition Height="{StaticResource capRowHeight}" />
-                <RowDefinition Height="{StaticResource capRowHeight}" />
-                <RowDefinition Height="{StaticResource capRowHeight}" />
-                <RowDefinition Height="{StaticResource capRowHeight}" />
-                <RowDefinition Height="{StaticResource capRowHeight}" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource descColWidth}" />
-                <ColumnDefinition Width="{StaticResource captureColWidth}" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="{StaticResource descColWidth}" />
-                <ColumnDefinition Width="{StaticResource captureColWidth}" />
-            </Grid.ColumnDefinitions>
-
-            <Border BorderBrush="Silver" BorderThickness="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" Name="border1" VerticalAlignment="Stretch">
-                <TextBlock  Margin="10,0" Name="textBlock1" Text="Pedimento" />
-            </Border>
-            <TextBlock Grid.Column="0" Grid.Row="1" Height="23" HorizontalAlignment="Left" Name="textBlock2" Text="Pedimientos" VerticalAlignment="Top" />
-            <ListView Grid.Column="1"  Grid.Row="1" Grid.RowSpan="4"  HorizontalAlignment="Stretch"  Name="listView1" VerticalAlignment="Stretch" />
-            <DockPanel Grid.Column="1" Grid.Row="5"  HorizontalAlignment="Stretch"  Name="stackPanel1" VerticalAlignment="Stretch" >
-                <Button Content="Agregar" Height="23" Name="btnPedimentoAdd" Width="75" HorizontalAlignment="Left" />
-                <Button Content="Eliminar" Height="23" Name="btnPedimentoDel" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" />
-            </DockPanel>
-
-            <TextBlock Grid.Column="3" Grid.Row="1" Height="23" HorizontalAlignment="Left" Name="txtBlockPedimentoImpo" Text="Pedimento Impo" VerticalAlignment="Top" />
-            <TextBox Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" Name="textBox1" VerticalAlignment="Top" Width="120" />
-
-            <TextBlock Grid.Column="3" Grid.Row="3" Height="23" HorizontalAlignment="Left" Name="txtBlockPedimentoExpo" Text="Pedimento Expo" VerticalAlignment="Top" />
-            <TextBox Grid.Column="4" Grid.Row="3" HorizontalAlignment="Left" Name="textBox2" VerticalAlignment="Top" Width="120" />
-        </Grid>-->
-
-        <!-- información de factura -->
         <Grid Grid.Column="1" Grid.Row="5"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="{StaticResource capRowHeight}" />
@@ -136,7 +95,7 @@
                 <Button Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Click="btnFacturaAdd_Click" />
                 <Button Content="Eliminar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Command="{Binding DeleteFacturaCmd}" />
             </DockPanel>
-            <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.RowSpan="4"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding Facturas}">
+            <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.RowSpan="4"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding Facturas}" SelectedItem="{Binding SelectedFactura}" MouseDoubleClick="ListView_MouseDoubleClick" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="" Width="30" >

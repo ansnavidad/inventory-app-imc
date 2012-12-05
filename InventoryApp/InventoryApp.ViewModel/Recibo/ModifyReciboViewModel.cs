@@ -13,6 +13,8 @@ namespace InventoryApp.ViewModel.Recibo
 {
     public class ModifyReciboViewModel :  AddReciboViewModel
     {
+
+
         public ModifyReciboViewModel(CatalogReciboViewModel catalogReciboViewModel)
             : base(catalogReciboViewModel)
         {
@@ -119,10 +121,10 @@ namespace InventoryApp.ViewModel.Recibo
                         Cantidad = fd.CANTIDAD,
                         Descripcion = fd.DESCRIPCION,
                         Factura = fcm,
-                        ImpuestoUnitario = fd.IMPUESTO_UNITARIO,
+                        ImpuestoUnitario = fcm.PorIva,
                         IsActive = fd.IS_ACTIVE,
                         Numero = fd.NUMERO,
-                        PrecioUnitario = fd.PRECIO_UNITARIO,
+                        CostoUnitario = fd.PRECIO_UNITARIO,
                         Unidad = new UnidadModel(null)
                         {
                             UnidUnidad = fd.UNIDAD.UNID_UNIDAD,
@@ -210,5 +212,62 @@ namespace InventoryApp.ViewModel.Recibo
 
             return recibos;
         }
+
+        private void SaveFactura()
+        {
+            LoteModel lot=null;
+            FacturaCompraDataMapper fcdmp = new FacturaCompraDataMapper();
+            FacturaCompraDetalleDataMapper fcdDm = new FacturaCompraDetalleDataMapper();
+
+            //Guardar
+            foreach (FacturaCompraModel item in this.Facturas)
+            {
+                
+                if (item.IsNew)
+                {
+                    //insertar la nueva factura
+                    if (lot == null)
+                    {
+                        lot = new LoteModel(new LoteDataMapper());
+                        lot.UnidLote = UNID.getNewUNID();
+                        lot.UnidPOM = UNID.getNewUNID();
+                        lot.saveLote();
+                    }
+                    
+                    item.UnidLote = lot.UnidLote;
+                    item.UnidFactura = UNID.getNewUNID();
+                    item.saveFactura();
+                    //factura detalle
+                    foreach (FacturaCompraDetalleModel fac in item.FacturaDetalle)
+                    {
+                        fac.Factura = item;
+                        fac.saveFacturaDetalle();
+                    }
+                }
+                else
+                {
+                    //Actualizar Factura
+                    fcdmp.udpateElement(new FACTURA()
+                    {
+                        UNID_FACTURA=item.UnidFactura,
+                        FACTURA_NUMERO=item.NumeroFactura,
+                        FECHA_FACTURA=item.FechaFactura,
+                        IS_ACTIVE=item.IsActive,
+                        IVA_POR=item.PorIva,
+                        UNID_MONEDA=item.Moneda.UnidMoneda,
+                        UNID_PROVEEDOR=item.Proveedor.UnidProveedor
+                    });
+
+                    //Generar Array para insertar/actualizar/eliminar las facturas
+                    List<FACTURA_DETALLE> fds = new List<FACTURA_DETALLE>();
+                    foreach (FacturaCompraDetalleModel det in item.FacturaDetalle)
+                    {
+                        fds.Add(det.ConvertToPoco(det));
+                    }
+
+                    fcdDm.udpateElements(fds);
+                }
+            }//end foreach
+        }//end func
     }
 }

@@ -52,5 +52,19 @@ namespace InventoryApp.View.Recibo
             addMovimientoView.ShowDialog();
         }
 
+        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DlgModifyFacturaView dlgModifyFacturaView = new DlgModifyFacturaView();
+            AddReciboViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            ModifyFacturaViewModel mfvm= viewModel.CraeteModifyFacturaViewModel();
+            if (mfvm != null)
+            {
+                dlgModifyFacturaView.DataContext = mfvm;
+                dlgModifyFacturaView.ShowDialog();
+            }
+            
+            
+        }
+
     }
 }

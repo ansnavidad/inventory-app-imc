@@ -92,8 +92,8 @@
                         <GridViewColumn Header="Marca" Width="150" DisplayMemberBinding="{Binding Path=Articulo.Marca.MARCA_NAME}" />
                         <GridViewColumn Header="Articulo" Width="150" DisplayMemberBinding="{Binding Path=Articulo.ArticuloName}" />
                         <GridViewColumn Header="Cantidad" Width="150" DisplayMemberBinding="{Binding Path=Cantidad}" />
-                        <GridViewColumn Header="Precio Unitario" Width="150" DisplayMemberBinding="{Binding Path=PrecioUnitario}" />
-                        <GridViewColumn Header="Impuesto Unitario" Width="150" DisplayMemberBinding="{Binding Path=ImpuestoUnitario}" />
+                        <GridViewColumn Header="Costo Unitario" Width="150" DisplayMemberBinding="{Binding Path=CostoUnitario}" />
+                        <GridViewColumn Header="Precio Final" Width="150" DisplayMemberBinding="{Binding Path=PrecioFinal}" />
                     </GridView>
                 </ListView.View>
             </ListView>

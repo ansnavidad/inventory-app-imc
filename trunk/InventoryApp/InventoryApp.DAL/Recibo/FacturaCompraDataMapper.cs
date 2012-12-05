@@ -80,7 +80,23 @@ namespace InventoryApp.DAL.Recibo
 
         public void udpateElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null && (element as FACTURA) != null)
+            {
+                FACTURA fac=element as FACTURA;
+
+                using (var entity = new TAE2Entities())
+                {
+                    var resFac = entity.FACTURAs.First(o => o.UNID_FACTURA == fac.UNID_FACTURA);
+                    resFac.FACTURA_NUMERO = fac.FACTURA_NUMERO;
+                    resFac.FECHA_FACTURA = fac.FECHA_FACTURA;
+                    resFac.IS_ACTIVE = fac.IS_ACTIVE;
+                    resFac.IVA_POR = fac.IVA_POR;
+                    resFac.UNID_MONEDA = fac.UNID_MONEDA;
+                    resFac.NUMERO_PEDIMENTO = fac.NUMERO_PEDIMENTO;
+                    resFac.UNID_PROVEEDOR = fac.UNID_PROVEEDOR;
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void insertElement(object element)

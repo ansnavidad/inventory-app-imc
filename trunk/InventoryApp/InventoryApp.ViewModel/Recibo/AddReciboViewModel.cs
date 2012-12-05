@@ -166,7 +166,7 @@ namespace InventoryApp.ViewModel.Recibo
         {
             bool canAttempt = false;
 
-            if ((this.Facturas != null && this.Facturas.Count > 0)&&(this.Movimientos != null && this.Movimientos.Count > 0))
+            if ((this.Facturas != null && this.Facturas.Count > 0)&&(this.Movimientos != null && this.Movimientos.Count > 0) && this.SelectedSolicitante!=null)
             {
                 canAttempt = true;
             }
@@ -562,6 +562,21 @@ namespace InventoryApp.ViewModel.Recibo
         protected ObservableCollection<FacturaCompraModel> _Facturas;
         public const string FacturasPropertyName = "Facturas";
 
+        public FacturaCompraModel SelectedFactura
+        {
+            get { return _SelectedFactura; }
+            set
+            {
+                if (_SelectedFactura != value)
+                {
+                    _SelectedFactura = value;
+                    OnPropertyChanged(SelectedFacturaPropertyName);
+                }
+            }
+        }
+        private FacturaCompraModel _SelectedFactura;
+        public const string SelectedFacturaPropertyName = "SelectedFactura";
+
         public ObservableCollection<InventoryApp.Model.Recibo.MovimientoModel> Movimientos
         {
             get { return _Movimiento; }
@@ -739,6 +754,12 @@ namespace InventoryApp.ViewModel.Recibo
             return addFacturaViewModel;
         }
 
-
+        public ModifyFacturaViewModel CraeteModifyFacturaViewModel()
+        {
+            if (this.SelectedFactura != null)
+                return new ModifyFacturaViewModel(this.SelectedFactura);
+            else
+                return null;
+        }
     }
 }

@@ -2,32 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 using System.Collections.ObjectModel;
 using InventoryApp.Model;
 using InventoryApp.Model.Recibo;
-using System.Windows.Input;
+using System.Collections.Specialized;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
-using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace InventoryApp.ViewModel.Recibo
 {
-    public class AddFacturaViewModel : ViewModelBase,IFacturaViewModel
+    public class ModifyFacturaViewModel : ViewModelBase, IFacturaViewModel, IViewModelChangeTrack
     {
-        private AddReciboViewModel _AddReciboViewModel;
+        private FacturaCompraModel _SelectedFactura;
 
-        public ICommand AddFacturaCommand
+        public ICommand ModifyFacturaCommand
         {
             get
             {
-                if (_AddFacturaCommand == null)
+                if (_ModifyFacturaCommand == null)
                 {
-                    _AddFacturaCommand = new RelayCommand(p => this.AttemptAddFactura(), p => this.CanAttemptAddFactura());
+                    _ModifyFacturaCommand = new RelayCommand(p => this.AttemptModifyFactura(), p => this.CanAttemptModifyFactura());
                 }
-                return _AddFacturaCommand;
+                return _ModifyFacturaCommand;
             }
         }
-        private RelayCommand _AddFacturaCommand;
+        private RelayCommand _ModifyFacturaCommand;
 
         public ICommand AddFacturaArticuloCommand
         {
@@ -275,46 +276,94 @@ namespace InventoryApp.ViewModel.Recibo
         public const string FacturaDetallesPropertyName = "FacturaDetalles";
 
         #region Constructors
-        public AddFacturaViewModel()
+        public ModifyFacturaViewModel()
         {
             this.init();
         }
 
-        public AddFacturaViewModel(AddReciboViewModel addReciboViewModel)
+        public ModifyFacturaViewModel(FacturaCompraModel SelectedFactura)
         {
-            this._AddReciboViewModel = addReciboViewModel;
+            this._SelectedFactura = SelectedFactura;
             this.init();
         }
         #endregion
 
         #region Methods
-        public void AttemptAddFactura()
+        public void init()
         {
-            if (this._AddReciboViewModel != null)
+            this.IsModified = false;
+            this.IsNew = false;
+            this.PropertyChanged += delegate(object sender, PropertyChangedEventArgs eventArgs)
             {
-                FacturaCompraModel factura = new FacturaCompraModel()
+                this.IsModified = true;
+            };
+
+            //Cargar colecciones
+            this._Proveedores = this.GetProveedores();
+            this._TipoPedimentos = this.GetPedimentos();
+            this._Monedas = this.GetMonedas();
+            this._FacturaDetalles = new ObservableCollection<FacturaCompraDetalleModel>();
+            this._FacturaDetalles.CollectionChanged += delegate(object sender, NotifyCollectionChangedEventArgs e)
+            {
+                if ((sender as ObservableCollection<FacturaCompraDetalleModel>).Count > 0)
                 {
-                    UnidFactura = this.UnidFactura
-                    ,
-                    Proveedor = this.SelectedProveedor
-                    ,
-                    FechaFactura = this.FechaFactura
-                    ,
-                    NumeroFactura = this.NumeroFactura
-                    ,
-                    Moneda = this.SelectedMoneda
-                    ,
-                    FacturaDetalle = this._FacturaDetalles
-                    ,
-                    PorIva = this.PorIva
-                    ,
-                    NumeroPedimento=this.NumeroPedimento
-                };
-                this._AddReciboViewModel.Facturas.Add(factura);
+                    this.CanSelecteProveedor = false;
+                }
+                else
+                {
+                    this.CanSelecteProveedor = true;
+                }
+            };
+
+            if (this._SelectedFactura != null)
+            {
+                this.FechaFactura = this._SelectedFactura.FechaFactura;
+                this.NumeroFactura = this._SelectedFactura.NumeroFactura;
+
+                if (this._SelectedFactura.Proveedor != null)
+                {
+                    this.SelectedProveedor =
+                        this.Proveedores.FirstOrDefault(prv => prv.UnidProveedor == this._SelectedFactura.Proveedor.UnidProveedor);
+                }
+
+                if (this._SelectedFactura.Moneda != null)
+                {
+                    this.SelectedMoneda =
+                        this.Monedas.FirstOrDefault(mnd => mnd.UnidMoneda == this._SelectedFactura.Moneda.UnidMoneda);
+                }
+
+                this.NumeroPedimento = this._SelectedFactura.NumeroPedimento;
+
+                this.PorIva = this._SelectedFactura.PorIva;
+
+                if (this._SelectedFactura.FacturaDetalle != null && this._SelectedFactura.FacturaDetalle.Count > 0)
+                    this._CanSelecteProveedor = false;
+                else
+                    this._CanSelecteProveedor = true;
+
+                if (this._SelectedFactura.FacturaDetalle != null)
+                {
+                    this._SelectedFactura.FacturaDetalle.ToList().ForEach(fd => this.FacturaDetalles.Add(fd));
+                }
+            }
+        }
+        
+        public void AttemptModifyFactura()
+        {
+            if (this._SelectedFactura != null)
+            {
+                this._SelectedFactura.FechaFactura = this.FechaFactura;
+                this._SelectedFactura.Moneda = this.SelectedMoneda;
+                this._SelectedFactura.NumeroFactura = this.NumeroFactura;
+                this._SelectedFactura.NumeroPedimento = this.NumeroPedimento;
+                this._SelectedFactura.PorIva = this.PorIva;
+                this._SelectedFactura.Proveedor = this.SelectedProveedor;
+                this._SelectedFactura.IsNew = false;
+                this._SelectedFactura.IsModified = this.IsModified;
             }
         }
 
-        public bool CanAttemptAddFactura()
+        public bool CanAttemptModifyFactura()
         {
             bool canAddFactura = false;
 
@@ -387,27 +436,6 @@ namespace InventoryApp.ViewModel.Recibo
             }
 
             return canDeleteFacturaDetalle;
-        }
-
-        public void init()
-        {
-            this._CanSelecteProveedor = true;
-            this._Proveedores = this.GetProveedores();
-            this._Monedas = this.GetMonedas();
-            this._FacturaDetalles = new ObservableCollection<FacturaCompraDetalleModel>();
-            this._TipoPedimentos = this.GetPedimentos();
-            this._FechaFactura = DateTime.Now;
-            this._FacturaDetalles.CollectionChanged += delegate(object sender, NotifyCollectionChangedEventArgs e)
-            {
-                if ((sender as ObservableCollection<FacturaCompraDetalleModel>).Count > 0)
-                {
-                    this.CanSelecteProveedor = false;
-                }
-                else
-                {
-                    this.CanSelecteProveedor = true;
-                }
-            };
         }
 
         private ObservableCollection<ProveedorModel> GetProveedores()
@@ -487,5 +515,37 @@ namespace InventoryApp.ViewModel.Recibo
             return new AddFacturaArticuloViewModel(this);
         }
         #endregion
+
+        public bool IsModified
+        {
+            get
+            {
+                return _IsModified;
+            }
+            set
+            {
+                if (_IsModified != value)
+                {
+                    _IsModified = value;
+                }
+            }
+        }
+        private bool _IsModified;
+
+        public bool IsNew
+        {
+            get
+            {
+                return _IsNew;
+            }
+            set
+            {
+                if (_IsNew != value)
+                {
+                    _IsNew = value;
+                }
+            }
+        }
+        private bool _IsNew;
     }
 }

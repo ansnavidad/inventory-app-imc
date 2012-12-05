@@ -151,6 +151,7 @@
     <Compile Include="GridMovimientos\MovimientoGridTraspasoStockViewModel.cs" />
     <Compile Include="GridMovimientos\MovimientosGridViewModel.cs" />
     <Compile Include="IPageViewModel.cs" />
+    <Compile Include="IViewModelChangeTrack.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="MenuViewModel.cs" />
     <Compile Include="Recibo\AddFacturaViewModel.cs" />
@@ -164,6 +165,8 @@
     <Compile Include="Entradas\EntradaDesinstalacionViewModel.cs" />
     <Compile Include="Entradas\EntradaDevolucionViewModel.cs" />
     <Compile Include="Entradas\EntradaPrestamoViewModel.cs" />
+    <Compile Include="Recibo\IFacturaViewModel.cs" />
+    <Compile Include="Recibo\ModifyFacturaViewModel.cs" />
     <Compile Include="Recibo\ModifyReciboViewModel.cs" />
     <Compile Include="Recibo\ReciboViewModel.cs" />
     <Compile Include="RelayCommand.cs" />

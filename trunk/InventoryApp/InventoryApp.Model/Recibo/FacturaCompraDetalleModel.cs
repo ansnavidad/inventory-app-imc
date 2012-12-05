@@ -5,10 +5,11 @@ using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
 using InventoryApp.DAL.Recibo;
+using System.ComponentModel;
 
 namespace InventoryApp.Model.Recibo
 {
-    public class FacturaCompraDetalleModel : ModelBase
+    public class FacturaCompraDetalleModel : ModelBase,IModelChangeTrack
     {
         private IDataMapper _DataMapper;
 
@@ -148,6 +149,30 @@ namespace InventoryApp.Model.Recibo
         private double _ImpuestoUnitario;
         public const string ImpuestoUnitarioPropertyName = "ImpuestoUnitario";
 
+        public double CostoUnitario
+        {
+            get { return _CostoUnitario; }
+            set
+            {
+                if (_CostoUnitario != value)
+                {
+                    _CostoUnitario = value;
+                    OnPropertyChanged(CostoUnitarioPropertyName);
+                }
+            }
+        }
+        private double _CostoUnitario;
+        public const string CostoUnitarioPropertyName = "CostoUnitario";
+
+        public double PrecioFinal
+        {
+            get 
+            {
+                return this.Cantidad * (this.CostoUnitario * (((this.ImpuestoUnitario / 100)) + 1));
+            }
+        }
+        public const string PrecioFinalPropertyName = "PrecioFinal";
+
         public string Numero
         {
             get { return _Numero; }
@@ -221,7 +246,7 @@ namespace InventoryApp.Model.Recibo
                     UNID_FACTURA= this._Factura.UnidFactura, 
                     UNID_ARTICULO = this._Articulo.UnidArticulo,
                     CANTIDAD= this._Cantidad,
-                    PRECIO_UNITARIO = this._PrecioUnitario, 
+                    PRECIO_UNITARIO = this.CostoUnitario, 
                     IMPUESTO_UNITARIO=this._ImpuestoUnitario,
                     //NUMERO=this._Numero,
                     //DESCRIPCION=this._Descripcion,
@@ -230,13 +255,67 @@ namespace InventoryApp.Model.Recibo
                 });
             }
         }
+
+        public FACTURA_DETALLE ConvertToPoco(FacturaCompraDetalleModel fcdm)
+        {
+            FACTURA_DETALLE poco = new FACTURA_DETALLE()
+            {
+                UNID_ARTICULO=fcdm.Articulo.UnidArticulo,
+                UNID_FACTURA=fcdm.Factura.UnidFactura,
+                UNID_UNIDAD=fcdm.Unidad.UnidUnidad,
+                UNID_FACTURA_DETALE=fcdm.UnidFacturaCompraDetalle,
+                CANTIDAD=fcdm.Cantidad,
+                IS_ACTIVE=fcdm.IsActive,
+                NUMERO=fcdm.Numero,
+                PRECIO_UNITARIO=fcdm.CostoUnitario
+            };
+            return poco;
+        }
         #region Constructors
 
         public FacturaCompraDetalleModel()
         {
             this._DataMapper = new FacturaCompraDetalleDataMapper();
+            this.PropertyChanged += delegate(object sender, PropertyChangedEventArgs eventArgs)
+            {
+                this._IsModified = true;
+            };
+            this._IsNew = true;
+            this._IsModified = false;
         }
         #endregion
 
+
+        public bool IsModified
+        {
+            get
+            {
+                return _IsModified;
+            }
+            set
+            {
+                if (_IsModified != value)
+                {
+                    _IsModified = value;
+                }
+            }
+        }
+        private bool _IsModified;
+
+        public bool IsNew
+        {
+            get
+            {
+                return _IsNew;
+            }
+            set
+            {
+                if (_IsNew != value)
+                {
+                    _IsNew = value;
+                }
+            }
+        }
+        private bool _IsNew;
     }
 }

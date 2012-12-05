@@ -63,8 +63,11 @@
     <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -73,9 +76,11 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -556,6 +561,12 @@
     </Compile>
     <Compile Include="Recibo\ReciboView.xaml.cs">
       <DependentUpon>ReciboView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteInventarioMovimientosView.xaml.cs">
+      <DependentUpon>ReporteInventarioMovimientosView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteReciboView.xaml.cs">
+      <DependentUpon>ReporteReciboView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Salidas\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
@@ -1241,6 +1252,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Recibo\ReciboView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reportes\ReporteInventarioMovimientosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reportes\ReporteReciboView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

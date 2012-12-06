@@ -31,6 +31,13 @@ namespace InventoryApp.DAL
                 {
                     LOTE lote = (LOTE)element;
                     //lote.UNID_LOTE = lote.UNID_LOTE
+                    //Sync
+                    lote.IS_MODIFIED = true;
+                    lote.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.LOTEs.AddObject(lote);
                     entity.SaveChanges();
                 }

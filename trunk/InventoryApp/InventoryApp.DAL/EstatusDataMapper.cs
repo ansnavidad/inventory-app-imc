@@ -71,6 +71,13 @@ namespace InventoryApp.DAL
                         var status = query.First();
 
                         status.ITEM_STATUS_NAME = ESta.ITEM_STATUS_NAME;
+                        //Sync
+                        status.IS_MODIFIED = true;
+                        status.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
 
                         entity.SaveChanges();
                     }
@@ -90,6 +97,13 @@ namespace InventoryApp.DAL
                     ITEM_STATUS status = new ITEM_STATUS();
 
                     status.UNID_ITEM_STATUS = UNID.getNewUNID();
+                    //Sync
+                    status.IS_MODIFIED = true;
+                    status.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
 
                     entity.ITEM_STATUS.AddObject(status);
 
@@ -110,7 +124,13 @@ namespace InventoryApp.DAL
                     var modifiedItemStatus = entity.ITEM_STATUS.First(p => p.UNID_ITEM_STATUS == itemStatus.UNID_ITEM_STATUS);
 
                     modifiedItemStatus.IS_ACTIVE = false;
-
+                    //Sync
+                    modifiedItemStatus.IS_MODIFIED = true;
+                    modifiedItemStatus.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }

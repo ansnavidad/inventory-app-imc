@@ -103,7 +103,13 @@ namespace InventoryApp.DAL
                     modifiedTecnico.MAIL = tecnico.MAIL;
                     modifiedTecnico.IS_ACTIVE = tecnico.IS_ACTIVE;
                     modifiedTecnico.CIUDAD = tecnico.CIUDAD;
-
+                    //Sync
+                    modifiedTecnico.IS_MODIFIED = true;
+                    modifiedTecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }
@@ -124,6 +130,13 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         tecnico.UNID_TECNICO = UNID.getNewUNID();
+                        //Sync
+                        tecnico.IS_MODIFIED = true;
+                        tecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                        entity.SaveChanges();
+                        //
                         entity.TECNICOes.AddObject(tecnico);
                         entity.SaveChanges();
                     }
@@ -142,7 +155,13 @@ namespace InventoryApp.DAL
                     var deleteTecnico = entity.TECNICOes.First(p => p.UNID_TECNICO == tecnico.UNID_TECNICO);
 
                     deleteTecnico.IS_ACTIVE = false;
-
+                    //Sync
+                    deleteTecnico.IS_MODIFIED = true;
+                    deleteTecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }

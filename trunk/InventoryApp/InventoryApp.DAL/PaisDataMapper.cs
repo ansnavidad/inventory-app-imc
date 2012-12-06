@@ -60,6 +60,13 @@ namespace InventoryApp.DAL
                     var modifiedPais = entity.PAIS.First(p => p.UNID_PAIS == pais.UNID_PAIS);
                     modifiedPais.PAIS = pais.PAIS;
                     modifiedPais.ISO = pais.ISO;
+                    //Sync
+                    modifiedPais.IS_MODIFIED = true;
+                    modifiedPais.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }
@@ -80,6 +87,13 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         pais.UNID_PAIS = UNID.getNewUNID();
+                        //Sync
+                        pais.IS_MODIFIED = true;
+                        pais.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
                         entity.PAIS.AddObject(pais);
                         entity.SaveChanges();
                     }
@@ -98,7 +112,13 @@ namespace InventoryApp.DAL
                     var deletePais = entity.PAIS.First(p => p.UNID_PAIS == pais.UNID_PAIS);
 
                     deletePais.IS_ACTIVE = false;
-
+                    //Sync
+                    deletePais.IS_MODIFIED = true;
+                    deletePais.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }

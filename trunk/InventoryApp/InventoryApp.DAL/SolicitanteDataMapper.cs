@@ -103,11 +103,11 @@ namespace InventoryApp.DAL
         {
             if (element != null)
             {
-                using (var oAWEntities = new TAE2Entities())
+                using (var entity = new TAE2Entities())
                 {
                     SOLICITANTE ESol = (SOLICITANTE)element;
 
-                    var Sol = oAWEntities.SOLICITANTEs.First(p => p.UNID_SOLICITANTE == ESol.UNID_SOLICITANTE);
+                    var Sol = entity.SOLICITANTEs.First(p => p.UNID_SOLICITANTE == ESol.UNID_SOLICITANTE);
                     
                     Sol.SOLICITANTE_NAME = ESol.SOLICITANTE_NAME;
 
@@ -122,8 +122,14 @@ namespace InventoryApp.DAL
                     Sol.UNID_DEPARTAMENTO = ESol.UNID_DEPARTAMENTO;
 
                     Sol.DEPARTAMENTO = ESol.DEPARTAMENTO;
-
-                    oAWEntities.SaveChanges();
+                    //Sync
+                    Sol.IS_MODIFIED = true;
+                    Sol.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
 
                 }
             }
@@ -132,19 +138,26 @@ namespace InventoryApp.DAL
         public void insertElement(object element)
         {
             if(element != null){
-                using (var entitie = new TAE2Entities())
+                using (var entity = new TAE2Entities())
                 {
                     SOLICITANTE Sol = (SOLICITANTE)element;
 
-                    var validacion = (from cust in entitie.SOLICITANTEs
+                    var validacion = (from cust in entity.SOLICITANTEs
                                       where cust.SOLICITANTE_NAME == Sol.SOLICITANTE_NAME
                                       select cust).ToList();
 
                     if (validacion.Count == 0)
                     {
                         Sol.UNID_SOLICITANTE = UNID.getNewUNID();
-                        entitie.SOLICITANTEs.AddObject(Sol);
-                        entitie.SaveChanges();
+                        //Sync
+                        Sol.IS_MODIFIED = true;
+                        Sol.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                        entity.SaveChanges();
+                        //
+                        entity.SOLICITANTEs.AddObject(Sol);
+                        entity.SaveChanges();
                     }
                 }
             }
@@ -161,7 +174,13 @@ namespace InventoryApp.DAL
                     var deleteSol = entity.SOLICITANTEs.First(p => p.UNID_SOLICITANTE == sol.UNID_SOLICITANTE);
 
                     deleteSol.IS_ACTIVE = false;
-
+                    //Sync
+                    deleteSol.IS_MODIFIED = true;
+                    deleteSol.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }

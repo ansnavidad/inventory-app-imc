@@ -60,7 +60,14 @@ namespace InventoryApp.DAL
                     CIUDAD ciudad = (CIUDAD)element;
                     var modifiedCiudad = entity.CIUDADs.First(p => p.UNID_CIUDAD == ciudad.UNID_CIUDAD);                    
                     modifiedCiudad.ISO = ciudad.ISO;
-                    modifiedCiudad.CIUDAD1 = ciudad.CIUDAD1;                    
+                    modifiedCiudad.CIUDAD1 = ciudad.CIUDAD1;
+                    //Sync
+                    modifiedCiudad.IS_MODIFIED = true;
+                    modifiedCiudad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }
@@ -81,6 +88,13 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         ciudad.UNID_CIUDAD = UNID.getNewUNID();
+                        //Sync
+                        ciudad.IS_MODIFIED = true;
+                        ciudad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
                         entity.CIUDADs.AddObject(ciudad);
                         entity.SaveChanges();
                     }
@@ -97,6 +111,13 @@ namespace InventoryApp.DAL
                     CIUDAD cuidad = (CIUDAD)element;
                     var deleteCuidad = entity.CIUDADs.First(p => p.UNID_CIUDAD == cuidad.UNID_CIUDAD);
                     deleteCuidad.IS_ACTIVE = false;
+                    //Sync
+                    deleteCuidad.IS_MODIFIED = true;
+                    deleteCuidad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }

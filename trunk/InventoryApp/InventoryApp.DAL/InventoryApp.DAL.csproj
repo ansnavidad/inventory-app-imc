@@ -67,7 +67,6 @@
     <Compile Include="MovimientoDataMapper.cs" />
     <Compile Include="MovimientoDetalleDataMapper.cs" />
     <Compile Include="PaisDataMapper.cs" />
-    <Compile Include="PedimentoDataMapper.cs" />
     <Compile Include="POCOS\ALMACEN.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
@@ -255,7 +254,6 @@
     <Compile Include="Recibo\FacturaCompraDataMapper.cs" />
     <Compile Include="Recibo\FacturaCompraDetalleDataMapper.cs" />
     <Compile Include="ServicioDataMapper.cs" />
-    <Compile Include="Solicitante1DataMapper.cs" />
     <Compile Include="SolicitanteDataMapper.cs" />
     <Compile Include="TecnicoDataMapper.cs" />
     <Compile Include="TerminoEnvioDataMapper.cs" />

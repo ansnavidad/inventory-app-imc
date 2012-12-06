@@ -69,7 +69,6 @@
     <Compile Include="CatalogProveedorModel.cs" />
     <Compile Include="CatalogProyectoModel.cs" />
     <Compile Include="CatalogServicioModel.cs" />
-    <Compile Include="CatalogSolicitante1Model.cs" />
     <Compile Include="CatalogSolicitanteModel.cs" />
     <Compile Include="CatalogTecnicoModel.cs" />
     <Compile Include="CatalogTerminoEnvioModel.cs" />

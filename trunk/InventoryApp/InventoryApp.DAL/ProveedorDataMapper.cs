@@ -100,6 +100,13 @@ namespace InventoryApp.DAL
                     modifiedProveedor.TEL1 = proveedor.TEL1;
                     modifiedProveedor.TEL2 = proveedor.TEL2;
                     modifiedProveedor.PROVEEDOR_NAME = proveedor.PROVEEDOR_NAME;
+                    //Sync
+                    modifiedProveedor.IS_MODIFIED = true;
+                    modifiedProveedor.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }
@@ -126,6 +133,13 @@ namespace InventoryApp.DAL
                     modifiedProveedor.TEL1 = proveedor.TEL1;
                     modifiedProveedor.TEL2 = proveedor.TEL2;
                     modifiedProveedor.PROVEEDOR_NAME = proveedor.PROVEEDOR_NAME;
+                    //Sync
+                    modifiedProveedor.IS_MODIFIED = true;
+                    modifiedProveedor.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                     //ELIMINA TODAS LAS RELACIONES QUE EXISTEN
                     if (auxUnidCategoria.Count > 0)
@@ -152,6 +166,14 @@ namespace InventoryApp.DAL
                             PROVEEDOR_CATEGORIA proveedorCategoria = new PROVEEDOR_CATEGORIA();
                             proveedorCategoria.UNID_CATEGORIA = item;
                             proveedorCategoria.UNID_PROVEEDOR = proveedor.UNID_PROVEEDOR;
+                            //Sync
+                            proveedorCategoria.IS_MODIFIED = true;
+                            proveedorCategoria.LAST_MODIFIED_DATE = UNID.getNewUNID();
+
+                            modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                            modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                            entity.SaveChanges();
+                            //
                             entity.PROVEEDOR_CATEGORIA.AddObject(proveedorCategoria);
                             entity.SaveChanges();
 
@@ -176,6 +198,13 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         proveedor.UNID_PROVEEDOR = UNID.getNewUNID();
+                        //Sync
+                        proveedor.IS_MODIFIED = true;
+                        proveedor.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
                         entity.PROVEEDORs.AddObject(proveedor);
                         entity.SaveChanges();
                     }
@@ -201,6 +230,13 @@ namespace InventoryApp.DAL
                             PROVEEDOR_CATEGORIA proveedorCategoria = new PROVEEDOR_CATEGORIA();
                             proveedorCategoria.UNID_CATEGORIA = item;
                             proveedorCategoria.UNID_PROVEEDOR = proveedor.UNID_PROVEEDOR;
+                            //Sync
+                            proveedorCategoria.IS_MODIFIED = true;
+                            proveedorCategoria.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                            var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                            modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                            entity.SaveChanges();
+                            //
                             entity.PROVEEDOR_CATEGORIA.AddObject(proveedorCategoria);
                             entity.SaveChanges();
                         }
@@ -220,7 +256,12 @@ namespace InventoryApp.DAL
                     var deleteProveedor = entity.PROVEEDORs.First(p => p.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR);
 
                     deleteProveedor.IS_ACTIVE = false;
-
+                    //Sync
+                    deleteProveedor.IS_MODIFIED = true;
+                    deleteProveedor.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    //
                     entity.SaveChanges();
                 }
             }

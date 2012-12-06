@@ -98,10 +98,15 @@ namespace InventoryApp.DAL
                         var tipo = query.First();
 
                         tipo.CATEGORIA_NAME = ETipo.CATEGORIA_NAME;
-
+                        //Sync
+                        tipo.IS_MODIFIED = true;
+                        tipo.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
                         entity.SaveChanges();
                     }
-
                 }
             }
         }
@@ -121,6 +126,13 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         categoria.UNID_CATEGORIA = UNID.getNewUNID();
+                        //Sync
+                        categoria.IS_MODIFIED = true;
+                        categoria.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
                         entity.CATEGORIAs.AddObject(categoria);
                         entity.SaveChanges();
                     }
@@ -137,6 +149,13 @@ namespace InventoryApp.DAL
                     CATEGORIA categoria = (CATEGORIA)element;
                     var deleteCategoria = entity.CATEGORIAs.First(p => p.UNID_CATEGORIA == categoria.UNID_CATEGORIA);
                     deleteCategoria.IS_ACTIVE = false;
+                    //Sync
+                    deleteCategoria.IS_MODIFIED = true;
+                    deleteCategoria.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }

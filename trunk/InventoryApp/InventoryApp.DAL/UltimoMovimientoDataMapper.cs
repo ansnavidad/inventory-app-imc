@@ -32,6 +32,13 @@ namespace InventoryApp.DAL
 
                     if (query.Count == 0)
                     {
+                        //Sync
+                        ultimoMov.IS_MODIFIED = true;
+                        ultimoMov.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                        entity.SaveChanges();
+                        //
                         entity.ULTIMO_MOVIMIENTO.AddObject(ultimoMov);                       
                     }
                     else {
@@ -42,6 +49,13 @@ namespace InventoryApp.DAL
                         modifiedMov.UNID_CLIENTE = ultimoMov.UNID_CLIENTE;
                         modifiedMov.UNID_MOVIMIENTO_DETALLE = ultimoMov.UNID_MOVIMIENTO_DETALLE;
                         modifiedMov.UNID_PROVEEDOR = ultimoMov.UNID_PROVEEDOR;
+                        //Sync
+                        modifiedMov.IS_MODIFIED = true;
+                        modifiedMov.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                        entity.SaveChanges();
+                        //
                     }
 
                     entity.SaveChanges();

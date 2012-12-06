@@ -68,11 +68,15 @@ namespace InventoryApp.DAL
                     var pro = query.First();
 
                     pro.PROYECTO_NAME = EPro.PROYECTO_NAME;
-
+                    //Sync
+                    pro.IS_MODIFIED = true;
+                    pro.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
-
+                    //
+                    entity.SaveChanges();
                 }
-
             }
         }
 
@@ -91,6 +95,13 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         Proyecto.UNID_PROYECTO = UNID.getNewUNID();
+                        //Sync
+                        Proyecto.IS_MODIFIED = true;
+                        Proyecto.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
                         entity.PROYECTOes.AddObject(Proyecto);
                         entity.SaveChanges();
                     }
@@ -109,7 +120,13 @@ namespace InventoryApp.DAL
                     var deleteProyecto = entity.PROYECTOes.First(p => p.UNID_PROYECTO == proyecto.UNID_PROYECTO);
 
                     deleteProyecto.IS_ACTIVE = false;
-
+                    //Sync
+                    deleteProyecto.IS_MODIFIED = true;
+                    deleteProyecto.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }

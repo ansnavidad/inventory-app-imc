@@ -79,6 +79,8 @@ namespace InventoryApp.View.Salidas
             this.Content = null;
             this.Content = new GridMovimientos.GridMovimientos();
             this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
+
+            this.Close();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -88,6 +90,8 @@ namespace InventoryApp.View.Salidas
             this.Content = null;
             this.Content = new GridMovimientos.GridMovimientos();
             this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
+
+            this.Close();
         }
     }
 }

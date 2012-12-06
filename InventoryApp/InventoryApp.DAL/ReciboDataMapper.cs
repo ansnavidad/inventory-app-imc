@@ -145,6 +145,12 @@ namespace InventoryApp.DAL
                     {
                         r.UNID_SOLICITANTE = recibo.UNID_SOLICITANTE;
                         r.PO = recibo.PO;
+                        //Sync
+                        r.IS_MODIFIED = true;
+                        r.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = Entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();                        
+                        //
                         Entity.SaveChanges();
                     }
                 }
@@ -158,7 +164,13 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     RECIBO item = (RECIBO)element;
-
+                    //Sync
+                    item.IS_MODIFIED = true;
+                    item.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.RECIBOes.AddObject(item);
                     entity.SaveChanges();
                 }

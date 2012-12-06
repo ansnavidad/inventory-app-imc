@@ -73,8 +73,25 @@ namespace InventoryApp.DAL
                     modifiedAlmacen.CONTACTO = almacen.CONTACTO;
                     modifiedAlmacen.MAIL = almacen.MAIL;
                     modifiedAlmacen.DIRECCION = almacen.DIRECCION;
-                    modifiedAlmacen.MAIL_DEFAULT = almacen.MAIL_DEFAULT;                    
+                    modifiedAlmacen.MAIL_DEFAULT = almacen.MAIL_DEFAULT;
+                    //Sync
+                    modifiedAlmacen.IS_MODIFIED = true;
+                    modifiedAlmacen.LAST_MODIFIED_DATE = UNID.getNewUNID();
+
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+
+
+                    //var sync = (from sy in entity.SYNCs
+                    //            select sy).ToList().First();
+                    //entity.SYNCs.DeleteObject(sync);
+                    //SYNC syncN = new SYNC();                    
+                    //syncN.UNID_SYNC = UNID.getNewUNID();                    
                     
+                    //entity.SYNCs.AddObject(syncN);
+                    
+                    
+
                     entity.SaveChanges();
                 }
             }
@@ -93,6 +110,13 @@ namespace InventoryApp.DAL
                     modifiedAlmacen.MAIL = almacen.MAIL;
                     modifiedAlmacen.DIRECCION = almacen.DIRECCION;
                     modifiedAlmacen.MAIL_DEFAULT = almacen.MAIL_DEFAULT;
+                    //Sync
+                    modifiedAlmacen.IS_MODIFIED = true;
+                    modifiedAlmacen.LAST_MODIFIED_DATE = UNID.getNewUNID();
+
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+
                     entity.SaveChanges();
                     //ELIMINA TODAS LAS RELACIONES QUE EXISTEN
                     if (auxUnidTecnico.Count > 0)
@@ -119,6 +143,14 @@ namespace InventoryApp.DAL
                             ALMACEN_TECNICO almacenTecnico = new ALMACEN_TECNICO();
                             almacenTecnico.UNID_ALMACEN = almacen.UNID_ALMACEN;
                             almacenTecnico.UNID_TECNICO =item;
+                            //Sync
+                            almacenTecnico.IS_MODIFIED = true;
+                            almacenTecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
+
+                            modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                            modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                            entity.SaveChanges();
+
                             entity.ALMACEN_TECNICO.AddObject(almacenTecnico);
                             entity.SaveChanges();
 
@@ -143,6 +175,13 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         almacen.UNID_ALMACEN = UNID.getNewUNID();
+                        //Sync
+                        almacen.IS_MODIFIED = true;
+                        almacen.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+
                         entity.ALMACENs.AddObject(almacen);
                         entity.SaveChanges();    
                     }
@@ -158,6 +197,13 @@ namespace InventoryApp.DAL
                 {
                     ALMACEN almacen = (ALMACEN)element;
                     almacen.UNID_ALMACEN = UNID.getNewUNID();
+                    //Sync
+                    almacen.IS_MODIFIED = true;
+                    almacen.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+
                     entity.ALMACENs.AddObject(almacen);
                     entity.SaveChanges();
 
@@ -168,6 +214,13 @@ namespace InventoryApp.DAL
                             ALMACEN_TECNICO almacenTecnico = new ALMACEN_TECNICO();
                             almacenTecnico.UNID_ALMACEN =almacen.UNID_ALMACEN;
                             almacenTecnico.UNID_TECNICO = item;
+                            //Sync
+                            almacenTecnico.IS_MODIFIED = true;
+                            almacenTecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                            modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                            modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                            entity.SaveChanges();
+
                             entity.ALMACEN_TECNICO.AddObject(almacenTecnico);
                             entity.SaveChanges();
                         }
@@ -185,6 +238,13 @@ namespace InventoryApp.DAL
                     ALMACEN almacen = (ALMACEN)element;
                     var modifiedAlamacen = entity.ALMACENs.First(p => p.UNID_ALMACEN == almacen.UNID_ALMACEN);
                     modifiedAlamacen.IS_ACTIVE = false;
+                    //Sync
+                    modifiedAlamacen.IS_MODIFIED = true;
+                    modifiedAlamacen.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+
                     entity.SaveChanges();
                 }
             }

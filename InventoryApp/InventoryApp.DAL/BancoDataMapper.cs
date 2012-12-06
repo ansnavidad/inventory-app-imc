@@ -52,6 +52,13 @@ namespace InventoryApp.DAL
                     BANCO banco = (BANCO)element;
                     var modifiedBanco = entity.BANCOes.First(p => p.UNID_BANCO == banco.UNID_BANCO);
                     modifiedBanco.BANCO_NAME = banco.BANCO_NAME;
+                    //Sync
+                    modifiedBanco.IS_MODIFIED = true;
+                    modifiedBanco.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }
@@ -72,6 +79,13 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         banco.UNID_BANCO = UNID.getNewUNID();
+                        //Sync
+                        banco.IS_MODIFIED = true;
+                        banco.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
                         entity.BANCOes.AddObject(banco);
                         entity.SaveChanges();
                     }
@@ -88,6 +102,13 @@ namespace InventoryApp.DAL
                     BANCO banco = (BANCO)element;
                     var modifiedBanco = entity.BANCOes.First(p => p.UNID_BANCO == banco.UNID_BANCO);
                     modifiedBanco.IS_ACTIVE = false;
+                    //Sync
+                    modifiedBanco.IS_MODIFIED = true;
+                    modifiedBanco.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }

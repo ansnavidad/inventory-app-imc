@@ -52,6 +52,13 @@ namespace InventoryApp.DAL
                     UNIDAD unidad = (UNIDAD)element;
                     var modifiedUnidad = entity.UNIDADs.First(p => p.UNID_UNIDAD == unidad.UNID_UNIDAD);
                     modifiedUnidad.UNIDAD1 = unidad.UNIDAD1;
+                    //Sync
+                    modifiedUnidad.IS_MODIFIED = true;
+                    modifiedUnidad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }
@@ -72,6 +79,13 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         unidad.UNID_UNIDAD = UNID.getNewUNID();
+                        //Sync
+                        unidad.IS_MODIFIED = true;
+                        unidad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                        entity.SaveChanges();
+                        //
                         entity.UNIDADs.AddObject(unidad);
                         entity.SaveChanges();
                     }                    
@@ -88,6 +102,13 @@ namespace InventoryApp.DAL
                     UNIDAD unidad = (UNIDAD)element;
                     var modifiedUnidad = entity.UNIDADs.First(p => p.UNID_UNIDAD == unidad.UNID_UNIDAD);
                     modifiedUnidad.IS_ACTIVE = false;
+                    //Sync
+                    modifiedUnidad.IS_MODIFIED = true;
+                    modifiedUnidad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }

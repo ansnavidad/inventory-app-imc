@@ -63,6 +63,13 @@ namespace InventoryApp.DAL
                     modifiedTerminoEnvio.GENERA_LOTES = terminoEnvio.GENERA_LOTES;
                     modifiedTerminoEnvio.SIGNIFICADO = terminoEnvio.SIGNIFICADO;
                     modifiedTerminoEnvio.TERMINO = terminoEnvio.TERMINO;
+                    //Sync
+                    modifiedTerminoEnvio.IS_MODIFIED = true;
+                    modifiedTerminoEnvio.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }
@@ -83,6 +90,13 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         terminoEnvio.UNID_TERMINO_ENVIO = UNID.getNewUNID();
+                        //Sync
+                        terminoEnvio.IS_MODIFIED = true;
+                        terminoEnvio.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                        entity.SaveChanges();
+                        //
                         entity.TERMINO_ENVIO.AddObject(terminoEnvio);
                         entity.SaveChanges();
                     }
@@ -101,7 +115,13 @@ namespace InventoryApp.DAL
                     var deleteTerminoEnvio = entity.TERMINO_ENVIO.First(p => p.UNID_TERMINO_ENVIO == terminoEnvio.UNID_TERMINO_ENVIO);
 
                     deleteTerminoEnvio.IS_ACTIVE = false;
-
+                    //Sync
+                    deleteTerminoEnvio.IS_MODIFIED = true;
+                    deleteTerminoEnvio.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }

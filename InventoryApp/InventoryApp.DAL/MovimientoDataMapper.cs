@@ -192,7 +192,13 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     MOVIMENTO movimiento = (MOVIMENTO)element;
-
+                    //Sync
+                    movimiento.IS_MODIFIED = true;
+                    movimiento.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.MOVIMENTOes.AddObject(movimiento);
                     entity.SaveChanges();
                 }

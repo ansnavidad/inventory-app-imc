@@ -28,13 +28,19 @@ namespace InventoryApp.DAL
         {
             if (element != null)
             {
-                using (var oAWEntities = new TAE2Entities())
+                using (var entity = new TAE2Entities())
                 {
                     FACTURA_VENTA tra = (FACTURA_VENTA)element;
-                  
 
-                    oAWEntities.FACTURA_VENTA.AddObject(tra);
-                    oAWEntities.SaveChanges();
+                    //Sync
+                    tra.IS_MODIFIED = true;
+                    tra.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.FACTURA_VENTA.AddObject(tra);
+                    entity.SaveChanges();
                 }
             }
         }

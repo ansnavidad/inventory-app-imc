@@ -15,17 +15,17 @@ using System.Collections.Specialized;
 
 namespace InventoryApp.DAL.POCOS
 {
-    public partial class TIPO_COTIZACION
+    public partial class SERVICIO1
     {
         #region Primitive Properties
     
-        public virtual long UNID_TIPO_COTIZACION
+        public virtual long UNID_SERVICIO
         {
             get;
             set;
         }
     
-        public virtual string TIPO_COTIZACION_NAME
+        public virtual string SERVICIO_NAME
         {
             get;
             set;

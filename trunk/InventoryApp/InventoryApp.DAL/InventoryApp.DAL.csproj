@@ -200,6 +200,9 @@
     <Compile Include="POCOS\SERVICIO.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
+    <Compile Include="POCOS\SERVICIO1.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
     <Compile Include="POCOS\SOLICITANTE.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>

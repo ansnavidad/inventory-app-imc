@@ -14,6 +14,9 @@ namespace InventoryApp.ViewModel.Salidas
         private RelayCommand _addItemCommand;
         private RelayCommand _addItemsCommand;
 
+        private string _mensaje1;
+        private string _mensaje2;
+
         private SalidaRentaViewModel _salidaRentaViewModel;
         private SalidaRevisionViewModel _salidaRevisionViewModel;
 	    private SalidaDemoViewModel _salidaDemoViewModel;
@@ -115,6 +118,7 @@ namespace InventoryApp.ViewModel.Salidas
 
         }
 
+        #region Props
         public CatalogItemModel CatalogItemModel
         {
             get
@@ -126,6 +130,30 @@ namespace InventoryApp.ViewModel.Salidas
                 _catalogItemModel = value;
             }
         }
+
+        public string Mensaje1
+        {
+            get
+            {
+                return _mensaje1;
+            }
+            set
+            {
+                _mensaje1 = value;
+            }
+        }
+
+        public string Mensaje2
+        {
+            get
+            {
+                return _mensaje2;
+            }
+            set
+            {
+                _mensaje2 = value;
+            }
+        } 
 
         public SalidaVentaViewModel SalidaVentaViewModel
         {
@@ -271,7 +299,8 @@ namespace InventoryApp.ViewModel.Salidas
                 return _addItemsCommand;
             }
         }
-        
+
+        #endregion
         #region Methods
         /// <summary>
         /// Hace las validaciones necesarias para habilitar el command

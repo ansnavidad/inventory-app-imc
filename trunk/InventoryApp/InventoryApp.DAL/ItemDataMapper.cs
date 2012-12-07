@@ -145,6 +145,49 @@ namespace InventoryApp.DAL
             return o;
         }
 
+        public object getAlmacenDisponible(string numSerie, string SKU)
+        {
+            object o = null;
+            using (var Entity = new TAE2Entities())
+            {
+                if (!numSerie.Equals(""))
+                {
+                    var res = (from i in Entity.ULTIMO_MOVIMIENTO
+                               where i.ITEM.NUMERO_SERIE == numSerie
+                               select i).ToList();
+                    if (((List<ULTIMO_MOVIMIENTO>)res).Count > 0)
+                    {
+                        foreach (ULTIMO_MOVIMIENTO um in ((List<ULTIMO_MOVIMIENTO>)res))
+                        {
+                            um.ALMACEN = um.ALMACEN;
+                            um.CLIENTE = um.CLIENTE;
+                            um.PROVEEDOR = um.PROVEEDOR;
+                        }
+                    }
+                    o = (object)res;
+                }
+                else
+                {
+                    var res = (from i in Entity.ULTIMO_MOVIMIENTO
+                               where i.ITEM.SKU == SKU
+                               select i).ToList();
+                    if (((List<ULTIMO_MOVIMIENTO>)res).Count > 0)
+                    {
+                        foreach (ULTIMO_MOVIMIENTO um in ((List<ULTIMO_MOVIMIENTO>)res))
+                        {
+                            um.ALMACEN = um.ALMACEN;
+                            um.CLIENTE = um.CLIENTE;
+                            um.PROVEEDOR = um.PROVEEDOR;
+                        }
+                    }
+                    o = (object)res;
+                }
+                
+            }
+            return (o);
+            
+
+        }
         public object getElements_EntradasSalidasSerie2(ALMACEN almacen, string numSerie, string SKU)
         {
             object o = null;

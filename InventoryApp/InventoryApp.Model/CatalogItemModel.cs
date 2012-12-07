@@ -14,6 +14,8 @@ namespace InventoryApp.Model
         private FixupCollection<ItemModel> _itemModel;
         private string _serie;
         private string _sku;
+        private string _mensaje1;
+        private string _mensaje2;
         private ItemDataMapper _dataMapper;
 
         public FixupCollection<ItemModel> ItemModel
@@ -34,6 +36,47 @@ namespace InventoryApp.Model
                 }
             }
         }
+
+        public string Mensaje1
+        {
+            get
+            {
+                return _mensaje1;
+            }
+            set
+            {
+                if (_mensaje1 != value)
+                {
+                    _mensaje1 = value;
+                    
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Mensaje1"));
+                    }
+                }
+            }
+        }
+
+        public string Mensaje2
+        {
+            get
+            {
+                return _mensaje2;
+            }
+            set
+            {
+                if (_mensaje2 != value)
+                {
+                    _mensaje2 = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Mensaje2"));
+                    }
+                }
+            }
+        }
+
 
         public string Serie
         {
@@ -145,22 +188,64 @@ namespace InventoryApp.Model
         {
             try
             {
+                bool ban = false;
+                this.Mensaje1 = "";
+                this.Mensaje2 = "";
                 object element = this._dataMapper.getElements_EntradasSalidasSerie(prov, cliente, this._serie, this._sku);
+                FixupCollection<ItemModel> ic = new FixupCollection<ItemModel>();
+
+
+                foreach (ItemModel elem in this.ItemModel)
+                {
+                    if (elem.IsChecked)
+                        ic.Add(elem);
+                }
+
+                this.ItemModel.Clear();
 
                 if (element != null)
                 {
 
-                    FixupCollection<ItemModel> ic = new FixupCollection<ItemModel>();
+
+
 
                     foreach (ITEM elemento in (List<ITEM>)element)
                     {
+                        ban = true;
                         ItemModel aux = new ItemModel(elemento);
                         ic.Add(aux);
                     }
-                    if (ic != null)
+                
+                }
+                if (ic != null)
+                {
+                    this.ItemModel = ic;
+                }
+                if (!ban)
+                {
+                    this.Mensaje1 = "Este artículo no se encuentra en el lugar especificado";
+                    object element2 = this._dataMapper.getAlmacenDisponible(this._serie, this._sku);
+
+                    bool aux = false;
+                    this.Mensaje2 = "El artículo se encuentra en ";
+                    foreach (ULTIMO_MOVIMIENTO um in (List<ULTIMO_MOVIMIENTO>)element2)
                     {
-                        this.ItemModel = ic;
+
+                        if (um.CLIENTE != null)
+                        {
+                            this.Mensaje2 += "Cliente: " + um.CLIENTE.CLIENTE1;
+                            aux = true;
+                        }
+
+                        if (um.PROVEEDOR != null)
+                        {
+                            aux = true;
+                            this.Mensaje2 += "Proveedor: " + um.PROVEEDOR.PROVEEDOR_NAME;
+                        }
                     }
+
+                    if (!aux)
+                        this.Mensaje2 = "El artículo no se encuentra en ningún cliente o proveedor";
                 }
             }
             catch (ArgumentException ae)
@@ -172,28 +257,59 @@ namespace InventoryApp.Model
             {
                 throw ex;
             }
+
+
         }
 
         public void loadItems(ALMACEN almacenDirecto, string Rafa)
         {
             try
             {
+                bool ban = false;
+                this.Mensaje1 = "";
+                this.Mensaje2 = "";
                 object element = this._dataMapper.getElements_EntradasSalidasSerie2(almacenDirecto, this._serie, this._sku);
+                FixupCollection<ItemModel> ic = new FixupCollection<ItemModel>();
+
+
+                foreach (ItemModel elem in this.ItemModel)
+                {
+                    if (elem.IsChecked)
+                        ic.Add(elem);
+                }
+
+                this.ItemModel.Clear();
 
                 if (element != null)
                 {
-
-                    FixupCollection<ItemModel> ic = new FixupCollection<ItemModel>();
+                                      
 
                     foreach (ITEM elemento in (List<ITEM>)element)
                     {
+                        ban = true;
                         ItemModel aux = new ItemModel(elemento);
                         ic.Add(aux);
                     }
-                    if (ic != null)
+                }
+                if (ic != null)
+                {
+                    this.ItemModel = ic;
+                }
+                if (!ban)
+                {
+                    this.Mensaje1 = "Este artículo no se encuentra en el almacén seleccionado";
+                    object element2 = this._dataMapper.getAlmacenDisponible(this._serie, this._sku);
+
+                    bool aux = false;
+                    this.Mensaje2 = "El artículo se encuentra en el almacen";
+                    foreach (ULTIMO_MOVIMIENTO um in (List<ULTIMO_MOVIMIENTO>)element2)
                     {
-                        this.ItemModel = ic;
+                        aux = true;
+                        this.Mensaje2 += " / " + um.ALMACEN.ALMACEN_NAME  ;
                     }
+
+                    if (!aux)
+                        this.Mensaje2 = "El artículo no se encuentra en ningún almacen";
                 }
             }
             catch (ArgumentException ae)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -121,6 +122,39 @@ namespace InventoryApp.DAL
                     //
                     entity.SaveChanges();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Método que serializa una List<PAIS> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de PAIS</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonPais()
+        {
+            string res = null;
+            List<PAI> listPais = new List<PAI>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.PAIS
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listPais.Add(new PAI
+                     {
+                         UNID_PAIS=row.UNID_PAIS,
+                         PAIS=row.PAIS,
+                         ISO=row.ISO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listPais.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listPais);
+                }
+                return res;
             }
         }
     }

@@ -142,6 +142,20 @@ namespace DALTestProject
             Assert.AreEqual(item.ITEM_STATUS_NAME, ((List<ITEM_STATUS>)actual)[0].ITEM_STATUS_NAME);
         }
 
-        
+
+
+        /// <summary>
+        ///Una prueba de GetJsonItemStatus
+        ///</summary>
+        [TestMethod()]
+        public void GetJsonItemStatusTest()
+        {
+            EstatusDataMapper target = new EstatusDataMapper(); // TODO: Inicializar en un valor adecuado
+            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            string actual;
+            actual = target.GetJsonItemStatus();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

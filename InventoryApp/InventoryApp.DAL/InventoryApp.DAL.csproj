@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\Desktop\RESPALDO\CMD_DLL\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -58,6 +61,7 @@
     <Compile Include="IDataMapper.cs" />
     <Compile Include="ItemDataMapper.cs" />
     <Compile Include="ItemStatusDataMapper.cs" />
+    <Compile Include="JSON\SerializerJson.cs" />
     <Compile Include="LoteDataMapper.cs" />
     <Compile Include="MarcaDataMapper.cs" />
     <Compile Include="MedioEnvioDataMapper.cs" />

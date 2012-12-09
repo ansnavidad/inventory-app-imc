@@ -78,6 +78,20 @@ namespace DALTestProject
             Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
         }
 
-        
+
+
+        /// <summary>
+        ///Una prueba de GetJsonItemStatus
+        ///</summary>
+        [TestMethod()]
+        public void GetJsonItemStatusTest()
+        {
+            ItemStatusDataMapper target = new ItemStatusDataMapper(); // TODO: Inicializar en un valor adecuado
+            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            string actual;
+            actual = target.GetJsonItemStatus();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

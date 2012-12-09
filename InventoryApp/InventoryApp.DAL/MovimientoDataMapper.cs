@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -208,6 +209,61 @@ namespace InventoryApp.DAL
         public void deleteElement(object element)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Método que serializa una List<MOVIMENTO> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de MOVIMENTO</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonMovimiento()
+        {
+            string res = null;
+            List<MOVIMENTO> listMovimiento = new List<MOVIMENTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.MOVIMENTOes
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listMovimiento.Add(new MOVIMENTO
+                     {
+                         UNID_MOVIMIENTO=row.UNID_MOVIMIENTO,
+                         FECHA_MOVIMIENTO=row.FECHA_MOVIMIENTO,
+                         UNID_TIPO_MOVIMIENTO=row.UNID_TIPO_MOVIMIENTO,
+                         UNID_ALMACEN_DESTINO=row.UNID_ALMACEN_DESTINO,
+                         UNID_PROVEEDOR_DESTINO=row.UNID_PROVEEDOR_DESTINO,
+                         UNID_CLIENTE_DESTINO=row.UNID_CLIENTE_DESTINO,
+                         UNID_ALMACEN_PROCEDENCIA=row.UNID_ALMACEN_PROCEDENCIA,
+                         UNID_CLIENTE_PROCEDENCIA=row.UNID_CLIENTE_PROCEDENCIA,
+                         UNID_PROVEEDOR_PROCEDENCIA=row.UNID_PROVEEDOR_PROCEDENCIA,
+                         UNID_SERVICIO=row.UNID_SERVICIO,
+                         TT=row.TT,
+                         CONTACTO=row.CONTACTO,
+                         UNID_TRANSPORTE=row.UNID_TRANSPORTE,
+                         DIRECCION_ENVIO=row.DIRECCION_ENVIO,
+                         SITIO_ENLACE=row.SITIO_ENLACE,
+                         NOMBRE_SITIO=row.NOMBRE_SITIO,
+                         RECIBE=row.RECIBE,
+                         GUIA=row.GUIA,
+                         UNID_CLIENTE=row.UNID_CLIENTE,
+                         UNID_PROVEEDOR=row.UNID_PROVEEDOR,
+                         UNID_FACTURA_VENTA=row.UNID_FACTURA_VENTA,
+                         PEDIMIENTO_IMPO=row.PEDIMIENTO_IMPO,
+                         PEDIMIENTO_EXPO=row.PEDIMIENTO_EXPO,
+                         UNID_SOLICITANTE=row.UNID_SOLICITANTE,
+                         UNID_TECNICO=row.UNID_TECNICO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listMovimiento.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listMovimiento);
+                }
+                return res;
+            }
         }
     }
 }

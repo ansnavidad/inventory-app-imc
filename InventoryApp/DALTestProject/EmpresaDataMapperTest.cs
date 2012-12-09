@@ -111,5 +111,19 @@ namespace DALTestProject
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
+
+        /// <summary>
+        ///Una prueba de GetJsonEmpresa
+        ///</summary>
+        [TestMethod()]
+        public void GetJsonEmpresaTest()
+        {
+            EmpresaDataMapper target = new EmpresaDataMapper(); // TODO: Inicializar en un valor adecuado
+            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            string actual;
+            actual = target.GetJsonEmpresa();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

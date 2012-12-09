@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -180,6 +181,44 @@ namespace InventoryApp.DAL
         public void deleteElement(object element)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Método que serializa una List<RECIBO> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de RECIBO</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonRecibo()
+        {
+            string res = null;
+            List<RECIBO> listRecibo = new List<RECIBO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.RECIBOes
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listRecibo.Add(new RECIBO
+                     {
+                         UNID_RECIBO=row.UNID_RECIBO,
+                         FECHA_CREACION=row.FECHA_CREACION,
+                         FECHA_CIERRE=row.FECHA_CIERRE,
+                         UNID_SOLICITANTE=row.UNID_SOLICITANTE,
+                         PO=row.PO,
+                         TT=row.TT,
+                         PEDIMIENTO_IMPO=row.PEDIMIENTO_IMPO,
+                         PEDIMENTO_EXPO=row.PEDIMENTO_EXPO,
+                         UNID_RECIBO_STATUS=row.UNID_RECIBO_STATUS,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listRecibo.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listRecibo);
+                }
+                return res;
+            }
         }
     }
 }

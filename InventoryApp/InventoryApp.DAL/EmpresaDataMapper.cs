@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.Model
 {
@@ -134,6 +135,41 @@ namespace InventoryApp.Model
                     //
                     entity.SaveChanges();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Método que serializa una List<EMPRESA> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de EMPRESA</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonEmpresa()
+        {
+            string res = null;
+            List<EMPRESA> listEmpresa = new List<EMPRESA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.EMPRESAs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listEmpresa.Add(new EMPRESA
+                     {
+                         UNID_EMPRESA= row.UNID_EMPRESA,
+                         EMPRESA_NAME=row.EMPRESA_NAME,
+                         DIRECCION=row.DIRECCION,
+                         RAZON_SOCIAL=row.RAZON_SOCIAL,
+                         RFC=row.RFC,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listEmpresa.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listEmpresa);
+                }
+                return res;
             }
         }
     }

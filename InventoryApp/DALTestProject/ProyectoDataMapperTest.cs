@@ -137,5 +137,19 @@ namespace DALTestProject
 
             Assert.AreEqual(item.PROYECTO_NAME, ((List<PROYECTO>)actual)[0].PROYECTO_NAME);
         }
+
+        /// <summary>
+        ///Una prueba de GetJsonProyecto
+        ///</summary>
+        [TestMethod()]
+        public void GetJsonProyectoTest()
+        {
+            ProyectoDataMapper target = new ProyectoDataMapper(); // TODO: Inicializar en un valor adecuado
+            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            string actual;
+            actual = target.GetJsonProyecto();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

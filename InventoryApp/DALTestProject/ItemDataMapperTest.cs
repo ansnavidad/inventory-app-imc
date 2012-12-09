@@ -144,5 +144,19 @@ namespace DALTestProject
         //    Assert.AreEqual(expected.SerialNbr, actual.SerialNbr);
         //    //Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         //}
+
+        /// <summary>
+        ///Una prueba de GetJsonItem
+        ///</summary>
+        [TestMethod()]
+        public void GetJsonItemTest()
+        {
+            ItemDataMapper target = new ItemDataMapper(); // TODO: Inicializar en un valor adecuado
+            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            string actual;
+            actual = target.GetJsonItem();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

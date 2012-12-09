@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -153,6 +154,39 @@ namespace InventoryApp.DAL
             }
 
             return elements;
+        }
+
+        /// <summary>
+        /// Método que serializa una List<TIPO_MOVIMIENTO> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de TIPO_MOVIMIENTO</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonTipoMovimiento()
+        {
+            string res = null;
+            List<TIPO_MOVIMIENTO> listTipoMovimiento = new List<TIPO_MOVIMIENTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.TIPO_MOVIMIENTO
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listTipoMovimiento.Add(new TIPO_MOVIMIENTO
+                     {
+                         UNID_TIPO_MOVIMIENTO=row.UNID_TIPO_MOVIMIENTO,
+                         TIPO_MOVIMIENTO_NAME=row.TIPO_MOVIMIENTO_NAME,
+                         SIGNO_MOVIMIENTO=row.SIGNO_MOVIMIENTO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listTipoMovimiento.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listTipoMovimiento);
+                }
+                return res;
+            }
         }
     }
 }

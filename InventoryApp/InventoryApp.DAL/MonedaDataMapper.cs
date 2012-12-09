@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -116,6 +117,39 @@ namespace InventoryApp.DAL
                     //
                     entity.SaveChanges();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Método que serializa una List<MONEDA> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de MONEDA</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonMoneda()
+        {
+            string res = null;
+            List<MONEDA> listMoneda = new List<MONEDA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.MONEDAs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listMoneda.Add(new MONEDA
+                     {
+                         UNID_MONEDA=row.UNID_MONEDA,
+                         MONEDA_NAME=row.MONEDA_NAME,
+                         MONEDA_ABR=row.MONEDA_ABR,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listMoneda.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listMoneda);
+                }
+                return res;
             }
         }
     }

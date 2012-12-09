@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -131,6 +132,42 @@ namespace InventoryApp.DAL
                     //
                     entity.SaveChanges();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Método que serializa una List<PROVEEDOR_CUENTA> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de PROVEEDOR_CUENTA</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonProveedorCuenta()
+        {
+            string res = null;
+            List<PROVEEDOR_CUENTA> listProveedorCuenta = new List<PROVEEDOR_CUENTA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.PROVEEDOR_CUENTA
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listProveedorCuenta.Add(new PROVEEDOR_CUENTA
+                     {
+                         UNID_PROVEEDOR= row.UNID_PROVEEDOR,
+                         UNID_PROVEEDOR_CUENTA=row.UNID_PROVEEDOR_CUENTA,
+                         UNID_BANCO=row.UNID_BANCO,
+                         NUMERO_CUENTA=row.NUMERO_CUENTA,
+                         CLABE=row.CLABE,
+                         BENEFICIARIO=row.BENEFICIARIO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listProveedorCuenta.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listProveedorCuenta);
+                }
+                return res;
             }
         }
     }

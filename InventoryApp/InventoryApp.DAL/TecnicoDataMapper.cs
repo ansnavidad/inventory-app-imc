@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -185,6 +186,40 @@ namespace InventoryApp.DAL
             }
 
             return tecnico;
+        }
+
+        /// <summary>
+        /// Método que serializa una List<TECNICO> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de TECNICO</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonTecnico()
+        {
+            string res = null;
+            List<TECNICO> listTecnico = new List<TECNICO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.TECNICOes
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listTecnico.Add(new TECNICO
+                     {
+                         UNID_TECNICO=row.UNID_TECNICO,
+                         TECNICO_NAME=row.TECNICO_NAME,
+                         MAIL=row.MAIL,
+                         UNID_CIUDAD=row.UNID_CIUDAD,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listTecnico.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listTecnico);
+                }
+                return res;
+            }
         }
     }
 }

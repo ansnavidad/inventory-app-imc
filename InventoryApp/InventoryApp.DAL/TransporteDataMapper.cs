@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -126,6 +127,39 @@ namespace InventoryApp.DAL
                     //
                     entity.SaveChanges();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Método que serializa una List<TRANSPORTE> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de TRANSPORTE</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonTransporte()
+        {
+            string res = null;
+            List<TRANSPORTE> listTransporte = new List<TRANSPORTE>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.TRANSPORTEs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listTransporte.Add(new TRANSPORTE
+                     {
+                         UNID_TRANSPORTE=row.UNID_TRANSPORTE,
+                         TRANSPORTE_NAME=row.TRANSPORTE_NAME,
+                         UNID_TIPO_EMPRESA=row.UNID_TIPO_EMPRESA,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listTransporte.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listTransporte);
+                }
+                return res;
             }
         }
     }

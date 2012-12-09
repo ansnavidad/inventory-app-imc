@@ -80,5 +80,19 @@ namespace DALTestProject
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
+
+        /// <summary>
+        ///Una prueba de GetJsonRecibo
+        ///</summary>
+        [TestMethod()]
+        public void GetJsonReciboTest()
+        {
+            ReciboDataMapper target = new ReciboDataMapper(); // TODO: Inicializar en un valor adecuado
+            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            string actual;
+            actual = target.GetJsonRecibo();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

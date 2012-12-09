@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -120,6 +121,39 @@ namespace InventoryApp.DAL
                     //
                     entity.SaveChanges();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Método que serializa una List<CIUDAD> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de CIUDAD</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonCiudad()
+        {
+            string res = null;
+            List<CIUDAD> listCiudad = new List<CIUDAD>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.CIUDADs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listCiudad.Add(new CIUDAD
+                     {
+                         CIUDAD1= row.CIUDAD1,
+                         UNID_CIUDAD=row.UNID_CIUDAD,
+                         ISO =row.ISO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listCiudad.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listCiudad);
+                }
+                return res;
             }
         }
     }

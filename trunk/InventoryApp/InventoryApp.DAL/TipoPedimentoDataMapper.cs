@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -145,6 +146,41 @@ namespace InventoryApp.DAL
             }
 
             return tipoPedimentos;
+        }
+
+        /// <summary>
+        /// Método que serializa una List<TIPO_PEDIMENTO> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de TIPO_PEDIMENTO</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonTipoPedimento()
+        {
+            string res = null;
+            List<TIPO_PEDIMENTO> listTipoPedimento = new List<TIPO_PEDIMENTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.TIPO_PEDIMENTO
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listTipoPedimento.Add(new TIPO_PEDIMENTO
+                     {
+                         UNID_TIPO_PEDIMENTO=row.UNID_TIPO_PEDIMENTO,
+                         TIPO_PEDIMENTO_NAME=row.TIPO_PEDIMENTO_NAME,
+                         CLAVE=row.CLAVE,
+                         REGIMEN=row.REGIMEN,
+                         NOTA=row.NOTA,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listTipoPedimento.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listTipoPedimento);
+                }
+                return res;
+            }
         }
     }
 }

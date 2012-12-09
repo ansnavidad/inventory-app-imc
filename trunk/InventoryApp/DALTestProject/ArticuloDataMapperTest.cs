@@ -113,5 +113,19 @@ namespace DALTestProject
             element = target.getElements();
             Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
         }
+
+        /// <summary>
+        ///Una prueba de GetJsonArticulo
+        ///</summary>
+        [TestMethod()]
+        public void GetJsonArticuloTest()
+        {
+            ArticuloDataMapper target = new ArticuloDataMapper(); // TODO: Inicializar en un valor adecuado
+            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            string actual;
+            actual = target.GetJsonArticulo();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

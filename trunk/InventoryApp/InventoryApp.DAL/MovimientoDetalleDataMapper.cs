@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -65,6 +66,40 @@ namespace InventoryApp.DAL
         public void deleteElement(object element)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Método que serializa una List<MOVIMIENTO_DETALLE> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de MOVIMIENTO_DETALLE</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonMovimientoDetalle()
+        {
+            string res = null;
+            List<MOVIMIENTO_DETALLE> listMovimientoDetalle = new List<MOVIMIENTO_DETALLE>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.MOVIMIENTO_DETALLE
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listMovimientoDetalle.Add(new MOVIMIENTO_DETALLE
+                     {
+                         UNID_MOVIMIENTO_DETALLE= row.UNID_MOVIMIENTO_DETALLE,
+                         UNID_ITEM=row.UNID_ITEM,
+                         UNID_MOVIMIENTO=row.UNID_MOVIMIENTO,
+                         OBSERVACIONES=row.OBSERVACIONES,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listMovimientoDetalle.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listMovimientoDetalle);
+                }
+                return res;
+            }
         }
     }
 }

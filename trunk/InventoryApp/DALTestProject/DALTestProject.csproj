@@ -35,6 +35,9 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\Desktop\RESPALDO\CMD_DLL\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -57,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddReciboViewModelTest.cs" />
+    <Compile Include="AlmacenDataMapperTest.cs" />
     <Compile Include="ArticuloDataMapperTest.cs" />
     <Compile Include="BancoDataMapperTest.cs" />
     <Compile Include="CatalogItemStatusModelTest.cs" />
@@ -66,25 +70,45 @@
     <Compile Include="CatalogTipoCotizacionModelTest.cs" />
     <Compile Include="CatalogTipoMovimientoModelTest.cs" />
     <Compile Include="CategoriaDataMapperTest.cs" />
+    <Compile Include="CiudadDataMapperTest.cs" />
+    <Compile Include="ClienteDataMapperTest.cs" />
+    <Compile Include="DepartamentoDataMapperTest.cs" />
     <Compile Include="EntradaPorValidacionViewModelTest.cs" />
     <Compile Include="EquipoDataMapperTest.cs" />
     <Compile Include="EstatusDataMapperTest.cs" />
     <Compile Include="EmpresaDataMapperTest.cs" />
     <Compile Include="FacturaCompraDataMapperTest.cs" />
+    <Compile Include="FacturaVentaDataMapperTest.cs" />
     <Compile Include="ItemDataMapperTest.cs" />
     <Compile Include="ItemStatusDataMapperTest.cs" />
+    <Compile Include="LoteDataMapperTest.cs" />
     <Compile Include="MarcaDataMapperTest.cs" />
+    <Compile Include="MedioEnvioDataMapperTest.cs" />
     <Compile Include="MenuDataMapperTest.cs" />
     <Compile Include="MenuModelTest.cs" />
     <Compile Include="ModeloDataMapperTest.cs" />
     <Compile Include="MonedaDataMapperTest.cs" />
+    <Compile Include="MovimientoDataMapperTest.cs" />
+    <Compile Include="MovimientoDetalleDataMapperTest.cs" />
+    <Compile Include="PaisDataMapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropiedadDataMapperTest.cs" />
+    <Compile Include="ProveedorCuentaDataMapperTest.cs" />
+    <Compile Include="ProveedorDataMapperTest.cs" />
     <Compile Include="ProyectoDataMapperTest.cs" />
     <Compile Include="ReciboDataMapperTest.cs" />
+    <Compile Include="ReciboMovimientoDataMapperTest.cs" />
+    <Compile Include="ServicioDataMapperTest.cs" />
     <Compile Include="SolicitanteDataMapperTest.cs" />
+    <Compile Include="TecnicoDataMapperTest.cs" />
+    <Compile Include="TerminoEnvioDataMapperTest.cs" />
     <Compile Include="TipoCotizacionDataMapperTest.cs" />
+    <Compile Include="TipoEmpresaDataMapperTest.cs" />
     <Compile Include="TipoMovimientoDataMapperTest.cs" />
+    <Compile Include="TipoPedimentoDataMapperTest.cs" />
     <Compile Include="TransporteDataMapperTest.cs" />
+    <Compile Include="UltimoMovimientoDataMapperTest.cs" />
+    <Compile Include="UnidadDataMapperTest.cs" />
     <Compile Include="UNIDTest.cs" />
   </ItemGroup>
   <ItemGroup>

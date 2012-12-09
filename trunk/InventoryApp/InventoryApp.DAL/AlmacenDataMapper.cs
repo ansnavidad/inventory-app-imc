@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -249,5 +250,42 @@ namespace InventoryApp.DAL
                 }
             }
         }
+
+        /// <summary>
+        /// Método que serializa una List<ALMACEN> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de ALMACEN</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonAlmacen()
+        {
+            string res = null;
+            List<ALMACEN> listAlmacen = new List<ALMACEN>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.ALMACENs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                                    {
+                                        listAlmacen.Add(new ALMACEN
+                                        {
+                                            ALMACEN_NAME = row.ALMACEN_NAME,
+                                            UNID_ALMACEN = row.UNID_ALMACEN,
+                                            CONTACTO = row.CONTACTO,
+                                            DIRECCION = row.DIRECCION,
+                                            MAIL= row.MAIL,
+                                            MAIL_DEFAULT=row.MAIL_DEFAULT,
+                                            IS_ACTIVE= row.IS_ACTIVE,
+                                            IS_MODIFIED=row.IS_MODIFIED,
+                                            LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                                        });
+                                    });
+                if (listAlmacen.Count>0)
+                {
+                    res = SerializerJson.SerializeParametros(listAlmacen);
+                }
+                return res;
+            }
+        }
+
     }
 }

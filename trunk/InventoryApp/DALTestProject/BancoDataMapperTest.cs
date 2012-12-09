@@ -123,5 +123,19 @@ namespace DALTestProject
             actual = target.getElement(element);
             Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
         }
+
+        /// <summary>
+        ///Una prueba de GetJsonBanco
+        ///</summary>
+        [TestMethod()]
+        public void GetJsonBancoTest()
+        {
+            BancoDataMapper target = new BancoDataMapper(); // TODO: Inicializar en un valor adecuado
+            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            string actual;
+            actual = target.GetJsonBanco();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

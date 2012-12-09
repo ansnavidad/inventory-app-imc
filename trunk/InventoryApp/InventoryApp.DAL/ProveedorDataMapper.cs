@@ -6,6 +6,7 @@ using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
 using System.Data;
 using System.Data.Entity;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -264,6 +265,47 @@ namespace InventoryApp.DAL
                     //
                     entity.SaveChanges();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Método que serializa una List<PROVEEDOR> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de PROVEEDOR</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonProveedor()
+        {
+            string res = null;
+            List<PROVEEDOR> listProveedor = new List<PROVEEDOR>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.PROVEEDORs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listProveedor.Add(new PROVEEDOR
+                     {
+                         UNID_PROVEEDOR = row.UNID_PROVEEDOR,
+                         PROVEEDOR_NAME= row.PROVEEDOR_NAME,
+                         CONTACTO=row.CONTACTO,
+                         TEL1=row.TEL1,
+                         TEL2=row.TEL2,
+                         MAIL=row.MAIL,
+                         CALLE=row.CALLE,
+                         UNID_PAIS=row.UNID_PAIS,
+                         UNID_CIUDAD=row.UNID_CIUDAD,
+                         CODIGO_POSTAL=row.CODIGO_POSTAL,
+                         RFC=row.RFC,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listProveedor.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listProveedor);
+                }
+                return res;
             }
         }
     }

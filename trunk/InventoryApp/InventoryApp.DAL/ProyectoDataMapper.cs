@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using System.Data;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -129,6 +130,38 @@ namespace InventoryApp.DAL
                     //
                     entity.SaveChanges();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Método que serializa una List<PROYECTO> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de PROYECTO</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonProyecto()
+        {
+            string res = null;
+            List<PROYECTO> listProyecto = new List<PROYECTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.PROYECTOes
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listProyecto.Add(new PROYECTO
+                     {
+                         UNID_PROYECTO=row.UNID_PROYECTO,
+                         PROYECTO_NAME=row.PROYECTO_NAME,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listProyecto.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listProyecto);
+                }
+                return res;
             }
         }
     }

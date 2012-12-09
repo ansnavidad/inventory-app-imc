@@ -140,5 +140,19 @@ namespace DALTestProject
             Assert.AreEqual(item.TIPO_COTIZACION_NAME, ((List<TIPO_COTIZACION>)actual)[0].TIPO_COTIZACION_NAME);           
             
         }
+
+        /// <summary>
+        ///Una prueba de GetJsonTipoCotizacion
+        ///</summary>
+        [TestMethod()]
+        public void GetJsonTipoCotizacionTest()
+        {
+            TipoCotizacionDataMapper target = new TipoCotizacionDataMapper(); // TODO: Inicializar en un valor adecuado
+            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            string actual;
+            actual = target.GetJsonTipoCotizacion();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

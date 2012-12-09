@@ -170,5 +170,19 @@ namespace DALTestProject
             Assert.AreEqual(((TRANSPORTE)element).UNID_TRANSPORTE, ((List<TRANSPORTE>)actual)[0].UNID_TRANSPORTE);
           
         }
+
+        /// <summary>
+        ///Una prueba de GetJsonTransporte
+        ///</summary>
+        [TestMethod()]
+        public void GetJsonTransporteTest()
+        {
+            TransporteDataMapper target = new TransporteDataMapper(); // TODO: Inicializar en un valor adecuado
+            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            string actual;
+            actual = target.GetJsonTransporte();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

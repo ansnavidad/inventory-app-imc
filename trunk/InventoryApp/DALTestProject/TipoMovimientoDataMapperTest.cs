@@ -142,5 +142,19 @@ namespace DALTestProject
             Assert.AreEqual(item.SIGNO_MOVIMIENTO, ((List<TIPO_MOVIMIENTO>)actual)[0].SIGNO_MOVIMIENTO);
             
         }
+
+        /// <summary>
+        ///Una prueba de GetJsonTipoMovimiento
+        ///</summary>
+        [TestMethod()]
+        public void GetJsonTipoMovimientoTest()
+        {
+            TipoMovimientoDataMapper target = new TipoMovimientoDataMapper(); // TODO: Inicializar en un valor adecuado
+            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            string actual;
+            actual = target.GetJsonTipoMovimiento();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

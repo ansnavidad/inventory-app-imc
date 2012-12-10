@@ -10,6 +10,31 @@ namespace InventoryApp.DAL
 {
     public class TransporteDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                TRANSPORTE poco = (TRANSPORTE)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.TRANSPORTEs
+                                 where poco.UNID_TRANSPORTE == cust.UNID_TRANSPORTE
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         /// <summary>
         /// Obtiene todos los elementos en la tabla transporte
         /// </summary>

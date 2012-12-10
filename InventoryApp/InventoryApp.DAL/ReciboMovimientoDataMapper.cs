@@ -9,6 +9,32 @@ namespace InventoryApp.DAL
 {
     public class ReciboMovimientoDataMapper:IDataMapper
     {
+        public void loadSync(object element)
+        {
+
+            if (element != null)
+            {
+                RECIBO_MOVIMIENTO poco = (RECIBO_MOVIMIENTO)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.RECIBO_MOVIMIENTO
+                                 where poco.UNID_RECIBO_MOVIMIENTO == cust.UNID_RECIBO_MOVIMIENTO
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         public object getElements()
         {
             throw new NotImplementedException();
@@ -21,7 +47,25 @@ namespace InventoryApp.DAL
 
         public void udpateElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    RECIBO_MOVIMIENTO reciboM = (RECIBO_MOVIMIENTO)element;
+                    var modifiedReciboM = entity.RECIBO_MOVIMIENTO.First(p => p.UNID_RECIBO_MOVIMIENTO == reciboM.UNID_RECIBO_MOVIMIENTO);
+                    modifiedReciboM.UNID_RECIBO = reciboM.UNID_RECIBO;
+                    modifiedReciboM.UNID_MOVIMIENTO = reciboM.UNID_MOVIMIENTO;
+                    modifiedReciboM.UNID_FACTURA = reciboM.UNID_FACTURA;                    
+                    //Sync
+                    modifiedReciboM.IS_MODIFIED = true;
+                    modifiedReciboM.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void insertElement(object element)

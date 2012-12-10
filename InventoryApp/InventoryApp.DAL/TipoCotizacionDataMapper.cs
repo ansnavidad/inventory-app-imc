@@ -9,6 +9,30 @@ namespace InventoryApp.DAL
 {
     public class TipoCotizacionDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                TIPO_COTIZACION poco = (TIPO_COTIZACION)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.TIPO_COTIZACION
+                                 where poco.UNID_TIPO_COTIZACION == cust.UNID_TIPO_COTIZACION
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
 
         public object getElements()
         {

@@ -10,6 +10,30 @@ namespace InventoryApp.DAL
 {
     public class ProyectoDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                PROYECTO poco = (PROYECTO)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.PROYECTOes
+                                 where poco.UNID_PROYECTO == cust.UNID_PROYECTO
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
 
         public object getElements()
         {

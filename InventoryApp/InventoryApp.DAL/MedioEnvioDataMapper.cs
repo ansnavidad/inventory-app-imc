@@ -9,6 +9,31 @@ namespace InventoryApp.DAL
 {
     public class MedioEnvioDataMapper :  IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                MEDIO_ENVIO poco = (MEDIO_ENVIO)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.MEDIO_ENVIO
+                                 where poco.UNID_MEDIO_ENVIO == cust.UNID_MEDIO_ENVIO
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         public object getElements()
         {
             object res = null;

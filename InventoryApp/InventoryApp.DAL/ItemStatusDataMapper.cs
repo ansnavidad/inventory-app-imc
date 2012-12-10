@@ -9,6 +9,31 @@ namespace InventoryApp.DAL
 {
     public class ItemStatusDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                ITEM_STATUS poco = (ITEM_STATUS)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.ITEM_STATUS
+                                 where poco.UNID_ITEM_STATUS == cust.UNID_ITEM_STATUS
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         public object getElements()
         {
             FixupCollection<ITEM_STATUS> tp = new FixupCollection<ITEM_STATUS>();

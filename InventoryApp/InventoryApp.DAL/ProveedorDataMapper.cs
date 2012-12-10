@@ -12,6 +12,31 @@ namespace InventoryApp.DAL
 {
     public class ProveedorDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                PROVEEDOR poco = (PROVEEDOR)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.PROVEEDORs
+                                 where poco.UNID_PROVEEDOR == cust.UNID_PROVEEDOR
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         public object getElements()
         {
             object res = null;

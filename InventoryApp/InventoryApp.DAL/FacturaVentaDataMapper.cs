@@ -9,6 +9,31 @@ namespace InventoryApp.DAL
 {
     public class FacturaVentaDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                FACTURA_VENTA poco = (FACTURA_VENTA)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.FACTURA_VENTA
+                                 where poco.UNID_FACTURA_VENTA == cust.UNID_FACTURA_VENTA
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+
         public object getElements()
         {
             throw new NotImplementedException();
@@ -21,8 +46,30 @@ namespace InventoryApp.DAL
 
         public void udpateElement(object element)
         {
-            throw new NotImplementedException();
-
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    FACTURA_VENTA factura = (FACTURA_VENTA)element;
+                    var modifiedMoneda = entity.FACTURA_VENTA.First(p => p.UNID_FACTURA_VENTA == factura.UNID_FACTURA_VENTA);
+                    modifiedMoneda.FOLIO = factura.FOLIO;
+                    modifiedMoneda.IMPORTE_FACTURA = factura.IMPORTE_FACTURA;
+                    modifiedMoneda.IVA_PESOS = factura.IVA_PESOS;
+                    modifiedMoneda.POR_IVA = factura.POR_IVA;
+                    modifiedMoneda.TIPO_CAMBIO = factura.TIPO_CAMBIO;
+                    modifiedMoneda.TOTAL_DESC_FACTURA = factura.TOTAL_DESC_FACTURA;
+                    modifiedMoneda.TOTAL_FACTURA = factura.TOTAL_FACTURA;
+                    modifiedMoneda.UNID_MONEDA = factura.UNID_MONEDA;                    
+                    //Sync
+                    modifiedMoneda.IS_MODIFIED = true;
+                    modifiedMoneda.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void insertElement(object element)

@@ -10,6 +10,31 @@ namespace InventoryApp.DAL
 {
     public class MovimientoDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                MOVIMENTO poco = (MOVIMENTO)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.MOVIMENTOes
+                                 where poco.UNID_MOVIMIENTO == cust.UNID_MOVIMIENTO
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+
         public object getElements()
         {
             using (var Entity = new TAE2Entities())
@@ -183,7 +208,47 @@ namespace InventoryApp.DAL
 
         public void udpateElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MOVIMENTO movimiento = (MOVIMENTO)element;
+                    var modifiedMovimiento = entity.MOVIMENTOes.First(p => p.UNID_MOVIMIENTO == movimiento.UNID_MOVIMIENTO);
+                    modifiedMovimiento.CONTACTO = movimiento.CONTACTO;
+                    modifiedMovimiento.DIRECCION_ENVIO = movimiento.DIRECCION_ENVIO;
+                    modifiedMovimiento.FECHA_MOVIMIENTO = movimiento.FECHA_MOVIMIENTO;
+                    modifiedMovimiento.GUIA = movimiento.GUIA;
+                    modifiedMovimiento.IS_ACTIVE = movimiento.IS_ACTIVE;
+                    modifiedMovimiento.NOMBRE_SITIO = movimiento.NOMBRE_SITIO;
+                    modifiedMovimiento.PEDIMIENTO_EXPO = movimiento.PEDIMIENTO_EXPO;
+                    modifiedMovimiento.PEDIMIENTO_IMPO = movimiento.PEDIMIENTO_IMPO;
+                    modifiedMovimiento.RECIBE = movimiento.RECIBE;
+                    modifiedMovimiento.SITIO_ENLACE = movimiento.SITIO_ENLACE;
+                    modifiedMovimiento.TT = movimiento.TT;
+                    modifiedMovimiento.UNID_ALMACEN_DESTINO = movimiento.UNID_ALMACEN_DESTINO;
+                    modifiedMovimiento.UNID_ALMACEN_PROCEDENCIA = movimiento.UNID_ALMACEN_PROCEDENCIA;
+                    modifiedMovimiento.UNID_CLIENTE = movimiento.UNID_CLIENTE;
+                    modifiedMovimiento.UNID_CLIENTE_DESTINO = movimiento.UNID_CLIENTE_DESTINO;
+                    modifiedMovimiento.UNID_CLIENTE_PROCEDENCIA = movimiento.UNID_CLIENTE_PROCEDENCIA;
+                    modifiedMovimiento.UNID_FACTURA_VENTA = movimiento.UNID_FACTURA_VENTA;
+                    modifiedMovimiento.UNID_PROVEEDOR = movimiento.UNID_PROVEEDOR;
+                    modifiedMovimiento.UNID_PROVEEDOR_DESTINO = movimiento.UNID_PROVEEDOR_DESTINO;
+                    modifiedMovimiento.UNID_PROVEEDOR_PROCEDENCIA = movimiento.UNID_PROVEEDOR_PROCEDENCIA;
+                    modifiedMovimiento.UNID_SERVICIO = movimiento.UNID_SERVICIO;
+                    modifiedMovimiento.UNID_SOLICITANTE = movimiento.UNID_SOLICITANTE;
+                    modifiedMovimiento.UNID_TECNICO = movimiento.UNID_TECNICO;
+                    modifiedMovimiento.UNID_TIPO_MOVIMIENTO = movimiento.UNID_TIPO_MOVIMIENTO;
+                    modifiedMovimiento.UNID_TRANSPORTE = movimiento.UNID_TRANSPORTE;
+                    //Sync
+                    modifiedMovimiento.IS_MODIFIED = true;
+                    modifiedMovimiento.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void insertElement(object element)

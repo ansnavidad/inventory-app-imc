@@ -9,6 +9,31 @@ namespace InventoryApp.DAL
 {
     public class CategoriaDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+
+            if (element != null)
+            {
+                CATEGORIA poco = (CATEGORIA)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.CATEGORIAs
+                                 where poco.UNID_CATEGORIA == cust.UNID_CATEGORIA
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
 
         public List<CATEGORIA> getElementsByProveedor(PROVEEDOR proveedor)
         {

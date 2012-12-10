@@ -10,6 +10,31 @@ namespace InventoryApp.DAL
 {
     public class TecnicoDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                TECNICO poco = (TECNICO)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.TECNICOes
+                                 where poco.UNID_TECNICO == cust.UNID_TECNICO
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         public object getTecnicosByAlmancen(ALMACEN a){
 
             using (var Entity = new TAE2Entities())

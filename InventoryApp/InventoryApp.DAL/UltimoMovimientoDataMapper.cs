@@ -9,6 +9,23 @@ namespace InventoryApp.DAL
 {
     public class UltimoMovimientoDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+
+            if (element != null)
+            {
+                ULTIMO_MOVIMIENTO poco = (ULTIMO_MOVIMIENTO)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.ULTIMO_MOVIMIENTO
+                                 where poco.UNID_ITEM == cust.UNID_ITEM
+                                 select cust).ToList();
+
+                    udpateElement((object)poco);
+                }
+            }
+        }
+
         public object getElements()
         {
             throw new NotImplementedException();

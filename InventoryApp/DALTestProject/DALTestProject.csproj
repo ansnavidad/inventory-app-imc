@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="AddReciboViewModelTest.cs" />
     <Compile Include="AlmacenDataMapperTest.cs" />
+    <Compile Include="AlmacenTecnicoDataMapperTest.cs" />
     <Compile Include="ArticuloDataMapperTest.cs" />
     <Compile Include="BancoDataMapperTest.cs" />
     <Compile Include="CatalogItemStatusModelTest.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="EstatusDataMapperTest.cs" />
     <Compile Include="EmpresaDataMapperTest.cs" />
     <Compile Include="FacturaCompraDataMapperTest.cs" />
+    <Compile Include="FacturaCompraDetalleDataMapperTest.cs" />
     <Compile Include="FacturaVentaDataMapperTest.cs" />
     <Compile Include="ItemDataMapperTest.cs" />
     <Compile Include="ItemStatusDataMapperTest.cs" />
@@ -93,11 +95,13 @@
     <Compile Include="PaisDataMapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropiedadDataMapperTest.cs" />
+    <Compile Include="ProveedorCategoriaDataMapperTest.cs" />
     <Compile Include="ProveedorCuentaDataMapperTest.cs" />
     <Compile Include="ProveedorDataMapperTest.cs" />
     <Compile Include="ProyectoDataMapperTest.cs" />
     <Compile Include="ReciboDataMapperTest.cs" />
     <Compile Include="ReciboMovimientoDataMapperTest.cs" />
+    <Compile Include="ReciboStatusDataMapperTest.cs" />
     <Compile Include="ServicioDataMapperTest.cs" />
     <Compile Include="SolicitanteDataMapperTest.cs" />
     <Compile Include="TecnicoDataMapperTest.cs" />

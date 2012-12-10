@@ -24,7 +24,7 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
-
+    
         public virtual long ACTUAL_DATE
         {
             get;

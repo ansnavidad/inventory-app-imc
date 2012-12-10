@@ -264,12 +264,6 @@ namespace InventoryApp.DAL.POCOS
         }
         private ObjectSet<COTIZACION> _cOTIZACIONs;
     
-        public ObjectSet<SERVICIO1> SERVICIO1
-        {
-            get { return _sERVICIO1  ?? (_sERVICIO1 = CreateObjectSet<SERVICIO1>("SERVICIO1")); }
-        }
-        private ObjectSet<SERVICIO1> _sERVICIO1;
-    
         public ObjectSet<CIUDAD> CIUDADs
         {
             get { return _cIUDADs  ?? (_cIUDADs = CreateObjectSet<CIUDAD>("CIUDADs")); }

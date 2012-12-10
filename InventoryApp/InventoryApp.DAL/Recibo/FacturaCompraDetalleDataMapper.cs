@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL.Recibo
 {
@@ -69,6 +70,45 @@ namespace InventoryApp.DAL.Recibo
         public void deleteElement(object element)
         {
             throw new NotImplementedException();
+        }
+        /// <summary>
+        /// Método que serializa una List<FACTURA_DETALLE> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de FACTURA_DETALLE</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonFacturaDetalle()
+        {
+            string res = null;
+            List<FACTURA_DETALLE> listFacturaDetalle = new List<FACTURA_DETALLE>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.FACTURA_DETALLE
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listFacturaDetalle.Add(new FACTURA_DETALLE
+                     {
+                         UNID_FACTURA_DETALE=row.UNID_FACTURA_DETALE,
+                         UNID_FACTURA=row.UNID_FACTURA,
+                         UNID_ARTICULO=row.UNID_ARTICULO,
+                         CANTIDAD=row.CANTIDAD,
+                         PRECIO_UNITARIO=row.PRECIO_UNITARIO,
+                         IMPUESTO_UNITARIO=row.IMPUESTO_UNITARIO,
+                         NUMERO=row.NUMERO,
+                         DESCRIPCION=row.DESCRIPCION,
+                         UNID_UNIDAD=row.UNID_UNIDAD,
+                         UNID_PEDIMENTO=row.UNID_PEDIMENTO,
+                         IS_ACTIVE=row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listFacturaDetalle.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listFacturaDetalle);
+                }
+                return res;
+            }
         }
     }
 }

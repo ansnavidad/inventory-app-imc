@@ -14,6 +14,32 @@ namespace InventoryApp.DAL
         /// Obtiene todos los elementos en la tabla transporte
         /// </summary>
         /// <returns></returns>
+        public void loadSync(object element)
+        {
+
+            if (element != null)
+            {
+                MOVIMIENTO_DETALLE poco = (MOVIMIENTO_DETALLE)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.MOVIMIENTO_DETALLE
+                                 where poco.UNID_MOVIMIENTO_DETALLE == cust.UNID_MOVIMIENTO_DETALLE
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         public object getElements()
         {
             object res = null;
@@ -40,7 +66,26 @@ namespace InventoryApp.DAL
 
         public void udpateElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MOVIMIENTO_DETALLE MovimientoD = (MOVIMIENTO_DETALLE)element;
+                    var modifiedMovimientoD = entity.MOVIMIENTO_DETALLE.First(p => p.UNID_MOVIMIENTO_DETALLE == MovimientoD.UNID_MOVIMIENTO_DETALLE);
+                    modifiedMovimientoD.IS_ACTIVE = MovimientoD.IS_ACTIVE;
+                    modifiedMovimientoD.OBSERVACIONES = MovimientoD.OBSERVACIONES;
+                    modifiedMovimientoD.UNID_ITEM = MovimientoD.UNID_ITEM;
+                    modifiedMovimientoD.UNID_MOVIMIENTO = MovimientoD.UNID_MOVIMIENTO;                    
+                    //Sync
+                    modifiedMovimientoD.IS_MODIFIED = true;
+                    modifiedMovimientoD.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void insertElement(object element)

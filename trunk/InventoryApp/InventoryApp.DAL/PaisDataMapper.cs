@@ -10,6 +10,31 @@ namespace InventoryApp.DAL
 {
     public class PaisDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                PAI poco = (PAI)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.PAIS
+                                 where poco.PAIS == cust.PAIS
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         public object getElements()
         {
             object res = null;

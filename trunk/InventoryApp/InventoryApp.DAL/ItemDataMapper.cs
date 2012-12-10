@@ -10,6 +10,32 @@ namespace InventoryApp.DAL
 {
     public class ItemDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+
+            if (element != null)
+            {
+                ITEM poco = (ITEM)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.ITEMs
+                                 where poco.UNID_ITEM == cust.UNID_ITEM
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         public object getElements_EntradasSalidasSerie(ALMACEN almacen, string numSerie)
         {
             object o = null;
@@ -431,7 +457,31 @@ namespace InventoryApp.DAL
 
         public void udpateElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ITEM item = (ITEM)element;
+                    var modifiedItem = entity.ITEMs.First(p => p.UNID_ITEM == item.UNID_ITEM);
+                    modifiedItem.UNID_ITEM_STATUS = item.UNID_ITEM_STATUS;
+                    modifiedItem.UNID_FACTURA_DETALE = item.UNID_FACTURA_DETALE;
+                    modifiedItem.UNID_EMPRESA = item.UNID_EMPRESA;
+                    modifiedItem.UNID_ARTICULO = item.UNID_ARTICULO;
+                    modifiedItem.STATUS = item.STATUS;
+                    modifiedItem.SKU = item.SKU;
+                    modifiedItem.NUMERO_SERIE = item.NUMERO_SERIE;
+                    modifiedItem.IS_ACTIVE = item.IS_ACTIVE;
+                    modifiedItem.COSTO_UNITARIO = item.COSTO_UNITARIO;
+                    //Sync
+                    modifiedItem.IS_MODIFIED = true;
+                    modifiedItem.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void insertElement(object element)

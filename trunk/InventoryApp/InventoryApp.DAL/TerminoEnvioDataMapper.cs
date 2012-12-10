@@ -9,6 +9,31 @@ namespace InventoryApp.DAL
 {
     public class TerminoEnvioDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                TERMINO_ENVIO poco = (TERMINO_ENVIO)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.TERMINO_ENVIO
+                                 where poco.UNID_TERMINO_ENVIO == cust.UNID_TERMINO_ENVIO
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+
         public object getElements()
         {
             object o = null;

@@ -10,6 +10,31 @@ namespace InventoryApp.DAL
 {
     public class MarcaDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+
+            if (element != null)
+            {
+                MARCA poco = (MARCA)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.MARCAs
+                                 where poco.UNID_MARCA == cust.UNID_MARCA
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
 
         public object getElements()
         {
@@ -56,11 +81,11 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     MARCA marca = (MARCA)element;
-                    var modifiedItemStatus = entity.MARCAs.First(p => p.UNID_MARCA == marca.UNID_MARCA);
-                    modifiedItemStatus.MARCA_NAME = marca.MARCA_NAME;
+                    var modifiedMarca = entity.MARCAs.First(p => p.UNID_MARCA == marca.UNID_MARCA);
+                    modifiedMarca.MARCA_NAME = marca.MARCA_NAME;
                     //Sync
-                    modifiedItemStatus.IS_MODIFIED = true;
-                    modifiedItemStatus.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    modifiedMarca.IS_MODIFIED = true;
+                    modifiedMarca.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();

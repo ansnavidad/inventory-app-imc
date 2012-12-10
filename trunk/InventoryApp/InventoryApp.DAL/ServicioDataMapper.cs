@@ -9,6 +9,31 @@ namespace InventoryApp.DAL
 {
     public class ServicioDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                SERVICIO poco = (SERVICIO)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.SERVICIOs
+                                 where poco.UNID_SERVICIO == cust.UNID_SERVICIO
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         public object getElements()
         {
             FixupCollection<SERVICIO> tp = new FixupCollection<SERVICIO>();

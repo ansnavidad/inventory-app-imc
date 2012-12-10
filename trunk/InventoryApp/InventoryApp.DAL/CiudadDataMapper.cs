@@ -10,6 +10,31 @@ namespace InventoryApp.DAL
 {
     public class CiudadDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                CIUDAD poco = (CIUDAD)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.CIUDADs
+                                 where poco.UNID_CIUDAD == cust.UNID_CIUDAD
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }        
+        
         public object getElements()
         {
             object res = null;

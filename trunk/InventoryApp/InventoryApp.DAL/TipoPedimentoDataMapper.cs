@@ -10,6 +10,31 @@ namespace InventoryApp.DAL
 {
     public class TipoPedimentoDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                TIPO_PEDIMENTO poco = (TIPO_PEDIMENTO)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.TIPO_PEDIMENTO
+                                 where poco.UNID_TIPO_PEDIMENTO == cust.UNID_TIPO_PEDIMENTO
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+
         public object getElements()
         {
             object o = null;

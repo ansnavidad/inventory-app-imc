@@ -9,6 +9,31 @@ namespace InventoryApp.DAL
 {
     public class LoteDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                LOTE poco = (LOTE)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.LOTEs
+                                 where poco.UNID_LOTE == cust.UNID_LOTE
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+
         public object getElements()
         {
             throw new NotImplementedException();
@@ -21,7 +46,24 @@ namespace InventoryApp.DAL
 
         public void udpateElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    LOTE lote = (LOTE)element;
+                    var modifiedLote = entity.LOTEs.First(p => p.UNID_LOTE == lote.UNID_LOTE);
+                    modifiedLote.IS_ACTIVE = lote.IS_ACTIVE;                    
+                    modifiedLote.UNID_POM = lote.UNID_POM;
+                    //Sync
+                    modifiedLote.IS_MODIFIED = true;
+                    modifiedLote.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void insertElement(object element)

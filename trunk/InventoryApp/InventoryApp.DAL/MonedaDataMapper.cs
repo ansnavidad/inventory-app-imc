@@ -9,6 +9,31 @@ namespace InventoryApp.DAL
 {
     public class MonedaDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                MONEDA poco = (MONEDA)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.MONEDAs
+                                 where poco.UNID_MONEDA == cust.UNID_MONEDA
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         public object getElements()
         {
             FixupCollection<MONEDA> tp = new FixupCollection<MONEDA>();

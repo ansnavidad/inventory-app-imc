@@ -9,6 +9,31 @@ namespace InventoryApp.DAL
 {
     public class BancoDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                BANCO poco = (BANCO)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.BANCOes
+                                 where poco.UNID_BANCO == cust.UNID_BANCO
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         public object getElements()
         {
             FixupCollection<BANCO> tp = new FixupCollection<BANCO>();

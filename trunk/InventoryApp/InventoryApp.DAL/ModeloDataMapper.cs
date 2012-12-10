@@ -9,6 +9,32 @@ namespace InventoryApp.DAL
 {
      public class ModeloDataMapper : IDataMapper
     {
+         public void loadSync(object element)
+         {
+
+             if (element != null)
+             {
+                 MODELO poco = (MODELO)element;
+                 using (var entity = new TAE2Entities())
+                 {
+                     var query = (from cust in entity.MODELOes
+                                  where poco.UNID_MODELO == cust.UNID_MODELO
+                                  select cust).ToList();
+
+                     //Actualización
+                     if (query.Count > 0)
+                     {
+                         udpateElement((object)poco);
+                     }
+                     //Inserción
+                     else
+                     {
+                         insertElement((object)poco);
+                     }
+                 }
+             }
+         }
+
         public object getElements()
         {
 

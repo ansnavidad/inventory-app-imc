@@ -9,6 +9,31 @@ namespace InventoryApp.DAL
 {
     public class DepartamentoDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                DEPARTAMENTO poco = (DEPARTAMENTO)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.DEPARTAMENTOes
+                                 where poco.UNID_DEPARTAMENTO == cust.UNID_DEPARTAMENTO
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         public object getElements()
         {
             FixupCollection<DEPARTAMENTO> tp = new FixupCollection<DEPARTAMENTO>();

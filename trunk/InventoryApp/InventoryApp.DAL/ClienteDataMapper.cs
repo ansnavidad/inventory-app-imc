@@ -9,6 +9,31 @@ namespace InventoryApp.DAL
 {
     public class ClienteDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                CLIENTE poco = (CLIENTE)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.CLIENTEs
+                                 where poco.UNID_CLIENTE == cust.UNID_CLIENTE
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+
         public List<CLIENTE> getClienteList()
         {
             List<CLIENTE> clientes = new List<CLIENTE>();

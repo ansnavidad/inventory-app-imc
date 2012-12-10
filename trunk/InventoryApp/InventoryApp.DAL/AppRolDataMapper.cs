@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
-using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
-    public class PropiedadDataMapper : IDataMapper
+    public class AppRolDataMapper : IDataMapper
     {
         public void loadSync(object element)
         {
+
             if (element != null)
             {
-                PROPIEDAD poco = (PROPIEDAD)element;
+                ROL poco = (ROL)element;
                 using (var entity = new TAE2Entities())
                 {
-                    var query = (from cust in entity.PROPIEDADs
-                                 where poco.UNID_PROPIEDAD == cust.UNID_PROPIEDAD
+                    var query = (from cust in entity.ROLs
+                                 where poco.UNID_ROL == cust.UNID_ROL
                                  select cust).ToList();
 
                     //Actualización
@@ -33,16 +33,15 @@ namespace InventoryApp.DAL
                 }
             }
         }
-        
+
         public object getElements()
         {
-            FixupCollection<PROPIEDAD> tp = new FixupCollection<PROPIEDAD>();
+            FixupCollection<ROL> tp = new FixupCollection<ROL>();
             object res = null;
 
             using (var entity = new TAE2Entities())
             {
-                var query = (from cust in entity.PROPIEDADs
-                             where cust.IS_ACTIVE == true
+                var query = (from cust in entity.ROLs
                              select cust).ToList();
                 if (query.Count > 0)
                 {
@@ -57,9 +56,9 @@ namespace InventoryApp.DAL
             object res = null;
             using (var entitie = new TAE2Entities())
             {
-                PROPIEDAD propiedad = (PROPIEDAD)element;
-                var query = (from cust in entitie.PROPIEDADs
-                             where cust.UNID_PROPIEDAD == propiedad.UNID_PROPIEDAD
+                ROL Rol = (ROL)element;
+                var query = (from cust in entitie.ROLs
+                             where cust.UNID_ROL == Rol.UNID_ROL
                              select cust).ToList();
                 if (query.Count > 0)
                 {
@@ -75,15 +74,14 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    PROPIEDAD propiedad = (PROPIEDAD)element;
-                    var modifiedPropiedad = entity.PROPIEDADs.First(p => p.UNID_PROPIEDAD == propiedad.UNID_PROPIEDAD);
-                    modifiedPropiedad.PROPIEDAD1 = propiedad.PROPIEDAD1;
+                    ROL rol = (ROL)element;
+                    var modifiedRol = entity.ROLs.First(p => p.UNID_ROL == rol.UNID_ROL);
+                    modifiedRol.ROL_NAME = rol.ROL_NAME;
                     //Sync
-                    modifiedPropiedad.IS_MODIFIED = true;
-                    modifiedPropiedad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    modifiedRol.IS_MODIFIED = true;
+                    modifiedRol.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                    entity.SaveChanges();
                     //
                     entity.SaveChanges();
                 }
@@ -96,23 +94,23 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    PROPIEDAD propiedad = (PROPIEDAD)element;
+                    ROL rol = (ROL)element;
 
-                    var validacion = (from cust in entity.PROPIEDADs
-                                      where cust.PROPIEDAD1 == propiedad.PROPIEDAD1
+                    var validacion = (from cust in entity.ROLs
+                                      where cust.UNID_ROL == rol.UNID_ROL
                                       select cust).ToList();
-                    
+
                     if (validacion.Count == 0)
                     {
-                        propiedad.UNID_PROPIEDAD = UNID.getNewUNID();
+                        rol.UNID_ROL = UNID.getNewUNID();
                         //Sync
-                        propiedad.IS_MODIFIED = true;
-                        propiedad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        rol.IS_MODIFIED = true;
+                        rol.LAST_MODIFIED_DATE = UNID.getNewUNID();
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
                         //
-                        entity.PROPIEDADs.AddObject(propiedad);
+                        entity.ROLs.AddObject(rol);
                         entity.SaveChanges();
                     }
                 }
@@ -125,50 +123,17 @@ namespace InventoryApp.DAL
             {
                 using (var entity = new TAE2Entities())
                 {
-                    PROPIEDAD propiedad = (PROPIEDAD)element;
-                    var modifiedPropiedad = entity.PROPIEDADs.First(p => p.UNID_PROPIEDAD == propiedad.UNID_PROPIEDAD);
-                    modifiedPropiedad.IS_ACTIVE = false;
+                    ROL rol = (ROL)element;
+                    var modifiedRol = entity.ROLs.First(p => p.UNID_ROL == rol.UNID_ROL);
                     //Sync
-                    modifiedPropiedad.IS_MODIFIED = true;
-                    modifiedPropiedad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    modifiedRol.IS_MODIFIED = true;
+                    modifiedRol.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
                     entity.SaveChanges();
                 }
-            }
-        }
-
-        /// <summary>
-        /// Método que serializa una List<PROPIEDAD> a Json
-        /// </summary>
-        /// <returns>Regresa un String en formato Json de PROPIEDAD</returns>
-        /// <returns>Si no hay datos regresa null</returns>
-        public string GetJsonPropiedad()
-        {
-            string res = null;
-            List<PROPIEDAD> listPropiedad = new List<PROPIEDAD>();
-            using (var Entity = new TAE2Entities())
-            {
-                (from p in Entity.PROPIEDADs
-                 where p.IS_MODIFIED == true
-                 select p).ToList().ForEach(row =>
-                 {
-                     listPropiedad.Add(new PROPIEDAD
-                     {
-                         UNID_PROPIEDAD=row.UNID_PROPIEDAD,
-                         PROPIEDAD1=row.PROPIEDAD1,
-                         IS_ACTIVE = row.IS_ACTIVE,
-                         IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
-                     });
-                 });
-                if (listPropiedad.Count > 0)
-                {
-                    res = SerializerJson.SerializeParametros(listPropiedad);
-                }
-                return res;
             }
         }
     }

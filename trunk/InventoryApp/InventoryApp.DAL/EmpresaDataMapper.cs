@@ -10,6 +10,31 @@ namespace InventoryApp.Model
 {
     public class EmpresaDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                EMPRESA poco = (EMPRESA)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.EMPRESAs
+                                 where poco.UNID_EMPRESA == cust.UNID_EMPRESA
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         public object getElements()
         {
             FixupCollection<EMPRESA> tp = new FixupCollection<EMPRESA>();

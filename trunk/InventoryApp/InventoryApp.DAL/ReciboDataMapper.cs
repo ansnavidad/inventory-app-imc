@@ -9,6 +9,31 @@ namespace InventoryApp.DAL
 {
     public class ReciboDataMapper:IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                RECIBO poco = (RECIBO)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.RECIBOes
+                                 where poco.UNID_RECIBO == cust.UNID_RECIBO
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+                }
+            }
+        }
+        
         public List<MOVIMENTO> GetListMovimiento(RECIBO recibo)
         {
             List<MOVIMENTO> listMovimiento = new List<MOVIMENTO>();

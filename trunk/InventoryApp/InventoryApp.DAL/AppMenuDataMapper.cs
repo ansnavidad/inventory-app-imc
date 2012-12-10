@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
@@ -134,6 +135,39 @@ namespace InventoryApp.DAL
                     //
                     entity.SaveChanges();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Método que serializa una List<MENU> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de MENU</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonMenu()
+        {
+            string res = null;
+            List<MENU> listMenu = new List<MENU>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.MENUs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listMenu.Add(new MENU
+                     {
+                         UNID_MENU = row.UNID_MENU,
+                         UNID_MENU_PARENT = row.UNID_MENU_PARENT,
+                         MENU_NAME = row.MENU_NAME,
+                         IS_LEAF = row.IS_LEAF,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listMenu.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listMenu);
+                }
+                return res;
             }
         }
     }

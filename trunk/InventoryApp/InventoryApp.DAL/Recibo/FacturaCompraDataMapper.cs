@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL.Recibo
 {
@@ -115,6 +116,44 @@ namespace InventoryApp.DAL.Recibo
         public void deleteElement(object element)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Método que serializa una List<FACTURA> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de FACTURA</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonFactura()
+        {
+            string res = null;
+            List<FACTURA> listFactura = new List<FACTURA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.FACTURAs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listFactura.Add(new FACTURA
+                     {
+                         UNID_FACTURA = row.UNID_FACTURA,
+                         UNID_LOTE=row.UNID_LOTE,
+                         FACTURA_NUMERO=row.FACTURA_NUMERO,
+                         FECHA_FACTURA=row.FECHA_FACTURA,
+                         UNID_PROVEEDOR=row.UNID_PROVEEDOR,
+                         UNID_MONEDA=row.UNID_MONEDA,
+                         NUMERO_PEDIMENTO=row.NUMERO_PEDIMENTO,
+                         IVA_POR=row.IVA_POR,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listFactura.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listFactura);
+                }
+                return res;
+            }
         }
     }
 }

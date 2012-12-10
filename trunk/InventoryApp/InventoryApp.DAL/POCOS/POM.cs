@@ -105,7 +105,7 @@ namespace InventoryApp.DAL.POCOS
             set;
         }
     
-        public virtual long IS_MODIFIED
+        public virtual bool IS_MODIFIED
         {
             get;
             set;

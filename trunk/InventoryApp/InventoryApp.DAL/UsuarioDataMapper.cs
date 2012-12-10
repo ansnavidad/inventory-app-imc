@@ -5,10 +5,11 @@ using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL.JSON;
 
-namespace InventoryApp.DAL
+namespace InventoryApp.DAL.AUTH
 {
-    public class ReciboStatusDataMapper : IDataMapper
+    public class UsuarioDataMapper : IDataMapper
     {
+
         public object getElements()
         {
             throw new NotImplementedException();
@@ -34,31 +35,32 @@ namespace InventoryApp.DAL
             throw new NotImplementedException();
         }
         /// <summary>
-        /// Método que serializa una List<RECIBO_STATUS> a Json
+        /// Método que serializa una List<USUARIO> a Json
         /// </summary>
-        /// <returns>Regresa un String en formato Json de RECIBO_STATUS</returns>
+        /// <returns>Regresa un String en formato Json de USUARIO</returns>
         /// <returns>Si no hay datos regresa null</returns>
-        public string GetJsonReciboStatus()
+        public string GetJsonUsuario()
         {
             string res = null;
-            List<RECIBO_STATUS> listReciboStatus = new List<RECIBO_STATUS>();
+            List<USUARIO> listUsuario = new List<USUARIO>();
             using (var Entity = new TAE2Entities())
             {
-                (from p in Entity.RECIBO_STATUS
+                (from p in Entity.USUARIOs
                  where p.IS_MODIFIED == true
                  select p).ToList().ForEach(row =>
                  {
-                     listReciboStatus.Add(new RECIBO_STATUS
+                     listUsuario.Add(new USUARIO
                      {
-                         UNID_RECIBO_STATUS=row.UNID_RECIBO_STATUS,
-                         RECIBO_STATUS_NAME=row.RECIBO_STATUS_NAME,
+                         UNID_USUARIO= row.UNID_USUARIO,
+                         USUARIO_MAIL= row.USUARIO_MAIL,
+                         USUARIO_PWD=row.USUARIO_PWD,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
                      });
                  });
-                if (listReciboStatus.Count > 0)
+                if (listUsuario.Count > 0)
                 {
-                    res = SerializerJson.SerializeParametros(listReciboStatus);
+                    res = SerializerJson.SerializeParametros(listUsuario);
                 }
                 return res;
             }

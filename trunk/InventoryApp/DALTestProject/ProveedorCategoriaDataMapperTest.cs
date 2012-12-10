@@ -1,19 +1,17 @@
-﻿using InventoryApp.DAL.Recibo;
+﻿using InventoryApp.DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using InventoryApp.DAL.POCOS;
-using System.Collections.Generic;
 
 namespace DALTestProject
 {
     
     
     /// <summary>
-    ///Se trata de una clase de prueba para FacturaCompraDataMapperTest y se pretende que
-    ///contenga todas las pruebas unitarias FacturaCompraDataMapperTest.
+    ///Se trata de una clase de prueba para ProveedorCategoriaDataMapperTest y se pretende que
+    ///contenga todas las pruebas unitarias ProveedorCategoriaDataMapperTest.
     ///</summary>
     [TestClass()]
-    public class FacturaCompraDataMapperTest
+    public class ProveedorCategoriaDataMapperTest
     {
 
 
@@ -67,30 +65,15 @@ namespace DALTestProject
 
 
         /// <summary>
-        ///Una prueba de GetFacturaList
+        ///Una prueba de GetJsonProveedorCategoria
         ///</summary>
         [TestMethod()]
-        public void GetFacturaListTest()
+        public void GetJsonProveedorCategoriaTest()
         {
-            FacturaCompraDataMapper target = new FacturaCompraDataMapper(); // TODO: Inicializar en un valor adecuado
-            RECIBO recibo = null; // TODO: Inicializar en un valor adecuado
-            List<FACTURA> expected = null; // TODO: Inicializar en un valor adecuado
-            List<FACTURA> actual;
-            actual = target.GetFacturaList(new RECIBO() { UNID_RECIBO = 20121203012919716 });
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        }
-
-        /// <summary>
-        ///Una prueba de GetJsonFactura
-        ///</summary>
-        [TestMethod()]
-        public void GetJsonFacturaTest()
-        {
-            FacturaCompraDataMapper target = new FacturaCompraDataMapper(); // TODO: Inicializar en un valor adecuado
+            ProveedorCategoriaDataMapper target = new ProveedorCategoriaDataMapper(); // TODO: Inicializar en un valor adecuado
             string expected = string.Empty; // TODO: Inicializar en un valor adecuado
             string actual;
-            actual = target.GetJsonFactura();
+            actual = target.GetJsonProveedorCategoria();
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }

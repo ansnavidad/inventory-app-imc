@@ -7,7 +7,7 @@ using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
-    public class ReciboStatusDataMapper : IDataMapper
+    public class AlmacenTecnicoDataMapper : IDataMapper
     {
         public object getElements()
         {
@@ -34,31 +34,31 @@ namespace InventoryApp.DAL
             throw new NotImplementedException();
         }
         /// <summary>
-        /// Método que serializa una List<RECIBO_STATUS> a Json
+        /// Método que serializa una List<ALMACEN_TECNICO> a Json
         /// </summary>
-        /// <returns>Regresa un String en formato Json de RECIBO_STATUS</returns>
+        /// <returns>Regresa un String en formato Json de ALMACEN_TECNICO</returns>
         /// <returns>Si no hay datos regresa null</returns>
-        public string GetJsonReciboStatus()
+        public string GetJsonAlmacenTecnico()
         {
             string res = null;
-            List<RECIBO_STATUS> listReciboStatus = new List<RECIBO_STATUS>();
+            List<ALMACEN_TECNICO> listAlmacenTecnico = new List<ALMACEN_TECNICO>();
             using (var Entity = new TAE2Entities())
             {
-                (from p in Entity.RECIBO_STATUS
+                (from p in Entity.ALMACEN_TECNICO
                  where p.IS_MODIFIED == true
                  select p).ToList().ForEach(row =>
                  {
-                     listReciboStatus.Add(new RECIBO_STATUS
+                     listAlmacenTecnico.Add(new ALMACEN_TECNICO
                      {
-                         UNID_RECIBO_STATUS=row.UNID_RECIBO_STATUS,
-                         RECIBO_STATUS_NAME=row.RECIBO_STATUS_NAME,
+                         UNID_ALMACEN = row.UNID_ALMACEN,
+                         UNID_TECNICO=row.UNID_TECNICO,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
                      });
                  });
-                if (listReciboStatus.Count > 0)
+                if (listAlmacenTecnico.Count > 0)
                 {
-                    res = SerializerJson.SerializeParametros(listReciboStatus);
+                    res = SerializerJson.SerializeParametros(listAlmacenTecnico);
                 }
                 return res;
             }

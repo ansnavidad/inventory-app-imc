@@ -18,7 +18,7 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     var query = (from cust in entity.PAIS
-                                 where poco.PAIS == cust.PAIS
+                                 where poco.UNID_PAIS == cust.UNID_PAIS
                                  select cust).ToList();
 
                     //Actualización

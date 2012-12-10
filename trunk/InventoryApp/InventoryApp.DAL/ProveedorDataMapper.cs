@@ -96,7 +96,7 @@ namespace InventoryApp.DAL
                                  on p.UNID_PROVEEDOR equals relation.UNID_PROVEEDOR
                                  join c in Entity.CATEGORIAs
                                  on relation.UNID_CATEGORIA equals c.UNID_CATEGORIA
-                                 where p.IS_ACTIVE == true && p.UNID_PROVEEDOR == element
+                                 where p.IS_ACTIVE == true && p.UNID_PROVEEDOR == element && c.IS_ACTIVE == true && relation.IS_ACTIVE == true
                                  select c).ToList();
                     o = query;
                     
@@ -166,7 +166,6 @@ namespace InventoryApp.DAL
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
-                    entity.SaveChanges();
                     //ELIMINA TODAS LAS RELACIONES QUE EXISTEN
                     if (auxUnidCategoria.Count > 0)
                     {
@@ -180,8 +179,15 @@ namespace InventoryApp.DAL
                                          on relation.UNID_CATEGORIA equals c.UNID_CATEGORIA
                                          where p.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR && c.UNID_CATEGORIA == e
                                          select relation).ToList().First();
-                            entity.PROVEEDOR_CATEGORIA.DeleteObject((PROVEEDOR_CATEGORIA)query);
+
+                            query.IS_ACTIVE = false;
+                            //Sync
+                            query.IS_MODIFIED = true;
+                            query.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                            modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                            modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                             entity.SaveChanges();
+                            //
                         }
                     }
                     //INSERTA LAS NUEVAS RELACIONES PROVEEDOR CATEGORIA
@@ -189,20 +195,41 @@ namespace InventoryApp.DAL
                     {
                         foreach (var item in unidCategoria)
                         {
-                            PROVEEDOR_CATEGORIA proveedorCategoria = new PROVEEDOR_CATEGORIA();
-                            proveedorCategoria.UNID_CATEGORIA = item;
-                            proveedorCategoria.UNID_PROVEEDOR = proveedor.UNID_PROVEEDOR;
-                            //Sync
-                            proveedorCategoria.IS_MODIFIED = true;
-                            proveedorCategoria.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                            var query2 = (from cust in entity.PROVEEDOR_CATEGORIA
+                                          where cust.UNID_CATEGORIA == item && cust.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR
+                                          select cust).ToList();
 
-                            modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                            modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                            entity.SaveChanges();
-                            //
-                            entity.PROVEEDOR_CATEGORIA.AddObject(proveedorCategoria);
-                            entity.SaveChanges();
+                            if (query2.Count > 0)
+                            {
+                                var query3 = query2.First();
 
+                                //Sync
+                                query3.IS_ACTIVE = true;
+                                query3.IS_MODIFIED = true;
+                                query3.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                                modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                                modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                                entity.SaveChanges();
+                                //
+                            }
+                            else
+                            {
+                                PROVEEDOR_CATEGORIA proveedorCategoria = new PROVEEDOR_CATEGORIA();
+                                proveedorCategoria.UNID_CATEGORIA = item;
+                                proveedorCategoria.UNID_PROVEEDOR = proveedor.UNID_PROVEEDOR;
+                                proveedorCategoria.IS_ACTIVE = true;
+
+                                //Sync
+                                proveedorCategoria.IS_MODIFIED = true;
+                                proveedorCategoria.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                                modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                                modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                                entity.SaveChanges();
+                                //
+
+                                entity.PROVEEDOR_CATEGORIA.AddObject(proveedorCategoria);
+                                entity.SaveChanges();
+                            }
                         }
                     }
                 }

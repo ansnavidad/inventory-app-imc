@@ -20,17 +20,24 @@ namespace InventoryApp.DAL
                     var query = (from cust in entity.TECNICOes
                                  where poco.UNID_TECNICO == cust.UNID_TECNICO
                                  select cust).ToList();
-
+                    
                     //Actualización
                     if (query.Count > 0)
                     {
-                        udpateElement((object)poco);
+                        var aux = query.First();
+                        
+                        if(UNID.compareUNIDS(aux.LAST_MODIFIED_DATE, poco.LAST_MODIFIED_DATE))
+                            udpateElement((object)poco);
                     }
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElement((object)poco);                        
                     }
+
+                    var modifiedTecnico = entity.TECNICOes.First(p => p.UNID_TECNICO == poco.UNID_TECNICO);
+                    modifiedTecnico.IS_ACTIVE = false;
+                    entity.SaveChanges();
                 }
             }
         }

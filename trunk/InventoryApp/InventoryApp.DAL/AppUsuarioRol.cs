@@ -24,13 +24,20 @@ namespace InventoryApp.DAL
                     //Actualización
                     if (query.Count > 0)
                     {
-                        //No hay campos que se puedan actualizar
+                        var aux = query.First();
+
+                        if (UNID.compareUNIDS(aux.LAST_MODIFIED_DATE, poco.LAST_MODIFIED_DATE))
+                            udpateElement((object)poco);
                     }
                     //Inserción
                     else
                     {
                         insertElement((object)poco);
                     }
+
+                    var modifiedUsuarioRol = entity.USUARIO_ROL.First(p => p.UNID_ROL == poco.UNID_ROL && p.UNID_USUARIO == poco.UNID_USUARIO);
+                    modifiedUsuarioRol.IS_ACTIVE = false;
+                    entity.SaveChanges();
                 }
             }
         }

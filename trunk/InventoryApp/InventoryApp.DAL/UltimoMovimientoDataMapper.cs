@@ -11,7 +11,6 @@ namespace InventoryApp.DAL
     {
         public void loadSync(object element)
         {
-
             if (element != null)
             {
                 ULTIMO_MOVIMIENTO poco = (ULTIMO_MOVIMIENTO)element;
@@ -21,7 +20,23 @@ namespace InventoryApp.DAL
                                  where poco.UNID_ITEM == cust.UNID_ITEM
                                  select cust).ToList();
 
-                    udpateElement((object)poco);
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        var aux = query.First();
+
+                        if (UNID.compareUNIDS(aux.LAST_MODIFIED_DATE, poco.LAST_MODIFIED_DATE))
+                            udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+
+                    var modifiedMenu = entity.ULTIMO_MOVIMIENTO.First(p => p.UNID_ITEM == poco.UNID_ITEM);
+                    modifiedMenu.IS_ACTIVE = false;
+                    entity.SaveChanges();
                 }
             }
         }

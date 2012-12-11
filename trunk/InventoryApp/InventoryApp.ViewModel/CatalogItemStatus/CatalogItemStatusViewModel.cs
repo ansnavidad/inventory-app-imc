@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
             
             try
             {
-                IDataMapper dataMapper = new EstatusDataMapper();
+                IDataMapper dataMapper = new ItemStatusDataMapper();
                 this._catalogItemStatusModel = new CatalogItemStatusModel(dataMapper);   
             }
             catch (ArgumentException a)

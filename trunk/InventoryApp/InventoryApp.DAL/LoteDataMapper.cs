@@ -23,13 +23,20 @@ namespace InventoryApp.DAL
                     //Actualización
                     if (query.Count > 0)
                     {
-                        udpateElement((object)poco);
+                        var aux = query.First();
+
+                        if (UNID.compareUNIDS(aux.LAST_MODIFIED_DATE, poco.LAST_MODIFIED_DATE))
+                            udpateElement((object)poco);
                     }
                     //Inserción
                     else
                     {
                         insertElement((object)poco);
                     }
+
+                    var modifiedCotizacion = entity.LOTEs.First(p => p.UNID_LOTE == poco.UNID_LOTE);
+                    modifiedCotizacion.IS_ACTIVE = false;
+                    entity.SaveChanges();
                 }
             }
         }

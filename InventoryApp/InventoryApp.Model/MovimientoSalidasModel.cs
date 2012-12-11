@@ -58,10 +58,30 @@ namespace InventoryApp.Model
         private MovimientoDataMapper _dataMapper;
         private EMPRESA _empresa;
         public ObservableCollection<DeleteSolicitante> _solicitantes;
+        private ObservableCollection<TECNICO> _tecnicos;
 
         #endregion
 
         #region Props
+        public ObservableCollection<TECNICO> Tecnicos
+        {
+            get
+            {
+                return _tecnicos;
+            }
+            set
+            {
+                if (_tecnicos != value)
+                {
+                    _tecnicos = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Tecnicos"));
+                    }
+                }
+            }
+        }
         public EMPRESA Empresa
         {
             get
@@ -152,7 +172,14 @@ namespace InventoryApp.Model
                 if (_tecnico != value)
                 {
                     _tecnico = value;
-                    this._unidTecnico = _tecnico.UNID_TECNICO;
+                    if (value != null)
+                    {
+                        this._unidTecnico = _tecnico.UNID_TECNICO;
+                    }
+                    else
+                    {
+                        this._unidTecnico = null;
+                    }
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Tecnico"));
@@ -452,6 +479,8 @@ namespace InventoryApp.Model
                     _almacenProcedencia = value;
 
                     this._unidAlmacenProcedencia = _almacenProcedencia.UNID_ALMACEN;
+
+                    this.Tecnicos = GetTecnicosbyAlmacen(value);
                     
                     if (PropertyChanged != null)
                     {
@@ -737,6 +766,27 @@ namespace InventoryApp.Model
         }
 
         #endregion
+        private ObservableCollection<TECNICO> GetTecnicosbyAlmacen(ALMACEN almacen)
+        {
+            ObservableCollection<TECNICO> tecnicoModel = new ObservableCollection<TECNICO>();
+            try
+            {
+                TecnicoDataMapper artDataMapper = new TecnicoDataMapper();
+                List<TECNICO> articulos = (List<TECNICO>)artDataMapper.getTecnicosByAlmancen(new ALMACEN() { UNID_ALMACEN = almacen.UNID_ALMACEN });
+
+                foreach (TECNICO tec in articulos)
+                {
+                    tecnicoModel.Add(tec);
+                }
+
+            }
+            catch (Exception)
+            {
+                ;
+            }
+
+            return tecnicoModel;
+        }
 
         private ObservableCollection<DeleteSolicitante> GetSolicitantesbyEmpresa(EMPRESA empresa)
         {

@@ -58,8 +58,11 @@
                 <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border3"></Border>
             </Border>
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border6" Margin="19,372,21,755" />
-        <ComboBox TabIndex="3" Height="23" HorizontalAlignment="Right" Margin="0,146,370,0" Name="comboBoxAlmacenOrigen" VerticalAlignment="Top" Width="176" SelectedIndex="0" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenProcedenciaModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenProcedencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN"/>
+        <ComboBox TabIndex="3" Height="23" HorizontalAlignment="Right" Margin="0,146,370,0" Name="comboBoxAlmacenOrigen" VerticalAlignment="Top" Width="176"  DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenProcedenciaModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenProcedencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN"/>
         <!--<ComboBox DisplayMemberPath="TECNICO_NAME" Height="23" HorizontalAlignment="Right" ItemsSource="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=Tecnicos}" Margin="0,211,370,0" Name="comboBox3" SelectedIndex="0" SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_TECNICO" TabIndex="4" VerticalAlignment="Top" Width="176" />-->
-    </Grid>
+       <Label Content="Técnico:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,175,506,0" Name="labeltecnico" VerticalAlignment="Top" />
+       <ComboBox TabIndex="3" Height="23" HorizontalAlignment="Right" Margin="0,198,370,0" Name="comboBoxTecnico" VerticalAlignment="Top" Width="176" DisplayMemberPath="TECNICO_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=MovimientoModel.Tecnicos}"  SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_TECNICO" />
+
+        </Grid>
     </ScrollViewer>  
 </Window>

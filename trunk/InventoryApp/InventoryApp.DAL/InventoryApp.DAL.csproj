@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\..\..\..\..\dll_Inventory\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\DLL inventory\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -209,6 +209,9 @@
     <Compile Include="POCOS\ROL_MENU.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
+    <Compile Include="POCOS\SERVER_LASTDATA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
     <Compile Include="POCOS\SERVICIO.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
@@ -246,6 +249,9 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\UNIDAD.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\UPLOAD_LOG.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\USUARIO.cs">

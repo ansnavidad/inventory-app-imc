@@ -15,35 +15,17 @@ using System.Collections.Specialized;
 
 namespace InventoryApp.DAL.POCOS
 {
-    public partial class TIPO_COTIZACION
+    public partial class SERVER_LASTDATA
     {
         #region Primitive Properties
     
-        public virtual long UNID_TIPO_COTIZACION
+        public virtual long UNID_SERVER_LASTDATA
         {
             get;
             set;
         }
     
-        public virtual string TIPO_COTIZACION_NAME
-        {
-            get;
-            set;
-        }
-    
-        public virtual bool IS_ACTIVE
-        {
-            get;
-            set;
-        }
-    
-        public virtual bool IS_MODIFIED
-        {
-            get;
-            set;
-        }
-    
-        public virtual long LAST_MODIFIED_DATE
+        public virtual long ACTUAL_DATE
         {
             get;
             set;

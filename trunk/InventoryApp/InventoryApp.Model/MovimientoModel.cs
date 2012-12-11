@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 
 namespace InventoryApp.Model
@@ -48,10 +49,50 @@ namespace InventoryApp.Model
         private TECNICO _tecnico;
         private long? _unidTecnico;
         private MovimientoDataMapper _dataMapper;
-
+        private EMPRESA _empresa;
+        public ObservableCollection<DeleteSolicitante> _solicitantes;
         #endregion
 
         #region Props
+        public EMPRESA Empresa
+        {
+            get
+            {
+                return _empresa;
+            }
+            set
+            {
+                if (_empresa != value)
+                {
+                    _empresa = value;
+                    this.Solicitantes = GetSolicitantesbyEmpresa(this._empresa);
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Empresa"));
+                    }
+                }
+            }
+        }
+
+        public ObservableCollection<DeleteSolicitante> Solicitantes
+        {
+            get
+            {
+                return _solicitantes;
+            }
+            set
+            {
+                if (_solicitantes != value)
+                {
+                    _solicitantes = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Solicitantes"));
+                    }
+                }
+            }
+        }
 
         public TECNICO Tecnico
         {
@@ -102,7 +143,10 @@ namespace InventoryApp.Model
                 if (_solicitante != value)
                 {
                     _solicitante = value;
-                    this._unidSolicitante = _solicitante.UNID_SOLICITANTE;
+                    if (_solicitante != null)
+                        this._unidSolicitante = _solicitante.UNID_SOLICITANTE;
+                    else
+                        this._unidSolicitante = null;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Solicitante"));
@@ -651,6 +695,28 @@ namespace InventoryApp.Model
                 });
                 //_dataMapper.insertElement(new MOVIMENTO() {UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe, UNID_ALMACEN_DESTINO = this._unidSolicitante});
             }
+        }
+
+        private ObservableCollection<DeleteSolicitante> GetSolicitantesbyEmpresa(EMPRESA empresa)
+        {
+            ObservableCollection<DeleteSolicitante> solicitanteModel = new ObservableCollection<DeleteSolicitante>();
+            try
+            {
+                SolicitanteDataMapper artDataMapper = new SolicitanteDataMapper();
+                List<SOLICITANTE> articulos = (List<SOLICITANTE>)artDataMapper.GetSolicitanteList(new EMPRESA() { UNID_EMPRESA = Empresa.UNID_EMPRESA });
+
+                foreach (SOLICITANTE sol in articulos)
+                {
+                    solicitanteModel.Add(new DeleteSolicitante(sol));
+                }
+               
+            }
+            catch (Exception)
+            {
+                ;
+            }
+
+            return solicitanteModel;
         }
 
         #region Constructors

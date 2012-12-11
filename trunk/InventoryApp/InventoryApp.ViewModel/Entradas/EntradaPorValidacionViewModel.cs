@@ -24,6 +24,9 @@ namespace InventoryApp.ViewModel.Entradas
         private RelayCommand _addItemCommand;
         private RelayCommand _deleteItemCommand;
 
+
+        private CatalogEmpresaModel _catalogEmpresaModel;
+
         public EntradaPorValidacionViewModel()
         {
             try
@@ -32,6 +35,9 @@ namespace InventoryApp.ViewModel.Entradas
                 IDataMapper dataMapper2 = new AlmacenDataMapper();
                 IDataMapper dataMapper3 = new ProveedorDataMapper();
                 IDataMapper dataMapper4 = new ClienteDataMapper();
+                IDataMapper datamapper5 = new EmpresaDataMapper();
+
+                this._catalogEmpresaModel = new CatalogEmpresaModel(datamapper5);
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoModel(new MovimientoDataMapper());
@@ -63,6 +69,9 @@ namespace InventoryApp.ViewModel.Entradas
                 IDataMapper dataMapper2 = new AlmacenDataMapper();
                 IDataMapper dataMapper3 = new ProveedorDataMapper();
                 IDataMapper dataMapper4 = new ClienteDataMapper();
+                IDataMapper datamapper5 = new EmpresaDataMapper();
+
+                this._catalogEmpresaModel = new CatalogEmpresaModel(datamapper5);
 
                 this._movimentoGridEntradas = grid;
 
@@ -197,6 +206,18 @@ namespace InventoryApp.ViewModel.Entradas
             set
             {
                 _catalogSolicitanteModel = value;
+            }
+        }
+
+        public CatalogEmpresaModel CatalogEmpresaModel
+        {
+            get
+            {
+                return _catalogEmpresaModel;
+            }
+            set
+            {
+                _catalogEmpresaModel = value;
             }
         }
 

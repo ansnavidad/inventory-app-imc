@@ -25,6 +25,8 @@ namespace InventoryApp.ViewModel.Entradas
         private RelayCommand _deleteItemCommand;
         private InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasPrestamoViewModel _movimientoEntradas;
 
+        private CatalogEmpresaModel _catalogEmpresaModel;
+
         public EntradaPrestamoViewModel()
         {            
             try
@@ -69,7 +71,9 @@ namespace InventoryApp.ViewModel.Entradas
                 IDataMapper dataMapper3 = new ProveedorDataMapper();
                 IDataMapper dataMapper4 = new ClienteDataMapper();
                 IDataMapper dataMapper5 = new TransporteDataMapper();
+                IDataMapper datamapper5 = new EmpresaDataMapper();
 
+                this._catalogEmpresaModel = new CatalogEmpresaModel(datamapper5);
                 this._movimientoEntradas = entradas;
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoModel(new MovimientoDataMapper());
@@ -219,6 +223,17 @@ namespace InventoryApp.ViewModel.Entradas
             }
         }
 
+        public CatalogEmpresaModel CatalogEmpresaModel
+        {
+            get
+            {
+                return _catalogEmpresaModel;
+            }
+            set
+            {
+                _catalogEmpresaModel = value;
+            }
+        }
 
         public void loadItems()
         {

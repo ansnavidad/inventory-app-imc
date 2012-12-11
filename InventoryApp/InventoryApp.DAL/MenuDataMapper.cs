@@ -9,6 +9,38 @@ namespace InventoryApp.DAL
 {
     public class MenuDataMapper:IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                MENU poco = (MENU)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.MENUs
+                                 where poco.UNID_MENU == cust.UNID_MENU
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        var aux = query.First();
+
+                        if (UNID.compareUNIDS(aux.LAST_MODIFIED_DATE, poco.LAST_MODIFIED_DATE))
+                            udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+
+                    var modifiedMenu = entity.MENUs.First(p => p.UNID_MENU == poco.UNID_MENU);
+                    modifiedMenu.IS_ACTIVE = false;
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public object getElements()
         {
             object res = null;
@@ -49,12 +81,55 @@ namespace InventoryApp.DAL
 
         public void udpateElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MENU menu = (MENU)element;
+
+                    var modifiedMenu = entity.MENUs.First(p => p.UNID_MENU == menu.UNID_MENU);
+                    modifiedMenu.UNID_MENU_PARENT = menu.UNID_MENU_PARENT;
+                    modifiedMenu.MENU_NAME = menu.MENU_NAME;
+                    modifiedMenu.IS_LEAF = menu.IS_LEAF;
+                    modifiedMenu.IS_ACTIVE = menu.IS_ACTIVE;
+                    //Sync
+                    modifiedMenu.IS_MODIFIED = true;
+                    modifiedMenu.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    //
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void insertElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MENU menu = (MENU)element;
+
+                    var validacion = (from cust in entity.MENUs
+                                      where cust.MENU_NAME == menu.MENU_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        menu.UNID_MENU = UNID.getNewUNID();
+                        //Sync
+                        menu.IS_MODIFIED = true;
+                        menu.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.MENUs.AddObject(menu);
+                        entity.SaveChanges();
+                    }
+                }
+            }
         }
 
         public void deleteElement(object element)

@@ -23,13 +23,20 @@ namespace InventoryApp.DAL
                     //Actualización
                     if (query.Count > 0)
                     {
-                        udpateElement((object)poco);
+                        var aux = query.First();
+
+                        if (UNID.compareUNIDS(aux.LAST_MODIFIED_DATE, poco.LAST_MODIFIED_DATE))
+                            udpateElement((object)poco);
                     }
                     //Inserción
-                    else {                 
-                    
+                    else
+                    {
                         insertElement((object)poco);
-                    }               
+                    }
+
+                    var modifiedMenu = entity.MENUs.First(p => p.UNID_MENU == poco.UNID_MENU);
+                    modifiedMenu.IS_ACTIVE = false;
+                    entity.SaveChanges();            
                 }
             }
         }

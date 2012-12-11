@@ -24,13 +24,20 @@ namespace InventoryApp.DAL
                     //Actualización
                     if (query.Count > 0)
                     {
-                        udpateElement((object)poco);
+                        var aux = query.First();
+
+                        if (UNID.compareUNIDS(aux.LAST_MODIFIED_DATE, poco.LAST_MODIFIED_DATE))
+                            udpateElement((object)poco);
                     }
                     //Inserción
                     else
                     {
                         insertElement((object)poco);
                     }
+
+                    var modifiedCiudad = entity.CIUDADs.First(p => p.UNID_CIUDAD == poco.UNID_CIUDAD);
+                    modifiedCiudad.IS_ACTIVE = false;
+                    entity.SaveChanges();
                 }
             }
         }        

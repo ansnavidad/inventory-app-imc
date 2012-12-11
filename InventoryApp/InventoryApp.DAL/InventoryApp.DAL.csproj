@@ -63,7 +63,6 @@
     <Compile Include="DepartamentoDataMapper.cs" />
     <Compile Include="EmpresaDataMapper.cs" />
     <Compile Include="EquipoDataMapper.cs" />
-    <Compile Include="EstatusDataMapper.cs" />
     <Compile Include="FacturaDataMapper.cs" />
     <Compile Include="FacturaDetalleDataMapper.cs" />
     <Compile Include="FacturaVentaDataMapper.cs" />

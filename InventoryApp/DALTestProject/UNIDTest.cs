@@ -1,6 +1,7 @@
 ﻿using InventoryApp.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using InventoryApp.DAL;
 
 namespace DALTestProject
 {
@@ -76,5 +77,20 @@ namespace DALTestProject
         //    Assert.AreEqual(expected, actual);
         //    Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         //}
+
+        /// <summary>
+        ///Una prueba de compareUNIDS
+        ///</summary>
+        [TestMethod()]
+        public void compareUNIDSTest()
+        {
+            long UNIDactual = 20121129120935716; // TODO: Inicializar en un valor adecuado
+            long UNIDenviada = 20121129120935716; // TODO: Inicializar en un valor adecuado
+            bool expected = false; // TODO: Inicializar en un valor adecuado
+            bool actual;
+            actual = UNID.compareUNIDS(UNIDactual, UNIDenviada);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

@@ -72,7 +72,7 @@ namespace DALTestProject
         [TestMethod()]
         public void getElementsTest()
         {
-            EstatusDataMapper target = new EstatusDataMapper(); // TODO: Inicializar en un valor adecuado
+            ItemStatusDataMapper target = new ItemStatusDataMapper(); // TODO: Inicializar en un valor adecuado
             //object expected = null; // TODO: Inicializar en un valor adecuado
             object actual;
             actual = target.getElements();
@@ -88,7 +88,7 @@ namespace DALTestProject
         public void getElementTest()
         {
             ITEM_STATUS item = new ITEM_STATUS() { ITEM_STATUS_NAME = "RECHAZADO", UNID_ITEM_STATUS = 87623567645 };
-            EstatusDataMapper target = new EstatusDataMapper(); // TODO: Inicializar en un valor adecuado
+            ItemStatusDataMapper target = new ItemStatusDataMapper(); // TODO: Inicializar en un valor adecuado
             object element = (object)item;  // TODO: Inicializar en un valor adecuado
             //object expected = 1; // TODO: Inicializar en un valor adecuado
             object actual;
@@ -106,7 +106,7 @@ namespace DALTestProject
         public void udpateElementTest()
         {
             ITEM_STATUS item = new ITEM_STATUS() { ITEM_STATUS_NAME = "APROVADO PRUEBA", UNID_ITEM_STATUS = 12345665432 };
-            EstatusDataMapper target = new EstatusDataMapper(); // TODO: Inicializar en un valor adecuado
+            ItemStatusDataMapper target = new ItemStatusDataMapper(); // TODO: Inicializar en un valor adecuado
             object element = (object)item; // TODO: Inicializar en un valor adecuado
             target.udpateElement(element);
             object actual;
@@ -125,7 +125,7 @@ namespace DALTestProject
         {
             ITEM_STATUS item = new ITEM_STATUS() { ITEM_STATUS_NAME = "borrado insert "};
 
-            EstatusDataMapper target = new EstatusDataMapper(); // TODO: Inicializar en un valor adecuado
+            ItemStatusDataMapper target = new ItemStatusDataMapper(); // TODO: Inicializar en un valor adecuado
             object element = (object)item; // TODO: Inicializar en un valor adecuado
             target.insertElement(element);
 
@@ -150,7 +150,7 @@ namespace DALTestProject
         [TestMethod()]
         public void GetJsonItemStatusTest()
         {
-            EstatusDataMapper target = new EstatusDataMapper(); // TODO: Inicializar en un valor adecuado
+            ItemStatusDataMapper target = new ItemStatusDataMapper(); // TODO: Inicializar en un valor adecuado
             string expected = string.Empty; // TODO: Inicializar en un valor adecuado
             string actual;
             actual = target.GetJsonItemStatus();

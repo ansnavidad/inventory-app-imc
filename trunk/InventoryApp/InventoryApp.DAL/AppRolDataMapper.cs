@@ -105,7 +105,7 @@ namespace InventoryApp.DAL
                     ROL rol = (ROL)element;
 
                     var validacion = (from cust in entity.ROLs
-                                      where cust.UNID_ROL == rol.UNID_ROL
+                                      where cust.ROL_NAME == rol.ROL_NAME
                                       select cust).ToList();
 
                     if (validacion.Count == 0)

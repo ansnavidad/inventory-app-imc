@@ -269,6 +269,7 @@
     <Compile Include="Recibo\FacturaCompraDetalleDataMapper.cs" />
     <Compile Include="ServicioDataMapper.cs" />
     <Compile Include="SolicitanteDataMapper.cs" />
+    <Compile Include="SyncDataMapper.cs" />
     <Compile Include="TecnicoDataMapper.cs" />
     <Compile Include="TerminoEnvioDataMapper.cs" />
     <Compile Include="TipoCotizacionDataMapper.cs" />

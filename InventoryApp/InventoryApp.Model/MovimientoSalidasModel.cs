@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace InventoryApp.Model
 {
@@ -55,10 +56,51 @@ namespace InventoryApp.Model
         private DeleteSolicitante _solicitante;
         private long? _unidSolicitante;
         private MovimientoDataMapper _dataMapper;
+        private EMPRESA _empresa;
+        public ObservableCollection<DeleteSolicitante> _solicitantes;
 
         #endregion
 
         #region Props
+        public EMPRESA Empresa
+        {
+            get
+            {
+                return _empresa;
+            }
+            set
+            {
+                if (_empresa != value)
+                {
+                    _empresa = value;
+                    this.Solicitantes = GetSolicitantesbyEmpresa(this._empresa);
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Empresa"));
+                    }
+                }
+            }
+        }
+
+        public ObservableCollection<DeleteSolicitante> Solicitantes
+        {
+            get
+            {
+                return _solicitantes;
+            }
+            set
+            {
+                if (_solicitantes != value)
+                {
+                    _solicitantes = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Solicitantes"));
+                    }
+                }
+            }
+        }
 
         public DeleteSolicitante Solicitante
         {
@@ -695,6 +737,29 @@ namespace InventoryApp.Model
         }
 
         #endregion
+
+        private ObservableCollection<DeleteSolicitante> GetSolicitantesbyEmpresa(EMPRESA empresa)
+        {
+            ObservableCollection<DeleteSolicitante> solicitanteModel = new ObservableCollection<DeleteSolicitante>();
+            try
+            {
+                SolicitanteDataMapper artDataMapper = new SolicitanteDataMapper();
+                List<SOLICITANTE> articulos = (List<SOLICITANTE>)artDataMapper.GetSolicitanteList(new EMPRESA() { UNID_EMPRESA = Empresa.UNID_EMPRESA });
+
+                foreach (SOLICITANTE sol in articulos)
+                {
+                    solicitanteModel.Add(new DeleteSolicitante(sol));
+                }
+
+            }
+            catch (Exception)
+            {
+                ;
+            }
+
+            return solicitanteModel;
+        }
+
 
         public void saveArticulo()
         {

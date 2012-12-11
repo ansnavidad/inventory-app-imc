@@ -16,6 +16,7 @@ namespace InventoryApp.ViewModel.Salidas
 {
     public class SalidaRevisionViewModel : IPageViewModel, INotifyPropertyChanged
     {
+        private CatalogEmpresaModel _catalogEmpresaModel;
         private MovimientoSalidasModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
         private UltimoMovimientoModel _ultimoMovimientoModel;
@@ -87,7 +88,9 @@ namespace InventoryApp.ViewModel.Salidas
                 IDataMapper dataMapper6 = new TipoPedimentoDataMapper();
                 IDataMapper dataMapper7 = new TransporteDataMapper();
                 IDataMapper dataMapper8 = new TecnicoDataMapper();
+                IDataMapper datamapper11 = new EmpresaDataMapper();
 
+                this._catalogEmpresaModel = new CatalogEmpresaModel(datamapper11);
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
                 TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
@@ -115,6 +118,18 @@ namespace InventoryApp.ViewModel.Salidas
                 throw ex;
             }
 
+        }
+
+        public CatalogEmpresaModel CatalogEmpresaModel
+        {
+            get
+            {
+                return _catalogEmpresaModel;
+            }
+            set
+            {
+                _catalogEmpresaModel = value;
+            }
         }
 
         public ICommand AddItemCommand

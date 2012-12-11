@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             DataContext="{StaticResource entradaPorValidacionViewModel}"
+      
              mc:Ignorable="d" 
 
              d:DesignHeight="793" d:DesignWidth="622">
@@ -23,9 +23,11 @@
         <TextBox TabIndex="1" Height="23" HorizontalAlignment="Right" Margin="0,153,400,0" MaxLength="32" Name="textBoxTT" Text="{Binding MovimientoModel.Tt, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="131" VerticalAlignment="Top" />
         
         
-
-        <Label Content="Solicitante:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,124,161,0" Name="label8" VerticalAlignment="Top" />
-        <ComboBox TabIndex="2" DisplayMemberPath="SOLICITANTE_NAME" ItemsSource="{Binding CatalogSolicitanteModel.Solicitante, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  SelectedItem="{Binding MovimientoModel.Solicitante, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_SOLICITANTE" Height="23" HorizontalAlignment="Right" Margin="0,124,24,0" Name="comboBoxSolicitante" VerticalAlignment="Top" Width="131" SelectedIndex="0"/>
+        <Label Content="Empresa:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,90,161,0" Name="labelEmpresa" VerticalAlignment="Top" />
+        <ComboBox TabIndex="2" DisplayMemberPath="EMPRESA_NAME" ItemsSource="{Binding CatalogEmpresaModel.Empresa, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  SelectedItem="{Binding MovimientoModel.Empresa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_EMPRESA" Height="23" HorizontalAlignment="Right" Margin="0,88,24,0" Name="comboBoxEmpresa" VerticalAlignment="Top" Width="131" SelectedIndex="0"/>
+        
+        <Label Content="Solicitante:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Left" Margin="384,121,0,0" Name="label8" VerticalAlignment="Top" />
+        <ComboBox TabIndex="2" DisplayMemberPath="SOLICITANTE_NAME" ItemsSource="{Binding MovimientoModel.Solicitantes, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  SelectedItem="{Binding MovimientoModel.Solicitante, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_SOLICITANTE" Height="23" HorizontalAlignment="Right" Margin="0,123,24,0" Name="comboBoxSolicitante" VerticalAlignment="Top" Width="131" />
         <Label Content="Items Seleccionados:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,402,479,0" Name="label7" VerticalAlignment="Top" />
         <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,405,377,0" Name="textBlockCantidad" Text="{Binding MovimientoModel.CantidadItems, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="97" />
         <Label Content="Área del solicitante:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,150,161,0" Name="label9" VerticalAlignment="Top" />

@@ -74,8 +74,11 @@
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border6" Margin="25,527,15,600" />
         <TextBox TabIndex="4" Height="23" HorizontalAlignment="Right" Margin="0,156,40,0" MaxLength="1024" Name="textBox4" Text="{Binding MovimientoModel.SitioEnlace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="162" />
             <Label Content="Sitio y/o enlace:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,156,208,0" Name="label4" VerticalAlignment="Top" />
-        <ComboBox TabIndex="3" Height="23" HorizontalAlignment="Right" Margin="0,285,378,0" Name="comboBoxAlmacenOrigen" VerticalAlignment="Top" Width="176" SelectedIndex="0" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenProcedenciaModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenProcedencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN"/>
+        <ComboBox TabIndex="3" Height="23" HorizontalAlignment="Right" Margin="0,285,378,0" Name="comboBoxAlmacenOrigen" VerticalAlignment="Top" Width="176" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenProcedenciaModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenProcedencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN"/>
         <!--<ComboBox DisplayMemberPath="TECNICO_NAME" Height="23" HorizontalAlignment="Right" ItemsSource="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=Tecnicos}" Margin="0,285,42,0" Name="comboBox3" SelectedIndex="0" SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_TECNICO" TabIndex="4" VerticalAlignment="Top" Width="176" />-->
-    </Grid>
+        <Label Content="Técnico:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,260,281,0" Name="labeltecnico" VerticalAlignment="Top" />
+        <ComboBox TabIndex="3" Height="23" HorizontalAlignment="Right" Margin="0,283,158,0" Name="comboBoxTecnico" VerticalAlignment="Top" Width="176" DisplayMemberPath="TECNICO_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=MovimientoModel.Tecnicos}"  SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_TECNICO" />
+
+        </Grid>
     </ScrollViewer>
 </Window>

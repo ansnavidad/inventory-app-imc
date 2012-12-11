@@ -12,6 +12,7 @@ namespace InventoryApp.ViewModel.Traspasos
 {
     public class TraspasoStockViewModel : IPageViewModel
     {
+        private CatalogEmpresaModel _catalogEmpresaModel;
         private MovimientoSalidasModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
         private UltimoMovimientoModel _ultimoMovimientoModel;
@@ -73,6 +74,9 @@ namespace InventoryApp.ViewModel.Traspasos
                 IDataMapper dataMapper4 = new ClienteDataMapper();
                 IDataMapper dataMapper5 = new TransporteDataMapper();
                 IDataMapper dataMapper6 = new ServicioDataMapper();
+                IDataMapper datamapper11 = new EmpresaDataMapper();
+
+                this._catalogEmpresaModel = new CatalogEmpresaModel(datamapper11);
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
@@ -98,6 +102,18 @@ namespace InventoryApp.ViewModel.Traspasos
                 throw ex;
             }
 
+        }
+
+        public CatalogEmpresaModel CatalogEmpresaModel
+        {
+            get
+            {
+                return _catalogEmpresaModel;
+            }
+            set
+            {
+                _catalogEmpresaModel = value;
+            }
         }
 
         public ICommand AddItemCommand

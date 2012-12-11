@@ -273,6 +273,7 @@
     <Compile Include="ReciboStatusDataMapper.cs" />
     <Compile Include="Recibo\FacturaCompraDataMapper.cs" />
     <Compile Include="Recibo\FacturaCompraDetalleDataMapper.cs" />
+    <Compile Include="ServerLastDataMapper.cs" />
     <Compile Include="ServicioDataMapper.cs" />
     <Compile Include="SolicitanteDataMapper.cs" />
     <Compile Include="SyncDataMapper.cs" />
@@ -286,6 +287,7 @@
     <Compile Include="UltimoMovimientoDataMapper.cs" />
     <Compile Include="UNID.cs" />
     <Compile Include="UnidadDataMapper.cs" />
+    <Compile Include="UploadLogDataMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">

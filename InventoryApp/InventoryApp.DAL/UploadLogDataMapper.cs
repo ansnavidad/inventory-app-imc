@@ -37,6 +37,23 @@ namespace InventoryApp.DAL
             }
         }
 
+        public object returnPoco(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    UPLOAD_LOG uploadLog = (UPLOAD_LOG)element;
+                    uploadLog.UNID_UPLOAD_LOG = UNID.getNewUNID();
+                    entity.SaveChanges();
+
+                    return (object)uploadLog;
+                }
+            }
+
+            return new object();
+        }
+
         public void deleteElement(object element)
         {
             throw new NotImplementedException();

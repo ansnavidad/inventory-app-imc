@@ -67,7 +67,6 @@ namespace InventoryApp.DAL
             {
                 TERMINO_ENVIO Eprov = (TERMINO_ENVIO)element;
                 FixupCollection<TERMINO_ENVIO> tp = new FixupCollection<TERMINO_ENVIO>();
-
                 using (var Entity = new TAE2Entities())
                 {
                     var query = (from p in Entity.TERMINO_ENVIO

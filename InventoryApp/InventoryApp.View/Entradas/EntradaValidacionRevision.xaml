@@ -9,8 +9,8 @@
              d:DesignHeight="793" d:DesignWidth="622">
     <ScrollViewer>
     <Grid Name="gridAlta" Width="618" >
-        <Button TabIndex="11" Content="ACEPTAR" Command="{Binding AddItemCommand, Mode=OneWay}"  Height="23" Margin="0,653,431,0" Name="btnAgregar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" Click="btnAgregar_Click" />
-        <Button TabIndex="12" Content="CANCELAR" Height="23" Margin="0,653,109,0" Name="btnCancelar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" Click="btnCancelar_Click" />
+        <Button TabIndex="11" Content="ACEPTAR" Command="{Binding AddItemCommand, Mode=OneWay}"  Height="23" Margin="0,674,208,0" Name="btnAgregar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" Click="btnAgregar_Click" />
+        <Button TabIndex="12" Content="CANCELAR" Height="23" Margin="0,674,106,0" Name="btnCancelar" VerticalAlignment="Top" Width="75" HorizontalAlignment="Right" Click="btnCancelar_Click" />
         
         <Label Content="Folio:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" HorizontalAlignment="Right" Margin="0,37,553,0" Name="lblNombreStatus" Height="28" VerticalAlignment="Top" />
         <Label Content="Entrada Validación/Entrada" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,12,168,0" Name="label1" VerticalAlignment="Top" Width="241" />
@@ -57,7 +57,7 @@
         <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border2" Width="587" Margin="10,363,21,427" />
         <ComboBox TabIndex="3" Height="23" HorizontalAlignment="Right" Margin="0,199,298,0" Name="comboBoxAlmacenOrigen" VerticalAlignment="Top" Width="176" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenDestino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN" SelectedIndex="0" />
         <Label Content="Almacén de destino:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,197,482,0" Name="label3" VerticalAlignment="Top" />
-
-    </Grid>
+            <Button Command="{Binding AddItemCommand, Mode=OneWay}" Content="IMPRIMIR" Height="23" HorizontalAlignment="Right" Margin="0,674,421,0" Name="button3" TabIndex="11" VerticalAlignment="Top" Width="131" />
+        </Grid>
     </ScrollViewer>
 </Window>

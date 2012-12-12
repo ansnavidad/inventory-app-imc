@@ -55,6 +55,14 @@ namespace InventoryApp.ViewModel.Entradas
                 this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
                 this._catalogProveedorProcedenciaModel = new CatalogProveedorModel(dataMapper3);
                 this._catalogClienteProcedenciaModel = new CatalogClienteModel(dataMapper4);
+
+                //Asignaciones especiales para los combos 
+                this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
+                this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
+                this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
+                this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
+                this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
+                this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];                
             }
             catch (ArgumentException a)
             {
@@ -93,6 +101,14 @@ namespace InventoryApp.ViewModel.Entradas
                 this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
                 this._catalogProveedorProcedenciaModel = new CatalogProveedorModel(dataMapper3);
                 this._catalogClienteProcedenciaModel = new CatalogClienteModel(dataMapper4);
+
+                //Asignaciones especiales para los combos 
+                this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
+                this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
+                this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
+                this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
+                this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
+                this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];                
             }
             catch (ArgumentException a)
             {

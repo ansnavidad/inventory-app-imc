@@ -57,7 +57,7 @@
         <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border2" Width="587" Margin="10,363,21,427" />
         <ComboBox TabIndex="3" Height="23" HorizontalAlignment="Right" Margin="0,199,298,0" Name="comboBoxAlmacenOrigen" VerticalAlignment="Top" Width="176" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenDestino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN" SelectedIndex="0" />
         <Label Content="Almacén de destino:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,197,482,0" Name="label3" VerticalAlignment="Top" />
-            <Button Command="{Binding AddItemCommand, Mode=OneWay}" Content="IMPRIMIR" Height="23" HorizontalAlignment="Right" Margin="0,674,421,0" Name="button3" TabIndex="11" VerticalAlignment="Top" Width="131" />
+            <Button Command="{Binding ImprimirCommand, Mode=OneWay}" Content="IMPRIMIR" Height="23" HorizontalAlignment="Right" Margin="0,674,421,0" Name="button3" TabIndex="11" VerticalAlignment="Top" Width="131" />
         </Grid>
     </ScrollViewer>
 </Window>

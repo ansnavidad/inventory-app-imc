@@ -6,6 +6,8 @@ using InventoryApp.Model;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
+using Microsoft.Office.Interop.Excel;
+using System.Reflection;
 
 namespace InventoryApp.ViewModel.Entradas
 {
@@ -22,6 +24,7 @@ namespace InventoryApp.ViewModel.Entradas
         private CatalogItemModel _itemModel;
         private InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasViewModel _movimentoGridEntradas;
         private RelayCommand _addItemCommand;
+        private RelayCommand _imprimirCommand;
         private RelayCommand _deleteItemCommand;
 
 
@@ -107,6 +110,18 @@ namespace InventoryApp.ViewModel.Entradas
                     _addItemCommand = new RelayCommand(p => this.AttempArticulo(), p => this.CanAttempArticulo());
                 }
                 return _addItemCommand;
+            }
+        }
+
+        public ICommand ImprimirCommand
+        {
+            get
+            {
+                if (_imprimirCommand == null)
+                {
+                    _imprimirCommand = new RelayCommand(p => this.AttempImprimir(), p => this.CanAttempImprimir());
+                }
+                return _imprimirCommand;
             }
         }
 
@@ -266,6 +281,36 @@ namespace InventoryApp.ViewModel.Entradas
                 this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem, this._movimientoModel.UnidAlmacenDestino, null, null, this._movimientoDetalleModel.UnidMovimientoDetalle);
                 this._ultimoMovimientoModel.saveArticulo();
             }            
+        }
+
+        public bool CanAttempImprimir()
+        {
+            //bool _canImprimir = false;
+
+            //int seleccion = 0;
+            //if (this.MovimientoModel.AlmacenProcedencia != null)
+            //    seleccion++;
+            //if (this.MovimientoModel.ClienteProcedencia != null)
+            //    seleccion++;
+            //if (this.MovimientoModel.ProveedorProcedencia != null)
+            //    seleccion++;
+
+            //if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && !String.IsNullOrEmpty(this.MovimientoModel.Recibe) && seleccion == 1)
+            //    _canImprimir = true;
+
+            //return _canImprimir;
+
+            return true;
+        }
+
+        public void AttempImprimir()
+        {
+            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+            excel.Visible = true;
+
+            Workbook excelPrint = excel.Workbooks.Open(@"C:\temp\elarainventarios\EntradaValidacion.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+            Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
+            excel.Cells[8, 6] = "Pruebita xD";
         }
 
         public bool CanAttempDeleteArticulo()

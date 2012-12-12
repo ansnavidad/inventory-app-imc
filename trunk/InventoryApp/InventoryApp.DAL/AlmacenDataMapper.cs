@@ -215,6 +215,7 @@ namespace InventoryApp.DAL
 
                                 //Sync
                                 almacenTecnico.IS_MODIFIED = true;
+                                almacenTecnico.IS_ACTIVE = true;
                                 almacenTecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
                                 modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                                 modifiedSync.ACTUAL_DATE = UNID.getNewUNID();

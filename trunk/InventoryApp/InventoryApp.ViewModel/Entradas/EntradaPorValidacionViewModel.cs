@@ -285,22 +285,20 @@ namespace InventoryApp.ViewModel.Entradas
 
         public bool CanAttempImprimir()
         {
-            //bool _canImprimir = false;
+            bool _canImprimir = false;
 
-            //int seleccion = 0;
-            //if (this.MovimientoModel.AlmacenProcedencia != null)
-            //    seleccion++;
-            //if (this.MovimientoModel.ClienteProcedencia != null)
-            //    seleccion++;
-            //if (this.MovimientoModel.ProveedorProcedencia != null)
-            //    seleccion++;
+            int seleccion = 0;
+            if (this.MovimientoModel.AlmacenProcedencia != null)
+                seleccion++;
+            if (this.MovimientoModel.ClienteProcedencia != null)
+                seleccion++;
+            if (this.MovimientoModel.ProveedorProcedencia != null)
+                seleccion++;
 
-            //if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && !String.IsNullOrEmpty(this.MovimientoModel.Recibe) && seleccion == 1)
-            //    _canImprimir = true;
+            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && !String.IsNullOrEmpty(this.MovimientoModel.Recibe) && seleccion == 1)
+                _canImprimir = true;
 
-            //return _canImprimir;
-
-            return true;
+            return _canImprimir;
         }
 
         public void AttempImprimir()
@@ -349,42 +347,60 @@ namespace InventoryApp.ViewModel.Entradas
                 int X = 31;
                 Microsoft.Office.Interop.Excel.Borders borders;
 
-                //for (int i = 0; i < ItemModel.ItemModel.Count; i++) {
-                for (int i = 0; i < 5; i++)
-                {
+                for (int i = 0; i < ItemModel.ItemModel.Count; i++) {
+                //for (int i = 0; i < 5; i++)  {
+                
                     //No.
                     excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].Merge();
-                    excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;                    
+                    excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    excel.Cells[X, 2] = (i + 1).ToString() + ".-";
                     borders = excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].Borders;
                     borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                    //CANT.
-                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 6]].Merge();
-                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 6]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                    borders = excel.Range[excel.Cells[X, 4], excel.Cells[X, 6]].Borders;
-                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
                     //DESCRIPCIÓN
-                    excel.Range[excel.Cells[X, 7], excel.Cells[X, 20]].Merge();
-                    excel.Range[excel.Cells[X, 7], excel.Cells[X, 20]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                    borders = excel.Range[excel.Cells[X, 7], excel.Cells[X, 20]].Borders;
+                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 26]].Merge();
+                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 26]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    excel.Cells[X, 4] = ItemModel.ItemModel[i].Articulo.ARTICULO1;
+                    borders = excel.Range[excel.Cells[X, 4], excel.Cells[X, 26]].Borders;
                     borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
                     //N° DE SERIE
-                    excel.Range[excel.Cells[X, 21], excel.Cells[X, 24]].Merge();
-                    excel.Range[excel.Cells[X, 21], excel.Cells[X, 24]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                    borders = excel.Range[excel.Cells[X, 21], excel.Cells[X, 24]].Borders;
+                    excel.Range[excel.Cells[X, 27], excel.Cells[X, 30]].Merge();
+                    excel.Range[excel.Cells[X, 27], excel.Cells[X, 30]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    excel.Cells[X, 27] = ItemModel.ItemModel[i].NUMERO_SERIE;
+                    borders = excel.Range[excel.Cells[X, 27], excel.Cells[X, 30]].Borders;
                     borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
                     //MODELO
-                    excel.Range[excel.Cells[X, 25], excel.Cells[X, 27]].Merge();
-                    excel.Range[excel.Cells[X, 25], excel.Cells[X, 27]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                    borders = excel.Range[excel.Cells[X, 25], excel.Cells[X, 27]].Borders;
-                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                    //OBSERVACIONES
-                    excel.Range[excel.Cells[X, 28], excel.Cells[X, 34]].Merge();
-                    excel.Range[excel.Cells[X, 28], excel.Cells[X, 34]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                    borders = excel.Range[excel.Cells[X, 28], excel.Cells[X, 34]].Borders;
-                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                    
+                    excel.Range[excel.Cells[X, 31], excel.Cells[X, 34]].Merge();
+                    excel.Range[excel.Cells[X, 31], excel.Cells[X, 34]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    excel.Cells[X, 31] = ItemModel.ItemModel[i].Modelo.MODELO_NAME;
+                    borders = excel.Range[excel.Cells[X, 31], excel.Cells[X, 34]].Borders;
+                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;                    
                     X++;
-                }                
+                }
+
+                X += 2;
+                excel.Cells[X, 3] = "OBSERVACIONES:";
+                excel.Range[excel.Cells[X, 9], excel.Cells[X+2, 33]].Merge();
+                borders = excel.Range[excel.Cells[X, 9], excel.Cells[X + 2, 33]].Borders;
+                borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+
+                X += 4;
+                excel.Range[excel.Cells[X, 2], excel.Cells[X, 17]].Merge();
+                excel.Range[excel.Cells[X, 2], excel.Cells[X, 17]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                excel.Cells[X, 2] = "ENTREGADO POR:";
+                excel.Cells[X, 2].Font.Bold = true;
+                excel.Range[excel.Cells[X, 18], excel.Cells[X, 34]].Merge();
+                excel.Range[excel.Cells[X, 18], excel.Cells[X, 34]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                excel.Cells[X, 18] = "RECIBIDO POR:";
+                excel.Cells[X, 18].Font.Bold = true;
+                X += 1;
+                excel.Range[excel.Cells[X, 2], excel.Cells[X+2, 17]].Merge();
+                borders = excel.Range[excel.Cells[X, 2], excel.Cells[X + 2, 17]].Borders;
+                borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                excel.Range[excel.Cells[X, 18], excel.Cells[X+2, 34]].Merge();
+                borders = excel.Range[excel.Cells[X, 18], excel.Cells[X + 2, 34]].Borders; 
+                borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+
+                
 
                 excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
             }

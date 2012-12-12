@@ -56,6 +56,7 @@
     <Compile Include="CatalogDepartamentoModel.cs" />
     <Compile Include="CatalogEmpresaModel.cs" />
     <Compile Include="CatalogEquipoModel.cs" />
+    <Compile Include="CatalogInfraestructuraModel.cs" />
     <Compile Include="CatalogItemStatusModel.cs" />
     <Compile Include="CatalogMarcaModel.cs" />
     <Compile Include="CatalogMedioEnvioModel.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="DeleteDepartamento.cs" />
     <Compile Include="DeleteEmpresa.cs" />
     <Compile Include="DeleteEquipo.cs" />
+    <Compile Include="DeleteInfraestructura.cs" />
     <Compile Include="DeleteItemStatus.cs" />
     <Compile Include="DeleteMarca.cs" />
     <Compile Include="DeleteMedioEnvio.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="EquipoModel.cs" />
     <Compile Include="FacturaVentaModel.cs" />
     <Compile Include="IModelChangeTrack.cs" />
+    <Compile Include="InfraestructuraModel.cs" />
     <Compile Include="InsertTipoEmpresaModel.cs" />
     <Compile Include="InsertTransporteModel.cs" />
     <Compile Include="ItemModel.cs" />

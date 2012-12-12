@@ -1,7 +1,7 @@
-﻿<Window x:Class="InventoryApp.View.InsertTipoEmpresaView"
+﻿<Window x:Class="InventoryApp.View.CatalogInfraestructura.InsertInfraestructuraView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Nuevo tipo  empresa" Height="200" Width="350" 
+        Title="Nueva Infraestructura" Height="200" Width="350" 
         WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
@@ -26,10 +26,10 @@
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
-            <Label Style="{StaticResource titleLabel}" Content="ALTA TIPO EMPRESA" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+            <Label Style="{StaticResource titleLabel}" Content="ALTA INFRAESTRUCTURA" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <Label Content="Nombre Tipo Empresa:" Grid.Column="1" Margin="13,21,0,9" Grid.Row="1" Grid.RowSpan="2"></Label>
-        <TextBox MaxLength="128"  Text="{Binding TipoEmpresa.TipoEmpresaName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+        <Label Content="Nombre Infraestructura :" Grid.Column="1" Margin="13,21,0,9" Grid.Row="1" Grid.RowSpan="2"></Label>
+        <TextBox MaxLength="128"  Text="{Binding Infraestructura.InfraestructuraName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                  Height="23" HorizontalAlignment="Left" Margin="3,23,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" 
                  Grid.Column="2" Grid.Row="1" />
         <Button Content="Guardar" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnAgregar" 

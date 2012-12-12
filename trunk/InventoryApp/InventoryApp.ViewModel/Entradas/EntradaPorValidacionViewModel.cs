@@ -304,13 +304,90 @@ namespace InventoryApp.ViewModel.Entradas
         }
 
         public void AttempImprimir()
-        {
-            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-            excel.Visible = true;
+        {            
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.DefaultExt = ".xlsx";
+            dlg.Filter = "Documentos Excel (.xlsx)|*.xlsx";
+            if (dlg.ShowDialog() == true)
+            {
+                string filename = dlg.FileName;
+                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                excel.Visible = true;
 
-            Workbook excelPrint = excel.Workbooks.Open(@"C:\temp\elarainventarios\EntradaValidacion.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
-            Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
-            excel.Cells[8, 6] = "Pruebita xD";
+                Workbook excelPrint = excel.Workbooks.Open(@"C:\temp\elarainventarios\EntradaValidacion.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
+
+                //Folio
+                excel.Cells[8, 6] = _movimientoModel.UnidMovimiento.ToString();
+                //Fecha
+                excel.Cells[8, 23] = _movimientoModel.FechaMovimiento;
+
+                //Solicitante y su área
+                excel.Cells[11, 12] = _movimientoModel.Solicitante.SOLICITANTE_NAME;
+                excel.Cells[13, 12] = _movimientoModel.Solicitante.Departamento.DEPARTAMENTO_NAME;
+                //Recibe
+                excel.Cells[15, 12] = _movimientoModel.Recibe.ToString();
+                //Procedencia
+                string p = "";
+
+                if (_movimientoModel.ProveedorProcedencia != null)
+                    p = _movimientoModel.ProveedorProcedencia.PROVEEDOR_NAME;
+                else if (_movimientoModel.AlmacenProcedencia != null)
+                    p = _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
+                else
+                    p = _movimientoModel.ClienteProcedencia.CLIENTE1;
+
+                excel.Cells[17, 12] = p.ToString();
+
+                //Destino
+                excel.Cells[19, 12] = _movimientoModel.AlmacenDestino.ALMACEN_NAME;
+                //TT
+                excel.Cells[21, 12] = _movimientoModel.Tt;
+                //Empresa
+                excel.Cells[23, 12] = _movimientoModel.Empresa.EMPRESA_NAME;
+
+                int X = 31;
+                Microsoft.Office.Interop.Excel.Borders borders;
+
+                //for (int i = 0; i < ItemModel.ItemModel.Count; i++) {
+                for (int i = 0; i < 5; i++)
+                {
+                    //No.
+                    excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].Merge();
+                    excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;                    
+                    borders = excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].Borders;
+                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    //CANT.
+                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 6]].Merge();
+                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 6]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    borders = excel.Range[excel.Cells[X, 4], excel.Cells[X, 6]].Borders;
+                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    //DESCRIPCIÓN
+                    excel.Range[excel.Cells[X, 7], excel.Cells[X, 20]].Merge();
+                    excel.Range[excel.Cells[X, 7], excel.Cells[X, 20]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    borders = excel.Range[excel.Cells[X, 7], excel.Cells[X, 20]].Borders;
+                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    //N° DE SERIE
+                    excel.Range[excel.Cells[X, 21], excel.Cells[X, 24]].Merge();
+                    excel.Range[excel.Cells[X, 21], excel.Cells[X, 24]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    borders = excel.Range[excel.Cells[X, 21], excel.Cells[X, 24]].Borders;
+                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    //MODELO
+                    excel.Range[excel.Cells[X, 25], excel.Cells[X, 27]].Merge();
+                    excel.Range[excel.Cells[X, 25], excel.Cells[X, 27]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    borders = excel.Range[excel.Cells[X, 25], excel.Cells[X, 27]].Borders;
+                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    //OBSERVACIONES
+                    excel.Range[excel.Cells[X, 28], excel.Cells[X, 34]].Merge();
+                    excel.Range[excel.Cells[X, 28], excel.Cells[X, 34]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    borders = excel.Range[excel.Cells[X, 28], excel.Cells[X, 34]].Borders;
+                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    
+                    X++;
+                }                
+
+                excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            }
         }
 
         public bool CanAttempDeleteArticulo()

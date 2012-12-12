@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="InventoryApp.View.Recibo.ModifyFacturaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="800">
+    <UserControl.Resources>
+        <GridLength x:Key="descColWidth">120</GridLength>
+        <GridLength x:Key="captureColWidth">200</GridLength>
+        <GridLength x:Key="capRowHeight">27</GridLength>
+        <sys:Int32 x:Key="allCapColumnSpan">5</sys:Int32>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <!-- información de factura -->
+        <Grid Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeight}" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="{StaticResource captureColWidth}" />
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="Silver" BorderThickness="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TextBlock  Margin="10,0" Text="Factura" />
+            </Border>
+
+            <TextBlock Grid.Column="0" Grid.Row="1" Height="23" HorizontalAlignment="Left" Text="Número de Factura" VerticalAlignment="Top" />
+            <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding NumeroFactura, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="3" Grid.Row="1" Height="23" HorizontalAlignment="Left" Text="Fecha de Factura" VerticalAlignment="Top" />
+            <DatePicker Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectedDate="{Binding FechaFactura, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Proveedor" VerticalAlignment="Top" />
+            <ComboBox Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Proveedores}" SelectedItem="{Binding SelectedProveedor,Mode=TwoWay}" DisplayMemberPath="ProveedorName" Text="{Binding SelectedProveedor.ProveedorName}" IsEnabled="{Binding CanSelecteProveedor}" />
+
+            <TextBlock Grid.Column="3" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Moneda" VerticalAlignment="Top" />
+            <ComboBox Grid.Column="4" Grid.Row="2" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Monedas}" SelectedItem="{Binding SelectedMoneda}" DisplayMemberPath="MonedaName" />
+
+            <TextBlock Grid.Column="0" Grid.Row="3" Height="23" HorizontalAlignment="Left" Text="Número Pedimento" VerticalAlignment="Top" />
+            <TextBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding NumeroPedimento, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="3" Grid.Row="3" Height="23" HorizontalAlignment="Left" Text="Tipo Pedimento" VerticalAlignment="Top" />
+            <ComboBox Grid.Column="4" Grid.Row="3" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TipoPedimentos}" SelectedItem="{Binding SelectedTipoPedimento,Mode=TwoWay}" DisplayMemberPath="TipoPedimentoName"  />
+
+            <TextBlock Grid.Column="0" Grid.Row="4" Height="23" HorizontalAlignment="Left" Text="% Iva" VerticalAlignment="Top" />
+            <TextBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding PorIva, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="5" Height="23" HorizontalAlignment="Left" Text="Items" VerticalAlignment="Top" />
+            <DockPanel Grid.Column="5" Grid.Row="5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" >
+                <Button Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Click="btnFacturaAdd_Click" Command="{Binding AddFacturaArticuloCommand}" />
+                <Button Content="Eliminar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Command="{Binding DeleteFacturaArticuloCommand}" />
+            </DockPanel>
+            <ListView Grid.Column="0"  Grid.Row="6" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.RowSpan="4"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding FacturaDetalles}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="" Width="35" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Path=IsSelected, NotifyOnSourceUpdated=True, NotifyOnValidationError=True}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Categoría" Width="150" DisplayMemberBinding="{Binding Path=Articulo.Categoria.CATEGORIA_NAME }" />
+                        <GridViewColumn Header="Equipo" Width="150" DisplayMemberBinding="{Binding Path=Articulo.EquipoModel.EquipoName}" />
+                        <GridViewColumn Header="Marca" Width="150" DisplayMemberBinding="{Binding Path=Articulo.Marca.MARCA_NAME}" />
+                        <GridViewColumn Header="Articulo" Width="150" DisplayMemberBinding="{Binding Path=Articulo.ArticuloName}" />
+                        <GridViewColumn Header="Cantidad" Width="150" DisplayMemberBinding="{Binding Path=Cantidad}" />
+                        <GridViewColumn Header="Costo Unitario" Width="150" DisplayMemberBinding="{Binding Path=CostoUnitario}" />
+                        <GridViewColumn Header="Precio Final" Width="150" DisplayMemberBinding="{Binding Path=PrecioFinal}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</UserControl>

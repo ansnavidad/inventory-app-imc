@@ -127,6 +127,9 @@
     <Compile Include="POCOS\FACTURA_VENTA.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
+    <Compile Include="POCOS\INFRAESTRUCTURA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
     <Compile Include="POCOS\ITEM.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>

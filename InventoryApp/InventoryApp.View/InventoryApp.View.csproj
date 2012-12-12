@@ -568,6 +568,9 @@
     <Compile Include="Recibo\DlgModifyReciboView.xaml.cs">
       <DependentUpon>DlgModifyReciboView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Recibo\ModifyFacturaView.xaml.cs">
+      <DependentUpon>ModifyFacturaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Recibo\ReciboView.xaml.cs">
       <DependentUpon>ReciboView.xaml</DependentUpon>
     </Compile>
@@ -612,6 +615,9 @@
     </Compile>
     <Compile Include="Salidas\SalidaVenta.xaml.cs">
       <DependentUpon>SalidaVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sync\DlgUpload.xaml.cs">
+      <DependentUpon>DlgUpload.xaml</DependentUpon>
     </Compile>
     <Compile Include="Traspasos\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
@@ -1272,6 +1278,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Recibo\ModifyFacturaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Recibo\ReciboView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1345,6 +1355,10 @@
     <Page Include="Style\WindowTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sync\DlgUpload.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Traspasos\AddItem.xaml">
       <Generator>MSBuild:Compile</Generator>

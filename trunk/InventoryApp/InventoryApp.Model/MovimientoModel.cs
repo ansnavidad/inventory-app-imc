@@ -89,6 +89,7 @@ namespace InventoryApp.Model
                 {
                     _empresa = value;
                     this.Solicitantes = GetSolicitantesbyEmpresa(this._empresa);
+                    this.Solicitante = Solicitantes[0];
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Empresa"));
@@ -366,6 +367,7 @@ namespace InventoryApp.Model
                     this._unidAlmacenDestino = _almacenDestino.UNID_ALMACEN;
 
                     this.Tecnicos = GetTecnicosbyAlmacen(value);
+                    this.Tecnico = Tecnicos[0];
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("AlmacenDestino"));

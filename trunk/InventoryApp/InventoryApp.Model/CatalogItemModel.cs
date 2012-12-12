@@ -301,11 +301,16 @@ namespace InventoryApp.Model
                     object element2 = this._dataMapper.getAlmacenDisponible(this._serie, this._sku);
 
                     bool aux = false;
-                    this.Mensaje2 = "El artículo se encuentra en el almacen";
+                    this.Mensaje2 = "El artículo se encuentra ";
                     foreach (ULTIMO_MOVIMIENTO um in (List<ULTIMO_MOVIMIENTO>)element2)
                     {
                         aux = true;
-                        this.Mensaje2 += " / " + um.ALMACEN.ALMACEN_NAME  ;
+                        if (um.ALMACEN != null)
+                            this.Mensaje2 += " en el almacén '" + um.ALMACEN.ALMACEN_NAME + "'";
+                        else if (um.CLIENTE != null)
+                            this.Mensaje2 += " con el cliente '" + um.CLIENTE.CLIENTE1 + "'";
+                        else
+                            this.Mensaje2 += " con el proveedor '" + um.PROVEEDOR.PROVEEDOR_NAME + "'";
                     }
 
                     if (!aux)

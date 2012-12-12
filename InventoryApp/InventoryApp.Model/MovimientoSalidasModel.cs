@@ -59,10 +59,30 @@ namespace InventoryApp.Model
         private EMPRESA _empresa;
         public ObservableCollection<DeleteSolicitante> _solicitantes;
         private ObservableCollection<TECNICO> _tecnicos;
+        private INFRAESTRUCTURA _infraestructura;
 
         #endregion
 
         #region Props
+        public INFRAESTRUCTURA Infraestructura
+        {
+            get
+            {
+                return _infraestructura;
+            }
+            set
+            {
+                if (_infraestructura != value)
+                {
+                    _infraestructura = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Infraestructura"));
+                    }
+                }
+            }
+        }
         public ObservableCollection<TECNICO> Tecnicos
         {
             get

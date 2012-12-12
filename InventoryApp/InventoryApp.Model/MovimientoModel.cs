@@ -50,6 +50,7 @@ namespace InventoryApp.Model
         private long? _unidTecnico;
         private MovimientoDataMapper _dataMapper;
         private EMPRESA _empresa;
+        private INFRAESTRUCTURA _infraestructura;
         private ObservableCollection<DeleteSolicitante> _solicitantes;
         private ObservableCollection<TECNICO> _tecnicos;
         #endregion
@@ -91,6 +92,26 @@ namespace InventoryApp.Model
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Empresa"));
+                    }
+                }
+            }
+        }
+
+        public INFRAESTRUCTURA Infraestructura
+        {
+            get
+            {
+                return _infraestructura;
+            }
+            set
+            {
+                if (_infraestructura != value)
+                {
+                    _infraestructura = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Infraestructura"));
                     }
                 }
             }

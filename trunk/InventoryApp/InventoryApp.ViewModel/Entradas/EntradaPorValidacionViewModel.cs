@@ -29,6 +29,7 @@ namespace InventoryApp.ViewModel.Entradas
 
 
         private CatalogEmpresaModel _catalogEmpresaModel;
+        private CatalogInfraestructuraModel _catalogInfraestructuraModel;
 
         public EntradaPorValidacionViewModel()
         {
@@ -39,7 +40,9 @@ namespace InventoryApp.ViewModel.Entradas
                 IDataMapper dataMapper3 = new ProveedorDataMapper();
                 IDataMapper dataMapper4 = new ClienteDataMapper();
                 IDataMapper datamapper5 = new EmpresaDataMapper();
+                IDataMapper datamapper9 = new InfraestructuraDataMapper();
 
+                this._catalogInfraestructuraModel = new CatalogInfraestructuraModel(datamapper9);
                 this._catalogEmpresaModel = new CatalogEmpresaModel(datamapper5);
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
@@ -73,7 +76,9 @@ namespace InventoryApp.ViewModel.Entradas
                 IDataMapper dataMapper3 = new ProveedorDataMapper();
                 IDataMapper dataMapper4 = new ClienteDataMapper();
                 IDataMapper datamapper5 = new EmpresaDataMapper();
+                IDataMapper datamapper9 = new InfraestructuraDataMapper();
 
+                this._catalogInfraestructuraModel = new CatalogInfraestructuraModel(datamapper9);
                 this._catalogEmpresaModel = new CatalogEmpresaModel(datamapper5);
 
                 this._movimentoGridEntradas = grid;
@@ -233,6 +238,18 @@ namespace InventoryApp.ViewModel.Entradas
             set
             {
                 _catalogEmpresaModel = value;
+            }
+        }
+
+        public CatalogInfraestructuraModel CatalogInfraestructuraModel
+        {
+            get
+            {
+                return _catalogInfraestructuraModel;
+            }
+            set
+            {
+                _catalogInfraestructuraModel = value;
             }
         }
 

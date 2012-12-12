@@ -37,6 +37,7 @@ using InventoryApp.ViewModel.CatalogUnidad;
 using InventoryApp.ViewModel.CatalogTecnico;
 using InventoryApp.ViewModel.GridMovimientos;
 using System.Windows;
+using InventoryApp.ViewModel.CatalogInfraestructura;
 
 namespace InventoryApp.ViewModel
 {
@@ -224,6 +225,9 @@ namespace InventoryApp.ViewModel
                         break;
                     case "Unidad":
                         page = new CatalogUnidadViewModel();
+                        break;
+                    case "Infraestructura":
+                        page = new CatalogInfraestructuraViewModel();
                         break;
                     //Entradas
                     case "Entrada por Validación":

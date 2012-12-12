@@ -73,6 +73,9 @@
     <Compile Include="CatalogEmpresa\AddEmpresaViewModel.cs" />
     <Compile Include="CatalogEmpresa\CatalogEmpresaViewModel.cs" />
     <Compile Include="CatalogEmpresa\ModifyEmpresaViewModel.cs" />
+    <Compile Include="CatalogInfraestructura\CatalogInfraestructuraViewModel.cs" />
+    <Compile Include="CatalogInfraestructura\InsertInfraestructuraViewModel.cs" />
+    <Compile Include="CatalogInfraestructura\ModifyInfraestructuraViewModel.cs" />
     <Compile Include="CatalogItemStatus\AddItemStatusViewModel.cs" />
     <Compile Include="CatalogItemStatus\CatalogItemStatusViewModel.cs" />
     <Compile Include="CatalogPropiedad\AddPropiedadViewModel.cs" />

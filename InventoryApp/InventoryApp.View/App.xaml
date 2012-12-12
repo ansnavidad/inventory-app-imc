@@ -44,6 +44,8 @@
              xmlns:tipoCotizacionViews="clr-namespace:InventoryApp.View.CatalogTipoCotizacion"
              xmlns:catTipoEmpresaViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTipoEmpresa;assembly=InventoryApp.ViewModel"
              xmlns:tipoEmpresaViews="clr-namespace:InventoryApp.View.CatalogTipoEmpresa"
+             xmlns:catInfraestructuraViewModel="clr-namespace:InventoryApp.ViewModel.CatalogInfraestructura;assembly=InventoryApp.ViewModel"
+             xmlns:InfraestructuraViews="clr-namespace:InventoryApp.View.CatalogInfraestructura"
              xmlns:catTipoMovimientoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTipoMovimiento;assembly=InventoryApp.ViewModel"
              xmlns:tipoMovimientoViews="clr-namespace:InventoryApp.View.CatalogTipoMovimiento"
              xmlns:catTipoPedimentoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTipoPedimento;assembly=InventoryApp.ViewModel"
@@ -224,6 +226,10 @@
 
         <!-- tipoEmpresa -->
         <ObjectDataProvider x:Key="catalogTipoEmpresaViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- Infraestructura -->
+        <ObjectDataProvider x:Key="catalogInfraestructuraViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
         <!-- tipoMovimiento -->
@@ -409,6 +415,10 @@
         <DataTemplate DataType="{x:Type catTipoEmpresaViewModel:CatalogTipoEmpresaViewModel}">
             <tipoEmpresaViews:TipoEmpresaUserControl />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type catInfraestructuraViewModel:CatalogInfraestructuraViewModel}">
+            <InfraestructuraViews:InfraestructuraUserControl />
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type catTipoMovimientoViewModel:CatalogTipoMovimientoViewModel}">
             <tipoMovimientoViews:TipoMovimientoUserControl />
         </DataTemplate>

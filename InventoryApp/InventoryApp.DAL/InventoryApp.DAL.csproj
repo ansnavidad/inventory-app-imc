@@ -67,6 +67,7 @@
     <Compile Include="FacturaDetalleDataMapper.cs" />
     <Compile Include="FacturaVentaDataMapper.cs" />
     <Compile Include="IDataMapper.cs" />
+    <Compile Include="InfraestructuraDataMapper.cs" />
     <Compile Include="ItemDataMapper.cs" />
     <Compile Include="ItemStatusDataMapper.cs" />
     <Compile Include="JSON\SerializerJson.cs" />

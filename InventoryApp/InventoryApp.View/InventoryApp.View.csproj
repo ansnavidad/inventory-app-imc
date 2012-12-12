@@ -196,6 +196,15 @@
     <Compile Include="CatalogEquipo\ModifyEquipoView.xaml.cs">
       <DependentUpon>ModifyEquipoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogInfraestructura\InfraestructuraUserControl.xaml.cs">
+      <DependentUpon>InfraestructuraUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogInfraestructura\InsertInfraestructuraView.xaml.cs">
+      <DependentUpon>InsertInfraestructuraView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogInfraestructura\ModifyInfraestructuraView.xaml.cs">
+      <DependentUpon>ModifyInfraestructuraView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogItemStatus\AltaItemStatus.xaml.cs">
       <DependentUpon>AltaItemStatus.xaml</DependentUpon>
     </Compile>
@@ -753,6 +762,18 @@
     <Page Include="CatalogEquipo\ModifyEquipoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogInfraestructura\InfraestructuraUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogInfraestructura\InsertInfraestructuraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogInfraestructura\ModifyInfraestructuraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogItemStatus\AltaItemStatus.xaml">
       <Generator>MSBuild:Compile</Generator>

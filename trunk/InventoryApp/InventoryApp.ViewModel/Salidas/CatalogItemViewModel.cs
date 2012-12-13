@@ -432,22 +432,22 @@ namespace InventoryApp.ViewModel.Salidas
                     {
                         bool aux = true;
 
-                        for (int i = 0; i < this._salidaRentaViewModel.ItemModel.ItemModel.Count; i++)
+                        for (int i = 0; i < this._salidaDemoViewModel.ItemModel.ItemModel.Count; i++)
                         {
 
-                            if (this._salidaRentaViewModel.ItemModel.ItemModel[i].UnidItem == item.UnidItem)
+                            if (this._salidaDemoViewModel.ItemModel.ItemModel[i].UnidItem == item.UnidItem)
                                 aux = false;
                         }
 
                         if (aux)
                         {
                             item.IsChecked = false;
-                            this._salidaRentaViewModel.ItemModel.ItemModel.Add(item);
+                            this._salidaDemoViewModel.ItemModel.ItemModel.Add(item);
                         }
                     }
 
                 }
-                this.SalidaRentaViewModel.MovimientoModel.CantidadItems = this.SalidaRentaViewModel.ItemModel.ItemModel.Count();
+                this.SalidaDemoViewModel.MovimientoModel.CantidadItems = this.SalidaDemoViewModel.ItemModel.ItemModel.Count();
 			}
             else if (_salidaPrestamoViewModel != null)
             {

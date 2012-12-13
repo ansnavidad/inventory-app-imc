@@ -9,6 +9,48 @@ namespace InventoryApp.DAL
 {
     public class TipoMovimientoDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from tipo in entity.TIPO_MOVIMIENTO
+                         where tipo.IS_ACTIVE == true
+                         where tipo.IS_MODIFIED == false
+                         select tipo.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonTipoMovimiento(long? LMD)
+        {
+            string res = null;
+            List<TIPO_MOVIMIENTO> listTipoMovimiento = new List<TIPO_MOVIMIENTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.TIPO_MOVIMIENTO
+                 where p.LAST_MODIFIED_DATE > LMD
+                 select p).ToList().ForEach(row =>
+                 {
+                     listTipoMovimiento.Add(new TIPO_MOVIMIENTO
+                     {
+                         UNID_TIPO_MOVIMIENTO = row.UNID_TIPO_MOVIMIENTO,
+                         TIPO_MOVIMIENTO_NAME = row.TIPO_MOVIMIENTO_NAME,
+                         SIGNO_MOVIMIENTO = row.SIGNO_MOVIMIENTO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listTipoMovimiento.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listTipoMovimiento);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

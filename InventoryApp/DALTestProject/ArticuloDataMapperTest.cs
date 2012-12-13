@@ -127,5 +127,34 @@ namespace DALTestProject
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
+
+        /// <summary>
+        ///Una prueba de LastModifiedDate
+        ///</summary>
+        [TestMethod()]
+        public void LastModifiedDateTest()
+        {
+            ArticuloDataMapper target = new ArticuloDataMapper(); // TODO: Inicializar en un valor adecuado
+            Nullable<long> expected = 12345; // TODO: Inicializar en un valor adecuado
+            Nullable<long> actual;
+            actual = target.LastModifiedDate();
+            Assert.AreEqual(expected, actual);
+            //Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de GetJsonArticulo
+        ///</summary>
+        [TestMethod()]
+        public void GetJsonArticuloTest1()
+        {
+            ArticuloDataMapper target = new ArticuloDataMapper(); // TODO: Inicializar en un valor adecuado
+            long Last_Modified_Date = 234; // TODO: Inicializar en un valor adecuado
+            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            string actual;
+            actual = target.GetJsonArticulo(Last_Modified_Date);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

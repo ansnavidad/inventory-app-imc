@@ -9,6 +9,48 @@ namespace InventoryApp.DAL
 {
     public class AppMenuDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from menu in entity.MENUs
+                         where menu.IS_ACTIVE == true
+                         where menu.IS_MODIFIED == false
+                         select menu.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonMenu(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<MENU> listMenu = new List<MENU>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.MENUs
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listMenu.Add(new MENU
+                     {
+                         UNID_MENU = row.UNID_MENU,
+                         UNID_MENU_PARENT = row.UNID_MENU_PARENT,
+                         MENU_NAME = row.MENU_NAME,
+                         IS_LEAF = row.IS_LEAF,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listMenu.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listMenu);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element) {
 
             if (element != null)

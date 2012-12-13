@@ -9,6 +9,53 @@ namespace InventoryApp.DAL
 {
     public class PomArticuloDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from poma in entity.POM_ARTICULO
+                         where poma.IS_ACTIVE == true
+                         where poma.IS_MODIFIED == false
+                         select poma.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonPomArticulo(long? LastModifiedDate)
+        {
+            string res = null;
+            List<POM_ARTICULO> listPomArticulo = new List<POM_ARTICULO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.POM_ARTICULO
+                 where p.LAST_MODIFIED_DATE > LastModifiedDate
+                 select p).ToList().ForEach(row =>
+                 {
+                     listPomArticulo.Add(new POM_ARTICULO
+                     {
+                         UNID_POM = row.UNID_POM,
+                         UNID_POM_ARTICULO = row.UNID_POM_ARTICULO,
+                         UNID_ARTICULO = row.UNID_ARTICULO,
+                         CANTIDAD = row.CANTIDAD,
+                         COSTO_UNITARIO = row.COSTO_UNITARIO,
+                         IVA = row.IVA,
+                         TC = row.TC,
+                         DESCUENTO = row.DESCUENTO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listPomArticulo.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listPomArticulo);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

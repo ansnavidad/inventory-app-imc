@@ -9,6 +9,45 @@ namespace InventoryApp.DAL
 {
     public class ReciboStatusDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from rs in entity.RECIBO_STATUS
+                         where rs.IS_ACTIVE == true
+                         where rs.IS_MODIFIED == false
+                         select rs.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonReciboStatus(long? LastModifiedDate)
+        {
+            string res = null;
+            List<RECIBO_STATUS> listReciboStatus = new List<RECIBO_STATUS>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.RECIBO_STATUS
+                 where p.LAST_MODIFIED_DATE > LastModifiedDate
+                 select p).ToList().ForEach(row =>
+                 {
+                     listReciboStatus.Add(new RECIBO_STATUS
+                     {
+                         UNID_RECIBO_STATUS = row.UNID_RECIBO_STATUS,
+                         RECIBO_STATUS_NAME = row.RECIBO_STATUS_NAME,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listReciboStatus.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listReciboStatus);
+                }
+                return res;
+            }
+        }
         public void loadSync(object element)
         {
             if (element != null)

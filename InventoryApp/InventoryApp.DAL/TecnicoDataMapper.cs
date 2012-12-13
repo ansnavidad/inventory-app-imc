@@ -10,6 +10,49 @@ namespace InventoryApp.DAL
 {
     public class TecnicoDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from tecnico in entity.TECNICOes
+                         where tecnico.IS_ACTIVE == true
+                         where tecnico.IS_MODIFIED == false
+                         select tecnico.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonTecnico(long? LMD)
+        {
+            string res = null;
+            List<TECNICO> listTecnico = new List<TECNICO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.TECNICOes
+                 where p.LAST_MODIFIED_DATE > LMD
+                 select p).ToList().ForEach(row =>
+                 {
+                     listTecnico.Add(new TECNICO
+                     {
+                         UNID_TECNICO = row.UNID_TECNICO,
+                         TECNICO_NAME = row.TECNICO_NAME,
+                         MAIL = row.MAIL,
+                         UNID_CIUDAD = row.UNID_CIUDAD,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listTecnico.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listTecnico);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

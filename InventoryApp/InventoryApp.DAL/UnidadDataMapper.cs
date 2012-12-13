@@ -9,6 +9,46 @@ namespace InventoryApp.DAL
 {
     public class UnidadDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from articulo in entity.UNIDADs
+                         where articulo.IS_ACTIVE == true
+                         where articulo.IS_MODIFIED == false
+                         select articulo.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonUnidad(long? LMD)
+        {
+            string res = null;
+            List<UNIDAD> listUnidad = new List<UNIDAD>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.UNIDADs
+                 where p.LAST_MODIFIED_DATE > LMD
+                 select p).ToList().ForEach(row =>
+                 {
+                     listUnidad.Add(new UNIDAD
+                     {
+                         UNID_UNIDAD = row.UNID_UNIDAD,
+                         UNIDAD1 = row.UNIDAD1,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listUnidad.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listUnidad);
+                }
+                return res;
+            }
+        }
         public void loadSync(object element)
         {
             if (element != null)

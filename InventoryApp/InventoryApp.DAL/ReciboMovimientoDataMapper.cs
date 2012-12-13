@@ -9,6 +9,48 @@ namespace InventoryApp.DAL
 {
     public class ReciboMovimientoDataMapper:IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from rm in entity.RECIBO_MOVIMIENTO
+                         where rm.IS_ACTIVE == true
+                         where rm.IS_MODIFIED == false
+                         select rm.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonReciboMovimiento(long? lastModifiedDate)
+        {
+            string res = null;
+            List<RECIBO_MOVIMIENTO> listReciboMovimiento = new List<RECIBO_MOVIMIENTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.RECIBO_MOVIMIENTO
+                 where p.LAST_MODIFIED_DATE > lastModifiedDate
+                 select p).ToList().ForEach(row =>
+                 {
+                     listReciboMovimiento.Add(new RECIBO_MOVIMIENTO
+                     {
+                         UNID_RECIBO = row.UNID_RECIBO,
+                         UNID_RECIBO_MOVIMIENTO = row.UNID_RECIBO_MOVIMIENTO,
+                         UNID_MOVIMIENTO = row.UNID_MOVIMIENTO,
+                         UNID_FACTURA = row.UNID_FACTURA,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listReciboMovimiento.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listReciboMovimiento);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
 

@@ -9,6 +9,55 @@ namespace InventoryApp.DAL.Recibo
 {
     public class FacturaCompraDetalleDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from articulo in entity.FACTURA_DETALLE
+                         where articulo.IS_ACTIVE == true
+                         where articulo.IS_MODIFIED == false
+                         select articulo.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonFacturaDetalle(long? LMD)
+        {
+            string res = null;
+            List<FACTURA_DETALLE> listFacturaDetalle = new List<FACTURA_DETALLE>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.FACTURA_DETALLE
+                 where p.LAST_MODIFIED_DATE > LMD
+                 select p).ToList().ForEach(row =>
+                 {
+                     listFacturaDetalle.Add(new FACTURA_DETALLE
+                     {
+                         UNID_FACTURA_DETALE = row.UNID_FACTURA_DETALE,
+                         UNID_FACTURA = row.UNID_FACTURA,
+                         UNID_ARTICULO = row.UNID_ARTICULO,
+                         CANTIDAD = row.CANTIDAD,
+                         PRECIO_UNITARIO = row.PRECIO_UNITARIO,
+                         IMPUESTO_UNITARIO = row.IMPUESTO_UNITARIO,
+                         NUMERO = row.NUMERO,
+                         DESCRIPCION = row.DESCRIPCION,
+                         UNID_UNIDAD = row.UNID_UNIDAD,
+                         UNID_PEDIMENTO = row.UNID_PEDIMENTO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listFacturaDetalle.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listFacturaDetalle);
+                }
+                return res;
+            }
+        }
+
         public object getElements()
         {
             throw new NotImplementedException();

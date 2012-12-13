@@ -9,6 +9,47 @@ namespace InventoryApp.DAL
 {
     public class MonedaDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from moneda in entity.MONEDAs
+                         where moneda.IS_ACTIVE == true
+                         where moneda.IS_MODIFIED == false
+                         select moneda.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonMoneda(long? LastModifiedDate)
+        {
+            string res = null;
+            List<MONEDA> listMoneda = new List<MONEDA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.MONEDAs
+                 where p.LAST_MODIFIED_DATE > LastModifiedDate
+                 select p).ToList().ForEach(row =>
+                 {
+                     listMoneda.Add(new MONEDA
+                     {
+                         UNID_MONEDA = row.UNID_MONEDA,
+                         MONEDA_NAME = row.MONEDA_NAME,
+                         MONEDA_ABR = row.MONEDA_ABR,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listMoneda.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listMoneda);
+                }
+                return res;
+            }
+        }
         public void loadSync(object element)
         {
             if (element != null)

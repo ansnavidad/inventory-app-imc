@@ -9,6 +9,50 @@ namespace InventoryApp.DAL
 {
     public class TerminoEnvioDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from termino in entity.TERMINO_ENVIO
+                         where termino.IS_ACTIVE == true
+                         where termino.IS_MODIFIED == false
+                         select termino.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonTerminoEnvio(long? LMD)
+        {
+            string res = null;
+            List<TERMINO_ENVIO> listTerminoEnvio = new List<TERMINO_ENVIO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.TERMINO_ENVIO
+                 where p.LAST_MODIFIED_DATE > LMD
+                 select p).ToList().ForEach(row =>
+                 {
+                     listTerminoEnvio.Add(new TERMINO_ENVIO
+                     {
+                         UNID_TERMINO_ENVIO = row.UNID_TERMINO_ENVIO,
+                         CLAVE = row.CLAVE,
+                         TERMINO = row.TERMINO,
+                         SIGNIFICADO = row.SIGNIFICADO,
+                         GENERA_LOTES = row.GENERA_LOTES,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listTerminoEnvio.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listTerminoEnvio);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

@@ -10,6 +10,51 @@ namespace InventoryApp.DAL
 {
     public class ProveedorCuentaDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from prov in entity.PROVEEDOR_CUENTA
+                         where prov.IS_ACTIVE == true
+                         where prov.IS_MODIFIED == false
+                         select prov.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonProveedorCuenta(long? LastModifiedDate)
+        {
+            string res = null;
+            List<PROVEEDOR_CUENTA> listProveedorCuenta = new List<PROVEEDOR_CUENTA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.PROVEEDOR_CUENTA
+                 where p.LAST_MODIFIED_DATE > LastModifiedDate
+                 select p).ToList().ForEach(row =>
+                 {
+                     listProveedorCuenta.Add(new PROVEEDOR_CUENTA
+                     {
+                         UNID_PROVEEDOR = row.UNID_PROVEEDOR,
+                         UNID_PROVEEDOR_CUENTA = row.UNID_PROVEEDOR_CUENTA,
+                         UNID_BANCO = row.UNID_BANCO,
+                         NUMERO_CUENTA = row.NUMERO_CUENTA,
+                         CLABE = row.CLABE,
+                         BENEFICIARIO = row.BENEFICIARIO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listProveedorCuenta.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listProveedorCuenta);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

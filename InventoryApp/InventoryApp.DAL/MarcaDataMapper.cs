@@ -10,6 +10,48 @@ namespace InventoryApp.DAL
 {
     public class MarcaDataMapper : IDataMapper
     {
+
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from marca in entity.MARCAs
+                         where marca.IS_ACTIVE == true
+                         where marca.IS_MODIFIED == false
+                         select marca.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonMarca(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<MARCA> listMarca = new List<MARCA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.MARCAs
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listMarca.Add(new MARCA
+                     {
+                         UNID_MARCA = row.UNID_MARCA,
+                         MARCA_NAME = row.MARCA_NAME,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listMarca.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listMarca);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
 

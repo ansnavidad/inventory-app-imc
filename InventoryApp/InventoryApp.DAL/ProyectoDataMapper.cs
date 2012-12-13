@@ -10,6 +10,47 @@ namespace InventoryApp.DAL
 {
     public class ProyectoDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from proy in entity.PROYECTOes
+                         where proy.IS_ACTIVE == true
+                         where proy.IS_MODIFIED == false
+                         select proy.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonProyecto(long? LastModifiedDate)
+        {
+            string res = null;
+            List<PROYECTO> listProyecto = new List<PROYECTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.PROYECTOes
+                 where p.LAST_MODIFIED_DATE > LastModifiedDate
+                 select p).ToList().ForEach(row =>
+                 {
+                     listProyecto.Add(new PROYECTO
+                     {
+                         UNID_PROYECTO = row.UNID_PROYECTO,
+                         PROYECTO_NAME = row.PROYECTO_NAME,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listProyecto.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listProyecto);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

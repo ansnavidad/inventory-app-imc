@@ -10,6 +10,50 @@ namespace InventoryApp.Model
 {
     public class EmpresaDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from empresa in entity.EMPRESAs
+                         where empresa.IS_ACTIVE == true
+                         where empresa.IS_MODIFIED == false
+                         select empresa.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonEmpresa(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<EMPRESA> listEmpresa = new List<EMPRESA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.EMPRESAs
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listEmpresa.Add(new EMPRESA
+                     {
+                         UNID_EMPRESA = row.UNID_EMPRESA,
+                         EMPRESA_NAME = row.EMPRESA_NAME,
+                         DIRECCION = row.DIRECCION,
+                         RAZON_SOCIAL = row.RAZON_SOCIAL,
+                         RFC = row.RFC,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listEmpresa.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listEmpresa);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

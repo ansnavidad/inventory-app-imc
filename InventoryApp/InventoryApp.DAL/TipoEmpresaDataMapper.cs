@@ -9,6 +9,47 @@ namespace InventoryApp.DAL
 {
     public class TipoEmpresaDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from tipo in entity.TIPO_EMPRESA
+                         where tipo.IS_ACTIVE == true
+                         where tipo.IS_MODIFIED == false
+                         select tipo.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonTipoEmpresa(long? LMD)
+        {
+            string res = null;
+            List<TIPO_EMPRESA> listTipoEmpresa = new List<TIPO_EMPRESA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.TIPO_EMPRESA
+                 where p.LAST_MODIFIED_DATE > LMD
+                 select p).ToList().ForEach(row =>
+                 {
+                     listTipoEmpresa.Add(new TIPO_EMPRESA
+                     {
+                         UNID_TIPO_EMPRESA = row.UNID_TIPO_EMPRESA,
+                         TIPO_EMPRESA_NAME = row.TIPO_EMPRESA_NAME,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listTipoEmpresa.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listTipoEmpresa);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

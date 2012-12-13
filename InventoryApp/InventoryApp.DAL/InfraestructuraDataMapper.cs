@@ -9,6 +9,19 @@ namespace InventoryApp.DAL
 {
     public class InfraestructuraDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from infraestructura in entity.INFRAESTRUCTURAs
+                         where infraestructura.IS_ACTIVE == true
+                         where infraestructura.IS_MODIFIED == false
+                         select infraestructura.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
         public object getElements()
         {
 

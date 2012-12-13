@@ -339,15 +339,7 @@ namespace InventoryApp.ViewModel.Salidas
         {
             bool _canInsertArticulo = false;
 
-            int seleccion = 0;
-            if (this.MovimientoModel.AlmacenDestino != null)
-                seleccion++;
-            if (this.MovimientoModel.ClienteDestino != null)
-                seleccion++;
-            if (this.MovimientoModel.ProveedorDestino != null)
-                seleccion++;
-
-            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Recibe) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && seleccion == 1)
+            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt))
                 _canInsertArticulo = true;
             
             return _canInsertArticulo;

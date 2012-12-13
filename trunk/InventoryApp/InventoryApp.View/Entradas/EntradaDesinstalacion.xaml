@@ -11,8 +11,8 @@
 
     <ScrollViewer>
     <Grid>
-            <Button TabIndex="17" Content="Aceptar" Command="{Binding AddItemCommand, Mode=OneWay}" Height="34" Margin="0,813,500,0" Name="btnAgregar" VerticalAlignment="Top" Click="btnAgregar_Click" HorizontalAlignment="Right" Width="98" />
-        <Button TabIndex="18" Content="Cancelar" Height="34" Margin="0,813,278,0" Name="btnCancelar" VerticalAlignment="Top" Click="btnCancelar_Click" HorizontalAlignment="Right" Width="98" />
+            <Button TabIndex="17" Content="Aceptar" Command="{Binding AddItemCommand, Mode=OneWay}" Height="34" Margin="0,813,262,0" Name="btnAgregar" VerticalAlignment="Top" Click="btnAgregar_Click" HorizontalAlignment="Right" Width="98" />
+        <Button TabIndex="18" Content="Cancelar" Height="34" Margin="0,813,152,0" Name="btnCancelar" VerticalAlignment="Top" Click="btnCancelar_Click" HorizontalAlignment="Right" Width="98" />
 
         <Label Content="Folio:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Margin="0,70,659,0" Name="lblNombreStatus" Height="28" VerticalAlignment="Top" HorizontalAlignment="Right" Width="41" />
 <Label Content="Entrada Desinstalación" FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484" Height="28" Margin="0,35,287,0" Name="labelsdas1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="241" />
@@ -74,7 +74,7 @@ Name="dtGridTipoPedimento" VerticalAlignment="Top" Height="222" HorizontalAlignm
             <ComboBox TabIndex="3" Height="23" HorizontalAlignment="Right" Margin="0,197,441,0" Name="comboBoxTecnico" VerticalAlignment="Top" Width="176" DisplayMemberPath="TECNICO_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=MovimientoModel.Tecnicos}"  SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_TECNICO" />
             <ComboBox TabIndex="3" Height="23" HorizontalAlignment="Right" Margin="0,166,440,0" Name="comboBoxAlmacenOrigen" VerticalAlignment="Top" Width="176" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenDestino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN" />
             <Label Content="Almacén de destino:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,166,614,0" Name="label3" VerticalAlignment="Top" />
-           
+            <Button Command="{Binding ImprimirCommand, Mode=OneWay}" Content="IMPRIMIR" Height="34" HorizontalAlignment="Right" Margin="0,813,557,0" Name="button3" TabIndex="11" VerticalAlignment="Top" Width="131" />
         </Grid>
     </ScrollViewer>
 </Window>

@@ -62,7 +62,8 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
                 this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
-                this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];                
+                this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
+                this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
             }
             catch (ArgumentException a)
             {
@@ -108,7 +109,8 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
                 this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
-                this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];                
+                this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
+                this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
             }
             catch (ArgumentException a)
             {
@@ -286,20 +288,12 @@ namespace InventoryApp.ViewModel.Entradas
 
         public bool CanAttempArticulo()
         {
-            bool _canInsertArticulo = false;
+            bool _canImprimir = false;
 
-            int seleccion = 0;
-            if (this.MovimientoModel.AlmacenProcedencia != null)
-                seleccion++;
-            if (this.MovimientoModel.ClienteProcedencia != null)
-                seleccion++;
-            if (this.MovimientoModel.ProveedorProcedencia != null)
-                seleccion++;
+            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && !String.IsNullOrEmpty(this.MovimientoModel.Recibe))
+                _canImprimir = true;
 
-            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && !String.IsNullOrEmpty(this.MovimientoModel.Recibe) && seleccion == 1)
-                _canInsertArticulo = true;
-
-            return _canInsertArticulo;
+            return _canImprimir;
         }
 
         public void AttempArticulo()
@@ -319,16 +313,8 @@ namespace InventoryApp.ViewModel.Entradas
         public bool CanAttempImprimir()
         {
             bool _canImprimir = false;
-
-            int seleccion = 0;
-            if (this.MovimientoModel.AlmacenProcedencia != null)
-                seleccion++;
-            if (this.MovimientoModel.ClienteProcedencia != null)
-                seleccion++;
-            if (this.MovimientoModel.ProveedorProcedencia != null)
-                seleccion++;
-
-            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && !String.IsNullOrEmpty(this.MovimientoModel.Recibe) && seleccion == 1)
+            
+            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && !String.IsNullOrEmpty(this.MovimientoModel.Recibe))
                 _canImprimir = true;
 
             return _canImprimir;
@@ -358,17 +344,8 @@ namespace InventoryApp.ViewModel.Entradas
                 excel.Cells[13, 12] = _movimientoModel.Solicitante.Departamento.DEPARTAMENTO_NAME;
                 //Recibe
                 excel.Cells[15, 12] = _movimientoModel.Recibe.ToString();
-                //Procedencia
-                string p = "";
-
-                if (_movimientoModel.ProveedorProcedencia != null)
-                    p = _movimientoModel.ProveedorProcedencia.PROVEEDOR_NAME;
-                else if (_movimientoModel.AlmacenProcedencia != null)
-                    p = _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
-                else
-                    p = _movimientoModel.ClienteProcedencia.CLIENTE1;
-
-                excel.Cells[17, 12] = p.ToString();
+                //Procedencia                
+                excel.Cells[17, 12] = _movimientoModel.Infraestructura.INFRAESTRUCTURA_NAME;
 
                 //Destino
                 excel.Cells[19, 12] = _movimientoModel.AlmacenDestino.ALMACEN_NAME;

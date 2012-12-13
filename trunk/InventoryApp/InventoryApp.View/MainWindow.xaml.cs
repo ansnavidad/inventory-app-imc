@@ -41,10 +41,10 @@ namespace InventoryApp.View
             //Thread.CurrentThread.CurrentCulture = ci;
 
 
-            DTimerUploadProcess = new DispatcherTimer();
-            DTimerUploadProcess.Tick += new EventHandler(DTimerUploadProcess_Tick);
-            DTimerUploadProcess.Interval = new TimeSpan(0, 0, 10);
-            DTimerUploadProcess.Start();
+            //DTimerUploadProcess = new DispatcherTimer();
+            //DTimerUploadProcess.Tick += new EventHandler(DTimerUploadProcess_Tick);
+            //DTimerUploadProcess.Interval = new TimeSpan(0, 0, 10);
+            //DTimerUploadProcess.Start();
         }
 
         void DTimerUploadProcess_Tick(object sender, EventArgs e)

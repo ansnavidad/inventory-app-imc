@@ -10,6 +10,50 @@ namespace InventoryApp.DAL
 {
     public class AlmacenDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from almacen in entity.ALMACENs
+                         where almacen.IS_ACTIVE == true
+                         where almacen.IS_MODIFIED == false
+                         select almacen.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonAlmacen(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<ALMACEN> listAlmacen = new List<ALMACEN>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.ALMACENs
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listAlmacen.Add(new ALMACEN
+                     {
+                         ALMACEN_NAME = row.ALMACEN_NAME,
+                         UNID_ALMACEN = row.UNID_ALMACEN,
+                         CONTACTO = row.CONTACTO,
+                         DIRECCION = row.DIRECCION,
+                         MAIL = row.MAIL,
+                         MAIL_DEFAULT = row.MAIL_DEFAULT,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listAlmacen.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listAlmacen);
+                }
+                return res;
+            }
+        }
         public void loadSync(object element)
         {
             if (element != null)

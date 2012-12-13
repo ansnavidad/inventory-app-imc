@@ -9,6 +9,53 @@ namespace InventoryApp.DAL.Recibo
 {
     public class FacturaCompraDataMapper:IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from articulo in entity.FACTURAs
+                         where articulo.IS_ACTIVE == true
+                         where articulo.IS_MODIFIED == false
+                         select articulo.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonFactura(long? LMD)
+        {
+            string res = null;
+            List<FACTURA> listFactura = new List<FACTURA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.FACTURAs
+                 where p.LAST_MODIFIED_DATE > LMD
+                 select p).ToList().ForEach(row =>
+                 {
+                     listFactura.Add(new FACTURA
+                     {
+                         UNID_FACTURA = row.UNID_FACTURA,
+                         UNID_LOTE = row.UNID_LOTE,
+                         FACTURA_NUMERO = row.FACTURA_NUMERO,
+                         FECHA_FACTURA = row.FECHA_FACTURA,
+                         UNID_PROVEEDOR = row.UNID_PROVEEDOR,
+                         UNID_MONEDA = row.UNID_MONEDA,
+                         NUMERO_PEDIMENTO = row.NUMERO_PEDIMENTO,
+                         IVA_POR = row.IVA_POR,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listFactura.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listFactura);
+                }
+                return res;
+            }
+        }
+
         public List<FACTURA> GetFacturaList(RECIBO recibo)
         {
             List<FACTURA> listFactura = new List<FACTURA>();

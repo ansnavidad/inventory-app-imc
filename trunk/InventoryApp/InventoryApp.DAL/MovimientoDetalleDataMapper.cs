@@ -9,6 +9,50 @@ namespace InventoryApp.DAL
 {
     public class MovimientoDetalleDataMapper : IDataMapper
     {
+
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from movd in entity.MOVIMIENTO_DETALLE
+                         where movd.IS_ACTIVE == true
+                         where movd.IS_MODIFIED == false
+                         select movd.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonMovimientoDetalle(long? lastModifiedDate)
+        {
+            string res = null;
+            List<MOVIMIENTO_DETALLE> listMovimientoDetalle = new List<MOVIMIENTO_DETALLE>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.MOVIMIENTO_DETALLE
+                 where p.LAST_MODIFIED_DATE > lastModifiedDate
+                 select p).ToList().ForEach(row =>
+                 {
+                     listMovimientoDetalle.Add(new MOVIMIENTO_DETALLE
+                     {
+                         UNID_MOVIMIENTO_DETALLE = row.UNID_MOVIMIENTO_DETALLE,
+                         UNID_ITEM = row.UNID_ITEM,
+                         UNID_MOVIMIENTO = row.UNID_MOVIMIENTO,
+                         OBSERVACIONES = row.OBSERVACIONES,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listMovimientoDetalle.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listMovimientoDetalle);
+                }
+                return res;
+            }
+        }
+
         //
         /// <summary>
         /// Obtiene todos los elementos en la tabla transporte

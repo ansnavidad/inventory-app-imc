@@ -10,8 +10,59 @@ using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
+
     public class ProveedorDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from prov in entity.PROVEEDORs
+                         where prov.IS_ACTIVE == true
+                         where prov.IS_MODIFIED == false
+                         select prov.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonProveedor(long? LastModifiedDate)
+        {
+            string res = null;
+            List<PROVEEDOR> listProveedor = new List<PROVEEDOR>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.PROVEEDORs
+                 where p.LAST_MODIFIED_DATE > LastModifiedDate
+                 select p).ToList().ForEach(row =>
+                 {
+                     listProveedor.Add(new PROVEEDOR
+                     {
+                         UNID_PROVEEDOR = row.UNID_PROVEEDOR,
+                         PROVEEDOR_NAME = row.PROVEEDOR_NAME,
+                         CONTACTO = row.CONTACTO,
+                         TEL1 = row.TEL1,
+                         TEL2 = row.TEL2,
+                         MAIL = row.MAIL,
+                         CALLE = row.CALLE,
+                         UNID_PAIS = row.UNID_PAIS,
+                         UNID_CIUDAD = row.UNID_CIUDAD,
+                         CODIGO_POSTAL = row.CODIGO_POSTAL,
+                         RFC = row.RFC,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listProveedor.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listProveedor);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

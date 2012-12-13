@@ -9,6 +9,8 @@ namespace InventoryApp.DAL
 {
     public class ServerLastDataMapper :IDataMapper
     {
+
+
         public bool updateDumy() {
 
             try

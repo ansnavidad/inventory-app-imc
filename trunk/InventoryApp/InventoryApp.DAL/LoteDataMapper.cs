@@ -9,6 +9,45 @@ namespace InventoryApp.DAL
 {
     public class LoteDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from lote in entity.LOTEs
+                         where lote.IS_ACTIVE == true
+                         where lote.IS_MODIFIED == false
+                         select lote.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+        public string GetJsonLote(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<LOTE> listLote = new List<LOTE>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.LOTEs
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listLote.Add(new LOTE
+                     {
+                         UNID_LOTE = row.UNID_LOTE,
+                         UNID_POM = row.UNID_POM,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listLote.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listLote);
+                }
+                return res;
+            }
+        }
         public void loadSync(object element)
         {
             if (element != null)

@@ -10,6 +10,48 @@ namespace InventoryApp.DAL
 {
     public class CiudadDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from ciudad in entity.CIUDADs
+                         where ciudad.IS_ACTIVE == true
+                         where ciudad.IS_MODIFIED == false
+                         select ciudad.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonCiudad(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<CIUDAD> listCiudad = new List<CIUDAD>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.CIUDADs
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listCiudad.Add(new CIUDAD
+                     {
+                         CIUDAD1 = row.CIUDAD1,
+                         UNID_CIUDAD = row.UNID_CIUDAD,
+                         ISO = row.ISO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listCiudad.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listCiudad);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

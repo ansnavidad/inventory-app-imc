@@ -9,6 +9,49 @@ namespace InventoryApp.DAL
 {
     public class PedimentoDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from ped in entity.PEDIMENTOes
+                         where ped.IS_ACTIVE == true
+                         where ped.IS_MODIFIED == false
+                         select ped.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonPedimento(long? LastModifiedDate)
+        {
+            string res = null;
+            List<PEDIMENTO> listPedimento = new List<PEDIMENTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.PEDIMENTOes
+                 where p.LAST_MODIFIED_DATE > LastModifiedDate
+                 select p).ToList().ForEach(row =>
+                 {
+                     listPedimento.Add(new PEDIMENTO
+                     {
+                         UNID_PEDIMENTO = row.UNID_PEDIMENTO,
+                         UNID_LOTE = row.UNID_LOTE,
+                         UNID_TIPO_PEDIMENTO = row.UNID_TIPO_PEDIMENTO,
+                         PEDIMENTO_NUMERO = row.PEDIMENTO_NUMERO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listPedimento.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listPedimento);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

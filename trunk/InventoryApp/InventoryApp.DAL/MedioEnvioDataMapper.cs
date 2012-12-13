@@ -9,6 +9,47 @@ namespace InventoryApp.DAL
 {
     public class MedioEnvioDataMapper :  IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from medio in entity.MEDIO_ENVIO
+                         where medio.IS_ACTIVE == true
+                         where medio.IS_MODIFIED == false
+                         select medio.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonMedioEnvio(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<MEDIO_ENVIO> listMedioEnvio = new List<MEDIO_ENVIO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.MEDIO_ENVIO
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listMedioEnvio.Add(new MEDIO_ENVIO
+                     {
+                         UNID_MEDIO_ENVIO = row.UNID_MEDIO_ENVIO,
+                         MEDIO_ENVIO_NAME = row.MEDIO_ENVIO_NAME,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listMedioEnvio.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listMedioEnvio);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

@@ -10,6 +10,52 @@ namespace InventoryApp.DAL
 {
     public class ArticuloDataMapper : IDataMapper
     {
+
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from articulo in entity.ARTICULOes
+                       where articulo.IS_ACTIVE == true
+                       where articulo.IS_MODIFIED == false
+                       select articulo.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonArticulo(long Last_Modified_Date)
+        {
+            string res = null;
+            List<ARTICULO> listArticulos = new List<ARTICULO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.ARTICULOes
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listArticulos.Add(new ARTICULO
+                     {
+                         ARTICULO1 = row.ARTICULO1,
+                         UNID_ARTICULO = row.UNID_ARTICULO,
+                         UNID_CATEGORIA = row.UNID_CATEGORIA,
+                         UNID_EQUIPO = row.UNID_EQUIPO,
+                         UNID_MARCA = row.UNID_MARCA,
+                         UNID_MODELO = row.UNID_MODELO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listArticulos.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listArticulos);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

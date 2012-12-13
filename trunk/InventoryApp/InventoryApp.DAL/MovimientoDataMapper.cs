@@ -10,6 +10,70 @@ namespace InventoryApp.DAL
 {
     public class MovimientoDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from mov in entity.MOVIMENTOes
+                         where mov.IS_ACTIVE == true
+                         where mov.IS_MODIFIED == false
+                         select mov.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonMovimiento(long? LastModifiedDate)
+        {
+            string res = null;
+            List<MOVIMENTO> listMovimiento = new List<MOVIMENTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.MOVIMENTOes
+                 where p.LAST_MODIFIED_DATE > LastModifiedDate
+                 select p).ToList().ForEach(row =>
+                 {
+                     listMovimiento.Add(new MOVIMENTO
+                     {
+                         UNID_MOVIMIENTO = row.UNID_MOVIMIENTO,
+                         FECHA_MOVIMIENTO = row.FECHA_MOVIMIENTO,
+                         UNID_TIPO_MOVIMIENTO = row.UNID_TIPO_MOVIMIENTO,
+                         UNID_ALMACEN_DESTINO = row.UNID_ALMACEN_DESTINO,
+                         UNID_PROVEEDOR_DESTINO = row.UNID_PROVEEDOR_DESTINO,
+                         UNID_CLIENTE_DESTINO = row.UNID_CLIENTE_DESTINO,
+                         UNID_ALMACEN_PROCEDENCIA = row.UNID_ALMACEN_PROCEDENCIA,
+                         UNID_CLIENTE_PROCEDENCIA = row.UNID_CLIENTE_PROCEDENCIA,
+                         UNID_PROVEEDOR_PROCEDENCIA = row.UNID_PROVEEDOR_PROCEDENCIA,
+                         UNID_SERVICIO = row.UNID_SERVICIO,
+                         TT = row.TT,
+                         CONTACTO = row.CONTACTO,
+                         UNID_TRANSPORTE = row.UNID_TRANSPORTE,
+                         DIRECCION_ENVIO = row.DIRECCION_ENVIO,
+                         SITIO_ENLACE = row.SITIO_ENLACE,
+                         NOMBRE_SITIO = row.NOMBRE_SITIO,
+                         RECIBE = row.RECIBE,
+                         GUIA = row.GUIA,
+                         UNID_CLIENTE = row.UNID_CLIENTE,
+                         UNID_PROVEEDOR = row.UNID_PROVEEDOR,
+                         UNID_FACTURA_VENTA = row.UNID_FACTURA_VENTA,
+                         PEDIMIENTO_IMPO = row.PEDIMIENTO_IMPO,
+                         PEDIMIENTO_EXPO = row.PEDIMIENTO_EXPO,
+                         UNID_SOLICITANTE = row.UNID_SOLICITANTE,
+                         UNID_TECNICO = row.UNID_TECNICO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listMovimiento.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listMovimiento);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

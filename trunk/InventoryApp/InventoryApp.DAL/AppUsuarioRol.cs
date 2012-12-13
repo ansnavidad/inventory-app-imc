@@ -9,6 +9,45 @@ namespace InventoryApp.DAL
 {
     public class AppUsuarioRol : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from usuarioRol in entity.USUARIO_ROL
+                         where usuarioRol.IS_ACTIVE == true
+                         where usuarioRol.IS_MODIFIED == false
+                         select usuarioRol.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+        public string GetJsonUsuarioRol(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<USUARIO_ROL> listUsuarioRol = new List<USUARIO_ROL>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.USUARIO_ROL
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listUsuarioRol.Add(new USUARIO_ROL
+                     {
+                         UNID_ROL = row.UNID_ROL,
+                         UNID_USUARIO = row.UNID_USUARIO,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listUsuarioRol.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listUsuarioRol);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
 

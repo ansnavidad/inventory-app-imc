@@ -10,6 +10,53 @@ namespace InventoryApp.DAL
 {
     public class ItemDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from item in entity.ITEMs
+                         where item.IS_ACTIVE == true
+                         where item.IS_MODIFIED == false
+                         select item.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonItem(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<ITEM> listItem = new List<ITEM>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.ITEMs
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listItem.Add(new ITEM
+                     {
+                         UNID_ITEM = row.UNID_ITEM,
+                         UNID_ARTICULO = row.UNID_ARTICULO,
+                         SKU = row.SKU,
+                         NUMERO_SERIE = row.NUMERO_SERIE,
+                         UNID_ITEM_STATUS = row.UNID_ITEM_STATUS,
+                         COSTO_UNITARIO = row.COSTO_UNITARIO,
+                         UNID_FACTURA_DETALE = row.UNID_FACTURA_DETALE,
+                         UNID_EMPRESA = row.UNID_EMPRESA,
+                         STATUS = row.STATUS,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listItem.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listItem);
+                }
+                return res;
+            }
+        }
         public void loadSync(object element)
         {
 

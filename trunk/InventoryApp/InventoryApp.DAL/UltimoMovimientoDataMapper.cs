@@ -9,6 +9,49 @@ namespace InventoryApp.DAL
 {
     public class UltimoMovimientoDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from articulo in entity.ULTIMO_MOVIMIENTO
+                         where articulo.IS_ACTIVE == true
+                         where articulo.IS_MODIFIED == false
+                         select articulo.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonUltimoMovimiento(long? LMD)
+        {
+            string res = null;
+            List<ULTIMO_MOVIMIENTO> listUltimoMovimiento = new List<ULTIMO_MOVIMIENTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.ULTIMO_MOVIMIENTO
+                 where p.LAST_MODIFIED_DATE > LMD
+                 select p).ToList().ForEach(row =>
+                 {
+                     listUltimoMovimiento.Add(new ULTIMO_MOVIMIENTO
+                     {
+                         UNID_ITEM = row.UNID_ITEM,
+                         UNID_ALMACEN = row.UNID_ALMACEN,
+                         UNID_CLIENTE = row.UNID_CLIENTE,
+                         UNID_PROVEEDOR = row.UNID_PROVEEDOR,
+                         UNID_MOVIMIENTO_DETALLE = row.UNID_MOVIMIENTO_DETALLE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listUltimoMovimiento.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listUltimoMovimiento);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

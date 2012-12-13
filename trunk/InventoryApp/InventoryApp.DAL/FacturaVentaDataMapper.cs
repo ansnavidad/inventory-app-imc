@@ -9,6 +9,20 @@ namespace InventoryApp.DAL
 {
     public class FacturaVentaDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from factura in entity.FACTURA_VENTA
+                         where factura.IS_ACTIVE == true
+                         where factura.IS_MODIFIED == false
+                         select factura.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

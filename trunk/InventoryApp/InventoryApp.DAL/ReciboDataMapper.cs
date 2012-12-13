@@ -9,6 +9,52 @@ namespace InventoryApp.DAL
 {
     public class ReciboDataMapper:IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from rec in entity.RECIBOes
+                         where rec.IS_ACTIVE == true
+                         where rec.IS_MODIFIED == false
+                         select rec.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonRecibo(long? lastModifiedDate)
+        {
+            string res = null;
+            List<RECIBO> listRecibo = new List<RECIBO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.RECIBOes
+                 where p.LAST_MODIFIED_DATE > lastModifiedDate
+                 select p).ToList().ForEach(row =>
+                 {
+                     listRecibo.Add(new RECIBO
+                     {
+                         UNID_RECIBO = row.UNID_RECIBO,
+                         FECHA_CREACION = row.FECHA_CREACION,
+                         FECHA_CIERRE = row.FECHA_CIERRE,
+                         UNID_SOLICITANTE = row.UNID_SOLICITANTE,
+                         PO = row.PO,
+                         TT = row.TT,
+                         PEDIMIENTO_IMPO = row.PEDIMIENTO_IMPO,
+                         PEDIMENTO_EXPO = row.PEDIMENTO_EXPO,
+                         UNID_RECIBO_STATUS = row.UNID_RECIBO_STATUS,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listRecibo.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listRecibo);
+                }
+                return res;
+            }
+        }
         public void loadSync(object element)
         {
             if (element != null)

@@ -9,6 +9,47 @@ namespace InventoryApp.DAL
 {
     public class PropiedadDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from prop in entity.PROPIEDADs
+                         where prop.IS_ACTIVE == true
+                         where prop.IS_MODIFIED == false
+                         select prop.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonPropiedad(long? LastModifiedDate)
+        {
+            string res = null;
+            List<PROPIEDAD> listPropiedad = new List<PROPIEDAD>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.PROPIEDADs
+                 where p.LAST_MODIFIED_DATE > LastModifiedDate
+                 select p).ToList().ForEach(row =>
+                 {
+                     listPropiedad.Add(new PROPIEDAD
+                     {
+                         UNID_PROPIEDAD = row.UNID_PROPIEDAD,
+                         PROPIEDAD1 = row.PROPIEDAD1,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listPropiedad.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listPropiedad);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

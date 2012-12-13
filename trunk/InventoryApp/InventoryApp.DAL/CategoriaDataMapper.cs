@@ -9,6 +9,48 @@ namespace InventoryApp.DAL
 {
     public class CategoriaDataMapper : IDataMapper
     {
+
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from categoria in entity.CATEGORIAs
+                         where categoria.IS_ACTIVE == true
+                         where categoria.IS_MODIFIED == false
+                         select categoria.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonCategoria(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<CATEGORIA> listCategoria = new List<CATEGORIA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.CATEGORIAs
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listCategoria.Add(new CATEGORIA
+                     {
+                         CATEGORIA_NAME = row.CATEGORIA_NAME,
+                         UNID_CATEGORIA = row.UNID_CATEGORIA,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listCategoria.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listCategoria);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
 

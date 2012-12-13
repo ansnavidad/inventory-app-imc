@@ -9,6 +9,47 @@ namespace InventoryApp.DAL
 {
     public class BancoDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from banco in entity.BANCOes
+                         where banco.IS_ACTIVE == true
+                         where banco.IS_MODIFIED == false
+                         select banco.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonBanco(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<BANCO> listBanco = new List<BANCO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.BANCOes
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listBanco.Add(new BANCO
+                     {
+                         BANCO_NAME = row.BANCO_NAME,
+                         UNID_BANCO = row.UNID_BANCO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listBanco.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listBanco);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

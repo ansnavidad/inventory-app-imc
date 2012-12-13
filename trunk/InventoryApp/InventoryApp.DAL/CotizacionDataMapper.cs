@@ -9,6 +9,59 @@ namespace InventoryApp.DAL
 {
     public class CotizacionDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from cotizacion in entity.COTIZACIONs
+                         where cotizacion.IS_ACTIVE == true
+                         where cotizacion.IS_MODIFIED == false
+                         select cotizacion.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonCotizacion(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<COTIZACION> listCotizacion = new List<COTIZACION>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.COTIZACIONs
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listCotizacion.Add(new COTIZACION
+                     {
+                         UNID_COTIZACION = row.UNID_COTIZACION,
+                         ID_EMPRESA = row.ID_EMPRESA,
+                         ID_USER = row.ID_USER,
+                         ID_STATUS = row.ID_STATUS,
+                         ID_CATEGORIA = row.ID_CATEGORIA,
+                         ID_TIPO_COTIZACION = row.ID_TIPO_COTIZACION,
+                         ID_PROYECTO = row.ID_PROYECTO,
+                         FECHA_SOLICITUD = row.FECHA_SOLICITUD,
+                         FECHA_REQUERIMENTO = row.FECHA_REQUERIMENTO,
+                         FECHA_COTIZACION = row.FECHA_COTIZACION,
+                         OBSERVACIONES_COMPRAS = row.OBSERVACIONES_COMPRAS,
+                         DIAS_VIGENCIA = row.DIAS_VIGENCIA,
+                         MOTIVO_CANCELACION = row.MOTIVO_CANCELACION,
+                         ID_ROL = row.ID_ROL,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listCotizacion.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listCotizacion);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

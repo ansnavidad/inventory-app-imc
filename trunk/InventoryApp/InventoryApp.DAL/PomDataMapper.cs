@@ -9,6 +9,52 @@ namespace InventoryApp.DAL
 {
     public class PomDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from pom in entity.POMs
+                         where pom.IS_ACTIVE == true
+                         where pom.IS_MODIFIED == false
+                         select pom.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonPom(long? LastModifiedDate)
+        {
+            string res = null;
+            List<POM> listPom = new List<POM>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.POMs
+                 where p.LAST_MODIFIED_DATE > LastModifiedDate
+                 select p).ToList().ForEach(row =>
+                 {
+                     listPom.Add(new POM
+                     {
+                         UNID_POM = row.UNID_POM,
+                         FECHA_POM = row.FECHA_POM,
+                         UNID_COTIZACION = row.UNID_COTIZACION,
+                         DIAS_ENTREGA = row.DIAS_ENTREGA,
+                         FECHA_ENTREGA = row.FECHA_ENTREGA,
+                         FECHA_ENTREGA_REAL = row.FECHA_ENTREGA_REAL,
+                         UNID_EMPRESA = row.UNID_EMPRESA,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listPom.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listPom);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

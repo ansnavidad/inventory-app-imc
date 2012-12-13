@@ -9,6 +9,48 @@ namespace InventoryApp.DAL
 {
     public class TipoCotizacionDataMapper : IDataMapper
     {
+
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from tipo in entity.TIPO_COTIZACION
+                         where tipo.IS_ACTIVE == true
+                         where tipo.IS_MODIFIED == false
+                         select tipo.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonTipoCotizacion(long? LMD)
+        {
+            string res = null;
+            List<TIPO_COTIZACION> listTipoCotizacion = new List<TIPO_COTIZACION>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.TIPO_COTIZACION
+                 where p.LAST_MODIFIED_DATE > LMD
+                 select p).ToList().ForEach(row =>
+                 {
+                     listTipoCotizacion.Add(new TIPO_COTIZACION
+                     {
+                         UNID_TIPO_COTIZACION = row.UNID_TIPO_COTIZACION,
+                         TIPO_COTIZACION_NAME = row.TIPO_COTIZACION_NAME,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listTipoCotizacion.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listTipoCotizacion);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

@@ -9,6 +9,47 @@ namespace InventoryApp.DAL
 {
     public class EquipoDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from equipo in entity.EQUIPOes
+                         where equipo.IS_ACTIVE == true
+                         where equipo.IS_MODIFIED == false
+                         select equipo.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonEquipo(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<EQUIPO> listEquipo = new List<EQUIPO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.EQUIPOes
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listEquipo.Add(new EQUIPO
+                     {
+                         UNID_EQUIPO = row.UNID_EQUIPO,
+                         EQUIPO_NAME = row.EQUIPO_NAME,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listEquipo.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listEquipo);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
 

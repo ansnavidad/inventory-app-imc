@@ -9,6 +9,47 @@ namespace InventoryApp.DAL
 {
     public class ClienteDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from cliente in entity.CLIENTEs
+                         where cliente.IS_ACTIVE == true
+                         where cliente.IS_MODIFIED == false
+                         select cliente.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonCliente(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<CLIENTE> listCliente = new List<CLIENTE>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.CLIENTEs
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listCliente.Add(new CLIENTE
+                     {
+                         CLIENTE1 = row.CLIENTE1,
+                         UNID_CLIENTE = row.UNID_CLIENTE,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listCliente.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listCliente);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

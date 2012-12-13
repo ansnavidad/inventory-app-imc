@@ -10,6 +10,49 @@ namespace InventoryApp.DAL
 {
     public class TransporteDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from articulo in entity.TRANSPORTEs
+                         where articulo.IS_ACTIVE == true
+                         where articulo.IS_MODIFIED == false
+                         select articulo.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonTransporte(long? LMD)
+        {
+            string res = null;
+            List<TRANSPORTE> listTransporte = new List<TRANSPORTE>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.TRANSPORTEs
+                 where p.LAST_MODIFIED_DATE > LMD
+                 select p).ToList().ForEach(row =>
+                 {
+                     listTransporte.Add(new TRANSPORTE
+                     {
+                         UNID_TRANSPORTE = row.UNID_TRANSPORTE,
+                         TRANSPORTE_NAME = row.TRANSPORTE_NAME,
+                         UNID_TIPO_EMPRESA = row.UNID_TIPO_EMPRESA,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listTransporte.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listTransporte);
+                }
+                return res;
+            }
+        }
+
+
         public void loadSync(object element)
         {
             if (element != null)

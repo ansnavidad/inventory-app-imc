@@ -9,6 +9,48 @@ namespace InventoryApp.DAL
 {
     public class DepartamentoDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from departamento in entity.DEPARTAMENTOes
+                         where departamento.IS_ACTIVE == true
+                         where departamento.IS_MODIFIED == false
+                         select departamento.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonDepartamento(long? Last_Modified_Date)
+        {
+            string res = null;
+            List<DEPARTAMENTO> listDepartamento = new List<DEPARTAMENTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.DEPARTAMENTOes
+                 where p.LAST_MODIFIED_DATE > Last_Modified_Date
+                 select p).ToList().ForEach(row =>
+                 {
+                     listDepartamento.Add(new DEPARTAMENTO
+                     {
+                         DEPARTAMENTO_NAME = row.DEPARTAMENTO_NAME,
+                         UNID_DEPARTAMENTO = row.UNID_DEPARTAMENTO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listDepartamento.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listDepartamento);
+                }
+                return res;
+            }
+        }
+
+
         public void loadSync(object element)
         {
             if (element != null)

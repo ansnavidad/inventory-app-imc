@@ -10,6 +10,48 @@ namespace InventoryApp.DAL
 {
     public class PaisDataMapper : IDataMapper
     {
+        public long? LastModifiedDate()
+        {
+            long? resul = null;
+            using (var entity = new TAE2Entities())
+            {
+                resul = (from pais in entity.PAIS
+                         where pais.IS_ACTIVE == true
+                         where pais.IS_MODIFIED == false
+                         select pais.LAST_MODIFIED_DATE).Max();
+                return resul;
+            }
+
+        }
+
+        public string GetJsonPais(long? LastModifiedDate)
+        {
+            string res = null;
+            List<PAI> listPais = new List<PAI>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.PAIS
+                 where p.LAST_MODIFIED_DATE > LastModifiedDate
+                 select p).ToList().ForEach(row =>
+                 {
+                     listPais.Add(new PAI
+                     {
+                         UNID_PAIS = row.UNID_PAIS,
+                         PAIS = row.PAIS,
+                         ISO = row.ISO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listPais.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listPais);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

@@ -491,8 +491,6 @@ namespace InventoryApp.ViewModel.Salidas
                 borders = excel.Range[excel.Cells[X, 18], excel.Cells[X + 2, 34]].Borders;
                 borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
 
-
-
                 excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
             }
         }

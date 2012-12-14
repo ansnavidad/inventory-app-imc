@@ -60,6 +60,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
+                this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
                 this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
                 this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
@@ -107,6 +108,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
+                this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
                 this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
                 this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
@@ -343,7 +345,7 @@ namespace InventoryApp.ViewModel.Entradas
                 excel.Cells[11, 12] = _movimientoModel.Solicitante.SOLICITANTE_NAME;
                 excel.Cells[13, 12] = _movimientoModel.Solicitante.Departamento.DEPARTAMENTO_NAME;
                 //Recibe
-                excel.Cells[15, 12] = _movimientoModel.Recibe.ToString();
+                excel.Cells[15, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
                 //Procedencia                
                 excel.Cells[17, 12] = _movimientoModel.Infraestructura.INFRAESTRUCTURA_NAME;
 

@@ -380,7 +380,7 @@ namespace InventoryApp.ViewModel.Salidas
             {
                 this._movimientoDetalleModel = new MovimientoDetalleModel(new MovimientoDetalleDataMapper(), this._movimientoModel.UnidMovimiento, item.UnidItem);
                 this._movimientoDetalleModel.saveArticulo();
-                this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem, this._movimientoModel.UnidAlmacenDestino, this._movimientoModel.UnidClienteDestino, this._movimientoModel.UnidProveedorDestino, this._movimientoDetalleModel.UnidMovimientoDetalle);
+                this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem, this._movimientoModel.UnidInfraestructura , this._movimientoDetalleModel.UnidMovimientoDetalle);
                 this._ultimoMovimientoModel.saveArticulo();
             }            
         }

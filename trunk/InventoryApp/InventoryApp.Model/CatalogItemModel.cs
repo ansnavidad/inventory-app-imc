@@ -151,6 +151,95 @@ namespace InventoryApp.Model
             }
         }
 
+        public void loadItems(INFRAESTRUCTURA infra)
+        {
+            try
+            {
+                bool ban = false;
+                this.Mensaje1 = "";
+                this.Mensaje2 = "";
+                object element = this._dataMapper.getElements_EntradasSalidasSerie(infra, this._serie, this._sku);
+                FixupCollection<ItemModel> ic = new FixupCollection<ItemModel>();
+
+
+                foreach (ItemModel elem in this.ItemModel)
+                {
+                    if (elem.IsChecked)
+                        ic.Add(elem);
+                }
+
+                this.ItemModel.Clear();
+
+                if (element != null)
+                {
+
+
+
+
+                    foreach (ITEM elemento in (List<ITEM>)element)
+                    {
+                        ban = true;
+                        ItemModel aux = new ItemModel(elemento);
+                        ic.Add(aux);
+                    }
+
+                }
+                if (ic != null)
+                {
+                    this.ItemModel = ic;
+                }
+                if (!ban)
+                {
+                    this.Mensaje1 = "Este artículo no se encuentra en el lugar especificado";
+                    object element2 = this._dataMapper.getAlmacenDisponible(this._serie, this._sku);
+
+                    bool aux = false;
+                    this.Mensaje2 = "El artículo se encuentra en ";
+                    foreach (ULTIMO_MOVIMIENTO um in (List<ULTIMO_MOVIMIENTO>)element2)
+                    {
+
+                        if (um.CLIENTE != null)
+                        {
+                            this.Mensaje2 += "Cliente: " + um.CLIENTE.CLIENTE1;
+                            aux = true;
+                        }
+
+                        if (um.PROVEEDOR != null)
+                        {
+                            aux = true;
+                            this.Mensaje2 += "Proveedor: " + um.PROVEEDOR.PROVEEDOR_NAME;
+                        }
+
+                        if (um.INFRAESTRUCTURA != null)
+                        {
+                            aux = true;
+                            this.Mensaje2 += "Infraestructura: " + um.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
+                        }
+
+                        if (um.ALMACEN != null)
+                        {
+                            aux = true;
+                            this.Mensaje2 += "ALmacen: " + um.ALMACEN.ALMACEN_NAME;
+                        }
+                    }
+
+                    if (!aux)
+                        this.Mensaje2 = "El artículo no se encuentra en ningún cliente o proveedor";
+                }
+            }
+            catch (ArgumentException ae)
+            {
+
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
         public void loadItems(PROVEEDOR prov, CLIENTE cliente)
         {
             try
@@ -208,6 +297,18 @@ namespace InventoryApp.Model
                         {
                             aux = true;
                             this.Mensaje2 += "Proveedor: " + um.PROVEEDOR.PROVEEDOR_NAME;
+                        }
+
+                        if (um.INFRAESTRUCTURA != null)
+                        {
+                            aux = true;
+                            this.Mensaje2 += "Infraestructura: " + um.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
+                        }
+
+                        if (um.ALMACEN != null)
+                        {
+                            aux = true;
+                            this.Mensaje2 += "ALmacen: " + um.ALMACEN.ALMACEN_NAME;
                         }
                     }
 
@@ -272,12 +373,29 @@ namespace InventoryApp.Model
                     foreach (ULTIMO_MOVIMIENTO um in (List<ULTIMO_MOVIMIENTO>)element2)
                     {
                         aux = true;
+                        if (um.CLIENTE != null)
+                        {
+                            this.Mensaje2 += "Cliente: " + um.CLIENTE.CLIENTE1;
+                            aux = true;
+                        }
+
+                        if (um.PROVEEDOR != null)
+                        {
+                            aux = true;
+                            this.Mensaje2 += "Proveedor: " + um.PROVEEDOR.PROVEEDOR_NAME;
+                        }
+
+                        if (um.INFRAESTRUCTURA != null)
+                        {
+                            aux = true;
+                            this.Mensaje2 += "Infraestructura: " + um.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
+                        }
+
                         if (um.ALMACEN != null)
-                            this.Mensaje2 += " en el almacén '" + um.ALMACEN.ALMACEN_NAME + "'";
-                        else if (um.CLIENTE != null)
-                            this.Mensaje2 += " con el cliente '" + um.CLIENTE.CLIENTE1 + "'";
-                        else
-                            this.Mensaje2 += " con el proveedor '" + um.PROVEEDOR.PROVEEDOR_NAME + "'";
+                        {
+                            aux = true;
+                            this.Mensaje2 += "ALmacen: " + um.ALMACEN.ALMACEN_NAME;
+                        }
                     }
 
                     if (!aux)

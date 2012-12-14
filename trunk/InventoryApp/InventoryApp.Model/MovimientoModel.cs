@@ -51,6 +51,7 @@ namespace InventoryApp.Model
         private MovimientoDataMapper _dataMapper;
         private EMPRESA _empresa;
         private INFRAESTRUCTURA _infraestructura;
+        private long? _unidInfraestructura;
         private ObservableCollection<DeleteSolicitante> _solicitantes;
         private ObservableCollection<TECNICO> _tecnicos;
         #endregion
@@ -109,6 +110,10 @@ namespace InventoryApp.Model
                 if (_infraestructura != value)
                 {
                     _infraestructura = value;
+                    if (value != null)
+                        this._unidInfraestructura = value.UNID_INFRAESTRUCTURA;
+                    else
+                        this._unidInfraestructura = null;
 
                     if (PropertyChanged != null)
                     {
@@ -197,6 +202,25 @@ namespace InventoryApp.Model
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Solicitante"));
+                    }
+                }
+            }
+        }
+
+        public long? UnidInfraestructura
+        {
+            get
+            {
+                return _unidInfraestructura;
+            }
+            set
+            {
+                if (_unidInfraestructura != value)
+                {
+                    _unidInfraestructura = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("UnidAlmacenProcedencia"));
                     }
                 }
             }
@@ -741,7 +765,8 @@ namespace InventoryApp.Model
                     UNID_PROVEEDOR = this._unidProveedor,
                     UNID_FACTURA_VENTA = this._unidFacturaVenta,
                     UNID_SOLICITANTE = this._unidSolicitante,
-                    UNID_TECNICO = this._unidTecnico
+                    UNID_TECNICO = this._unidTecnico,
+                    UNID_INFRAESTRUCTURA = this._unidInfraestructura
                 });
                 //_dataMapper.insertElement(new MOVIMENTO() {UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe, UNID_ALMACEN_DESTINO = this._unidSolicitante});
             }

@@ -237,5 +237,40 @@ namespace InventoryApp.DAL
 
             return res;
         }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetMenu()
+        {
+            List<MENU> reset = new List<MENU>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.MENUs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new MENU
+                     {
+                         UNID_MENU = row.UNID_MENU,
+                         UNID_MENU_PARENT = row.UNID_MENU_PARENT,
+                         MENU_NAME = row.MENU_NAME,
+                         IS_LEAF = row.IS_LEAF,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.MENUs.First(p => p.UNID_MENU == item.UNID_MENU);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
+        }
     }
 }

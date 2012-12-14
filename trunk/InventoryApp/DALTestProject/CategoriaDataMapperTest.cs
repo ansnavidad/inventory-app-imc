@@ -108,5 +108,19 @@ namespace DALTestProject
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
+
+        /// <summary>
+        ///Una prueba de LastModifiedDate
+        ///</summary>
+        [TestMethod()]
+        public void LastModifiedDateTest()
+        {
+            CategoriaDataMapper target = new CategoriaDataMapper(); // TODO: Inicializar en un valor adecuado
+            Nullable<long> expected = new Nullable<long>(); // TODO: Inicializar en un valor adecuado
+            Nullable<long> actual;
+            actual = target.LastModifiedDate();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

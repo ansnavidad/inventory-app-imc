@@ -292,7 +292,7 @@ namespace InventoryApp.ViewModel.Entradas
         {
             bool _canImprimir = false;
 
-            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && !String.IsNullOrEmpty(this.MovimientoModel.Recibe))
+            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) )
                 _canImprimir = true;
 
             return _canImprimir;
@@ -316,7 +316,7 @@ namespace InventoryApp.ViewModel.Entradas
         {
             bool _canImprimir = false;
             
-            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && !String.IsNullOrEmpty(this.MovimientoModel.Recibe))
+            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt))
                 _canImprimir = true;
 
             return _canImprimir;

@@ -233,5 +233,38 @@ namespace InventoryApp.DAL
 
             return res;
         }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetRol()
+        {
+            List<ROL> reset = new List<ROL>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.ROLs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new ROL
+                     {
+                         UNID_ROL = row.UNID_ROL,
+                         ROL_NAME = row.ROL_NAME,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.ROLs.First(p => p.UNID_ROL == item.UNID_ROL);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
+        }
     }
 }

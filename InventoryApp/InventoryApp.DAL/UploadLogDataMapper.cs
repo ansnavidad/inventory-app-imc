@@ -97,7 +97,6 @@ namespace InventoryApp.DAL
 
             if (!String.IsNullOrEmpty(upLoadLog))
             {
-
                 up = JsonConvert.DeserializeObject<UPLOAD_LOG>(upLoadLog);
                 listUpLoadLog = new List<UPLOAD_LOG>();
                 listUpLoadLog.Add(up);

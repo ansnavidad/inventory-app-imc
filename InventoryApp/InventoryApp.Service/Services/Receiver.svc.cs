@@ -389,43 +389,17 @@ namespace InventoryApp.Service.Services
             try
             {
 
-                try
-                {
-                    list = dataMapper.GetDeserializeCategoria(listPocos);
-                }
-                catch (Exception ex)
-                {
-                    
-                    mensaje = "Error al desserealizar : "+ex.Message+" ++++  "+ ex.InnerException;
-                }
-
+                list = dataMapper.GetDeserializeCategoria(listPocos);
+                
                 foreach (CATEGORIA item in list)
                 {
                     //actualiza o inserta a la tabla CATEGORIA
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
-                try
-                {
-                    server.updateDumy();
-                }
-                catch (Exception ex)
-                {
-                    
-                    mensaje = "Error al updateDumy : "+ex.Message+" ++++  "+ ex.InnerException;
-                }
-
+                server.updateDumy();
                 // inserta a la tabla UPLOAD_LOG 
-                try
-                {
-                    listUser = user.GetDeserializeUpLoadLog(dataUser);
-                }
-                catch (Exception ex)
-                {
-                    
-                    mensaje = "Error al updateDumy : "+ex.Message+" ++++  "+ ex.InnerException;
-                }
-
+                listUser = user.GetDeserializeUpLoadLog(dataUser);
                 if (listUser.Count > 0)
                 {
                     foreach (UPLOAD_LOG insert in listUser)
@@ -438,7 +412,7 @@ namespace InventoryApp.Service.Services
             catch (Exception ex)
             {
 
-                mensaje = ex.Message+" ++++  "+ ex.InnerException;
+                mensaje = null;
             }
             return mensaje;
             #endregion
@@ -2210,17 +2184,5 @@ namespace InventoryApp.Service.Services
             #endregion
         }
         //------------------------- FIN DE SERVICIOS DE SUBIDA DE ARCHIVOS
-
-        public long GetServerLast()
-        {
-            long mensaje = 0;
-            ServerLastDataMapper server = new ServerLastDataMapper();
-
-            if (server.GetServerLastFecha() != 0)
-            {
-                mensaje = server.GetServerLastFecha();
-            }
-            return mensaje;
-        }
     }
 }

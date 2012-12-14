@@ -419,5 +419,43 @@ namespace InventoryApp.DAL
             return res;
         }
 
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetAlmacen()
+        {
+            List<ALMACEN> reset = new List<ALMACEN>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.ALMACENs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new ALMACEN
+                     {
+                         ALMACEN_NAME = row.ALMACEN_NAME,
+                         UNID_ALMACEN = row.UNID_ALMACEN,
+                         CONTACTO = row.CONTACTO,
+                         DIRECCION = row.DIRECCION,
+                         MAIL = row.MAIL,
+                         MAIL_DEFAULT = row.MAIL_DEFAULT,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.ALMACENs.First(p => p.UNID_ALMACEN == item.UNID_ALMACEN);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
+        }
+
     }
 }

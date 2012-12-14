@@ -319,6 +319,7 @@ namespace InventoryApp.DAL
                 }
             }
         }
+        //PRUEBA
         public void UpdateCategoria(object element)
         {
             if (element != null)

@@ -54,6 +54,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Services\Broadcast.svc" />
     <Content Include="Services\Receiver.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -65,6 +66,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Broadcast.svc.cs">
+      <DependentUpon>Broadcast.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\IBroadcast.cs" />
     <Compile Include="Services\IReceiver.cs" />
     <Compile Include="Services\Receiver.svc.cs">
       <DependentUpon>Receiver.svc</DependentUpon>

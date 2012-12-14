@@ -9,25 +9,34 @@ namespace InventoryApp.DAL
 {
     public class ServerLastDataMapper :IDataMapper
     {
-
-
-        public bool updateDumy() {
-
-            try
+        public bool existDumy() {
+            
+            using (var entity = new TAE2Entities())
             {
-                using (var entity = new TAE2Entities())
-                {
-                    var modifiedSync = entity.SERVER_LASTDATA.First(p => p.UNID_SERVER_LASTDATA == 20120101000000000);
-                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                    entity.SaveChanges();
-                }
 
+                var query = (from ser in entity.SERVER_LASTDATA
+                             select ser).ToList();
+
+                if (query.Count == 0)
+                    return false;
                 return true;
             }
-            catch (Exception ex)
+        }
+
+        public void insertDummy(){
+                        
+            using (var entity = new TAE2Entities())
             {
-                return false;                
-            }
+                var query = (from ser in entity.SERVER_LASTDATA
+                             select ser).ToList();
+
+                if (query.Count == 0)
+                {
+                    var modifiedServer = entity.SERVER_LASTDATA.First(p => p.UNID_SERVER_LASTDATA == 20120101000000000);
+                    modifiedServer.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                }
+            }            
         }
 
         public object getElements()
@@ -48,6 +57,32 @@ namespace InventoryApp.DAL
         public void insertElement(object element)
         {
             throw new NotImplementedException();
+        }
+
+        public void insertElement()
+        {            
+            using (var entity = new TAE2Entities())
+            {
+                SERVER_LASTDATA serverLastD = new SERVER_LASTDATA();
+
+                var query = (from ser in entity.SERVER_LASTDATA                                 
+                                select ser).ToList();
+
+                if (query.Count > 0)
+                {
+                    var modifiedServer = entity.SERVER_LASTDATA.First(p => p.UNID_SERVER_LASTDATA == 20120101000000000);
+                    modifiedServer.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                }
+                else {
+
+                    SERVER_LASTDATA server = new SERVER_LASTDATA();
+                    serverLastD.UNID_SERVER_LASTDATA = 20120101000000000;
+                    serverLastD.ACTUAL_DATE = UNID.getNewUNID();
+
+                    entity.SERVER_LASTDATA.AddObject(server);
+                }
+            }            
         }
 
         public void deleteElement(object element)

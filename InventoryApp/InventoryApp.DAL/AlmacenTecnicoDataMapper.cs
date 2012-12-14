@@ -107,32 +107,6 @@ namespace InventoryApp.DAL
             }
         }
 
-        public string GetJsonAlmacenTecnico()
-        {
-            string res = null;
-            List<ALMACEN_TECNICO> listAlmacenTecnico = new List<ALMACEN_TECNICO>();
-            using (var Entity = new TAE2Entities())
-            {
-                (from p in Entity.ALMACEN_TECNICO
-                 where p.IS_MODIFIED == true
-                 select p).ToList().ForEach(row =>
-                 {
-                     listAlmacenTecnico.Add(new ALMACEN_TECNICO
-                     {
-                         UNID_ALMACEN = row.UNID_ALMACEN,
-                         UNID_TECNICO=row.UNID_TECNICO,
-                         IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
-                     });
-                 });
-                if (listAlmacenTecnico.Count > 0)
-                {
-                    res = SerializerJson.SerializeParametros(listAlmacenTecnico);
-                }
-                return res;
-            }
-        }
-
         /// <summary>
         /// Método que Deserializa JSon a List<ALMACEN_TECNICO>
         /// </summary>

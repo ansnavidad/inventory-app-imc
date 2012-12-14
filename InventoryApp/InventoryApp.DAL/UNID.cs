@@ -41,8 +41,8 @@ namespace InventoryApp.DAL
 
             aux = DateTime.Now.Millisecond.ToString();
             if(aux.Length == 1)
-                res += "0";
-            if(aux.Length == 2)
+                res += "00";
+            else if(aux.Length == 2)
                 res += "0";
             res += aux;
 

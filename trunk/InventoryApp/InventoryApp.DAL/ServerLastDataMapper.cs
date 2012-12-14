@@ -9,7 +9,7 @@ namespace InventoryApp.DAL
 {
     public class ServerLastDataMapper :IDataMapper
     {
-        public bool existDumy() {
+        public bool existDumy() {  
             
             using (var entity = new TAE2Entities())
             {

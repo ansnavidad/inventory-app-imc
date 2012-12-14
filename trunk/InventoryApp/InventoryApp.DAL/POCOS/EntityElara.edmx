@@ -230,17 +230,9 @@
             <End Role="COTIZACION" EntitySet="COTIZACION" />
             <End Role="POM" EntitySet="POM" />
           </AssociationSet>
-          <AssociationSet Name="FK_MOVIMENTO_INFRAESTRUCTURA" Association="TAE2Model.Store.FK_MOVIMENTO_INFRAESTRUCTURA">
-            <End Role="INFRAESTRUCTURA" EntitySet="INFRAESTRUCTURA" />
-            <End Role="MOVIMENTO" EntitySet="MOVIMENTO" />
-          </AssociationSet>
           <AssociationSet Name="FK_MOVIMENTO_TECNICO" Association="TAE2Model.Store.FK_MOVIMENTO_TECNICO">
             <End Role="TECNICO" EntitySet="TECNICO" />
             <End Role="MOVIMENTO" EntitySet="MOVIMENTO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ULTIMO_MOVIMIENTO_INFRAESTRUCTURA" Association="TAE2Model.Store.FK_ULTIMO_MOVIMIENTO_INFRAESTRUCTURA">
-            <End Role="INFRAESTRUCTURA" EntitySet="INFRAESTRUCTURA" />
-            <End Role="ULTIMO_MOVIMIENTO" EntitySet="ULTIMO_MOVIMIENTO" />
           </AssociationSet>
           <AssociationSet Name="FK_UPLOAD_LOG_USUARIO" Association="TAE2Model.Store.FK_UPLOAD_LOG_USUARIO">
             <End Role="USUARIO" EntitySet="USUARIO" />
@@ -862,7 +854,6 @@
           <Property Name="UNID_TECNICO" Type="bigint" />
           <Property Name="IS_MODIFIED" Type="bit" Nullable="false" />
           <Property Name="LAST_MODIFIED_DATE" Type="bigint" />
-          <Property Name="UNID_INFRAESTRUCTURA" Type="bigint" />
         </EntityType>
         <EntityType Name="MOVIMIENTO_DETALLE">
           <Key>
@@ -928,7 +919,6 @@
           <Property Name="IS_MODIFIED" Type="bit" Nullable="false" />
           <Property Name="LAST_MODIFIED_DATE" Type="bigint" Nullable="false" />
           <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
-          <Property Name="UNID_INFRAESTRUCTURA" Type="bigint" />
         </EntityType>
         <EntityType Name="FACTURA">
           <Key>
@@ -1525,18 +1515,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MOVIMENTO_INFRAESTRUCTURA">
-          <End Role="INFRAESTRUCTURA" Type="TAE2Model.Store.INFRAESTRUCTURA" Multiplicity="0..1" />
-          <End Role="MOVIMENTO" Type="TAE2Model.Store.MOVIMENTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="INFRAESTRUCTURA">
-              <PropertyRef Name="UNID_INFRAESTRUCTURA" />
-            </Principal>
-            <Dependent Role="MOVIMENTO">
-              <PropertyRef Name="UNID_INFRAESTRUCTURA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MOVIMENTO_TECNICO">
           <End Role="TECNICO" Type="TAE2Model.Store.TECNICO" Multiplicity="0..1" />
           <End Role="MOVIMENTO" Type="TAE2Model.Store.MOVIMENTO" Multiplicity="*" />
@@ -1546,18 +1524,6 @@
             </Principal>
             <Dependent Role="MOVIMENTO">
               <PropertyRef Name="UNID_TECNICO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ULTIMO_MOVIMIENTO_INFRAESTRUCTURA">
-          <End Role="INFRAESTRUCTURA" Type="TAE2Model.Store.INFRAESTRUCTURA" Multiplicity="0..1" />
-          <End Role="ULTIMO_MOVIMIENTO" Type="TAE2Model.Store.ULTIMO_MOVIMIENTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="INFRAESTRUCTURA">
-              <PropertyRef Name="UNID_INFRAESTRUCTURA" />
-            </Principal>
-            <Dependent Role="ULTIMO_MOVIMIENTO">
-              <PropertyRef Name="UNID_INFRAESTRUCTURA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2014,14 +1980,6 @@
             <End Role="EMPRESA" EntitySet="EMPRESAs" />
             <End Role="POM" EntitySet="POMs" />
           </AssociationSet>
-          <AssociationSet Name="FK_MOVIMENTO_INFRAESTRUCTURA" Association="TAE2Model.FK_MOVIMENTO_INFRAESTRUCTURA">
-            <End Role="INFRAESTRUCTURA" EntitySet="INFRAESTRUCTURAs" />
-            <End Role="MOVIMENTO" EntitySet="MOVIMENTOes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ULTIMO_MOVIMIENTO_INFRAESTRUCTURA" Association="TAE2Model.FK_ULTIMO_MOVIMIENTO_INFRAESTRUCTURA">
-            <End Role="INFRAESTRUCTURA" EntitySet="INFRAESTRUCTURAs" />
-            <End Role="ULTIMO_MOVIMIENTO" EntitySet="ULTIMO_MOVIMIENTO" />
-          </AssociationSet>
           <AssociationSet Name="CAT_MONEDA_INV_FACTURA_VENTA_FK1" Association="TAE2Model.CAT_MONEDA_INV_FACTURA_VENTA_FK1">
             <End Role="MONEDA" EntitySet="MONEDAs" />
             <End Role="FACTURA_VENTA" EntitySet="FACTURA_VENTA" />
@@ -2377,8 +2335,6 @@
           <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
           <Property Name="IS_MODIFIED" Type="Boolean" Nullable="false" />
           <Property Name="LAST_MODIFIED_DATE" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="MOVIMENTOes" Relationship="TAE2Model.FK_MOVIMENTO_INFRAESTRUCTURA" FromRole="INFRAESTRUCTURA" ToRole="MOVIMENTO" />
-          <NavigationProperty Name="ULTIMO_MOVIMIENTO" Relationship="TAE2Model.FK_ULTIMO_MOVIMIENTO_INFRAESTRUCTURA" FromRole="INFRAESTRUCTURA" ToRole="ULTIMO_MOVIMIENTO" />
         </EntityType>
         <EntityType Name="MEDIO_ENVIO">
           <Key>
@@ -2817,8 +2773,6 @@
           <Property Name="UNID_TECNICO" Type="Int64" />
           <Property Name="IS_MODIFIED" Type="Boolean" Nullable="false" />
           <Property Name="LAST_MODIFIED_DATE" Type="Int64" />
-          <Property Name="UNID_INFRAESTRUCTURA" Type="Int64" />
-          <NavigationProperty Name="INFRAESTRUCTURA" Relationship="TAE2Model.FK_MOVIMENTO_INFRAESTRUCTURA" FromRole="MOVIMENTO" ToRole="INFRAESTRUCTURA" />
           <NavigationProperty Name="PROVEEDOR" Relationship="TAE2Model.CAT_PROVEEDOR_INV_MOVIMENTO_FK1" FromRole="MOVIMENTO" ToRole="PROVEEDOR" />
           <NavigationProperty Name="PROVEEDOR1" Relationship="TAE2Model.CAT_PROVEEDOR_INV_MOVIMENTO_FK2" FromRole="MOVIMENTO" ToRole="PROVEEDOR" />
           <NavigationProperty Name="PROVEEDOR2" Relationship="TAE2Model.CAT_PROVEEDOR_INV_MOVIMENTO_FK3" FromRole="MOVIMENTO" ToRole="PROVEEDOR" />
@@ -2910,8 +2864,6 @@
           <Property Name="IS_MODIFIED" Type="Boolean" Nullable="false" />
           <Property Name="LAST_MODIFIED_DATE" Type="Int64" Nullable="false" />
           <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
-          <Property Name="UNID_INFRAESTRUCTURA" Type="Int64" />
-          <NavigationProperty Name="INFRAESTRUCTURA" Relationship="TAE2Model.FK_ULTIMO_MOVIMIENTO_INFRAESTRUCTURA" FromRole="ULTIMO_MOVIMIENTO" ToRole="INFRAESTRUCTURA" />
           <NavigationProperty Name="PROVEEDOR" Relationship="TAE2Model.CAT_PROVEEDOR_INV_ULTIMO_MOVIMIENTO_FK1" FromRole="ULTIMO_MOVIMIENTO" ToRole="PROVEEDOR" />
           <NavigationProperty Name="ALMACEN" Relationship="TAE2Model.CATINV_ALMACEN_INV_ULTIMO_MOVIMIENTO_FK1" FromRole="ULTIMO_MOVIMIENTO" ToRole="ALMACEN" />
           <NavigationProperty Name="CLIENTE" Relationship="TAE2Model.CATINV_CLIENTE_INV_ULTIMO_MOVIMIENTO_FK1" FromRole="ULTIMO_MOVIMIENTO" ToRole="CLIENTE" />
@@ -3242,30 +3194,6 @@
             </Principal>
             <Dependent Role="POM">
               <PropertyRef Name="UNID_EMPRESA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MOVIMENTO_INFRAESTRUCTURA">
-          <End Role="INFRAESTRUCTURA" Type="TAE2Model.INFRAESTRUCTURA" Multiplicity="0..1" />
-          <End Role="MOVIMENTO" Type="TAE2Model.MOVIMENTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="INFRAESTRUCTURA">
-              <PropertyRef Name="UNID_INFRAESTRUCTURA" />
-            </Principal>
-            <Dependent Role="MOVIMENTO">
-              <PropertyRef Name="UNID_INFRAESTRUCTURA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ULTIMO_MOVIMIENTO_INFRAESTRUCTURA">
-          <End Role="INFRAESTRUCTURA" Type="TAE2Model.INFRAESTRUCTURA" Multiplicity="0..1" />
-          <End Role="ULTIMO_MOVIMIENTO" Type="TAE2Model.ULTIMO_MOVIMIENTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="INFRAESTRUCTURA">
-              <PropertyRef Name="UNID_INFRAESTRUCTURA" />
-            </Principal>
-            <Dependent Role="ULTIMO_MOVIMIENTO">
-              <PropertyRef Name="UNID_INFRAESTRUCTURA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3803,530 +3731,752 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TAE2ModelStoreContainer" CdmEntityContainer="TAE2Entities">
-          <EntitySetMapping Name="MENUs"><EntityTypeMapping TypeName="TAE2Model.MENU"><MappingFragment StoreEntitySet="MENU">
-            <ScalarProperty Name="UNID_MENU" ColumnName="UNID_MENU" />
-            <ScalarProperty Name="UNID_MENU_PARENT" ColumnName="UNID_MENU_PARENT" />
-            <ScalarProperty Name="MENU_NAME" ColumnName="MENU_NAME" />
-            <ScalarProperty Name="IS_LEAF" ColumnName="IS_LEAF" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ROLs"><EntityTypeMapping TypeName="TAE2Model.ROL"><MappingFragment StoreEntitySet="ROL">
-            <ScalarProperty Name="UNID_ROL" ColumnName="UNID_ROL" />
-            <ScalarProperty Name="ROL_NAME" ColumnName="ROL_NAME" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ROL_MENU"><EntityTypeMapping TypeName="TAE2Model.ROL_MENU"><MappingFragment StoreEntitySet="ROL_MENU">
-            <ScalarProperty Name="UNID_ROL" ColumnName="UNID_ROL" />
-            <ScalarProperty Name="UNID_MENU" ColumnName="UNID_MENU" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="USUARIOs"><EntityTypeMapping TypeName="TAE2Model.USUARIO"><MappingFragment StoreEntitySet="USUARIO">
-            <ScalarProperty Name="UNID_USUARIO" ColumnName="UNID_USUARIO" />
-            <ScalarProperty Name="USUARIO_MAIL" ColumnName="USUARIO_MAIL" />
-            <ScalarProperty Name="USUARIO_PWD" ColumnName="USUARIO_PWD" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="USUARIO_ROL"><EntityTypeMapping TypeName="TAE2Model.USUARIO_ROL"><MappingFragment StoreEntitySet="USUARIO_ROL">
-            <ScalarProperty Name="UNID_ROL" ColumnName="UNID_ROL" />
-            <ScalarProperty Name="UNID_USUARIO" ColumnName="UNID_USUARIO" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ARTICULOes"><EntityTypeMapping TypeName="TAE2Model.ARTICULO"><MappingFragment StoreEntitySet="ARTICULO">
-            <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
-            <ScalarProperty Name="ARTICULO1" ColumnName="ARTICULO" />
-            <ScalarProperty Name="UNID_CATEGORIA" ColumnName="UNID_CATEGORIA" />
-            <ScalarProperty Name="UNID_EQUIPO" ColumnName="UNID_EQUIPO" />
-            <ScalarProperty Name="UNID_MARCA" ColumnName="UNID_MARCA" />
-            <ScalarProperty Name="UNID_MODELO" ColumnName="UNID_MODELO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="CATEGORIAs"><EntityTypeMapping TypeName="TAE2Model.CATEGORIA"><MappingFragment StoreEntitySet="CATEGORIA">
-            <ScalarProperty Name="UNID_CATEGORIA" ColumnName="UNID_CATEGORIA" />
-            <ScalarProperty Name="CATEGORIA_NAME" ColumnName="CATEGORIA_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="EQUIPOes"><EntityTypeMapping TypeName="TAE2Model.EQUIPO"><MappingFragment StoreEntitySet="EQUIPO">
-            <ScalarProperty Name="UNID_EQUIPO" ColumnName="UNID_EQUIPO" />
-            <ScalarProperty Name="EQUIPO_NAME" ColumnName="EQUIPO_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MARCAs"><EntityTypeMapping TypeName="TAE2Model.MARCA"><MappingFragment StoreEntitySet="MARCA">
-            <ScalarProperty Name="UNID_MARCA" ColumnName="UNID_MARCA" />
-            <ScalarProperty Name="MARCA_NAME" ColumnName="MARCA_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MODELOes"><EntityTypeMapping TypeName="TAE2Model.MODELO"><MappingFragment StoreEntitySet="MODELO">
-            <ScalarProperty Name="UNID_MODELO" ColumnName="UNID_MODELO" />
-            <ScalarProperty Name="MODELO_NAME" ColumnName="MODELO_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="BANCOes"><EntityTypeMapping TypeName="TAE2Model.BANCO"><MappingFragment StoreEntitySet="BANCO">
-            <ScalarProperty Name="UNID_BANCO" ColumnName="UNID_BANCO" />
-            <ScalarProperty Name="BANCO_NAME" ColumnName="BANCO_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="DEPARTAMENTOes"><EntityTypeMapping TypeName="TAE2Model.DEPARTAMENTO"><MappingFragment StoreEntitySet="DEPARTAMENTO">
-            <ScalarProperty Name="UNID_DEPARTAMENTO" ColumnName="UNID_DEPARTAMENTO" />
-            <ScalarProperty Name="DEPARTAMENTO_NAME" ColumnName="DEPARTAMENTO_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="EMPRESAs"><EntityTypeMapping TypeName="TAE2Model.EMPRESA"><MappingFragment StoreEntitySet="EMPRESA">
-            <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
-            <ScalarProperty Name="EMPRESA_NAME" ColumnName="EMPRESA_NAME" />
-            <ScalarProperty Name="RAZON_SOCIAL" ColumnName="RAZON_SOCIAL" />
-            <ScalarProperty Name="RFC" ColumnName="RFC" />
-            <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="INFRAESTRUCTURAs"><EntityTypeMapping TypeName="TAE2Model.INFRAESTRUCTURA"><MappingFragment StoreEntitySet="INFRAESTRUCTURA">
-            <ScalarProperty Name="UNID_INFRAESTRUCTURA" ColumnName="UNID_INFRAESTRUCTURA" />
-            <ScalarProperty Name="INFRAESTRUCTURA_NAME" ColumnName="INFRAESTRUCTURA_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MEDIO_ENVIO"><EntityTypeMapping TypeName="TAE2Model.MEDIO_ENVIO"><MappingFragment StoreEntitySet="MEDIO_ENVIO">
-            <ScalarProperty Name="UNID_MEDIO_ENVIO" ColumnName="UNID_MEDIO_ENVIO" />
-            <ScalarProperty Name="MEDIO_ENVIO_NAME" ColumnName="MEDIO_ENVIO_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MONEDAs"><EntityTypeMapping TypeName="TAE2Model.MONEDA"><MappingFragment StoreEntitySet="MONEDA">
-            <ScalarProperty Name="UNID_MONEDA" ColumnName="UNID_MONEDA" />
-            <ScalarProperty Name="MONEDA_NAME" ColumnName="MONEDA_NAME" />
-            <ScalarProperty Name="MONEDA_ABR" ColumnName="MONEDA_ABR" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PROVEEDORs"><EntityTypeMapping TypeName="TAE2Model.PROVEEDOR"><MappingFragment StoreEntitySet="PROVEEDOR">
-            <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
-            <ScalarProperty Name="PROVEEDOR_NAME" ColumnName="PROVEEDOR_NAME" />
-            <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
-            <ScalarProperty Name="TEL1" ColumnName="TEL1" />
-            <ScalarProperty Name="TEL2" ColumnName="TEL2" />
-            <ScalarProperty Name="MAIL" ColumnName="MAIL" />
-            <ScalarProperty Name="CALLE" ColumnName="CALLE" />
-            <ScalarProperty Name="UNID_PAIS" ColumnName="UNID_PAIS" />
-            <ScalarProperty Name="UNID_CIUDAD" ColumnName="UNID_CIUDAD" />
-            <ScalarProperty Name="CODIGO_POSTAL" ColumnName="CODIGO_POSTAL" />
-            <ScalarProperty Name="RFC" ColumnName="RFC" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PROVEEDOR_CATEGORIA"><EntityTypeMapping TypeName="TAE2Model.PROVEEDOR_CATEGORIA"><MappingFragment StoreEntitySet="PROVEEDOR_CATEGORIA">
-            <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
-            <ScalarProperty Name="UNID_CATEGORIA" ColumnName="UNID_CATEGORIA" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PROVEEDOR_CUENTA"><EntityTypeMapping TypeName="TAE2Model.PROVEEDOR_CUENTA"><MappingFragment StoreEntitySet="PROVEEDOR_CUENTA">
-            <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
-            <ScalarProperty Name="UNID_PROVEEDOR_CUENTA" ColumnName="UNID_PROVEEDOR_CUENTA" />
-            <ScalarProperty Name="UNID_BANCO" ColumnName="UNID_BANCO" />
-            <ScalarProperty Name="NUMERO_CUENTA" ColumnName="NUMERO_CUENTA" />
-            <ScalarProperty Name="CLABE" ColumnName="CLABE" />
-            <ScalarProperty Name="BENEFICIARIO" ColumnName="BENEFICIARIO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PROYECTOes"><EntityTypeMapping TypeName="TAE2Model.PROYECTO"><MappingFragment StoreEntitySet="PROYECTO">
-            <ScalarProperty Name="UNID_PROYECTO" ColumnName="UNID_PROYECTO" />
-            <ScalarProperty Name="PROYECTO_NAME" ColumnName="PROYECTO_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SERVER_LASTDATA"><EntityTypeMapping TypeName="TAE2Model.SERVER_LASTDATA"><MappingFragment StoreEntitySet="SERVER_LASTDATA">
-            <ScalarProperty Name="UNID_SERVER_LASTDATA" ColumnName="UNID_SERVER_LASTDATA" />
-            <ScalarProperty Name="ACTUAL_DATE" ColumnName="ACTUAL_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SOLICITANTEs"><EntityTypeMapping TypeName="TAE2Model.SOLICITANTE"><MappingFragment StoreEntitySet="SOLICITANTE">
-            <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
-            <ScalarProperty Name="SOLICITANTE_NAME" ColumnName="SOLICITANTE_NAME" />
-            <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
-            <ScalarProperty Name="UNID_DEPARTAMENTO" ColumnName="UNID_DEPARTAMENTO" />
-            <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-            <ScalarProperty Name="VALIDADOR" ColumnName="VALIDADOR" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SYNCs"><EntityTypeMapping TypeName="TAE2Model.SYNC"><MappingFragment StoreEntitySet="SYNC">
-            <ScalarProperty Name="UNID_SYNC" ColumnName="UNID_SYNC" />
-            <ScalarProperty Name="ACTUAL_DATE" ColumnName="ACTUAL_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TERMINO_ENVIO"><EntityTypeMapping TypeName="TAE2Model.TERMINO_ENVIO"><MappingFragment StoreEntitySet="TERMINO_ENVIO">
-            <ScalarProperty Name="UNID_TERMINO_ENVIO" ColumnName="UNID_TERMINO_ENVIO" />
-            <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
-            <ScalarProperty Name="TERMINO" ColumnName="TERMINO" />
-            <ScalarProperty Name="SIGNIFICADO" ColumnName="SIGNIFICADO" />
-            <ScalarProperty Name="GENERA_LOTES" ColumnName="GENERA_LOTES" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TIPO_COTIZACION"><EntityTypeMapping TypeName="TAE2Model.TIPO_COTIZACION"><MappingFragment StoreEntitySet="TIPO_COTIZACION">
-            <ScalarProperty Name="UNID_TIPO_COTIZACION" ColumnName="UNID_TIPO_COTIZACION" />
-            <ScalarProperty Name="TIPO_COTIZACION_NAME" ColumnName="TIPO_COTIZACION_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TIPO_EMPRESA"><EntityTypeMapping TypeName="TAE2Model.TIPO_EMPRESA"><MappingFragment StoreEntitySet="TIPO_EMPRESA">
-            <ScalarProperty Name="UNID_TIPO_EMPRESA" ColumnName="UNID_TIPO_EMPRESA" />
-            <ScalarProperty Name="TIPO_EMPRESA_NAME" ColumnName="TIPO_EMPRESA_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TIPO_PEDIMENTO"><EntityTypeMapping TypeName="TAE2Model.TIPO_PEDIMENTO"><MappingFragment StoreEntitySet="TIPO_PEDIMENTO">
-            <ScalarProperty Name="UNID_TIPO_PEDIMENTO" ColumnName="UNID_TIPO_PEDIMENTO" />
-            <ScalarProperty Name="TIPO_PEDIMENTO_NAME" ColumnName="TIPO_PEDIMENTO_NAME" />
-            <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
-            <ScalarProperty Name="REGIMEN" ColumnName="REGIMEN" />
-            <ScalarProperty Name="NOTA" ColumnName="NOTA" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TRANSPORTEs"><EntityTypeMapping TypeName="TAE2Model.TRANSPORTE"><MappingFragment StoreEntitySet="TRANSPORTE">
-            <ScalarProperty Name="UNID_TRANSPORTE" ColumnName="UNID_TRANSPORTE" />
-            <ScalarProperty Name="TRANSPORTE_NAME" ColumnName="TRANSPORTE_NAME" />
-            <ScalarProperty Name="UNID_TIPO_EMPRESA" ColumnName="UNID_TIPO_EMPRESA" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="UPLOAD_LOG"><EntityTypeMapping TypeName="TAE2Model.UPLOAD_LOG"><MappingFragment StoreEntitySet="UPLOAD_LOG">
-            <ScalarProperty Name="UNID_UPLOAD_LOG" ColumnName="UNID_UPLOAD_LOG" />
-            <ScalarProperty Name="MSG" ColumnName="MSG" />
-            <ScalarProperty Name="IP_DIR" ColumnName="IP_DIR" />
-            <ScalarProperty Name="PC_NAME" ColumnName="PC_NAME" />
-            <ScalarProperty Name="UNID_USUARIO" ColumnName="UNID_USUARIO" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ALMACENs"><EntityTypeMapping TypeName="TAE2Model.ALMACEN"><MappingFragment StoreEntitySet="ALMACEN">
-            <ScalarProperty Name="UNID_ALMACEN" ColumnName="UNID_ALMACEN" />
-            <ScalarProperty Name="ALMACEN_NAME" ColumnName="ALMACEN_NAME" />
-            <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
-            <ScalarProperty Name="MAIL" ColumnName="MAIL" />
-            <ScalarProperty Name="MAIL_DEFAULT" ColumnName="MAIL_DEFAULT" />
-            <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ALMACEN_TECNICO"><EntityTypeMapping TypeName="TAE2Model.ALMACEN_TECNICO"><MappingFragment StoreEntitySet="ALMACEN_TECNICO">
-            <ScalarProperty Name="UNID_ALMACEN" ColumnName="UNID_ALMACEN" />
-            <ScalarProperty Name="UNID_TECNICO" ColumnName="UNID_TECNICO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="CLIENTEs"><EntityTypeMapping TypeName="TAE2Model.CLIENTE"><MappingFragment StoreEntitySet="CLIENTE">
-            <ScalarProperty Name="UNID_CLIENTE" ColumnName="UNID_CLIENTE" />
-            <ScalarProperty Name="CLIENTE1" ColumnName="CLIENTE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ITEM_STATUS"><EntityTypeMapping TypeName="TAE2Model.ITEM_STATUS"><MappingFragment StoreEntitySet="ITEM_STATUS">
-            <ScalarProperty Name="UNID_ITEM_STATUS" ColumnName="UNID_ITEM_STATUS" />
-            <ScalarProperty Name="ITEM_STATUS_NAME" ColumnName="ITEM_STATUS_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PROPIEDADs"><EntityTypeMapping TypeName="TAE2Model.PROPIEDAD"><MappingFragment StoreEntitySet="PROPIEDAD">
-            <ScalarProperty Name="UNID_PROPIEDAD" ColumnName="UNID_PROPIEDAD" />
-            <ScalarProperty Name="PROPIEDAD1" ColumnName="PROPIEDAD" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SERVICIOs"><EntityTypeMapping TypeName="TAE2Model.SERVICIO"><MappingFragment StoreEntitySet="SERVICIO">
-            <ScalarProperty Name="UNID_SERVICIO" ColumnName="UNID_SERVICIO" />
-            <ScalarProperty Name="SERVICIO_NAME" ColumnName="SERVICIO_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SOLICITANTE1"><EntityTypeMapping TypeName="TAE2Model.SOLICITANTE1"><MappingFragment StoreEntitySet="SOLICITANTE1">
-            <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
-            <ScalarProperty Name="AREA" ColumnName="AREA" />
-            <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TECNICOes"><EntityTypeMapping TypeName="TAE2Model.TECNICO"><MappingFragment StoreEntitySet="TECNICO">
-            <ScalarProperty Name="UNID_TECNICO" ColumnName="UNID_TECNICO" />
-            <ScalarProperty Name="TECNICO_NAME" ColumnName="TECNICO_NAME" />
-            <ScalarProperty Name="MAIL" ColumnName="MAIL" />
-            <ScalarProperty Name="UNID_CIUDAD" ColumnName="UNID_CIUDAD" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TIPO_MOVIMIENTO"><EntityTypeMapping TypeName="TAE2Model.TIPO_MOVIMIENTO"><MappingFragment StoreEntitySet="TIPO_MOVIMIENTO">
-            <ScalarProperty Name="UNID_TIPO_MOVIMIENTO" ColumnName="UNID_TIPO_MOVIMIENTO" />
-            <ScalarProperty Name="TIPO_MOVIMIENTO_NAME" ColumnName="TIPO_MOVIMIENTO_NAME" />
-            <ScalarProperty Name="SIGNO_MOVIMIENTO" ColumnName="SIGNO_MOVIMIENTO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="UNIDADs"><EntityTypeMapping TypeName="TAE2Model.UNIDAD"><MappingFragment StoreEntitySet="UNIDAD">
-            <ScalarProperty Name="UNID_UNIDAD" ColumnName="UNID_UNIDAD" />
-            <ScalarProperty Name="UNIDAD1" ColumnName="UNIDAD" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="COTIZACIONs"><EntityTypeMapping TypeName="TAE2Model.COTIZACION"><MappingFragment StoreEntitySet="COTIZACION">
-            <ScalarProperty Name="UNID_COTIZACION" ColumnName="UNID_COTIZACION" />
-            <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
-            <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
-            <ScalarProperty Name="ID_STATUS" ColumnName="ID_STATUS" />
-            <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
-            <ScalarProperty Name="ID_TIPO_COTIZACION" ColumnName="ID_TIPO_COTIZACION" />
-            <ScalarProperty Name="ID_PROYECTO" ColumnName="ID_PROYECTO" />
-            <ScalarProperty Name="FECHA_SOLICITUD" ColumnName="FECHA_SOLICITUD" />
-            <ScalarProperty Name="FECHA_REQUERIMENTO" ColumnName="FECHA_REQUERIMENTO" />
-            <ScalarProperty Name="FECHA_COTIZACION" ColumnName="FECHA_COTIZACION" />
-            <ScalarProperty Name="OBSERVACIONES_COMPRAS" ColumnName="OBSERVACIONES_COMPRAS" />
-            <ScalarProperty Name="DIAS_VIGENCIA" ColumnName="DIAS_VIGENCIA" />
-            <ScalarProperty Name="MOTIVO_CANCELACION" ColumnName="MOTIVO_CANCELACION" />
-            <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="CIUDADs"><EntityTypeMapping TypeName="TAE2Model.CIUDAD"><MappingFragment StoreEntitySet="CIUDAD">
-            <ScalarProperty Name="UNID_CIUDAD" ColumnName="UNID_CIUDAD" />
-            <ScalarProperty Name="CIUDAD1" ColumnName="CIUDAD" />
-            <ScalarProperty Name="ISO" ColumnName="ISO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PAIS"><EntityTypeMapping TypeName="TAE2Model.PAI"><MappingFragment StoreEntitySet="PAIS">
-            <ScalarProperty Name="UNID_PAIS" ColumnName="UNID_PAIS" />
-            <ScalarProperty Name="PAIS" ColumnName="PAIS" />
-            <ScalarProperty Name="ISO" ColumnName="ISO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="FACTURA_VENTA"><EntityTypeMapping TypeName="TAE2Model.FACTURA_VENTA"><MappingFragment StoreEntitySet="FACTURA_VENTA">
-            <ScalarProperty Name="UNID_FACTURA_VENTA" ColumnName="UNID_FACTURA_VENTA" />
-            <ScalarProperty Name="FOLIO" ColumnName="FOLIO" />
-            <ScalarProperty Name="TOTAL_DESC_FACTURA" ColumnName="TOTAL_DESC_FACTURA" />
-            <ScalarProperty Name="TOTAL_FACTURA" ColumnName="TOTAL_FACTURA" />
-            <ScalarProperty Name="POR_IVA" ColumnName="POR_IVA" />
-            <ScalarProperty Name="IVA_PESOS" ColumnName="IVA_PESOS" />
-            <ScalarProperty Name="IMPORTE_FACTURA" ColumnName="IMPORTE_FACTURA" />
-            <ScalarProperty Name="UNID_MONEDA" ColumnName="UNID_MONEDA" />
-            <ScalarProperty Name="TIPO_CAMBIO" ColumnName="TIPO_CAMBIO" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ITEMs"><EntityTypeMapping TypeName="TAE2Model.ITEM"><MappingFragment StoreEntitySet="ITEM">
-            <ScalarProperty Name="UNID_ITEM" ColumnName="UNID_ITEM" />
-            <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
-            <ScalarProperty Name="SKU" ColumnName="SKU" />
-            <ScalarProperty Name="NUMERO_SERIE" ColumnName="NUMERO_SERIE" />
-            <ScalarProperty Name="UNID_ITEM_STATUS" ColumnName="UNID_ITEM_STATUS" />
-            <ScalarProperty Name="COSTO_UNITARIO" ColumnName="COSTO_UNITARIO" />
-            <ScalarProperty Name="UNID_FACTURA_DETALE" ColumnName="UNID_FACTURA_DETALE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
-            <ScalarProperty Name="STATUS" ColumnName="STATUS" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MOVIMENTOes"><EntityTypeMapping TypeName="TAE2Model.MOVIMENTO"><MappingFragment StoreEntitySet="MOVIMENTO">
-            <ScalarProperty Name="UNID_MOVIMIENTO" ColumnName="UNID_MOVIMIENTO" />
-            <ScalarProperty Name="FECHA_MOVIMIENTO" ColumnName="FECHA_MOVIMIENTO" />
-            <ScalarProperty Name="UNID_TIPO_MOVIMIENTO" ColumnName="UNID_TIPO_MOVIMIENTO" />
-            <ScalarProperty Name="UNID_ALMACEN_DESTINO" ColumnName="UNID_ALMACEN_DESTINO" />
-            <ScalarProperty Name="UNID_PROVEEDOR_DESTINO" ColumnName="UNID_PROVEEDOR_DESTINO" />
-            <ScalarProperty Name="UNID_CLIENTE_DESTINO" ColumnName="UNID_CLIENTE_DESTINO" />
-            <ScalarProperty Name="UNID_ALMACEN_PROCEDENCIA" ColumnName="UNID_ALMACEN_PROCEDENCIA" />
-            <ScalarProperty Name="UNID_CLIENTE_PROCEDENCIA" ColumnName="UNID_CLIENTE_PROCEDENCIA" />
-            <ScalarProperty Name="UNID_PROVEEDOR_PROCEDENCIA" ColumnName="UNID_PROVEEDOR_PROCEDENCIA" />
-            <ScalarProperty Name="UNID_SERVICIO" ColumnName="UNID_SERVICIO" />
-            <ScalarProperty Name="TT" ColumnName="TT" />
-            <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
-            <ScalarProperty Name="UNID_TRANSPORTE" ColumnName="UNID_TRANSPORTE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="DIRECCION_ENVIO" ColumnName="DIRECCION_ENVIO" />
-            <ScalarProperty Name="SITIO_ENLACE" ColumnName="SITIO_ENLACE" />
-            <ScalarProperty Name="NOMBRE_SITIO" ColumnName="NOMBRE_SITIO" />
-            <ScalarProperty Name="RECIBE" ColumnName="RECIBE" />
-            <ScalarProperty Name="GUIA" ColumnName="GUIA" />
-            <ScalarProperty Name="UNID_CLIENTE" ColumnName="UNID_CLIENTE" />
-            <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
-            <ScalarProperty Name="UNID_FACTURA_VENTA" ColumnName="UNID_FACTURA_VENTA" />
-            <ScalarProperty Name="PEDIMIENTO_IMPO" ColumnName="PEDIMIENTO_IMPO" />
-            <ScalarProperty Name="PEDIMIENTO_EXPO" ColumnName="PEDIMIENTO_EXPO" />
-            <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
-            <ScalarProperty Name="UNID_TECNICO" ColumnName="UNID_TECNICO" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="UNID_INFRAESTRUCTURA" ColumnName="UNID_INFRAESTRUCTURA" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MOVIMIENTO_DETALLE"><EntityTypeMapping TypeName="TAE2Model.MOVIMIENTO_DETALLE"><MappingFragment StoreEntitySet="MOVIMIENTO_DETALLE">
-            <ScalarProperty Name="UNID_MOVIMIENTO_DETALLE" ColumnName="UNID_MOVIMIENTO_DETALLE" />
-            <ScalarProperty Name="UNID_ITEM" ColumnName="UNID_ITEM" />
-            <ScalarProperty Name="UNID_MOVIMIENTO" ColumnName="UNID_MOVIMIENTO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="RECIBOes"><EntityTypeMapping TypeName="TAE2Model.RECIBO"><MappingFragment StoreEntitySet="RECIBO">
-            <ScalarProperty Name="UNID_RECIBO" ColumnName="UNID_RECIBO" />
-            <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-            <ScalarProperty Name="FECHA_CIERRE" ColumnName="FECHA_CIERRE" />
-            <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
-            <ScalarProperty Name="PO" ColumnName="PO" />
-            <ScalarProperty Name="TT" ColumnName="TT" />
-            <ScalarProperty Name="PEDIMIENTO_IMPO" ColumnName="PEDIMIENTO_IMPO" />
-            <ScalarProperty Name="PEDIMENTO_EXPO" ColumnName="PEDIMENTO_EXPO" />
-            <ScalarProperty Name="UNID_RECIBO_STATUS" ColumnName="UNID_RECIBO_STATUS" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="RECIBO_MOVIMIENTO"><EntityTypeMapping TypeName="TAE2Model.RECIBO_MOVIMIENTO"><MappingFragment StoreEntitySet="RECIBO_MOVIMIENTO">
-            <ScalarProperty Name="UNID_RECIBO" ColumnName="UNID_RECIBO" />
-            <ScalarProperty Name="UNID_RECIBO_MOVIMIENTO" ColumnName="UNID_RECIBO_MOVIMIENTO" />
-            <ScalarProperty Name="UNID_MOVIMIENTO" ColumnName="UNID_MOVIMIENTO" />
-            <ScalarProperty Name="UNID_FACTURA" ColumnName="UNID_FACTURA" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="RECIBO_STATUS"><EntityTypeMapping TypeName="TAE2Model.RECIBO_STATUS"><MappingFragment StoreEntitySet="RECIBO_STATUS">
-            <ScalarProperty Name="UNID_RECIBO_STATUS" ColumnName="UNID_RECIBO_STATUS" />
-            <ScalarProperty Name="RECIBO_STATUS_NAME" ColumnName="RECIBO_STATUS_NAME" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ULTIMO_MOVIMIENTO"><EntityTypeMapping TypeName="TAE2Model.ULTIMO_MOVIMIENTO"><MappingFragment StoreEntitySet="ULTIMO_MOVIMIENTO">
-            <ScalarProperty Name="UNID_ITEM" ColumnName="UNID_ITEM" />
-            <ScalarProperty Name="UNID_ALMACEN" ColumnName="UNID_ALMACEN" />
-            <ScalarProperty Name="UNID_CLIENTE" ColumnName="UNID_CLIENTE" />
-            <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
-            <ScalarProperty Name="UNID_MOVIMIENTO_DETALLE" ColumnName="UNID_MOVIMIENTO_DETALLE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="UNID_INFRAESTRUCTURA" ColumnName="UNID_INFRAESTRUCTURA" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="FACTURAs"><EntityTypeMapping TypeName="TAE2Model.FACTURA"><MappingFragment StoreEntitySet="FACTURA">
-            <ScalarProperty Name="UNID_FACTURA" ColumnName="UNID_FACTURA" />
-            <ScalarProperty Name="UNID_LOTE" ColumnName="UNID_LOTE" />
-            <ScalarProperty Name="FACTURA_NUMERO" ColumnName="FACTURA_NUMERO" />
-            <ScalarProperty Name="FECHA_FACTURA" ColumnName="FECHA_FACTURA" />
-            <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
-            <ScalarProperty Name="UNID_MONEDA" ColumnName="UNID_MONEDA" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="NUMERO_PEDIMENTO" ColumnName="NUMERO_PEDIMENTO" />
-            <ScalarProperty Name="IVA_POR" ColumnName="IVA_POR" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="FACTURA_DETALLE"><EntityTypeMapping TypeName="TAE2Model.FACTURA_DETALLE"><MappingFragment StoreEntitySet="FACTURA_DETALLE">
-            <ScalarProperty Name="UNID_FACTURA_DETALE" ColumnName="UNID_FACTURA_DETALE" />
-            <ScalarProperty Name="UNID_FACTURA" ColumnName="UNID_FACTURA" />
-            <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
-            <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
-            <ScalarProperty Name="PRECIO_UNITARIO" ColumnName="PRECIO_UNITARIO" />
-            <ScalarProperty Name="IMPUESTO_UNITARIO" ColumnName="IMPUESTO_UNITARIO" />
-            <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
-            <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-            <ScalarProperty Name="UNID_UNIDAD" ColumnName="UNID_UNIDAD" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="UNID_PEDIMENTO" ColumnName="UNID_PEDIMENTO" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="LOTEs"><EntityTypeMapping TypeName="TAE2Model.LOTE"><MappingFragment StoreEntitySet="LOTE">
-            <ScalarProperty Name="UNID_LOTE" ColumnName="UNID_LOTE" />
-            <ScalarProperty Name="UNID_POM" ColumnName="UNID_POM" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PEDIMENTOes"><EntityTypeMapping TypeName="TAE2Model.PEDIMENTO"><MappingFragment StoreEntitySet="PEDIMENTO">
-            <ScalarProperty Name="UNID_PEDIMENTO" ColumnName="UNID_PEDIMENTO" />
-            <ScalarProperty Name="UNID_LOTE" ColumnName="UNID_LOTE" />
-            <ScalarProperty Name="UNID_TIPO_PEDIMENTO" ColumnName="UNID_TIPO_PEDIMENTO" />
-            <ScalarProperty Name="PEDIMENTO_NUMERO" ColumnName="PEDIMENTO_NUMERO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="POMs"><EntityTypeMapping TypeName="TAE2Model.POM"><MappingFragment StoreEntitySet="POM">
-            <ScalarProperty Name="UNID_POM" ColumnName="UNID_POM" />
-            <ScalarProperty Name="FECHA_POM" ColumnName="FECHA_POM" />
-            <ScalarProperty Name="UNID_COTIZACION" ColumnName="UNID_COTIZACION" />
-            <ScalarProperty Name="DIAS_ENTREGA" ColumnName="DIAS_ENTREGA" />
-            <ScalarProperty Name="FECHA_ENTREGA" ColumnName="FECHA_ENTREGA" />
-            <ScalarProperty Name="FECHA_ENTREGA_REAL" ColumnName="FECHA_ENTREGA_REAL" />
-            <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="POM_ARTICULO"><EntityTypeMapping TypeName="TAE2Model.POM_ARTICULO"><MappingFragment StoreEntitySet="POM_ARTICULO">
-            <ScalarProperty Name="UNID_POM" ColumnName="UNID_POM" />
-            <ScalarProperty Name="UNID_POM_ARTICULO" ColumnName="UNID_POM_ARTICULO" />
-            <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
-            <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
-            <ScalarProperty Name="COSTO_UNITARIO" ColumnName="COSTO_UNITARIO" />
-            <ScalarProperty Name="IVA" ColumnName="IVA" />
-            <ScalarProperty Name="TC" ColumnName="TC" />
-            <ScalarProperty Name="DESCUENTO" ColumnName="DESCUENTO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="MENUs">
+            <EntityTypeMapping TypeName="TAE2Model.MENU">
+              <MappingFragment StoreEntitySet="MENU">
+                <ScalarProperty Name="UNID_MENU" ColumnName="UNID_MENU" />
+                <ScalarProperty Name="UNID_MENU_PARENT" ColumnName="UNID_MENU_PARENT" />
+                <ScalarProperty Name="MENU_NAME" ColumnName="MENU_NAME" />
+                <ScalarProperty Name="IS_LEAF" ColumnName="IS_LEAF" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLs">
+            <EntityTypeMapping TypeName="TAE2Model.ROL">
+              <MappingFragment StoreEntitySet="ROL">
+                <ScalarProperty Name="UNID_ROL" ColumnName="UNID_ROL" />
+                <ScalarProperty Name="ROL_NAME" ColumnName="ROL_NAME" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROL_MENU">
+            <EntityTypeMapping TypeName="TAE2Model.ROL_MENU">
+              <MappingFragment StoreEntitySet="ROL_MENU">
+                <ScalarProperty Name="UNID_ROL" ColumnName="UNID_ROL" />
+                <ScalarProperty Name="UNID_MENU" ColumnName="UNID_MENU" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOs">
+            <EntityTypeMapping TypeName="TAE2Model.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="UNID_USUARIO" ColumnName="UNID_USUARIO" />
+                <ScalarProperty Name="USUARIO_MAIL" ColumnName="USUARIO_MAIL" />
+                <ScalarProperty Name="USUARIO_PWD" ColumnName="USUARIO_PWD" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO_ROL">
+            <EntityTypeMapping TypeName="TAE2Model.USUARIO_ROL">
+              <MappingFragment StoreEntitySet="USUARIO_ROL">
+                <ScalarProperty Name="UNID_ROL" ColumnName="UNID_ROL" />
+                <ScalarProperty Name="UNID_USUARIO" ColumnName="UNID_USUARIO" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ARTICULOes">
+            <EntityTypeMapping TypeName="TAE2Model.ARTICULO">
+              <MappingFragment StoreEntitySet="ARTICULO">
+                <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
+                <ScalarProperty Name="ARTICULO1" ColumnName="ARTICULO" />
+                <ScalarProperty Name="UNID_CATEGORIA" ColumnName="UNID_CATEGORIA" />
+                <ScalarProperty Name="UNID_EQUIPO" ColumnName="UNID_EQUIPO" />
+                <ScalarProperty Name="UNID_MARCA" ColumnName="UNID_MARCA" />
+                <ScalarProperty Name="UNID_MODELO" ColumnName="UNID_MODELO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORIAs">
+            <EntityTypeMapping TypeName="TAE2Model.CATEGORIA">
+              <MappingFragment StoreEntitySet="CATEGORIA">
+                <ScalarProperty Name="UNID_CATEGORIA" ColumnName="UNID_CATEGORIA" />
+                <ScalarProperty Name="CATEGORIA_NAME" ColumnName="CATEGORIA_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EQUIPOes">
+            <EntityTypeMapping TypeName="TAE2Model.EQUIPO">
+              <MappingFragment StoreEntitySet="EQUIPO">
+                <ScalarProperty Name="UNID_EQUIPO" ColumnName="UNID_EQUIPO" />
+                <ScalarProperty Name="EQUIPO_NAME" ColumnName="EQUIPO_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MARCAs">
+            <EntityTypeMapping TypeName="TAE2Model.MARCA">
+              <MappingFragment StoreEntitySet="MARCA">
+                <ScalarProperty Name="UNID_MARCA" ColumnName="UNID_MARCA" />
+                <ScalarProperty Name="MARCA_NAME" ColumnName="MARCA_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MODELOes">
+            <EntityTypeMapping TypeName="TAE2Model.MODELO">
+              <MappingFragment StoreEntitySet="MODELO">
+                <ScalarProperty Name="UNID_MODELO" ColumnName="UNID_MODELO" />
+                <ScalarProperty Name="MODELO_NAME" ColumnName="MODELO_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BANCOes">
+            <EntityTypeMapping TypeName="TAE2Model.BANCO">
+              <MappingFragment StoreEntitySet="BANCO">
+                <ScalarProperty Name="UNID_BANCO" ColumnName="UNID_BANCO" />
+                <ScalarProperty Name="BANCO_NAME" ColumnName="BANCO_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTAMENTOes">
+            <EntityTypeMapping TypeName="TAE2Model.DEPARTAMENTO">
+              <MappingFragment StoreEntitySet="DEPARTAMENTO">
+                <ScalarProperty Name="UNID_DEPARTAMENTO" ColumnName="UNID_DEPARTAMENTO" />
+                <ScalarProperty Name="DEPARTAMENTO_NAME" ColumnName="DEPARTAMENTO_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPRESAs">
+            <EntityTypeMapping TypeName="TAE2Model.EMPRESA">
+              <MappingFragment StoreEntitySet="EMPRESA">
+                <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
+                <ScalarProperty Name="EMPRESA_NAME" ColumnName="EMPRESA_NAME" />
+                <ScalarProperty Name="RAZON_SOCIAL" ColumnName="RAZON_SOCIAL" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INFRAESTRUCTURAs">
+            <EntityTypeMapping TypeName="TAE2Model.INFRAESTRUCTURA">
+              <MappingFragment StoreEntitySet="INFRAESTRUCTURA">
+                <ScalarProperty Name="UNID_INFRAESTRUCTURA" ColumnName="UNID_INFRAESTRUCTURA" />
+                <ScalarProperty Name="INFRAESTRUCTURA_NAME" ColumnName="INFRAESTRUCTURA_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEDIO_ENVIO">
+            <EntityTypeMapping TypeName="TAE2Model.MEDIO_ENVIO">
+              <MappingFragment StoreEntitySet="MEDIO_ENVIO">
+                <ScalarProperty Name="UNID_MEDIO_ENVIO" ColumnName="UNID_MEDIO_ENVIO" />
+                <ScalarProperty Name="MEDIO_ENVIO_NAME" ColumnName="MEDIO_ENVIO_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MONEDAs">
+            <EntityTypeMapping TypeName="TAE2Model.MONEDA">
+              <MappingFragment StoreEntitySet="MONEDA">
+                <ScalarProperty Name="UNID_MONEDA" ColumnName="UNID_MONEDA" />
+                <ScalarProperty Name="MONEDA_NAME" ColumnName="MONEDA_NAME" />
+                <ScalarProperty Name="MONEDA_ABR" ColumnName="MONEDA_ABR" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVEEDORs">
+            <EntityTypeMapping TypeName="TAE2Model.PROVEEDOR">
+              <MappingFragment StoreEntitySet="PROVEEDOR">
+                <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
+                <ScalarProperty Name="PROVEEDOR_NAME" ColumnName="PROVEEDOR_NAME" />
+                <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
+                <ScalarProperty Name="TEL1" ColumnName="TEL1" />
+                <ScalarProperty Name="TEL2" ColumnName="TEL2" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="CALLE" ColumnName="CALLE" />
+                <ScalarProperty Name="UNID_PAIS" ColumnName="UNID_PAIS" />
+                <ScalarProperty Name="UNID_CIUDAD" ColumnName="UNID_CIUDAD" />
+                <ScalarProperty Name="CODIGO_POSTAL" ColumnName="CODIGO_POSTAL" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVEEDOR_CATEGORIA">
+            <EntityTypeMapping TypeName="TAE2Model.PROVEEDOR_CATEGORIA">
+              <MappingFragment StoreEntitySet="PROVEEDOR_CATEGORIA">
+                <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
+                <ScalarProperty Name="UNID_CATEGORIA" ColumnName="UNID_CATEGORIA" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVEEDOR_CUENTA">
+            <EntityTypeMapping TypeName="TAE2Model.PROVEEDOR_CUENTA">
+              <MappingFragment StoreEntitySet="PROVEEDOR_CUENTA">
+                <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
+                <ScalarProperty Name="UNID_PROVEEDOR_CUENTA" ColumnName="UNID_PROVEEDOR_CUENTA" />
+                <ScalarProperty Name="UNID_BANCO" ColumnName="UNID_BANCO" />
+                <ScalarProperty Name="NUMERO_CUENTA" ColumnName="NUMERO_CUENTA" />
+                <ScalarProperty Name="CLABE" ColumnName="CLABE" />
+                <ScalarProperty Name="BENEFICIARIO" ColumnName="BENEFICIARIO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROYECTOes">
+            <EntityTypeMapping TypeName="TAE2Model.PROYECTO">
+              <MappingFragment StoreEntitySet="PROYECTO">
+                <ScalarProperty Name="UNID_PROYECTO" ColumnName="UNID_PROYECTO" />
+                <ScalarProperty Name="PROYECTO_NAME" ColumnName="PROYECTO_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVER_LASTDATA">
+            <EntityTypeMapping TypeName="TAE2Model.SERVER_LASTDATA">
+              <MappingFragment StoreEntitySet="SERVER_LASTDATA">
+                <ScalarProperty Name="UNID_SERVER_LASTDATA" ColumnName="UNID_SERVER_LASTDATA" />
+                <ScalarProperty Name="ACTUAL_DATE" ColumnName="ACTUAL_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOLICITANTEs">
+            <EntityTypeMapping TypeName="TAE2Model.SOLICITANTE">
+              <MappingFragment StoreEntitySet="SOLICITANTE">
+                <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
+                <ScalarProperty Name="SOLICITANTE_NAME" ColumnName="SOLICITANTE_NAME" />
+                <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
+                <ScalarProperty Name="UNID_DEPARTAMENTO" ColumnName="UNID_DEPARTAMENTO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="VALIDADOR" ColumnName="VALIDADOR" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYNCs">
+            <EntityTypeMapping TypeName="TAE2Model.SYNC">
+              <MappingFragment StoreEntitySet="SYNC">
+                <ScalarProperty Name="UNID_SYNC" ColumnName="UNID_SYNC" />
+                <ScalarProperty Name="ACTUAL_DATE" ColumnName="ACTUAL_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TERMINO_ENVIO">
+            <EntityTypeMapping TypeName="TAE2Model.TERMINO_ENVIO">
+              <MappingFragment StoreEntitySet="TERMINO_ENVIO">
+                <ScalarProperty Name="UNID_TERMINO_ENVIO" ColumnName="UNID_TERMINO_ENVIO" />
+                <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
+                <ScalarProperty Name="TERMINO" ColumnName="TERMINO" />
+                <ScalarProperty Name="SIGNIFICADO" ColumnName="SIGNIFICADO" />
+                <ScalarProperty Name="GENERA_LOTES" ColumnName="GENERA_LOTES" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_COTIZACION">
+            <EntityTypeMapping TypeName="TAE2Model.TIPO_COTIZACION">
+              <MappingFragment StoreEntitySet="TIPO_COTIZACION">
+                <ScalarProperty Name="UNID_TIPO_COTIZACION" ColumnName="UNID_TIPO_COTIZACION" />
+                <ScalarProperty Name="TIPO_COTIZACION_NAME" ColumnName="TIPO_COTIZACION_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_EMPRESA">
+            <EntityTypeMapping TypeName="TAE2Model.TIPO_EMPRESA">
+              <MappingFragment StoreEntitySet="TIPO_EMPRESA">
+                <ScalarProperty Name="UNID_TIPO_EMPRESA" ColumnName="UNID_TIPO_EMPRESA" />
+                <ScalarProperty Name="TIPO_EMPRESA_NAME" ColumnName="TIPO_EMPRESA_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_PEDIMENTO">
+            <EntityTypeMapping TypeName="TAE2Model.TIPO_PEDIMENTO">
+              <MappingFragment StoreEntitySet="TIPO_PEDIMENTO">
+                <ScalarProperty Name="UNID_TIPO_PEDIMENTO" ColumnName="UNID_TIPO_PEDIMENTO" />
+                <ScalarProperty Name="TIPO_PEDIMENTO_NAME" ColumnName="TIPO_PEDIMENTO_NAME" />
+                <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
+                <ScalarProperty Name="REGIMEN" ColumnName="REGIMEN" />
+                <ScalarProperty Name="NOTA" ColumnName="NOTA" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANSPORTEs">
+            <EntityTypeMapping TypeName="TAE2Model.TRANSPORTE">
+              <MappingFragment StoreEntitySet="TRANSPORTE">
+                <ScalarProperty Name="UNID_TRANSPORTE" ColumnName="UNID_TRANSPORTE" />
+                <ScalarProperty Name="TRANSPORTE_NAME" ColumnName="TRANSPORTE_NAME" />
+                <ScalarProperty Name="UNID_TIPO_EMPRESA" ColumnName="UNID_TIPO_EMPRESA" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UPLOAD_LOG">
+            <EntityTypeMapping TypeName="TAE2Model.UPLOAD_LOG">
+              <MappingFragment StoreEntitySet="UPLOAD_LOG">
+                <ScalarProperty Name="UNID_UPLOAD_LOG" ColumnName="UNID_UPLOAD_LOG" />
+                <ScalarProperty Name="MSG" ColumnName="MSG" />
+                <ScalarProperty Name="IP_DIR" ColumnName="IP_DIR" />
+                <ScalarProperty Name="PC_NAME" ColumnName="PC_NAME" />
+                <ScalarProperty Name="UNID_USUARIO" ColumnName="UNID_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ALMACENs">
+            <EntityTypeMapping TypeName="TAE2Model.ALMACEN">
+              <MappingFragment StoreEntitySet="ALMACEN">
+                <ScalarProperty Name="UNID_ALMACEN" ColumnName="UNID_ALMACEN" />
+                <ScalarProperty Name="ALMACEN_NAME" ColumnName="ALMACEN_NAME" />
+                <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="MAIL_DEFAULT" ColumnName="MAIL_DEFAULT" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ALMACEN_TECNICO">
+            <EntityTypeMapping TypeName="TAE2Model.ALMACEN_TECNICO">
+              <MappingFragment StoreEntitySet="ALMACEN_TECNICO">
+                <ScalarProperty Name="UNID_ALMACEN" ColumnName="UNID_ALMACEN" />
+                <ScalarProperty Name="UNID_TECNICO" ColumnName="UNID_TECNICO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTEs">
+            <EntityTypeMapping TypeName="TAE2Model.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="UNID_CLIENTE" ColumnName="UNID_CLIENTE" />
+                <ScalarProperty Name="CLIENTE1" ColumnName="CLIENTE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ITEM_STATUS">
+            <EntityTypeMapping TypeName="TAE2Model.ITEM_STATUS">
+              <MappingFragment StoreEntitySet="ITEM_STATUS">
+                <ScalarProperty Name="UNID_ITEM_STATUS" ColumnName="UNID_ITEM_STATUS" />
+                <ScalarProperty Name="ITEM_STATUS_NAME" ColumnName="ITEM_STATUS_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROPIEDADs">
+            <EntityTypeMapping TypeName="TAE2Model.PROPIEDAD">
+              <MappingFragment StoreEntitySet="PROPIEDAD">
+                <ScalarProperty Name="UNID_PROPIEDAD" ColumnName="UNID_PROPIEDAD" />
+                <ScalarProperty Name="PROPIEDAD1" ColumnName="PROPIEDAD" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICIOs">
+            <EntityTypeMapping TypeName="TAE2Model.SERVICIO">
+              <MappingFragment StoreEntitySet="SERVICIO">
+                <ScalarProperty Name="UNID_SERVICIO" ColumnName="UNID_SERVICIO" />
+                <ScalarProperty Name="SERVICIO_NAME" ColumnName="SERVICIO_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOLICITANTE1">
+            <EntityTypeMapping TypeName="TAE2Model.SOLICITANTE1">
+              <MappingFragment StoreEntitySet="SOLICITANTE1">
+                <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
+                <ScalarProperty Name="AREA" ColumnName="AREA" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TECNICOes">
+            <EntityTypeMapping TypeName="TAE2Model.TECNICO">
+              <MappingFragment StoreEntitySet="TECNICO">
+                <ScalarProperty Name="UNID_TECNICO" ColumnName="UNID_TECNICO" />
+                <ScalarProperty Name="TECNICO_NAME" ColumnName="TECNICO_NAME" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="UNID_CIUDAD" ColumnName="UNID_CIUDAD" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_MOVIMIENTO">
+            <EntityTypeMapping TypeName="TAE2Model.TIPO_MOVIMIENTO">
+              <MappingFragment StoreEntitySet="TIPO_MOVIMIENTO">
+                <ScalarProperty Name="UNID_TIPO_MOVIMIENTO" ColumnName="UNID_TIPO_MOVIMIENTO" />
+                <ScalarProperty Name="TIPO_MOVIMIENTO_NAME" ColumnName="TIPO_MOVIMIENTO_NAME" />
+                <ScalarProperty Name="SIGNO_MOVIMIENTO" ColumnName="SIGNO_MOVIMIENTO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UNIDADs">
+            <EntityTypeMapping TypeName="TAE2Model.UNIDAD">
+              <MappingFragment StoreEntitySet="UNIDAD">
+                <ScalarProperty Name="UNID_UNIDAD" ColumnName="UNID_UNIDAD" />
+                <ScalarProperty Name="UNIDAD1" ColumnName="UNIDAD" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COTIZACIONs">
+            <EntityTypeMapping TypeName="TAE2Model.COTIZACION">
+              <MappingFragment StoreEntitySet="COTIZACION">
+                <ScalarProperty Name="UNID_COTIZACION" ColumnName="UNID_COTIZACION" />
+                <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+                <ScalarProperty Name="ID_STATUS" ColumnName="ID_STATUS" />
+                <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
+                <ScalarProperty Name="ID_TIPO_COTIZACION" ColumnName="ID_TIPO_COTIZACION" />
+                <ScalarProperty Name="ID_PROYECTO" ColumnName="ID_PROYECTO" />
+                <ScalarProperty Name="FECHA_SOLICITUD" ColumnName="FECHA_SOLICITUD" />
+                <ScalarProperty Name="FECHA_REQUERIMENTO" ColumnName="FECHA_REQUERIMENTO" />
+                <ScalarProperty Name="FECHA_COTIZACION" ColumnName="FECHA_COTIZACION" />
+                <ScalarProperty Name="OBSERVACIONES_COMPRAS" ColumnName="OBSERVACIONES_COMPRAS" />
+                <ScalarProperty Name="DIAS_VIGENCIA" ColumnName="DIAS_VIGENCIA" />
+                <ScalarProperty Name="MOTIVO_CANCELACION" ColumnName="MOTIVO_CANCELACION" />
+                <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CIUDADs">
+            <EntityTypeMapping TypeName="TAE2Model.CIUDAD">
+              <MappingFragment StoreEntitySet="CIUDAD">
+                <ScalarProperty Name="UNID_CIUDAD" ColumnName="UNID_CIUDAD" />
+                <ScalarProperty Name="CIUDAD1" ColumnName="CIUDAD" />
+                <ScalarProperty Name="ISO" ColumnName="ISO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAIS">
+            <EntityTypeMapping TypeName="TAE2Model.PAI">
+              <MappingFragment StoreEntitySet="PAIS">
+                <ScalarProperty Name="UNID_PAIS" ColumnName="UNID_PAIS" />
+                <ScalarProperty Name="PAIS" ColumnName="PAIS" />
+                <ScalarProperty Name="ISO" ColumnName="ISO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURA_VENTA">
+            <EntityTypeMapping TypeName="TAE2Model.FACTURA_VENTA">
+              <MappingFragment StoreEntitySet="FACTURA_VENTA">
+                <ScalarProperty Name="UNID_FACTURA_VENTA" ColumnName="UNID_FACTURA_VENTA" />
+                <ScalarProperty Name="FOLIO" ColumnName="FOLIO" />
+                <ScalarProperty Name="TOTAL_DESC_FACTURA" ColumnName="TOTAL_DESC_FACTURA" />
+                <ScalarProperty Name="TOTAL_FACTURA" ColumnName="TOTAL_FACTURA" />
+                <ScalarProperty Name="POR_IVA" ColumnName="POR_IVA" />
+                <ScalarProperty Name="IVA_PESOS" ColumnName="IVA_PESOS" />
+                <ScalarProperty Name="IMPORTE_FACTURA" ColumnName="IMPORTE_FACTURA" />
+                <ScalarProperty Name="UNID_MONEDA" ColumnName="UNID_MONEDA" />
+                <ScalarProperty Name="TIPO_CAMBIO" ColumnName="TIPO_CAMBIO" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ITEMs">
+            <EntityTypeMapping TypeName="TAE2Model.ITEM">
+              <MappingFragment StoreEntitySet="ITEM">
+                <ScalarProperty Name="UNID_ITEM" ColumnName="UNID_ITEM" />
+                <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="NUMERO_SERIE" ColumnName="NUMERO_SERIE" />
+                <ScalarProperty Name="UNID_ITEM_STATUS" ColumnName="UNID_ITEM_STATUS" />
+                <ScalarProperty Name="COSTO_UNITARIO" ColumnName="COSTO_UNITARIO" />
+                <ScalarProperty Name="UNID_FACTURA_DETALE" ColumnName="UNID_FACTURA_DETALE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOVIMENTOes">
+            <EntityTypeMapping TypeName="TAE2Model.MOVIMENTO">
+              <MappingFragment StoreEntitySet="MOVIMENTO">
+                <ScalarProperty Name="UNID_MOVIMIENTO" ColumnName="UNID_MOVIMIENTO" />
+                <ScalarProperty Name="FECHA_MOVIMIENTO" ColumnName="FECHA_MOVIMIENTO" />
+                <ScalarProperty Name="UNID_TIPO_MOVIMIENTO" ColumnName="UNID_TIPO_MOVIMIENTO" />
+                <ScalarProperty Name="UNID_ALMACEN_DESTINO" ColumnName="UNID_ALMACEN_DESTINO" />
+                <ScalarProperty Name="UNID_PROVEEDOR_DESTINO" ColumnName="UNID_PROVEEDOR_DESTINO" />
+                <ScalarProperty Name="UNID_CLIENTE_DESTINO" ColumnName="UNID_CLIENTE_DESTINO" />
+                <ScalarProperty Name="UNID_ALMACEN_PROCEDENCIA" ColumnName="UNID_ALMACEN_PROCEDENCIA" />
+                <ScalarProperty Name="UNID_CLIENTE_PROCEDENCIA" ColumnName="UNID_CLIENTE_PROCEDENCIA" />
+                <ScalarProperty Name="UNID_PROVEEDOR_PROCEDENCIA" ColumnName="UNID_PROVEEDOR_PROCEDENCIA" />
+                <ScalarProperty Name="UNID_SERVICIO" ColumnName="UNID_SERVICIO" />
+                <ScalarProperty Name="TT" ColumnName="TT" />
+                <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
+                <ScalarProperty Name="UNID_TRANSPORTE" ColumnName="UNID_TRANSPORTE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DIRECCION_ENVIO" ColumnName="DIRECCION_ENVIO" />
+                <ScalarProperty Name="SITIO_ENLACE" ColumnName="SITIO_ENLACE" />
+                <ScalarProperty Name="NOMBRE_SITIO" ColumnName="NOMBRE_SITIO" />
+                <ScalarProperty Name="RECIBE" ColumnName="RECIBE" />
+                <ScalarProperty Name="GUIA" ColumnName="GUIA" />
+                <ScalarProperty Name="UNID_CLIENTE" ColumnName="UNID_CLIENTE" />
+                <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
+                <ScalarProperty Name="UNID_FACTURA_VENTA" ColumnName="UNID_FACTURA_VENTA" />
+                <ScalarProperty Name="PEDIMIENTO_IMPO" ColumnName="PEDIMIENTO_IMPO" />
+                <ScalarProperty Name="PEDIMIENTO_EXPO" ColumnName="PEDIMIENTO_EXPO" />
+                <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
+                <ScalarProperty Name="UNID_TECNICO" ColumnName="UNID_TECNICO" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOVIMIENTO_DETALLE">
+            <EntityTypeMapping TypeName="TAE2Model.MOVIMIENTO_DETALLE">
+              <MappingFragment StoreEntitySet="MOVIMIENTO_DETALLE">
+                <ScalarProperty Name="UNID_MOVIMIENTO_DETALLE" ColumnName="UNID_MOVIMIENTO_DETALLE" />
+                <ScalarProperty Name="UNID_ITEM" ColumnName="UNID_ITEM" />
+                <ScalarProperty Name="UNID_MOVIMIENTO" ColumnName="UNID_MOVIMIENTO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIBOes">
+            <EntityTypeMapping TypeName="TAE2Model.RECIBO">
+              <MappingFragment StoreEntitySet="RECIBO">
+                <ScalarProperty Name="UNID_RECIBO" ColumnName="UNID_RECIBO" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="FECHA_CIERRE" ColumnName="FECHA_CIERRE" />
+                <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
+                <ScalarProperty Name="PO" ColumnName="PO" />
+                <ScalarProperty Name="TT" ColumnName="TT" />
+                <ScalarProperty Name="PEDIMIENTO_IMPO" ColumnName="PEDIMIENTO_IMPO" />
+                <ScalarProperty Name="PEDIMENTO_EXPO" ColumnName="PEDIMENTO_EXPO" />
+                <ScalarProperty Name="UNID_RECIBO_STATUS" ColumnName="UNID_RECIBO_STATUS" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIBO_MOVIMIENTO">
+            <EntityTypeMapping TypeName="TAE2Model.RECIBO_MOVIMIENTO">
+              <MappingFragment StoreEntitySet="RECIBO_MOVIMIENTO">
+                <ScalarProperty Name="UNID_RECIBO" ColumnName="UNID_RECIBO" />
+                <ScalarProperty Name="UNID_RECIBO_MOVIMIENTO" ColumnName="UNID_RECIBO_MOVIMIENTO" />
+                <ScalarProperty Name="UNID_MOVIMIENTO" ColumnName="UNID_MOVIMIENTO" />
+                <ScalarProperty Name="UNID_FACTURA" ColumnName="UNID_FACTURA" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIBO_STATUS">
+            <EntityTypeMapping TypeName="TAE2Model.RECIBO_STATUS">
+              <MappingFragment StoreEntitySet="RECIBO_STATUS">
+                <ScalarProperty Name="UNID_RECIBO_STATUS" ColumnName="UNID_RECIBO_STATUS" />
+                <ScalarProperty Name="RECIBO_STATUS_NAME" ColumnName="RECIBO_STATUS_NAME" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ULTIMO_MOVIMIENTO">
+            <EntityTypeMapping TypeName="TAE2Model.ULTIMO_MOVIMIENTO">
+              <MappingFragment StoreEntitySet="ULTIMO_MOVIMIENTO">
+                <ScalarProperty Name="UNID_ITEM" ColumnName="UNID_ITEM" />
+                <ScalarProperty Name="UNID_ALMACEN" ColumnName="UNID_ALMACEN" />
+                <ScalarProperty Name="UNID_CLIENTE" ColumnName="UNID_CLIENTE" />
+                <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
+                <ScalarProperty Name="UNID_MOVIMIENTO_DETALLE" ColumnName="UNID_MOVIMIENTO_DETALLE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURAs">
+            <EntityTypeMapping TypeName="TAE2Model.FACTURA">
+              <MappingFragment StoreEntitySet="FACTURA">
+                <ScalarProperty Name="UNID_FACTURA" ColumnName="UNID_FACTURA" />
+                <ScalarProperty Name="UNID_LOTE" ColumnName="UNID_LOTE" />
+                <ScalarProperty Name="FACTURA_NUMERO" ColumnName="FACTURA_NUMERO" />
+                <ScalarProperty Name="FECHA_FACTURA" ColumnName="FECHA_FACTURA" />
+                <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
+                <ScalarProperty Name="UNID_MONEDA" ColumnName="UNID_MONEDA" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="NUMERO_PEDIMENTO" ColumnName="NUMERO_PEDIMENTO" />
+                <ScalarProperty Name="IVA_POR" ColumnName="IVA_POR" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURA_DETALLE">
+            <EntityTypeMapping TypeName="TAE2Model.FACTURA_DETALLE">
+              <MappingFragment StoreEntitySet="FACTURA_DETALLE">
+                <ScalarProperty Name="UNID_FACTURA_DETALE" ColumnName="UNID_FACTURA_DETALE" />
+                <ScalarProperty Name="UNID_FACTURA" ColumnName="UNID_FACTURA" />
+                <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="PRECIO_UNITARIO" ColumnName="PRECIO_UNITARIO" />
+                <ScalarProperty Name="IMPUESTO_UNITARIO" ColumnName="IMPUESTO_UNITARIO" />
+                <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="UNID_UNIDAD" ColumnName="UNID_UNIDAD" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="UNID_PEDIMENTO" ColumnName="UNID_PEDIMENTO" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOTEs">
+            <EntityTypeMapping TypeName="TAE2Model.LOTE">
+              <MappingFragment StoreEntitySet="LOTE">
+                <ScalarProperty Name="UNID_LOTE" ColumnName="UNID_LOTE" />
+                <ScalarProperty Name="UNID_POM" ColumnName="UNID_POM" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PEDIMENTOes">
+            <EntityTypeMapping TypeName="TAE2Model.PEDIMENTO">
+              <MappingFragment StoreEntitySet="PEDIMENTO">
+                <ScalarProperty Name="UNID_PEDIMENTO" ColumnName="UNID_PEDIMENTO" />
+                <ScalarProperty Name="UNID_LOTE" ColumnName="UNID_LOTE" />
+                <ScalarProperty Name="UNID_TIPO_PEDIMENTO" ColumnName="UNID_TIPO_PEDIMENTO" />
+                <ScalarProperty Name="PEDIMENTO_NUMERO" ColumnName="PEDIMENTO_NUMERO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POMs">
+            <EntityTypeMapping TypeName="TAE2Model.POM">
+              <MappingFragment StoreEntitySet="POM">
+                <ScalarProperty Name="UNID_POM" ColumnName="UNID_POM" />
+                <ScalarProperty Name="FECHA_POM" ColumnName="FECHA_POM" />
+                <ScalarProperty Name="UNID_COTIZACION" ColumnName="UNID_COTIZACION" />
+                <ScalarProperty Name="DIAS_ENTREGA" ColumnName="DIAS_ENTREGA" />
+                <ScalarProperty Name="FECHA_ENTREGA" ColumnName="FECHA_ENTREGA" />
+                <ScalarProperty Name="FECHA_ENTREGA_REAL" ColumnName="FECHA_ENTREGA_REAL" />
+                <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POM_ARTICULO">
+            <EntityTypeMapping TypeName="TAE2Model.POM_ARTICULO">
+              <MappingFragment StoreEntitySet="POM_ARTICULO">
+                <ScalarProperty Name="UNID_POM" ColumnName="UNID_POM" />
+                <ScalarProperty Name="UNID_POM_ARTICULO" ColumnName="UNID_POM_ARTICULO" />
+                <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="COSTO_UNITARIO" ColumnName="COSTO_UNITARIO" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="TC" ColumnName="TC" />
+                <ScalarProperty Name="DESCUENTO" ColumnName="DESCUENTO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -4349,532 +4499,513 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="EntityElara" ZoomLevel="59">
-        <EntityTypeShape EntityType="TAE2Model.MENU" Width="1.5" PointX="8.75" PointY="10" Height="2.9417936197916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.ROL" Width="1.5" PointX="8.75" PointY="14.25" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.ROL_MENU" Width="1.5" PointX="11" PointY="10.25" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.MENU" Width="1.5" PointX="8.75" PointY="9" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.ROL" Width="1.5" PointX="8.75" PointY="13.25" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.ROL_MENU" Width="1.5" PointX="11" PointY="9.25" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.USUARIO" Width="1.5" PointX="12.75" PointY="2.5" Height="2.5571907552083335" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.USUARIO_ROL" Width="1.5" PointX="15" PointY="9.375" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.ARTICULO" Width="1.5" PointX="0.75" PointY="71.75" Height="4.0956022135416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.CATEGORIA" Width="1.5" PointX="1.5" PointY="68.25" Height="2.1725878906250102" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.EQUIPO" Width="1.5" PointX="1.5" PointY="84.25" Height="2.1725878906250102" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.MARCA" Width="1.5" PointX="1.5" PointY="87.125" Height="2.1725878906250102" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.MODELO" Width="1.5" PointX="1.5" PointY="90" Height="2.1725878906250102" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.BANCO" Width="1.5" PointX="1.75" PointY="125.25" Height="2.1725878906250102" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.DEPARTAMENTO" Width="1.5" PointX="1.5" PointY="31.875" Height="2.1725878906250067" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.EMPRESA" Width="1.5" PointX="1.5" PointY="34.875" Height="3.1340950520833388" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.INFRAESTRUCTURA" Width="1.5" PointX="0.75" PointY="9.375" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.MEDIO_ENVIO" Width="1.5" PointX="5.75" PointY="0.75" Height="1.9802864583333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.MONEDA" Width="1.5" PointX="1.5" PointY="64.25" Height="2.557190755208353" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.PROVEEDOR" Width="1.5" PointX="0.75" PointY="12.75" Height="5.2494108072916656" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.PROVEEDOR_CATEGORIA" Width="1.5" PointX="7.75" PointY="0.75" Height="1.9802864583333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.PROVEEDOR_CUENTA" Width="1.5" PointX="4" PointY="17.75" Height="3.1340950520833388" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.PROYECTO" Width="1.5" PointX="5.75" PointY="8.75" Height="1.9802864583333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.SERVER_LASTDATA" Width="1.5" PointX="9.75" PointY="0.75" Height="1.4033821614583388" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.SOLICITANTE" Width="1.5" PointX="0.75" PointY="27.125" Height="3.5186979166666674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.SYNC" Width="1.5" PointX="10.75" PointY="13.75" Height="1.4033821614583246" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.TERMINO_ENVIO" Width="1.5" PointX="13.75" PointY="12.75" Height="2.5571907552083246" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.TIPO_COTIZACION" Width="1.5" PointX="14.75" PointY="0.75" Height="1.9802864583333246" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.TIPO_EMPRESA" Width="1.5" PointX="1.5" PointY="42.875" Height="2.172587890624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.TIPO_PEDIMENTO" Width="1.5" PointX="1.5" PointY="115.125" Height="2.7494921874999818" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.TRANSPORTE" Width="1.5" PointX="0.75" PointY="38.75" Height="2.5571907552083388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.USUARIO_ROL" Width="1.5" PointX="15" PointY="8.875" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.ARTICULO" Width="1.5" PointX="0.75" PointY="70.5" Height="4.0956022135416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.CATEGORIA" Width="1.5" PointX="1.5" PointY="67.125" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.EQUIPO" Width="1.5" PointX="1.5" PointY="83" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.MARCA" Width="1.5" PointX="1.5" PointY="85.875" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.MODELO" Width="1.5" PointX="1.5" PointY="88.875" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.BANCO" Width="1.5" PointX="1.75" PointY="123.75" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.DEPARTAMENTO" Width="1.5" PointX="1.5" PointY="31.5" Height="2.1725878906250067" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.EMPRESA" Width="1.5" PointX="1.5" PointY="34.375" Height="3.1340950520833388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.INFRAESTRUCTURA" Width="1.5" PointX="5.75" PointY="0.75" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.MEDIO_ENVIO" Width="1.5" PointX="7.75" PointY="0.75" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.MONEDA" Width="1.5" PointX="1.5" PointY="63.75" Height="2.5571907552083459" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.PROVEEDOR" Width="1.5" PointX="0.75" PointY="12.25" Height="5.2494108072916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.PROVEEDOR_CATEGORIA" Width="1.5" PointX="5.75" PointY="8.75" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.PROVEEDOR_CUENTA" Width="1.5" PointX="4" PointY="17.25" Height="3.1340950520833388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.PROYECTO" Width="1.5" PointX="9.75" PointY="0.75" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.SERVER_LASTDATA" Width="1.5" PointX="10.75" PointY="12.75" Height="1.4033821614583388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.SOLICITANTE" Width="1.5" PointX="0.75" PointY="26.75" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.SYNC" Width="1.5" PointX="12.75" PointY="12.75" Height="1.4033821614583246" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.TERMINO_ENVIO" Width="1.5" PointX="14.75" PointY="0.75" Height="2.5571907552083246" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.TIPO_COTIZACION" Width="1.5" PointX="14.75" PointY="12.75" Height="1.9802864583333246" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.TIPO_EMPRESA" Width="1.5" PointX="1.5" PointY="42.5" Height="2.172587890624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.TIPO_PEDIMENTO" Width="1.5" PointX="1.5" PointY="114" Height="2.7494921874999818" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.TRANSPORTE" Width="1.5" PointX="0.75" PointY="38.25" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.UPLOAD_LOG" Width="1.5" PointX="15" PointY="5.75" Height="2.172587890624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.ALMACEN" Width="1.5" PointX="0.75" PointY="46" Height="3.3263964843750102" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.ALMACEN_TECNICO" Width="1.5" PointX="15.75" PointY="12.75" Height="1.9802864583333246" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.CLIENTE" Width="1.5" PointX="0.75" PointY="4.875" Height="2.749492187499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.ITEM_STATUS" Width="1.5" PointX="0.75" PointY="80" Height="2.557190755208353" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.PROPIEDAD" Width="1.5" PointX="15.75" PointY="15.75" Height="1.9802864583333246" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.SERVICIO" Width="1.5" PointX="0.75" PointY="50.125" Height="2.172587890624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.SOLICITANTE1" Width="1.5" PointX="16.75" PointY="0.75" Height="2.1725878906250102" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.TECNICO" Width="1.5" PointX="0.75" PointY="53" Height="2.7494921875000102" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.TIPO_MOVIMIENTO" Width="1.5" PointX="0.75" PointY="56.5" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.UNIDAD" Width="1.5" PointX="1.5" PointY="93.25" Height="2.1725878906249818" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.COTIZACION" Width="1.5" PointX="1.5" PointY="119.125" Height="4.48020507812501" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.CIUDAD" Width="1.5" PointX="1.5" PointY="19.5" Height="2.5571907552083388" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.PAI" Width="1.5" PointX="1.5" PointY="22.75" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.FACTURA_VENTA" Width="1.5" PointX="0.75" PointY="59.625" Height="3.7109993489583246" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.ITEM" Width="1.5" PointX="3" PointY="79" Height="4.2879036458333246" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.MOVIMENTO" Width="1.5" PointX="3" PointY="1.375" Height="9.864645182291639" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.MOVIMIENTO_DETALLE" Width="1.5" PointX="5.25" PointY="4.75" Height="2.9417936197916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.RECIBO" Width="1.5" PointX="6" PointY="12.25" Height="3.90330078124998" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.RECIBO_MOVIMIENTO" Width="1.5" PointX="8.25" PointY="4.75" Height="2.9417936197916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.RECIBO_STATUS" Width="1.5" PointX="3.75" PointY="13.125" Height="2.1725878906249818" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.ULTIMO_MOVIMIENTO" Width="1.5" PointX="10.5" PointY="4.25" Height="3.9033007812499818" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.FACTURA" Width="1.5" PointX="1.5" PointY="102.25" Height="4.0956022135416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.FACTURA_DETALLE" Width="1.5" PointX="0.75" PointY="96.375" Height="4.4802050781249818" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.LOTE" Width="1.5" PointX="1.5" PointY="107.125" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.PEDIMENTO" Width="1.5" PointX="1.5" PointY="111" Height="2.9417936197916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.POM" Width="1.5" PointX="3.75" PointY="34.625" Height="3.5186979166666674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.POM_ARTICULO" Width="1.5" PointX="6" PointY="53.5" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.ALMACEN" Width="1.5" PointX="0.75" PointY="45.625" Height="3.3263964843750102" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.ALMACEN_TECNICO" Width="1.5" PointX="10.75" PointY="15.75" Height="1.9802864583333246" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.CLIENTE" Width="1.5" PointX="0.75" PointY="4.625" Height="2.749492187499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.ITEM_STATUS" Width="1.5" PointX="0.75" PointY="78.75" Height="2.557190755208353" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.PROPIEDAD" Width="1.5" PointX="12.75" PointY="15.75" Height="1.9802864583333246" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.SERVICIO" Width="1.5" PointX="0.75" PointY="49.625" Height="2.172587890624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.SOLICITANTE1" Width="1.5" PointX="14.75" PointY="15.75" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.TECNICO" Width="1.5" PointX="0.75" PointY="52.625" Height="2.7494921875000102" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.TIPO_MOVIMIENTO" Width="1.5" PointX="0.75" PointY="56.125" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.UNIDAD" Width="1.5" PointX="1.5" PointY="92.125" Height="2.1725878906249818" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.COTIZACION" Width="1.5" PointX="1.5" PointY="117.75" Height="4.4802050781249818" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.CIUDAD" Width="1.5" PointX="1.5" PointY="19" Height="2.5571907552083388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.PAI" Width="1.5" PointX="1.5" PointY="22.375" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.FACTURA_VENTA" Width="1.5" PointX="0.75" PointY="59.25" Height="3.7109993489583246" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.ITEM" Width="1.5" PointX="3" PointY="77.75" Height="4.2879036458333246" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.MOVIMENTO" Width="1.5" PointX="3" PointY="1.25" Height="9.4800423177083246" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.MOVIMIENTO_DETALLE" Width="1.5" PointX="5.25" PointY="4.625" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.RECIBO" Width="1.5" PointX="6" PointY="12.125" Height="3.9033007812499818" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.RECIBO_MOVIMIENTO" Width="1.5" PointX="8.25" PointY="4.625" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.RECIBO_STATUS" Width="1.5" PointX="3.75" PointY="13" Height="2.1725878906249818" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.ULTIMO_MOVIMIENTO" Width="1.5" PointX="10.5" PointY="4.25" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.FACTURA" Width="1.5" PointX="1.5" PointY="101" Height="4.0956022135416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.FACTURA_DETALLE" Width="1.5" PointX="0.75" PointY="95.25" Height="4.4802050781249818" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.LOTE" Width="1.5" PointX="1.5" PointY="105.875" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.PEDIMENTO" Width="1.5" PointX="1.5" PointY="109.875" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.POM" Width="1.5" PointX="3.75" PointY="34.25" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.POM_ARTICULO" Width="1.5" PointX="6" PointY="52.625" Height="3.5186979166666674" IsExpanded="true" />
         <AssociationConnector Association="TAE2Model.APP_MENU_APP_MENU_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.2819230769230767" PointY="12.941793619791667" />
-          <ConnectorPoint PointX="9.2819230769230767" PointY="13.191793619791667" />
-          <ConnectorPoint PointX="9.7284615384615378" PointY="13.191793619791667" />
-          <ConnectorPoint PointX="9.7284615384615378" PointY="12.941793619791667" />
+          <ConnectorPoint PointX="9.2819230769230767" PointY="11.941793619791667" />
+          <ConnectorPoint PointX="9.2819230769230767" PointY="12.191793619791667" />
+          <ConnectorPoint PointX="9.7284615384615378" PointY="12.191793619791667" />
+          <ConnectorPoint PointX="9.7284615384615378" PointY="11.941793619791667" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.APP_MENU_APP_ROL_MENU_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.25" PointY="11.432444661458334" />
-          <ConnectorPoint PointX="10.479164166666665" PointY="11.432444661458334" />
-          <ConnectorPoint PointX="10.708335833333335" PointY="11.432444661458334" />
-          <ConnectorPoint PointX="11" PointY="11.432444661458334" />
+          <ConnectorPoint PointX="10.25" PointY="10.432444661458334" />
+          <ConnectorPoint PointX="10.479164166666665" PointY="10.432444661458334" />
+          <ConnectorPoint PointX="10.677083333333334" PointY="10.432444661458334" />
+          <ConnectorPoint PointX="11" PointY="10.432444661458334" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.APP_ROL_APP_ROL_MENU_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.25" PointY="15.915385742187496" />
-          <ConnectorPoint PointX="10.479164166666665" PointY="15.915385742187496" />
-          <ConnectorPoint PointX="10.708335833333335" PointY="15.915385742187496" />
-          <ConnectorPoint PointX="12.40625" PointY="15.915385742187496" />
-          <ConnectorPoint PointX="12.40625" PointY="12.614889322916667" />
+          <ConnectorPoint PointX="10.25" PointY="14.915385742187503" />
+          <ConnectorPoint PointX="10.479164166666665" PointY="14.915385742187503" />
+          <ConnectorPoint PointX="10.677083333333334" PointY="14.915385742187503" />
+          <ConnectorPoint PointX="12.40625" PointY="14.915385742187503" />
+          <ConnectorPoint PointX="12.40625" PointY="11.614889322916667" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.APP_ROL_APP_USUARIO_ROL_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.25" PointY="15.528595377604162" />
-          <ConnectorPoint PointX="10.479164166666665" PointY="15.528595377604162" />
-          <ConnectorPoint PointX="10.708335833333335" PointY="15.528595377604162" />
-          <ConnectorPoint PointX="12.322916666666666" PointY="15.528595377604162" />
-          <ConnectorPoint PointX="12.489583333333334" PointY="15.528595377604162" />
-          <ConnectorPoint PointX="15.5" PointY="15.528595377604162" />
-          <ConnectorPoint PointX="15.5" PointY="11.739889322916667" />
+          <ConnectorPoint PointX="10.25" PointY="15.296390032552086" />
+          <ConnectorPoint PointX="10.479164166666665" PointY="15.296390032552086" />
+          <ConnectorPoint PointX="10.677083333333334" PointY="15.296390032552086" />
+          <ConnectorPoint PointX="16.40625" PointY="15.296390032552086" />
+          <ConnectorPoint PointX="16.40625" PointY="11.239889322916667" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.APP_USUARIO_APP_USUARIO_ROL_FK1" ManuallyRouted="false">
           <ConnectorPoint PointX="13.5" PointY="5.0571907552083335" />
-          <ConnectorPoint PointX="13.5" PointY="10.557444661458334" />
-          <ConnectorPoint PointX="15" PointY="10.557444661458334" />
+          <ConnectorPoint PointX="13.5" PointY="10.057444661458334" />
+          <ConnectorPoint PointX="15" PointY="10.057444661458334" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.FK_UPLOAD_LOG_USUARIO" ManuallyRouted="false">
-          <ConnectorPoint PointX="14.25" PointY="3.9249886067708291" />
-          <ConnectorPoint PointX="16.40625" PointY="3.9249886067708291" />
+          <ConnectorPoint PointX="14.25" PointY="4.2134407552083291" />
+          <ConnectorPoint PointX="16.40625" PointY="4.2134407552083291" />
           <ConnectorPoint PointX="16.40625" PointY="5.75" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.ART_ARTICULO_INV_ITEM_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="73.797801106770834" />
-          <ConnectorPoint PointX="3.1666666666666665" PointY="73.797801106770834" />
-          <ConnectorPoint PointX="3.3333333333333335" PointY="73.797801106770834" />
-          <ConnectorPoint PointX="3.75" PointY="73.797801106770834" />
-          <ConnectorPoint PointX="3.75" PointY="79" />
+          <ConnectorPoint PointX="2.25" PointY="72.547801106770834" />
+          <ConnectorPoint PointX="3.1666666666666665" PointY="72.547801106770834" />
+          <ConnectorPoint PointX="3.3333333333333335" PointY="72.547801106770834" />
+          <ConnectorPoint PointX="3.75" PointY="72.547801106770834" />
+          <ConnectorPoint PointX="3.75" PointY="77.75" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.ART_ARTICULO_LOT_FACTURA_DETALLE_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="0.75" PointY="75.8086791366186" />
-          <ConnectorPoint PointX="0.49642556509887853" PointY="76.062253571519719" />
-          <ConnectorPoint PointX="0.378574434901121" PointY="76.180104701717468" />
-          <ConnectorPoint PointX="0.375" PointY="76.1836791366186" />
-          <ConnectorPoint PointX="0.375" PointY="96" />
-          <ConnectorPoint PointX="0.75" PointY="96.375" />
+          <ConnectorPoint PointX="0.75" PointY="74.5586791366186" />
+          <ConnectorPoint PointX="0.49642556509887853" PointY="74.812253571519719" />
+          <ConnectorPoint PointX="0.378574434901121" PointY="74.930104701717468" />
+          <ConnectorPoint PointX="0.375" PointY="74.9336791366186" />
+          <ConnectorPoint PointX="0.375" PointY="94.875" />
+          <ConnectorPoint PointX="0.75" PointY="95.25" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.ART_ARTICULO_POM_POM_ARTICULO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="72.742648053385409" />
-          <ConnectorPoint PointX="3.1666666666666665" PointY="72.742648053385409" />
-          <ConnectorPoint PointX="3.3333333333333335" PointY="72.742648053385409" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="72.742648053385409" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="72.742648053385409" />
-          <ConnectorPoint PointX="5.322916666666667" PointY="72.742648053385409" />
-          <ConnectorPoint PointX="5.489583333333333" PointY="72.742648053385409" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="72.742648053385409" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="72.742648053385409" />
-          <ConnectorPoint PointX="6.75" PointY="72.742648053385409" />
-          <ConnectorPoint PointX="6.75" PointY="57.018697916666667" />
+          <ConnectorPoint PointX="2.25" PointY="71.492648053385409" />
+          <ConnectorPoint PointX="3.1666666666666665" PointY="71.492648053385409" />
+          <ConnectorPoint PointX="3.3333333333333335" PointY="71.492648053385409" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="71.492648053385409" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="71.492648053385409" />
+          <ConnectorPoint PointX="5.322916666666667" PointY="71.492648053385409" />
+          <ConnectorPoint PointX="5.489583333333333" PointY="71.492648053385409" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="71.492648053385409" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="71.492648053385409" />
+          <ConnectorPoint PointX="6.75" PointY="71.492648053385409" />
+          <ConnectorPoint PointX="6.75" PointY="56.143697916666667" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.ART_CATEGORIA_ART_ARTICULO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.875" PointY="70.42258789062501" />
-          <ConnectorPoint PointX="1.875" PointY="71.75" />
+          <ConnectorPoint PointX="1.875" PointY="69.29758789062501" />
+          <ConnectorPoint PointX="1.875" PointY="70.5" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.ART_EQUIPO_ART_ARTICULO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.6250025" PointY="84.25" />
-          <ConnectorPoint PointX="2.6250025" PointY="74.852954160156258" />
-          <ConnectorPoint PointX="2.25" PointY="74.852954160156258" />
+          <ConnectorPoint PointX="2.6250025" PointY="83" />
+          <ConnectorPoint PointX="2.6250025" PointY="73.602954160156258" />
+          <ConnectorPoint PointX="2.25" PointY="73.602954160156258" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.ART_MARCA_ART_ARTICULO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="87.125" />
-          <ConnectorPoint PointX="1.125" PointY="86.75" />
-          <ConnectorPoint PointX="0.70833333333333337" PointY="86.75" />
-          <ConnectorPoint PointX="0.54166666666666663" PointY="86.75" />
-          <ConnectorPoint PointX="0.5" PointY="86.75" />
-          <ConnectorPoint PointX="0.5" PointY="76.095602213541667" />
-          <ConnectorPoint PointX="0.75" PointY="75.845602213541667" />
+          <ConnectorPoint PointX="1.5" PointY="85.875" />
+          <ConnectorPoint PointX="1.125" PointY="85.5" />
+          <ConnectorPoint PointX="0.70833333333333337" PointY="85.5" />
+          <ConnectorPoint PointX="0.54166666666666663" PointY="85.5" />
+          <ConnectorPoint PointX="0.5" PointY="85.5" />
+          <ConnectorPoint PointX="0.5" PointY="74.845602213541667" />
+          <ConnectorPoint PointX="0.75" PointY="74.595602213541667" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.ART_MODELO_ART_ARTICULO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="90" />
-          <ConnectorPoint PointX="1.125" PointY="89.625" />
-          <ConnectorPoint PointX="0.625" PointY="89.625" />
-          <ConnectorPoint PointX="0.625" PointY="76.007524290464744" />
-          <ConnectorPoint PointX="0.78692207692307758" PointY="75.845602213541667" />
+          <ConnectorPoint PointX="1.5" PointY="88.875" />
+          <ConnectorPoint PointX="1.125" PointY="88.5" />
+          <ConnectorPoint PointX="0.625" PointY="88.5" />
+          <ConnectorPoint PointX="0.625" PointY="74.757524290464744" />
+          <ConnectorPoint PointX="0.78692207692307758" PointY="74.595602213541667" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_BANCO_CAT_PROVEEDOR_CUENTA_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.25" PointY="126.33629394531251" />
-          <ConnectorPoint PointX="5.40625" PointY="126.33629394531251" />
-          <ConnectorPoint PointX="5.40625" PointY="20.884095052083339" />
+          <ConnectorPoint PointX="3.25" PointY="124.83629394531251" />
+          <ConnectorPoint PointX="5.40625" PointY="124.83629394531251" />
+          <ConnectorPoint PointX="5.40625" PointY="20.384095052083339" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_DEPARTAMENTO_CAT_SOLICITANTE_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.875" PointY="31.875" />
-          <ConnectorPoint PointX="1.875" PointY="30.643697916666667" />
+          <ConnectorPoint PointX="1.875" PointY="31.5" />
+          <ConnectorPoint PointX="1.875" PointY="30.268697916666667" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_EMPRESA_CAT_SOLICITANTE_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="36.442047526041669" />
-          <ConnectorPoint PointX="1.1249995" PointY="36.442047526041669" />
-          <ConnectorPoint PointX="1.1249995" PointY="30.643697916666667" />
+          <ConnectorPoint PointX="1.5" PointY="35.942047526041669" />
+          <ConnectorPoint PointX="1.1249995" PointY="35.942047526041669" />
+          <ConnectorPoint PointX="1.1249995" PointY="30.268697916666667" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_EMPRESA_CATINV_ITEM_STATUS_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="38.009095052083339" />
-          <ConnectorPoint PointX="1.125" PointY="38.384095052083339" />
-          <ConnectorPoint PointX="0.4375" PointY="38.384095052083339" />
-          <ConnectorPoint PointX="0.4375" PointY="79.6875" />
-          <ConnectorPoint PointX="0.44107443490112147" PointY="79.691074434901125" />
-          <ConnectorPoint PointX="0.55892556509887892" PointY="79.808925565098875" />
-          <ConnectorPoint PointX="0.56607443490112141" PointY="79.816074434901125" />
-          <ConnectorPoint PointX="0.68392556509887892" PointY="79.933925565098875" />
-          <ConnectorPoint PointX="0.75" PointY="80" />
+          <ConnectorPoint PointX="1.5" PointY="37.509095052083339" />
+          <ConnectorPoint PointX="1.125" PointY="37.884095052083339" />
+          <ConnectorPoint PointX="0.4375" PointY="37.884095052083339" />
+          <ConnectorPoint PointX="0.4375" PointY="78.4375" />
+          <ConnectorPoint PointX="0.44107443490112147" PointY="78.441074434901125" />
+          <ConnectorPoint PointX="0.55892556509887892" PointY="78.558925565098875" />
+          <ConnectorPoint PointX="0.56607443490112141" PointY="78.566074434901125" />
+          <ConnectorPoint PointX="0.68392556509887892" PointY="78.683925565098875" />
+          <ConnectorPoint PointX="0.75" PointY="78.75" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_EMPRESA_POM_POM_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="3" PointY="36.442047526041669" />
-          <ConnectorPoint PointX="3.0026016666666666" PointY="36.442047526041669" />
-          <ConnectorPoint PointX="3.2845023958333335" PointY="36.442047526041669" />
-          <ConnectorPoint PointX="3.2916666666666665" PointY="36.442047526041669" />
-          <ConnectorPoint PointX="3.5286470833333339" PointY="36.442047526041669" />
-          <ConnectorPoint PointX="3.5651079166666664" PointY="36.442047526041669" />
-          <ConnectorPoint PointX="3.7317745833333333" PointY="36.442047526041669" />
-          <ConnectorPoint PointX="3.75" PointY="36.442047526041669" />
-        </AssociationConnector>
-        <AssociationConnector Association="TAE2Model.FK_MOVIMENTO_INFRAESTRUCTURA" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="10.30732259114582" />
-          <ConnectorPoint PointX="3" PointY="10.30732259114582" />
-        </AssociationConnector>
-        <AssociationConnector Association="TAE2Model.FK_ULTIMO_MOVIMIENTO_INFRAESTRUCTURA" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="11.054857957031246" />
-          <ConnectorPoint PointX="2.75" PointY="11.054857957031246" />
-          <ConnectorPoint PointX="2.75" PointY="11.489645182291639" />
-          <ConnectorPoint PointX="3.0026016666666666" PointY="11.489645182291637" />
-          <ConnectorPoint PointX="3.7317745833333338" PointY="11.489645182291639" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="11.489645182291639" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="11.489645182291639" />
-          <ConnectorPoint PointX="8.2604141666666653" PointY="11.489645182291639" />
-          <ConnectorPoint PointX="8.4270808333333331" PointY="11.489645182291639" />
-          <ConnectorPoint PointX="8.5" PointY="11.489645182291639" />
-          <ConnectorPoint PointX="8.5" PointY="9.75" />
-          <ConnectorPoint PointX="8.5104166666666661" PointY="9.75" />
-          <ConnectorPoint PointX="8.6770833333333339" PointY="9.75" />
-          <ConnectorPoint PointX="10.479164166666665" PointY="9.75" />
-          <ConnectorPoint PointX="10.708335833333335" PointY="9.75" />
-          <ConnectorPoint PointX="11.25" PointY="9.75" />
-          <ConnectorPoint PointX="11.25" PointY="8.1533007812499818" />
+          <ConnectorPoint PointX="3" PointY="35.942047526041669" />
+          <ConnectorPoint PointX="3.0026016666666666" PointY="35.942047526041669" />
+          <ConnectorPoint PointX="3.2845023958333335" PointY="35.942047526041669" />
+          <ConnectorPoint PointX="3.2916666666666665" PointY="35.942047526041669" />
+          <ConnectorPoint PointX="3.5286470833333339" PointY="35.942047526041669" />
+          <ConnectorPoint PointX="3.5651079166666664" PointY="35.942047526041669" />
+          <ConnectorPoint PointX="3.7317745833333333" PointY="35.942047526041669" />
+          <ConnectorPoint PointX="3.75" PointY="35.942047526041669" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_MONEDA_INV_FACTURA_VENTA_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.875" PointY="64.25" />
-          <ConnectorPoint PointX="1.875" PointY="63.335999348958325" />
+          <ConnectorPoint PointX="1.875" PointY="63.75" />
+          <ConnectorPoint PointX="1.875" PointY="62.960999348958325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_MONEDA_LOT_FACTURA_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="66.807190755208353" />
-          <ConnectorPoint PointX="2.25" PointY="68" />
-          <ConnectorPoint PointX="3.25" PointY="68" />
-          <ConnectorPoint PointX="3.25" PointY="78.75" />
-          <ConnectorPoint PointX="2.75" PointY="78.75" />
-          <ConnectorPoint PointX="2.75" PointY="84" />
-          <ConnectorPoint PointX="3.25" PointY="84" />
-          <ConnectorPoint PointX="3.25" PointY="104.29780110677083" />
-          <ConnectorPoint PointX="3" PointY="104.29780110677083" />
+          <ConnectorPoint PointX="2.25" PointY="66.307190755208353" />
+          <ConnectorPoint PointX="2.25" PointY="66.875" />
+          <ConnectorPoint PointX="3.25" PointY="66.875" />
+          <ConnectorPoint PointX="3.25" PointY="77.5" />
+          <ConnectorPoint PointX="2.75" PointY="77.5" />
+          <ConnectorPoint PointX="2.75" PointY="82.75" />
+          <ConnectorPoint PointX="3.25" PointY="82.75" />
+          <ConnectorPoint PointX="3.25" PointY="103.04780110677083" />
+          <ConnectorPoint PointX="3" PointY="103.04780110677083" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_PROVEEDOR_CAT_PROVEEDOR_CUENTA_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="16.555043445312492" />
-          <ConnectorPoint PointX="3.0026016666666666" PointY="16.555043445312492" />
-          <ConnectorPoint PointX="3.325519583333334" PointY="16.555043445312492" />
-          <ConnectorPoint PointX="3.3307279166666661" PointY="16.555043445312492" />
-          <ConnectorPoint PointX="3.5286470833333339" PointY="16.555043445312492" />
-          <ConnectorPoint PointX="3.5651079166666664" PointY="16.555043445312492" />
-          <ConnectorPoint PointX="3.7317745833333333" PointY="16.555043445312492" />
-          <ConnectorPoint PointX="5.40625" PointY="16.555043445312492" />
-          <ConnectorPoint PointX="5.40625" PointY="17.75" />
+          <ConnectorPoint PointX="2.25" PointY="16.242543445312492" />
+          <ConnectorPoint PointX="3.0026016666666666" PointY="16.242543445312492" />
+          <ConnectorPoint PointX="3.325519583333334" PointY="16.242543445312492" />
+          <ConnectorPoint PointX="3.3307279166666661" PointY="16.242543445312492" />
+          <ConnectorPoint PointX="3.5286470833333339" PointY="16.242543445312492" />
+          <ConnectorPoint PointX="3.5651079166666664" PointY="16.242543445312492" />
+          <ConnectorPoint PointX="3.7317745833333333" PointY="16.242543445312492" />
+          <ConnectorPoint PointX="5.40625" PointY="16.242543445312492" />
+          <ConnectorPoint PointX="5.40625" PointY="17.25" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_PROVEEDOR_INV_MOVIMENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="15.926313167968743" />
-          <ConnectorPoint PointX="3.0026016666666666" PointY="15.926313167968742" />
-          <ConnectorPoint PointX="3.325519583333334" PointY="15.926313167968743" />
-          <ConnectorPoint PointX="3.34375" PointY="15.926313167968743" />
-          <ConnectorPoint PointX="3.34375" PointY="11.239645182291639" />
+          <ConnectorPoint PointX="2.25" PointY="15.707563167968743" />
+          <ConnectorPoint PointX="3.0026016666666666" PointY="15.707563167968742" />
+          <ConnectorPoint PointX="3.325519583333334" PointY="15.707563167968743" />
+          <ConnectorPoint PointX="3.34375" PointY="15.707563167968743" />
+          <ConnectorPoint PointX="3.34375" PointY="10.730042317708325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_PROVEEDOR_INV_MOVIMENTO_FK2" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="17.15252422265624" />
-          <ConnectorPoint PointX="3.1406225" PointY="17.15252422265624" />
-          <ConnectorPoint PointX="3.1406225" PointY="11.239645182291639" />
+          <ConnectorPoint PointX="2.25" PointY="16.74627422265624" />
+          <ConnectorPoint PointX="3.1406225" PointY="16.74627422265624" />
+          <ConnectorPoint PointX="3.1406225" PointY="10.730042317708325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_PROVEEDOR_INV_MOVIMENTO_FK3" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="15.611948029296869" />
-          <ConnectorPoint PointX="3.0026016666666666" PointY="15.611948029296867" />
-          <ConnectorPoint PointX="3.528647083333333" PointY="15.611948029296869" />
-          <ConnectorPoint PointX="3.5468775" PointY="15.611948029296869" />
-          <ConnectorPoint PointX="3.5468775" PointY="11.239645182291639" />
+          <ConnectorPoint PointX="2.25" PointY="12.59375" />
+          <ConnectorPoint PointX="3.0026016666666666" PointY="12.593749999999998" />
+          <ConnectorPoint PointX="3.528647083333333" PointY="12.59375" />
+          <ConnectorPoint PointX="3.5468775" PointY="12.59375" />
+          <ConnectorPoint PointX="3.5468775" PointY="10.730042317708325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_PROVEEDOR_INV_ULTIMO_MOVIMIENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="3.0026016666666666" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="3.325519583333334" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="3.3307279166666661" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="3.5286470833333339" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="3.5651079166666664" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="3.7317745833333333" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="5.322916666666667" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="5.489583333333333" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="6.666666666666667" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="6.833333333333333" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="8.2604141666666653" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="8.4270808333333331" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="10.59375" PointY="17.451264611328114" />
-          <ConnectorPoint PointX="10.59375" PointY="8.1533007812499818" />
+          <ConnectorPoint PointX="1.5" PointY="12.25" />
+          <ConnectorPoint PointX="1.5" PointY="10.980042317708325" />
+          <ConnectorPoint PointX="3.0026016666666666" PointY="10.980042317708323" />
+          <ConnectorPoint PointX="3.7317745833333338" PointY="10.980042317708325" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="10.980042317708325" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="10.980042317708325" />
+          <ConnectorPoint PointX="8.2604141666666653" PointY="10.980042317708325" />
+          <ConnectorPoint PointX="8.4270808333333331" PointY="10.980042317708325" />
+          <ConnectorPoint PointX="8.5" PointY="10.980042317708325" />
+          <ConnectorPoint PointX="8.5" PointY="8.75" />
+          <ConnectorPoint PointX="8.5104166666666661" PointY="8.75" />
+          <ConnectorPoint PointX="8.6770833333333339" PointY="8.75" />
+          <ConnectorPoint PointX="10.125" PointY="8.75" />
+          <ConnectorPoint PointX="10.125" PointY="6.0093489583333337" />
+          <ConnectorPoint PointX="10.5" PointY="6.0093489583333337" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_PROVEEDOR_LOT_FACTURA_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="17.999410807291667" />
-          <ConnectorPoint PointX="1.5" PointY="19.25" />
-          <ConnectorPoint PointX="1.1770808333333334" PointY="19.25" />
-          <ConnectorPoint PointX="1.0104141666666668" PointY="19.25" />
-          <ConnectorPoint PointX="0.25" PointY="19.25" />
-          <ConnectorPoint PointX="0.25" PointY="104.29780110677083" />
-          <ConnectorPoint PointX="1.0104141666666668" PointY="104.29780110677083" />
-          <ConnectorPoint PointX="1.1770808333333334" PointY="104.29780110677083" />
-          <ConnectorPoint PointX="1.5" PointY="104.29780110677083" />
+          <ConnectorPoint PointX="1.5" PointY="17.499410807291667" />
+          <ConnectorPoint PointX="1.5" PointY="18.75" />
+          <ConnectorPoint PointX="1.1770808333333334" PointY="18.75" />
+          <ConnectorPoint PointX="1.0104141666666668" PointY="18.75" />
+          <ConnectorPoint PointX="0.25" PointY="18.75" />
+          <ConnectorPoint PointX="0.25" PointY="103.04780110677083" />
+          <ConnectorPoint PointX="1.0104141666666668" PointY="103.04780110677083" />
+          <ConnectorPoint PointX="1.1770808333333334" PointY="103.04780110677083" />
+          <ConnectorPoint PointX="1.5" PointY="103.04780110677083" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.GEO_CIUDAD_CAT_PROVEEDOR_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.9375" PointY="19.5" />
-          <ConnectorPoint PointX="1.9375" PointY="17.999410807291667" />
+          <ConnectorPoint PointX="1.9375" PointY="19" />
+          <ConnectorPoint PointX="1.9375" PointY="17.499410807291667" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.GEO_PAIS_CAT_PROVEEDOR_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="23.932444661458334" />
-          <ConnectorPoint PointX="1.0937475" PointY="23.932444661458334" />
-          <ConnectorPoint PointX="1.0937475" PointY="17.999410807291667" />
+          <ConnectorPoint PointX="1.5" PointY="23.557444661458334" />
+          <ConnectorPoint PointX="1.0937475" PointY="23.557444661458334" />
+          <ConnectorPoint PointX="1.0937475" PointY="17.499410807291667" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_SOLICITANTE_INV_MOVIMENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="28.884348958333334" />
-          <ConnectorPoint PointX="3.0026016666666666" PointY="28.884348958333334" />
-          <ConnectorPoint PointX="3.1927033333333337" PointY="28.884348958333334" />
-          <ConnectorPoint PointX="3.24218625" PointY="28.884348958333334" />
-          <ConnectorPoint PointX="3.24218625" PointY="11.239645182291639" />
+          <ConnectorPoint PointX="2.25" PointY="28.509348958333334" />
+          <ConnectorPoint PointX="3.0026016666666666" PointY="28.509348958333334" />
+          <ConnectorPoint PointX="3.1927033333333337" PointY="28.509348958333334" />
+          <ConnectorPoint PointX="3.24218625" PointY="28.509348958333334" />
+          <ConnectorPoint PointX="3.24218625" PointY="10.730042317708325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_SOLICITANTE_INV_RECIBO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="27.973421979166673" />
-          <ConnectorPoint PointX="3.0026016666666666" PointY="27.97342197916667" />
-          <ConnectorPoint PointX="3.528647083333333" PointY="27.973421979166673" />
-          <ConnectorPoint PointX="3.5651079166666664" PointY="27.973421979166673" />
-          <ConnectorPoint PointX="3.7317745833333333" PointY="27.973421979166673" />
-          <ConnectorPoint PointX="5.322916666666667" PointY="27.973421979166673" />
-          <ConnectorPoint PointX="5.489583333333333" PointY="27.973421979166673" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="27.973421979166673" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="27.973421979166673" />
-          <ConnectorPoint PointX="6.75" PointY="27.973421979166673" />
-          <ConnectorPoint PointX="6.75" PointY="16.153300781249982" />
+          <ConnectorPoint PointX="2.25" PointY="27.598421979166673" />
+          <ConnectorPoint PointX="3.0026016666666666" PointY="27.59842197916667" />
+          <ConnectorPoint PointX="3.528647083333333" PointY="27.598421979166673" />
+          <ConnectorPoint PointX="3.5651079166666664" PointY="27.598421979166673" />
+          <ConnectorPoint PointX="3.7317745833333333" PointY="27.598421979166673" />
+          <ConnectorPoint PointX="5.322916666666667" PointY="27.598421979166673" />
+          <ConnectorPoint PointX="5.489583333333333" PointY="27.598421979166673" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="27.598421979166673" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="27.598421979166673" />
+          <ConnectorPoint PointX="6.75" PointY="27.598421979166673" />
+          <ConnectorPoint PointX="6.75" PointY="16.028300781249982" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_TIPO_EMPRESA_CAT_TRANSPORTE_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.875" PointY="42.875" />
-          <ConnectorPoint PointX="1.875" PointY="41.307190755208339" />
+          <ConnectorPoint PointX="1.875" PointY="42.5" />
+          <ConnectorPoint PointX="1.875" PointY="40.807190755208339" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_TIPO_PEDIMENTO_LOT_PEDIMENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="115.125" />
-          <ConnectorPoint PointX="2.25" PointY="113.94179361979167" />
+          <ConnectorPoint PointX="2.25" PointY="114" />
+          <ConnectorPoint PointX="2.25" PointY="112.81679361979167" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_TRANSPORTE_INV_MOVIMENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="40.028595377604169" />
-          <ConnectorPoint PointX="3.0026016666666666" PointY="40.028595377604169" />
-          <ConnectorPoint PointX="3.2845023958333335" PointY="40.028595377604169" />
-          <ConnectorPoint PointX="3.44531375" PointY="40.028595377604169" />
-          <ConnectorPoint PointX="3.44531375" PointY="11.239645182291639" />
+          <ConnectorPoint PointX="2.25" PointY="39.528595377604169" />
+          <ConnectorPoint PointX="3.0026016666666666" PointY="39.528595377604169" />
+          <ConnectorPoint PointX="3.2845023958333335" PointY="39.528595377604169" />
+          <ConnectorPoint PointX="3.44531375" PointY="39.528595377604169" />
+          <ConnectorPoint PointX="3.44531375" PointY="10.730042317708325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CATINV_ALMACEN_INV_MOVIMENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="47.663198242187505" />
-          <ConnectorPoint PointX="3.0026016666666666" PointY="47.663198242187505" />
-          <ConnectorPoint PointX="3.2845023958333335" PointY="47.663198242187505" />
-          <ConnectorPoint PointX="3.2916666666666665" PointY="47.663198242187505" />
-          <ConnectorPoint PointX="3.4973945833333331" PointY="47.663198242187505" />
-          <ConnectorPoint PointX="3.64844125" PointY="47.663198242187505" />
-          <ConnectorPoint PointX="3.64844125" PointY="11.239645182291639" />
+          <ConnectorPoint PointX="2.25" PointY="47.288198242187505" />
+          <ConnectorPoint PointX="3.0026016666666666" PointY="47.288198242187505" />
+          <ConnectorPoint PointX="3.2845023958333335" PointY="47.288198242187505" />
+          <ConnectorPoint PointX="3.2916666666666665" PointY="47.288198242187505" />
+          <ConnectorPoint PointX="3.4973945833333331" PointY="47.288198242187505" />
+          <ConnectorPoint PointX="3.64844125" PointY="47.288198242187505" />
+          <ConnectorPoint PointX="3.64844125" PointY="10.730042317708325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CATINV_ALMACEN_INV_MOVIMENTO_FK2" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="46.800346621093759" />
-          <ConnectorPoint PointX="3.10937" PointY="46.800346621093759" />
-          <ConnectorPoint PointX="3.10937" PointY="11.239645182291639" />
+          <ConnectorPoint PointX="2.25" PointY="46.425346621093759" />
+          <ConnectorPoint PointX="3.10937" PointY="46.425346621093759" />
+          <ConnectorPoint PointX="3.10937" PointY="10.730042317708325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CATINV_ALMACEN_INV_ULTIMO_MOVIMIENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="3.0026016666666666" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="3.2845023958333335" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="3.2916666666666665" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="3.4973945833333331" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="4.2135391666666671" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="4.3802058333333331" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="5.322916666666667" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="5.489583333333333" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="8.2604141666666653" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="8.4270808333333331" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="10.5624975" PointY="48.526049863281251" />
-          <ConnectorPoint PointX="10.5624975" PointY="8.1533007812499818" />
+          <ConnectorPoint PointX="2.25" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="3.0026016666666666" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="3.2845023958333335" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="3.2916666666666665" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="3.4973945833333331" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="4.2135391666666671" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="4.3802058333333331" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="5.322916666666667" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="5.489583333333333" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="8.2604141666666653" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="8.4270808333333331" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="10.59375" PointY="48.151049863281251" />
+          <ConnectorPoint PointX="10.59375" PointY="7.7686979166666674" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CATINV_CLIENTE_INV_MOVIMENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="6.249746093749998" />
-          <ConnectorPoint PointX="2.6666666666666665" PointY="6.2497460937499971" />
-          <ConnectorPoint PointX="2.8333333333333335" PointY="6.249746093749998" />
-          <ConnectorPoint PointX="3" PointY="6.249746093749998" />
+          <ConnectorPoint PointX="2.25" PointY="5.999746093749998" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="5.9997460937499971" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="5.999746093749998" />
+          <ConnectorPoint PointX="3" PointY="5.999746093749998" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CATINV_CLIENTE_INV_MOVIMENTO_FK2" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="5.499873046874999" />
-          <ConnectorPoint PointX="2.6666666666666665" PointY="5.4998730468749981" />
-          <ConnectorPoint PointX="2.8333333333333335" PointY="5.499873046874999" />
-          <ConnectorPoint PointX="3" PointY="5.499873046874999" />
+          <ConnectorPoint PointX="2.25" PointY="5.249873046874999" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="5.2498730468749981" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="5.249873046874999" />
+          <ConnectorPoint PointX="3" PointY="5.249873046874999" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CATINV_CLIENTE_INV_MOVIMENTO_FK3" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="6.999619140624997" />
-          <ConnectorPoint PointX="3" PointY="6.999619140624997" />
+          <ConnectorPoint PointX="2.25" PointY="6.749619140624997" />
+          <ConnectorPoint PointX="3" PointY="6.749619140624997" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CATINV_CLIENTE_INV_ULTIMO_MOVIMIENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="6.6246826171874975" />
-          <ConnectorPoint PointX="2.75" PointY="6.6246826171874975" />
-          <ConnectorPoint PointX="2.75" PointY="1.125" />
-          <ConnectorPoint PointX="5.5" PointY="1.125" />
+          <ConnectorPoint PointX="2.25" PointY="6.3746826171874975" />
+          <ConnectorPoint PointX="2.75" PointY="6.3746826171874975" />
+          <ConnectorPoint PointX="2.75" PointY="1" />
+          <ConnectorPoint PointX="5.5" PointY="1" />
           <ConnectorPoint PointX="5.5" PointY="2.9802864583333388" />
           <ConnectorPoint PointX="11.25" PointY="2.9802864583333388" />
           <ConnectorPoint PointX="11.25" PointY="4.25" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CATINV_ITEM_STATUS_INV_ITEM_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="81.278595377604177" />
-          <ConnectorPoint PointX="2.5416691666666664" PointY="81.278595377604177" />
-          <ConnectorPoint PointX="2.8333333333333335" PointY="81.278595377604177" />
-          <ConnectorPoint PointX="3" PointY="81.278595377604177" />
+          <ConnectorPoint PointX="2.25" PointY="80.028595377604177" />
+          <ConnectorPoint PointX="2.5416691666666664" PointY="80.028595377604177" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="80.028595377604177" />
+          <ConnectorPoint PointX="3" PointY="80.028595377604177" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CATINV_SERVICIO_INV_MOVIMENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="51.2112939453125" />
-          <ConnectorPoint PointX="3.085935" PointY="51.2112939453125" />
-          <ConnectorPoint PointX="3.085935" PointY="11.239645182291639" />
+          <ConnectorPoint PointX="2.25" PointY="50.7112939453125" />
+          <ConnectorPoint PointX="3.085935" PointY="50.7112939453125" />
+          <ConnectorPoint PointX="3.085935" PointY="10.730042317708325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.FK_MOVIMENTO_TECNICO" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="54.374746093750005" />
-          <ConnectorPoint PointX="3.160151875" PointY="54.374746093750005" />
-          <ConnectorPoint PointX="3.160151875" PointY="11.239645182291639" />
+          <ConnectorPoint PointX="2.25" PointY="53.999746093750005" />
+          <ConnectorPoint PointX="3.160151875" PointY="53.999746093750005" />
+          <ConnectorPoint PointX="3.160151875" PointY="10.730042317708325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.GEO_CIUDAD_CATINV_TECNICO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.9999999999999996" PointY="22.057190755208339" />
-          <ConnectorPoint PointX="3.0270094349011227" PointY="22.084200190109456" />
-          <ConnectorPoint PointX="3.3011118150988787" PointY="22.358302570307213" />
-          <ConnectorPoint PointX="3.375" PointY="22.432190755208339" />
-          <ConnectorPoint PointX="3.375" PointY="52.625" />
-          <ConnectorPoint PointX="3.2845023958333335" PointY="52.625" />
-          <ConnectorPoint PointX="3.0768185416666669" PointY="52.625" />
-          <ConnectorPoint PointX="2.625" PointY="52.625" />
-          <ConnectorPoint PointX="2.2500000000000013" PointY="53" />
+          <ConnectorPoint PointX="2.9999999999999996" PointY="21.557190755208339" />
+          <ConnectorPoint PointX="3.0270094349011227" PointY="21.584200190109456" />
+          <ConnectorPoint PointX="3.3011118150988787" PointY="21.858302570307213" />
+          <ConnectorPoint PointX="3.375" PointY="21.932190755208339" />
+          <ConnectorPoint PointX="3.375" PointY="52.25" />
+          <ConnectorPoint PointX="3.2845023958333335" PointY="52.25" />
+          <ConnectorPoint PointX="3.0768185416666669" PointY="52.25" />
+          <ConnectorPoint PointX="2.625" PointY="52.25" />
+          <ConnectorPoint PointX="2.2500000000000013" PointY="52.625" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CATINV_TIPO_MOVIMIENTO_INV_MOVIMENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="57.682444661458334" />
-          <ConnectorPoint PointX="3.1178357291666665" PointY="57.682444661458334" />
-          <ConnectorPoint PointX="3.2845023958333335" PointY="57.682444661458334" />
-          <ConnectorPoint PointX="3.4140612499999996" PointY="57.682444661458334" />
-          <ConnectorPoint PointX="3.4140612499999996" PointY="11.239645182291639" />
+          <ConnectorPoint PointX="2.25" PointY="57.307444661458334" />
+          <ConnectorPoint PointX="3.1178357291666665" PointY="57.307444661458334" />
+          <ConnectorPoint PointX="3.2845023958333335" PointY="57.307444661458334" />
+          <ConnectorPoint PointX="3.4140612499999996" PointY="57.307444661458334" />
+          <ConnectorPoint PointX="3.4140612499999996" PointY="10.730042317708325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CATINV_UNIDAD_LOT_FACTURA_DETALLE_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.875" PointY="95.422587890624982" />
-          <ConnectorPoint PointX="1.875" PointY="96.375" />
+          <ConnectorPoint PointX="1.875" PointY="94.297587890624982" />
+          <ConnectorPoint PointX="1.875" PointY="95.25" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.COT_COTIZACION_POM_POM_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="3" PointY="121.36510253906251" />
-          <ConnectorPoint PointX="4.90625" PointY="121.36510253906251" />
-          <ConnectorPoint PointX="4.90625" PointY="38.143697916666667" />
+          <ConnectorPoint PointX="3" PointY="119.99010253906249" />
+          <ConnectorPoint PointX="4.90625" PointY="119.99010253906249" />
+          <ConnectorPoint PointX="4.90625" PointY="37.768697916666667" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.INV_FACTURA_VENTA_INV_MOVIMENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="61.480499674479162" />
-          <ConnectorPoint PointX="3.2011690625" PointY="61.480499674479162" />
-          <ConnectorPoint PointX="3.2011690625" PointY="11.239645182291639" />
+          <ConnectorPoint PointX="2.25" PointY="61.105499674479162" />
+          <ConnectorPoint PointX="3.2011690625" PointY="61.105499674479162" />
+          <ConnectorPoint PointX="3.2011690625" PointY="10.730042317708325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.INV_ITEM_INV_MOVIMIENTO_DETALLE_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="81.143951822916662" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="81.143951822916662" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="81.143951822916662" />
-          <ConnectorPoint PointX="5.322916666666667" PointY="81.143951822916662" />
-          <ConnectorPoint PointX="5.489583333333333" PointY="81.143951822916662" />
-          <ConnectorPoint PointX="5.625" PointY="81.143951822916662" />
-          <ConnectorPoint PointX="5.625" PointY="7.6917936197916674" />
+          <ConnectorPoint PointX="4.5" PointY="79.893951822916662" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="79.893951822916662" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="79.893951822916662" />
+          <ConnectorPoint PointX="5.322916666666667" PointY="79.893951822916662" />
+          <ConnectorPoint PointX="5.489583333333333" PointY="79.893951822916662" />
+          <ConnectorPoint PointX="5.625" PointY="79.893951822916662" />
+          <ConnectorPoint PointX="5.625" PointY="7.5667936197916674" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.INV_ITEM_INV_ULTIMO_MOVIMIENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="80.040723411458345" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="80.040723411458345" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="80.040723411458345" />
-          <ConnectorPoint PointX="5.322916666666667" PointY="80.040723411458345" />
-          <ConnectorPoint PointX="5.489583333333333" PointY="80.040723411458345" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="80.040723411458345" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="80.040723411458345" />
-          <ConnectorPoint PointX="8.2604141666666653" PointY="80.040723411458345" />
-          <ConnectorPoint PointX="8.4270808333333331" PointY="80.040723411458345" />
-          <ConnectorPoint PointX="10.6250025" PointY="80.040723411458345" />
-          <ConnectorPoint PointX="10.6250025" PointY="8.1533007812499818" />
+          <ConnectorPoint PointX="4.5" PointY="78.790723411458345" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="78.790723411458345" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="78.790723411458345" />
+          <ConnectorPoint PointX="5.322916666666667" PointY="78.790723411458345" />
+          <ConnectorPoint PointX="5.489583333333333" PointY="78.790723411458345" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="78.790723411458345" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="78.790723411458345" />
+          <ConnectorPoint PointX="8.2604141666666653" PointY="78.790723411458345" />
+          <ConnectorPoint PointX="8.4270808333333331" PointY="78.790723411458345" />
+          <ConnectorPoint PointX="10.5624975" PointY="78.790723411458345" />
+          <ConnectorPoint PointX="10.5624975" PointY="7.7686979166666674" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.LOT_FACTURA_DETALLE_INV_ITEM_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="98.615102539062491" />
-          <ConnectorPoint PointX="3.1666666666666665" PointY="98.615102539062491" />
-          <ConnectorPoint PointX="3.3333333333333335" PointY="98.615102539062491" />
-          <ConnectorPoint PointX="3.875" PointY="98.615102539062491" />
-          <ConnectorPoint PointX="3.875" PointY="83.287903645833325" />
+          <ConnectorPoint PointX="2.25" PointY="97.490102539062491" />
+          <ConnectorPoint PointX="3.1666666666666665" PointY="97.490102539062491" />
+          <ConnectorPoint PointX="3.3333333333333335" PointY="97.490102539062491" />
+          <ConnectorPoint PointX="3.875" PointY="97.490102539062491" />
+          <ConnectorPoint PointX="3.875" PointY="82.037903645833325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.INV_MOVIMENTO_INV_MOVIMIENTO_DETALLE_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="6.2208968098958337" />
-          <ConnectorPoint PointX="5.25" PointY="6.2208968098958337" />
+          <ConnectorPoint PointX="4.5" PointY="6.0958968098958337" />
+          <ConnectorPoint PointX="5.25" PointY="6.0958968098958337" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.INV_MOVIMENTO_INV_RECIBO_MOVIMIENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="8.2208993098958274" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="8.2208993098958274" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="8.2208993098958274" />
-          <ConnectorPoint PointX="8.375" PointY="8.2208993098958274" />
-          <ConnectorPoint PointX="8.375" PointY="7.6917936197916674" />
+          <ConnectorPoint PointX="4.5" PointY="8.1583993098958274" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="8.1583993098958274" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="8.1583993098958274" />
+          <ConnectorPoint PointX="8.375" PointY="8.1583993098958274" />
+          <ConnectorPoint PointX="8.375" PointY="7.5667936197916674" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.INV_MOVIMIENTO_DETALLE_INV_ULTIMO_MOVIMIENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="6" PointY="4.75" />
-          <ConnectorPoint PointX="6" PointY="4.4999994999999995" />
-          <ConnectorPoint PointX="10.5" PointY="4.4999994999999995" />
+          <ConnectorPoint PointX="6.75" PointY="7.5667936197916674" />
+          <ConnectorPoint PointX="7.125" PointY="7.9417936197916674" />
+          <ConnectorPoint PointX="7.125" PointY="7.8936979166666674" />
+          <ConnectorPoint PointX="8.2604141666666653" PointY="7.8936979166666665" />
+          <ConnectorPoint PointX="8.4583333333333339" PointY="7.8936979166666674" />
+          <ConnectorPoint PointX="8.5104166666666661" PointY="7.8936979166666665" />
+          <ConnectorPoint PointX="8.6770833333333339" PointY="7.8936979166666674" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="7.8936979166666665" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="7.8936979166666674" />
+          <ConnectorPoint PointX="10.375" PointY="7.8936979166666674" />
+          <ConnectorPoint PointX="10.5" PointY="7.7686979166666674" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.INV_RECIBO_INV_RECIBO_MOVIMIENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.5" PointY="13.689646809895834" />
-          <ConnectorPoint PointX="8.2604141666666653" PointY="13.689646809895834" />
-          <ConnectorPoint PointX="8.4270808333333331" PointY="13.689646809895834" />
-          <ConnectorPoint PointX="8.59375" PointY="13.689646809895834" />
-          <ConnectorPoint PointX="8.59375" PointY="7.6917936197916674" />
+          <ConnectorPoint PointX="7.5" PointY="12.689646809895834" />
+          <ConnectorPoint PointX="8.2604141666666653" PointY="12.689646809895834" />
+          <ConnectorPoint PointX="8.4270808333333331" PointY="12.689646809895834" />
+          <ConnectorPoint PointX="8.59375" PointY="12.689646809895834" />
+          <ConnectorPoint PointX="8.59375" PointY="7.5667936197916674" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.INV_RECIBO_STATUS_INV_RECIBO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="14.211293945312491" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="14.211293945312491" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="14.211293945312491" />
-          <ConnectorPoint PointX="6" PointY="14.211293945312491" />
+          <ConnectorPoint PointX="5.25" PointY="14.086293945312491" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="14.086293945312491" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="14.086293945312491" />
+          <ConnectorPoint PointX="6" PointY="14.086293945312491" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.LOT_FACTURA_INV_RECIBO_MOVIMIENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="3" PointY="103.24264805338542" />
-          <ConnectorPoint PointX="3.1666666666666665" PointY="103.24264805338542" />
-          <ConnectorPoint PointX="3.3333333333333335" PointY="103.24264805338542" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="103.24264805338542" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="103.24264805338542" />
-          <ConnectorPoint PointX="5.322916666666667" PointY="103.24264805338542" />
-          <ConnectorPoint PointX="5.489583333333333" PointY="103.24264805338542" />
-          <ConnectorPoint PointX="8.3437475" PointY="103.24264805338542" />
-          <ConnectorPoint PointX="8.3437475" PointY="7.6917936197916674" />
+          <ConnectorPoint PointX="3" PointY="101.99264805338542" />
+          <ConnectorPoint PointX="3.1666666666666665" PointY="101.99264805338542" />
+          <ConnectorPoint PointX="3.3333333333333335" PointY="101.99264805338542" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="101.99264805338542" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="101.99264805338542" />
+          <ConnectorPoint PointX="5.322916666666667" PointY="101.99264805338542" />
+          <ConnectorPoint PointX="5.489583333333333" PointY="101.99264805338542" />
+          <ConnectorPoint PointX="8.3437475" PointY="101.99264805338542" />
+          <ConnectorPoint PointX="8.3437475" PointY="7.5667936197916674" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.LOT_FACTURA_LOT_FACTURA_DETALLE_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.875" PointY="102.25" />
-          <ConnectorPoint PointX="1.875" PointY="100.85520507812498" />
+          <ConnectorPoint PointX="1.875" PointY="101" />
+          <ConnectorPoint PointX="1.875" PointY="99.730205078124982" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.LOT_LOTE_LOT_FACTURA_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="107.125" />
-          <ConnectorPoint PointX="2.25" PointY="106.34560221354167" />
+          <ConnectorPoint PointX="2.25" PointY="105.875" />
+          <ConnectorPoint PointX="2.25" PointY="105.09560221354167" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.LOT_PEDIMENTO_LOT_FACTURA_DETALLE_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="112.47089680989583" />
-          <ConnectorPoint PointX="1.0937475" PointY="112.47089680989583" />
-          <ConnectorPoint PointX="1.0937475" PointY="100.85520507812498" />
+          <ConnectorPoint PointX="1.5" PointY="111.34589680989583" />
+          <ConnectorPoint PointX="1.0937475" PointY="111.34589680989583" />
+          <ConnectorPoint PointX="1.0937475" PointY="99.730205078124982" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.LOT_LOTE_LOT_PEDIMENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="109.48988932291667" />
-          <ConnectorPoint PointX="2.25" PointY="111" />
+          <ConnectorPoint PointX="2.25" PointY="108.23988932291667" />
+          <ConnectorPoint PointX="2.25" PointY="109.875" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.POM_POM_POM_POM_ARTICULO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.2968725" PointY="38.143697916666667" />
-          <ConnectorPoint PointX="4.2968725" PointY="55.259348958333334" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="55.259348958333334" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="55.259348958333334" />
-          <ConnectorPoint PointX="5.322916666666667" PointY="55.259348958333334" />
-          <ConnectorPoint PointX="5.489583333333333" PointY="55.259348958333334" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="55.259348958333334" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="55.259348958333334" />
-          <ConnectorPoint PointX="6" PointY="55.259348958333334" />
+          <ConnectorPoint PointX="4.2968725" PointY="37.768697916666667" />
+          <ConnectorPoint PointX="4.2968725" PointY="54.384348958333334" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="54.384348958333334" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="54.384348958333334" />
+          <ConnectorPoint PointX="5.322916666666667" PointY="54.384348958333334" />
+          <ConnectorPoint PointX="5.489583333333333" PointY="54.384348958333334" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="54.384348958333334" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="54.384348958333334" />
+          <ConnectorPoint PointX="6" PointY="54.384348958333334" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

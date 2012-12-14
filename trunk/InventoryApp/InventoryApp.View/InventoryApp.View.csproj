@@ -1396,6 +1396,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\InventoryApp.DAL\InventoryApp.DAL.csproj">
+      <Project>{85AA51E1-F7B7-488C-A286-1E4015501512}</Project>
+      <Name>InventoryApp.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InventoryApp.ViewModel\InventoryApp.ViewModel.csproj">
       <Project>{41C7008F-8CEC-4E41-867F-FD558F84F4BA}</Project>
       <Name>InventoryApp.ViewModel</Name>

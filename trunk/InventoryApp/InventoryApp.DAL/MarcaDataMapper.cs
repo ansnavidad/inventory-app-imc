@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
 using InventoryApp.DAL.JSON;
+using Newtonsoft.Json;
 
 namespace InventoryApp.DAL
 {
@@ -226,6 +227,58 @@ namespace InventoryApp.DAL
                     res = SerializerJson.SerializeParametros(listMarca);
                 }
                 return res;
+            }
+        }
+
+        /// <summary>
+        /// Método que Deserializa JSon a List<MARCA> 
+        /// </summary>
+        /// <returns>Regresa List<MARCA></returns>
+        /// <returns>Si no regresa null</returns>
+        public List<MARCA> GetDeserializeMarca(string listPocos)
+        {
+            List<MARCA> res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<List<MARCA>>(listPocos);
+            }
+
+            return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetMarca()
+        {
+
+            List<MARCA> reset = new List<MARCA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.MARCAs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new MARCA
+                     {
+                         UNID_MARCA = row.UNID_MARCA,
+                         MARCA_NAME = row.MARCA_NAME,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.MARCAs.First(p => p.UNID_MARCA == item.UNID_MARCA);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
             }
         }
     }

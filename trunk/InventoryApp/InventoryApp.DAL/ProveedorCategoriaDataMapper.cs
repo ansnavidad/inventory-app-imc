@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL.JSON;
+using Newtonsoft.Json;
 
 namespace InventoryApp.DAL
 {
@@ -102,6 +103,23 @@ namespace InventoryApp.DAL
                 }
                 return res;
             }
+        }
+
+        /// <summary>
+        /// Método que Deserializa JSon a List<PROVEEDOR_CATEGORIA>
+        /// </summary>
+        /// <returns>Regresa List<PROVEEDOR_CATEGORIA></returns>
+        /// <returns>Si no regresa null</returns>
+        public List<PROVEEDOR_CATEGORIA> GetDeserializeProveedorCategoria(string listPocos)
+        {
+            List<PROVEEDOR_CATEGORIA> res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<List<PROVEEDOR_CATEGORIA>>(listPocos);
+            }
+
+            return res;
         }
     }
 }

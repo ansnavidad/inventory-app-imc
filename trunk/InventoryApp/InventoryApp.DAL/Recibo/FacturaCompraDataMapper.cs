@@ -4,11 +4,44 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL.JSON;
+using Newtonsoft.Json;
 
 namespace InventoryApp.DAL.Recibo
 {
     public class FacturaCompraDataMapper:IDataMapper
     {
+        public void loadSync(object element)
+        {
+
+            if (element != null)
+            {
+                FACTURA poco = (FACTURA)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.FACTURAs
+                                 where poco.UNID_FACTURA == cust.UNID_FACTURA
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        var aux = query.First();
+
+                        if (UNID.compareUNIDS(aux.LAST_MODIFIED_DATE, poco.LAST_MODIFIED_DATE))
+                            udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+
+                    var modifiedCotizacion = entity.FACTURAs.First(p => p.UNID_FACTURA == poco.UNID_FACTURA);
+                    modifiedCotizacion.IS_ACTIVE = false;
+                    entity.SaveChanges();
+                }
+            }
+        }
         public long? LastModifiedDate()
         {
             long? resul = null;
@@ -201,6 +234,23 @@ namespace InventoryApp.DAL.Recibo
                 }
                 return res;
             }
+        }
+
+        /// <summary>
+        /// Método que Deserializa JSon a List<FACTURA> 
+        /// </summary>
+        /// <returns>Regresa List<FACTURA></returns>
+        /// <returns>Si no regresa null</returns>
+        public List<FACTURA> GetDeserializeFactura(string listPocos)
+        {
+            List<FACTURA> res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<List<FACTURA>>(listPocos);
+            }
+
+            return res;
         }
     }
 }

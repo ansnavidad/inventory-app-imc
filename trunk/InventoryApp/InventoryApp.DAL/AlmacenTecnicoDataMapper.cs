@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL.JSON;
+using Newtonsoft.Json;
 
 namespace InventoryApp.DAL
 {
     public class AlmacenTecnicoDataMapper : IDataMapper
     {
+        
         public object getElements()
         {
             throw new NotImplementedException();
@@ -33,6 +35,7 @@ namespace InventoryApp.DAL
         {
             throw new NotImplementedException();
         }
+
         /// <summary>
         /// Método que serializa una List<ALMACEN_TECNICO> a Json
         /// </summary>
@@ -104,6 +107,23 @@ namespace InventoryApp.DAL
                 }
                 return res;
             }
+        }
+
+        /// <summary>
+        /// Método que Deserializa JSon a List<ALMACEN_TECNICO>
+        /// </summary>
+        /// <returns>Regresa List<ALMACEN_TECNICO></returns>
+        /// <returns>Si regresa null</returns>
+        public List<ALMACEN_TECNICO> GetDeserializeAlmacenTecnico(string listPocos)
+        {
+            List<ALMACEN_TECNICO> res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<List<ALMACEN_TECNICO>>(listPocos);
+            }
+
+            return res;
         }
     }
 }

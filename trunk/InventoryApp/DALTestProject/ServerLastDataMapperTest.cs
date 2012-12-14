@@ -7,11 +7,11 @@ namespace DALTestProject
     
     
     /// <summary>
-    ///Se trata de una clase de prueba para AlmacenDataMapperTest y se pretende que
-    ///contenga todas las pruebas unitarias AlmacenDataMapperTest.
+    ///Se trata de una clase de prueba para ServerLastDataMapperTest y se pretende que
+    ///contenga todas las pruebas unitarias ServerLastDataMapperTest.
     ///</summary>
     [TestClass()]
-    public class AlmacenDataMapperTest
+    public class ServerLastDataMapperTest
     {
 
 
@@ -65,29 +65,15 @@ namespace DALTestProject
 
 
         /// <summary>
-        ///Una prueba de logAlmacen
+        ///Una prueba de GetServerLastFecha
         ///</summary>
         [TestMethod()]
-        public void logAlmacenTest()
+        public void GetServerLastFechaTest()
         {
-            AlmacenDataMapper target = new AlmacenDataMapper(); // TODO: Inicializar en un valor adecuado
-            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
-            string actual;
-            actual = target.GetJsonAlmacen();
-            Assert.AreEqual(expected, actual);
-            //Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        }
-
-        /// <summary>
-        ///Una prueba de GetJsonAlmacen
-        ///</summary>
-        [TestMethod()]
-        public void GetJsonAlmacenTest()
-        {
-            AlmacenDataMapper target = new AlmacenDataMapper(); // TODO: Inicializar en un valor adecuado
-            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
-            string actual;
-            actual = target.GetJsonAlmacen();
+            ServerLastDataMapper target = new ServerLastDataMapper(); // TODO: Inicializar en un valor adecuado
+            long expected = 0; // TODO: Inicializar en un valor adecuado
+            long actual;
+            actual = target.GetServerLastFecha();
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }

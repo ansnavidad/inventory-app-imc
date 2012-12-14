@@ -3803,530 +3803,754 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TAE2ModelStoreContainer" CdmEntityContainer="TAE2Entities">
-          <EntitySetMapping Name="MENUs"><EntityTypeMapping TypeName="TAE2Model.MENU"><MappingFragment StoreEntitySet="MENU">
-            <ScalarProperty Name="UNID_MENU" ColumnName="UNID_MENU" />
-            <ScalarProperty Name="UNID_MENU_PARENT" ColumnName="UNID_MENU_PARENT" />
-            <ScalarProperty Name="MENU_NAME" ColumnName="MENU_NAME" />
-            <ScalarProperty Name="IS_LEAF" ColumnName="IS_LEAF" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ROLs"><EntityTypeMapping TypeName="TAE2Model.ROL"><MappingFragment StoreEntitySet="ROL">
-            <ScalarProperty Name="UNID_ROL" ColumnName="UNID_ROL" />
-            <ScalarProperty Name="ROL_NAME" ColumnName="ROL_NAME" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ROL_MENU"><EntityTypeMapping TypeName="TAE2Model.ROL_MENU"><MappingFragment StoreEntitySet="ROL_MENU">
-            <ScalarProperty Name="UNID_ROL" ColumnName="UNID_ROL" />
-            <ScalarProperty Name="UNID_MENU" ColumnName="UNID_MENU" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="USUARIOs"><EntityTypeMapping TypeName="TAE2Model.USUARIO"><MappingFragment StoreEntitySet="USUARIO">
-            <ScalarProperty Name="UNID_USUARIO" ColumnName="UNID_USUARIO" />
-            <ScalarProperty Name="USUARIO_MAIL" ColumnName="USUARIO_MAIL" />
-            <ScalarProperty Name="USUARIO_PWD" ColumnName="USUARIO_PWD" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="USUARIO_ROL"><EntityTypeMapping TypeName="TAE2Model.USUARIO_ROL"><MappingFragment StoreEntitySet="USUARIO_ROL">
-            <ScalarProperty Name="UNID_ROL" ColumnName="UNID_ROL" />
-            <ScalarProperty Name="UNID_USUARIO" ColumnName="UNID_USUARIO" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ARTICULOes"><EntityTypeMapping TypeName="TAE2Model.ARTICULO"><MappingFragment StoreEntitySet="ARTICULO">
-            <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
-            <ScalarProperty Name="ARTICULO1" ColumnName="ARTICULO" />
-            <ScalarProperty Name="UNID_CATEGORIA" ColumnName="UNID_CATEGORIA" />
-            <ScalarProperty Name="UNID_EQUIPO" ColumnName="UNID_EQUIPO" />
-            <ScalarProperty Name="UNID_MARCA" ColumnName="UNID_MARCA" />
-            <ScalarProperty Name="UNID_MODELO" ColumnName="UNID_MODELO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="CATEGORIAs"><EntityTypeMapping TypeName="TAE2Model.CATEGORIA"><MappingFragment StoreEntitySet="CATEGORIA">
-            <ScalarProperty Name="UNID_CATEGORIA" ColumnName="UNID_CATEGORIA" />
-            <ScalarProperty Name="CATEGORIA_NAME" ColumnName="CATEGORIA_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="EQUIPOes"><EntityTypeMapping TypeName="TAE2Model.EQUIPO"><MappingFragment StoreEntitySet="EQUIPO">
-            <ScalarProperty Name="UNID_EQUIPO" ColumnName="UNID_EQUIPO" />
-            <ScalarProperty Name="EQUIPO_NAME" ColumnName="EQUIPO_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MARCAs"><EntityTypeMapping TypeName="TAE2Model.MARCA"><MappingFragment StoreEntitySet="MARCA">
-            <ScalarProperty Name="UNID_MARCA" ColumnName="UNID_MARCA" />
-            <ScalarProperty Name="MARCA_NAME" ColumnName="MARCA_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MODELOes"><EntityTypeMapping TypeName="TAE2Model.MODELO"><MappingFragment StoreEntitySet="MODELO">
-            <ScalarProperty Name="UNID_MODELO" ColumnName="UNID_MODELO" />
-            <ScalarProperty Name="MODELO_NAME" ColumnName="MODELO_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="BANCOes"><EntityTypeMapping TypeName="TAE2Model.BANCO"><MappingFragment StoreEntitySet="BANCO">
-            <ScalarProperty Name="UNID_BANCO" ColumnName="UNID_BANCO" />
-            <ScalarProperty Name="BANCO_NAME" ColumnName="BANCO_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="DEPARTAMENTOes"><EntityTypeMapping TypeName="TAE2Model.DEPARTAMENTO"><MappingFragment StoreEntitySet="DEPARTAMENTO">
-            <ScalarProperty Name="UNID_DEPARTAMENTO" ColumnName="UNID_DEPARTAMENTO" />
-            <ScalarProperty Name="DEPARTAMENTO_NAME" ColumnName="DEPARTAMENTO_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="EMPRESAs"><EntityTypeMapping TypeName="TAE2Model.EMPRESA"><MappingFragment StoreEntitySet="EMPRESA">
-            <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
-            <ScalarProperty Name="EMPRESA_NAME" ColumnName="EMPRESA_NAME" />
-            <ScalarProperty Name="RAZON_SOCIAL" ColumnName="RAZON_SOCIAL" />
-            <ScalarProperty Name="RFC" ColumnName="RFC" />
-            <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="INFRAESTRUCTURAs"><EntityTypeMapping TypeName="TAE2Model.INFRAESTRUCTURA"><MappingFragment StoreEntitySet="INFRAESTRUCTURA">
-            <ScalarProperty Name="UNID_INFRAESTRUCTURA" ColumnName="UNID_INFRAESTRUCTURA" />
-            <ScalarProperty Name="INFRAESTRUCTURA_NAME" ColumnName="INFRAESTRUCTURA_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MEDIO_ENVIO"><EntityTypeMapping TypeName="TAE2Model.MEDIO_ENVIO"><MappingFragment StoreEntitySet="MEDIO_ENVIO">
-            <ScalarProperty Name="UNID_MEDIO_ENVIO" ColumnName="UNID_MEDIO_ENVIO" />
-            <ScalarProperty Name="MEDIO_ENVIO_NAME" ColumnName="MEDIO_ENVIO_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MONEDAs"><EntityTypeMapping TypeName="TAE2Model.MONEDA"><MappingFragment StoreEntitySet="MONEDA">
-            <ScalarProperty Name="UNID_MONEDA" ColumnName="UNID_MONEDA" />
-            <ScalarProperty Name="MONEDA_NAME" ColumnName="MONEDA_NAME" />
-            <ScalarProperty Name="MONEDA_ABR" ColumnName="MONEDA_ABR" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PROVEEDORs"><EntityTypeMapping TypeName="TAE2Model.PROVEEDOR"><MappingFragment StoreEntitySet="PROVEEDOR">
-            <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
-            <ScalarProperty Name="PROVEEDOR_NAME" ColumnName="PROVEEDOR_NAME" />
-            <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
-            <ScalarProperty Name="TEL1" ColumnName="TEL1" />
-            <ScalarProperty Name="TEL2" ColumnName="TEL2" />
-            <ScalarProperty Name="MAIL" ColumnName="MAIL" />
-            <ScalarProperty Name="CALLE" ColumnName="CALLE" />
-            <ScalarProperty Name="UNID_PAIS" ColumnName="UNID_PAIS" />
-            <ScalarProperty Name="UNID_CIUDAD" ColumnName="UNID_CIUDAD" />
-            <ScalarProperty Name="CODIGO_POSTAL" ColumnName="CODIGO_POSTAL" />
-            <ScalarProperty Name="RFC" ColumnName="RFC" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PROVEEDOR_CATEGORIA"><EntityTypeMapping TypeName="TAE2Model.PROVEEDOR_CATEGORIA"><MappingFragment StoreEntitySet="PROVEEDOR_CATEGORIA">
-            <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
-            <ScalarProperty Name="UNID_CATEGORIA" ColumnName="UNID_CATEGORIA" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PROVEEDOR_CUENTA"><EntityTypeMapping TypeName="TAE2Model.PROVEEDOR_CUENTA"><MappingFragment StoreEntitySet="PROVEEDOR_CUENTA">
-            <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
-            <ScalarProperty Name="UNID_PROVEEDOR_CUENTA" ColumnName="UNID_PROVEEDOR_CUENTA" />
-            <ScalarProperty Name="UNID_BANCO" ColumnName="UNID_BANCO" />
-            <ScalarProperty Name="NUMERO_CUENTA" ColumnName="NUMERO_CUENTA" />
-            <ScalarProperty Name="CLABE" ColumnName="CLABE" />
-            <ScalarProperty Name="BENEFICIARIO" ColumnName="BENEFICIARIO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PROYECTOes"><EntityTypeMapping TypeName="TAE2Model.PROYECTO"><MappingFragment StoreEntitySet="PROYECTO">
-            <ScalarProperty Name="UNID_PROYECTO" ColumnName="UNID_PROYECTO" />
-            <ScalarProperty Name="PROYECTO_NAME" ColumnName="PROYECTO_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SERVER_LASTDATA"><EntityTypeMapping TypeName="TAE2Model.SERVER_LASTDATA"><MappingFragment StoreEntitySet="SERVER_LASTDATA">
-            <ScalarProperty Name="UNID_SERVER_LASTDATA" ColumnName="UNID_SERVER_LASTDATA" />
-            <ScalarProperty Name="ACTUAL_DATE" ColumnName="ACTUAL_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SOLICITANTEs"><EntityTypeMapping TypeName="TAE2Model.SOLICITANTE"><MappingFragment StoreEntitySet="SOLICITANTE">
-            <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
-            <ScalarProperty Name="SOLICITANTE_NAME" ColumnName="SOLICITANTE_NAME" />
-            <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
-            <ScalarProperty Name="UNID_DEPARTAMENTO" ColumnName="UNID_DEPARTAMENTO" />
-            <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-            <ScalarProperty Name="VALIDADOR" ColumnName="VALIDADOR" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SYNCs"><EntityTypeMapping TypeName="TAE2Model.SYNC"><MappingFragment StoreEntitySet="SYNC">
-            <ScalarProperty Name="UNID_SYNC" ColumnName="UNID_SYNC" />
-            <ScalarProperty Name="ACTUAL_DATE" ColumnName="ACTUAL_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TERMINO_ENVIO"><EntityTypeMapping TypeName="TAE2Model.TERMINO_ENVIO"><MappingFragment StoreEntitySet="TERMINO_ENVIO">
-            <ScalarProperty Name="UNID_TERMINO_ENVIO" ColumnName="UNID_TERMINO_ENVIO" />
-            <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
-            <ScalarProperty Name="TERMINO" ColumnName="TERMINO" />
-            <ScalarProperty Name="SIGNIFICADO" ColumnName="SIGNIFICADO" />
-            <ScalarProperty Name="GENERA_LOTES" ColumnName="GENERA_LOTES" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TIPO_COTIZACION"><EntityTypeMapping TypeName="TAE2Model.TIPO_COTIZACION"><MappingFragment StoreEntitySet="TIPO_COTIZACION">
-            <ScalarProperty Name="UNID_TIPO_COTIZACION" ColumnName="UNID_TIPO_COTIZACION" />
-            <ScalarProperty Name="TIPO_COTIZACION_NAME" ColumnName="TIPO_COTIZACION_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TIPO_EMPRESA"><EntityTypeMapping TypeName="TAE2Model.TIPO_EMPRESA"><MappingFragment StoreEntitySet="TIPO_EMPRESA">
-            <ScalarProperty Name="UNID_TIPO_EMPRESA" ColumnName="UNID_TIPO_EMPRESA" />
-            <ScalarProperty Name="TIPO_EMPRESA_NAME" ColumnName="TIPO_EMPRESA_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TIPO_PEDIMENTO"><EntityTypeMapping TypeName="TAE2Model.TIPO_PEDIMENTO"><MappingFragment StoreEntitySet="TIPO_PEDIMENTO">
-            <ScalarProperty Name="UNID_TIPO_PEDIMENTO" ColumnName="UNID_TIPO_PEDIMENTO" />
-            <ScalarProperty Name="TIPO_PEDIMENTO_NAME" ColumnName="TIPO_PEDIMENTO_NAME" />
-            <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
-            <ScalarProperty Name="REGIMEN" ColumnName="REGIMEN" />
-            <ScalarProperty Name="NOTA" ColumnName="NOTA" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TRANSPORTEs"><EntityTypeMapping TypeName="TAE2Model.TRANSPORTE"><MappingFragment StoreEntitySet="TRANSPORTE">
-            <ScalarProperty Name="UNID_TRANSPORTE" ColumnName="UNID_TRANSPORTE" />
-            <ScalarProperty Name="TRANSPORTE_NAME" ColumnName="TRANSPORTE_NAME" />
-            <ScalarProperty Name="UNID_TIPO_EMPRESA" ColumnName="UNID_TIPO_EMPRESA" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="UPLOAD_LOG"><EntityTypeMapping TypeName="TAE2Model.UPLOAD_LOG"><MappingFragment StoreEntitySet="UPLOAD_LOG">
-            <ScalarProperty Name="UNID_UPLOAD_LOG" ColumnName="UNID_UPLOAD_LOG" />
-            <ScalarProperty Name="MSG" ColumnName="MSG" />
-            <ScalarProperty Name="IP_DIR" ColumnName="IP_DIR" />
-            <ScalarProperty Name="PC_NAME" ColumnName="PC_NAME" />
-            <ScalarProperty Name="UNID_USUARIO" ColumnName="UNID_USUARIO" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ALMACENs"><EntityTypeMapping TypeName="TAE2Model.ALMACEN"><MappingFragment StoreEntitySet="ALMACEN">
-            <ScalarProperty Name="UNID_ALMACEN" ColumnName="UNID_ALMACEN" />
-            <ScalarProperty Name="ALMACEN_NAME" ColumnName="ALMACEN_NAME" />
-            <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
-            <ScalarProperty Name="MAIL" ColumnName="MAIL" />
-            <ScalarProperty Name="MAIL_DEFAULT" ColumnName="MAIL_DEFAULT" />
-            <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ALMACEN_TECNICO"><EntityTypeMapping TypeName="TAE2Model.ALMACEN_TECNICO"><MappingFragment StoreEntitySet="ALMACEN_TECNICO">
-            <ScalarProperty Name="UNID_ALMACEN" ColumnName="UNID_ALMACEN" />
-            <ScalarProperty Name="UNID_TECNICO" ColumnName="UNID_TECNICO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="CLIENTEs"><EntityTypeMapping TypeName="TAE2Model.CLIENTE"><MappingFragment StoreEntitySet="CLIENTE">
-            <ScalarProperty Name="UNID_CLIENTE" ColumnName="UNID_CLIENTE" />
-            <ScalarProperty Name="CLIENTE1" ColumnName="CLIENTE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ITEM_STATUS"><EntityTypeMapping TypeName="TAE2Model.ITEM_STATUS"><MappingFragment StoreEntitySet="ITEM_STATUS">
-            <ScalarProperty Name="UNID_ITEM_STATUS" ColumnName="UNID_ITEM_STATUS" />
-            <ScalarProperty Name="ITEM_STATUS_NAME" ColumnName="ITEM_STATUS_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PROPIEDADs"><EntityTypeMapping TypeName="TAE2Model.PROPIEDAD"><MappingFragment StoreEntitySet="PROPIEDAD">
-            <ScalarProperty Name="UNID_PROPIEDAD" ColumnName="UNID_PROPIEDAD" />
-            <ScalarProperty Name="PROPIEDAD1" ColumnName="PROPIEDAD" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SERVICIOs"><EntityTypeMapping TypeName="TAE2Model.SERVICIO"><MappingFragment StoreEntitySet="SERVICIO">
-            <ScalarProperty Name="UNID_SERVICIO" ColumnName="UNID_SERVICIO" />
-            <ScalarProperty Name="SERVICIO_NAME" ColumnName="SERVICIO_NAME" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SOLICITANTE1"><EntityTypeMapping TypeName="TAE2Model.SOLICITANTE1"><MappingFragment StoreEntitySet="SOLICITANTE1">
-            <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
-            <ScalarProperty Name="AREA" ColumnName="AREA" />
-            <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TECNICOes"><EntityTypeMapping TypeName="TAE2Model.TECNICO"><MappingFragment StoreEntitySet="TECNICO">
-            <ScalarProperty Name="UNID_TECNICO" ColumnName="UNID_TECNICO" />
-            <ScalarProperty Name="TECNICO_NAME" ColumnName="TECNICO_NAME" />
-            <ScalarProperty Name="MAIL" ColumnName="MAIL" />
-            <ScalarProperty Name="UNID_CIUDAD" ColumnName="UNID_CIUDAD" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TIPO_MOVIMIENTO"><EntityTypeMapping TypeName="TAE2Model.TIPO_MOVIMIENTO"><MappingFragment StoreEntitySet="TIPO_MOVIMIENTO">
-            <ScalarProperty Name="UNID_TIPO_MOVIMIENTO" ColumnName="UNID_TIPO_MOVIMIENTO" />
-            <ScalarProperty Name="TIPO_MOVIMIENTO_NAME" ColumnName="TIPO_MOVIMIENTO_NAME" />
-            <ScalarProperty Name="SIGNO_MOVIMIENTO" ColumnName="SIGNO_MOVIMIENTO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="UNIDADs"><EntityTypeMapping TypeName="TAE2Model.UNIDAD"><MappingFragment StoreEntitySet="UNIDAD">
-            <ScalarProperty Name="UNID_UNIDAD" ColumnName="UNID_UNIDAD" />
-            <ScalarProperty Name="UNIDAD1" ColumnName="UNIDAD" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="COTIZACIONs"><EntityTypeMapping TypeName="TAE2Model.COTIZACION"><MappingFragment StoreEntitySet="COTIZACION">
-            <ScalarProperty Name="UNID_COTIZACION" ColumnName="UNID_COTIZACION" />
-            <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
-            <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
-            <ScalarProperty Name="ID_STATUS" ColumnName="ID_STATUS" />
-            <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
-            <ScalarProperty Name="ID_TIPO_COTIZACION" ColumnName="ID_TIPO_COTIZACION" />
-            <ScalarProperty Name="ID_PROYECTO" ColumnName="ID_PROYECTO" />
-            <ScalarProperty Name="FECHA_SOLICITUD" ColumnName="FECHA_SOLICITUD" />
-            <ScalarProperty Name="FECHA_REQUERIMENTO" ColumnName="FECHA_REQUERIMENTO" />
-            <ScalarProperty Name="FECHA_COTIZACION" ColumnName="FECHA_COTIZACION" />
-            <ScalarProperty Name="OBSERVACIONES_COMPRAS" ColumnName="OBSERVACIONES_COMPRAS" />
-            <ScalarProperty Name="DIAS_VIGENCIA" ColumnName="DIAS_VIGENCIA" />
-            <ScalarProperty Name="MOTIVO_CANCELACION" ColumnName="MOTIVO_CANCELACION" />
-            <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="CIUDADs"><EntityTypeMapping TypeName="TAE2Model.CIUDAD"><MappingFragment StoreEntitySet="CIUDAD">
-            <ScalarProperty Name="UNID_CIUDAD" ColumnName="UNID_CIUDAD" />
-            <ScalarProperty Name="CIUDAD1" ColumnName="CIUDAD" />
-            <ScalarProperty Name="ISO" ColumnName="ISO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PAIS"><EntityTypeMapping TypeName="TAE2Model.PAI"><MappingFragment StoreEntitySet="PAIS">
-            <ScalarProperty Name="UNID_PAIS" ColumnName="UNID_PAIS" />
-            <ScalarProperty Name="PAIS" ColumnName="PAIS" />
-            <ScalarProperty Name="ISO" ColumnName="ISO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="FACTURA_VENTA"><EntityTypeMapping TypeName="TAE2Model.FACTURA_VENTA"><MappingFragment StoreEntitySet="FACTURA_VENTA">
-            <ScalarProperty Name="UNID_FACTURA_VENTA" ColumnName="UNID_FACTURA_VENTA" />
-            <ScalarProperty Name="FOLIO" ColumnName="FOLIO" />
-            <ScalarProperty Name="TOTAL_DESC_FACTURA" ColumnName="TOTAL_DESC_FACTURA" />
-            <ScalarProperty Name="TOTAL_FACTURA" ColumnName="TOTAL_FACTURA" />
-            <ScalarProperty Name="POR_IVA" ColumnName="POR_IVA" />
-            <ScalarProperty Name="IVA_PESOS" ColumnName="IVA_PESOS" />
-            <ScalarProperty Name="IMPORTE_FACTURA" ColumnName="IMPORTE_FACTURA" />
-            <ScalarProperty Name="UNID_MONEDA" ColumnName="UNID_MONEDA" />
-            <ScalarProperty Name="TIPO_CAMBIO" ColumnName="TIPO_CAMBIO" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ITEMs"><EntityTypeMapping TypeName="TAE2Model.ITEM"><MappingFragment StoreEntitySet="ITEM">
-            <ScalarProperty Name="UNID_ITEM" ColumnName="UNID_ITEM" />
-            <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
-            <ScalarProperty Name="SKU" ColumnName="SKU" />
-            <ScalarProperty Name="NUMERO_SERIE" ColumnName="NUMERO_SERIE" />
-            <ScalarProperty Name="UNID_ITEM_STATUS" ColumnName="UNID_ITEM_STATUS" />
-            <ScalarProperty Name="COSTO_UNITARIO" ColumnName="COSTO_UNITARIO" />
-            <ScalarProperty Name="UNID_FACTURA_DETALE" ColumnName="UNID_FACTURA_DETALE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
-            <ScalarProperty Name="STATUS" ColumnName="STATUS" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MOVIMENTOes"><EntityTypeMapping TypeName="TAE2Model.MOVIMENTO"><MappingFragment StoreEntitySet="MOVIMENTO">
-            <ScalarProperty Name="UNID_MOVIMIENTO" ColumnName="UNID_MOVIMIENTO" />
-            <ScalarProperty Name="FECHA_MOVIMIENTO" ColumnName="FECHA_MOVIMIENTO" />
-            <ScalarProperty Name="UNID_TIPO_MOVIMIENTO" ColumnName="UNID_TIPO_MOVIMIENTO" />
-            <ScalarProperty Name="UNID_ALMACEN_DESTINO" ColumnName="UNID_ALMACEN_DESTINO" />
-            <ScalarProperty Name="UNID_PROVEEDOR_DESTINO" ColumnName="UNID_PROVEEDOR_DESTINO" />
-            <ScalarProperty Name="UNID_CLIENTE_DESTINO" ColumnName="UNID_CLIENTE_DESTINO" />
-            <ScalarProperty Name="UNID_ALMACEN_PROCEDENCIA" ColumnName="UNID_ALMACEN_PROCEDENCIA" />
-            <ScalarProperty Name="UNID_CLIENTE_PROCEDENCIA" ColumnName="UNID_CLIENTE_PROCEDENCIA" />
-            <ScalarProperty Name="UNID_PROVEEDOR_PROCEDENCIA" ColumnName="UNID_PROVEEDOR_PROCEDENCIA" />
-            <ScalarProperty Name="UNID_SERVICIO" ColumnName="UNID_SERVICIO" />
-            <ScalarProperty Name="TT" ColumnName="TT" />
-            <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
-            <ScalarProperty Name="UNID_TRANSPORTE" ColumnName="UNID_TRANSPORTE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="DIRECCION_ENVIO" ColumnName="DIRECCION_ENVIO" />
-            <ScalarProperty Name="SITIO_ENLACE" ColumnName="SITIO_ENLACE" />
-            <ScalarProperty Name="NOMBRE_SITIO" ColumnName="NOMBRE_SITIO" />
-            <ScalarProperty Name="RECIBE" ColumnName="RECIBE" />
-            <ScalarProperty Name="GUIA" ColumnName="GUIA" />
-            <ScalarProperty Name="UNID_CLIENTE" ColumnName="UNID_CLIENTE" />
-            <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
-            <ScalarProperty Name="UNID_FACTURA_VENTA" ColumnName="UNID_FACTURA_VENTA" />
-            <ScalarProperty Name="PEDIMIENTO_IMPO" ColumnName="PEDIMIENTO_IMPO" />
-            <ScalarProperty Name="PEDIMIENTO_EXPO" ColumnName="PEDIMIENTO_EXPO" />
-            <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
-            <ScalarProperty Name="UNID_TECNICO" ColumnName="UNID_TECNICO" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="UNID_INFRAESTRUCTURA" ColumnName="UNID_INFRAESTRUCTURA" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MOVIMIENTO_DETALLE"><EntityTypeMapping TypeName="TAE2Model.MOVIMIENTO_DETALLE"><MappingFragment StoreEntitySet="MOVIMIENTO_DETALLE">
-            <ScalarProperty Name="UNID_MOVIMIENTO_DETALLE" ColumnName="UNID_MOVIMIENTO_DETALLE" />
-            <ScalarProperty Name="UNID_ITEM" ColumnName="UNID_ITEM" />
-            <ScalarProperty Name="UNID_MOVIMIENTO" ColumnName="UNID_MOVIMIENTO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="RECIBOes"><EntityTypeMapping TypeName="TAE2Model.RECIBO"><MappingFragment StoreEntitySet="RECIBO">
-            <ScalarProperty Name="UNID_RECIBO" ColumnName="UNID_RECIBO" />
-            <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
-            <ScalarProperty Name="FECHA_CIERRE" ColumnName="FECHA_CIERRE" />
-            <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
-            <ScalarProperty Name="PO" ColumnName="PO" />
-            <ScalarProperty Name="TT" ColumnName="TT" />
-            <ScalarProperty Name="PEDIMIENTO_IMPO" ColumnName="PEDIMIENTO_IMPO" />
-            <ScalarProperty Name="PEDIMENTO_EXPO" ColumnName="PEDIMENTO_EXPO" />
-            <ScalarProperty Name="UNID_RECIBO_STATUS" ColumnName="UNID_RECIBO_STATUS" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="RECIBO_MOVIMIENTO"><EntityTypeMapping TypeName="TAE2Model.RECIBO_MOVIMIENTO"><MappingFragment StoreEntitySet="RECIBO_MOVIMIENTO">
-            <ScalarProperty Name="UNID_RECIBO" ColumnName="UNID_RECIBO" />
-            <ScalarProperty Name="UNID_RECIBO_MOVIMIENTO" ColumnName="UNID_RECIBO_MOVIMIENTO" />
-            <ScalarProperty Name="UNID_MOVIMIENTO" ColumnName="UNID_MOVIMIENTO" />
-            <ScalarProperty Name="UNID_FACTURA" ColumnName="UNID_FACTURA" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="RECIBO_STATUS"><EntityTypeMapping TypeName="TAE2Model.RECIBO_STATUS"><MappingFragment StoreEntitySet="RECIBO_STATUS">
-            <ScalarProperty Name="UNID_RECIBO_STATUS" ColumnName="UNID_RECIBO_STATUS" />
-            <ScalarProperty Name="RECIBO_STATUS_NAME" ColumnName="RECIBO_STATUS_NAME" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ULTIMO_MOVIMIENTO"><EntityTypeMapping TypeName="TAE2Model.ULTIMO_MOVIMIENTO"><MappingFragment StoreEntitySet="ULTIMO_MOVIMIENTO">
-            <ScalarProperty Name="UNID_ITEM" ColumnName="UNID_ITEM" />
-            <ScalarProperty Name="UNID_ALMACEN" ColumnName="UNID_ALMACEN" />
-            <ScalarProperty Name="UNID_CLIENTE" ColumnName="UNID_CLIENTE" />
-            <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
-            <ScalarProperty Name="UNID_MOVIMIENTO_DETALLE" ColumnName="UNID_MOVIMIENTO_DETALLE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="UNID_INFRAESTRUCTURA" ColumnName="UNID_INFRAESTRUCTURA" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="FACTURAs"><EntityTypeMapping TypeName="TAE2Model.FACTURA"><MappingFragment StoreEntitySet="FACTURA">
-            <ScalarProperty Name="UNID_FACTURA" ColumnName="UNID_FACTURA" />
-            <ScalarProperty Name="UNID_LOTE" ColumnName="UNID_LOTE" />
-            <ScalarProperty Name="FACTURA_NUMERO" ColumnName="FACTURA_NUMERO" />
-            <ScalarProperty Name="FECHA_FACTURA" ColumnName="FECHA_FACTURA" />
-            <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
-            <ScalarProperty Name="UNID_MONEDA" ColumnName="UNID_MONEDA" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="NUMERO_PEDIMENTO" ColumnName="NUMERO_PEDIMENTO" />
-            <ScalarProperty Name="IVA_POR" ColumnName="IVA_POR" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="FACTURA_DETALLE"><EntityTypeMapping TypeName="TAE2Model.FACTURA_DETALLE"><MappingFragment StoreEntitySet="FACTURA_DETALLE">
-            <ScalarProperty Name="UNID_FACTURA_DETALE" ColumnName="UNID_FACTURA_DETALE" />
-            <ScalarProperty Name="UNID_FACTURA" ColumnName="UNID_FACTURA" />
-            <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
-            <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
-            <ScalarProperty Name="PRECIO_UNITARIO" ColumnName="PRECIO_UNITARIO" />
-            <ScalarProperty Name="IMPUESTO_UNITARIO" ColumnName="IMPUESTO_UNITARIO" />
-            <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
-            <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-            <ScalarProperty Name="UNID_UNIDAD" ColumnName="UNID_UNIDAD" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="UNID_PEDIMENTO" ColumnName="UNID_PEDIMENTO" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="LOTEs"><EntityTypeMapping TypeName="TAE2Model.LOTE"><MappingFragment StoreEntitySet="LOTE">
-            <ScalarProperty Name="UNID_LOTE" ColumnName="UNID_LOTE" />
-            <ScalarProperty Name="UNID_POM" ColumnName="UNID_POM" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PEDIMENTOes"><EntityTypeMapping TypeName="TAE2Model.PEDIMENTO"><MappingFragment StoreEntitySet="PEDIMENTO">
-            <ScalarProperty Name="UNID_PEDIMENTO" ColumnName="UNID_PEDIMENTO" />
-            <ScalarProperty Name="UNID_LOTE" ColumnName="UNID_LOTE" />
-            <ScalarProperty Name="UNID_TIPO_PEDIMENTO" ColumnName="UNID_TIPO_PEDIMENTO" />
-            <ScalarProperty Name="PEDIMENTO_NUMERO" ColumnName="PEDIMENTO_NUMERO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="POMs"><EntityTypeMapping TypeName="TAE2Model.POM"><MappingFragment StoreEntitySet="POM">
-            <ScalarProperty Name="UNID_POM" ColumnName="UNID_POM" />
-            <ScalarProperty Name="FECHA_POM" ColumnName="FECHA_POM" />
-            <ScalarProperty Name="UNID_COTIZACION" ColumnName="UNID_COTIZACION" />
-            <ScalarProperty Name="DIAS_ENTREGA" ColumnName="DIAS_ENTREGA" />
-            <ScalarProperty Name="FECHA_ENTREGA" ColumnName="FECHA_ENTREGA" />
-            <ScalarProperty Name="FECHA_ENTREGA_REAL" ColumnName="FECHA_ENTREGA_REAL" />
-            <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="POM_ARTICULO"><EntityTypeMapping TypeName="TAE2Model.POM_ARTICULO"><MappingFragment StoreEntitySet="POM_ARTICULO">
-            <ScalarProperty Name="UNID_POM" ColumnName="UNID_POM" />
-            <ScalarProperty Name="UNID_POM_ARTICULO" ColumnName="UNID_POM_ARTICULO" />
-            <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
-            <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
-            <ScalarProperty Name="COSTO_UNITARIO" ColumnName="COSTO_UNITARIO" />
-            <ScalarProperty Name="IVA" ColumnName="IVA" />
-            <ScalarProperty Name="TC" ColumnName="TC" />
-            <ScalarProperty Name="DESCUENTO" ColumnName="DESCUENTO" />
-            <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
-            <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
-            <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="MENUs">
+            <EntityTypeMapping TypeName="TAE2Model.MENU">
+              <MappingFragment StoreEntitySet="MENU">
+                <ScalarProperty Name="UNID_MENU" ColumnName="UNID_MENU" />
+                <ScalarProperty Name="UNID_MENU_PARENT" ColumnName="UNID_MENU_PARENT" />
+                <ScalarProperty Name="MENU_NAME" ColumnName="MENU_NAME" />
+                <ScalarProperty Name="IS_LEAF" ColumnName="IS_LEAF" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLs">
+            <EntityTypeMapping TypeName="TAE2Model.ROL">
+              <MappingFragment StoreEntitySet="ROL">
+                <ScalarProperty Name="UNID_ROL" ColumnName="UNID_ROL" />
+                <ScalarProperty Name="ROL_NAME" ColumnName="ROL_NAME" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROL_MENU">
+            <EntityTypeMapping TypeName="TAE2Model.ROL_MENU">
+              <MappingFragment StoreEntitySet="ROL_MENU">
+                <ScalarProperty Name="UNID_ROL" ColumnName="UNID_ROL" />
+                <ScalarProperty Name="UNID_MENU" ColumnName="UNID_MENU" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOs">
+            <EntityTypeMapping TypeName="TAE2Model.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="UNID_USUARIO" ColumnName="UNID_USUARIO" />
+                <ScalarProperty Name="USUARIO_MAIL" ColumnName="USUARIO_MAIL" />
+                <ScalarProperty Name="USUARIO_PWD" ColumnName="USUARIO_PWD" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO_ROL">
+            <EntityTypeMapping TypeName="TAE2Model.USUARIO_ROL">
+              <MappingFragment StoreEntitySet="USUARIO_ROL">
+                <ScalarProperty Name="UNID_ROL" ColumnName="UNID_ROL" />
+                <ScalarProperty Name="UNID_USUARIO" ColumnName="UNID_USUARIO" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ARTICULOes">
+            <EntityTypeMapping TypeName="TAE2Model.ARTICULO">
+              <MappingFragment StoreEntitySet="ARTICULO">
+                <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
+                <ScalarProperty Name="ARTICULO1" ColumnName="ARTICULO" />
+                <ScalarProperty Name="UNID_CATEGORIA" ColumnName="UNID_CATEGORIA" />
+                <ScalarProperty Name="UNID_EQUIPO" ColumnName="UNID_EQUIPO" />
+                <ScalarProperty Name="UNID_MARCA" ColumnName="UNID_MARCA" />
+                <ScalarProperty Name="UNID_MODELO" ColumnName="UNID_MODELO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORIAs">
+            <EntityTypeMapping TypeName="TAE2Model.CATEGORIA">
+              <MappingFragment StoreEntitySet="CATEGORIA">
+                <ScalarProperty Name="UNID_CATEGORIA" ColumnName="UNID_CATEGORIA" />
+                <ScalarProperty Name="CATEGORIA_NAME" ColumnName="CATEGORIA_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EQUIPOes">
+            <EntityTypeMapping TypeName="TAE2Model.EQUIPO">
+              <MappingFragment StoreEntitySet="EQUIPO">
+                <ScalarProperty Name="UNID_EQUIPO" ColumnName="UNID_EQUIPO" />
+                <ScalarProperty Name="EQUIPO_NAME" ColumnName="EQUIPO_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MARCAs">
+            <EntityTypeMapping TypeName="TAE2Model.MARCA">
+              <MappingFragment StoreEntitySet="MARCA">
+                <ScalarProperty Name="UNID_MARCA" ColumnName="UNID_MARCA" />
+                <ScalarProperty Name="MARCA_NAME" ColumnName="MARCA_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MODELOes">
+            <EntityTypeMapping TypeName="TAE2Model.MODELO">
+              <MappingFragment StoreEntitySet="MODELO">
+                <ScalarProperty Name="UNID_MODELO" ColumnName="UNID_MODELO" />
+                <ScalarProperty Name="MODELO_NAME" ColumnName="MODELO_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BANCOes">
+            <EntityTypeMapping TypeName="TAE2Model.BANCO">
+              <MappingFragment StoreEntitySet="BANCO">
+                <ScalarProperty Name="UNID_BANCO" ColumnName="UNID_BANCO" />
+                <ScalarProperty Name="BANCO_NAME" ColumnName="BANCO_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTAMENTOes">
+            <EntityTypeMapping TypeName="TAE2Model.DEPARTAMENTO">
+              <MappingFragment StoreEntitySet="DEPARTAMENTO">
+                <ScalarProperty Name="UNID_DEPARTAMENTO" ColumnName="UNID_DEPARTAMENTO" />
+                <ScalarProperty Name="DEPARTAMENTO_NAME" ColumnName="DEPARTAMENTO_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPRESAs">
+            <EntityTypeMapping TypeName="TAE2Model.EMPRESA">
+              <MappingFragment StoreEntitySet="EMPRESA">
+                <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
+                <ScalarProperty Name="EMPRESA_NAME" ColumnName="EMPRESA_NAME" />
+                <ScalarProperty Name="RAZON_SOCIAL" ColumnName="RAZON_SOCIAL" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INFRAESTRUCTURAs">
+            <EntityTypeMapping TypeName="TAE2Model.INFRAESTRUCTURA">
+              <MappingFragment StoreEntitySet="INFRAESTRUCTURA">
+                <ScalarProperty Name="UNID_INFRAESTRUCTURA" ColumnName="UNID_INFRAESTRUCTURA" />
+                <ScalarProperty Name="INFRAESTRUCTURA_NAME" ColumnName="INFRAESTRUCTURA_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEDIO_ENVIO">
+            <EntityTypeMapping TypeName="TAE2Model.MEDIO_ENVIO">
+              <MappingFragment StoreEntitySet="MEDIO_ENVIO">
+                <ScalarProperty Name="UNID_MEDIO_ENVIO" ColumnName="UNID_MEDIO_ENVIO" />
+                <ScalarProperty Name="MEDIO_ENVIO_NAME" ColumnName="MEDIO_ENVIO_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MONEDAs">
+            <EntityTypeMapping TypeName="TAE2Model.MONEDA">
+              <MappingFragment StoreEntitySet="MONEDA">
+                <ScalarProperty Name="UNID_MONEDA" ColumnName="UNID_MONEDA" />
+                <ScalarProperty Name="MONEDA_NAME" ColumnName="MONEDA_NAME" />
+                <ScalarProperty Name="MONEDA_ABR" ColumnName="MONEDA_ABR" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVEEDORs">
+            <EntityTypeMapping TypeName="TAE2Model.PROVEEDOR">
+              <MappingFragment StoreEntitySet="PROVEEDOR">
+                <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
+                <ScalarProperty Name="PROVEEDOR_NAME" ColumnName="PROVEEDOR_NAME" />
+                <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
+                <ScalarProperty Name="TEL1" ColumnName="TEL1" />
+                <ScalarProperty Name="TEL2" ColumnName="TEL2" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="CALLE" ColumnName="CALLE" />
+                <ScalarProperty Name="UNID_PAIS" ColumnName="UNID_PAIS" />
+                <ScalarProperty Name="UNID_CIUDAD" ColumnName="UNID_CIUDAD" />
+                <ScalarProperty Name="CODIGO_POSTAL" ColumnName="CODIGO_POSTAL" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVEEDOR_CATEGORIA">
+            <EntityTypeMapping TypeName="TAE2Model.PROVEEDOR_CATEGORIA">
+              <MappingFragment StoreEntitySet="PROVEEDOR_CATEGORIA">
+                <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
+                <ScalarProperty Name="UNID_CATEGORIA" ColumnName="UNID_CATEGORIA" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVEEDOR_CUENTA">
+            <EntityTypeMapping TypeName="TAE2Model.PROVEEDOR_CUENTA">
+              <MappingFragment StoreEntitySet="PROVEEDOR_CUENTA">
+                <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
+                <ScalarProperty Name="UNID_PROVEEDOR_CUENTA" ColumnName="UNID_PROVEEDOR_CUENTA" />
+                <ScalarProperty Name="UNID_BANCO" ColumnName="UNID_BANCO" />
+                <ScalarProperty Name="NUMERO_CUENTA" ColumnName="NUMERO_CUENTA" />
+                <ScalarProperty Name="CLABE" ColumnName="CLABE" />
+                <ScalarProperty Name="BENEFICIARIO" ColumnName="BENEFICIARIO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROYECTOes">
+            <EntityTypeMapping TypeName="TAE2Model.PROYECTO">
+              <MappingFragment StoreEntitySet="PROYECTO">
+                <ScalarProperty Name="UNID_PROYECTO" ColumnName="UNID_PROYECTO" />
+                <ScalarProperty Name="PROYECTO_NAME" ColumnName="PROYECTO_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVER_LASTDATA">
+            <EntityTypeMapping TypeName="TAE2Model.SERVER_LASTDATA">
+              <MappingFragment StoreEntitySet="SERVER_LASTDATA">
+                <ScalarProperty Name="UNID_SERVER_LASTDATA" ColumnName="UNID_SERVER_LASTDATA" />
+                <ScalarProperty Name="ACTUAL_DATE" ColumnName="ACTUAL_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOLICITANTEs">
+            <EntityTypeMapping TypeName="TAE2Model.SOLICITANTE">
+              <MappingFragment StoreEntitySet="SOLICITANTE">
+                <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
+                <ScalarProperty Name="SOLICITANTE_NAME" ColumnName="SOLICITANTE_NAME" />
+                <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
+                <ScalarProperty Name="UNID_DEPARTAMENTO" ColumnName="UNID_DEPARTAMENTO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="VALIDADOR" ColumnName="VALIDADOR" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYNCs">
+            <EntityTypeMapping TypeName="TAE2Model.SYNC">
+              <MappingFragment StoreEntitySet="SYNC">
+                <ScalarProperty Name="UNID_SYNC" ColumnName="UNID_SYNC" />
+                <ScalarProperty Name="ACTUAL_DATE" ColumnName="ACTUAL_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TERMINO_ENVIO">
+            <EntityTypeMapping TypeName="TAE2Model.TERMINO_ENVIO">
+              <MappingFragment StoreEntitySet="TERMINO_ENVIO">
+                <ScalarProperty Name="UNID_TERMINO_ENVIO" ColumnName="UNID_TERMINO_ENVIO" />
+                <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
+                <ScalarProperty Name="TERMINO" ColumnName="TERMINO" />
+                <ScalarProperty Name="SIGNIFICADO" ColumnName="SIGNIFICADO" />
+                <ScalarProperty Name="GENERA_LOTES" ColumnName="GENERA_LOTES" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_COTIZACION">
+            <EntityTypeMapping TypeName="TAE2Model.TIPO_COTIZACION">
+              <MappingFragment StoreEntitySet="TIPO_COTIZACION">
+                <ScalarProperty Name="UNID_TIPO_COTIZACION" ColumnName="UNID_TIPO_COTIZACION" />
+                <ScalarProperty Name="TIPO_COTIZACION_NAME" ColumnName="TIPO_COTIZACION_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_EMPRESA">
+            <EntityTypeMapping TypeName="TAE2Model.TIPO_EMPRESA">
+              <MappingFragment StoreEntitySet="TIPO_EMPRESA">
+                <ScalarProperty Name="UNID_TIPO_EMPRESA" ColumnName="UNID_TIPO_EMPRESA" />
+                <ScalarProperty Name="TIPO_EMPRESA_NAME" ColumnName="TIPO_EMPRESA_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_PEDIMENTO">
+            <EntityTypeMapping TypeName="TAE2Model.TIPO_PEDIMENTO">
+              <MappingFragment StoreEntitySet="TIPO_PEDIMENTO">
+                <ScalarProperty Name="UNID_TIPO_PEDIMENTO" ColumnName="UNID_TIPO_PEDIMENTO" />
+                <ScalarProperty Name="TIPO_PEDIMENTO_NAME" ColumnName="TIPO_PEDIMENTO_NAME" />
+                <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
+                <ScalarProperty Name="REGIMEN" ColumnName="REGIMEN" />
+                <ScalarProperty Name="NOTA" ColumnName="NOTA" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANSPORTEs">
+            <EntityTypeMapping TypeName="TAE2Model.TRANSPORTE">
+              <MappingFragment StoreEntitySet="TRANSPORTE">
+                <ScalarProperty Name="UNID_TRANSPORTE" ColumnName="UNID_TRANSPORTE" />
+                <ScalarProperty Name="TRANSPORTE_NAME" ColumnName="TRANSPORTE_NAME" />
+                <ScalarProperty Name="UNID_TIPO_EMPRESA" ColumnName="UNID_TIPO_EMPRESA" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UPLOAD_LOG">
+            <EntityTypeMapping TypeName="TAE2Model.UPLOAD_LOG">
+              <MappingFragment StoreEntitySet="UPLOAD_LOG">
+                <ScalarProperty Name="UNID_UPLOAD_LOG" ColumnName="UNID_UPLOAD_LOG" />
+                <ScalarProperty Name="MSG" ColumnName="MSG" />
+                <ScalarProperty Name="IP_DIR" ColumnName="IP_DIR" />
+                <ScalarProperty Name="PC_NAME" ColumnName="PC_NAME" />
+                <ScalarProperty Name="UNID_USUARIO" ColumnName="UNID_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ALMACENs">
+            <EntityTypeMapping TypeName="TAE2Model.ALMACEN">
+              <MappingFragment StoreEntitySet="ALMACEN">
+                <ScalarProperty Name="UNID_ALMACEN" ColumnName="UNID_ALMACEN" />
+                <ScalarProperty Name="ALMACEN_NAME" ColumnName="ALMACEN_NAME" />
+                <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="MAIL_DEFAULT" ColumnName="MAIL_DEFAULT" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ALMACEN_TECNICO">
+            <EntityTypeMapping TypeName="TAE2Model.ALMACEN_TECNICO">
+              <MappingFragment StoreEntitySet="ALMACEN_TECNICO">
+                <ScalarProperty Name="UNID_ALMACEN" ColumnName="UNID_ALMACEN" />
+                <ScalarProperty Name="UNID_TECNICO" ColumnName="UNID_TECNICO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTEs">
+            <EntityTypeMapping TypeName="TAE2Model.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="UNID_CLIENTE" ColumnName="UNID_CLIENTE" />
+                <ScalarProperty Name="CLIENTE1" ColumnName="CLIENTE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ITEM_STATUS">
+            <EntityTypeMapping TypeName="TAE2Model.ITEM_STATUS">
+              <MappingFragment StoreEntitySet="ITEM_STATUS">
+                <ScalarProperty Name="UNID_ITEM_STATUS" ColumnName="UNID_ITEM_STATUS" />
+                <ScalarProperty Name="ITEM_STATUS_NAME" ColumnName="ITEM_STATUS_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROPIEDADs">
+            <EntityTypeMapping TypeName="TAE2Model.PROPIEDAD">
+              <MappingFragment StoreEntitySet="PROPIEDAD">
+                <ScalarProperty Name="UNID_PROPIEDAD" ColumnName="UNID_PROPIEDAD" />
+                <ScalarProperty Name="PROPIEDAD1" ColumnName="PROPIEDAD" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICIOs">
+            <EntityTypeMapping TypeName="TAE2Model.SERVICIO">
+              <MappingFragment StoreEntitySet="SERVICIO">
+                <ScalarProperty Name="UNID_SERVICIO" ColumnName="UNID_SERVICIO" />
+                <ScalarProperty Name="SERVICIO_NAME" ColumnName="SERVICIO_NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOLICITANTE1">
+            <EntityTypeMapping TypeName="TAE2Model.SOLICITANTE1">
+              <MappingFragment StoreEntitySet="SOLICITANTE1">
+                <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
+                <ScalarProperty Name="AREA" ColumnName="AREA" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TECNICOes">
+            <EntityTypeMapping TypeName="TAE2Model.TECNICO">
+              <MappingFragment StoreEntitySet="TECNICO">
+                <ScalarProperty Name="UNID_TECNICO" ColumnName="UNID_TECNICO" />
+                <ScalarProperty Name="TECNICO_NAME" ColumnName="TECNICO_NAME" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="UNID_CIUDAD" ColumnName="UNID_CIUDAD" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_MOVIMIENTO">
+            <EntityTypeMapping TypeName="TAE2Model.TIPO_MOVIMIENTO">
+              <MappingFragment StoreEntitySet="TIPO_MOVIMIENTO">
+                <ScalarProperty Name="UNID_TIPO_MOVIMIENTO" ColumnName="UNID_TIPO_MOVIMIENTO" />
+                <ScalarProperty Name="TIPO_MOVIMIENTO_NAME" ColumnName="TIPO_MOVIMIENTO_NAME" />
+                <ScalarProperty Name="SIGNO_MOVIMIENTO" ColumnName="SIGNO_MOVIMIENTO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UNIDADs">
+            <EntityTypeMapping TypeName="TAE2Model.UNIDAD">
+              <MappingFragment StoreEntitySet="UNIDAD">
+                <ScalarProperty Name="UNID_UNIDAD" ColumnName="UNID_UNIDAD" />
+                <ScalarProperty Name="UNIDAD1" ColumnName="UNIDAD" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COTIZACIONs">
+            <EntityTypeMapping TypeName="TAE2Model.COTIZACION">
+              <MappingFragment StoreEntitySet="COTIZACION">
+                <ScalarProperty Name="UNID_COTIZACION" ColumnName="UNID_COTIZACION" />
+                <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+                <ScalarProperty Name="ID_STATUS" ColumnName="ID_STATUS" />
+                <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
+                <ScalarProperty Name="ID_TIPO_COTIZACION" ColumnName="ID_TIPO_COTIZACION" />
+                <ScalarProperty Name="ID_PROYECTO" ColumnName="ID_PROYECTO" />
+                <ScalarProperty Name="FECHA_SOLICITUD" ColumnName="FECHA_SOLICITUD" />
+                <ScalarProperty Name="FECHA_REQUERIMENTO" ColumnName="FECHA_REQUERIMENTO" />
+                <ScalarProperty Name="FECHA_COTIZACION" ColumnName="FECHA_COTIZACION" />
+                <ScalarProperty Name="OBSERVACIONES_COMPRAS" ColumnName="OBSERVACIONES_COMPRAS" />
+                <ScalarProperty Name="DIAS_VIGENCIA" ColumnName="DIAS_VIGENCIA" />
+                <ScalarProperty Name="MOTIVO_CANCELACION" ColumnName="MOTIVO_CANCELACION" />
+                <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CIUDADs">
+            <EntityTypeMapping TypeName="TAE2Model.CIUDAD">
+              <MappingFragment StoreEntitySet="CIUDAD">
+                <ScalarProperty Name="UNID_CIUDAD" ColumnName="UNID_CIUDAD" />
+                <ScalarProperty Name="CIUDAD1" ColumnName="CIUDAD" />
+                <ScalarProperty Name="ISO" ColumnName="ISO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAIS">
+            <EntityTypeMapping TypeName="TAE2Model.PAI">
+              <MappingFragment StoreEntitySet="PAIS">
+                <ScalarProperty Name="UNID_PAIS" ColumnName="UNID_PAIS" />
+                <ScalarProperty Name="PAIS" ColumnName="PAIS" />
+                <ScalarProperty Name="ISO" ColumnName="ISO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURA_VENTA">
+            <EntityTypeMapping TypeName="TAE2Model.FACTURA_VENTA">
+              <MappingFragment StoreEntitySet="FACTURA_VENTA">
+                <ScalarProperty Name="UNID_FACTURA_VENTA" ColumnName="UNID_FACTURA_VENTA" />
+                <ScalarProperty Name="FOLIO" ColumnName="FOLIO" />
+                <ScalarProperty Name="TOTAL_DESC_FACTURA" ColumnName="TOTAL_DESC_FACTURA" />
+                <ScalarProperty Name="TOTAL_FACTURA" ColumnName="TOTAL_FACTURA" />
+                <ScalarProperty Name="POR_IVA" ColumnName="POR_IVA" />
+                <ScalarProperty Name="IVA_PESOS" ColumnName="IVA_PESOS" />
+                <ScalarProperty Name="IMPORTE_FACTURA" ColumnName="IMPORTE_FACTURA" />
+                <ScalarProperty Name="UNID_MONEDA" ColumnName="UNID_MONEDA" />
+                <ScalarProperty Name="TIPO_CAMBIO" ColumnName="TIPO_CAMBIO" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ITEMs">
+            <EntityTypeMapping TypeName="TAE2Model.ITEM">
+              <MappingFragment StoreEntitySet="ITEM">
+                <ScalarProperty Name="UNID_ITEM" ColumnName="UNID_ITEM" />
+                <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="NUMERO_SERIE" ColumnName="NUMERO_SERIE" />
+                <ScalarProperty Name="UNID_ITEM_STATUS" ColumnName="UNID_ITEM_STATUS" />
+                <ScalarProperty Name="COSTO_UNITARIO" ColumnName="COSTO_UNITARIO" />
+                <ScalarProperty Name="UNID_FACTURA_DETALE" ColumnName="UNID_FACTURA_DETALE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOVIMENTOes">
+            <EntityTypeMapping TypeName="TAE2Model.MOVIMENTO">
+              <MappingFragment StoreEntitySet="MOVIMENTO">
+                <ScalarProperty Name="UNID_MOVIMIENTO" ColumnName="UNID_MOVIMIENTO" />
+                <ScalarProperty Name="FECHA_MOVIMIENTO" ColumnName="FECHA_MOVIMIENTO" />
+                <ScalarProperty Name="UNID_TIPO_MOVIMIENTO" ColumnName="UNID_TIPO_MOVIMIENTO" />
+                <ScalarProperty Name="UNID_ALMACEN_DESTINO" ColumnName="UNID_ALMACEN_DESTINO" />
+                <ScalarProperty Name="UNID_PROVEEDOR_DESTINO" ColumnName="UNID_PROVEEDOR_DESTINO" />
+                <ScalarProperty Name="UNID_CLIENTE_DESTINO" ColumnName="UNID_CLIENTE_DESTINO" />
+                <ScalarProperty Name="UNID_ALMACEN_PROCEDENCIA" ColumnName="UNID_ALMACEN_PROCEDENCIA" />
+                <ScalarProperty Name="UNID_CLIENTE_PROCEDENCIA" ColumnName="UNID_CLIENTE_PROCEDENCIA" />
+                <ScalarProperty Name="UNID_PROVEEDOR_PROCEDENCIA" ColumnName="UNID_PROVEEDOR_PROCEDENCIA" />
+                <ScalarProperty Name="UNID_SERVICIO" ColumnName="UNID_SERVICIO" />
+                <ScalarProperty Name="TT" ColumnName="TT" />
+                <ScalarProperty Name="CONTACTO" ColumnName="CONTACTO" />
+                <ScalarProperty Name="UNID_TRANSPORTE" ColumnName="UNID_TRANSPORTE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DIRECCION_ENVIO" ColumnName="DIRECCION_ENVIO" />
+                <ScalarProperty Name="SITIO_ENLACE" ColumnName="SITIO_ENLACE" />
+                <ScalarProperty Name="NOMBRE_SITIO" ColumnName="NOMBRE_SITIO" />
+                <ScalarProperty Name="RECIBE" ColumnName="RECIBE" />
+                <ScalarProperty Name="GUIA" ColumnName="GUIA" />
+                <ScalarProperty Name="UNID_CLIENTE" ColumnName="UNID_CLIENTE" />
+                <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
+                <ScalarProperty Name="UNID_FACTURA_VENTA" ColumnName="UNID_FACTURA_VENTA" />
+                <ScalarProperty Name="PEDIMIENTO_IMPO" ColumnName="PEDIMIENTO_IMPO" />
+                <ScalarProperty Name="PEDIMIENTO_EXPO" ColumnName="PEDIMIENTO_EXPO" />
+                <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
+                <ScalarProperty Name="UNID_TECNICO" ColumnName="UNID_TECNICO" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="UNID_INFRAESTRUCTURA" ColumnName="UNID_INFRAESTRUCTURA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOVIMIENTO_DETALLE">
+            <EntityTypeMapping TypeName="TAE2Model.MOVIMIENTO_DETALLE">
+              <MappingFragment StoreEntitySet="MOVIMIENTO_DETALLE">
+                <ScalarProperty Name="UNID_MOVIMIENTO_DETALLE" ColumnName="UNID_MOVIMIENTO_DETALLE" />
+                <ScalarProperty Name="UNID_ITEM" ColumnName="UNID_ITEM" />
+                <ScalarProperty Name="UNID_MOVIMIENTO" ColumnName="UNID_MOVIMIENTO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIBOes">
+            <EntityTypeMapping TypeName="TAE2Model.RECIBO">
+              <MappingFragment StoreEntitySet="RECIBO">
+                <ScalarProperty Name="UNID_RECIBO" ColumnName="UNID_RECIBO" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="FECHA_CIERRE" ColumnName="FECHA_CIERRE" />
+                <ScalarProperty Name="UNID_SOLICITANTE" ColumnName="UNID_SOLICITANTE" />
+                <ScalarProperty Name="PO" ColumnName="PO" />
+                <ScalarProperty Name="TT" ColumnName="TT" />
+                <ScalarProperty Name="PEDIMIENTO_IMPO" ColumnName="PEDIMIENTO_IMPO" />
+                <ScalarProperty Name="PEDIMENTO_EXPO" ColumnName="PEDIMENTO_EXPO" />
+                <ScalarProperty Name="UNID_RECIBO_STATUS" ColumnName="UNID_RECIBO_STATUS" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIBO_MOVIMIENTO">
+            <EntityTypeMapping TypeName="TAE2Model.RECIBO_MOVIMIENTO">
+              <MappingFragment StoreEntitySet="RECIBO_MOVIMIENTO">
+                <ScalarProperty Name="UNID_RECIBO" ColumnName="UNID_RECIBO" />
+                <ScalarProperty Name="UNID_RECIBO_MOVIMIENTO" ColumnName="UNID_RECIBO_MOVIMIENTO" />
+                <ScalarProperty Name="UNID_MOVIMIENTO" ColumnName="UNID_MOVIMIENTO" />
+                <ScalarProperty Name="UNID_FACTURA" ColumnName="UNID_FACTURA" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIBO_STATUS">
+            <EntityTypeMapping TypeName="TAE2Model.RECIBO_STATUS">
+              <MappingFragment StoreEntitySet="RECIBO_STATUS">
+                <ScalarProperty Name="UNID_RECIBO_STATUS" ColumnName="UNID_RECIBO_STATUS" />
+                <ScalarProperty Name="RECIBO_STATUS_NAME" ColumnName="RECIBO_STATUS_NAME" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ULTIMO_MOVIMIENTO">
+            <EntityTypeMapping TypeName="TAE2Model.ULTIMO_MOVIMIENTO">
+              <MappingFragment StoreEntitySet="ULTIMO_MOVIMIENTO">
+                <ScalarProperty Name="UNID_ITEM" ColumnName="UNID_ITEM" />
+                <ScalarProperty Name="UNID_ALMACEN" ColumnName="UNID_ALMACEN" />
+                <ScalarProperty Name="UNID_CLIENTE" ColumnName="UNID_CLIENTE" />
+                <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
+                <ScalarProperty Name="UNID_MOVIMIENTO_DETALLE" ColumnName="UNID_MOVIMIENTO_DETALLE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="UNID_INFRAESTRUCTURA" ColumnName="UNID_INFRAESTRUCTURA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURAs">
+            <EntityTypeMapping TypeName="TAE2Model.FACTURA">
+              <MappingFragment StoreEntitySet="FACTURA">
+                <ScalarProperty Name="UNID_FACTURA" ColumnName="UNID_FACTURA" />
+                <ScalarProperty Name="UNID_LOTE" ColumnName="UNID_LOTE" />
+                <ScalarProperty Name="FACTURA_NUMERO" ColumnName="FACTURA_NUMERO" />
+                <ScalarProperty Name="FECHA_FACTURA" ColumnName="FECHA_FACTURA" />
+                <ScalarProperty Name="UNID_PROVEEDOR" ColumnName="UNID_PROVEEDOR" />
+                <ScalarProperty Name="UNID_MONEDA" ColumnName="UNID_MONEDA" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="NUMERO_PEDIMENTO" ColumnName="NUMERO_PEDIMENTO" />
+                <ScalarProperty Name="IVA_POR" ColumnName="IVA_POR" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURA_DETALLE">
+            <EntityTypeMapping TypeName="TAE2Model.FACTURA_DETALLE">
+              <MappingFragment StoreEntitySet="FACTURA_DETALLE">
+                <ScalarProperty Name="UNID_FACTURA_DETALE" ColumnName="UNID_FACTURA_DETALE" />
+                <ScalarProperty Name="UNID_FACTURA" ColumnName="UNID_FACTURA" />
+                <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="PRECIO_UNITARIO" ColumnName="PRECIO_UNITARIO" />
+                <ScalarProperty Name="IMPUESTO_UNITARIO" ColumnName="IMPUESTO_UNITARIO" />
+                <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="UNID_UNIDAD" ColumnName="UNID_UNIDAD" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="UNID_PEDIMENTO" ColumnName="UNID_PEDIMENTO" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOTEs">
+            <EntityTypeMapping TypeName="TAE2Model.LOTE">
+              <MappingFragment StoreEntitySet="LOTE">
+                <ScalarProperty Name="UNID_LOTE" ColumnName="UNID_LOTE" />
+                <ScalarProperty Name="UNID_POM" ColumnName="UNID_POM" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PEDIMENTOes">
+            <EntityTypeMapping TypeName="TAE2Model.PEDIMENTO">
+              <MappingFragment StoreEntitySet="PEDIMENTO">
+                <ScalarProperty Name="UNID_PEDIMENTO" ColumnName="UNID_PEDIMENTO" />
+                <ScalarProperty Name="UNID_LOTE" ColumnName="UNID_LOTE" />
+                <ScalarProperty Name="UNID_TIPO_PEDIMENTO" ColumnName="UNID_TIPO_PEDIMENTO" />
+                <ScalarProperty Name="PEDIMENTO_NUMERO" ColumnName="PEDIMENTO_NUMERO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POMs">
+            <EntityTypeMapping TypeName="TAE2Model.POM">
+              <MappingFragment StoreEntitySet="POM">
+                <ScalarProperty Name="UNID_POM" ColumnName="UNID_POM" />
+                <ScalarProperty Name="FECHA_POM" ColumnName="FECHA_POM" />
+                <ScalarProperty Name="UNID_COTIZACION" ColumnName="UNID_COTIZACION" />
+                <ScalarProperty Name="DIAS_ENTREGA" ColumnName="DIAS_ENTREGA" />
+                <ScalarProperty Name="FECHA_ENTREGA" ColumnName="FECHA_ENTREGA" />
+                <ScalarProperty Name="FECHA_ENTREGA_REAL" ColumnName="FECHA_ENTREGA_REAL" />
+                <ScalarProperty Name="UNID_EMPRESA" ColumnName="UNID_EMPRESA" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POM_ARTICULO">
+            <EntityTypeMapping TypeName="TAE2Model.POM_ARTICULO">
+              <MappingFragment StoreEntitySet="POM_ARTICULO">
+                <ScalarProperty Name="UNID_POM" ColumnName="UNID_POM" />
+                <ScalarProperty Name="UNID_POM_ARTICULO" ColumnName="UNID_POM_ARTICULO" />
+                <ScalarProperty Name="UNID_ARTICULO" ColumnName="UNID_ARTICULO" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="COSTO_UNITARIO" ColumnName="COSTO_UNITARIO" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="TC" ColumnName="TC" />
+                <ScalarProperty Name="DESCUENTO" ColumnName="DESCUENTO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -4348,7 +4572,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="EntityElara" ZoomLevel="32">
+      <Diagram Name="EntityElara" ZoomLevel="57">
         <EntityTypeShape EntityType="TAE2Model.MENU" Width="1.5" PointX="8.75" PointY="10" Height="2.9417936197916674" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.ROL" Width="1.5" PointX="8.75" PointY="14.25" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.ROL_MENU" Width="1.5" PointX="11" PointY="10.25" Height="2.3648893229166674" IsExpanded="true" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL.JSON;
+using Newtonsoft.Json;
 
 namespace InventoryApp.DAL
 {
@@ -265,6 +266,94 @@ namespace InventoryApp.DAL
                     res = SerializerJson.SerializeParametros(listCategoria);
                 }
                 return res;
+            }
+        }
+
+        /// <summary>
+        /// Método que Deserializa JSon a List<CATEGORIA>
+        /// </summary>
+        /// <returns>Regresa List<CATEGORIA></returns>
+        /// <returns>Si no regresa null</returns>
+        public List<CATEGORIA> GetDeserializeCategoria(string listPocos)
+        {
+            List<CATEGORIA> res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<List<CATEGORIA>>(listPocos);
+            }
+
+            return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetCategoria()
+        {
+            List<CATEGORIA> reset = new List<CATEGORIA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.CATEGORIAs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new CATEGORIA
+                     {
+                         CATEGORIA_NAME = row.CATEGORIA_NAME,
+                         UNID_CATEGORIA = row.UNID_CATEGORIA,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modifiedCategoria = Entity.CATEGORIAs.First(p => p.UNID_CATEGORIA == item.UNID_CATEGORIA);
+                        modifiedCategoria.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
+        }
+        public void UpdateCategoria(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    CATEGORIA ETipo = (CATEGORIA)element;
+
+                    var query = (from cust in entity.CATEGORIAs
+                                 where cust.UNID_CATEGORIA == ETipo.UNID_CATEGORIA
+                                 select cust).ToList();
+                    if (query.Count > 0)
+                    {
+                        try
+                        {
+                            var tipo = query.First();
+
+                            tipo.CATEGORIA_NAME = ETipo.CATEGORIA_NAME;
+                            //Sync
+                            tipo.IS_MODIFIED = true;
+                            tipo.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                            var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                            modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                            entity.SaveChanges();
+                            //
+                            entity.SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                           
+                        }
+                        
+                    }
+                }
             }
         }
     }

@@ -21,6 +21,31 @@ namespace InventoryApp.DAL
                 return false;                
             }
         }
+
+        public bool Dummy()
+        {
+
+            using (var entity = new TAE2Entities())
+            {
+                var query = (from cust in entity.SYNCs
+                             where cust.ACTUAL_DATE !=0
+                             select cust).ToList();
+                if (query.Count > 0)
+                    return true;
+                return false;
+            }
+        }
+
+        public void ResetDummy()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var modifiedCategoria = Entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                modifiedCategoria.ACTUAL_DATE =0;
+                Entity.SaveChanges();
+                
+            }
+        }
         
         public object getElements()
         {

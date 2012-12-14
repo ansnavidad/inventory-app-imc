@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL.JSON;
+using Newtonsoft.Json;
 
 namespace InventoryApp.DAL
 {
@@ -249,6 +250,57 @@ namespace InventoryApp.DAL
                     res = SerializerJson.SerializeParametros(listEquipo);
                 }
                 return res;
+            }
+        }
+
+        /// <summary>
+        /// Método que Deserializa JSon a List<EQUIPO>
+        /// </summary>
+        /// <returns>Regresa List<EQUIPO></returns>
+        /// <returns>Si no regresa null</returns>
+        public List<EQUIPO> GetDeserializeEquipo(string listPocos)
+        {
+            List<EQUIPO> res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<List<EQUIPO>>(listPocos);
+            }
+
+            return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetEquipo()
+        {
+            List<EQUIPO> reset = new List<EQUIPO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.EQUIPOes
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new EQUIPO
+                     {
+                         UNID_EQUIPO = row.UNID_EQUIPO,
+                         EQUIPO_NAME = row.EQUIPO_NAME,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.EQUIPOes.First(p => p.UNID_EQUIPO == item.UNID_EQUIPO);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
             }
         }
     }

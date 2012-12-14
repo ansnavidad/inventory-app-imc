@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL.JSON;
+using Newtonsoft.Json;
 
 namespace InventoryApp.DAL
 {
@@ -144,6 +145,7 @@ namespace InventoryApp.DAL
         {
             throw new NotImplementedException();
         }
+
         /// <summary>
         /// Método que serializa una List<RECIBO_STATUS> a Json
         /// </summary>
@@ -173,6 +175,23 @@ namespace InventoryApp.DAL
                 }
                 return res;
             }
+        }
+
+        /// <summary>
+        /// Método que Deserializa JSon a List<RECIBO_STATUS>
+        /// </summary>
+        /// <returns>Regresa List<RECIBO_STATUS></returns>
+        /// <returns>Si no regresa null</returns>
+        public List<RECIBO_STATUS> GetDeserializeReciboStatus(string listPocos)
+        {
+            List<RECIBO_STATUS> res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<List<RECIBO_STATUS>>(listPocos);
+            }
+
+            return res;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
 using InventoryApp.DAL.JSON;
+using Newtonsoft.Json;
 
 namespace InventoryApp.DAL
 {
@@ -364,6 +365,61 @@ namespace InventoryApp.DAL
                     res = SerializerJson.SerializeParametros(listArticulos);
                 }
                 return res;
+            }
+        }
+
+        /// <summary>
+        /// Método que Deserializa JSon a List<ARTICULO> 
+        /// </summary>
+        /// <returns>Regresa List<ARTICULO></returns>
+        /// <returns>Si no regresa null</returns>
+        public List<ARTICULO> GetDeserializeArticulo(string listPocos)
+        {
+            List<ARTICULO> res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<List<ARTICULO>>(listPocos);
+            }
+
+            return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetArticulo()
+        {
+            List<ARTICULO> reset = new List<ARTICULO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.ARTICULOes
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new ARTICULO
+                     {
+                         ARTICULO1 = row.ARTICULO1,
+                         UNID_ARTICULO = row.UNID_ARTICULO,
+                         UNID_CATEGORIA = row.UNID_CATEGORIA,
+                         UNID_EQUIPO = row.UNID_EQUIPO,
+                         UNID_MARCA = row.UNID_MARCA,
+                         UNID_MODELO = row.UNID_MODELO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.ARTICULOes.First(p => p.UNID_ARTICULO == item.UNID_ARTICULO);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
             }
         }
     }

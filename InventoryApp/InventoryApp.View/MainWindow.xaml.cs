@@ -17,6 +17,7 @@ using InventoryApp.ViewModel;
 using System.Windows.Threading;
 using InventoryApp.ViewModel.Sync;
 using InventoryApp.View.Sync;
+using InventoryApp.DAL;
 
 namespace InventoryApp.View
 {
@@ -27,6 +28,7 @@ namespace InventoryApp.View
     {
 
         DispatcherTimer dTimerUploadProcess;
+        SyncDataMapper sync = new SyncDataMapper();
         public DispatcherTimer DTimerUploadProcess
         {
             get { return dTimerUploadProcess; }
@@ -49,12 +51,19 @@ namespace InventoryApp.View
 
         void DTimerUploadProcess_Tick(object sender, EventArgs e)
         {
-            UploadProcessViewModel vm = new UploadProcessViewModel();
-            DlgUpload ds = new DlgUpload();
-            ds.DataContext = vm;
-            ds.Owner = Application.Current.Windows[0];
-            ds.ShowDialog();
-            vm.start();
+            //Condicionar catsync
+            if (sync.Dummy())
+            {
+                if (!UploadProcessViewModel.IsRunning)
+                {
+                    UploadProcessViewModel vm = new UploadProcessViewModel();
+                    DlgUpload ds = new DlgUpload();
+                    ds.DataContext = vm;
+                    ds.Owner = Application.Current.Windows[0];
+                    ds.ShowDialog();
+                    vm.start();
+                }    
+            }
         }
 
 

@@ -102,8 +102,10 @@
     <Compile Include="ReciboDataMapperTest.cs" />
     <Compile Include="ReciboMovimientoDataMapperTest.cs" />
     <Compile Include="ReciboStatusDataMapperTest.cs" />
+    <Compile Include="ServerLastDataMapperTest.cs" />
     <Compile Include="ServicioDataMapperTest.cs" />
     <Compile Include="SolicitanteDataMapperTest.cs" />
+    <Compile Include="SyncDataMapperTest.cs" />
     <Compile Include="TecnicoDataMapperTest.cs" />
     <Compile Include="TerminoEnvioDataMapperTest.cs" />
     <Compile Include="TipoCotizacionDataMapperTest.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="UltimoMovimientoDataMapperTest.cs" />
     <Compile Include="UnidadDataMapperTest.cs" />
     <Compile Include="UNIDTest.cs" />
+    <Compile Include="UploadLogDataMapperTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InventoryApp.DAL\InventoryApp.DAL.csproj">

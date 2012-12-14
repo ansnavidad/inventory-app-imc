@@ -7,11 +7,11 @@ namespace DALTestProject
     
     
     /// <summary>
-    ///Se trata de una clase de prueba para AlmacenDataMapperTest y se pretende que
-    ///contenga todas las pruebas unitarias AlmacenDataMapperTest.
+    ///Se trata de una clase de prueba para SyncDataMapperTest y se pretende que
+    ///contenga todas las pruebas unitarias SyncDataMapperTest.
     ///</summary>
     [TestClass()]
-    public class AlmacenDataMapperTest
+    public class SyncDataMapperTest
     {
 
 
@@ -65,31 +65,14 @@ namespace DALTestProject
 
 
         /// <summary>
-        ///Una prueba de logAlmacen
+        ///Una prueba de ResetDummy
         ///</summary>
         [TestMethod()]
-        public void logAlmacenTest()
+        public void ResetDummyTest()
         {
-            AlmacenDataMapper target = new AlmacenDataMapper(); // TODO: Inicializar en un valor adecuado
-            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
-            string actual;
-            actual = target.GetJsonAlmacen();
-            Assert.AreEqual(expected, actual);
-            //Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        }
-
-        /// <summary>
-        ///Una prueba de GetJsonAlmacen
-        ///</summary>
-        [TestMethod()]
-        public void GetJsonAlmacenTest()
-        {
-            AlmacenDataMapper target = new AlmacenDataMapper(); // TODO: Inicializar en un valor adecuado
-            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
-            string actual;
-            actual = target.GetJsonAlmacen();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+            SyncDataMapper target = new SyncDataMapper(); // TODO: Inicializar en un valor adecuado
+            target.ResetDummy();
+            Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
         }
     }
 }

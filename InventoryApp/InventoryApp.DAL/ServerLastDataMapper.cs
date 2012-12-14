@@ -9,7 +9,41 @@ namespace InventoryApp.DAL
 {
     public class ServerLastDataMapper :IDataMapper
     {
-        public bool existDumy() {  
+        public long GetServerLastFecha()
+        {
+            long res = 0;
+            try
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    var serverFecha = entity.SERVER_LASTDATA.First(p => p.UNID_SERVER_LASTDATA == 20120101000000000);
+                    res = serverFecha.ACTUAL_DATE;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return res;
+        }
+
+        public void updateDumy() {
+
+            try
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    var modifiedSync = entity.SERVER_LASTDATA.First(p => p.UNID_SERVER_LASTDATA == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;                
+            }
+        }
+        public bool existDumy() {
             
             using (var entity = new TAE2Entities())
             {

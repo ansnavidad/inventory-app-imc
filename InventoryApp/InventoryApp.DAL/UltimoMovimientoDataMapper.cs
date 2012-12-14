@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL.JSON;
+using Newtonsoft.Json;
 
 namespace InventoryApp.DAL
 {
@@ -181,6 +182,23 @@ namespace InventoryApp.DAL
                 }
                 return res;
             }
+        }
+
+        /// <summary>
+        /// Método que Deserializa JSon a List<ULTIMO_MOVIMIENTO>
+        /// </summary>
+        /// <returns>Regresa List<ULTIMO_MOVIMIENTO></returns>
+        /// <returns>Si no regresa null</returns>
+        public List<ULTIMO_MOVIMIENTO> GetDeserializeUltimoMovimiento(string listPocos)
+        {
+            List<ULTIMO_MOVIMIENTO> res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<List<ULTIMO_MOVIMIENTO>>(listPocos);
+            }
+
+            return res;
         }
     }
 }

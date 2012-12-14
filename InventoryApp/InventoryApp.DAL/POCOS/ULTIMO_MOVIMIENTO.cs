@@ -161,49 +161,9 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
-    
-        public virtual Nullable<long> UNID_INFRAESTRUCTURA
-        {
-            get { return _uNID_INFRAESTRUCTURA; }
-            set
-            {
-                try
-                {
-                    _settingFK = true;
-                    if (_uNID_INFRAESTRUCTURA != value)
-                    {
-                        if (INFRAESTRUCTURA != null && INFRAESTRUCTURA.UNID_INFRAESTRUCTURA != value)
-                        {
-                            INFRAESTRUCTURA = null;
-                        }
-                        _uNID_INFRAESTRUCTURA = value;
-                    }
-                }
-                finally
-                {
-                    _settingFK = false;
-                }
-            }
-        }
-        private Nullable<long> _uNID_INFRAESTRUCTURA;
 
         #endregion
         #region Navigation Properties
-    
-        public virtual INFRAESTRUCTURA INFRAESTRUCTURA
-        {
-            get { return _iNFRAESTRUCTURA; }
-            set
-            {
-                if (!ReferenceEquals(_iNFRAESTRUCTURA, value))
-                {
-                    var previousValue = _iNFRAESTRUCTURA;
-                    _iNFRAESTRUCTURA = value;
-                    FixupINFRAESTRUCTURA(previousValue);
-                }
-            }
-        }
-        private INFRAESTRUCTURA _iNFRAESTRUCTURA;
     
         public virtual PROVEEDOR PROVEEDOR
         {
@@ -284,30 +244,6 @@ namespace InventoryApp.DAL.POCOS
         #region Association Fixup
     
         private bool _settingFK = false;
-    
-        private void FixupINFRAESTRUCTURA(INFRAESTRUCTURA previousValue)
-        {
-            if (previousValue != null && previousValue.ULTIMO_MOVIMIENTO.Contains(this))
-            {
-                previousValue.ULTIMO_MOVIMIENTO.Remove(this);
-            }
-    
-            if (INFRAESTRUCTURA != null)
-            {
-                if (!INFRAESTRUCTURA.ULTIMO_MOVIMIENTO.Contains(this))
-                {
-                    INFRAESTRUCTURA.ULTIMO_MOVIMIENTO.Add(this);
-                }
-                if (UNID_INFRAESTRUCTURA != INFRAESTRUCTURA.UNID_INFRAESTRUCTURA)
-                {
-                    UNID_INFRAESTRUCTURA = INFRAESTRUCTURA.UNID_INFRAESTRUCTURA;
-                }
-            }
-            else if (!_settingFK)
-            {
-                UNID_INFRAESTRUCTURA = null;
-            }
-        }
     
         private void FixupPROVEEDOR(PROVEEDOR previousValue)
         {

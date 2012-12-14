@@ -76,7 +76,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedMenu = entity.TIPO_EMPRESA.First(p => p.UNID_TIPO_EMPRESA == poco.UNID_TIPO_EMPRESA);
-                    modifiedMenu.IS_ACTIVE = false;
+                    modifiedMenu.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

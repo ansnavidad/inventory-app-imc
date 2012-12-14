@@ -88,7 +88,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedCotizacion = entity.COTIZACIONs.First(p => p.UNID_COTIZACION == poco.UNID_COTIZACION);
-                    modifiedCotizacion.IS_ACTIVE = false;
+                    modifiedCotizacion.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

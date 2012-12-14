@@ -51,7 +51,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedCotizacion = entity.FACTURA_DETALLE.First(p => p.UNID_FACTURA_DETALE == poco.UNID_FACTURA_DETALE);
-                    modifiedCotizacion.IS_ACTIVE = false;
+                    modifiedCotizacion.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

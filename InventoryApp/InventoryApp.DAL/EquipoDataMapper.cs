@@ -77,7 +77,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedCotizacion = entity.EQUIPOes.First(p => p.UNID_EQUIPO == poco.UNID_EQUIPO);
-                    modifiedCotizacion.IS_ACTIVE = false;
+                    modifiedCotizacion.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

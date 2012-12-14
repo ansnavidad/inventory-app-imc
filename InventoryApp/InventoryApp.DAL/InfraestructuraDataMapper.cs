@@ -9,6 +9,38 @@ namespace InventoryApp.DAL
 {
     public class InfraestructuraDataMapper : IDataMapper
     {
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                INFRAESTRUCTURA poco = (INFRAESTRUCTURA)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.INFRAESTRUCTURAs
+                                 where poco.UNID_INFRAESTRUCTURA == cust.UNID_INFRAESTRUCTURA
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        var aux = query.First();
+
+                        if (UNID.compareUNIDS(aux.LAST_MODIFIED_DATE, poco.LAST_MODIFIED_DATE))
+                            udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+
+                    var modifiedInfra = entity.INFRAESTRUCTURAs.First(p => p.UNID_INFRAESTRUCTURA == poco.UNID_INFRAESTRUCTURA);
+                    modifiedInfra.IS_MODIFIED = false;
+                    entity.SaveChanges();
+                }
+            }
+        }
+        
         public long? LastModifiedDate()
         {
             long? resul = null;

@@ -76,7 +76,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedMenu = entity.MONEDAs.First(p => p.UNID_MONEDA == poco.UNID_MONEDA);
-                    modifiedMenu.IS_ACTIVE = false;
+                    modifiedMenu.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

@@ -100,7 +100,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedMenu = entity.MOVIMENTOes.First(p => p.UNID_MOVIMIENTO == poco.UNID_MOVIMIENTO);
-                    modifiedMenu.IS_ACTIVE = false;
+                    modifiedMenu.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

@@ -81,7 +81,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedMenu = entity.RECIBOes.First(p => p.UNID_RECIBO == poco.UNID_RECIBO);
-                    modifiedMenu.IS_ACTIVE = false;
+                    modifiedMenu.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

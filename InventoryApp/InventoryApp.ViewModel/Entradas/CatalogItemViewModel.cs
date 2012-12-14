@@ -147,7 +147,7 @@ namespace InventoryApp.ViewModel.Entradas
         {
             if (_entradaPorValidacionViewModel != null)
             {
-                this.CatalogItemModel.loadItems(_entradaPorValidacionViewModel.MovimientoModel.ProveedorProcedencia, _entradaPorValidacionViewModel.MovimientoModel.ClienteProcedencia);
+                this.CatalogItemModel.loadItems(_entradaPorValidacionViewModel.MovimientoModel.Infraestructura);
             }
             else if (EntradaPrestamoViewModel != null)
             {

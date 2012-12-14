@@ -244,6 +244,7 @@ namespace InventoryApp.DAL
                             um.ALMACEN = um.ALMACEN;
                             um.CLIENTE = um.CLIENTE;
                             um.PROVEEDOR = um.PROVEEDOR;
+                            um.INFRAESTRUCTURA = um.INFRAESTRUCTURA;
                         }
                     }
                     o = (object)res;
@@ -351,6 +352,60 @@ namespace InventoryApp.DAL
                         {
                             trans.ARTICULO = trans.ARTICULO;
                             //trans.FACTURA_DETALLE = trans.FACTURA_DETALLE;
+                            trans.ITEM_STATUS = trans.ITEM_STATUS;
+                            trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                            trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                            trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                            trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                        }
+                        o = (object)res;
+                    }
+                }
+            }
+            return o;
+        }
+
+        public object getElements_EntradasSalidasSerie(INFRAESTRUCTURA infraestructura, string numSerie, string SKU)
+        {
+            object o = null;
+            using (var Entity = new TAE2Entities())
+            {
+                if (!numSerie.Equals(""))
+                {
+                    var res = (from i in Entity.ITEMs
+                               join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                               join u2 in Entity.INFRAESTRUCTURAs on u1.UNID_INFRAESTRUCTURA equals u2.UNID_INFRAESTRUCTURA
+                               where i.NUMERO_SERIE == numSerie && u2.UNID_INFRAESTRUCTURA == infraestructura.UNID_INFRAESTRUCTURA && i.IS_ACTIVE == true
+                               select i).ToList();
+
+                    if (((List<ITEM>)res).Count > 0)
+                    {
+                        foreach (ITEM trans in ((List<ITEM>)res))
+                        {
+                            trans.ARTICULO = trans.ARTICULO;
+                            trans.ITEM_STATUS = trans.ITEM_STATUS;
+                            trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
+                            trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
+                            trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
+                            trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                        }
+                        o = (object)res;
+                    }
+                }
+                else
+                {
+
+                    var res = (from i in Entity.ITEMs
+                               join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
+                               join u2 in Entity.INFRAESTRUCTURAs on u1.UNID_INFRAESTRUCTURA equals u2.UNID_INFRAESTRUCTURA
+                               where i.SKU == SKU && u2.UNID_INFRAESTRUCTURA == infraestructura.UNID_INFRAESTRUCTURA && i.IS_ACTIVE == true
+                               select i).ToList();
+
+                    if (((List<ITEM>)res).Count > 0)
+                    {
+                        foreach (ITEM trans in ((List<ITEM>)res))
+                        {
+                            trans.ARTICULO = trans.ARTICULO;
                             trans.ITEM_STATUS = trans.ITEM_STATUS;
                             trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
                             trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;

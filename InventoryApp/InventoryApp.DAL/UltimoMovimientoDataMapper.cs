@@ -126,6 +126,7 @@ namespace InventoryApp.DAL
                         modifiedMov.UNID_CLIENTE = ultimoMov.UNID_CLIENTE;
                         modifiedMov.UNID_MOVIMIENTO_DETALLE = ultimoMov.UNID_MOVIMIENTO_DETALLE;
                         modifiedMov.UNID_PROVEEDOR = ultimoMov.UNID_PROVEEDOR;
+                        modifiedMov.UNID_INFRAESTRUCTURA = ultimoMov.UNID_INFRAESTRUCTURA;
                         //Sync
                         modifiedMov.IS_MODIFIED = true;
                         modifiedMov.LAST_MODIFIED_DATE = UNID.getNewUNID();

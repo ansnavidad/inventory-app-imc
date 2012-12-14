@@ -78,7 +78,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedCiudad = entity.CIUDADs.First(p => p.UNID_CIUDAD == poco.UNID_CIUDAD);
-                    modifiedCiudad.IS_ACTIVE = false;
+                    modifiedCiudad.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

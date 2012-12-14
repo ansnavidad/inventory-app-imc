@@ -78,7 +78,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedCategoria = entity.CATEGORIAs.First(p => p.UNID_CATEGORIA == poco.UNID_CATEGORIA);
-                    modifiedCategoria.IS_ACTIVE = false;
+                    modifiedCategoria.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

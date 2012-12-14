@@ -80,7 +80,7 @@ namespace InventoryApp.Model
                     }
 
                     var modifiedCotizacion = entity.EMPRESAs.First(p => p.UNID_EMPRESA == poco.UNID_EMPRESA);
-                    modifiedCotizacion.IS_ACTIVE = false;
+                    modifiedCotizacion.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

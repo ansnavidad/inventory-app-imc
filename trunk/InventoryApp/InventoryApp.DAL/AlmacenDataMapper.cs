@@ -80,7 +80,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedAlmacen = entity.ALMACENs.First(p => p.UNID_ALMACEN == poco.UNID_ALMACEN);
-                    modifiedAlmacen.IS_ACTIVE = false;
+                    modifiedAlmacen.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

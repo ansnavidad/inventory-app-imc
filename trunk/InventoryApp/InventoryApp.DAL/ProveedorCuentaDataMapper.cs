@@ -81,7 +81,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedMenu = entity.PROVEEDOR_CUENTA.First(p => p.UNID_PROVEEDOR_CUENTA == poco.UNID_PROVEEDOR_CUENTA);
-                    modifiedMenu.IS_ACTIVE = false;
+                    modifiedMenu.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

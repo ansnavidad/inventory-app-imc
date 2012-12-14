@@ -406,7 +406,7 @@ namespace InventoryApp.ViewModel.Salidas
                 Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
                 excel.Visible = true;
 
-                Workbook excelPrint = excel.Workbooks.Open(@"C:\temp\elarainventarios\SalidaRenta.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                Workbook excelPrint = excel.Workbooks.Open(@"C:\temp\elarainventarios\SalidaRevision.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                 Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
 
                 //Folio
@@ -421,40 +421,14 @@ namespace InventoryApp.ViewModel.Salidas
                 excel.Cells[15, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
                 //Procedencia                
                 excel.Cells[17, 12] = _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
-                //Destino
-                string p = "";
-
-                if (_movimientoModel.ProveedorDestino != null)
-                    p = _movimientoModel.ProveedorDestino.PROVEEDOR_NAME;
-                else if (_movimientoModel.AlmacenDestino != null)
-                    p = _movimientoModel.AlmacenDestino.ALMACEN_NAME;
-                else
-                    p = _movimientoModel.ClienteDestino.CLIENTE1;
-                excel.Cells[19, 12] = p;
+                //Destino                
+                excel.Cells[19, 12] = _movimientoModel.Infraestructura.INFRAESTRUCTURA_NAME;
                 //TT
                 excel.Cells[21, 12] = _movimientoModel.Tt;
                 //Empresa
                 excel.Cells[23, 12] = _movimientoModel.Empresa.EMPRESA_NAME;
-                //Transporte
-                excel.Cells[25, 12] = _movimientoModel.Transporte.TRANSPORTE_NAME;
-                //Contacto
-                excel.Cells[27, 12] = _movimientoModel.Contacto;
-                //Guia
-                excel.Cells[29, 12] = _movimientoModel.Guia;
-                //Nombre de Sitio
-                excel.Cells[31, 12] = _movimientoModel.NombreSitio;
-                //Sitio/Enlace
-                excel.Cells[33, 12] = _movimientoModel.SitioEnlace;
-                //Servicio
-                excel.Cells[35, 12] = _movimientoModel.Servicio.SERVICIO_NAME;
-                //Cliente
-                excel.Cells[37, 12] = _movimientoModel.Cliente.CLIENTE1;
-                //Pedimento Expo
-                excel.Cells[39, 12] = _movimientoModel.PedimentoExpo;
-                //Dirección
-                excel.Cells[41, 12] = _movimientoModel.DireccionEnvio;
-
-                int X = 47;
+                
+                int X = 31;
                 Microsoft.Office.Interop.Excel.Borders borders;
 
                 for (int i = 0; i < ItemModel.ItemModel.Count; i++)

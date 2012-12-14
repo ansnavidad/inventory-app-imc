@@ -82,7 +82,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedArticulo = entity.ARTICULOes.First(p => p.UNID_ARTICULO == poco.UNID_ARTICULO);
-                    modifiedArticulo.IS_ACTIVE = false;
+                    modifiedArticulo.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

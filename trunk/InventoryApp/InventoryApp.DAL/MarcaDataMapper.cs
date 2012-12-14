@@ -79,7 +79,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedCotizacion = entity.MARCAs.First(p => p.UNID_MARCA == poco.UNID_MARCA);
-                    modifiedCotizacion.IS_ACTIVE = false;
+                    modifiedCotizacion.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

@@ -76,7 +76,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedBanco = entity.BANCOes.First(p => p.UNID_BANCO == poco.UNID_BANCO);
-                    modifiedBanco.IS_ACTIVE = false;
+                    modifiedBanco.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

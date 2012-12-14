@@ -49,7 +49,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedCotizacion = entity.FACTURA_VENTA.First(p => p.UNID_FACTURA_VENTA == poco.UNID_FACTURA_VENTA);
-                    modifiedCotizacion.IS_ACTIVE = false;
+                    modifiedCotizacion.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

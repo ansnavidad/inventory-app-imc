@@ -76,7 +76,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedRol = entity.ROLs.First(p => p.UNID_ROL == poco.UNID_ROL);
-                    modifiedRol.IS_ACTIVE = false;
+                    modifiedRol.IS_MODIFIED = false;
                     entity.SaveChanges(); 
                 }
             }

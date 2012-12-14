@@ -79,7 +79,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedTecnico = entity.TECNICOes.First(p => p.UNID_TECNICO == poco.UNID_TECNICO);
-                    modifiedTecnico.IS_ACTIVE = false;
+                    modifiedTecnico.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

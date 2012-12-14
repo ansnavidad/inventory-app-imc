@@ -76,7 +76,7 @@ namespace InventoryApp.DAL
                     }
 
                     var modifiedCliente = entity.CLIENTEs.First(p => p.UNID_CLIENTE == poco.UNID_CLIENTE);
-                    modifiedCliente.IS_ACTIVE = false;
+                    modifiedCliente.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
             }

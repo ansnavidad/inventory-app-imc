@@ -23,7 +23,7 @@ namespace InventoryApp.View.Entradas
         public EntradaValidacionRevision()
         {
             InitializeComponent();
-            FocusManager.SetFocusedElement(this, this.txtRecibe);
+            FocusManager.SetFocusedElement(this, this.textBoxTT);
             comboBoxAlmacenOrigen.SelectedIndex = 1;
             comboBoxAlmacenOrigen.SelectedIndex = 0;
         }
@@ -54,6 +54,8 @@ namespace InventoryApp.View.Entradas
             this.Content = null;
             this.Content = new GridMovimientos.GridMovimientos();
             this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
+
+            this.Close();
         }
     }
 }

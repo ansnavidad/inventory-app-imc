@@ -64,7 +64,7 @@ namespace InventoryApp.DAL
                     {
                         var aux = query.First();
 
-                        if (UNID.compareUNIDS(aux.LAST_MODIFIED_DATE, poco.LAST_MODIFIED_DATE))
+                        if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
                             udpateElement((object)poco);
                     }
                     //Inserción

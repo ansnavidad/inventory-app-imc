@@ -87,6 +87,38 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void loadSync(object element)
+        {
+            if (element != null)
+            {
+                ALMACEN_TECNICO poco = (ALMACEN_TECNICO)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.ALMACEN_TECNICO
+                                 where poco.UNID_ALMACEN == cust.UNID_ALMACEN && poco.UNID_TECNICO == cust.UNID_TECNICO
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        var aux = query.First();
+
+                        if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
+                            udpateElementRelation((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElementRelation((object)poco);
+                    }
+
+                    var modifiedRelation = entity.ALMACEN_TECNICO.First(p => p.UNID_ALMACEN == poco.UNID_ALMACEN && p.UNID_TECNICO == poco.UNID_TECNICO);
+                    modifiedRelation.IS_MODIFIED = false;
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public object getElements()
         {
             object res = null;
@@ -158,17 +190,26 @@ namespace InventoryApp.DAL
 
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    
+                    entity.SaveChanges();
+                }
+            }
+        }
+        
+        public void udpateElementRelation(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ALMACEN_TECNICO relation = (ALMACEN_TECNICO)element;
+                    var modifiedRelation = entity.ALMACEN_TECNICO.First(p => p.UNID_ALMACEN == relation.UNID_ALMACEN && p.UNID_TECNICO == relation.UNID_TECNICO);                    
+                    //Sync
+                    modifiedRelation.IS_MODIFIED = true;
+                    modifiedRelation.LAST_MODIFIED_DATE = UNID.getNewUNID();
 
-
-                    //var sync = (from sy in entity.SYNCs
-                    //            select sy).ToList().First();
-                    //entity.SYNCs.DeleteObject(sync);
-                    //SYNC syncN = new SYNC();                    
-                    //syncN.UNID_SYNC = UNID.getNewUNID();                    
-                    
-                    //entity.SYNCs.AddObject(syncN);
-                    
-                    
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
 
                     entity.SaveChanges();
                 }
@@ -301,6 +342,27 @@ namespace InventoryApp.DAL
                         entity.ALMACENs.AddObject(almacen);
                         entity.SaveChanges();    
                     }
+                }
+            }
+        }
+
+        public void insertElementRelation(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ALMACEN_TECNICO relation = (ALMACEN_TECNICO)element;                                        
+  
+                    //Sync
+                    relation.IS_MODIFIED = true;
+                    relation.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+
+                    entity.ALMACEN_TECNICO.AddObject(relation);
+                    entity.SaveChanges();                    
                 }
             }
         }

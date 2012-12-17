@@ -44,8 +44,7 @@
              xmlns:tipoCotizacionViews="clr-namespace:InventoryApp.View.CatalogTipoCotizacion"
              xmlns:catTipoEmpresaViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTipoEmpresa;assembly=InventoryApp.ViewModel"
              xmlns:tipoEmpresaViews="clr-namespace:InventoryApp.View.CatalogTipoEmpresa"
-             xmlns:catInfraestructuraViewModel="clr-namespace:InventoryApp.ViewModel.CatalogInfraestructura;assembly=InventoryApp.ViewModel"
-             xmlns:InfraestructuraViews="clr-namespace:InventoryApp.View.CatalogInfraestructura"
+             xmlns:catInfraestructuraViewModel="clr-namespace:InventoryApp.ViewModel.CatalogInfraestructura;assembly=InventoryApp.ViewModel"             
              xmlns:catTipoMovimientoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTipoMovimiento;assembly=InventoryApp.ViewModel"
              xmlns:tipoMovimientoViews="clr-namespace:InventoryApp.View.CatalogTipoMovimiento"
              xmlns:catTipoPedimentoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTipoPedimento;assembly=InventoryApp.ViewModel"
@@ -71,7 +70,8 @@
              xmlns:GridMovimientosViewModel="clr-namespace:InventoryApp.ViewModel.GridMovimientos;assembly=InventoryApp.ViewModel"
              xmlns:GridMovimientosView="clr-namespace:InventoryApp.View.GridMovimientos"                          
              xmlns:TecnicoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTecnico;assembly=InventoryApp.ViewModel"
-             xmlns:TecnicoView="clr-namespace:InventoryApp.View.CatalogTecnico"                  
+             xmlns:TecnicoView="clr-namespace:InventoryApp.View.CatalogTecnico"        
+             xmlns:InfraestructuraViews="clr-namespace:InventoryApp.View.CatalogInfraestructura"                     
              StartupUri="MainWindow.xaml"
              >
     

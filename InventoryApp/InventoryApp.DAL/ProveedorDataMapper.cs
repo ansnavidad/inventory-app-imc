@@ -95,7 +95,39 @@ namespace InventoryApp.DAL
                 }
             }
         }
-        
+
+        public void loadSyncRelation(object element)
+        {
+            if (element != null)
+            {
+                PROVEEDOR_CATEGORIA poco = (PROVEEDOR_CATEGORIA)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.PROVEEDOR_CATEGORIA
+                                 where poco.UNID_PROVEEDOR == cust.UNID_PROVEEDOR && poco.UNID_CATEGORIA == cust.UNID_CATEGORIA
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        var aux = query.First();
+
+                        if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
+                            udpateElement((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertElement((object)poco);
+                    }
+
+                    var modifiedRelation = entity.PROVEEDOR_CATEGORIA.First(p => p.UNID_PROVEEDOR == poco.UNID_PROVEEDOR && p.UNID_CATEGORIA == poco.UNID_CATEGORIA);
+                    modifiedRelation.IS_MODIFIED = false;
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public object getElements()
         {
             object res = null;

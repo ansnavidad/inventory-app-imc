@@ -74,7 +74,6 @@
     <Compile Include="LoteDataMapper.cs" />
     <Compile Include="MarcaDataMapper.cs" />
     <Compile Include="MedioEnvioDataMapper.cs" />
-    <Compile Include="MenuDataMapper.cs" />
     <Compile Include="ModeloDataMapper.cs" />
     <Compile Include="MonedaDataMapper.cs" />
     <Compile Include="MovimientoDataMapper.cs" />

@@ -200,6 +200,7 @@
     <Compile Include="Salidas\SalidaRevisionViewModel.cs" />
     <Compile Include="Salidas\SalidaRMAViewModel.cs" />
     <Compile Include="Salidas\SalidaVentaViewModel.cs" />
+    <Compile Include="Sync\downloadProcessViewModel.cs" />
     <Compile Include="Sync\UploadProcessViewModel.cs" />
     <Compile Include="Test\TestDataGridCellBgkView.xaml.cs">
       <DependentUpon>TestDataGridCellBgkView.xaml</DependentUpon>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using RestSharp;
 using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.Sync
 {
@@ -137,13 +138,98 @@ namespace InventoryApp.ViewModel.Sync
             //********* todos los dd articulo    
             
         }
+
+        public void DownloadData(Object sender, System.Timers.ElapsedEventArgs args)
+        {
+            //No borrar! Esto debe ir en la primera sentencia
+            this.t.Enabled = false;
+            ((System.Timers.Timer)sender).Stop();
+
+            //Poner lógica de consumo de servicios para enviar los datos
+            bool res = true;
+
+            //Consumir servicio de Isaac que compara UNID's, en caso de que el servidor sea mayor que el actual
+            //Actualizar y comenzar todo el proceso
+
+            //********* todos los dd articulo
+            if (res)
+            {
+                this.Message = "Enviando CATEGORIA ...";
+                res = CallServiceCategoria();
+                if (res)
+                {
+                    cat.ResetCategoria();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando ARTICULO ...";
+                res = CallServiceArticulo();
+                if (res)
+                {
+                    art.ResetArticulo();
+                    this.Message = "Sincronizacion completada ...";
+                    //Esta instrucción cierra la ventana
+                    this.JobDone = true;
+                }
+            }
+            
+            UploadProcessViewModel.IsRunning = false;
+            //Esta instrucción cierra la ventana
+            this.JobDone = true;
+        }
+
+        public bool CallDownloadServiceCategoria()
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "DownloadCategoria";
+            CategoriaDataMapper dataMapper = new CategoriaDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeService);
+                client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+                
+                List<CATEGORIA> list;
+                list = dataMapper.GetDeserializeCategoria(response.Content);
+                
+                if(list != null)
+                    foreach (CATEGORIA item in list)                               
+                        dataMapper.loadSync(item);
+                
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+
         public bool CallServiceCategoria()
         {
             #region propiedades
             bool responseSevice;
             string nameService = "LoadCategoria";
             CategoriaDataMapper dataMapper = new CategoriaDataMapper();
-            UploadLogDataMapper user= new UploadLogDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
             #endregion
             #region metodos
             //madamos a llamar el metodo que serializa list de pocos
@@ -170,7 +256,7 @@ namespace InventoryApp.ViewModel.Sync
                 catch (Exception)
                 {
                     responseSevice = false;
-                }   
+                }
             }
             else
             {
@@ -315,6 +401,5 @@ namespace InventoryApp.ViewModel.Sync
             }
             return responseSevice;
         }
-
     }
 }

@@ -87,7 +87,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void loadSync(object element)
+        public void loadSyncRelation(object element)
         {
             if (element != null)
             {

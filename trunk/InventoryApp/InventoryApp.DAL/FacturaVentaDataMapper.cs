@@ -120,6 +120,39 @@ namespace InventoryApp.DAL
             throw new NotImplementedException();
         }
 
+        public string GetJsonFacturaVenta(long? LMD)
+        {
+            string res = null;
+            List<FACTURA_VENTA> listFacturaVenta = new List<FACTURA_VENTA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.FACTURA_VENTA
+                 where p.LAST_MODIFIED_DATE > LMD
+                 select p).ToList().ForEach(row =>
+                 {
+                     listFacturaVenta.Add(new FACTURA_VENTA
+                     {
+                         UNID_FACTURA_VENTA = row.UNID_FACTURA_VENTA,
+                         FOLIO = row.FOLIO,
+                         TOTAL_DESC_FACTURA = row.TOTAL_DESC_FACTURA,
+                         TOTAL_FACTURA = row.TOTAL_FACTURA,
+                         POR_IVA = row.POR_IVA,
+                         IVA_PESOS = row.IVA_PESOS,
+                         IMPORTE_FACTURA = row.IMPORTE_FACTURA,
+                         UNID_MONEDA = row.UNID_MONEDA,
+                         TIPO_CAMBIO = row.TIPO_CAMBIO,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listFacturaVenta.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listFacturaVenta);
+                }
+                return res;
+            }
+        }
+
         /// <summary>
         /// Método que serializa una List<FACTURA_VENTA> a Json
         /// </summary>

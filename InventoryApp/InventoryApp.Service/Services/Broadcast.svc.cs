@@ -31,10 +31,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             CategoriaDataMapper dataMapper = new CategoriaDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonCategoria(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonCategoria(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonCategoria(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -43,10 +45,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             AlmacenDataMapper dataMapper = new AlmacenDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonAlmacen(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonAlmacen(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonAlmacen(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -54,10 +58,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             AppMenuDataMapper dataMapper = new AppMenuDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonMenu(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonMenu(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonMenu(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -65,10 +71,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             AppRolDataMapper dataMapper = new AppRolDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonRol(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonRol(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonRol(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -76,10 +84,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             AppRolMenuDataMapper dataMapper = new AppRolMenuDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonRolMenu(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonRolMenu(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonRolMenu(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -87,10 +97,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             AppUsuario dataMapper = new AppUsuario();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonUsuario(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonUsuario(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonUsuario(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -98,10 +110,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             AppUsuarioRol dataMapper = new AppUsuarioRol();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonUsuarioRol(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonUsuarioRol(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonUsuarioRol(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -109,10 +123,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             CiudadDataMapper dataMapper = new CiudadDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonCiudad(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonCiudad(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonCiudad(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -120,10 +136,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             ClienteDataMapper dataMapper = new ClienteDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonCliente(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonCliente(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonCliente(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -131,10 +149,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             CotizacionDataMapper dataMapper = new CotizacionDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonCotizacion(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonCotizacion(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonCotizacion(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -142,10 +162,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             DepartamentoDataMapper dataMapper = new DepartamentoDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonDepartamento(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonDepartamento(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonDepartamento(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -153,10 +175,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             EmpresaDataMapper dataMapper = new EmpresaDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonEmpresa(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonEmpresa(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonEmpresa(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -164,10 +188,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             EquipoDataMapper dataMapper = new EquipoDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonEquipo(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonEquipo(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonEquipo(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -175,10 +201,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             FacturaCompraDataMapper dataMapper = new FacturaCompraDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonFactura(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonFactura(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonFactura(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -186,10 +214,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             FacturaCompraDetalleDataMapper dataMapper = new FacturaCompraDetalleDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonFacturaDetalle(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonFacturaDetalle(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonFacturaDetalle(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -197,10 +227,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             FacturaVentaDataMapper dataMapper = new FacturaVentaDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonFacturaVenta(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonFacturaVenta(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonFacturaVenta(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -208,10 +240,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             ItemDataMapper dataMapper = new ItemDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonItem(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonItem(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonItem(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -219,10 +253,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             ItemStatusDataMapper dataMapper = new ItemStatusDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonItemStatus(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonItemStatus(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonItemStatus(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -230,10 +266,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             AlmacenDataMapper dataMapper = new AlmacenDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonAlmacen(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonAlmacen(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonAlmacen(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -241,10 +279,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             MarcaDataMapper dataMapper = new MarcaDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonMarca(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonMarca(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonMarca(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -252,10 +292,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             MedioEnvioDataMapper dataMapper = new MedioEnvioDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonMedioEnvio(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonMedioEnvio(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonMedioEnvio(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -263,10 +305,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             ModeloDataMapper dataMapper = new ModeloDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonModelo(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonModelo(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonModelo(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -274,10 +318,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             MonedaDataMapper dataMapper = new MonedaDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonMoneda(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonMoneda(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonMoneda(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -285,10 +331,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             MovimientoDataMapper dataMapper = new MovimientoDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonMovimiento(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonMovimiento(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonMovimiento(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -296,10 +344,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             MovimientoDetalleDataMapper dataMapper = new MovimientoDetalleDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonMovimientoDetalle(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonMovimientoDetalle(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonMovimientoDetalle(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -307,10 +357,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             PaisDataMapper dataMapper = new PaisDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonPais(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonPais(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonPais(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -318,10 +370,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             PedimentoDataMapper dataMapper = new PedimentoDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonPedimento(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonPedimento(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonPedimento(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -329,10 +383,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             PomArticuloDataMapper dataMapper = new PomArticuloDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonPomArticulo(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonPomArticulo(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonPomArticulo(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -340,10 +396,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             PomArticuloDataMapper dataMapper = new PomArticuloDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonPomArticulo(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonPomArticulo(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonPomArticulo(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta;
         }
 
@@ -351,10 +409,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             PropiedadDataMapper dataMapper = new PropiedadDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonPropiedad(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonPropiedad(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonPropiedad(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -362,10 +422,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             ProveedorCuentaDataMapper dataMapper = new ProveedorCuentaDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonProveedorCuenta(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonProveedorCuenta(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonProveedorCuenta(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -373,10 +435,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             ProveedorDataMapper dataMapper = new ProveedorDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonProveedor(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonProveedor(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonProveedor(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -384,10 +448,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             ProyectoDataMapper dataMapper = new ProyectoDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonProyecto(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonProyecto(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonProyecto(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -395,10 +461,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             ReciboDataMapper dataMapper = new ReciboDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonRecibo(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonRecibo(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonRecibo(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -406,10 +474,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             ReciboMovimientoDataMapper dataMapper = new ReciboMovimientoDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonReciboMovimiento(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonReciboMovimiento(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonReciboMovimiento(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -417,10 +487,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             ReciboStatusDataMapper dataMapper = new ReciboStatusDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonReciboStatus(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonReciboStatus(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonReciboStatus(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -428,10 +500,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             TecnicoDataMapper dataMapper = new TecnicoDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonTecnico(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonTecnico(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonTecnico(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -439,10 +513,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             TerminoEnvioDataMapper dataMapper = new TerminoEnvioDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonTerminoEnvio(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonTerminoEnvio(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonTerminoEnvio(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -450,10 +526,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             TipoCotizacionDataMapper dataMapper = new TipoCotizacionDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonTipoCotizacion(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonTipoCotizacion(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonTipoCotizacion(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -461,10 +539,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             TipoEmpresaDataMapper dataMapper = new TipoEmpresaDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonTipoEmpresa(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonTipoEmpresa(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonTipoEmpresa(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -472,10 +552,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             TipoMovimientoDataMapper dataMapper = new TipoMovimientoDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonTipoMovimiento(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonTipoMovimiento(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonTipoMovimiento(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -483,10 +565,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             TipoPedimentoDataMapper dataMapper = new TipoPedimentoDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonTipoPedimento(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonTipoPedimento(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonTipoPedimento(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -494,10 +578,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             TransporteDataMapper dataMapper = new TransporteDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonTransporte(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonTransporte(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonTransporte(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -505,10 +591,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             UltimoMovimientoDataMapper dataMapper = new UltimoMovimientoDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonUltimoMovimiento(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonUltimoMovimiento(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonUltimoMovimiento(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
 
@@ -516,10 +604,12 @@ namespace InventoryApp.Service.Services
         {
             string respuesta = null;
             UnidadDataMapper dataMapper = new UnidadDataMapper();
-            if (!String.IsNullOrEmpty(dataMapper.GetJsonUnidad(lastModifiedDate)))
-            {
-                respuesta = dataMapper.GetJsonUnidad(lastModifiedDate);
-            }
+            
+            respuesta = dataMapper.GetJsonUnidad(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
             return respuesta; 
         }
     }

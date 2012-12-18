@@ -73,7 +73,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSync((object)poco);
                     }
 
                     var modifiedMenu = entity.MENUs.First(p => p.UNID_MENU == poco.UNID_MENU);
@@ -160,6 +160,34 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         menu.UNID_MENU = UNID.getNewUNID();
+                        //Sync
+                        menu.IS_MODIFIED = true;
+                        menu.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.MENUs.AddObject(menu);
+                        entity.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public void insertElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MENU menu = (MENU)element;
+
+                    var validacion = (from cust in entity.MENUs
+                                      where cust.MENU_NAME == menu.MENU_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
                         //Sync
                         menu.IS_MODIFIED = true;
                         menu.LAST_MODIFIED_DATE = UNID.getNewUNID();

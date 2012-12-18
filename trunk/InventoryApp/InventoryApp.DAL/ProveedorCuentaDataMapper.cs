@@ -78,7 +78,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSync((object)poco);
                     }
 
                     var modifiedMenu = entity.PROVEEDOR_CUENTA.First(p => p.UNID_PROVEEDOR_CUENTA == poco.UNID_PROVEEDOR_CUENTA);
@@ -186,6 +186,34 @@ namespace InventoryApp.DAL
                         entity.PROVEEDOR_CUENTA.AddObject(proveedorCuenta);
                         entity.SaveChanges();
                     }                    
+                }
+            }
+        }
+
+        public void insertElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    PROVEEDOR_CUENTA proveedorCuenta = (PROVEEDOR_CUENTA)element;
+
+                    var validacion = (from cust in entity.PROVEEDOR_CUENTA
+                                      where cust.NUMERO_CUENTA == proveedorCuenta.NUMERO_CUENTA
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        //Sync
+                        proveedorCuenta.IS_MODIFIED = true;
+                        proveedorCuenta.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.PROVEEDOR_CUENTA.AddObject(proveedorCuenta);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

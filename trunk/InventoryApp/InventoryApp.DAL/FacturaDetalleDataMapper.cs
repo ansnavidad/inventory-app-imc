@@ -47,7 +47,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSync((object)poco);
                     }
 
                     var modifiedCotizacion = entity.FACTURA_DETALLE.First(p => p.UNID_FACTURA_DETALE == poco.UNID_FACTURA_DETALE);
@@ -112,6 +112,34 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         factura.UNID_FACTURA_DETALE = UNID.getNewUNID();
+                        //Sync
+                        factura.IS_MODIFIED = true;
+                        factura.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.FACTURA_DETALLE.AddObject(factura);
+                        entity.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public void insertElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    FACTURA_DETALLE factura = (FACTURA_DETALLE)element;
+
+                    var validacion = (from cust in entity.FACTURA_DETALLE
+                                      where cust.UNID_FACTURA_DETALE == factura.UNID_FACTURA_DETALE
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
                         //Sync
                         factura.IS_MODIFIED = true;
                         factura.LAST_MODIFIED_DATE = UNID.getNewUNID();

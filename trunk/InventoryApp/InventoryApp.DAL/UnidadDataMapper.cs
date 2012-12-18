@@ -72,7 +72,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSync((object)poco);
                     }
 
                     var modifiedMenu = entity.UNIDADs.First(p => p.UNID_UNIDAD == poco.UNID_UNIDAD);
@@ -163,6 +163,35 @@ namespace InventoryApp.DAL
                         entity.UNIDADs.AddObject(unidad);
                         entity.SaveChanges();
                     }                    
+                }
+            }
+        }
+        
+        public void insertElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    UNIDAD unidad = (UNIDAD)element;
+
+                    var validacion = (from cust in entity.UNIDADs
+                                      where cust.UNIDAD1 == unidad.UNIDAD1
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        unidad.UNID_UNIDAD = UNID.getNewUNID();
+                        //Sync
+                        unidad.IS_MODIFIED = true;
+                        unidad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.UNIDADs.AddObject(unidad);
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

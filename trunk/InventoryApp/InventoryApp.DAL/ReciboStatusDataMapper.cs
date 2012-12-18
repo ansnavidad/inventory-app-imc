@@ -71,7 +71,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSync((object)poco);
                     }
 
                     var modifiedMenu = entity.RECIBO_STATUS.First(p => p.UNID_RECIBO_STATUS == poco.UNID_RECIBO_STATUS);
@@ -127,6 +127,34 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         reciboS.UNID_RECIBO_STATUS = UNID.getNewUNID();
+                        //Sync
+                        reciboS.IS_MODIFIED = true;
+                        reciboS.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.RECIBO_STATUS.AddObject(reciboS);
+                        entity.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public void insertElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    RECIBO_STATUS reciboS = (RECIBO_STATUS)element;
+
+                    var validacion = (from cust in entity.RECIBO_STATUS
+                                      where cust.RECIBO_STATUS_NAME == reciboS.RECIBO_STATUS_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
                         //Sync
                         reciboS.IS_MODIFIED = true;
                         reciboS.LAST_MODIFIED_DATE = UNID.getNewUNID();

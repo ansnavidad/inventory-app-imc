@@ -168,6 +168,34 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void insertElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    SERVICIO servicio = (SERVICIO)element;
+
+                    var validacion = (from cust in entity.SERVICIOs
+                                      where cust.SERVICIO_NAME == servicio.SERVICIO_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        //Sync
+                        servicio.IS_MODIFIED = true;
+                        servicio.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.SERVICIOs.AddObject(servicio);
+                        entity.SaveChanges();
+                    }
+                }
+            }
+        }
+
         public void deleteElement(object element)
         {
             if (element != null)

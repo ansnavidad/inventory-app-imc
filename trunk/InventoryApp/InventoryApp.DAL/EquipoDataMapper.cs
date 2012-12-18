@@ -74,7 +74,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSync((object)poco);
                     }
 
                     var modifiedCotizacion = entity.EQUIPOes.First(p => p.UNID_EQUIPO == poco.UNID_EQUIPO);
@@ -186,6 +186,34 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         equipo.UNID_EQUIPO = UNID.getNewUNID();
+                        //Sync
+                        equipo.IS_MODIFIED = true;
+                        equipo.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.EQUIPOes.AddObject(equipo);
+                        entity.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public void insertElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    EQUIPO equipo = (EQUIPO)element;
+
+                    var validacion = (from cust in entity.EQUIPOes
+                                      where cust.EQUIPO_NAME == equipo.EQUIPO_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
                         //Sync
                         equipo.IS_MODIFIED = true;
                         equipo.LAST_MODIFIED_DATE = UNID.getNewUNID();

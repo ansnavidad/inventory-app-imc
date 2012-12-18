@@ -77,7 +77,7 @@ namespace InventoryApp.Model
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSync((object)poco);
                     }
 
                     var modifiedCotizacion = entity.EMPRESAs.First(p => p.UNID_EMPRESA == poco.UNID_EMPRESA);
@@ -191,6 +191,34 @@ namespace InventoryApp.Model
                         entity.SaveChanges();
                     }
                 }            
+            }
+        }
+
+        public void insertElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    EMPRESA empresa = (EMPRESA)element;
+
+                    var validacion = (from cust in entity.EMPRESAs
+                                      where cust.EMPRESA_NAME == empresa.EMPRESA_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        //Sync
+                        empresa.IS_MODIFIED = true;
+                        empresa.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.EMPRESAs.AddObject(empresa);
+                        entity.SaveChanges();
+                    }
+                }
             }
         }
 

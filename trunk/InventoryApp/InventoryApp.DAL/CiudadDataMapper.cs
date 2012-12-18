@@ -75,7 +75,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSync((object)poco);
                     }
 
                     var modifiedCiudad = entity.CIUDADs.First(p => p.UNID_CIUDAD == poco.UNID_CIUDAD);
@@ -164,6 +164,34 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         ciudad.UNID_CIUDAD = UNID.getNewUNID();
+                        //Sync
+                        ciudad.IS_MODIFIED = true;
+                        ciudad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.CIUDADs.AddObject(ciudad);
+                        entity.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public void insertElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    CIUDAD ciudad = (CIUDAD)element;
+
+                    var validacion = (from cust in entity.CIUDADs
+                                      where cust.CIUDAD1 == ciudad.CIUDAD1
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
                         //Sync
                         ciudad.IS_MODIFIED = true;
                         ciudad.LAST_MODIFIED_DATE = UNID.getNewUNID();

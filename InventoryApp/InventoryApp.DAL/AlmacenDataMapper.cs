@@ -77,7 +77,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);                        
+                        insertElementSync((object)poco);                        
                     }
 
                     var modifiedAlmacen = entity.ALMACENs.First(p => p.UNID_ALMACEN == poco.UNID_ALMACEN);
@@ -341,6 +341,34 @@ namespace InventoryApp.DAL
 
                         entity.ALMACENs.AddObject(almacen);
                         entity.SaveChanges();    
+                    }
+                }
+            }
+        }
+
+        public void insertElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ALMACEN almacen = (ALMACEN)element;
+
+                    var validacion = (from cust in entity.ALMACENs
+                                      where cust.ALMACEN_NAME == almacen.ALMACEN_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {                        
+                        //Sync
+                        almacen.IS_MODIFIED = true;
+                        almacen.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+
+                        entity.ALMACENs.AddObject(almacen);
+                        entity.SaveChanges();
                     }
                 }
             }

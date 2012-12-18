@@ -74,7 +74,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSync((object)poco);
                     }
 
                     var modifiedMenu = entity.TIPO_COTIZACION.First(p => p.UNID_TIPO_COTIZACION == poco.UNID_TIPO_COTIZACION);
@@ -179,6 +179,34 @@ namespace InventoryApp.DAL
                         tipo.LAST_MODIFIED_DATE = UNID.getNewUNID();
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                        entity.SaveChanges();
+                        //
+                        entity.TIPO_COTIZACION.AddObject(tipo);
+                        entity.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public void insertElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TIPO_COTIZACION tipo = (TIPO_COTIZACION)element;
+
+                    var validacion = (from cust in entity.TIPO_COTIZACION
+                                      where cust.TIPO_COTIZACION_NAME == tipo.TIPO_COTIZACION_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        //Sync
+                        tipo.IS_MODIFIED = true;
+                        tipo.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
                         //
                         entity.TIPO_COTIZACION.AddObject(tipo);

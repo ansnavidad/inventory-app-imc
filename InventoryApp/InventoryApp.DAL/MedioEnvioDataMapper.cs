@@ -73,7 +73,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSync((object)poco);
                     }
 
                     var modifiedCotizacion = entity.MEDIO_ENVIO.First(p => p.UNID_MEDIO_ENVIO == poco.UNID_MEDIO_ENVIO);
@@ -160,6 +160,34 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         medioEnvio.UNID_MEDIO_ENVIO = UNID.getNewUNID();
+                        //Sync
+                        medioEnvio.IS_MODIFIED = true;
+                        medioEnvio.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.MEDIO_ENVIO.AddObject(medioEnvio);
+                        entity.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public void insertElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MEDIO_ENVIO medioEnvio = (MEDIO_ENVIO)element;
+
+                    var validacion = (from cust in entity.MEDIO_ENVIO
+                                      where cust.MEDIO_ENVIO_NAME == medioEnvio.MEDIO_ENVIO_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
                         //Sync
                         medioEnvio.IS_MODIFIED = true;
                         medioEnvio.LAST_MODIFIED_DATE = UNID.getNewUNID();

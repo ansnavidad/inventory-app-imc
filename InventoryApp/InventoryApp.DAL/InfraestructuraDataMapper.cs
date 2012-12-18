@@ -31,7 +31,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSync((object)poco);
                     }
 
                     var modifiedInfra = entity.INFRAESTRUCTURAs.First(p => p.UNID_INFRAESTRUCTURA == poco.UNID_INFRAESTRUCTURA);
@@ -129,6 +129,34 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         tra.UNID_INFRAESTRUCTURA = UNID.getNewUNID();
+                        //Sync
+                        tra.IS_MODIFIED = true;
+                        tra.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.INFRAESTRUCTURAs.AddObject(tra);
+                        entity.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public void insertElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    INFRAESTRUCTURA tra = (INFRAESTRUCTURA)element;
+
+                    var validacion = (from cust in entity.INFRAESTRUCTURAs
+                                      where cust.INFRAESTRUCTURA_NAME == tra.INFRAESTRUCTURA_NAME
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
                         //Sync
                         tra.IS_MODIFIED = true;
                         tra.LAST_MODIFIED_DATE = UNID.getNewUNID();

@@ -74,7 +74,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSync((object)poco);
                     }
 
                     var modifiedMenu = entity.TIPO_MOVIMIENTO.First(p => p.UNID_TIPO_MOVIMIENTO == poco.UNID_TIPO_MOVIMIENTO);
@@ -180,6 +180,29 @@ namespace InventoryApp.DAL
                     //
                     entity.TIPO_MOVIMIENTO.AddObject(tipo);
                     
+                    entity.SaveChanges();
+
+                }
+            }
+        }
+
+        public void insertElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TIPO_MOVIMIENTO tipo = (TIPO_MOVIMIENTO)element;
+
+                    //Sync
+                    tipo.IS_MODIFIED = true;
+                    tipo.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.TIPO_MOVIMIENTO.AddObject(tipo);
+
                     entity.SaveChanges();
 
                 }

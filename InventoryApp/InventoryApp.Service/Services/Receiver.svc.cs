@@ -22,7 +22,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<ALMACEN> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             AlmacenDataMapper dataMapper = new AlmacenDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -35,20 +35,19 @@ namespace InventoryApp.Service.Services
                 
                 foreach (ALMACEN item in list)
                 {
-                    //actualiza o inserta a la tabla ALMACEN
+                    //actualiza o pocoa a la tabla ALMACEN
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser= user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco= user.GetDeserializeUpLoadLog(dataUser);
                 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla ALMACEN sincronizada" });
-                    }
+ 
+                    mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ALMACEN sincronizada" });
+                    
                 }
 
             }
@@ -60,10 +59,49 @@ namespace InventoryApp.Service.Services
             return mensaje;
             #endregion
         }
-        //pendiente
+
         public string LoadAlmacenTecnico(string listPocos, string dataUser)
         {
-            throw new NotImplementedException();
+            #region propiedades
+            string mensaje = null;
+            List<ALMACEN_TECNICO> list;
+            UPLOAD_LOG poco = null;
+            AlmacenDataMapper dataMapper = new AlmacenDataMapper();
+            AlmacenTecnicoDataMapper dataMapperRelation = new AlmacenTecnicoDataMapper();
+            ServerLastDataMapper server = new ServerLastDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            try
+            {
+                list = dataMapperRelation.GetDeserializeAlmacenTecnico(listPocos);
+
+                foreach (ALMACEN_TECNICO item in list)
+                {
+                    //actualiza o pocoa a la tabla ALMACEN_TECNICO
+                    dataMapper.loadSyncRelation(item);
+                }
+                //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
+                server.updateDumy();
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
+
+                if (poco != null)
+                {
+
+                    mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ALMACEN_TECNICO sincronizada" });
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                mensaje = null;
+            }
+            return mensaje;
+            #endregion
         }
 
         public string LoadAppMenu(string listPocos, string dataUser)
@@ -71,7 +109,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<MENU> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             AppMenuDataMapper dataMapper = new AppMenuDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -84,20 +122,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (MENU item in list)
                 {
-                    //actualiza o inserta a la tabla MENU
+                    //actualiza o pocoa a la tabla MENU
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla MENU sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla MENU sincronizada" });
+                    
                 }
 
             }
@@ -115,7 +153,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<ROL> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             AppRolDataMapper dataMapper = new AppRolDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -128,20 +166,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (ROL item in list)
                 {
-                    //actualiza o inserta a la tabla ROL
+                    //actualiza o pocoa a la tabla ROL
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla ROL sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ROL sincronizada" });
+                    
                 }
 
             }
@@ -159,7 +197,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<ROL_MENU> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             AppRolMenuDataMapper dataMapper = new AppRolMenuDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -172,20 +210,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (ROL_MENU item in list)
                 {
-                    //actualiza o inserta a la tabla ROL_MENU
+                    //actualiza o pocoa a la tabla ROL_MENU
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla ROL_MENU sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ROL_MENU sincronizada" });
+                    
                 }
 
             }
@@ -203,7 +241,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<USUARIO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             AppUsuario dataMapper = new AppUsuario();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -216,20 +254,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (USUARIO item in list)
                 {
-                    //actualiza o inserta a la tabla USUARIO
+                    //actualiza o pocoa a la tabla USUARIO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla USUARIO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla USUARIO sincronizada" });
+                    
                 }
 
             }
@@ -247,7 +285,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<USUARIO_ROL> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             AppUsuarioRol dataMapper = new AppUsuarioRol();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -260,20 +298,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (USUARIO_ROL item in list)
                 {
-                    //actualiza o inserta a la tabla USUARIO_ROL
+                    //actualiza o pocoa a la tabla USUARIO_ROL
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla USUARIO_ROL sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla USUARIO_ROL sincronizada" });
+                    
                 }
 
             }
@@ -291,7 +329,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<ARTICULO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             ArticuloDataMapper dataMapper = new ArticuloDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -304,20 +342,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (ARTICULO item in list)
                 {
-                    //actualiza o inserta a la tabla ARTICULO
+                    //actualiza o pocoa a la tabla ARTICULO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla ARTICULO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ARTICULO sincronizada" });
+                    
                 }
 
             }
@@ -335,7 +373,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<BANCO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             BancoDataMapper dataMapper = new BancoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -348,20 +386,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (BANCO item in list)
                 {
-                    //actualiza o inserta a la tabla BANCO
+                    //actualiza o pocoa a la tabla BANCO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla BANCO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla BANCO sincronizada" });
+                    
                 }
 
             }
@@ -379,7 +417,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<CATEGORIA> list=null;
-            List<UPLOAD_LOG> listUser=null;
+            UPLOAD_LOG poco=null;
             CategoriaDataMapper dataMapper = new CategoriaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -388,33 +426,29 @@ namespace InventoryApp.Service.Services
             #region metodos
             try
             {
-
-                list = dataMapper.GetDeserializeCategoria(listPocos);
-                
+                //deserializa la lista de pocos
+                list = dataMapper.GetDeserializeCategoria(listPocos);   
                 foreach (CATEGORIA item in list)
                 {
-                    //actualiza o inserta a la tabla CATEGORIA
+                    //actualiza o pocoa a la tabla CATEGORIA
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
-                server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
-                if (listUser.Count > 0)
+                server.updateDumy();       
+                //deserializa el poco
+                poco = user.GetDeserializeUpLoadLog(dataUser);
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla CATEGORIA sincronizada" });
-                    }
+                    // pocoa a la tabla UPLOAD_LOG 
+                    mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla CATEGORIA sincronizada" });        
                 }
-
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
                 mensaje = null;
             }
             return mensaje;
+            
             #endregion
         }
 
@@ -423,7 +457,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<CIUDAD> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             CiudadDataMapper dataMapper = new CiudadDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -436,20 +470,17 @@ namespace InventoryApp.Service.Services
 
                 foreach (CIUDAD item in list)
                 {
-                    //actualiza o inserta a la tabla CIUDAD
+                    //actualiza o pocoa a la tabla CIUDAD
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco !=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla CIUDAD sincronizada" });
-                    }
+                    mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla CIUDAD sincronizada" });
                 }
 
             }
@@ -467,7 +498,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<CLIENTE> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             ClienteDataMapper dataMapper = new ClienteDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -480,20 +511,19 @@ namespace InventoryApp.Service.Services
 
                 foreach (CLIENTE item in list)
                 {
-                    //actualiza o inserta a la tabla CLIENTE
+                    //actualiza o pocoa a la tabla CLIENTE
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco != null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla CLIENTE sincronizada" });
-                    }
+
+                    mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla CLIENTE sincronizada" });
+                    
                 }
 
             }
@@ -511,7 +541,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<COTIZACION> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             CotizacionDataMapper dataMapper = new CotizacionDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -524,20 +554,17 @@ namespace InventoryApp.Service.Services
 
                 foreach (COTIZACION item in list)
                 {
-                    //actualiza o inserta a la tabla COTIZACION
+                    //actualiza o pocoa a la tabla COTIZACION
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco != null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla COTIZACION sincronizada" });
-                    }
+                    mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla COTIZACION sincronizada" });
                 }
 
             }
@@ -555,7 +582,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<DEPARTAMENTO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             DepartamentoDataMapper dataMapper = new DepartamentoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -568,20 +595,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (DEPARTAMENTO item in list)
                 {
-                    //actualiza o inserta a la tabla DEPARTAMENTO
+                    //actualiza o pocoa a la tabla DEPARTAMENTO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla DEPARTAMENTO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla DEPARTAMENTO sincronizada" });
+                    
                 }
 
             }
@@ -599,7 +626,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<EMPRESA> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             EmpresaDataMapper dataMapper = new EmpresaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -612,20 +639,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (EMPRESA item in list)
                 {
-                    //actualiza o inserta a la tabla EMPRESA
+                    //actualiza o pocoa a la tabla EMPRESA
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla EMPRESA sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla EMPRESA sincronizada" });
+                    
                 }
 
             }
@@ -643,7 +670,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<EQUIPO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             EquipoDataMapper dataMapper = new EquipoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -656,20 +683,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (EQUIPO item in list)
                 {
-                    //actualiza o inserta a la tabla EQUIPO
+                    //actualiza o pocoa a la tabla EQUIPO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla EQUIPO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla EQUIPO sincronizada" });
+                    
                 }
 
             }
@@ -687,7 +714,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<FACTURA> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             FacturaCompraDataMapper dataMapper = new FacturaCompraDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -700,20 +727,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (FACTURA item in list)
                 {
-                    //actualiza o inserta a la tabla FACTURA
+                    //actualiza o pocoa a la tabla FACTURA
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla FACTURA sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla FACTURA sincronizada" });
+                    
                 }
 
             }
@@ -731,7 +758,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<FACTURA_DETALLE> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             FacturaCompraDetalleDataMapper dataMapper = new FacturaCompraDetalleDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -744,20 +771,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (FACTURA_DETALLE item in list)
                 {
-                    //actualiza o inserta a la tabla FACTURA_DETALLE
+                    //actualiza o pocoa a la tabla FACTURA_DETALLE
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla FACTURA_DETALLE sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla FACTURA_DETALLE sincronizada" });
+                    
                 }
 
             }
@@ -775,7 +802,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<FACTURA_VENTA> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             FacturaVentaDataMapper dataMapper = new FacturaVentaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -788,20 +815,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (FACTURA_VENTA item in list)
                 {
-                    //actualiza o inserta a la tabla FACTURA_VENTA
+                    //actualiza o pocoa a la tabla FACTURA_VENTA
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla FACTURA_VENTA sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla FACTURA_VENTA sincronizada" });
+                    
                 }
 
             }
@@ -819,7 +846,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<ITEM> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             ItemDataMapper dataMapper = new ItemDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -832,20 +859,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (ITEM item in list)
                 {
-                    //actualiza o inserta a la tabla ITEM
+                    //actualiza o pocoa a la tabla ITEM
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla ITEM sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ITEM sincronizada" });
+                    
                 }
 
             }
@@ -863,7 +890,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<ITEM_STATUS> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             ItemStatusDataMapper dataMapper = new ItemStatusDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -876,20 +903,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (ITEM_STATUS item in list)
                 {
-                    //actualiza o inserta a la tabla ITEM_STATUS
+                    //actualiza o pocoa a la tabla ITEM_STATUS
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla ITEM_STATUS sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ITEM_STATUS sincronizada" });
+                    
                 }
 
             }
@@ -907,7 +934,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<LOTE> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             LoteDataMapper dataMapper = new LoteDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -920,20 +947,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (LOTE item in list)
                 {
-                    //actualiza o inserta a la tabla LOTE
+                    //actualiza o pocoa a la tabla LOTE
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla LOTE sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla LOTE sincronizada" });
+                    
                 }
 
             }
@@ -951,7 +978,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<MARCA> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             MarcaDataMapper dataMapper = new MarcaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -964,20 +991,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (MARCA item in list)
                 {
-                    //actualiza o inserta a la tabla MARCA
+                    //actualiza o pocoa a la tabla MARCA
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla MARCA sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla MARCA sincronizada" });
+                    
                 }
 
             }
@@ -995,7 +1022,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<MEDIO_ENVIO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             MedioEnvioDataMapper dataMapper = new MedioEnvioDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1008,20 +1035,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (MEDIO_ENVIO item in list)
                 {
-                    //actualiza o inserta a la tabla MEDIO_ENVIO
+                    //actualiza o pocoa a la tabla MEDIO_ENVIO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla MEDIO_ENVIO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla MEDIO_ENVIO sincronizada" });
+                    
                 }
 
             }
@@ -1039,7 +1066,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<MODELO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             ModeloDataMapper dataMapper = new ModeloDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1052,20 +1079,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (MODELO item in list)
                 {
-                    //actualiza o inserta a la tabla MODELO
+                    //actualiza o pocoa a la tabla MODELO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla MODELO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla MODELO sincronizada" });
+                    
                 }
 
             }
@@ -1084,7 +1111,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<MONEDA> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             MonedaDataMapper dataMapper = new MonedaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1097,20 +1124,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (MONEDA item in list)
                 {
-                    //actualiza o inserta a la tabla MONEDA
+                    //actualiza o pocoa a la tabla MONEDA
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla MONEDA sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla MONEDA sincronizada" });
+                    
                 }
 
             }
@@ -1128,7 +1155,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<MOVIMENTO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             MovimientoDataMapper dataMapper = new MovimientoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1141,20 +1168,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (MOVIMENTO item in list)
                 {
-                    //actualiza o inserta a la tabla MOVIMENTO
+                    //actualiza o pocoa a la tabla MOVIMENTO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla MOVIMENTO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla MOVIMENTO sincronizada" });
+                    
                 }
 
             }
@@ -1172,7 +1199,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<MOVIMIENTO_DETALLE> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             MovimientoDetalleDataMapper dataMapper = new MovimientoDetalleDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1185,20 +1212,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (MOVIMIENTO_DETALLE item in list)
                 {
-                    //actualiza o inserta a la tabla MOVIMIENTO_DETALLE
+                    //actualiza o pocoa a la tabla MOVIMIENTO_DETALLE
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla MOVIMIENTO_DETALLE sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla MOVIMIENTO_DETALLE sincronizada" });
+                    
                 }
 
             }
@@ -1216,7 +1243,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<PAI> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             PaisDataMapper dataMapper = new PaisDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1229,20 +1256,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (PAI item in list)
                 {
-                    //actualiza o inserta a la tabla PAIS
+                    //actualiza o pocoa a la tabla PAIS
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla PAIS sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla PAIS sincronizada" });
+                    
                 }
 
             }
@@ -1260,7 +1287,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<PEDIMENTO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             PedimentoDataMapper dataMapper = new PedimentoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1273,20 +1300,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (PEDIMENTO item in list)
                 {
-                    //actualiza o inserta a la tabla PEDIMENTO
+                    //actualiza o pocoa a la tabla PEDIMENTO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla PEDIMENTO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla PEDIMENTO sincronizada" });
+                    
                 }
 
             }
@@ -1304,7 +1331,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<POM_ARTICULO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             PomArticuloDataMapper dataMapper = new PomArticuloDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1317,20 +1344,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (POM_ARTICULO item in list)
                 {
-                    //actualiza o inserta a la tabla POM_ARTICULO
+                    //actualiza o pocoa a la tabla POM_ARTICULO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla POM_ARTICULO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla POM_ARTICULO sincronizada" });
+                    
                 }
 
             }
@@ -1348,7 +1375,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<POM> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             PomDataMapper dataMapper = new PomDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1361,20 +1388,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (POM item in list)
                 {
-                    //actualiza o inserta a la tabla POM
+                    //actualiza o pocoa a la tabla POM
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla POM sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla POM sincronizada" });
+                    
                 }
 
             }
@@ -1392,7 +1419,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<PROPIEDAD> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             PropiedadDataMapper dataMapper = new PropiedadDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1405,20 +1432,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (PROPIEDAD item in list)
                 {
-                    //actualiza o inserta a la tabla PROPIEDAD
+                    //actualiza o pocoa a la tabla PROPIEDAD
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla PROPIEDAD sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla PROPIEDAD sincronizada" });
+                    
                 }
 
             }
@@ -1430,10 +1457,49 @@ namespace InventoryApp.Service.Services
             return mensaje;
             #endregion
         }
-        //pendiente
+        
         public string LoadProveedorCategoria(string listPocos, string dataUser)
         {
-            throw new NotImplementedException();
+            #region propiedades
+            string mensaje = null;
+            List<PROVEEDOR_CATEGORIA> list;
+            UPLOAD_LOG poco = null;
+            ProveedorDataMapper dataMapper = new ProveedorDataMapper();
+            ProveedorCategoriaDataMapper dataMapperRelation = new ProveedorCategoriaDataMapper();
+            ServerLastDataMapper server = new ServerLastDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            try
+            {
+                list = dataMapperRelation.GetDeserializeProveedorCategoria(listPocos);
+
+                foreach (PROVEEDOR_CATEGORIA item in list)
+                {
+                    //actualiza o pocoa a la tabla PROVEEDOR_CATEGORIA
+                    dataMapper.loadSyncRelation(item);
+                }
+                //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
+                server.updateDumy();
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
+
+                if (poco != null)
+                {
+
+                    mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla PROVEEDOR_CATEGORIA sincronizada" });
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                mensaje = null;
+            }
+            return mensaje;
+            #endregion
         }
 
         public string LoadProveedorCuenta(string listPocos, string dataUser)
@@ -1441,7 +1507,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<PROVEEDOR_CUENTA> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             ProveedorCuentaDataMapper dataMapper = new ProveedorCuentaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1454,20 +1520,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (PROVEEDOR_CUENTA item in list)
                 {
-                    //actualiza o inserta a la tabla PROVEEDOR_CUENTA
+                    //actualiza o pocoa a la tabla PROVEEDOR_CUENTA
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla PROVEEDOR_CUENTA sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla PROVEEDOR_CUENTA sincronizada" });
+                    
                 }
 
             }
@@ -1485,7 +1551,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<PROVEEDOR> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             ProveedorDataMapper dataMapper = new ProveedorDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1498,20 +1564,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (PROVEEDOR item in list)
                 {
-                    //actualiza o inserta a la tabla PROVEEDOR
+                    //actualiza o pocoa a la tabla PROVEEDOR
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla PROVEEDOR sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla PROVEEDOR sincronizada" });
+                    
                 }
 
             }
@@ -1529,7 +1595,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<PROYECTO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             ProyectoDataMapper dataMapper = new ProyectoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1542,20 +1608,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (PROYECTO item in list)
                 {
-                    //actualiza o inserta a la tabla PROYECTO
+                    //actualiza o pocoa a la tabla PROYECTO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla PROYECTO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla PROYECTO sincronizada" });
+                    
                 }
 
             }
@@ -1573,7 +1639,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<RECIBO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             ReciboDataMapper dataMapper = new ReciboDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1586,20 +1652,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (RECIBO item in list)
                 {
-                    //actualiza o inserta a la tabla RECIBO
+                    //actualiza o pocoa a la tabla RECIBO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla RECIBO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla RECIBO sincronizada" });
+                    
                 }
 
             }
@@ -1617,7 +1683,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<RECIBO_MOVIMIENTO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             ReciboMovimientoDataMapper dataMapper = new ReciboMovimientoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1630,20 +1696,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (RECIBO_MOVIMIENTO item in list)
                 {
-                    //actualiza o inserta a la tabla RECIBO
+                    //actualiza o pocoa a la tabla RECIBO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla RECIBO_MOVIMIENTO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla RECIBO_MOVIMIENTO sincronizada" });
+                    
                 }
 
             }
@@ -1661,7 +1727,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<RECIBO_STATUS> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             ReciboStatusDataMapper dataMapper = new ReciboStatusDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1674,20 +1740,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (RECIBO_STATUS item in list)
                 {
-                    //actualiza o inserta a la tabla RECIBO_STATUS
+                    //actualiza o pocoa a la tabla RECIBO_STATUS
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla RECIBO_STATUS sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla RECIBO_STATUS sincronizada" });
+                    
                 }
 
             }
@@ -1705,7 +1771,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<SERVICIO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             ServicioDataMapper dataMapper = new ServicioDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1718,20 +1784,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (SERVICIO item in list)
                 {
-                    //actualiza o inserta a la tabla SERVICIO
+                    //actualiza o pocoa a la tabla SERVICIO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla SERVICIO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla SERVICIO sincronizada" });
+                    
                 }
 
             }
@@ -1749,7 +1815,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<SOLICITANTE> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             SolicitanteDataMapper dataMapper = new SolicitanteDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1762,20 +1828,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (SOLICITANTE item in list)
                 {
-                    //actualiza o inserta a la tabla SOLICITANTE
+                    //actualiza o pocoa a la tabla SOLICITANTE
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla SOLICITANTE sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla SOLICITANTE sincronizada" });
+                    
                 }
 
             }
@@ -1793,7 +1859,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<TECNICO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             TecnicoDataMapper dataMapper = new TecnicoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1806,20 +1872,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (TECNICO item in list)
                 {
-                    //actualiza o inserta a la tabla TECNICO
+                    //actualiza o pocoa a la tabla TECNICO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla TECNICO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla TECNICO sincronizada" });
+                    
                 }
 
             }
@@ -1837,7 +1903,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<TERMINO_ENVIO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             TerminoEnvioDataMapper dataMapper = new TerminoEnvioDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1850,20 +1916,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (TERMINO_ENVIO item in list)
                 {
-                    //actualiza o inserta a la tabla TERMINO_ENVIO
+                    //actualiza o pocoa a la tabla TERMINO_ENVIO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla TERMINO_ENVIO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla TERMINO_ENVIO sincronizada" });
+                    
                 }
 
             }
@@ -1881,7 +1947,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<TIPO_COTIZACION> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             TipoCotizacionDataMapper dataMapper = new TipoCotizacionDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1894,20 +1960,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (TIPO_COTIZACION item in list)
                 {
-                    //actualiza o inserta a la tabla TIPO_COTIZACION
+                    //actualiza o pocoa a la tabla TIPO_COTIZACION
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla TIPO_COTIZACION sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla TIPO_COTIZACION sincronizada" });
+                    
                 }
 
             }
@@ -1925,7 +1991,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<TIPO_EMPRESA> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             TipoEmpresaDataMapper dataMapper = new TipoEmpresaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1938,20 +2004,19 @@ namespace InventoryApp.Service.Services
 
                 foreach (TIPO_EMPRESA item in list)
                 {
-                    //actualiza o inserta a la tabla TIPO_EMPRESA
+                    //actualiza o pocoa a la tabla TIPO_EMPRESA
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla TIPO_EMPRESA sincronizada" });
-                    }
+                                
+                    mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla TIPO_EMPRESA sincronizada" });
+                    
                 }
 
             }
@@ -1969,7 +2034,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<TIPO_MOVIMIENTO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             TipoMovimientoDataMapper dataMapper = new TipoMovimientoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1978,24 +2043,24 @@ namespace InventoryApp.Service.Services
             #region metodos
             try
             {
+            
                 list = dataMapper.GetDeserializeTipoMovimiento(listPocos);
 
                 foreach (TIPO_MOVIMIENTO item in list)
                 {
-                    //actualiza o inserta a la tabla TIPO_MOVIMIENTO
+                    //actualiza o pocoa a la tabla TIPO_MOVIMIENTO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
-                {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla TIPO_MOVIMIENTO sincronizada" });
-                    }
+                if (poco!=null)
+                {       
+                    
+                    mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla TIPO_MOVIMIENTO sincronizada" });
+                    
                 }
 
             }
@@ -2013,7 +2078,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<TIPO_PEDIMENTO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             TipoPedimentoDataMapper dataMapper = new TipoPedimentoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2026,19 +2091,19 @@ namespace InventoryApp.Service.Services
 
                 foreach (TIPO_PEDIMENTO item in list)
                 {
-                    //actualiza o inserta a la tabla TIPO_PEDIMENTO
+                    //actualiza o pocoa a la tabla TIPO_PEDIMENTO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
+                   
                     {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla TIPO_PEDIMENTO sincronizada" });
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla TIPO_PEDIMENTO sincronizada" });
                     }
                 }
 
@@ -2057,7 +2122,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<TRANSPORTE> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             TransporteDataMapper dataMapper = new TransporteDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2070,20 +2135,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (TRANSPORTE item in list)
                 {
-                    //actualiza o inserta a la tabla TRANSPORTE
+                    //actualiza o pocoa a la tabla TRANSPORTE
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla TRANSPORTE sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla TRANSPORTE sincronizada" });
+                    
                 }
 
             }
@@ -2101,7 +2166,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<ULTIMO_MOVIMIENTO> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             UltimoMovimientoDataMapper dataMapper = new UltimoMovimientoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2114,20 +2179,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (ULTIMO_MOVIMIENTO item in list)
                 {
-                    //actualiza o inserta a la tabla ULTIMO_MOVIMIENTO
+                    //actualiza o pocoa a la tabla ULTIMO_MOVIMIENTO
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla ULTIMO_MOVIMIENTO sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ULTIMO_MOVIMIENTO sincronizada" });
+                    
                 }
 
             }
@@ -2145,7 +2210,7 @@ namespace InventoryApp.Service.Services
             #region propiedades
             string mensaje = null;
             List<UNIDAD> list;
-            List<UPLOAD_LOG> listUser;
+            UPLOAD_LOG poco = null;
             UnidadDataMapper dataMapper = new UnidadDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2158,20 +2223,20 @@ namespace InventoryApp.Service.Services
 
                 foreach (UNIDAD item in list)
                 {
-                    //actualiza o inserta a la tabla UNIDAD
+                    //actualiza o pocoa a la tabla UNIDAD
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
                 server.updateDumy();
-                // inserta a la tabla UPLOAD_LOG 
-                listUser = user.GetDeserializeUpLoadLog(dataUser);
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
 
-                if (listUser.Count > 0)
+                if (poco!=null)
                 {
-                    foreach (UPLOAD_LOG insert in listUser)
-                    {
-                        return mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = insert.UNID_USUARIO, PC_NAME = insert.PC_NAME, IP_DIR = insert.IP_DIR, MSG = "Tabla UNIDAD sincronizada" });
-                    }
+                   
+                    
+                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla UNIDAD sincronizada" });
+                    
                 }
 
             }

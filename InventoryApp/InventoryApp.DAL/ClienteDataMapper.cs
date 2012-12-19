@@ -129,7 +129,6 @@ namespace InventoryApp.DAL
             }
         }
 
-
         public object getElement(object element)
         {
             object res = null;
@@ -212,8 +211,7 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         //Sync
-                        cliente.IS_MODIFIED = true;
-                        cliente.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -293,6 +291,40 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetCliente()
+        {
+            List<CLIENTE> reset = new List<CLIENTE>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.CLIENTEs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new CLIENTE
+                     {
+                         CLIENTE1 = row.CLIENTE1,
+                         UNID_CLIENTE = row.UNID_CLIENTE,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.CLIENTEs.First(p => p.UNID_CLIENTE == item.UNID_CLIENTE);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

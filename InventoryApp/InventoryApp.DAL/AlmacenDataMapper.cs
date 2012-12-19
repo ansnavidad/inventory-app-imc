@@ -55,6 +55,7 @@ namespace InventoryApp.DAL
                 return res;
             }
         }
+
         public void loadSync(object element)
         {
             if (element != null)
@@ -361,8 +362,6 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {                        
                         //Sync
-                        almacen.IS_MODIFIED = true;
-                        almacen.LAST_MODIFIED_DATE = UNID.getNewUNID();
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -383,8 +382,6 @@ namespace InventoryApp.DAL
                     ALMACEN_TECNICO relation = (ALMACEN_TECNICO)element;                                        
   
                     //Sync
-                    relation.IS_MODIFIED = true;
-                    relation.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();

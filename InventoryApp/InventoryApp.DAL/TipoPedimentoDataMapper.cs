@@ -197,8 +197,7 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         //Sync
-                        tipoPedimento.IS_MODIFIED = true;
-                        tipoPedimento.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -303,6 +302,43 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetTipoPedimento()
+        {
+            List<TIPO_PEDIMENTO> reset = new List<TIPO_PEDIMENTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.TIPO_PEDIMENTO
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new TIPO_PEDIMENTO
+                     {
+                         UNID_TIPO_PEDIMENTO = row.UNID_TIPO_PEDIMENTO,
+                         TIPO_PEDIMENTO_NAME = row.TIPO_PEDIMENTO_NAME,
+                         CLAVE = row.CLAVE,
+                         REGIMEN = row.REGIMEN,
+                         NOTA = row.NOTA,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.TIPO_PEDIMENTO.First(p => p.UNID_TIPO_PEDIMENTO == item.UNID_TIPO_PEDIMENTO);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

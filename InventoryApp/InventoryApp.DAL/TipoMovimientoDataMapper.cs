@@ -195,8 +195,7 @@ namespace InventoryApp.DAL
                     TIPO_MOVIMIENTO tipo = (TIPO_MOVIMIENTO)element;
 
                     //Sync
-                    tipo.IS_MODIFIED = true;
-                    tipo.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
@@ -300,6 +299,41 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetTipoMovimiento()
+        {
+            List<TIPO_MOVIMIENTO> reset = new List<TIPO_MOVIMIENTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.TIPO_MOVIMIENTO
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new TIPO_MOVIMIENTO
+                     {
+                         UNID_TIPO_MOVIMIENTO = row.UNID_TIPO_MOVIMIENTO,
+                         TIPO_MOVIMIENTO_NAME = row.TIPO_MOVIMIENTO_NAME,
+                         SIGNO_MOVIMIENTO = row.SIGNO_MOVIMIENTO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.TIPO_MOVIMIENTO.First(p => p.UNID_TIPO_MOVIMIENTO == item.UNID_TIPO_MOVIMIENTO);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

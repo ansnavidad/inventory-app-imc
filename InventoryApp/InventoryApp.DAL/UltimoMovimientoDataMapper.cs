@@ -75,7 +75,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSny((object)poco);
                     }
 
                     var modifiedMenu = entity.ULTIMO_MOVIMIENTO.First(p => p.UNID_ITEM == poco.UNID_ITEM);
@@ -146,6 +146,25 @@ namespace InventoryApp.DAL
             throw new NotImplementedException();
         }
 
+        public void insertElementSny(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ULTIMO_MOVIMIENTO ulMov = (ULTIMO_MOVIMIENTO)element;
+                        //Sync
+
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.ULTIMO_MOVIMIENTO.AddObject(ulMov);
+                        entity.SaveChanges();
+                    }
+                }
+        }
+
         public void deleteElement(object element)
         {
             throw new NotImplementedException();
@@ -200,6 +219,42 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetUltimoMovimiento()
+        {
+            List<ULTIMO_MOVIMIENTO> reset = new List<ULTIMO_MOVIMIENTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.ULTIMO_MOVIMIENTO
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new ULTIMO_MOVIMIENTO
+                     {
+                         UNID_ITEM = row.UNID_ITEM,
+                         UNID_ALMACEN = row.UNID_ALMACEN,
+                         UNID_CLIENTE = row.UNID_CLIENTE,
+                         UNID_PROVEEDOR = row.UNID_PROVEEDOR,
+                         UNID_MOVIMIENTO_DETALLE = row.UNID_MOVIMIENTO_DETALLE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.ULTIMO_MOVIMIENTO.First(p => p.UNID_ITEM == item.UNID_ITEM);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

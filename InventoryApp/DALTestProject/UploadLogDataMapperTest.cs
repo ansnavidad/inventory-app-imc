@@ -98,36 +98,7 @@ namespace DALTestProject
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
 
-        /// <summary>
-        ///Una prueba de GetDeserializeUpLoadLog
-        ///</summary>
-        [TestMethod()]
-        public void GetDeserializeUpLoadLogTest()
-        {
-
-            UploadLogDataMapper target = new UploadLogDataMapper(); // TODO: Inicializar en un valor adecuado
-            string upLoadLog = "{'UNID_UPLOAD_LOG':0,'MSG':null,'IP_DIR':'192.168.1.110','PC_NAME':'isaac-pc','UNID_USUARIO':2345676543456,'USUARIO':null}"; // TODO: Inicializar en un valor adecuado
-            List<UPLOAD_LOG> expected = null; // TODO: Inicializar en un valor adecuado
-            List<UPLOAD_LOG> actual;
-            actual = target.GetDeserializeUpLoadLog(upLoadLog);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        }
-
-        /// <summary>
-        ///Una prueba de GetDeserializeUpLoadLog
-        ///</summary>
-        [TestMethod()]
-        public void GetDeserializeUpLoadLogTest1()
-        {
-            UploadLogDataMapper target = new UploadLogDataMapper(); // TODO: Inicializar en un valor adecuado
-            string upLoadLog = "{'UNID_UPLOAD_LOG':0,'MSG':null,'IP_DIR':'192.168.1.110','PC_NAME':'isaac-pc','UNID_USUARIO':2345676543456,'USUARIO':null}"; // TODO: Inicializar en un valor adecuado
-            List<UPLOAD_LOG> expected = null; // TODO: Inicializar en un valor adecuado
-            List<UPLOAD_LOG> actual;
-            actual = target.GetDeserializeUpLoadLog(upLoadLog);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        }
+        
 
         
     }

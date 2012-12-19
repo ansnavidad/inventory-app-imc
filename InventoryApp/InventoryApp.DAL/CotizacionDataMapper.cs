@@ -182,8 +182,7 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         //Sync
-                        cotizacion.IS_MODIFIED = true;
-                        cotizacion.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -259,6 +258,52 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetCotizacion()
+        {
+            List<COTIZACION> reset = new List<COTIZACION>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.COTIZACIONs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new COTIZACION
+                     {
+                         UNID_COTIZACION = row.UNID_COTIZACION,
+                         ID_EMPRESA = row.ID_EMPRESA,
+                         ID_USER = row.ID_USER,
+                         ID_STATUS = row.ID_STATUS,
+                         ID_CATEGORIA = row.ID_CATEGORIA,
+                         ID_TIPO_COTIZACION = row.ID_TIPO_COTIZACION,
+                         ID_PROYECTO = row.ID_PROYECTO,
+                         FECHA_SOLICITUD = row.FECHA_SOLICITUD,
+                         FECHA_REQUERIMENTO = row.FECHA_REQUERIMENTO,
+                         FECHA_COTIZACION = row.FECHA_COTIZACION,
+                         OBSERVACIONES_COMPRAS = row.OBSERVACIONES_COMPRAS,
+                         DIAS_VIGENCIA = row.DIAS_VIGENCIA,
+                         MOTIVO_CANCELACION = row.MOTIVO_CANCELACION,
+                         ID_ROL = row.ID_ROL,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.COTIZACIONs.First(p => p.UNID_COTIZACION == item.UNID_COTIZACION);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

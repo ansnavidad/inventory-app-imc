@@ -23,6 +23,7 @@ namespace InventoryApp.DAL
             }
 
         }
+
         public string GetJsonLote(long? Last_Modified_Date)
         {
             string res = null;
@@ -49,6 +50,7 @@ namespace InventoryApp.DAL
                 return res;
             }
         }
+
         public void loadSync(object element)
         {
             if (element != null)
@@ -71,7 +73,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSny((object)poco);
                     }
 
                     var modifiedCotizacion = entity.LOTEs.First(p => p.UNID_LOTE == poco.UNID_LOTE);
@@ -120,10 +122,29 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     LOTE lote = (LOTE)element;
-                    //lote.UNID_LOTE = lote.UNID_LOTE
+                    //lote.UNID_LOTE = lote.UNID_LOTE;
                     //Sync
                     lote.IS_MODIFIED = true;
                     lote.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.LOTEs.AddObject(lote);
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void insertElementSny(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    LOTE lote = (LOTE)element;
+                    
+                    //Sync
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
@@ -186,6 +207,40 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetLote()
+        {
+            List<LOTE> reset = new List<LOTE>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.LOTEs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new LOTE
+                     {
+                         UNID_LOTE = row.UNID_LOTE,
+                         UNID_POM = row.UNID_POM,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.LOTEs.First(p => p.UNID_LOTE == item.UNID_LOTE);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

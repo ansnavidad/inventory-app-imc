@@ -146,7 +146,6 @@ namespace InventoryApp.DAL
         public object getElement(object element)
         {
             
-
             object res = null;
 
             if (element != null)
@@ -254,8 +253,7 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         //Sync
-                        Sol.IS_MODIFIED = true;
-                        Sol.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -341,6 +339,44 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetSolicitante()
+        {
+            List<SOLICITANTE> reset = new List<SOLICITANTE>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.SOLICITANTEs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new SOLICITANTE
+                     {
+                         UNID_SOLICITANTE = row.UNID_SOLICITANTE,
+                         SOLICITANTE_NAME = row.SOLICITANTE_NAME,
+                         UNID_EMPRESA = row.UNID_EMPRESA,
+                         UNID_DEPARTAMENTO = row.UNID_DEPARTAMENTO,
+                         EMAIL = row.EMAIL,
+                         VALIDADOR = row.VALIDADOR,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.SOLICITANTEs.First(p => p.UNID_SOLICITANTE == item.UNID_SOLICITANTE);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

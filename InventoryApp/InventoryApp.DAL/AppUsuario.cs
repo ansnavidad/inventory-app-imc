@@ -159,8 +159,7 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         //Sync
-                        usuario.IS_MODIFIED = true;
-                        usuario.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -224,6 +223,40 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetUsuario()
+        {
+            List<USUARIO> reset = new List<USUARIO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.USUARIOs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new USUARIO
+                     {
+                         UNID_USUARIO = row.UNID_USUARIO,
+                         USUARIO_MAIL = row.USUARIO_MAIL,
+                         USUARIO_PWD = row.USUARIO_PWD,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.USUARIOs.First(p => p.UNID_USUARIO == item.UNID_USUARIO);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

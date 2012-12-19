@@ -43,6 +43,7 @@ namespace InventoryApp.DAL
                 throw ex;                
             }
         }
+
         public bool existDumy() {
             
             using (var entity = new TAE2Entities())

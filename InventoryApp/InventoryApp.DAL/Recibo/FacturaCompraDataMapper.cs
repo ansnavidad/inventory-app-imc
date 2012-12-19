@@ -33,7 +33,7 @@ namespace InventoryApp.DAL.Recibo
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSyn((object)poco);
                     }
 
                     var modifiedCotizacion = entity.FACTURAs.First(p => p.UNID_FACTURA == poco.UNID_FACTURA);
@@ -42,6 +42,7 @@ namespace InventoryApp.DAL.Recibo
                 }
             }
         }
+
         public long? LastModifiedDate()
         {
             long? resul = null;
@@ -193,6 +194,32 @@ namespace InventoryApp.DAL.Recibo
             }
         }
 
+        public void insertElementSyn(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    FACTURA factura = (FACTURA)element;
+
+                    var validacion = (from cust in entity.FACTURAs
+                                      where cust.UNID_FACTURA == factura.UNID_FACTURA
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        //Sync
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.FACTURAs.AddObject(factura);
+                        entity.SaveChanges();
+                    }
+                }
+            }
+        }
+
         public void deleteElement(object element)
         {
             throw new NotImplementedException();
@@ -251,6 +278,46 @@ namespace InventoryApp.DAL.Recibo
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetFactura()
+        {
+            List<FACTURA> reset = new List<FACTURA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.FACTURAs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new FACTURA
+                     {
+                         UNID_FACTURA = row.UNID_FACTURA,
+                         UNID_LOTE = row.UNID_LOTE,
+                         FACTURA_NUMERO = row.FACTURA_NUMERO,
+                         FECHA_FACTURA = row.FECHA_FACTURA,
+                         UNID_PROVEEDOR = row.UNID_PROVEEDOR,
+                         UNID_MONEDA = row.UNID_MONEDA,
+                         NUMERO_PEDIMENTO = row.NUMERO_PEDIMENTO,
+                         IVA_POR = row.IVA_POR,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.FACTURAs.First(p => p.UNID_FACTURA == item.UNID_FACTURA);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

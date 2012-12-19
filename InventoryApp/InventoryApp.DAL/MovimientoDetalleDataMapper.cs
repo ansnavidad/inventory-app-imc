@@ -54,7 +54,6 @@ namespace InventoryApp.DAL
             }
         }
 
-        //
         /// <summary>
         /// Obtiene todos los elementos en la tabla transporte
         /// </summary>
@@ -160,6 +159,25 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void insertElementSyn(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MOVIMIENTO_DETALLE mov = (MOVIMIENTO_DETALLE)element;
+                    //Sync
+                    
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.MOVIMIENTO_DETALLE.AddObject(mov);
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void deleteElement(object element)
         {
             throw new NotImplementedException();
@@ -214,6 +232,42 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetMovimientoDetalle()
+        {
+            List<MOVIMIENTO_DETALLE> reset = new List<MOVIMIENTO_DETALLE>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.MOVIMIENTO_DETALLE
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new MOVIMIENTO_DETALLE
+                     {
+                         UNID_MOVIMIENTO_DETALLE = row.UNID_MOVIMIENTO_DETALLE,
+                         UNID_ITEM = row.UNID_ITEM,
+                         UNID_MOVIMIENTO = row.UNID_MOVIMIENTO,
+                         OBSERVACIONES = row.OBSERVACIONES,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.MOVIMIENTO_DETALLE.First(p => p.UNID_MOVIMIENTO_DETALLE == item.UNID_MOVIMIENTO_DETALLE);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

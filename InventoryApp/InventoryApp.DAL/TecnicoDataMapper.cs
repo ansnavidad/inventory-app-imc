@@ -235,8 +235,7 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         //Sync
-                        tecnico.IS_MODIFIED = true;
-                        tecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -340,6 +339,42 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetTecnico()
+        {
+            List<TECNICO> reset = new List<TECNICO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.TECNICOes
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new TECNICO
+                     {
+                         UNID_TECNICO = row.UNID_TECNICO,
+                         TECNICO_NAME = row.TECNICO_NAME,
+                         MAIL = row.MAIL,
+                         UNID_CIUDAD = row.UNID_CIUDAD,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.TECNICOes.First(p => p.UNID_TECNICO == item.UNID_TECNICO);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

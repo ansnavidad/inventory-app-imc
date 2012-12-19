@@ -97,7 +97,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSyn((object)poco);
                     }
 
                     var modifiedMenu = entity.MOVIMENTOes.First(p => p.UNID_MOVIMIENTO == poco.UNID_MOVIMIENTO);
@@ -214,7 +214,6 @@ namespace InventoryApp.DAL
             }
         }
 
-
         public object getTraspasos()
         {
             using (var Entity = new TAE2Entities())
@@ -252,7 +251,6 @@ namespace InventoryApp.DAL
                 return (object)final;
             }
         }
-
 
         public object getElement(object element)
         {
@@ -343,6 +341,25 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void insertElementSyn(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MOVIMENTO movimiento = (MOVIMENTO)element;
+                    //Sync
+                    
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.MOVIMENTOes.AddObject(movimiento);
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void deleteElement(object element)
         {
             throw new NotImplementedException();
@@ -418,6 +435,63 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetMovimiento()
+        {
+            List<MOVIMENTO> reset = new List<MOVIMENTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.MOVIMENTOes
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new MOVIMENTO
+                     {
+                         UNID_MOVIMIENTO = row.UNID_MOVIMIENTO,
+                         FECHA_MOVIMIENTO = row.FECHA_MOVIMIENTO,
+                         UNID_TIPO_MOVIMIENTO = row.UNID_TIPO_MOVIMIENTO,
+                         UNID_ALMACEN_DESTINO = row.UNID_ALMACEN_DESTINO,
+                         UNID_PROVEEDOR_DESTINO = row.UNID_PROVEEDOR_DESTINO,
+                         UNID_CLIENTE_DESTINO = row.UNID_CLIENTE_DESTINO,
+                         UNID_ALMACEN_PROCEDENCIA = row.UNID_ALMACEN_PROCEDENCIA,
+                         UNID_CLIENTE_PROCEDENCIA = row.UNID_CLIENTE_PROCEDENCIA,
+                         UNID_PROVEEDOR_PROCEDENCIA = row.UNID_PROVEEDOR_PROCEDENCIA,
+                         UNID_SERVICIO = row.UNID_SERVICIO,
+                         TT = row.TT,
+                         CONTACTO = row.CONTACTO,
+                         UNID_TRANSPORTE = row.UNID_TRANSPORTE,
+                         DIRECCION_ENVIO = row.DIRECCION_ENVIO,
+                         SITIO_ENLACE = row.SITIO_ENLACE,
+                         NOMBRE_SITIO = row.NOMBRE_SITIO,
+                         RECIBE = row.RECIBE,
+                         GUIA = row.GUIA,
+                         UNID_CLIENTE = row.UNID_CLIENTE,
+                         UNID_PROVEEDOR = row.UNID_PROVEEDOR,
+                         UNID_FACTURA_VENTA = row.UNID_FACTURA_VENTA,
+                         PEDIMIENTO_IMPO = row.PEDIMIENTO_IMPO,
+                         PEDIMIENTO_EXPO = row.PEDIMIENTO_EXPO,
+                         UNID_SOLICITANTE = row.UNID_SOLICITANTE,
+                         UNID_TECNICO = row.UNID_TECNICO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.MOVIMENTOes.First(p => p.UNID_MOVIMIENTO == item.UNID_MOVIMIENTO);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

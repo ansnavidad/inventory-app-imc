@@ -169,8 +169,7 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         //Sync
-                        pom.IS_MODIFIED = true;
-                        pom.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -239,6 +238,45 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetPom()
+        {
+            List<POM> reset = new List<POM>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.POMs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new POM
+                     {
+                         UNID_POM = row.UNID_POM,
+                         FECHA_POM = row.FECHA_POM,
+                         UNID_COTIZACION = row.UNID_COTIZACION,
+                         DIAS_ENTREGA = row.DIAS_ENTREGA,
+                         FECHA_ENTREGA = row.FECHA_ENTREGA,
+                         FECHA_ENTREGA_REAL = row.FECHA_ENTREGA_REAL,
+                         UNID_EMPRESA = row.UNID_EMPRESA,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.POMs.First(p => p.UNID_POM == item.UNID_POM);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

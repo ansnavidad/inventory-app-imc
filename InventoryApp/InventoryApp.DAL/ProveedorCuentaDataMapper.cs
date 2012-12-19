@@ -205,8 +205,6 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         //Sync
-                        proveedorCuenta.IS_MODIFIED = true;
-                        proveedorCuenta.LAST_MODIFIED_DATE = UNID.getNewUNID();
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -292,6 +290,44 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetProveedorCuenta()
+        {
+            List<PROVEEDOR_CUENTA> reset = new List<PROVEEDOR_CUENTA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.PROVEEDOR_CUENTA
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new PROVEEDOR_CUENTA
+                     {
+                         UNID_PROVEEDOR = row.UNID_PROVEEDOR,
+                         UNID_PROVEEDOR_CUENTA = row.UNID_PROVEEDOR_CUENTA,
+                         UNID_BANCO = row.UNID_BANCO,
+                         NUMERO_CUENTA = row.NUMERO_CUENTA,
+                         CLABE = row.CLABE,
+                         BENEFICIARIO = row.BENEFICIARIO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.PROVEEDOR_CUENTA.First(p => p.UNID_PROVEEDOR_CUENTA == item.UNID_PROVEEDOR_CUENTA);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

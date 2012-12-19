@@ -67,6 +67,23 @@ namespace InventoryApp.DAL
             return res;
         }
 
+        public string InsertUploadLogNew(object element)
+        {
+            string res = null;
+
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    UPLOAD_LOG uploadLog = (UPLOAD_LOG)element;
+                    entity.UPLOAD_LOG.AddObject(uploadLog);
+                    entity.SaveChanges();
+                    res = GetJsonUpLoadLog(uploadLog);
+                }
+            }
+            return res;
+        }
+
         public void deleteElement(object element)
         {
             throw new NotImplementedException();
@@ -90,7 +107,7 @@ namespace InventoryApp.DAL
         /// </summary>
         /// <returns>Regresa List<UPLOAD_LOG></returns>
         /// <returns>Si no regresa null</returns>
-        public List<UPLOAD_LOG> GetDeserializeUpLoadLog(string upLoadLog)
+        public List<UPLOAD_LOG> GetDeserializeUpLoadLog1(string upLoadLog)
         {
             List<UPLOAD_LOG> listUpLoadLog = null;
             UPLOAD_LOG up;
@@ -102,6 +119,24 @@ namespace InventoryApp.DAL
                 listUpLoadLog.Add(up);
             }
             return listUpLoadLog;
+        }
+
+        /// <summary>
+        /// Método que Deserializa JSon a List<UPLOAD_LOG>
+        /// </summary>
+        /// <returns>Regresa UPLOAD_LOG</returns>
+        /// <returns>Si no regresa null</returns>
+        public UPLOAD_LOG GetDeserializeUpLoadLog(string upLoadLog)
+        {
+            //UPLOAD_LOG listUpLoadLog = null;
+            UPLOAD_LOG up=null;
+
+            if (!String.IsNullOrEmpty(upLoadLog))
+            {
+                up = JsonConvert.DeserializeObject<UPLOAD_LOG>(upLoadLog);
+                
+            }
+            return up;
         }
 
         /// <summary>
@@ -125,13 +160,6 @@ namespace InventoryApp.DAL
                     {
                         up = JsonConvert.DeserializeObject<UPLOAD_LOG>(item.Value.ToString());
                     }
-
-                    //listUpLoadLog.Add(up);
-                    ////inserta a la base local para solo de prueba prueba
-                    //foreach (UPLOAD_LOG item in listUpLoadLog)
-                    //{
-                    //    insertElement(new UPLOAD_LOG() { UNID_USUARIO = item.UNID_USUARIO, PC_NAME = item.PC_NAME, MSG = "RESPUESTA DEL SERVIDOR", IP_DIR=item.IP_DIR });
-                    //}
                     //inserta a la base local
                     InsertUploadLogLocal(up);
                     val = true;

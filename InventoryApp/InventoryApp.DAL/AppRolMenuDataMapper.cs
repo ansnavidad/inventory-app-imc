@@ -113,8 +113,7 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {                        
                         //Sync
-                        rolMenu.IS_MODIFIED = true;
-                        rolMenu.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -177,6 +176,39 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetRolMenu()
+        {
+            List<ROL_MENU> reset = new List<ROL_MENU>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.ROL_MENU
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new ROL_MENU
+                     {
+                         UNID_ROL = row.UNID_ROL,
+                         UNID_MENU = row.UNID_MENU,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.ROL_MENU.First(p => p.UNID_MENU==item.UNID_MENU);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

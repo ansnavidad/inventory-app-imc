@@ -88,7 +88,7 @@ namespace InventoryApp.ViewModel.Sync
         //servidor elara
         string routeService = @"http://10.50.0.131:8080/Services/Receiver.svc";
         //Prueba Adolfo
-        //string routeService = @"http://localhost:3033/Services/Broadcast.svc";
+        string routeDownload = @"http://10.50.0.131:8080/Services/Broadcast.svc";
         
 
         string dataUser = "{'UNID_UPLOAD_LOG':0,'MSG':null,'IP_DIR':'192.168.1.110','PC_NAME':'ISAAC-PC','UNID_USUARIO':1,'USUARIO':null}";
@@ -139,58 +139,58 @@ namespace InventoryApp.ViewModel.Sync
         {
             //Poner lógica de consumo de servicios para enviar los datos
             bool res=true;
-            #region todos los catalogos de APP
-            if (res)
-            {
-                this.Message = "Enviando MENU ...";
-                //res = ();
-                if (res)
-                {
-                    cat.ResetCategoria();
-                }
-            }
+            //#region todos los catalogos de APP
+            //if (res)
+            //{
+            //    this.Message = "Enviando MENU ...";
+            //    //res = ();
+            //    if (res)
+            //    {
+            //        cat.ResetCategoria();
+            //    }
+            //}
 
-            if (res)
-            {
-                this.Message = "Enviando CATEGORIA ...";
-                res = CallServiceCategoria();
-                if (res)
-                {
-                    cat.ResetCategoria();
-                }
-            }
+            //if (res)
+            //{
+            //    this.Message = "Enviando CATEGORIA ...";
+            //    res = CallServiceCategoria();
+            //    if (res)
+            //    {
+            //        cat.ResetCategoria();
+            //    }
+            //}
 
-            if (res)
-            {
-                this.Message = "Enviando CATEGORIA ...";
-                res = CallServiceCategoria();
-                if (res)
-                {
-                    cat.ResetCategoria();
-                }
-            }
+            //if (res)
+            //{
+            //    this.Message = "Enviando CATEGORIA ...";
+            //    res = CallServiceCategoria();
+            //    if (res)
+            //    {
+            //        cat.ResetCategoria();
+            //    }
+            //}
 
-            if (res)
-            {
-                this.Message = "Enviando CATEGORIA ...";
-                res = CallServiceCategoria();
-                if (res)
-                {
-                    cat.ResetCategoria();
-                }
-            }
+            //if (res)
+            //{
+            //    this.Message = "Enviando CATEGORIA ...";
+            //    res = CallServiceCategoria();
+            //    if (res)
+            //    {
+            //        cat.ResetCategoria();
+            //    }
+            //}
 
-            if (res)
-            {
-                this.Message = "Enviando CATEGORIA ...";
-                res = CallServiceCategoria();
-                if (res)
-                {
-                    cat.ResetCategoria();
-                }
-            }
+            //if (res)
+            //{
+            //    this.Message = "Enviando CATEGORIA ...";
+            //    res = CallServiceCategoria();
+            //    if (res)
+            //    {
+            //        cat.ResetCategoria();
+            //    }
+            //}
 
-            #endregion
+            //#endregion
 
             #region todos los catalogos de ARTICULOS
             if (res)
@@ -284,30 +284,16 @@ namespace InventoryApp.ViewModel.Sync
 
             bool res = true;
 
-            //Consumir servicio de Isaac que compara UNID's, en caso de que el servidor sea mayor que el actual
-            //Actualizar y comenzar todo el proceso
+            long serverDate = CallDownloadServiceGetServerLast();
 
+            if (serverDate == 0)
+                return;
 
-            //********* todos los dd articulo
             if (res)
             {
                 this.Message = "Descargando CATEGORIA ...";
-                res = CallDownloadServiceCategoria();                
+                res = CallDownloadServiceCategoria(serverDate);                
             }
-
-            //if (res)
-            //{
-            //    this.Message = "Enviando ARTICULO ...";
-            //    res = CallServiceArticulo();
-            //    if (res)
-            //    {
-            //        art.ResetArticulo();
-            //        this.Message = "Sincronizacion completada ...";
-            //        //Esta instrucción cierra la ventana
-            //        this.JobDone = true;
-            //    }
-            //}
-
 
             //Si toda la descarga es correcta, ejecutar la subida de información
             if (res)
@@ -316,7 +302,7 @@ namespace InventoryApp.ViewModel.Sync
             }
         }
 
-        public bool CallDownloadServiceCategoria()
+        public bool CallDownloadServiceCategoria(long serverDate)
         {
             #region propiedades
             bool responseSevice = true;
@@ -332,13 +318,13 @@ namespace InventoryApp.ViewModel.Sync
                 //var client = new RestClient(routeService1);
                 //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
                 //servidor
-                var client = new RestClient(routeService);
+                var client = new RestClient(routeDownload);
                 client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
                 var request = new RestRequest(Method.POST);
                 request.Resource = nameService;
                 request.RequestFormat = RestSharp.DataFormat.Json;
                 request.AddHeader("Content-type", "application/json");
-                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                request.AddBody(new { lastModifiedDate = serverDate });
                 IRestResponse response = client.Execute(request);
 
                 Dictionary<string,string> resx= dataMapper.GetResponseDictionary(response.Content);
@@ -354,6 +340,39 @@ namespace InventoryApp.ViewModel.Sync
             catch (Exception)
             {
                 responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public long CallDownloadServiceGetServerLast()
+        {
+            #region propiedades
+            long responseSevice = 0;
+            string nameService = "GetServerLast";
+            ServerLastDataMapper dataMapper = new ServerLastDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {                
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+                                
+                responseSevice = dataMapper.GetDeserializeServerLast(resx["GetServerLastResult"]);                                
+            }
+            catch (Exception)
+            {
+                return 0;
             }
 
             return responseSevice;

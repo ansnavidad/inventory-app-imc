@@ -116,7 +116,7 @@ namespace InventoryApp.DAL
         {
             object res = null;
 
-            FixupCollection<CATEGORIA> tp = new FixupCollection<CATEGORIA>();
+            FixupCollection<CATEGORIA> tp =new FixupCollection<CATEGORIA>();
 
             using (var entity = new TAE2Entities())
             {

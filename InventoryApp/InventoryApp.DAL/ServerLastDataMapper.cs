@@ -4,11 +4,30 @@ using System.Linq;
 using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL.JSON;
+using Newtonsoft.Json;
 
 namespace InventoryApp.DAL
 {
     public class ServerLastDataMapper :IDataMapper
     {
+        public long GetDeserializeServerLast(string listPocos)
+        {
+            long res = 0;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<long>(listPocos);
+            }
+
+            return res;
+        }
+
+        public Dictionary<string, string> GetResponseDictionary(string response)
+        {
+            Dictionary<string, string> resx = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
+            return resx;
+        }
+        
         public long GetServerLastFecha()
         {
             long res = 0;

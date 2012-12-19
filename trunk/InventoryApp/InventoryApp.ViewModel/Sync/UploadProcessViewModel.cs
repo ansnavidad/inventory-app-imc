@@ -19,6 +19,8 @@ namespace InventoryApp.ViewModel.Sync
         MarcaDataMapper mar = new MarcaDataMapper();
         ModeloDataMapper mol = new ModeloDataMapper();
         ArticuloDataMapper art = new ArticuloDataMapper();
+        CiudadDataMapper ciu = new CiudadDataMapper();
+        PaisDataMapper pai = new PaisDataMapper();
         SyncDataMapper syn = new SyncDataMapper();
         AlmacenDataMapper almacenDataMapper = new AlmacenDataMapper();
         AppMenuDataMapper menuDataMapper = new AppMenuDataMapper();
@@ -78,12 +80,15 @@ namespace InventoryApp.ViewModel.Sync
         string _message;
         bool _jobDone;
         //prueba
-        string routeService1 = @"http://localhost:8082/Services/Receiver.svc";
+        //string routeService1 = @"http://localhost:8082/Services/Receiver.svc";
         //servidor
         //string routeService = @"http://192.168.0.116:2020/Services/Receiver.svc";
-
+        //servidor inmeta
+        //string routeService2 = @"http://192.168.0.116:2020/Services/Receiver.svc";
+        //servidor elara
+        string routeService = @"http://10.50.0.131:8080/Services/Receiver.svc";
         //Prueba Adolfo
-        string routeService = @"http://localhost:3033/Services/Broadcast.svc";
+        //string routeService = @"http://localhost:3033/Services/Broadcast.svc";
         
 
         string dataUser = "{'UNID_UPLOAD_LOG':0,'MSG':null,'IP_DIR':'192.168.1.110','PC_NAME':'ISAAC-PC','UNID_USUARIO':1,'USUARIO':null}";
@@ -121,7 +126,7 @@ namespace InventoryApp.ViewModel.Sync
             this._jobDone = false;
             t = new System.Timers.Timer(100);
             t.Enabled = true;
-            //t.Elapsed += new System.Timers.ElapsedEventHandler(UploadData);
+            t.Elapsed += new System.Timers.ElapsedEventHandler(UploadData);
             t.Elapsed += new System.Timers.ElapsedEventHandler(DownloadData);
         }
 
@@ -139,7 +144,60 @@ namespace InventoryApp.ViewModel.Sync
 
             //Poner lógica de consumo de servicios para enviar los datos
             bool res=true;
-            //********* todos los dd articulo
+            #region todos los catalogos de APP
+            if (res)
+            {
+                this.Message = "Enviando MENU ...";
+                //res = ();
+                if (res)
+                {
+                    cat.ResetCategoria();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando CATEGORIA ...";
+                res = CallServiceCategoria();
+                if (res)
+                {
+                    cat.ResetCategoria();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando CATEGORIA ...";
+                res = CallServiceCategoria();
+                if (res)
+                {
+                    cat.ResetCategoria();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando CATEGORIA ...";
+                res = CallServiceCategoria();
+                if (res)
+                {
+                    cat.ResetCategoria();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando CATEGORIA ...";
+                res = CallServiceCategoria();
+                if (res)
+                {
+                    cat.ResetCategoria();
+                }
+            }
+
+            #endregion
+
+            #region todos los catalogos de ARTICULOS
             if (res)
             {
                 this.Message = "Enviando CATEGORIA ...";
@@ -192,6 +250,30 @@ namespace InventoryApp.ViewModel.Sync
                     this.JobDone = true;
                 }
             }
+            #endregion
+
+            #region todos los catalogos de GEO
+            if (res)
+            {
+                this.Message = "Enviando CIUDAD ...";
+                res = CallServiceCiudad();
+                if (res)
+                {
+                    ciu.ResetCiudad();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando PAIS ...";
+                res = CallServicePais();
+                if (res)
+                {
+                    pai.ResetPais();
+                }
+            }
+            #endregion 
+
             syn.ResetDummy();
             UploadProcessViewModel.IsRunning = false;
             //Esta instrucción cierra la ventana
@@ -279,7 +361,53 @@ namespace InventoryApp.ViewModel.Sync
             #endregion
         }
 
+        #region todos los metodos de APP
+        public bool CallServiceMenu()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadCategoria";
+            CategoriaDataMapper dataMapper = new CategoriaDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
 
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonCategoria();
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    //prueba
+                    //var client = new RestClient(routeService1);
+                    //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                    //servidor
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+        #endregion
+
+        #region todos los metodos de ARTICULOS
         public bool CallServiceCategoria()
         {
             #region propiedades
@@ -288,6 +416,7 @@ namespace InventoryApp.ViewModel.Sync
             CategoriaDataMapper dataMapper = new CategoriaDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
             #endregion
+
             #region metodos
             //madamos a llamar el metodo que serializa list de pocos
             string listPocos = dataMapper.GetJsonCategoria();
@@ -325,10 +454,14 @@ namespace InventoryApp.ViewModel.Sync
 
         public bool CallServiceEquipo()
         {
+            #region propiedades
             bool responseSevice;
             string nameService = "LoadEquipo";
             EquipoDataMapper dataMapper = new EquipoDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
             //madamos a llamar el metodo que serializa list de pocos
             string listPocos = dataMapper.GetJsonEquipo();
             if (!String.IsNullOrEmpty(listPocos))
@@ -355,14 +488,19 @@ namespace InventoryApp.ViewModel.Sync
                 responseSevice = true;
             }
             return responseSevice;
+            #endregion
         }
 
         public bool CallServiceMarca()
         {
+            #region propiedades
             bool responseSevice;
             string nameService = "LoadMarca";
             MarcaDataMapper dataMapper = new MarcaDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
             //madamos a llamar el metodo que serializa list de pocos
             string listPocos = dataMapper.GetJsonMarca();
             if (!String.IsNullOrEmpty(listPocos))
@@ -386,17 +524,22 @@ namespace InventoryApp.ViewModel.Sync
             }
             else
             {
-                responseSevice = true;        
+                responseSevice = true;
             }
             return responseSevice;
+            #endregion
         }
 
         public bool CallServiceModelo()
         {
+            #region propiedades
             bool responseSevice;
             string nameService = "LoadModelo";
             ModeloDataMapper dataMapper = new ModeloDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
             //madamos a llamar el metodo que serializa list de pocos
             string listPocos = dataMapper.GetJsonModelo();
             if (!String.IsNullOrEmpty(listPocos))
@@ -423,14 +566,19 @@ namespace InventoryApp.ViewModel.Sync
                 responseSevice = true;
             }
             return responseSevice;
+            #endregion
         }
 
         public bool CallServiceArticulo()
         {
+            #region propiedades
             bool responseSevice;
             string nameService = "LoadArticulo";
             ArticuloDataMapper dataMapper = new ArticuloDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
             //madamos a llamar el metodo que serializa list de pocos
             string listPocos = dataMapper.GetJsonArticulo();
             if (!String.IsNullOrEmpty(listPocos))
@@ -457,6 +605,1583 @@ namespace InventoryApp.ViewModel.Sync
                 responseSevice = true;
             }
             return responseSevice;
+            #endregion
         }
+        #endregion
+
+        #region todos los metodos de CAT
+        public bool CallServiceBanco()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadBanco";
+            BancoDataMapper dataMapper = new BancoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonBanco();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceDepartamento()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadDepartamento";
+            DepartamentoDataMapper dataMapper = new DepartamentoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonDepartamento();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceEmpresa()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadEmpresa";
+            EmpresaDataMapper dataMapper = new EmpresaDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonEmpresa();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceMedioEnvio()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadMedioEnvio";
+            MedioEnvioDataMapper dataMapper = new MedioEnvioDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonMedioEnvio();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceMoneda()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadMoneda";
+            MonedaDataMapper dataMapper = new MonedaDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonMoneda();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceProveedor()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadProveedor";
+            ProveedorDataMapper dataMapper = new ProveedorDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonProveedor();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+        //pendiente
+        public bool CallServiceProveedorCategoria()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadProveedorCategoria";
+            ProveedorCategoriaDataMapper dataMapper = new ProveedorCategoriaDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonProveedorCategoria();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceProveedorCuenta()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadProveedorCuenta";
+            ProveedorCuentaDataMapper dataMapper = new ProveedorCuentaDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonProveedorCuenta();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceProyecto()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadProyecto";
+            ProyectoDataMapper dataMapper = new ProyectoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonProyecto();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceSolicitante()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadSolicitante";
+            SolicitanteDataMapper dataMapper = new SolicitanteDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonSolicitante();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceTerminoEnvio()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadTerminoEnvio";
+            TerminoEnvioDataMapper dataMapper = new TerminoEnvioDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonTerminoEnvio();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceTipoCotizacion()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadTipoCotizacion";
+            TipoCotizacionDataMapper dataMapper = new TipoCotizacionDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonTipoCotizacion();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceTipoEmpresa()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadTipoEmpresa";
+            TipoEmpresaDataMapper dataMapper = new TipoEmpresaDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonTipoEmpresa();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceTipoPedimento()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadTipoPedimento";
+            TipoPedimentoDataMapper dataMapper = new TipoPedimentoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonTipoPedimento();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceTransporte()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadTransporte";
+            TransporteDataMapper dataMapper = new TransporteDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonTransporte();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        #endregion
+
+        #region todos los metodos de CAT_INV
+        public bool CallServiceAlmacen()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadAlmacen";
+            AlmacenDataMapper dataMapper = new AlmacenDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonAlmacen();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceAlmacenTecnico()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadAlmacenTecnico";
+            AlmacenTecnicoDataMapper dataMapper = new AlmacenTecnicoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonAlmacenTecnico();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceCliente()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadCliente";
+            ClienteDataMapper dataMapper = new ClienteDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonCliente();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceItemStatus()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadItemStatus";
+            ItemStatusDataMapper dataMapper = new ItemStatusDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonItemStatus();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServicePropiedad()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadPropiedad";
+            PropiedadDataMapper dataMapper = new PropiedadDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonPropiedad();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceServicio()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadServicio";
+            ServicioDataMapper dataMapper = new ServicioDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonServicio();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceTecnico()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadTecnico";
+            TecnicoDataMapper dataMapper = new TecnicoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonTecnico();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceTipoMovimiento()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadTipoMovimiento";
+            TipoMovimientoDataMapper dataMapper = new TipoMovimientoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonTipoMovimiento();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceUnidad()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadUnidad";
+            UnidadDataMapper dataMapper = new UnidadDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonUnidad();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+        #endregion
+
+        #region todos los metodos de GEO
+
+        public bool CallServiceCiudad()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadCiudad";
+            CiudadDataMapper dataMapper = new CiudadDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonCiudad();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServicePais()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadPais";
+            PaisDataMapper dataMapper = new PaisDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonPais();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+        #endregion
+
+        #region todos los metodos de INV
+        public bool CallServiceFacturaVenta()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadFacturaVenta";
+            FacturaVentaDataMapper dataMapper = new FacturaVentaDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonFacturaVenta();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceItem()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadItem";
+            ItemDataMapper dataMapper = new ItemDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonItem();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceMovimiento()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadMovimiento";
+            MovimientoDataMapper dataMapper = new MovimientoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonMovimiento();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceMovimientoDetalle()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadMovimientoDetalle";
+            MovimientoDetalleDataMapper dataMapper = new MovimientoDetalleDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonMovimientoDetalle();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceRecibo()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadRecibo";
+            ReciboDataMapper dataMapper = new ReciboDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonRecibo();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceReciboMovimiento()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadReciboMovimiento";
+            ReciboMovimientoDataMapper dataMapper = new ReciboMovimientoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonReciboMovimiento();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceReciboStatus()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadReciboStatus";
+            ReciboStatusDataMapper dataMapper = new ReciboStatusDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonReciboStatus();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceUltimoMovimiento()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadUltimoMovimiento";
+            UltimoMovimientoDataMapper dataMapper = new UltimoMovimientoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonUltimoMovimiento();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        #endregion
+
+        #region todos los metodos de LOT
+        public bool CallServiceFactura()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadFactura";
+            FacturaCompraDataMapper dataMapper = new FacturaCompraDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonFactura();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceFacturaDetalle()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadFacturaDetalle";
+            FacturaCompraDetalleDataMapper dataMapper = new FacturaCompraDetalleDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonFacturaDetalle();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceLote()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadLote";
+            LoteDataMapper dataMapper = new LoteDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonLote();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServicePedimento()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadPedimento";
+            PedimentoDataMapper dataMapper = new PedimentoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonPedimento();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+        #endregion
+
+        #region todos los metodos de POM
+        public bool CallServicePom()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadPom";
+            PomDataMapper dataMapper = new PomDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonPom();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServicePomArticulo()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadPomArticulo";
+            PomArticuloDataMapper dataMapper = new PomArticuloDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonPomArticulo();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+        #endregion
     }
 }

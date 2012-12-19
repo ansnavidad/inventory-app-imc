@@ -53,7 +53,6 @@ namespace InventoryApp.DAL
             }
         }
 
-
         public void loadSync(object element)
         {
             if (element != null)
@@ -198,8 +197,7 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         //Sync
-                        tra.IS_MODIFIED = true;
-                        tra.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -282,6 +280,41 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetTransporte()
+        {
+            List<TRANSPORTE> reset = new List<TRANSPORTE>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.TRANSPORTEs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new TRANSPORTE
+                     {
+                         UNID_TRANSPORTE = row.UNID_TRANSPORTE,
+                         TRANSPORTE_NAME = row.TRANSPORTE_NAME,
+                         UNID_TIPO_EMPRESA = row.UNID_TIPO_EMPRESA,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.TRANSPORTEs.First(p => p.UNID_TRANSPORTE == item.UNID_TRANSPORTE);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

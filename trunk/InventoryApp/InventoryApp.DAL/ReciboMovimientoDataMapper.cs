@@ -75,7 +75,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSyn((object)poco);
                     }
 
                     var modifiedMenu = entity.RECIBO_MOVIMIENTO.First(p => p.UNID_RECIBO_MOVIMIENTO == poco.UNID_RECIBO_MOVIMIENTO);
@@ -138,6 +138,25 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void insertElementSyn(object element)
+        {
+            if (element != null && (element as RECIBO_MOVIMIENTO) != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    RECIBO_MOVIMIENTO item = (RECIBO_MOVIMIENTO)element;
+                    //Sync
+                    
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.RECIBO_MOVIMIENTO.AddObject(item);
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void deleteElement(object element)
         {
             throw new NotImplementedException();
@@ -191,6 +210,41 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetReciboMovimiento()
+        {
+            List<RECIBO_MOVIMIENTO> reset = new List<RECIBO_MOVIMIENTO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.RECIBO_MOVIMIENTO
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new RECIBO_MOVIMIENTO
+                     {
+                         UNID_RECIBO = row.UNID_RECIBO,
+                         UNID_RECIBO_MOVIMIENTO = row.UNID_RECIBO_MOVIMIENTO,
+                         UNID_MOVIMIENTO = row.UNID_MOVIMIENTO,
+                         UNID_FACTURA = row.UNID_FACTURA,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.RECIBO_MOVIMIENTO.First(p => p.UNID_RECIBO_MOVIMIENTO == item.UNID_RECIBO_MOVIMIENTO);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

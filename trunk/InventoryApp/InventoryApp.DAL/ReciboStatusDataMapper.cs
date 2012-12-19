@@ -49,6 +49,7 @@ namespace InventoryApp.DAL
                 return res;
             }
         }
+
         public void loadSync(object element)
         {
             if (element != null)
@@ -156,8 +157,7 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         //Sync
-                        reciboS.IS_MODIFIED = true;
-                        reciboS.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -220,6 +220,39 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetReciboStatus()
+        {
+            List<RECIBO_STATUS> reset = new List<RECIBO_STATUS>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.RECIBO_STATUS
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new RECIBO_STATUS
+                     {
+                         UNID_RECIBO_STATUS = row.UNID_RECIBO_STATUS,
+                         RECIBO_STATUS_NAME = row.RECIBO_STATUS_NAME,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.RECIBO_STATUS.First(p => p.UNID_RECIBO_STATUS == item.UNID_RECIBO_STATUS);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

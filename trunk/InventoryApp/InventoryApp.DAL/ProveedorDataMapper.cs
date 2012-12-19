@@ -118,7 +118,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementRelationSyn((object)poco);
                     }
 
                     var modifiedRelation = entity.PROVEEDOR_CATEGORIA.First(p => p.UNID_PROVEEDOR == poco.UNID_PROVEEDOR && p.UNID_CATEGORIA == poco.UNID_CATEGORIA);
@@ -371,8 +371,7 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         //Sync
-                        proveedor.IS_MODIFIED = true;
-                        proveedor.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -416,6 +415,25 @@ namespace InventoryApp.DAL
                 }
             }
         }
+
+        public void insertElementRelationSyn(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    PROVEEDOR_CATEGORIA relation = (PROVEEDOR_CATEGORIA)element;
+
+                    //Sync
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+
+                    entity.PROVEEDOR_CATEGORIA.AddObject(relation);
+                    entity.SaveChanges();
+                }
+            }
+        } 
 
         public void deleteElement(object element)
         {
@@ -495,6 +513,49 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetProveedor()
+        {
+            List<PROVEEDOR> reset = new List<PROVEEDOR>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.PROVEEDORs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new PROVEEDOR
+                     {
+                         UNID_PROVEEDOR = row.UNID_PROVEEDOR,
+                         PROVEEDOR_NAME = row.PROVEEDOR_NAME,
+                         CONTACTO = row.CONTACTO,
+                         TEL1 = row.TEL1,
+                         TEL2 = row.TEL2,
+                         MAIL = row.MAIL,
+                         CALLE = row.CALLE,
+                         UNID_PAIS = row.UNID_PAIS,
+                         UNID_CIUDAD = row.UNID_CIUDAD,
+                         CODIGO_POSTAL = row.CODIGO_POSTAL,
+                         RFC = row.RFC,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.PROVEEDORs.First(p => p.UNID_PROVEEDOR == item.UNID_PROVEEDOR);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

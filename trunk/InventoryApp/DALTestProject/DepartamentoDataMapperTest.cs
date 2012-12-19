@@ -108,5 +108,16 @@ namespace DALTestProject
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
+
+        /// <summary>
+        ///Una prueba de ResetDepartamento
+        ///</summary>
+        [TestMethod()]
+        public void ResetDepartamentoTest()
+        {
+            DepartamentoDataMapper target = new DepartamentoDataMapper(); // TODO: Inicializar en un valor adecuado
+            target.ResetDepartamento();
+            Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
+        }
     }
 }

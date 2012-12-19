@@ -183,8 +183,7 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         //Sync
-                        propiedad.IS_MODIFIED = true;
-                        propiedad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -264,6 +263,40 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetPropiedad()
+        {
+            List<PROPIEDAD> reset = new List<PROPIEDAD>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.PROPIEDADs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new PROPIEDAD
+                     {
+                         UNID_PROPIEDAD = row.UNID_PROPIEDAD,
+                         PROPIEDAD1 = row.PROPIEDAD1,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.PROPIEDADs.First(p => p.UNID_PROPIEDAD == item.UNID_PROPIEDAD);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

@@ -171,8 +171,7 @@ namespace InventoryApp.DAL
                     if (validacion.Count == 0)
                     {
                         //Sync
-                        pais.IS_MODIFIED = true;
-                        pais.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -242,6 +241,46 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetPomArticulo()
+        {
+            List<POM_ARTICULO> reset = new List<POM_ARTICULO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.POM_ARTICULO
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new POM_ARTICULO
+                     {
+                         UNID_POM = row.UNID_POM,
+                         UNID_POM_ARTICULO = row.UNID_POM_ARTICULO,
+                         UNID_ARTICULO = row.UNID_ARTICULO,
+                         CANTIDAD = row.CANTIDAD,
+                         COSTO_UNITARIO = row.COSTO_UNITARIO,
+                         IVA = row.IVA,
+                         TC = row.TC,
+                         DESCUENTO = row.DESCUENTO,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.POM_ARTICULO.First(p => p.UNID_POM_ARTICULO == item.UNID_POM_ARTICULO);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

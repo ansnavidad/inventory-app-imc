@@ -58,6 +58,7 @@ namespace InventoryApp.DAL
                 return res;
             }
         }
+
         public void loadSync(object element)
         {
 
@@ -81,7 +82,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        insertElement((object)poco);
+                        insertElementSyn((object)poco);
                     }
 
                     var modifiedCotizacion = entity.ITEMs.First(p => p.UNID_ITEM == poco.UNID_ITEM);
@@ -271,6 +272,7 @@ namespace InventoryApp.DAL
             
 
         }
+
         public object getElements_EntradasSalidasSerie2(ALMACEN almacen, string numSerie, string SKU)
         {
             object o = null;
@@ -614,6 +616,25 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void insertElementSyn(object element)
+        {
+            if (element != null && (element as ITEM) != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ITEM item = (ITEM)element;
+                    //Sync
+                    
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.ITEMs.AddObject(item);
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void deleteElement(object element)
         {
             throw new NotImplementedException();
@@ -673,6 +694,47 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetItem()
+        {
+            List<ITEM> reset = new List<ITEM>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.ITEMs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new ITEM
+                     {
+                         UNID_ITEM = row.UNID_ITEM,
+                         UNID_ARTICULO = row.UNID_ARTICULO,
+                         SKU = row.SKU,
+                         NUMERO_SERIE = row.NUMERO_SERIE,
+                         UNID_ITEM_STATUS = row.UNID_ITEM_STATUS,
+                         COSTO_UNITARIO = row.COSTO_UNITARIO,
+                         UNID_FACTURA_DETALE = row.UNID_FACTURA_DETALE,
+                         UNID_EMPRESA = row.UNID_EMPRESA,
+                         STATUS = row.STATUS,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.ITEMs.First(p => p.UNID_ITEM == item.UNID_ITEM);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

@@ -23,6 +23,7 @@ namespace InventoryApp.DAL
             }
 
         }
+
         public string GetJsonProveedorCategoria(long? LastModifiedDate)
         {
             string res = null;
@@ -120,6 +121,39 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetProveedorCategoria()
+        {
+            List<PROVEEDOR_CATEGORIA> reset = new List<PROVEEDOR_CATEGORIA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.PROVEEDOR_CATEGORIA
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new PROVEEDOR_CATEGORIA
+                     {
+                         UNID_PROVEEDOR = row.UNID_PROVEEDOR,
+                         UNID_CATEGORIA = row.UNID_CATEGORIA,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.PROVEEDOR_CATEGORIA.First(p => p.UNID_CATEGORIA == item.UNID_CATEGORIA && p.UNID_PROVEEDOR==item.UNID_PROVEEDOR);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
+                }
+            }
         }
     }
 }

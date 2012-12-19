@@ -40,8 +40,8 @@ namespace InventoryApp.DAL
         {
             using (var Entity = new TAE2Entities())
             {
-                var modifiedCategoria = Entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                modifiedCategoria.ACTUAL_DATE =0;
+                var modified = Entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                modified.ACTUAL_DATE =0;
                 Entity.SaveChanges();
                 
             }

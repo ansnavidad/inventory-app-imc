@@ -38,6 +38,8 @@ namespace InventoryApp.ViewModel.Sync
         DepartamentoDataMapper departamentoDataMapper = new DepartamentoDataMapper();
         EmpresaDataMapper empresaDataMapper = new EmpresaDataMapper();
         EquipoDataMapper equipoDataMapper = new EquipoDataMapper();
+        FacturaCompraDataMapper factura = new FacturaCompraDataMapper();
+        FacturaCompraDetalleDataMapper facturaDetalle = new FacturaCompraDetalleDataMapper();
         FacturaDataMapper facturaDataMapper = new FacturaDataMapper();
         FacturaDetalleDataMapper facturaDetalleDataMapper = new FacturaDetalleDataMapper();
         FacturaCompraDataMapper facturaCompraDataMapper = new FacturaCompraDataMapper();
@@ -542,7 +544,7 @@ namespace InventoryApp.ViewModel.Sync
                 }
             }
             #endregion
-
+           
             #region todos los catalogos de POM
             if (res)
             {
@@ -561,6 +563,120 @@ namespace InventoryApp.ViewModel.Sync
                 if (res)
                 {
                     pomArticuloDataMapper.ResetPomArticulo();
+                }
+            }
+            #endregion
+
+            #region todos los catalogos de LOT
+            if (res)
+            {
+                this.Message = "Enviando LOTE ...";
+                res = CallServiceLote();
+                if (res)
+                {
+                    loteDataMapper.ResetLote();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando PEDIMENTO ...";
+                res = CallServicePedimento();
+                if (res)
+                {
+                    pedimentoDataMapper.ResetPedimento();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando FACTURA ...";
+                res = CallServiceFactura();
+                if (res)
+                {
+                    factura.ResetFactura();   
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando FACTURA_DETALLE ...";
+                res = CallServiceFacturaDetalle();
+                if (res)
+                {
+                    facturaDetalle.ResetFacturaDetalle();
+                }
+            }
+            #endregion
+
+            #region todos los catalogos de INV 2
+            if (res)
+            {
+                this.Message = "Enviando RECIBO_STATUS ...";
+                res = CallServiceReciboStatus();
+                if (res)
+                {
+                    reciboStatusDataMapper.ResetReciboStatus();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando RECIBO ...";
+                res = CallServiceRecibo();
+                if (res)
+                {
+                    reciboDataMapper.ResetRecibo();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando ITEM ...";
+                res = CallServiceItem();
+                if (res)
+                {
+                    itemDataMapper.ResetItem();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando MOVIMIENTO ...";
+                res = CallServiceMovimiento();
+                if (res)
+                {
+                    movimientoDataMapper.ResetMovimiento();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando MOVIMIENTO_DETALLE ...";
+                res = CallServiceMovimientoDetalle();
+                if (res)
+                {
+                    movimientoDetalleDataMapper.ResetMovimientoDetalle();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando ULTIMO_MOVIMIENTO ...";
+                res = CallServiceUltimoMovimiento();
+                if (res)
+                {
+                    ultimoMovimientoDataMapper.ResetUltimoMovimiento();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando RECIBO_MOVIMIENTO ...";
+                res = CallServiceReciboMovimiento();
+                if (res)
+                {
+                    reciboMovimientoDataMapper.ResetReciboMovimiento();
                 }
             }
             #endregion

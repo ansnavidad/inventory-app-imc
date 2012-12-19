@@ -77,5 +77,19 @@ namespace DALTestProject
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
+
+        /// <summary>
+        ///Una prueba de CallDownloadServiceCategoria
+        ///</summary>
+        [TestMethod()]
+        public void CallDownloadServiceCategoriaTest1()
+        {
+            UploadProcessViewModel target = new UploadProcessViewModel(); // TODO: Inicializar en un valor adecuado
+            bool expected = false; // TODO: Inicializar en un valor adecuado
+            bool actual;
+            actual = target.CallDownloadServiceCategoria();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

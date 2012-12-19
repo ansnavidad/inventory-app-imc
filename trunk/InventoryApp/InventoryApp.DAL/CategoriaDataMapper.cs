@@ -297,6 +297,12 @@ namespace InventoryApp.DAL
             }
         }
 
+        public Dictionary<string, string> GetResponseDictionary(string response)
+        {
+            Dictionary<string, string> resx = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
+            return resx;
+        }
+
         /// <summary>
         /// Método que Deserializa JSon a List<CATEGORIA>
         /// </summary>

@@ -135,7 +135,14 @@ namespace InventoryApp.DAL
 
         public void insertElement(object element)
         {
-            throw new NotImplementedException();
+            using (var entity = new TAE2Entities())
+            {
+                long aux = (long)element;
+
+                var modifiedServer = entity.SERVER_LASTDATA.First(p => p.UNID_SERVER_LASTDATA == 20120101000000000);
+                modifiedServer.ACTUAL_DATE = aux;
+                entity.SaveChanges();
+            }
         }
 
         public void deleteElement(object element)

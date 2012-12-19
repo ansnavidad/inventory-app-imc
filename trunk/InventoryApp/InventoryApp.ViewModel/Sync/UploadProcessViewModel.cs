@@ -23,11 +23,12 @@ namespace InventoryApp.ViewModel.Sync
         PaisDataMapper pai = new PaisDataMapper();
         SyncDataMapper syn = new SyncDataMapper();
         AlmacenDataMapper almacenDataMapper = new AlmacenDataMapper();
+        AlmacenTecnicoDataMapper almacenTecnicoDataMapper = new AlmacenTecnicoDataMapper();
         AppMenuDataMapper menuDataMapper = new AppMenuDataMapper();
         AppRolDataMapper rolDataMapper = new AppRolDataMapper();
         AppRolMenuDataMapper rolMenuDataMapper = new AppRolMenuDataMapper();
         AppUsuario usuarioDataMapappr = new AppUsuario();
-        AppUsuarioRol usarioRolDataMapper = new AppUsuarioRol();
+        AppUsuarioRol usuarioRolDataMapper = new AppUsuarioRol();
         ArticuloDataMapper articuloDataMapper = new ArticuloDataMapper();
         BancoDataMapper bancoDataMapper = new BancoDataMapper();
         CategoriaDataMapper categoriaDataMapper = new CategoriaDataMapper();
@@ -44,6 +45,7 @@ namespace InventoryApp.ViewModel.Sync
         FacturaVentaDataMapper facturaVentaDataMapper = new FacturaVentaDataMapper();
         InfraestructuraDataMapper infraestructuraDataMapper = new InfraestructuraDataMapper();
         ItemDataMapper itemDataMapper = new ItemDataMapper();
+        ItemStatusDataMapper itemStatusDataMapper = new ItemStatusDataMapper();
         LoteDataMapper loteDataMapper = new LoteDataMapper();
         MarcaDataMapper marcaDataMapper = new MarcaDataMapper();
         MedioEnvioDataMapper medioEnvioDataMapper = new MedioEnvioDataMapper();
@@ -58,13 +60,14 @@ namespace InventoryApp.ViewModel.Sync
         PropiedadDataMapper propiedadDataMapper = new PropiedadDataMapper();
         ProveedorCuentaDataMapper proveedorCuentaDataMapper = new ProveedorCuentaDataMapper();
         ProveedorDataMapper proveedorDataMapper = new ProveedorDataMapper();
+        ProveedorCategoriaDataMapper proveedorCategoriaDataMapper = new ProveedorCategoriaDataMapper();
         ProyectoDataMapper proyectoDataMapper = new ProyectoDataMapper();
         ReciboDataMapper reciboDataMapper = new ReciboDataMapper();
         ReciboMovimientoDataMapper reciboMovimientoDataMapper = new ReciboMovimientoDataMapper();
         ReciboStatusDataMapper reciboStatusDataMapper = new ReciboStatusDataMapper();
         ServerLastDataMapper ServerLastDataMapper = new ServerLastDataMapper();
-        ServicioDataMapper ServicioDataMapper = new ServicioDataMapper();
-        SolicitanteDataMapper SolicitanteDataMapper = new SolicitanteDataMapper();
+        ServicioDataMapper servicioDataMapper = new ServicioDataMapper();
+        SolicitanteDataMapper solicitanteDataMapper = new SolicitanteDataMapper();
         SyncDataMapper syncDataMapper = new SyncDataMapper();
         TecnicoDataMapper tecnicoDataMapper = new TecnicoDataMapper();
         TerminoEnvioDataMapper terminoEnvioDataMapper = new TerminoEnvioDataMapper();
@@ -139,58 +142,58 @@ namespace InventoryApp.ViewModel.Sync
         {
             //Poner lógica de consumo de servicios para enviar los datos
             bool res=true;
-            //#region todos los catalogos de APP
-            //if (res)
-            //{
-            //    this.Message = "Enviando MENU ...";
-            //    //res = ();
-            //    if (res)
-            //    {
-            //        cat.ResetCategoria();
-            //    }
-            //}
+            #region todos los catalogos de APP
+            if (res)
+            {
+                this.Message = "Enviando MENU ...";
+                res = CallServiceMenu();
+                if (res)
+                {
+                    menuDataMapper.ResetMenu();
+                }
+            }
 
-            //if (res)
-            //{
-            //    this.Message = "Enviando CATEGORIA ...";
-            //    res = CallServiceCategoria();
-            //    if (res)
-            //    {
-            //        cat.ResetCategoria();
-            //    }
-            //}
+            if (res)
+            {
+                this.Message = "Enviando ROL ...";
+                res = CallServiceRol();
+                if (res)
+                {
+                    rolDataMapper.ResetRol();
+                }
+            }
 
-            //if (res)
-            //{
-            //    this.Message = "Enviando CATEGORIA ...";
-            //    res = CallServiceCategoria();
-            //    if (res)
-            //    {
-            //        cat.ResetCategoria();
-            //    }
-            //}
+            if (res)
+            {
+                this.Message = "Enviando ROL_MENU ...";
+                res = CallServiceRolMenu();
+                if (res)
+                {
+                    rolMenuDataMapper.ResetRolMenu();
+                }
+            }
 
-            //if (res)
-            //{
-            //    this.Message = "Enviando CATEGORIA ...";
-            //    res = CallServiceCategoria();
-            //    if (res)
-            //    {
-            //        cat.ResetCategoria();
-            //    }
-            //}
+            if (res)
+            {
+                this.Message = "Enviando USUARIO ...";
+                res = CallServiceUsuario();
+                if (res)
+                {
+                    usuarioDataMapappr.ResetUsuario();
+                }
+            }
 
-            //if (res)
-            //{
-            //    this.Message = "Enviando CATEGORIA ...";
-            //    res = CallServiceCategoria();
-            //    if (res)
-            //    {
-            //        cat.ResetCategoria();
-            //    }
-            //}
+            if (res)
+            {
+                this.Message = "Enviando USUARIO_ROL ...";
+                res = CallServiceUsuarioRol();
+                if (res)
+                {
+                    usuarioRolDataMapper.ResetUsuarioRol();
+                }
+            }
 
-            //#endregion
+            #endregion
 
             #region todos los catalogos de ARTICULOS
             if (res)
@@ -247,6 +250,59 @@ namespace InventoryApp.ViewModel.Sync
             }
             #endregion
 
+            #region todos los catalogos de CAT 1
+
+            if (res)
+            {
+                this.Message = "Enviando BANCO ...";
+                res = CallServiceBanco();
+                if (res)
+                {
+                    bancoDataMapper.ResetBanco();
+                }
+            }
+            if (res)
+            {
+                this.Message = "Enviando DEPARTAMENTO ...";
+                res = CallServiceDepartamento();
+                if (res)
+                {
+                    departamentoDataMapper.ResetDepartamento();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando EMPRESA ...";
+                res = CallServiceEmpresa();
+                if (res)
+                {
+                    empresaDataMapper.ResetEmpresa();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando MEDIO_ENVIO ...";
+                res = CallServiceMedioEnvio();
+                if (res)
+                {
+                    medioEnvioDataMapper.ResetMedioEnvio();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando MONEDA ...";
+                res = CallServiceMoneda();
+                if (res)
+                {
+                    modeloDataMapper.ResetModelo();
+                }
+            }
+    
+            #endregion
+
             #region todos los catalogos de GEO
             if (res)
             {
@@ -269,7 +325,251 @@ namespace InventoryApp.ViewModel.Sync
             }
             #endregion 
 
-            syn.ResetDummy();
+            #region todos los catalogos de CAT 2
+            if (res)
+            {
+                this.Message = "Enviando PROVEEDOR ...";
+                res = CallServiceProveedor();
+                if (res)
+                {
+                    proveedorDataMapper.ResetProveedor();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando PROVEEDOR_CATEGORIA ...";
+                res = CallServiceProveedorCategoria();
+                if (res)
+                {
+                    proveedorCategoriaDataMapper.ResetProveedorCategoria();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando PROVEEDOR_CUENTA ...";
+                res = CallServiceProveedorCategoria();
+                if (res)
+                {
+                    proveedorCuentaDataMapper.ResetProveedorCuenta();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando PROYECTO ...";
+                res = CallServiceProyecto();
+                if (res)
+                {
+                    proyectoDataMapper.ResetProyecto();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando SOLICITANTE ...";
+                res = CallServiceSolicitante();
+                if (res)
+                {
+                    solicitanteDataMapper.ResetSolicitante();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando TERMINO_ENVIO ...";
+                res = CallServiceTerminoEnvio();
+                if (res)
+                {
+                    terminoEnvioDataMapper.ResetTerminoEnvio();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando TIPO_COTIZACION ...";
+                res = CallServiceTipoCotizacion();
+                if (res)
+                {
+                    tipoCotizacionDataMapper.ResetTipoCotizacion();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando TIPO_EMPRESA ...";
+                res = CallServiceTipoEmpresa();
+                if (res)
+                {
+                    tipoEmpresaDataMapper.ResetTipoEmpresa();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando TIPO_PEDIMENTO ...";
+                res = CallServiceTipoPedimento();
+                if (res)
+                {
+                    tipoPedimentoDataMapper.ResetTipoPedimento();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando TRANSPORTE ...";
+                res = CallServiceTipoPedimento();
+                if (res)
+                {
+                    transporteDataMapper.ResetTransporte();
+                }
+            }
+            #endregion
+
+            #region todos los catalogos de CATINV
+            if (res)
+            {
+                this.Message = "Enviando ALMACEN ...";
+                res = CallServiceAlmacen();
+                if (res)
+                {
+                    almacenDataMapper.ResetAlmacen();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando TECNICO ...";
+                res = CallServiceTecnico();
+                if (res)
+                {
+                    tecnicoDataMapper.ResetTecnico();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando ALMACEN_TECNICO ...";
+                res = CallServiceAlmacenTecnico();
+                if (res)
+                {
+                    almacenTecnicoDataMapper.ResetAlmacenTecnico();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando CLIENTE ...";
+                res = CallServiceCliente();
+                if (res)
+                {
+                    clienteDataMapper.ResetCliente();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando ITEM_STATUS ...";
+                res = CallServiceItemStatus();
+                if (res)
+                {
+                    itemStatusDataMapper.ResetItemStatus();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando PROPIEDAD ...";
+                res = CallServicePropiedad();
+                if (res)
+                {
+                    propiedadDataMapper.ResetPropiedad();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando SERVICIO ...";
+                res = CallServiceServicio();
+                if (res)
+                {
+                    servicioDataMapper.ResetServicio();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando TIPO_MOVIMIENTO ...";
+                res = CallServiceTipoMovimiento();
+                if (res)
+                {
+                    tipoMovimientoDataMapper.ResetTipoMovimiento();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando UNIDAD ...";
+                res = CallServiceUnidad();
+                if (res)
+                {
+                    unidadDataMapper.ResetUnidad();
+                }
+            }   
+            #endregion
+
+            #region todos los catalogos de COT
+            if (res)
+            {
+                this.Message = "Enviando COTIZACION ...";
+                res = CallServiceCotizacion();
+                if (res)
+                {
+                    cotizacionDataMapper.ResetCotizacion();
+                }
+            }
+            #endregion
+
+            #region todos los catalogos de INV 1
+            if (res)
+            {
+                this.Message = "Enviando FACTURA_VENTA ...";
+                res = CallServiceFacturaVenta();
+                if (res)
+                {
+                    facturaVentaDataMapper.ResetFacturaVenta();
+                }
+            }
+            #endregion
+
+            #region todos los catalogos de POM
+            if (res)
+            {
+                this.Message = "Enviando POM ...";
+                res = CallServicePom();
+                if (res)
+                {
+                    pomDataMapper.ResetPom();
+                }
+            }
+
+            if (res)
+            {
+                this.Message = "Enviando POM_ARTICULO ...";
+                res = CallServicePomArticulo();
+                if (res)
+                {
+                    pomArticuloDataMapper.ResetPomArticulo();
+                }
+            }
+            #endregion
+
+            if (res)
+            {
+                syn.ResetDummy();    
+            }
+            
             UploadProcessViewModel.IsRunning = false;
             //Esta instrucción cierra la ventana
             this.JobDone = true;
@@ -292,12 +592,14 @@ namespace InventoryApp.ViewModel.Sync
             if (res)
             {
                 this.Message = "Descargando CATEGORIA ...";
-                res = CallDownloadServiceCategoria(serverDate);                
+                res = CallDownloadServiceCategoria(serverDate);
             }
 
             //Si toda la descarga es correcta, ejecutar la subida de información
             if (res)
             {
+                ServerLastDataMapper s = new ServerLastDataMapper();
+                s.insertElement((object)serverDate);
                 this.UploadData();
             }
         }
@@ -327,15 +629,15 @@ namespace InventoryApp.ViewModel.Sync
                 request.AddBody(new { lastModifiedDate = serverDate });
                 IRestResponse response = client.Execute(request);
 
-                Dictionary<string,string> resx= dataMapper.GetResponseDictionary(response.Content);
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
 
                 List<CATEGORIA> list;
                 list = dataMapper.GetDeserializeCategoria(resx["downloadCategoriaResult"]);
-                
-                if(list != null)
-                    foreach (CATEGORIA item in list)                               
+
+                if (list != null)
+                    foreach (CATEGORIA item in list)
                         dataMapper.loadSync(item);
-                
+
             }
             catch (Exception)
             {
@@ -356,7 +658,7 @@ namespace InventoryApp.ViewModel.Sync
             #region metodos
 
             try
-            {                
+            {
                 var client = new RestClient(routeDownload);
                 client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
                 var request = new RestRequest(Method.POST);
@@ -367,8 +669,8 @@ namespace InventoryApp.ViewModel.Sync
                 IRestResponse response = client.Execute(request);
 
                 Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
-                                
-                responseSevice = dataMapper.GetDeserializeServerLast(resx["GetServerLastResult"]);                                
+
+                responseSevice = dataMapper.GetDeserializeServerLast(resx["GetServerLastResult"]);
             }
             catch (Exception)
             {
@@ -384,14 +686,190 @@ namespace InventoryApp.ViewModel.Sync
         {
             #region propiedades
             bool responseSevice;
-            string nameService = "LoadCategoria";
-            CategoriaDataMapper dataMapper = new CategoriaDataMapper();
+            string nameService = "LoadAppMenu";
+            AppMenuDataMapper dataMapper = new AppMenuDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
             #endregion
 
             #region metodos
             //madamos a llamar el metodo que serializa list de pocos
-            string listPocos = dataMapper.GetJsonCategoria();
+            string listPocos = dataMapper.GetJsonMenu();
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    //prueba
+                    //var client = new RestClient(routeService1);
+                    //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                    //servidor
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceRol()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadAppRol";
+            AppRolDataMapper dataMapper = new AppRolDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonRol();
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    //prueba
+                    //var client = new RestClient(routeService1);
+                    //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                    //servidor
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceRolMenu()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadAppRolMenu";
+            AppRolMenuDataMapper dataMapper = new AppRolMenuDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonRolMenu();
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    //prueba
+                    //var client = new RestClient(routeService1);
+                    //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                    //servidor
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceUsuario()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadAppUsuario";
+            AppUsuario dataMapper = new AppUsuario();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonUsuario();
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    //prueba
+                    //var client = new RestClient(routeService1);
+                    //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                    //servidor
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceUsuarioRol()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadAppUsuarioRol";
+            AppUsuarioRol dataMapper = new AppUsuarioRol();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonUsuarioRol();
 
             if (!String.IsNullOrEmpty(listPocos))
             {
@@ -861,7 +1339,7 @@ namespace InventoryApp.ViewModel.Sync
             return responseSevice;
             #endregion
         }
-        //pendiente
+        
         public bool CallServiceProveedorCategoria()
         {
             #region propiedades
@@ -1018,18 +1496,18 @@ namespace InventoryApp.ViewModel.Sync
             #endregion
         }
 
-        public bool CallServiceTerminoEnvio()
+        public bool CallServiceTipoCotizacion()
         {
             #region propiedades
             bool responseSevice;
-            string nameService = "LoadTerminoEnvio";
-            TerminoEnvioDataMapper dataMapper = new TerminoEnvioDataMapper();
+            string nameService = "LoadTipoCotizacion";
+            TipoCotizacionDataMapper dataMapper = new TipoCotizacionDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
             #endregion
 
             #region metodos
             //madamos a llamar el metodo que serializa list de pocos
-            string listPocos = dataMapper.GetJsonTerminoEnvio();
+            string listPocos = dataMapper.GetJsonTipoCotizacion();
             if (!String.IsNullOrEmpty(listPocos))
             {
                 try
@@ -1057,18 +1535,18 @@ namespace InventoryApp.ViewModel.Sync
             #endregion
         }
 
-        public bool CallServiceTipoCotizacion()
+        public bool CallServiceTerminoEnvio()
         {
             #region propiedades
             bool responseSevice;
-            string nameService = "LoadTipoCotizacion";
-            TipoCotizacionDataMapper dataMapper = new TipoCotizacionDataMapper();
+            string nameService = "LoadTerminoEnvio";
+            TerminoEnvioDataMapper dataMapper = new TerminoEnvioDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
             #endregion
 
             #region metodos
             //madamos a llamar el metodo que serializa list de pocos
-            string listPocos = dataMapper.GetJsonTipoCotizacion();
+            string listPocos = dataMapper.GetJsonTerminoEnvio();
             if (!String.IsNullOrEmpty(listPocos))
             {
                 try
@@ -1213,6 +1691,48 @@ namespace InventoryApp.ViewModel.Sync
             #endregion
         }
 
+        #endregion
+
+        #region todos los metodos de COT
+
+        public bool CallServiceCotizacion()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadCotizacion";
+            CotizacionDataMapper dataMapper = new CotizacionDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonCotizacion();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
         #endregion
 
         #region todos los metodos de CAT_INV

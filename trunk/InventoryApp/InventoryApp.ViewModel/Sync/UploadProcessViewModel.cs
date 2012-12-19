@@ -126,7 +126,6 @@ namespace InventoryApp.ViewModel.Sync
             this._jobDone = false;
             t = new System.Timers.Timer(100);
             t.Enabled = true;
-            t.Elapsed += new System.Timers.ElapsedEventHandler(UploadData);
             t.Elapsed += new System.Timers.ElapsedEventHandler(DownloadData);
         }
 
@@ -136,12 +135,8 @@ namespace InventoryApp.ViewModel.Sync
             t.Start();
         }
 
-        public void UploadData(Object sender, System.Timers.ElapsedEventArgs args)
+        public void UploadData()
         {
-            //No borrar! Esto debe ir en la primera sentencia
-            this.t.Enabled = false;
-            ((System.Timers.Timer)sender).Stop();
-
             //Poner lógica de consumo de servicios para enviar los datos
             bool res=true;
             #region todos los catalogos de APP
@@ -292,6 +287,7 @@ namespace InventoryApp.ViewModel.Sync
             //Consumir servicio de Isaac que compara UNID's, en caso de que el servidor sea mayor que el actual
             //Actualizar y comenzar todo el proceso
 
+
             //********* todos los dd articulo
             if (res)
             {
@@ -311,10 +307,13 @@ namespace InventoryApp.ViewModel.Sync
             //        this.JobDone = true;
             //    }
             //}
-            
-            UploadProcessViewModel.IsRunning = false;
-            //Esta instrucción cierra la ventana
-            this.JobDone = true;
+
+
+            //Si toda la descarga es correcta, ejecutar la subida de información
+            if (res)
+            {
+                this.UploadData();
+            }
         }
 
         public bool CallDownloadServiceCategoria()

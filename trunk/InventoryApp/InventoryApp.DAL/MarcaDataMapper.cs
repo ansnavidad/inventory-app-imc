@@ -11,6 +11,11 @@ namespace InventoryApp.DAL
 {
     public class MarcaDataMapper : IDataMapper
     {
+        public Dictionary<string, string> GetResponseDictionary(string response)
+        {
+            Dictionary<string, string> resx = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
+            return resx;
+        }
 
         public long? LastModifiedDate()
         {

@@ -702,7 +702,8 @@ namespace InventoryApp.ViewModel.Sync
 
             long serverDate = CallDownloadServiceGetServerLast();
 
-            if (serverDate == 0)
+
+            if (serverDate == 0 || ServerLastDataMapper.GetServerLastFecha() > serverDate)
                 return;
 
             if (res)
@@ -742,7 +743,7 @@ namespace InventoryApp.ViewModel.Sync
                 request.Resource = nameService;
                 request.RequestFormat = RestSharp.DataFormat.Json;
                 request.AddHeader("Content-type", "application/json");
-                request.AddBody(new { lastModifiedDate = serverDate });
+                request.AddBody(new { lastModifiedDate = categoriaDataMapper.LastModifiedDate() });
                 IRestResponse response = client.Execute(request);
 
                 Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
@@ -752,6 +753,46 @@ namespace InventoryApp.ViewModel.Sync
 
                 if (list != null)
                     foreach (CATEGORIA item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceEquipo(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadEquipo";
+            EquipoDataMapper dataMapper = new EquipoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {                
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = equipoDataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<EQUIPO> list;
+                list = dataMapper.GetDeserializeEquipo(resx["downloadCategoriaResult"]);
+
+                if (list != null)
+                    foreach (EQUIPO item in list)
                         dataMapper.loadSync(item);
 
             }

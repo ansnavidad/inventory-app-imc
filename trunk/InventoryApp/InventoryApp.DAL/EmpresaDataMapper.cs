@@ -11,6 +11,12 @@ namespace InventoryApp.Model
 {
     public class EmpresaDataMapper : IDataMapper
     {
+        public Dictionary<string, string> GetResponseDictionary(string response)
+        {
+            Dictionary<string, string> resx = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
+            return resx;
+        }
+
         public long? LastModifiedDate()
         {
             long? resul = null;

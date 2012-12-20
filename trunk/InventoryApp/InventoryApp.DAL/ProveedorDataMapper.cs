@@ -14,6 +14,12 @@ namespace InventoryApp.DAL
 
     public class ProveedorDataMapper : IDataMapper
     {
+        public Dictionary<string, string> GetResponseDictionary(string response)
+        {
+            Dictionary<string, string> resx = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
+            return resx;
+        }
+
         public long? LastModifiedDate()
         {
             long? resul = null;

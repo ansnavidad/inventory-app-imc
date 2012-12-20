@@ -129,7 +129,7 @@ namespace InventoryApp.ViewModel.Sync
         public UploadProcessViewModel()
         {
             basicAuthUser = "Administrator";
-            basicAuthPass = "Passw0rd1";
+            basicAuthPass = "Passw0rd1!";
 
             this.Message = "Test";
             this._jobDone = false;
@@ -707,13 +707,7 @@ namespace InventoryApp.ViewModel.Sync
 
 
             if (serverDate == 0 || ServerLastDataMapper.GetServerLastFecha() > serverDate)
-                return;
-
-            if (res)
-            {
-                this.Message = "Descargando CATEGORIA ...";
-                res = CallDownloadServiceCategoria(serverDate);
-            }
+                return;            
 
             #region todos los catalogos de APP
             if (res)
@@ -1193,7 +1187,7 @@ namespace InventoryApp.ViewModel.Sync
                 Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
 
                 List<ROL_MENU> list;
-                list = dataMapper.GetDeserializeRolMenu(resx["downloadRolMenuResult"]);
+                list = dataMapper.GetDeserializeRolMenu(resx["downloadRolmenuResult"]);
 
                 if (list != null)
                     foreach (ROL_MENU item in list)
@@ -1990,8 +1984,7 @@ namespace InventoryApp.ViewModel.Sync
             return responseSevice;
             #endregion
         }
-
-
+        
         #endregion
 
         #region Métodos de descarga de INV
@@ -2949,7 +2942,7 @@ namespace InventoryApp.ViewModel.Sync
                 Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
 
                 List<PROYECTO> list;
-                list = dataMapper.GetDeserializeProyecto(resx["downloadProyectoCuentaResult"]);
+                list = dataMapper.GetDeserializeProyecto(resx["downloadProyectoResult"]);
 
                 if (list != null)
                     foreach (PROYECTO item in list)

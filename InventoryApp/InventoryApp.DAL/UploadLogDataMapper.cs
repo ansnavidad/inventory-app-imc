@@ -10,6 +10,12 @@ namespace InventoryApp.DAL
 {
     public class UploadLogDataMapper : IDataMapper
     {
+        public Dictionary<string, string> GetResponseDictionary(string response)
+        {
+            Dictionary<string, string> resx = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
+            return resx;
+        }
+
         public object getElements()
         {
             throw new NotImplementedException();

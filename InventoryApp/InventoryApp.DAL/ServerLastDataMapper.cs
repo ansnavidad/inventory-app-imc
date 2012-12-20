@@ -10,6 +10,12 @@ namespace InventoryApp.DAL
 {
     public class ServerLastDataMapper :IDataMapper
     {
+        public Dictionary<string, string> GetResponseDictionary(string response)
+        {
+            Dictionary<string, string> resx = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
+            return resx;
+        }
+
         public long GetDeserializeServerLast(string listPocos)
         {
             long res = 0;
@@ -20,12 +26,6 @@ namespace InventoryApp.DAL
             }
 
             return res;
-        }
-
-        public Dictionary<string, string> GetResponseDictionary(string response)
-        {
-            Dictionary<string, string> resx = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
-            return resx;
         }
         
         public long GetServerLastFecha()

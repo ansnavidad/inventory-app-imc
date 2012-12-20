@@ -1343,6 +1343,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Resource Include="Logo.ico" />
+    <Content Include="Images\sync.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Style\DataGridStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

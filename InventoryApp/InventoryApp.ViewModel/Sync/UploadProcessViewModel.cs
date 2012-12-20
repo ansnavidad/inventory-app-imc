@@ -97,6 +97,9 @@ namespace InventoryApp.ViewModel.Sync
         
 
         string dataUser = "{'UNID_UPLOAD_LOG':0,'MSG':null,'IP_DIR':'192.168.1.110','PC_NAME':'ISAAC-PC','UNID_USUARIO':1,'USUARIO':null}";
+
+        string basicAuthUser;
+        string basicAuthPass;
         #endregion
 
         public string Message
@@ -765,6 +768,7 @@ namespace InventoryApp.ViewModel.Sync
             #endregion
         }
 
+        #region Download Metodos CAT
         public bool CallDownloadServiceEquipo(long serverDate)
         {
             #region propiedades
@@ -804,6 +808,7 @@ namespace InventoryApp.ViewModel.Sync
             return responseSevice;
             #endregion
         }
+        #endregion
 
         public long CallDownloadServiceGetServerLast()
         {
@@ -2874,6 +2879,52 @@ namespace InventoryApp.ViewModel.Sync
             {
                 responseSevice = true;
             }
+            return responseSevice;
+            #endregion
+        }
+        #endregion
+		
+		#region Download Metodos CAT
+        public bool CallDownloadServiceBanco(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadBanco";
+            BancoDataMapper dataMapper = new BancoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = serverDate });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<CATEGORIA> list;
+                list = dataMapper.GetDeserializeCategoria(resx["downloadCategoriaResult"]);
+
+                if (list != null)
+                    foreach (CATEGORIA item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
             return responseSevice;
             #endregion
         }

@@ -128,6 +128,9 @@ namespace InventoryApp.ViewModel.Sync
         }
         public UploadProcessViewModel()
         {
+            basicAuthUser = "Administrator";
+            basicAuthPass = "Passw0rd1";
+
             this.Message = "Test";
             this._jobDone = false;
             t = new System.Timers.Timer(100);
@@ -696,6 +699,7 @@ namespace InventoryApp.ViewModel.Sync
         {
             this.t.Enabled = false;
             ((System.Timers.Timer)sender).Stop();
+
 
             bool res = true;
 

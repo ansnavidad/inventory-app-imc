@@ -3,6 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         DataContext="{StaticResource mainWindowViewModel}"
         Title="Sistema de almacén" Height="500"  Width="700">
+    <Window.Resources>
+        <Storyboard x:Key="rotateImg" >
+            <DoubleAnimation
+                                    Storyboard.TargetName="imgSyncFiles" 
+                                    Storyboard.TargetProperty="(RenderTransform).(RotateTransform.Angle)"
+                                    From="0" To="360" Duration="0:0:1" 
+                                    AutoReverse="False" RepeatBehavior="Forever" />
+        </Storyboard>
+    </Window.Resources>
     <Grid Name="mainGrid" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="205" />
@@ -43,7 +52,20 @@
             </ContentControl>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5,0,0,0" Name="grid3" VerticalAlignment="Stretch">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="1,6,0,-2" Name="stackPanel2" VerticalAlignment="Stretch"></StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="1,6,0,-2" Name="stackPanel2" VerticalAlignment="Stretch">
+                <Canvas Name="cnvTmpRot"    Height="28" Width="50"  Opacity="0.5" Panel.ZIndex="60" 
+                        Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <Image Width="18" Height="18" HorizontalAlignment="Center" Margin="17,5,10,0" 
+                           Name="imgSyncFiles" Stretch="Fill" VerticalAlignment="Center" 
+                           Grid.Column="1" Grid.Row="0" Source="Images/sync.png" Visibility="Visible" 
+                           ToolTip="sdfasdfasdfasdf" MouseUp="imgSyncFiles_MouseUp" Cursor="Hand"
+                           >
+                        <Image.RenderTransform>
+                            <RotateTransform Angle="0" CenterX="9" CenterY="9" />
+                        </Image.RenderTransform>
+                    </Image>
+                </Canvas>
+            </StackPanel>
         </Grid>
         <Border BorderBrush="#FF1626F2" BorderThickness="1" Grid.Row="2" Height="3" HorizontalAlignment="Stretch" Margin="0,9,0,0" 
                 Name="border1" VerticalAlignment="Top" Width="auto" Grid.ColumnSpan="2">

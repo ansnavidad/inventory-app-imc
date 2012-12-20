@@ -140,6 +140,8 @@ namespace InventoryApp.ViewModel.Sync
 
         public void start()
         {
+            this.JobDone = false;
+            this.OnPropertyChanged("JobDone");
             UploadProcessViewModel.IsRunning = true;
             t.Start();
         }
@@ -702,6 +704,8 @@ namespace InventoryApp.ViewModel.Sync
 
 
             bool res = true;
+
+            this.Message = "Iniciando descarga de información...";
 
             long serverDate = CallDownloadServiceGetServerLast();
 

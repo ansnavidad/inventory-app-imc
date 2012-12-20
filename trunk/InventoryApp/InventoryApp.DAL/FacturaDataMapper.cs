@@ -162,5 +162,17 @@ namespace InventoryApp.DAL
         {
             throw new NotImplementedException();
         }
+
+        public List<FACTURA> GetDeserializeFactura(string listPocos)
+        {
+            List<FACTURA> res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<List<FACTURA>>(listPocos);
+            }
+
+            return res;
+        }
     }
 }

@@ -10,6 +10,18 @@ namespace InventoryApp.DAL
 {
     public class MenuDataMapper:IDataMapper
     {
+        public List<MENU> GetDeserializeMenu(string listPocos)
+        {
+            List<MENU> res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<List<MENU>>(listPocos);
+            }
+
+            return res;
+        }
+
         public Dictionary<string, string> GetResponseDictionary(string response)
         {
             Dictionary<string, string> resx = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);

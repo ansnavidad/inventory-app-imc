@@ -30,6 +30,17 @@ namespace InventoryApp.DAL
 
         }
 
+        public List<FACTURA_DETALLE> GetDeserializeFacturaDetalle(string listPocos)
+        {
+            List<FACTURA_DETALLE> res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<List<FACTURA_DETALLE>>(listPocos);
+            }
+
+            return res;
+        }
 
         public void loadSync(object element)
         {

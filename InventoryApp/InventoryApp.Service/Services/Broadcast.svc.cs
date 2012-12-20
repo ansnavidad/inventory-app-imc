@@ -40,7 +40,6 @@ namespace InventoryApp.Service.Services
             return respuesta;
         }
 
-
         public string downloadAlmacen(long lastModifiedDate)
         {
             string respuesta = null;
@@ -112,6 +111,19 @@ namespace InventoryApp.Service.Services
             AppUsuarioRol dataMapper = new AppUsuarioRol();
             
             respuesta = dataMapper.GetJsonUsuarioRol(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
+            return respuesta;
+        }
+
+        public string downloadArticulo(long lastModifiedDate)
+        {
+            string respuesta = null;
+            ArticuloDataMapper dataMapper = new ArticuloDataMapper();
+
+            respuesta = dataMapper.GetJsonArticulo(lastModifiedDate);
 
             if (String.IsNullOrEmpty(respuesta))
                 respuesta = null;
@@ -496,6 +508,19 @@ namespace InventoryApp.Service.Services
             return respuesta; 
         }
 
+        public string downloadServicio(long lastModifiedDate)
+        {
+            string respuesta = null;
+            ServicioDataMapper dataMapper = new ServicioDataMapper();
+
+            respuesta = dataMapper.GetJsonServicio(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
+            return respuesta;
+        }
+
         public string downloadTecnico(long lastModifiedDate)
         {
             string respuesta = null;
@@ -632,6 +657,19 @@ namespace InventoryApp.Service.Services
             ProveedorCategoriaDataMapper dataMapper = new ProveedorCategoriaDataMapper();
 
             respuesta = dataMapper.GetJsonProveedorCategoria(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
+            return respuesta;
+        }
+
+        public string downloadAlmacenTecnico(long lastModifiedDate)
+        {
+            string respuesta = null;
+            AlmacenTecnicoDataMapper dataMapper = new AlmacenTecnicoDataMapper();
+
+            respuesta = dataMapper.GetJsonAlmacenTecnico(lastModifiedDate);
 
             if (String.IsNullOrEmpty(respuesta))
                 respuesta = null;

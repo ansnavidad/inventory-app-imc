@@ -10,6 +10,11 @@ namespace InventoryApp.DAL
 {
     public class AlmacenTecnicoDataMapper : IDataMapper
     {
+        public Dictionary<string, string> GetResponseDictionary(string response)
+        {
+            Dictionary<string, string> resx = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
+            return resx;
+        }
         
         public object getElements()
         {

@@ -2907,16 +2907,634 @@ namespace InventoryApp.ViewModel.Sync
                 request.Resource = nameService;
                 request.RequestFormat = RestSharp.DataFormat.Json;
                 request.AddHeader("Content-type", "application/json");
-                request.AddBody(new { lastModifiedDate = serverDate });
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
                 IRestResponse response = client.Execute(request);
 
                 Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
 
-                List<CATEGORIA> list;
-                list = dataMapper.GetDeserializeCategoria(resx["downloadCategoriaResult"]);
+                List<BANCO> list;
+                list = dataMapper.GetDeserializeBanco(resx["downloadBancoResult"]);
 
                 if (list != null)
-                    foreach (CATEGORIA item in list)
+                    foreach (BANCO item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceDepartamento(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadDepartamento";
+            DepartamentoDataMapper dataMapper = new DepartamentoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<DEPARTAMENTO> list;
+                list = dataMapper.GetDeserializeDepartamento(resx["downloadDepartamentoResult"]);
+
+                if (list != null)
+                    foreach (DEPARTAMENTO item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceEmpresa(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadEmpresa";
+            EmpresaDataMapper dataMapper = new EmpresaDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<EMPRESA> list;
+                list = dataMapper.GetDeserializeEmpresa(resx["downloadEmpresaResult"]);
+
+                if (list != null)
+                    foreach (EMPRESA item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceMedioEnvio(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadMedioEnvio";
+            MedioEnvioDataMapper dataMapper = new MedioEnvioDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<MEDIO_ENVIO> list;
+                list = dataMapper.GetDeserializeMedioEnvio(resx["downloadMedioEnvioResult"]);
+
+                if (list != null)
+                    foreach (MEDIO_ENVIO item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceMoneda(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadMoneda";
+            MonedaDataMapper dataMapper = new MonedaDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<MONEDA> list;
+                list = dataMapper.GetDeserializeMoneda(resx["downloadMonedaResult"]);
+
+                if (list != null)
+                    foreach (MONEDA item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceProveedor(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadProveedor";
+            ProveedorDataMapper dataMapper = new ProveedorDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<PROVEEDOR> list;
+                list = dataMapper.GetDeserializeProveedor(resx["downloadProveedorResult"]);
+
+                if (list != null)
+                    foreach (PROVEEDOR item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceProveedorCategoria(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadProveedorCategoria";
+            ProveedorCategoriaDataMapper dataMapper = new ProveedorCategoriaDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<PROVEEDOR_CATEGORIA> list;
+                list = dataMapper.GetDeserializeProveedorCategoria(resx["downloadProveedorCategoriaResult"]);
+
+                ProveedorDataMapper proveedorDataMapper = new ProveedorDataMapper();
+
+                if (list != null)
+                    foreach (PROVEEDOR_CATEGORIA item in list)
+                        proveedorDataMapper.loadSyncRelation(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceProveedorCuenta(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadProveedorCuenta";
+            ProveedorCuentaDataMapper dataMapper = new ProveedorCuentaDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<PROVEEDOR_CUENTA> list;
+                list = dataMapper.GetdeserializeProveedorCuenta(resx["downloadProveedorCuentaResult"]);
+
+                if (list != null)
+                    foreach (PROVEEDOR_CUENTA item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceProyecto(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadProyecto";
+            ProyectoDataMapper dataMapper = new ProyectoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<PROYECTO> list;
+                list = dataMapper.GetDeserializeProyecto(resx["downloadProyectoCuentaResult"]);
+
+                if (list != null)
+                    foreach (PROYECTO item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceSolicitante(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadSolicitante";
+            SolicitanteDataMapper dataMapper = new SolicitanteDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<SOLICITANTE> list;
+                list = dataMapper.GetDeserializeSolicitante(resx["downloadSolicitanteResult"]);
+
+                if (list != null)
+                    foreach (SOLICITANTE item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceTipoCotizacion(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadTipoCotizacion";
+            TipoCotizacionDataMapper dataMapper = new TipoCotizacionDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<TIPO_COTIZACION> list;
+                list = dataMapper.GetDeserializeTipoCotizacion(resx["downloadTipoCotizacionResult"]);
+
+                if (list != null)
+                    foreach (TIPO_COTIZACION item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceTerminoEnvio(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadTerminoEnvio";
+            TerminoEnvioDataMapper dataMapper = new TerminoEnvioDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<TERMINO_ENVIO> list;
+                list = dataMapper.GetDeserializeTerminoEnvio(resx["downloadTerminoEnvioResult"]);
+
+                if (list != null)
+                    foreach (TERMINO_ENVIO item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceTipoEmpresa(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadTipoEmpresa";
+            TipoEmpresaDataMapper dataMapper = new TipoEmpresaDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<TIPO_EMPRESA> list;
+                list = dataMapper.GetDeserializeTipoEmpresa(resx["downloadTipoEmpresaResult"]);
+
+                if (list != null)
+                    foreach (TIPO_EMPRESA item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceTipoPedimento(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadTipoPedimento";
+            TipoPedimentoDataMapper dataMapper = new TipoPedimentoDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<TIPO_PEDIMENTO> list;
+                list = dataMapper.GetDeserializeTipoPedimento(resx["downloadTipoPedimentoResult"]);
+
+                if (list != null)
+                    foreach (TIPO_PEDIMENTO item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceTransporte(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadTransporte";
+            TransporteDataMapper dataMapper = new TransporteDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<TRANSPORTE> list;
+                list = dataMapper.GetDeserializeTransporte(resx["downloadTransporteResult"]);
+
+                if (list != null)
+                    foreach (TRANSPORTE item in list)
                         dataMapper.loadSync(item);
 
             }

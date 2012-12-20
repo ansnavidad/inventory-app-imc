@@ -612,5 +612,44 @@ namespace InventoryApp.Service.Services
 
             return respuesta; 
         }
+
+        public string downloadBanco(long lastModifiedDate)
+        {
+            string respuesta = null;
+            BancoDataMapper dataMapper = new BancoDataMapper();
+
+            respuesta = dataMapper.GetJsonBanco(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
+            return respuesta;
+        }
+
+        public string downloadProveedorCategoria(long lastModifiedDate)
+        {
+            string respuesta = null;
+            ProveedorCategoriaDataMapper dataMapper = new ProveedorCategoriaDataMapper();
+
+            respuesta = dataMapper.GetJsonProveedorCategoria(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
+            return respuesta;
+        }
+
+        public string downloadSolicitante(long lastModifiedDate)
+        {
+            string respuesta = null;
+            SolicitanteDataMapper dataMapper = new SolicitanteDataMapper();
+
+            respuesta = dataMapper.GetJsonSolicitante(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
+            return respuesta;
+        }
     }
 }

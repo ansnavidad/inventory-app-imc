@@ -144,6 +144,12 @@ namespace InventoryApp.DAL.Recibo
                 using (var entity = new TAE2Entities())
                 {
                     FACTURA_DETALLE facturaDetalle = (FACTURA_DETALLE)element;
+                    //Sync
+                    facturaDetalle.IS_MODIFIED = true;
+                    facturaDetalle.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
                     entity.FACTURA_DETALLE.AddObject(facturaDetalle);
                     entity.SaveChanges();
                 }

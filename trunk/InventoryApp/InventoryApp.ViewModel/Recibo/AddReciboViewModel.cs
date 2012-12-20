@@ -61,6 +61,7 @@ namespace InventoryApp.ViewModel.Recibo
             //Agregar recibo
             DAL.POCOS.RECIBO recibo = new DAL.POCOS.RECIBO()
             {
+                
                 UNID_RECIBO = this.UnidRecibo,
                 FECHA_CREACION = this.FechaCreacion,
                 TT = this.TroubleTicket,

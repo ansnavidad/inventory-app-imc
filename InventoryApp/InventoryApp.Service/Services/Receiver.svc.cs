@@ -869,9 +869,8 @@ namespace InventoryApp.Service.Services
 
                 if (poco!=null)
                 {
-                   
-                    
-                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ITEM sincronizada" });
+ 
+                    mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ITEM sincronizada" });
                     
                 }
 

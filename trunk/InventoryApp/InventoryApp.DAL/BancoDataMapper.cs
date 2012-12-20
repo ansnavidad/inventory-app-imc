@@ -254,11 +254,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        /// <summary>
-        /// Método que Deserializa JSon a List<BANCO>
-        /// </summary>
-        /// <returns>Regresa List<BANCO></returns>
-        /// <returns>Si no regresa null</returns>
+        
         public List<BANCO> GetDeserializeBanco(string listPocos)
         {
             List<BANCO> res = null;

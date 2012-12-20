@@ -233,6 +233,12 @@ namespace InventoryApp.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="categoria"></param>
+        /// <param name="equipo"></param>
+        /// <returns>Regresa un string JSON y si no hay datos </returns>
         public FixupCollection<ARTICULO> getElement(CATEGORIA categoria, EQUIPO equipo)
         {
             FixupCollection<ARTICULO> articulos = new FixupCollection<ARTICULO>();

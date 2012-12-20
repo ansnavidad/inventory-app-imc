@@ -235,8 +235,12 @@ namespace InventoryApp.DAL
                         //Sync
                         r.IS_MODIFIED = true;
                         r.LAST_MODIFIED_DATE = UNID.getNewUNID();
-                        var modifiedSync = Entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();                        
+                        var modifiedSync = Entity.SYNCs.FirstOrDefault(p => p.UNID_SYNC == 20120101000000000);
+                        if (modifiedSync != null)
+                        {
+                            modifiedSync.ACTUAL_DATE = UNID.getNewUNID();                        
+                        }
+                        
                         //
                         Entity.SaveChanges();
                     }

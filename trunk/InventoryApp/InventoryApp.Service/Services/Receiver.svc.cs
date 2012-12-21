@@ -715,6 +715,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<FACTURA> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG newpoc = new UPLOAD_LOG() { UNID_UPLOAD_LOG= UNID.getNewUNID(), UNID_USUARIO= 1, IP_DIR="hhhh", PC_NAME="rrrrr"};
             FacturaCompraDataMapper dataMapper = new FacturaCompraDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -737,17 +738,15 @@ namespace InventoryApp.Service.Services
 
                 if (poco!=null)
                 {
-                   
-                    
-                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla FACTURA sincronizada" });
-                    
+                    mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla FACTURA sincronizada" });
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                newpoc.MSG = ex.Message + "mmm" + ex.InnerException;
                 mensaje = null;
+                user.InsertUploadLog(newpoc);
             }
             return mensaje;
             #endregion

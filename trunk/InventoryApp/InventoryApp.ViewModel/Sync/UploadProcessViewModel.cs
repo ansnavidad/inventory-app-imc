@@ -650,6 +650,16 @@ namespace InventoryApp.ViewModel.Sync
 
                 if (res)
                 {
+                    this.Message = "Enviando TRANSPORTE ...";
+                    res = CallServiceTransporte();
+                    if (res)
+                    {
+                        transporteDataMapper.ResetTransporte();
+                    }
+                }
+
+                if (res)
+                {
                     this.Message = "Enviando MOVIMIENTO ...";
                     res = CallServiceMovimiento();
                     if (res)
@@ -1707,7 +1717,7 @@ namespace InventoryApp.ViewModel.Sync
                 request.Resource = nameService;
                 request.RequestFormat = RestSharp.DataFormat.Json;
                 request.AddHeader("Content-type", "application/json");
-                request.AddBody(new { lastModifiedDate = cotizacionDataMapper.LastModifiedDate() });
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
                 IRestResponse response = client.Execute(request);
 
                 Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
@@ -4221,46 +4231,6 @@ namespace InventoryApp.ViewModel.Sync
             return responseSevice;
             #endregion
         }
-
-        public bool CallServiceTransporte()
-        {
-            #region propiedades
-            bool responseSevice;
-            string nameService = "LoadTransporte";
-            TransporteDataMapper dataMapper = new TransporteDataMapper();
-            UploadLogDataMapper user = new UploadLogDataMapper();
-            #endregion
-
-            #region metodos
-            //madamos a llamar el metodo que serializa list de pocos
-            string listPocos = dataMapper.GetJsonTransporte();
-            if (!String.IsNullOrEmpty(listPocos))
-            {
-                try
-                {
-                    var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
-                    var request = new RestRequest(Method.POST);
-                    request.Resource = nameService;
-                    request.RequestFormat = RestSharp.DataFormat.Json;
-                    request.AddHeader("Content-type", "application/json");
-                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
-                    IRestResponse response = client.Execute(request);
-                    responseSevice = user.GetDeserializeUpLoad(response.Content);
-                }
-                catch (Exception)
-                {
-                    responseSevice = false;
-                }
-            }
-            else
-            {
-                responseSevice = true;
-            }
-            return responseSevice;
-            #endregion
-        }
-
         #endregion
 
         #region todos los metodos de COT
@@ -4791,6 +4761,45 @@ namespace InventoryApp.ViewModel.Sync
             #region metodos
             //madamos a llamar el metodo que serializa list de pocos
             string listPocos = dataMapper.GetJsonItem();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceTransporte()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadTransporte";
+            TransporteDataMapper dataMapper = new TransporteDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonTransporte();
             if (!String.IsNullOrEmpty(listPocos))
             {
                 try

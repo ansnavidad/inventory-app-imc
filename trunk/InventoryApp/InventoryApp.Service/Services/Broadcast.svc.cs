@@ -689,5 +689,19 @@ namespace InventoryApp.Service.Services
 
             return respuesta;
         }
+
+
+        public string downloadInfraestructura(long lastModifiedDate)
+        {
+            string respuesta = null;
+            InfraestructuraDataMapper dataMapper = new InfraestructuraDataMapper();
+
+            respuesta = dataMapper.GetJsonInfraestructura(lastModifiedDate);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
+            return respuesta;
+        }
     }
 }

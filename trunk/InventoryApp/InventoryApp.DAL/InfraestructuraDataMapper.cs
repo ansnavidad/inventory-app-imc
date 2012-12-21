@@ -16,6 +16,50 @@ namespace InventoryApp.DAL
             return resx;
         }
 
+
+        public List<INFRAESTRUCTURA> GetDeserializeInfraestructura(string listPocos)
+        {
+            List<INFRAESTRUCTURA> res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<List<INFRAESTRUCTURA>>(listPocos);
+            }
+
+            return res;
+        }
+
+
+        public string GetJsonInfraestructura(long? LMD)
+        {
+            string res = null;
+            List<INFRAESTRUCTURA> listInfra = new List<INFRAESTRUCTURA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.INFRAESTRUCTURAs
+                 where p.LAST_MODIFIED_DATE > LMD
+                 select p).ToList().ForEach(row =>
+                 {
+                     
+
+
+                     listInfra.Add(new INFRAESTRUCTURA {
+                      UNID_INFRAESTRUCTURA = row.UNID_INFRAESTRUCTURA,
+                       INFRAESTRUCTURA_NAME = row.INFRAESTRUCTURA_NAME,
+                        IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                           
+                     });
+                 });
+                if (listInfra.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listInfra);
+                }
+                return res;
+            }
+        }
+
         public void loadSync(object element)
         {
             if (element != null)

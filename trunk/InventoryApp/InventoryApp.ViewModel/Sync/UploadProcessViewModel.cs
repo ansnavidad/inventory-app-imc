@@ -802,12 +802,19 @@ namespace InventoryApp.ViewModel.Sync
                 #endregion
 
                 #region todos los catalogos de CAT 1
+                
+                if (res)
+                {
+                    this.Message = "Descargando INFRAESTRUCTURA ...";
+                    res = CallDownloadServiceInfraestructura(serverDate);
+                }
 
                 if (res)
                 {
                     this.Message = "Descargando BANCO ...";
                     res = CallDownloadServiceBanco(serverDate);
                 }
+
                 if (res)
                 {
                     this.Message = "Descargando DEPARTAMENTO ...";
@@ -3248,6 +3255,50 @@ namespace InventoryApp.ViewModel.Sync
 
                 if (list != null)
                     foreach (TRANSPORTE item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceInfraestructura(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadInfraestructura";
+            InfraestructuraDataMapper dataMapper = new InfraestructuraDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                //prueba
+                //var client = new RestClient(routeService1);
+                //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
+                //servidor
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<INFRAESTRUCTURA> list;
+                list = dataMapper.GetDeserializeInfraestructura(resx["downloadInfraestructuraResult"]);
+
+                if (list != null)
+                    foreach (INFRAESTRUCTURA item in list)
                         dataMapper.loadSync(item);
 
             }

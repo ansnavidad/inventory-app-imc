@@ -277,9 +277,9 @@ namespace InventoryApp.Service.Services
         public string downloadLote(long lastModifiedDate)
         {
             string respuesta = null;
-            AlmacenDataMapper dataMapper = new AlmacenDataMapper();
+            LoteDataMapper dataMapper = new LoteDataMapper();
             
-            respuesta = dataMapper.GetJsonAlmacen(lastModifiedDate);
+            respuesta = dataMapper.GetJsonLote(lastModifiedDate);
 
             if (String.IsNullOrEmpty(respuesta))
                 respuesta = null;
@@ -407,9 +407,9 @@ namespace InventoryApp.Service.Services
         public string downloadPom(long lastModifiedDate)
         {
             string respuesta = null;
-            PomArticuloDataMapper dataMapper = new PomArticuloDataMapper();
+            PomDataMapper dataMapper = new PomDataMapper();
             
-            respuesta = dataMapper.GetJsonPomArticulo(lastModifiedDate);
+            respuesta = dataMapper.GetJsonPom(lastModifiedDate);
 
             if (String.IsNullOrEmpty(respuesta))
                 respuesta = null;

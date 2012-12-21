@@ -154,58 +154,58 @@ namespace InventoryApp.ViewModel.Sync
                 //Poner lógica de consumo de servicios para enviar los datos
                 string dataUser = uploadLogDataMapper.GetJsonUpLoadLog(new UPLOAD_LOG() { PC_NAME = nomPC, UNID_USUARIO = 1, IP_DIR = user });
                 bool res = true;
-                #region todos los catalogos de APP
-                if (res)
-                {
-                    this.Message = "Enviando MENU ...";
-                    res = CallServiceMenu();
-                    if (res)
-                    {
-                        menuDataMapper.ResetMenu();
-                    }
-                }
+                //#region todos los catalogos de APP
+                //if (res)
+                //{
+                //    this.Message = "Enviando MENU ...";
+                //    res = CallServiceMenu();
+                //    if (res)
+                //    {
+                //        menuDataMapper.ResetMenu();
+                //    }
+                //}
 
-                if (res)
-                {
-                    this.Message = "Enviando ROL ...";
-                    res = CallServiceRol();
-                    if (res)
-                    {
-                        rolDataMapper.ResetRol();
-                    }
-                }
+                //if (res)
+                //{
+                //    this.Message = "Enviando ROL ...";
+                //    res = CallServiceRol();
+                //    if (res)
+                //    {
+                //        rolDataMapper.ResetRol();
+                //    }
+                //}
 
-                if (res)
-                {
-                    this.Message = "Enviando ROL_MENU ...";
-                    res = CallServiceRolMenu();
-                    if (res)
-                    {
-                        rolMenuDataMapper.ResetRolMenu();
-                    }
-                }
+                //if (res)
+                //{
+                //    this.Message = "Enviando ROL_MENU ...";
+                //    res = CallServiceRolMenu();
+                //    if (res)
+                //    {
+                //        rolMenuDataMapper.ResetRolMenu();
+                //    }
+                //}
 
-                if (res)
-                {
-                    this.Message = "Enviando USUARIO ...";
-                    res = CallServiceUsuario();
-                    if (res)
-                    {
-                        usuarioDataMapappr.ResetUsuario();
-                    }
-                }
+                //if (res)
+                //{
+                //    this.Message = "Enviando USUARIO ...";
+                //    res = CallServiceUsuario();
+                //    if (res)
+                //    {
+                //        usuarioDataMapappr.ResetUsuario();
+                //    }
+                //}
 
-                if (res)
-                {
-                    this.Message = "Enviando USUARIO_ROL ...";
-                    res = CallServiceUsuarioRol();
-                    if (res)
-                    {
-                        usuarioRolDataMapper.ResetUsuarioRol();
-                    }
-                }
+                //if (res)
+                //{
+                //    this.Message = "Enviando USUARIO_ROL ...";
+                //    res = CallServiceUsuarioRol();
+                //    if (res)
+                //    {
+                //        usuarioRolDataMapper.ResetUsuarioRol();
+                //    }
+                //}
 
-                #endregion
+                //#endregion
 
                 #region todos los catalogos de ARTICULOS
                 if (res)
@@ -746,40 +746,40 @@ namespace InventoryApp.ViewModel.Sync
 
 
 
-            if (serverDate != 0 && localDate < serverDate)
-            {
-                #region todos los catalogos de APP
-                if (res)
-                {
-                    this.Message = "Descargando MENU ...";
-                    res = CallDownloadServiceMenu(serverDate);
-                }
+            if (serverDate != 0 && localDate < serverDate){
+            //{
+            //    #region todos los catalogos de APP
+            //    if (res)
+            //    {
+            //        this.Message = "Descargando MENU ...";
+            //        res = CallDownloadServiceMenu(serverDate);
+            //    }
 
-                if (res)
-                {
-                    this.Message = "Descargando ROL ...";
-                    res = CallDownloadServiceRol(serverDate);
-                }
+            //    if (res)
+            //    {
+            //        this.Message = "Descargando ROL ...";
+            //        res = CallDownloadServiceRol(serverDate);
+            //    }
 
-                if (res)
-                {
-                    this.Message = "Descargando ROL_MENU ...";
-                    res = CallDownloadServiceRolMenu(serverDate);
-                }
+            //    if (res)
+            //    {
+            //        this.Message = "Descargando ROL_MENU ...";
+            //        res = CallDownloadServiceRolMenu(serverDate);
+            //    }
 
-                if (res)
-                {
-                    this.Message = "Descargando USUARIO ...";
-                    res = CallDownloadServiceUsuario(serverDate);
-                }
+            //    if (res)
+            //    {
+            //        this.Message = "Descargando USUARIO ...";
+            //        res = CallDownloadServiceUsuario(serverDate);
+            //    }
 
-                if (res)
-                {
-                    this.Message = "Descargando USUARIO_ROL ...";
-                    res = CallDownloadServiceUsuarioRol(serverDate);
-                }
+            //    if (res)
+            //    {
+            //        this.Message = "Descargando USUARIO_ROL ...";
+            //        res = CallDownloadServiceUsuarioRol(serverDate);
+            //    }
 
-                #endregion
+            //    #endregion
 
                 #region todos los catalogos de ARTICULOS
                 if (res)

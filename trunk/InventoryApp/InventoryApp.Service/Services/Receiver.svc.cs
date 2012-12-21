@@ -23,6 +23,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ALMACEN> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             AlmacenDataMapper dataMapper = new AlmacenDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -66,6 +67,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ALMACEN_TECNICO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             AlmacenDataMapper dataMapper = new AlmacenDataMapper();
             AlmacenTecnicoDataMapper dataMapperRelation = new AlmacenTecnicoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
@@ -110,6 +112,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<MENU> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             AppMenuDataMapper dataMapper = new AppMenuDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -154,6 +157,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ROL> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             AppRolDataMapper dataMapper = new AppRolDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -198,6 +202,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ROL_MENU> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             AppRolMenuDataMapper dataMapper = new AppRolMenuDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -242,6 +247,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<USUARIO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             AppUsuario dataMapper = new AppUsuario();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -286,6 +292,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<USUARIO_ROL> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             AppUsuarioRol dataMapper = new AppUsuarioRol();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -330,6 +337,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ARTICULO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             ArticuloDataMapper dataMapper = new ArticuloDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -374,6 +382,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<BANCO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             BancoDataMapper dataMapper = new BancoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -418,6 +427,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<CATEGORIA> list=null;
             UPLOAD_LOG poco=null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             CategoriaDataMapper dataMapper = new CategoriaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -458,6 +468,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<CIUDAD> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             CiudadDataMapper dataMapper = new CiudadDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -499,6 +510,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<CLIENTE> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             ClienteDataMapper dataMapper = new ClienteDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -542,6 +554,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<COTIZACION> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             CotizacionDataMapper dataMapper = new CotizacionDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -583,6 +596,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<DEPARTAMENTO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             DepartamentoDataMapper dataMapper = new DepartamentoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -627,6 +641,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<EMPRESA> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             EmpresaDataMapper dataMapper = new EmpresaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -671,6 +686,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<EQUIPO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             EquipoDataMapper dataMapper = new EquipoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -715,7 +731,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<FACTURA> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG newpoc = new UPLOAD_LOG() { UNID_UPLOAD_LOG= UNID.getNewUNID(), UNID_USUARIO= 1, IP_DIR="hhhh", PC_NAME="rrrrr"};
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG= UNID.getNewUNID(), UNID_USUARIO= 1, IP_DIR="USUARIO DE PRUEBA", PC_NAME="ALMACEN"};
             FacturaCompraDataMapper dataMapper = new FacturaCompraDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -744,9 +760,9 @@ namespace InventoryApp.Service.Services
             }
             catch (Exception ex)
             {
-                newpoc.MSG = ex.Message + "mmm" + ex.InnerException;
+                bitacora.MSG = ex.Message + "FACTURA" + ex.InnerException;
                 mensaje = null;
-                user.InsertUploadLog(newpoc);
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -758,6 +774,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<FACTURA_DETALLE> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             FacturaCompraDetalleDataMapper dataMapper = new FacturaCompraDetalleDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -802,6 +819,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<FACTURA_VENTA> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             FacturaVentaDataMapper dataMapper = new FacturaVentaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -846,6 +864,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ITEM> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             ItemDataMapper dataMapper = new ItemDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -889,6 +908,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ITEM_STATUS> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             ItemStatusDataMapper dataMapper = new ItemStatusDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -927,12 +947,58 @@ namespace InventoryApp.Service.Services
             #endregion
         }
 
+        public string LoadInfraestructura(string listPocos, string dataUser)
+        {
+            #region propiedades
+            string mensaje = null;
+            List<INFRAESTRUCTURA> list;
+            UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            InfraestructuraDataMapper dataMapper = new InfraestructuraDataMapper();
+            ServerLastDataMapper server = new ServerLastDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            try
+            {
+                list = dataMapper.GetDeserializeInfraestructura(listPocos);
+
+                foreach (INFRAESTRUCTURA item in list)
+                {
+                    //actualiza o pocoa a la tabla ITEM_STATUS
+                    dataMapper.loadSync(item);
+                }
+                //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
+                server.updateDumy();
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
+
+                if (poco != null)
+                {
+
+
+                    mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ITEM_STATUS sincronizada" });
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                mensaje = null;
+            }
+            return mensaje;
+            #endregion
+        }
+
         public string LoadLote(string listPocos, string dataUser)
         {
             #region propiedades
             string mensaje = null;
             List<LOTE> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             LoteDataMapper dataMapper = new LoteDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -977,6 +1043,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<MARCA> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             MarcaDataMapper dataMapper = new MarcaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1021,6 +1088,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<MEDIO_ENVIO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             MedioEnvioDataMapper dataMapper = new MedioEnvioDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1065,6 +1133,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<MODELO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             ModeloDataMapper dataMapper = new ModeloDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1110,6 +1179,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<MONEDA> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             MonedaDataMapper dataMapper = new MonedaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1154,6 +1224,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<MOVIMENTO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             MovimientoDataMapper dataMapper = new MovimientoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1198,6 +1269,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<MOVIMIENTO_DETALLE> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             MovimientoDetalleDataMapper dataMapper = new MovimientoDetalleDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1242,6 +1314,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<PAI> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             PaisDataMapper dataMapper = new PaisDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1286,6 +1359,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<PEDIMENTO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             PedimentoDataMapper dataMapper = new PedimentoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1330,6 +1404,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<POM_ARTICULO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             PomArticuloDataMapper dataMapper = new PomArticuloDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1374,6 +1449,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<POM> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             PomDataMapper dataMapper = new PomDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1418,6 +1494,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<PROPIEDAD> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             PropiedadDataMapper dataMapper = new PropiedadDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1462,6 +1539,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<PROVEEDOR_CATEGORIA> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             ProveedorDataMapper dataMapper = new ProveedorDataMapper();
             ProveedorCategoriaDataMapper dataMapperRelation = new ProveedorCategoriaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
@@ -1506,6 +1584,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<PROVEEDOR_CUENTA> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             ProveedorCuentaDataMapper dataMapper = new ProveedorCuentaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1550,6 +1629,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<PROVEEDOR> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             ProveedorDataMapper dataMapper = new ProveedorDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1594,6 +1674,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<PROYECTO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             ProyectoDataMapper dataMapper = new ProyectoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1638,6 +1719,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<RECIBO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             ReciboDataMapper dataMapper = new ReciboDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1682,6 +1764,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<RECIBO_MOVIMIENTO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             ReciboMovimientoDataMapper dataMapper = new ReciboMovimientoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1726,6 +1809,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<RECIBO_STATUS> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             ReciboStatusDataMapper dataMapper = new ReciboStatusDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1770,6 +1854,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<SERVICIO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             ServicioDataMapper dataMapper = new ServicioDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1814,6 +1899,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<SOLICITANTE> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             SolicitanteDataMapper dataMapper = new SolicitanteDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1858,6 +1944,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<TECNICO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             TecnicoDataMapper dataMapper = new TecnicoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1902,6 +1989,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<TERMINO_ENVIO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             TerminoEnvioDataMapper dataMapper = new TerminoEnvioDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1946,6 +2034,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<TIPO_COTIZACION> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             TipoCotizacionDataMapper dataMapper = new TipoCotizacionDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1990,6 +2079,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<TIPO_EMPRESA> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             TipoEmpresaDataMapper dataMapper = new TipoEmpresaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2033,6 +2123,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<TIPO_MOVIMIENTO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             TipoMovimientoDataMapper dataMapper = new TipoMovimientoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2077,6 +2168,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<TIPO_PEDIMENTO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             TipoPedimentoDataMapper dataMapper = new TipoPedimentoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2121,6 +2213,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<TRANSPORTE> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             TransporteDataMapper dataMapper = new TransporteDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2165,6 +2258,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ULTIMO_MOVIMIENTO> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             UltimoMovimientoDataMapper dataMapper = new UltimoMovimientoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2209,6 +2303,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<UNIDAD> list;
             UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
             UnidadDataMapper dataMapper = new UnidadDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();

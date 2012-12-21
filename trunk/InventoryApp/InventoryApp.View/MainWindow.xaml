@@ -43,7 +43,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="Images/header.png" />
             </Grid.Background>
-            <Label Content="elr.tracking@elara.com" HorizontalContentAlignment="Right" Height="28" HorizontalAlignment="Stretch" Margin="263,-1,13,0" Name="label1" VerticalAlignment="Stretch" />
+            <Label HorizontalContentAlignment="Right" Height="28" HorizontalAlignment="Stretch" Margin="263,-1,13,0" Name="nomUser" VerticalAlignment="Stretch" />
         </Grid>
 
         <Grid Grid.Row="2"  HorizontalAlignment="Stretch" Margin="0,11,0,0" Name="grid2" Height="AUTO" VerticalAlignment="Stretch">

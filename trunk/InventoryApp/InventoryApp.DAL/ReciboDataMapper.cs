@@ -234,6 +234,7 @@ namespace InventoryApp.DAL
                         r.PO = recibo.PO;
                         //Sync
                         r.IS_MODIFIED = true;
+                        r.IS_ACTIVE = true;
                         r.LAST_MODIFIED_DATE = UNID.getNewUNID();
                         var modifiedSync = Entity.SYNCs.FirstOrDefault(p => p.UNID_SYNC == 20120101000000000);
                         if (modifiedSync != null)
@@ -257,6 +258,7 @@ namespace InventoryApp.DAL
                     RECIBO item = (RECIBO)element;
                     //Sync
                     item.IS_MODIFIED = true;
+                    item.IS_ACTIVE = true;
                     item.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();

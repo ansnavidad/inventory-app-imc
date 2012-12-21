@@ -64,6 +64,17 @@ namespace DALTestProject
         #endregion
 
 
-        
+
+
+        /// <summary>
+        ///Una prueba de UploadData
+        ///</summary>
+        [TestMethod()]
+        public void UploadDataTest()
+        {
+            UploadProcessViewModel target = new UploadProcessViewModel(); // TODO: Inicializar en un valor adecuado
+            target.UploadData();
+            Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
+        }
     }
 }

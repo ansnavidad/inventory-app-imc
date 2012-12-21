@@ -147,554 +147,558 @@ namespace InventoryApp.ViewModel.Sync
         }
         public void UploadData()
         {
-            //Poner lógica de consumo de servicios para enviar los datos
-            bool res=true;
-            #region todos los catalogos de APP
-            if (res)
+            SyncDataMapper sync = new SyncDataMapper();
+            if (sync.Dummy())
             {
-                this.Message = "Enviando MENU ...";
-                res = CallServiceMenu();
+                //Poner lógica de consumo de servicios para enviar los datos
+                bool res = true;
+                #region todos los catalogos de APP
                 if (res)
                 {
-                    menuDataMapper.ResetMenu();
+                    this.Message = "Enviando MENU ...";
+                    res = CallServiceMenu();
+                    if (res)
+                    {
+                        menuDataMapper.ResetMenu();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando ROL ...";
-                res = CallServiceRol();
                 if (res)
                 {
-                    rolDataMapper.ResetRol();
+                    this.Message = "Enviando ROL ...";
+                    res = CallServiceRol();
+                    if (res)
+                    {
+                        rolDataMapper.ResetRol();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando ROL_MENU ...";
-                res = CallServiceRolMenu();
                 if (res)
                 {
-                    rolMenuDataMapper.ResetRolMenu();
+                    this.Message = "Enviando ROL_MENU ...";
+                    res = CallServiceRolMenu();
+                    if (res)
+                    {
+                        rolMenuDataMapper.ResetRolMenu();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando USUARIO ...";
-                res = CallServiceUsuario();
                 if (res)
                 {
-                    usuarioDataMapappr.ResetUsuario();
+                    this.Message = "Enviando USUARIO ...";
+                    res = CallServiceUsuario();
+                    if (res)
+                    {
+                        usuarioDataMapappr.ResetUsuario();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando USUARIO_ROL ...";
-                res = CallServiceUsuarioRol();
                 if (res)
                 {
-                    usuarioRolDataMapper.ResetUsuarioRol();
+                    this.Message = "Enviando USUARIO_ROL ...";
+                    res = CallServiceUsuarioRol();
+                    if (res)
+                    {
+                        usuarioRolDataMapper.ResetUsuarioRol();
+                    }
                 }
-            }
 
-            #endregion
+                #endregion
 
-            #region todos los catalogos de ARTICULOS
-            if (res)
-            {
-                this.Message = "Enviando CATEGORIA ...";
-                res = CallServiceCategoria();
+                #region todos los catalogos de ARTICULOS
                 if (res)
                 {
-                    cat.ResetCategoria();
+                    this.Message = "Enviando CATEGORIA ...";
+                    res = CallServiceCategoria();
+                    if (res)
+                    {
+                        cat.ResetCategoria();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando EQUIPO ...";
-                res = CallServiceEquipo();
                 if (res)
                 {
-                    eq.ResetEquipo();
+                    this.Message = "Enviando EQUIPO ...";
+                    res = CallServiceEquipo();
+                    if (res)
+                    {
+                        eq.ResetEquipo();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando MARCA ...";
-                res = CallServiceMarca();
                 if (res)
                 {
-                    mar.ResetMarca();
+                    this.Message = "Enviando MARCA ...";
+                    res = CallServiceMarca();
+                    if (res)
+                    {
+                        mar.ResetMarca();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando MODELO ...";
-                res = CallServiceModelo();
                 if (res)
                 {
-                    mol.ResetModelo();
+                    this.Message = "Enviando MODELO ...";
+                    res = CallServiceModelo();
+                    if (res)
+                    {
+                        mol.ResetModelo();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando ARTICULO ...";
-                res = CallServiceArticulo();
                 if (res)
                 {
-                    art.ResetArticulo();
-                    this.Message = "Sincronizacion completada ...";
-                    //Esta instrucción cierra la ventana
-                    this.JobDone = true;
+                    this.Message = "Enviando ARTICULO ...";
+                    res = CallServiceArticulo();
+                    if (res)
+                    {
+                        art.ResetArticulo();
+                        this.Message = "Sincronizacion completada ...";
+                        //Esta instrucción cierra la ventana
+                        this.JobDone = true;
+                    }
                 }
-            }
-            #endregion
+                #endregion
 
-            #region todos los catalogos de CAT 1
+                #region todos los catalogos de CAT 1
 
-            if (res)
-            {
-                this.Message = "Enviando BANCO ...";
-                res = CallServiceBanco();
                 if (res)
                 {
-                    bancoDataMapper.ResetBanco();
+                    this.Message = "Enviando BANCO ...";
+                    res = CallServiceBanco();
+                    if (res)
+                    {
+                        bancoDataMapper.ResetBanco();
+                    }
                 }
-            }
-            if (res)
-            {
-                this.Message = "Enviando DEPARTAMENTO ...";
-                res = CallServiceDepartamento();
                 if (res)
                 {
-                    departamentoDataMapper.ResetDepartamento();
+                    this.Message = "Enviando DEPARTAMENTO ...";
+                    res = CallServiceDepartamento();
+                    if (res)
+                    {
+                        departamentoDataMapper.ResetDepartamento();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando EMPRESA ...";
-                res = CallServiceEmpresa();
                 if (res)
                 {
-                    empresaDataMapper.ResetEmpresa();
+                    this.Message = "Enviando EMPRESA ...";
+                    res = CallServiceEmpresa();
+                    if (res)
+                    {
+                        empresaDataMapper.ResetEmpresa();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando MEDIO_ENVIO ...";
-                res = CallServiceMedioEnvio();
                 if (res)
                 {
-                    medioEnvioDataMapper.ResetMedioEnvio();
+                    this.Message = "Enviando MEDIO_ENVIO ...";
+                    res = CallServiceMedioEnvio();
+                    if (res)
+                    {
+                        medioEnvioDataMapper.ResetMedioEnvio();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando MONEDA ...";
-                res = CallServiceMoneda();
                 if (res)
                 {
-                    modeloDataMapper.ResetModelo();
+                    this.Message = "Enviando MONEDA ...";
+                    res = CallServiceMoneda();
+                    if (res)
+                    {
+                        modeloDataMapper.ResetModelo();
+                    }
                 }
-            }
-    
-            #endregion
 
-            #region todos los catalogos de GEO
-            if (res)
-            {
-                this.Message = "Enviando CIUDAD ...";
-                res = CallServiceCiudad();
-                if (res)
-                {
-                    ciu.ResetCiudad();
-                }
-            }
+                #endregion
 
-            if (res)
-            {
-                this.Message = "Enviando PAIS ...";
-                res = CallServicePais();
+                #region todos los catalogos de GEO
                 if (res)
                 {
-                    pai.ResetPais();
+                    this.Message = "Enviando CIUDAD ...";
+                    res = CallServiceCiudad();
+                    if (res)
+                    {
+                        ciu.ResetCiudad();
+                    }
                 }
-            }
-            #endregion 
 
-            #region todos los catalogos de CAT 2
-            if (res)
-            {
-                this.Message = "Enviando PROVEEDOR ...";
-                res = CallServiceProveedor();
                 if (res)
                 {
-                    proveedorDataMapper.ResetProveedor();
+                    this.Message = "Enviando PAIS ...";
+                    res = CallServicePais();
+                    if (res)
+                    {
+                        pai.ResetPais();
+                    }
                 }
-            }
+                #endregion
 
-            if (res)
-            {
-                this.Message = "Enviando PROVEEDOR_CATEGORIA ...";
-                res = CallServiceProveedorCategoria();
+                #region todos los catalogos de CAT 2
                 if (res)
                 {
-                    proveedorCategoriaDataMapper.ResetProveedorCategoria();
+                    this.Message = "Enviando PROVEEDOR ...";
+                    res = CallServiceProveedor();
+                    if (res)
+                    {
+                        proveedorDataMapper.ResetProveedor();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando PROVEEDOR_CUENTA ...";
-                res = CallServiceProveedorCategoria();
                 if (res)
                 {
-                    proveedorCuentaDataMapper.ResetProveedorCuenta();
+                    this.Message = "Enviando PROVEEDOR_CATEGORIA ...";
+                    res = CallServiceProveedorCategoria();
+                    if (res)
+                    {
+                        proveedorCategoriaDataMapper.ResetProveedorCategoria();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando PROYECTO ...";
-                res = CallServiceProyecto();
                 if (res)
                 {
-                    proyectoDataMapper.ResetProyecto();
+                    this.Message = "Enviando PROVEEDOR_CUENTA ...";
+                    res = CallServiceProveedorCategoria();
+                    if (res)
+                    {
+                        proveedorCuentaDataMapper.ResetProveedorCuenta();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando SOLICITANTE ...";
-                res = CallServiceSolicitante();
                 if (res)
                 {
-                    solicitanteDataMapper.ResetSolicitante();
+                    this.Message = "Enviando PROYECTO ...";
+                    res = CallServiceProyecto();
+                    if (res)
+                    {
+                        proyectoDataMapper.ResetProyecto();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando TERMINO_ENVIO ...";
-                res = CallServiceTerminoEnvio();
                 if (res)
                 {
-                    terminoEnvioDataMapper.ResetTerminoEnvio();
+                    this.Message = "Enviando SOLICITANTE ...";
+                    res = CallServiceSolicitante();
+                    if (res)
+                    {
+                        solicitanteDataMapper.ResetSolicitante();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando TIPO_COTIZACION ...";
-                res = CallServiceTipoCotizacion();
                 if (res)
                 {
-                    tipoCotizacionDataMapper.ResetTipoCotizacion();
+                    this.Message = "Enviando TERMINO_ENVIO ...";
+                    res = CallServiceTerminoEnvio();
+                    if (res)
+                    {
+                        terminoEnvioDataMapper.ResetTerminoEnvio();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando TIPO_EMPRESA ...";
-                res = CallServiceTipoEmpresa();
                 if (res)
                 {
-                    tipoEmpresaDataMapper.ResetTipoEmpresa();
+                    this.Message = "Enviando TIPO_COTIZACION ...";
+                    res = CallServiceTipoCotizacion();
+                    if (res)
+                    {
+                        tipoCotizacionDataMapper.ResetTipoCotizacion();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando TIPO_PEDIMENTO ...";
-                res = CallServiceTipoPedimento();
                 if (res)
                 {
-                    tipoPedimentoDataMapper.ResetTipoPedimento();
+                    this.Message = "Enviando TIPO_EMPRESA ...";
+                    res = CallServiceTipoEmpresa();
+                    if (res)
+                    {
+                        tipoEmpresaDataMapper.ResetTipoEmpresa();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando TRANSPORTE ...";
-                res = CallServiceTipoPedimento();
                 if (res)
                 {
-                    transporteDataMapper.ResetTransporte();
+                    this.Message = "Enviando TIPO_PEDIMENTO ...";
+                    res = CallServiceTipoPedimento();
+                    if (res)
+                    {
+                        tipoPedimentoDataMapper.ResetTipoPedimento();
+                    }
                 }
-            }
-            #endregion
 
-            #region todos los catalogos de CATINV
-            if (res)
-            {
-                this.Message = "Enviando ALMACEN ...";
-                res = CallServiceAlmacen();
                 if (res)
                 {
-                    almacenDataMapper.ResetAlmacen();
+                    this.Message = "Enviando TRANSPORTE ...";
+                    res = CallServiceTipoPedimento();
+                    if (res)
+                    {
+                        transporteDataMapper.ResetTransporte();
+                    }
                 }
-            }
+                #endregion
 
-            if (res)
-            {
-                this.Message = "Enviando TECNICO ...";
-                res = CallServiceTecnico();
+                #region todos los catalogos de CATINV
                 if (res)
                 {
-                    tecnicoDataMapper.ResetTecnico();
+                    this.Message = "Enviando ALMACEN ...";
+                    res = CallServiceAlmacen();
+                    if (res)
+                    {
+                        almacenDataMapper.ResetAlmacen();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando ALMACEN_TECNICO ...";
-                res = CallServiceAlmacenTecnico();
                 if (res)
                 {
-                    almacenTecnicoDataMapper.ResetAlmacenTecnico();
+                    this.Message = "Enviando TECNICO ...";
+                    res = CallServiceTecnico();
+                    if (res)
+                    {
+                        tecnicoDataMapper.ResetTecnico();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando CLIENTE ...";
-                res = CallServiceCliente();
                 if (res)
                 {
-                    clienteDataMapper.ResetCliente();
+                    this.Message = "Enviando ALMACEN_TECNICO ...";
+                    res = CallServiceAlmacenTecnico();
+                    if (res)
+                    {
+                        almacenTecnicoDataMapper.ResetAlmacenTecnico();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando ITEM_STATUS ...";
-                res = CallServiceItemStatus();
                 if (res)
                 {
-                    itemStatusDataMapper.ResetItemStatus();
+                    this.Message = "Enviando CLIENTE ...";
+                    res = CallServiceCliente();
+                    if (res)
+                    {
+                        clienteDataMapper.ResetCliente();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando PROPIEDAD ...";
-                res = CallServicePropiedad();
                 if (res)
                 {
-                    propiedadDataMapper.ResetPropiedad();
+                    this.Message = "Enviando ITEM_STATUS ...";
+                    res = CallServiceItemStatus();
+                    if (res)
+                    {
+                        itemStatusDataMapper.ResetItemStatus();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando SERVICIO ...";
-                res = CallServiceServicio();
                 if (res)
                 {
-                    servicioDataMapper.ResetServicio();
+                    this.Message = "Enviando PROPIEDAD ...";
+                    res = CallServicePropiedad();
+                    if (res)
+                    {
+                        propiedadDataMapper.ResetPropiedad();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando TIPO_MOVIMIENTO ...";
-                res = CallServiceTipoMovimiento();
                 if (res)
                 {
-                    tipoMovimientoDataMapper.ResetTipoMovimiento();
+                    this.Message = "Enviando SERVICIO ...";
+                    res = CallServiceServicio();
+                    if (res)
+                    {
+                        servicioDataMapper.ResetServicio();
+                    }
                 }
-            }
 
-            if (res)
-            {
-                this.Message = "Enviando UNIDAD ...";
-                res = CallServiceUnidad();
                 if (res)
                 {
-                    unidadDataMapper.ResetUnidad();
+                    this.Message = "Enviando TIPO_MOVIMIENTO ...";
+                    res = CallServiceTipoMovimiento();
+                    if (res)
+                    {
+                        tipoMovimientoDataMapper.ResetTipoMovimiento();
+                    }
                 }
+
+                if (res)
+                {
+                    this.Message = "Enviando UNIDAD ...";
+                    res = CallServiceUnidad();
+                    if (res)
+                    {
+                        unidadDataMapper.ResetUnidad();
+                    }
+                }
+                #endregion
+
+                #region todos los catalogos de COT
+                if (res)
+                {
+                    this.Message = "Enviando COTIZACION ...";
+                    res = CallServiceCotizacion();
+                    if (res)
+                    {
+                        cotizacionDataMapper.ResetCotizacion();
+                    }
+                }
+                #endregion
+
+                #region todos los catalogos de INV 1
+                if (res)
+                {
+                    this.Message = "Enviando FACTURA_VENTA ...";
+                    res = CallServiceFacturaVenta();
+                    if (res)
+                    {
+                        facturaVentaDataMapper.ResetFacturaVenta();
+                    }
+                }
+                #endregion
+
+                #region todos los catalogos de POM
+                if (res)
+                {
+                    this.Message = "Enviando POM ...";
+                    res = CallServicePom();
+                    if (res)
+                    {
+                        pomDataMapper.ResetPom();
+                    }
+                }
+
+                if (res)
+                {
+                    this.Message = "Enviando POM_ARTICULO ...";
+                    res = CallServicePomArticulo();
+                    if (res)
+                    {
+                        pomArticuloDataMapper.ResetPomArticulo();
+                    }
+                }
+                #endregion
+
+                #region todos los catalogos de LOT
+                if (res)
+                {
+                    this.Message = "Enviando LOTE ...";
+                    res = CallServiceLote();
+                    if (res)
+                    {
+                        loteDataMapper.ResetLote();
+                    }
+                }
+
+                if (res)
+                {
+                    this.Message = "Enviando PEDIMENTO ...";
+                    res = CallServicePedimento();
+                    if (res)
+                    {
+                        pedimentoDataMapper.ResetPedimento();
+                    }
+                }
+
+                if (res)
+                {
+                    this.Message = "Enviando FACTURA ...";
+                    res = CallServiceFactura();
+                    if (res)
+                    {
+                        factura.ResetFactura();
+                    }
+                }
+
+                if (res)
+                {
+                    this.Message = "Enviando FACTURA_DETALLE ...";
+                    res = CallServiceFacturaDetalle();
+                    if (res)
+                    {
+                        facturaDetalle.ResetFacturaDetalle();
+                    }
+                }
+                #endregion
+
+                #region todos los catalogos de INV 2
+                if (res)
+                {
+                    this.Message = "Enviando RECIBO_STATUS ...";
+                    res = CallServiceReciboStatus();
+                    if (res)
+                    {
+                        reciboStatusDataMapper.ResetReciboStatus();
+                    }
+                }
+
+                if (res)
+                {
+                    this.Message = "Enviando RECIBO ...";
+                    res = CallServiceRecibo();
+                    if (res)
+                    {
+                        reciboDataMapper.ResetRecibo();
+                    }
+                }
+
+                if (res)
+                {
+                    this.Message = "Enviando ITEM ...";
+                    res = CallServiceItem();
+                    if (res)
+                    {
+                        itemDataMapper.ResetItem();
+                    }
+                }
+
+                if (res)
+                {
+                    this.Message = "Enviando MOVIMIENTO ...";
+                    res = CallServiceMovimiento();
+                    if (res)
+                    {
+                        movimientoDataMapper.ResetMovimiento();
+                    }
+                }
+
+                if (res)
+                {
+                    this.Message = "Enviando MOVIMIENTO_DETALLE ...";
+                    res = CallServiceMovimientoDetalle();
+                    if (res)
+                    {
+                        movimientoDetalleDataMapper.ResetMovimientoDetalle();
+                    }
+                }
+
+                if (res)
+                {
+                    this.Message = "Enviando ULTIMO_MOVIMIENTO ...";
+                    res = CallServiceUltimoMovimiento();
+                    if (res)
+                    {
+                        ultimoMovimientoDataMapper.ResetUltimoMovimiento();
+                    }
+                }
+
+                if (res)
+                {
+                    this.Message = "Enviando RECIBO_MOVIMIENTO ...";
+                    res = CallServiceReciboMovimiento();
+                    if (res)
+                    {
+                        reciboMovimientoDataMapper.ResetReciboMovimiento();
+                    }
+                }
+                #endregion
+
+                if (res)
+                {
+                    syn.ResetDummy();
+                }
+
+                UploadProcessViewModel.IsRunning = false;
+                //Esta instrucción cierra la ventana
+                this.JobDone = true;
+                //********* todos los dd articulo  
             }   
-            #endregion
-
-            #region todos los catalogos de COT
-            if (res)
-            {
-                this.Message = "Enviando COTIZACION ...";
-                res = CallServiceCotizacion();
-                if (res)
-                {
-                    cotizacionDataMapper.ResetCotizacion();
-                }
-            }
-            #endregion
-
-            #region todos los catalogos de INV 1
-            if (res)
-            {
-                this.Message = "Enviando FACTURA_VENTA ...";
-                res = CallServiceFacturaVenta();
-                if (res)
-                {
-                    facturaVentaDataMapper.ResetFacturaVenta();
-                }
-            }
-            #endregion
-           
-            #region todos los catalogos de POM
-            if (res)
-            {
-                this.Message = "Enviando POM ...";
-                res = CallServicePom();
-                if (res)
-                {
-                    pomDataMapper.ResetPom();
-                }
-            }
-
-            if (res)
-            {
-                this.Message = "Enviando POM_ARTICULO ...";
-                res = CallServicePomArticulo();
-                if (res)
-                {
-                    pomArticuloDataMapper.ResetPomArticulo();
-                }
-            }
-            #endregion
-
-            #region todos los catalogos de LOT
-            if (res)
-            {
-                this.Message = "Enviando LOTE ...";
-                res = CallServiceLote();
-                if (res)
-                {
-                    loteDataMapper.ResetLote();
-                }
-            }
-
-            if (res)
-            {
-                this.Message = "Enviando PEDIMENTO ...";
-                res = CallServicePedimento();
-                if (res)
-                {
-                    pedimentoDataMapper.ResetPedimento();
-                }
-            }
-
-            if (res)
-            {
-                this.Message = "Enviando FACTURA ...";
-                res = CallServiceFactura();
-                if (res)
-                {
-                    factura.ResetFactura();   
-                }
-            }
-
-            if (res)
-            {
-                this.Message = "Enviando FACTURA_DETALLE ...";
-                res = CallServiceFacturaDetalle();
-                if (res)
-                {
-                    facturaDetalle.ResetFacturaDetalle();
-                }
-            }
-            #endregion
-
-            #region todos los catalogos de INV 2
-            if (res)
-            {
-                this.Message = "Enviando RECIBO_STATUS ...";
-                res = CallServiceReciboStatus();
-                if (res)
-                {
-                    reciboStatusDataMapper.ResetReciboStatus();
-                }
-            }
-
-            if (res)
-            {
-                this.Message = "Enviando RECIBO ...";
-                res = CallServiceRecibo();
-                if (res)
-                {
-                    reciboDataMapper.ResetRecibo();
-                }
-            }
-
-            if (res)
-            {
-                this.Message = "Enviando ITEM ...";
-                res = CallServiceItem();
-                if (res)
-                {
-                    itemDataMapper.ResetItem();
-                }
-            }
-
-            if (res)
-            {
-                this.Message = "Enviando MOVIMIENTO ...";
-                res = CallServiceMovimiento();
-                if (res)
-                {
-                    movimientoDataMapper.ResetMovimiento();
-                }
-            }
-
-            if (res)
-            {
-                this.Message = "Enviando MOVIMIENTO_DETALLE ...";
-                res = CallServiceMovimientoDetalle();
-                if (res)
-                {
-                    movimientoDetalleDataMapper.ResetMovimientoDetalle();
-                }
-            }
-
-            if (res)
-            {
-                this.Message = "Enviando ULTIMO_MOVIMIENTO ...";
-                res = CallServiceUltimoMovimiento();
-                if (res)
-                {
-                    ultimoMovimientoDataMapper.ResetUltimoMovimiento();
-                }
-            }
-
-            if (res)
-            {
-                this.Message = "Enviando RECIBO_MOVIMIENTO ...";
-                res = CallServiceReciboMovimiento();
-                if (res)
-                {
-                    reciboMovimientoDataMapper.ResetReciboMovimiento();
-                }
-            }
-            #endregion
-
-            if (res)
-            {
-                syn.ResetDummy();    
-            }
-            
-            UploadProcessViewModel.IsRunning = false;
-            //Esta instrucción cierra la ventana
-            this.JobDone = true;
-            //********* todos los dd articulo    
             
         }
         public void DownloadData(Object sender, System.Timers.ElapsedEventArgs args)

@@ -74,40 +74,37 @@ namespace InventoryApp.View
         void DTimerUploadProcess_Tick(object sender, EventArgs e)
         {
             //Condicionar catsync
-            if (sync.Dummy())
+            if (!UploadProcessViewModel.IsRunning)
             {
-                if (!UploadProcessViewModel.IsRunning)
+                UploadProcessViewModel vm = new UploadProcessViewModel();
+                vm.PropertyChanged += delegate(object sndr, PropertyChangedEventArgs args)
                 {
-                    UploadProcessViewModel vm = new UploadProcessViewModel();
-                    vm.PropertyChanged += delegate(object sndr, PropertyChangedEventArgs args)
+                    if (args.PropertyName.ToLower() == "jobdone")
                     {
-                        if (args.PropertyName.ToLower() == "jobdone")
+                        if (!((UploadProcessViewModel)sndr).JobDone)
                         {
-                            if (!((UploadProcessViewModel)sndr).JobDone)
-                            {
-                                Action a = () => this.ShowImgSync();
-                                this.Dispatcher.BeginInvoke(a);
-                            }
-                            else
-                            {
-                                Action a = () => this.HideImgSync();
-                                this.Dispatcher.BeginInvoke(a);
-                            }
-                        }
-
-                        if (args.PropertyName.ToLower() == "message")
-                        {
-                            Action a = () => this.SetImgSyncMsg(((UploadProcessViewModel)sndr).Message);
+                            Action a = () => this.ShowImgSync();
                             this.Dispatcher.BeginInvoke(a);
-                            
                         }
-                    };
-                    //DlgUpload ds = new DlgUpload();
-                    //ds.DataContext = vm;
-                    //ds.Owner = Application.Current.Windows[0];
-                    //ds.ShowDialog();
-                    vm.start();
-                }    
+                        else
+                        {
+                            Action a = () => this.HideImgSync();
+                            this.Dispatcher.BeginInvoke(a);
+                        }
+                    }
+
+                    if (args.PropertyName.ToLower() == "message")
+                    {
+                        Action a = () => this.SetImgSyncMsg(((UploadProcessViewModel)sndr).Message);
+                        this.Dispatcher.BeginInvoke(a);
+                            
+                    }
+                };
+                //DlgUpload ds = new DlgUpload();
+                //ds.DataContext = vm;
+                //ds.Owner = Application.Current.Windows[0];
+                //ds.ShowDialog();
+                vm.start();
             }
         }
 

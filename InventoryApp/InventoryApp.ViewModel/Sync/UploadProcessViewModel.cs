@@ -694,11 +694,18 @@ namespace InventoryApp.ViewModel.Sync
                     syn.ResetDummy();
                 }
 
-                UploadProcessViewModel.IsRunning = false;
+                
                 //Esta instrucción cierra la ventana
                 this.JobDone = true;
+                UploadProcessViewModel.IsRunning = false;
                 //********* todos los dd articulo  
-            }   
+            }
+            else
+            {
+                this.JobDone = true;
+                this.Message = "Fin upload";
+                UploadProcessViewModel.IsRunning = false;
+            }
             
         }
         public void DownloadData(Object sender, System.Timers.ElapsedEventArgs args)
@@ -712,347 +719,359 @@ namespace InventoryApp.ViewModel.Sync
             this.Message = "Iniciando descarga de información...";
 
             long serverDate = CallDownloadServiceGetServerLast();
+            long localDate = ServerLastDataMapper.GetServerLastFecha();
 
 
-            if (serverDate == 0 || ServerLastDataMapper.GetServerLastFecha() > serverDate)
-                return;            
 
-            #region todos los catalogos de APP
-            if (res)
+            if (serverDate != 0 && localDate < serverDate)
             {
-                this.Message = "Descargando MENU ...";
-                res = CallDownloadServiceMenu(serverDate);
+                #region todos los catalogos de APP
+                if (res)
+                {
+                    this.Message = "Descargando MENU ...";
+                    res = CallDownloadServiceMenu(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando ROL ...";
+                    res = CallDownloadServiceRol(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando ROL_MENU ...";
+                    res = CallDownloadServiceRolMenu(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando USUARIO ...";
+                    res = CallDownloadServiceUsuario(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando USUARIO_ROL ...";
+                    res = CallDownloadServiceUsuarioRol(serverDate);
+                }
+
+                #endregion
+
+                #region todos los catalogos de ARTICULOS
+                if (res)
+                {
+                    this.Message = "Descargando CATEGORIA ...";
+                    res = CallDownloadServiceCategoria(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando EQUIPO ...";
+                    res = CallDownloadServiceEquipo(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando MARCA ...";
+                    res = CallDownloadServiceMarca(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando MODELO ...";
+                    res = CallDownloadServiceModelo(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando ARTICULO ...";
+                    res = CallDownloadServiceArticulo(serverDate);
+                }
+                #endregion
+
+                #region todos los catalogos de CAT 1
+
+                if (res)
+                {
+                    this.Message = "Descargando BANCO ...";
+                    res = CallDownloadServiceBanco(serverDate);
+                }
+                if (res)
+                {
+                    this.Message = "Descargando DEPARTAMENTO ...";
+                    res = CallDownloadServiceDepartamento(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando EMPRESA ...";
+                    res = CallDownloadServiceEmpresa(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando MEDIO_ENVIO ...";
+                    res = CallDownloadServiceMedioEnvio(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando MONEDA ...";
+                    res = CallDownloadServiceMoneda(serverDate);
+                }
+
+                #endregion
+
+                #region todos los catalogos de GEO
+                if (res)
+                {
+                    this.Message = "Descargando CIUDAD ...";
+                    res = CallDownloadServiceCiudad(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando PAIS ...";
+                    res = CallDownloadServicePais(serverDate);
+                }
+                #endregion
+
+                #region todos los catalogos de CAT 2
+                if (res)
+                {
+                    this.Message = "Descargando PROVEEDOR ...";
+                    res = CallDownloadServiceProveedor(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando PROVEEDOR_CATEGORIA ...";
+                    res = CallDownloadServiceProveedorCategoria(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando PROVEEDOR_CUENTA ...";
+                    res = CallDownloadServiceProveedorCuenta(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando PROYECTO ...";
+                    res = CallDownloadServiceProyecto(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando SOLICITANTE ...";
+                    res = CallDownloadServiceSolicitante(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando TERMINO_ENVIO ...";
+                    res = CallDownloadServiceTerminoEnvio(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando TIPO_COTIZACION ...";
+                    res = CallDownloadServiceTipoCotizacion(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando TIPO_EMPRESA ...";
+                    res = CallDownloadServiceTipoEmpresa(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando TIPO_PEDIMENTO ...";
+                    res = CallDownloadServiceTipoPedimento(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando TRANSPORTE ...";
+                    res = CallDownloadServiceTransporte(serverDate);
+                }
+                #endregion
+
+                #region todos los catalogos de CATINV
+                if (res)
+                {
+                    this.Message = "Descargando ALMACEN ...";
+                    res = CallDownloadServiceAlmacen(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando TECNICO ...";
+                    res = CallDownloadServiceTecnico(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando ALMACEN_TECNICO ...";
+                    res = CallDownloadServiceAlmacenTecnico(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando CLIENTE ...";
+                    res = CallDownloadServiceCliente(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando ITEM_STATUS ...";
+                    res = CallDownloadServiceItemStatus(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando PROPIEDAD ...";
+                    res = CallDownloadServicePropiedad(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando SERVICIO ...";
+                    res = CallDownloadServiceServicio(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando TIPO_MOVIMIENTO ...";
+                    res = CallDownloadServiceTipoMovimiento(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando UNIDAD ...";
+                    res = CallDownloadServiceUnidad(serverDate);
+                }
+                #endregion
+
+                #region todos los catalogos de COT
+                if (res)
+                {
+                    this.Message = "Descargando COTIZACION ...";
+                    res = CallDownloadServiceCotizacion(serverDate);
+                }
+                #endregion
+
+                #region todos los catalogos de INV 1
+                if (res)
+                {
+                    this.Message = "Descargando FACTURA_VENTA ...";
+                    res = CallDownloadServiceFacturaVenta(serverDate);
+                }
+                #endregion
+
+                #region todos los catalogos de POM
+                if (res)
+                {
+                    this.Message = "Descargando POM ...";
+                    res = CallDownloadPom(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando POM_ARTICULO ...";
+                    res = CallDownloadPomArticulo(serverDate);
+                }
+                #endregion
+
+                #region todos los catalogos de LOT
+                if (res)
+                {
+                    this.Message = "Descargando LOTE ...";
+                    res = CallDownloadServiceLote(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando PEDIMENTO ...";
+                    res = CallDownloadServicePedimento(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando FACTURA ...";
+                    res = CallDownloadServiceFactura(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando FACTURA_DETALLE ...";
+                    res = CallDownloadServiceFacturaDetalle(serverDate);
+                }
+                #endregion
+
+                #region todos los catalogos de INV 2
+                if (res)
+                {
+                    this.Message = "Descargando RECIBO_STATUS ...";
+                    res = CallDownloadServiceReciboStatus(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando RECIBO ...";
+                    res = CallDownloadServiceRecibo(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando ITEM ...";
+                    res = CallDownloadServiceItem(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando MOVIMIENTO ...";
+                    res = CallDownloadServiceMovimiento(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando MOVIMIENTO_DETALLE ...";
+                    res = CallDownloadServiceMovimientoDetalle(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando ULTIMO_MOVIMIENTO ...";
+                    res = CallDownloadServiceUltimoMovimiento(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando RECIBO_MOVIMIENTO ...";
+                    res = CallDownloadServiceReciboMovimiento(serverDate);
+                }
+                #endregion
+
+                if (res)
+                {
+                    ServerLastDataMapper s = new ServerLastDataMapper();
+                    s.insertElement((object)serverDate);
+                }
             }
 
-            if (res)
-            {
-                this.Message = "Descargando ROL ...";
-                res = CallDownloadServiceRol(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando ROL_MENU ...";
-                res = CallDownloadServiceRolMenu(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando USUARIO ...";
-                res = CallDownloadServiceUsuario(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando USUARIO_ROL ...";
-                res = CallDownloadServiceUsuarioRol(serverDate);
-            }
-
-            #endregion
-
-            #region todos los catalogos de ARTICULOS
-            if (res)
-            {
-                this.Message = "Descargando CATEGORIA ...";
-                res = CallDownloadServiceCategoria(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando EQUIPO ...";
-                res = CallDownloadServiceEquipo(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando MARCA ...";
-                res = CallDownloadServiceMarca(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando MODELO ...";
-                res = CallDownloadServiceModelo(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando ARTICULO ...";
-                res = CallDownloadServiceArticulo(serverDate);
-            }
-            #endregion
-
-            #region todos los catalogos de CAT 1
-
-            if (res)
-            {
-                this.Message = "Descargando BANCO ...";
-                res = CallDownloadServiceBanco(serverDate);
-            }
-            if (res)
-            {
-                this.Message = "Descargando DEPARTAMENTO ...";
-                res = CallDownloadServiceDepartamento(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando EMPRESA ...";
-                res = CallDownloadServiceEmpresa(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando MEDIO_ENVIO ...";
-                res = CallDownloadServiceMedioEnvio(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando MONEDA ...";
-                res = CallDownloadServiceMoneda(serverDate);
-            }
-
-            #endregion
-
-            #region todos los catalogos de GEO
-            if (res)
-            {
-                this.Message = "Descargando CIUDAD ...";
-                res = CallDownloadServiceCiudad(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando PAIS ...";
-                res = CallDownloadServicePais(serverDate);
-            }
-            #endregion
-
-            #region todos los catalogos de CAT 2
-            if (res)
-            {
-                this.Message = "Descargando PROVEEDOR ...";
-                res = CallDownloadServiceProveedor(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando PROVEEDOR_CATEGORIA ...";
-                res = CallDownloadServiceProveedorCategoria(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando PROVEEDOR_CUENTA ...";
-                res = CallDownloadServiceProveedorCuenta(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando PROYECTO ...";
-                res = CallDownloadServiceProyecto(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando SOLICITANTE ...";
-                res = CallDownloadServiceSolicitante(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando TERMINO_ENVIO ...";
-                res = CallDownloadServiceTerminoEnvio(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando TIPO_COTIZACION ...";
-                res = CallDownloadServiceTipoCotizacion(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando TIPO_EMPRESA ...";
-                res = CallDownloadServiceTipoEmpresa(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando TIPO_PEDIMENTO ...";
-                res = CallDownloadServiceTipoPedimento(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando TRANSPORTE ...";
-                res = CallDownloadServiceTransporte(serverDate);
-            }
-            #endregion
-
-            #region todos los catalogos de CATINV
-            if (res)
-            {
-                this.Message = "Descargando ALMACEN ...";
-                res = CallDownloadServiceAlmacen(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando TECNICO ...";
-                res = CallDownloadServiceTecnico(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando ALMACEN_TECNICO ...";
-                res = CallDownloadServiceAlmacenTecnico(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando CLIENTE ...";
-                res = CallDownloadServiceCliente(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando ITEM_STATUS ...";
-                res = CallDownloadServiceItemStatus(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando PROPIEDAD ...";
-                res = CallDownloadServicePropiedad(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando SERVICIO ...";
-                res = CallDownloadServiceServicio(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando TIPO_MOVIMIENTO ...";
-                res = CallDownloadServiceTipoMovimiento(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando UNIDAD ...";
-                res = CallDownloadServiceUnidad(serverDate);
-            }
-            #endregion
-
-            #region todos los catalogos de COT
-            if (res)
-            {
-                this.Message = "Descargando COTIZACION ...";
-                res = CallDownloadServiceCotizacion(serverDate);
-            }
-            #endregion
-
-            #region todos los catalogos de INV 1
-            if (res)
-            {
-                this.Message = "Descargando FACTURA_VENTA ...";
-                res = CallDownloadServiceFacturaVenta(serverDate);
-            }
-            #endregion
-
-            #region todos los catalogos de POM
-            if (res)
-            {
-                this.Message = "Descargando POM ...";
-                res = CallDownloadPom(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando POM_ARTICULO ...";
-                res = CallDownloadPomArticulo(serverDate);
-            }
-            #endregion
-
-            #region todos los catalogos de LOT
-            if (res)
-            {
-                this.Message = "Descargando LOTE ...";
-                res = CallDownloadServiceLote(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando PEDIMENTO ...";
-                res = CallDownloadServicePedimento(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando FACTURA ...";
-                res = CallDownloadServiceFactura(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando FACTURA_DETALLE ...";
-                res = CallDownloadServiceFacturaDetalle(serverDate);
-            }
-            #endregion
-
-            #region todos los catalogos de INV 2
-            if (res)
-            {
-                this.Message = "Descargando RECIBO_STATUS ...";
-                res = CallDownloadServiceReciboStatus(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando RECIBO ...";
-                res = CallDownloadServiceRecibo(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando ITEM ...";
-                res = CallDownloadServiceItem(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando MOVIMIENTO ...";
-                res = CallDownloadServiceMovimiento(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando MOVIMIENTO_DETALLE ...";
-                res = CallDownloadServiceMovimientoDetalle(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando ULTIMO_MOVIMIENTO ...";
-                res = CallDownloadServiceUltimoMovimiento(serverDate);
-            }
-
-            if (res)
-            {
-                this.Message = "Descargando RECIBO_MOVIMIENTO ...";
-                res = CallDownloadServiceReciboMovimiento(serverDate);
-            }
-            #endregion
-            
             //Si toda la descarga es correcta, ejecutar la subida de información
-            if (res)
+            if (res && serverDate != 0)
             {
-                ServerLastDataMapper s = new ServerLastDataMapper();
-                s.insertElement((object)serverDate);
                 this.UploadData();
+            }
+            else
+            {
+                this.Message = "Fin download";
+                this.JobDone = true;
+                UploadProcessViewModel.IsRunning = false;
             }
         }
         

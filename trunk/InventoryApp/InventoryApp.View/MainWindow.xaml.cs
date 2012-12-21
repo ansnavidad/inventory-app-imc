@@ -55,20 +55,21 @@ namespace InventoryApp.View
 
         public void ShowImgSync()
         {
-            this.imgSyncFiles.Visibility = Visibility.Visible;
+            this.cnvTmpRot.Visibility = Visibility.Visible;
+            this.cnvTmpRot2.Visibility = Visibility.Collapsed;
             _ImgSync.Begin(this);
         }
 
         public void HideImgSync()
         {
-            _ImgSync.Stop();
+            this.cnvTmpRot.Visibility = Visibility.Collapsed;
+            this.cnvTmpRot2.Visibility = Visibility.Visible;
         }
-
-
 
         public void SetImgSyncMsg(string msg)
         {
             this.imgSyncFiles.ToolTip = msg;
+            this.imgSyncFiles2.ToolTip = msg;
         }
 
         void DTimerUploadProcess_Tick(object sender, EventArgs e)

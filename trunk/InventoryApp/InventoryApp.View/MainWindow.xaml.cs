@@ -53,7 +53,7 @@ namespace InventoryApp.View
 
             DTimerUploadProcess = new DispatcherTimer();
             DTimerUploadProcess.Tick += new EventHandler(DTimerUploadProcess_Tick);
-            DTimerUploadProcess.Interval = new TimeSpan(0, 0, 120);
+            DTimerUploadProcess.Interval = new TimeSpan(0, 0, 600);
             DTimerUploadProcess.Start();
         }
 

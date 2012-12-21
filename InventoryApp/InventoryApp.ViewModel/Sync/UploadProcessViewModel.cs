@@ -708,6 +708,7 @@ namespace InventoryApp.ViewModel.Sync
             }
             
         }
+
         public void DownloadData(Object sender, System.Timers.ElapsedEventArgs args)
         {
             this.t.Enabled = false;

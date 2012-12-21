@@ -53,12 +53,24 @@
         </Grid>
         <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5,0,0,0" Name="grid3" VerticalAlignment="Stretch">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="1,6,0,-2" Name="stackPanel2" VerticalAlignment="Stretch">
-                <Canvas Name="cnvTmpRot"    Height="28" Width="50"  Opacity="0.5" Panel.ZIndex="60" 
+                <Canvas Name="cnvTmpRot"  Visibility="Collapsed"  Height="28" Width="50"  Opacity="0.5" Panel.ZIndex="60" 
                         Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" >
                     <Image Width="18" Height="18" HorizontalAlignment="Center" Margin="17,5,10,0" 
                            Name="imgSyncFiles" Stretch="Fill" VerticalAlignment="Center" 
                            Grid.Column="1" Grid.Row="0" Source="Images/sync.png" Visibility="Visible" 
-                           ToolTip="sdfasdfasdfasdf" MouseUp="imgSyncFiles_MouseUp" Cursor="Hand"
+                           ToolTip="Listo" MouseUp="imgSyncFiles_MouseUp" Cursor="Hand"
+                           >
+                        <Image.RenderTransform>
+                            <RotateTransform Angle="0" CenterX="9" CenterY="9" />
+                        </Image.RenderTransform>
+                    </Image>
+                </Canvas>
+                <Canvas Name="cnvTmpRot2"    Height="28" Width="50"  Opacity="0.5" Panel.ZIndex="60" 
+                        Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <Image Width="18" Height="18" HorizontalAlignment="Center" Margin="17,5,10,0" 
+                           Name="imgSyncFiles2" Stretch="Fill" VerticalAlignment="Center" 
+                           Grid.Column="1" Grid.Row="0" Source="Images/sync.png" Visibility="Visible" 
+                           ToolTip="Listo" MouseUp="imgSyncFiles_MouseUp" Cursor="Hand"
                            >
                         <Image.RenderTransform>
                             <RotateTransform Angle="0" CenterX="9" CenterY="9" />

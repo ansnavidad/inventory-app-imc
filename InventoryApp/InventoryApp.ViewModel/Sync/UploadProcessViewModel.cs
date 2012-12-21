@@ -2065,7 +2065,7 @@ namespace InventoryApp.ViewModel.Sync
 
                 if (list != null)
                     foreach (ITEM item in list)
-                        dataMapper.loadSync(item);
+                        dataMapper.loadSync((object)item);
 
             }
             catch (Exception)

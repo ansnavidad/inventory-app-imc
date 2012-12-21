@@ -94,9 +94,10 @@ namespace InventoryApp.ViewModel.Sync
         string routeService = @"http://10.50.0.131:8080/Services/Receiver.svc";
         //Prueba Adolfo
         string routeDownload = @"http://10.50.0.131:8080/Services/Broadcast.svc";
-        
-
-        string dataUser = "{'UNID_UPLOAD_LOG':0,'MSG':null,'IP_DIR':'192.168.1.110','PC_NAME':'ISAAC-PC','UNID_USUARIO':1,'USUARIO':null}";
+        //DATOS DE LA MAQUINA
+        string nomPC = System.Environment.UserDomainName;
+        string user = System.Environment.UserName;
+        string dataUser = null;
 
         string basicAuthUser;
         string basicAuthPass;
@@ -151,6 +152,7 @@ namespace InventoryApp.ViewModel.Sync
             if (sync.Dummy())
             {
                 //Poner lógica de consumo de servicios para enviar los datos
+                string dataUser = uploadLogDataMapper.GetJsonUpLoadLog(new UPLOAD_LOG() { PC_NAME = nomPC, UNID_USUARIO = 1, IP_DIR = user });
                 bool res = true;
                 #region todos los catalogos de APP
                 if (res)
@@ -660,6 +662,16 @@ namespace InventoryApp.ViewModel.Sync
 
                 if (res)
                 {
+                    this.Message = "Enviando INFRAESTRUCTURA ...";
+                    res = CallServiceInfraestructura();
+                    if (res)
+                    {
+                        infraestructuraDataMapper.ResetInfraestructura();
+                    }
+                }
+
+                if (res)
+                {
                     this.Message = "Enviando MOVIMIENTO ...";
                     res = CallServiceMovimiento();
                     if (res)
@@ -803,11 +815,6 @@ namespace InventoryApp.ViewModel.Sync
 
                 #region todos los catalogos de CAT 1
                 
-                if (res)
-                {
-                    this.Message = "Descargando INFRAESTRUCTURA ...";
-                    res = CallDownloadServiceInfraestructura(serverDate);
-                }
 
                 if (res)
                 {
@@ -1046,6 +1053,12 @@ namespace InventoryApp.ViewModel.Sync
                 {
                     this.Message = "Descargando ITEM ...";
                     res = CallDownloadServiceItem(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando INFRAESTRUCTURA ...";
+                    res = CallDownloadServiceInfraestructura(serverDate);
                 }
 
                 if (res)
@@ -4812,6 +4825,45 @@ namespace InventoryApp.ViewModel.Sync
             #region metodos
             //madamos a llamar el metodo que serializa list de pocos
             string listPocos = dataMapper.GetJsonItem();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceInfraestructura()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadInfraestructura";
+            InfraestructuraDataMapper dataMapper = new InfraestructuraDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonInfraestructura();
             if (!String.IsNullOrEmpty(listPocos))
             {
                 try

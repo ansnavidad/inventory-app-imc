@@ -20,6 +20,7 @@ using InventoryApp.View.Sync;
 using InventoryApp.DAL;
 using System.Windows.Media.Animation;
 using System.ComponentModel;
+using System.Web;
 
 namespace InventoryApp.View
 {
@@ -45,6 +46,9 @@ namespace InventoryApp.View
             //CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
             //ci.DateTimeFormat.ShortDatePattern = "dd-MM-yyyy";
             //Thread.CurrentThread.CurrentCulture = ci;
+            //NOMBRE DE LA MAQUINA
+            string nomPC = System.Environment.UserDomainName;
+            nomUser.Content = nomPC;
             this._ImgSync = (Storyboard)this.FindResource("rotateImg");
 
             DTimerUploadProcess = new DispatcherTimer();

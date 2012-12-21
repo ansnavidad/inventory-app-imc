@@ -178,6 +178,7 @@ namespace InventoryApp.DAL.Recibo
                     modifiedFactura.UNID_PROVEEDOR = factura.UNID_PROVEEDOR;
                     //Sync
                     modifiedFactura.IS_MODIFIED = true;
+                    modifiedFactura.IS_ACTIVE = true;
                     modifiedFactura.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
@@ -197,6 +198,7 @@ namespace InventoryApp.DAL.Recibo
                     FACTURA factura = (FACTURA)element;
                     //Sync
                     factura.IS_MODIFIED = true;
+                    factura.IS_ACTIVE = true;
                     factura.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();

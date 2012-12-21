@@ -114,6 +114,7 @@ namespace InventoryApp.DAL
                     modifiedReciboM.UNID_FACTURA = reciboM.UNID_FACTURA;                    
                     //Sync
                     modifiedReciboM.IS_MODIFIED = true;
+                    modifiedReciboM.IS_ACTIVE = true;
                     modifiedReciboM.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
@@ -133,6 +134,7 @@ namespace InventoryApp.DAL
                     RECIBO_MOVIMIENTO item = (RECIBO_MOVIMIENTO)element;
                     //Sync
                     item.IS_MODIFIED = true;
+                    item.IS_ACTIVE = true;
                     item.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 

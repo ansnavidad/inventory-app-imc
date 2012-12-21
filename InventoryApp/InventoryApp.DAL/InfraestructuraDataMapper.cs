@@ -16,20 +16,6 @@ namespace InventoryApp.DAL
             return resx;
         }
 
-
-        public List<INFRAESTRUCTURA> GetDeserializeInfraestructura(string listPocos)
-        {
-            List<INFRAESTRUCTURA> res = null;
-
-            if (!String.IsNullOrEmpty(listPocos))
-            {
-                res = JsonConvert.DeserializeObject<List<INFRAESTRUCTURA>>(listPocos);
-            }
-
-            return res;
-        }
-
-
         public string GetJsonInfraestructura(long? LMD)
         {
             string res = null;
@@ -154,6 +140,7 @@ namespace InventoryApp.DAL
                     modifiedItemStatus.INFRAESTRUCTURA_NAME = infraestructura.INFRAESTRUCTURA_NAME;
                     //Sync
                     modifiedItemStatus.IS_MODIFIED = true;
+                    modifiedItemStatus.IS_ACTIVE = true;
                     modifiedItemStatus.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
@@ -182,6 +169,7 @@ namespace InventoryApp.DAL
                         tra.UNID_INFRAESTRUCTURA = UNID.getNewUNID();
                         //Sync
                         tra.IS_MODIFIED = true;
+                        tra.IS_ACTIVE = true;
                         tra.LAST_MODIFIED_DATE = UNID.getNewUNID();
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
@@ -241,6 +229,89 @@ namespace InventoryApp.DAL
                     entity.SaveChanges();
                     //
                     entity.SaveChanges();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Método que serializa una List<INFRAESTRUCTURA> a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de INFRAESTRUCTURA</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonInfraestructura()
+        {
+            string res = null;
+            List<INFRAESTRUCTURA> listInfraestructura = new List<INFRAESTRUCTURA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.INFRAESTRUCTURAs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listInfraestructura.Add(new INFRAESTRUCTURA
+                     {
+                         UNID_INFRAESTRUCTURA= row.UNID_INFRAESTRUCTURA,
+                         INFRAESTRUCTURA_NAME= row.INFRAESTRUCTURA_NAME,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (listInfraestructura.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listInfraestructura);
+                }
+                return res;
+            }
+        }
+
+        /// <summary>
+        /// Método que Deserializa JSon a List<INFRAESTRUCTURA>
+        /// </summary>
+        /// <returns>Regresa List<INFRAESTRUCTURA></returns>
+        /// <returns>Si no regresa null</returns>
+        public List<INFRAESTRUCTURA> GetDeserializeInfraestructura(string listPocos)
+        {
+            List<INFRAESTRUCTURA> res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<List<INFRAESTRUCTURA>>(listPocos);
+            }
+
+            return res;
+        }
+
+        /// <summary>
+        /// Método que restaura las IS_MODIFIED a false
+        /// </summary>
+        /// <returns>Regresa void</returns>
+        public void ResetInfraestructura()
+        {
+            List<INFRAESTRUCTURA> reset = new List<INFRAESTRUCTURA>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.INFRAESTRUCTURAs
+                 where p.IS_MODIFIED == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     reset.Add(new INFRAESTRUCTURA
+                     {
+                         UNID_INFRAESTRUCTURA = row.UNID_INFRAESTRUCTURA,
+                         INFRAESTRUCTURA_NAME = row.INFRAESTRUCTURA_NAME,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                     });
+                 });
+                if (reset.Count > 0)
+                {
+                    foreach (var item in reset)
+                    {
+                        var modified = Entity.INFRAESTRUCTURAs.First(p => p.UNID_INFRAESTRUCTURA == item.UNID_INFRAESTRUCTURA);
+                        modified.IS_MODIFIED = false;
+                        Entity.SaveChanges();
+                    }
                 }
             }
         }

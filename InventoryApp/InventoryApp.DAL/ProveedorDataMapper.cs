@@ -119,7 +119,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementRelation((object)poco);
                     }
                     //Inserción
                     else
@@ -329,6 +329,26 @@ namespace InventoryApp.DAL
                             }
                         }
                     }
+                }
+            }
+        }
+
+        public void udpateElementRelation(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    PROVEEDOR_CATEGORIA relation = (PROVEEDOR_CATEGORIA)element;
+                    var modifiedRelation = entity.PROVEEDOR_CATEGORIA.First(p => p.UNID_PROVEEDOR == relation.UNID_PROVEEDOR && p.UNID_CATEGORIA == relation.UNID_CATEGORIA);
+                    //Sync
+                    modifiedRelation.IS_MODIFIED = true;
+                    modifiedRelation.LAST_MODIFIED_DATE = UNID.getNewUNID();
+
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+
+                    entity.SaveChanges();
                 }
             }
         }

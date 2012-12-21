@@ -1070,7 +1070,7 @@ namespace InventoryApp.ViewModel.Sync
             }
             else
             {
-                this.Message = "Fin download";
+                this.Message = "No hay conexión con el server";
                 this.JobDone = true;
                 UploadProcessViewModel.IsRunning = false;
             }

@@ -85,7 +85,7 @@ namespace InventoryApp.ViewModel.Sync
         string _message;
         bool _jobDone;
         //prueba
-        //string routeService1 = @"http://localhost:8082/Services/Receiver.svc";
+        //string routeService = @"http://localhost:3033/Services/Receiver.svc";
         //servidor
         //string routeService = @"http://192.168.0.116:2020/Services/Receiver.svc";
         //servidor inmeta
@@ -152,7 +152,7 @@ namespace InventoryApp.ViewModel.Sync
             if (sync.Dummy())
             {
                 //Poner lógica de consumo de servicios para enviar los datos
-                string dataUser = uploadLogDataMapper.GetJsonUpLoadLog(new UPLOAD_LOG() { PC_NAME = nomPC, UNID_USUARIO = 1, IP_DIR = user });
+                dataUser = uploadLogDataMapper.GetJsonUpLoadLog(new UPLOAD_LOG() { PC_NAME = nomPC, UNID_USUARIO = 1, IP_DIR = user });
                 bool res = true;
                 //#region todos los catalogos de APP
                 //if (res)

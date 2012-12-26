@@ -23,7 +23,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ALMACEN> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             AlmacenDataMapper dataMapper = new AlmacenDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -46,16 +46,19 @@ namespace InventoryApp.Service.Services
                 
                 if (poco!=null)
                 {
- 
+                    
                     mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ALMACEN sincronizada" });
                     
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "ALMACEN" + ex.InnerException;
+                bitacora.PC_NAME = poco.PC_NAME;
                 mensaje = null;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -67,7 +70,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ALMACEN_TECNICO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             AlmacenDataMapper dataMapper = new AlmacenDataMapper();
             AlmacenTecnicoDataMapper dataMapperRelation = new AlmacenTecnicoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
@@ -97,10 +100,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "ALMACEN_TECNICO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -112,7 +118,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<MENU> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             AppMenuDataMapper dataMapper = new AppMenuDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -142,10 +148,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "MENU" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -157,7 +166,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ROL> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             AppRolDataMapper dataMapper = new AppRolDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -187,10 +196,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "ROL" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -202,7 +214,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ROL_MENU> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             AppRolMenuDataMapper dataMapper = new AppRolMenuDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -232,10 +244,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "ROL_MENU" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -247,7 +262,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<USUARIO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             AppUsuario dataMapper = new AppUsuario();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -277,10 +292,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "USUARIO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -292,7 +310,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<USUARIO_ROL> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             AppUsuarioRol dataMapper = new AppUsuarioRol();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -322,10 +340,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "USUARIO_ROL" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -337,7 +358,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ARTICULO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             ArticuloDataMapper dataMapper = new ArticuloDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -367,10 +388,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "ARTICULO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -382,7 +406,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<BANCO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             BancoDataMapper dataMapper = new BancoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -412,10 +436,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "BANCO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -427,7 +454,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<CATEGORIA> list=null;
             UPLOAD_LOG poco=null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             CategoriaDataMapper dataMapper = new CategoriaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -453,9 +480,12 @@ namespace InventoryApp.Service.Services
                     mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla CATEGORIA sincronizada" });        
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                bitacora.MSG = ex.Message + "CATEGORIA" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             
@@ -468,7 +498,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<CIUDAD> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             CiudadDataMapper dataMapper = new CiudadDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -495,10 +525,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "CIUDAD" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -510,7 +543,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<CLIENTE> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             ClienteDataMapper dataMapper = new ClienteDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -539,10 +572,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "CLIENTE" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -554,7 +590,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<COTIZACION> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             CotizacionDataMapper dataMapper = new CotizacionDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -581,10 +617,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "COTIZACION" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -596,7 +635,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<DEPARTAMENTO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             DepartamentoDataMapper dataMapper = new DepartamentoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -626,10 +665,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "DEPARTAMENTO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -641,7 +683,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<EMPRESA> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             EmpresaDataMapper dataMapper = new EmpresaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -671,10 +713,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "EMPRESA" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -686,7 +731,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<EQUIPO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             EquipoDataMapper dataMapper = new EquipoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -716,10 +761,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "EQUIPO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -762,6 +810,7 @@ namespace InventoryApp.Service.Services
             {
                 bitacora.MSG = ex.Message + "FACTURA" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
                 user.InsertUploadLog(bitacora);
             }
             return mensaje;
@@ -774,7 +823,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<FACTURA_DETALLE> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             FacturaCompraDetalleDataMapper dataMapper = new FacturaCompraDetalleDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -804,10 +853,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "FACTURA_DETALLE" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -819,7 +871,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<FACTURA_VENTA> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             FacturaVentaDataMapper dataMapper = new FacturaVentaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -849,10 +901,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "FACTURA_VENTA" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -864,7 +919,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ITEM> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             ItemDataMapper dataMapper = new ItemDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -893,10 +948,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "ITEM" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -908,7 +966,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ITEM_STATUS> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             ItemStatusDataMapper dataMapper = new ItemStatusDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -938,10 +996,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "ITEM_STATUS" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -953,7 +1014,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<INFRAESTRUCTURA> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             InfraestructuraDataMapper dataMapper = new InfraestructuraDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -966,7 +1027,7 @@ namespace InventoryApp.Service.Services
 
                 foreach (INFRAESTRUCTURA item in list)
                 {
-                    //actualiza o pocoa a la tabla ITEM_STATUS
+                    //actualiza o pocoa a la tabla INFRAESTRUCTURA
                     dataMapper.loadSync(item);
                 }
                 //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
@@ -977,16 +1038,18 @@ namespace InventoryApp.Service.Services
                 if (poco != null)
                 {
 
-
-                    mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ITEM_STATUS sincronizada" });
+                    mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla INFRAESTRUCTURA sincronizada" });
 
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "INFRAESTRUCTURA" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -998,7 +1061,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<LOTE> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             LoteDataMapper dataMapper = new LoteDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1028,10 +1091,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "LOTE" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1043,7 +1109,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<MARCA> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             MarcaDataMapper dataMapper = new MarcaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1073,10 +1139,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "MARCA" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1088,7 +1157,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<MEDIO_ENVIO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             MedioEnvioDataMapper dataMapper = new MedioEnvioDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1118,10 +1187,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "MEDIO_ENVIO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1133,7 +1205,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<MODELO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             ModeloDataMapper dataMapper = new ModeloDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1163,10 +1235,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "MODELO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1179,7 +1254,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<MONEDA> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             MonedaDataMapper dataMapper = new MonedaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1209,10 +1284,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "MONEDA" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1224,7 +1302,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<MOVIMENTO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             MovimientoDataMapper dataMapper = new MovimientoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1254,10 +1332,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "MOVIMENTO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1269,7 +1350,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<MOVIMIENTO_DETALLE> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             MovimientoDetalleDataMapper dataMapper = new MovimientoDetalleDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1299,10 +1380,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "MOVIMIENTO_DETALLE" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1314,7 +1398,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<PAI> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             PaisDataMapper dataMapper = new PaisDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1344,10 +1428,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "PAIS" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1359,7 +1446,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<PEDIMENTO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             PedimentoDataMapper dataMapper = new PedimentoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1389,10 +1476,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "PEDIMENTO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1404,7 +1494,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<POM_ARTICULO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             PomArticuloDataMapper dataMapper = new PomArticuloDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1434,10 +1524,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "POM_ARTICULO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1449,7 +1542,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<POM> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             PomDataMapper dataMapper = new PomDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1479,10 +1572,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "POM" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1494,7 +1590,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<PROPIEDAD> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             PropiedadDataMapper dataMapper = new PropiedadDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1524,10 +1620,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "PROPIEDAD" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1539,7 +1638,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<PROVEEDOR_CATEGORIA> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             ProveedorDataMapper dataMapper = new ProveedorDataMapper();
             ProveedorCategoriaDataMapper dataMapperRelation = new ProveedorCategoriaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
@@ -1569,10 +1668,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "PROVEEDOR_CATEGORIA" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1584,7 +1686,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<PROVEEDOR_CUENTA> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             ProveedorCuentaDataMapper dataMapper = new ProveedorCuentaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1614,10 +1716,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "PROVEEDOR_CUENTA" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1629,7 +1734,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<PROVEEDOR> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             ProveedorDataMapper dataMapper = new ProveedorDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1659,10 +1764,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "PROVEEDOR" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1674,7 +1782,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<PROYECTO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             ProyectoDataMapper dataMapper = new ProyectoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1704,10 +1812,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "PROYECTO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1719,7 +1830,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<RECIBO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             ReciboDataMapper dataMapper = new ReciboDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1749,10 +1860,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "RECIBO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1764,7 +1878,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<RECIBO_MOVIMIENTO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             ReciboMovimientoDataMapper dataMapper = new ReciboMovimientoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1794,10 +1908,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "RECIBO_MOVIMIENTO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1809,7 +1926,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<RECIBO_STATUS> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             ReciboStatusDataMapper dataMapper = new ReciboStatusDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1839,10 +1956,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "RECIBO_STATUS" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1854,7 +1974,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<SERVICIO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             ServicioDataMapper dataMapper = new ServicioDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1884,10 +2004,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "SERVICIO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1899,7 +2022,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<SOLICITANTE> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             SolicitanteDataMapper dataMapper = new SolicitanteDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1929,10 +2052,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "SOLICITANTE" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1944,7 +2070,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<TECNICO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             TecnicoDataMapper dataMapper = new TecnicoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -1974,10 +2100,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "TECNICO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -1989,7 +2118,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<TERMINO_ENVIO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             TerminoEnvioDataMapper dataMapper = new TerminoEnvioDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2019,10 +2148,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "TERMINO_ENVIO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -2034,7 +2166,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<TIPO_COTIZACION> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             TipoCotizacionDataMapper dataMapper = new TipoCotizacionDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2064,10 +2196,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "TIPO_COTIZACION" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -2079,7 +2214,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<TIPO_EMPRESA> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             TipoEmpresaDataMapper dataMapper = new TipoEmpresaDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2108,10 +2243,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "TIPO_EMPRESA" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -2123,7 +2261,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<TIPO_MOVIMIENTO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             TipoMovimientoDataMapper dataMapper = new TipoMovimientoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2153,10 +2291,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "TIPO_MOVIMIENTO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -2168,7 +2309,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<TIPO_PEDIMENTO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             TipoPedimentoDataMapper dataMapper = new TipoPedimentoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2198,10 +2339,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "TIPO_PEDIMENTO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -2213,7 +2357,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<TRANSPORTE> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             TransporteDataMapper dataMapper = new TransporteDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2243,10 +2387,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "TRANSPORTE" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -2258,7 +2405,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<ULTIMO_MOVIMIENTO> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             UltimoMovimientoDataMapper dataMapper = new UltimoMovimientoDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2288,10 +2435,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "ULTIMO_MOVIMIENTO" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion
@@ -2303,7 +2453,7 @@ namespace InventoryApp.Service.Services
             string mensaje = null;
             List<UNIDAD> list;
             UPLOAD_LOG poco = null;
-            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA", PC_NAME = "ALMACEN" };
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA"};
             UnidadDataMapper dataMapper = new UnidadDataMapper();
             ServerLastDataMapper server = new ServerLastDataMapper();
             UploadLogDataMapper user = new UploadLogDataMapper();
@@ -2333,10 +2483,13 @@ namespace InventoryApp.Service.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                bitacora.MSG = ex.Message + "UNIDAD" + ex.InnerException;
                 mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
             }
             return mensaje;
             #endregion

@@ -191,6 +191,7 @@ namespace InventoryApp.DAL
                     modifiedAlmacen.MAIL = almacen.MAIL;
                     modifiedAlmacen.DIRECCION = almacen.DIRECCION;
                     modifiedAlmacen.MAIL_DEFAULT = almacen.MAIL_DEFAULT;
+                    modifiedAlmacen.IS_ACTIVE = almacen.IS_ACTIVE;
                     //Sync
                     modifiedAlmacen.IS_MODIFIED = true;
                     modifiedAlmacen.LAST_MODIFIED_DATE = UNID.getNewUNID();
@@ -202,7 +203,7 @@ namespace InventoryApp.DAL
                 }
             }
         }
-        
+
         public void udpateElementRelation(object element)
         {
             if (element != null)
@@ -210,7 +211,8 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     ALMACEN_TECNICO relation = (ALMACEN_TECNICO)element;
-                    var modifiedRelation = entity.ALMACEN_TECNICO.First(p => p.UNID_ALMACEN == relation.UNID_ALMACEN && p.UNID_TECNICO == relation.UNID_TECNICO);                    
+                    var modifiedRelation = entity.ALMACEN_TECNICO.First(p => p.UNID_ALMACEN == relation.UNID_ALMACEN && p.UNID_TECNICO == relation.UNID_TECNICO);
+                    modifiedRelation.IS_ACTIVE = relation.IS_ACTIVE;
                     //Sync
                     modifiedRelation.IS_MODIFIED = true;
                     modifiedRelation.LAST_MODIFIED_DATE = UNID.getNewUNID();

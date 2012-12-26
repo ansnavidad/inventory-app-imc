@@ -109,7 +109,8 @@ namespace InventoryApp.DAL
                     USUARIO usuario = (USUARIO)element;
                     var modifiedUsuario = entity.USUARIOs.First(p => p.UNID_USUARIO == usuario.UNID_USUARIO);
                     modifiedUsuario.USUARIO_MAIL = usuario.USUARIO_MAIL;
-                    modifiedUsuario.USUARIO_PWD = usuario.USUARIO_PWD;                    
+                    modifiedUsuario.USUARIO_PWD = usuario.USUARIO_PWD;
+                    modifiedUsuario.IS_ACTIVE = usuario.IS_ACTIVE;
                     //Sync
                     modifiedUsuario.IS_MODIFIED = true;
                     modifiedUsuario.LAST_MODIFIED_DATE = UNID.getNewUNID();

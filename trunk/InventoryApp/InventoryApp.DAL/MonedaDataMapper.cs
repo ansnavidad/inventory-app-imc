@@ -137,6 +137,7 @@ namespace InventoryApp.DAL
                     var modifiedMoneda = entity.MONEDAs.First(p => p.UNID_MONEDA == moneda.UNID_MONEDA);
                     modifiedMoneda.MONEDA_NAME = moneda.MONEDA_NAME;
                     modifiedMoneda.MONEDA_ABR = moneda.MONEDA_ABR;
+                    modifiedMoneda.IS_ACTIVE = moneda.IS_ACTIVE;
                     //Sync
                     modifiedMoneda.IS_MODIFIED = true;
                     modifiedMoneda.LAST_MODIFIED_DATE = UNID.getNewUNID();

@@ -145,6 +145,7 @@ namespace InventoryApp.DAL
                     var modifiedItemStatus = entity.TRANSPORTEs.First(p => p.UNID_TRANSPORTE == transporte.UNID_TRANSPORTE);
                     modifiedItemStatus.TRANSPORTE_NAME = transporte.TRANSPORTE_NAME;
                     modifiedItemStatus.UNID_TIPO_EMPRESA = transporte.UNID_TIPO_EMPRESA;
+                    modifiedItemStatus.IS_ACTIVE = transporte.IS_ACTIVE;
                     //Sync
                     modifiedItemStatus.IS_MODIFIED = true;
                     modifiedItemStatus.LAST_MODIFIED_DATE = UNID.getNewUNID();

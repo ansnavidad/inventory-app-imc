@@ -151,8 +151,8 @@ namespace InventoryApp.DAL
                         var tipo = query.First();
 
                         tipo.SIGNO_MOVIMIENTO = ETipo.SIGNO_MOVIMIENTO;
-
                         tipo.TIPO_MOVIMIENTO_NAME = ETipo.TIPO_MOVIMIENTO_NAME;
+                        tipo.IS_ACTIVE = ETipo.IS_ACTIVE;
                         //Sync
                         tipo.IS_MODIFIED = true;
                         tipo.LAST_MODIFIED_DATE = UNID.getNewUNID();

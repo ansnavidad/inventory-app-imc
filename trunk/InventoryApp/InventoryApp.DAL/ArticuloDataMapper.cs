@@ -280,6 +280,7 @@ namespace InventoryApp.DAL
                     modifiedItemStatus.UNID_EQUIPO = articulo.UNID_EQUIPO;
                     modifiedItemStatus.UNID_MARCA = articulo.UNID_MARCA;
                     modifiedItemStatus.UNID_MODELO = articulo.UNID_MODELO;
+                    modifiedItemStatus.IS_ACTIVE = articulo.IS_ACTIVE;
                     //Sync
                     modifiedItemStatus.IS_MODIFIED = true;
                     modifiedItemStatus.LAST_MODIFIED_DATE = UNID.getNewUNID();

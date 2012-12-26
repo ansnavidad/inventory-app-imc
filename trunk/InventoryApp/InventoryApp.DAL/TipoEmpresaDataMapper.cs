@@ -136,6 +136,7 @@ namespace InventoryApp.DAL
                     TIPO_EMPRESA tipoEmpresa = (TIPO_EMPRESA)element;
                     var modifiedItemStatus = entity.TIPO_EMPRESA.First(p => p.UNID_TIPO_EMPRESA == tipoEmpresa.UNID_TIPO_EMPRESA);
                     modifiedItemStatus.TIPO_EMPRESA_NAME = tipoEmpresa.TIPO_EMPRESA_NAME;
+                    modifiedItemStatus.IS_ACTIVE = tipoEmpresa.IS_ACTIVE;
                     //Sync
                     modifiedItemStatus.IS_MODIFIED = true;
                     modifiedItemStatus.LAST_MODIFIED_DATE = UNID.getNewUNID();

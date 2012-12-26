@@ -142,6 +142,7 @@ namespace InventoryApp.DAL
                     var modifiedPais = entity.PAIS.First(p => p.UNID_PAIS == pais.UNID_PAIS);
                     modifiedPais.PAIS = pais.PAIS;
                     modifiedPais.ISO = pais.ISO;
+                    modifiedPais.IS_ACTIVE = pais.IS_ACTIVE;
                     //Sync
                     modifiedPais.IS_MODIFIED = true;
                     modifiedPais.LAST_MODIFIED_DATE = UNID.getNewUNID();

@@ -147,6 +147,7 @@ namespace InventoryApp.DAL
                     modifiedTipoPedimento.REGIMEN = tipoPedimento.REGIMEN;
                     modifiedTipoPedimento.NOTA = tipoPedimento.NOTA;
                     modifiedTipoPedimento.CLAVE = tipoPedimento.CLAVE;
+                    modifiedTipoPedimento.IS_ACTIVE = tipoPedimento.IS_ACTIVE;
                     //Sync
                     modifiedTipoPedimento.IS_MODIFIED = true;
                     modifiedTipoPedimento.LAST_MODIFIED_DATE = UNID.getNewUNID();

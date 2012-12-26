@@ -185,6 +185,7 @@ namespace InventoryApp.DAL
                     modifiedTecnico.MAIL = tecnico.MAIL;
                     modifiedTecnico.IS_ACTIVE = tecnico.IS_ACTIVE;
                     modifiedTecnico.CIUDAD = tecnico.CIUDAD;
+                    modifiedTecnico.IS_ACTIVE = tecnico.IS_ACTIVE;
                     //Sync
                     modifiedTecnico.IS_MODIFIED = true;
                     modifiedTecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();

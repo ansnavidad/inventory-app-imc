@@ -174,6 +174,7 @@ namespace InventoryApp.DAL
                         var tipo = query.First();
 
                         tipo.CATEGORIA_NAME = ETipo.CATEGORIA_NAME;
+                        tipo.IS_ACTIVE = ETipo.IS_ACTIVE;
                         //Sync
                         tipo.IS_MODIFIED = true;
                         tipo.LAST_MODIFIED_DATE = UNID.getNewUNID();

@@ -79,18 +79,19 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     FACTURA_VENTA factura = (FACTURA_VENTA)element;
-                    var modifiedMoneda = entity.FACTURA_VENTA.First(p => p.UNID_FACTURA_VENTA == factura.UNID_FACTURA_VENTA);
-                    modifiedMoneda.FOLIO = factura.FOLIO;
-                    modifiedMoneda.IMPORTE_FACTURA = factura.IMPORTE_FACTURA;
-                    modifiedMoneda.IVA_PESOS = factura.IVA_PESOS;
-                    modifiedMoneda.POR_IVA = factura.POR_IVA;
-                    modifiedMoneda.TIPO_CAMBIO = factura.TIPO_CAMBIO;
-                    modifiedMoneda.TOTAL_DESC_FACTURA = factura.TOTAL_DESC_FACTURA;
-                    modifiedMoneda.TOTAL_FACTURA = factura.TOTAL_FACTURA;
-                    modifiedMoneda.UNID_MONEDA = factura.UNID_MONEDA;                    
+                    var modifiedFactura = entity.FACTURA_VENTA.First(p => p.UNID_FACTURA_VENTA == factura.UNID_FACTURA_VENTA);
+                    modifiedFactura.FOLIO = factura.FOLIO;
+                    modifiedFactura.IMPORTE_FACTURA = factura.IMPORTE_FACTURA;
+                    modifiedFactura.IVA_PESOS = factura.IVA_PESOS;
+                    modifiedFactura.POR_IVA = factura.POR_IVA;
+                    modifiedFactura.TIPO_CAMBIO = factura.TIPO_CAMBIO;
+                    modifiedFactura.TOTAL_DESC_FACTURA = factura.TOTAL_DESC_FACTURA;
+                    modifiedFactura.TOTAL_FACTURA = factura.TOTAL_FACTURA;
+                    modifiedFactura.UNID_MONEDA = factura.UNID_MONEDA;
+                    modifiedFactura.IS_ACTIVE = factura.IS_ACTIVE;
                     //Sync
-                    modifiedMoneda.IS_MODIFIED = true;
-                    modifiedMoneda.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    modifiedFactura.IS_MODIFIED = true;
+                    modifiedFactura.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();

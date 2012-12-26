@@ -146,6 +146,7 @@ namespace InventoryApp.DAL
                     modifiedTerminoEnvio.GENERA_LOTES = terminoEnvio.GENERA_LOTES;
                     modifiedTerminoEnvio.SIGNIFICADO = terminoEnvio.SIGNIFICADO;
                     modifiedTerminoEnvio.TERMINO = terminoEnvio.TERMINO;
+                    modifiedTerminoEnvio.IS_ACTIVE = terminoEnvio.IS_ACTIVE;
                     //Sync
                     modifiedTerminoEnvio.IS_MODIFIED = true;
                     modifiedTerminoEnvio.LAST_MODIFIED_DATE = UNID.getNewUNID();

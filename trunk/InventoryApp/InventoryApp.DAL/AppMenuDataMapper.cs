@@ -134,6 +134,7 @@ namespace InventoryApp.DAL
                     var modifiedMenu = entity.MENUs.First(p => p.UNID_MENU == menu.UNID_MENU);
                     modifiedMenu.IS_LEAF = menu.IS_LEAF;
                     modifiedMenu.MENU_NAME = menu.MENU_NAME;
+                    modifiedMenu.IS_ACTIVE = menu.IS_ACTIVE;
                     //Sync
                     modifiedMenu.IS_MODIFIED = true;
                     modifiedMenu.LAST_MODIFIED_DATE = UNID.getNewUNID();

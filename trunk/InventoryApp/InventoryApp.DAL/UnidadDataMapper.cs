@@ -133,6 +133,7 @@ namespace InventoryApp.DAL
                     UNIDAD unidad = (UNIDAD)element;
                     var modifiedUnidad = entity.UNIDADs.First(p => p.UNID_UNIDAD == unidad.UNID_UNIDAD);
                     modifiedUnidad.UNIDAD1 = unidad.UNIDAD1;
+                    modifiedUnidad.IS_ACTIVE = unidad.IS_ACTIVE;
                     //Sync
                     modifiedUnidad.IS_MODIFIED = true;
                     modifiedUnidad.LAST_MODIFIED_DATE = UNID.getNewUNID();

@@ -111,7 +111,8 @@ namespace InventoryApp.DAL
                     var modifiedReciboM = entity.RECIBO_MOVIMIENTO.First(p => p.UNID_RECIBO_MOVIMIENTO == reciboM.UNID_RECIBO_MOVIMIENTO);
                     modifiedReciboM.UNID_RECIBO = reciboM.UNID_RECIBO;
                     modifiedReciboM.UNID_MOVIMIENTO = reciboM.UNID_MOVIMIENTO;
-                    modifiedReciboM.UNID_FACTURA = reciboM.UNID_FACTURA;                    
+                    modifiedReciboM.UNID_FACTURA = reciboM.UNID_FACTURA;
+                    modifiedReciboM.IS_ACTIVE = reciboM.IS_ACTIVE;
                     //Sync
                     modifiedReciboM.IS_MODIFIED = true;
                     modifiedReciboM.IS_ACTIVE = true;

@@ -151,6 +151,7 @@ namespace InventoryApp.DAL
                         var tipo = query.First();
 
                         tipo.TIPO_COTIZACION_NAME = ETipo.TIPO_COTIZACION_NAME;
+                        tipo.IS_ACTIVE = ETipo.IS_ACTIVE;
                         //Sync
                         tipo.IS_MODIFIED = true;
                         tipo.LAST_MODIFIED_DATE = UNID.getNewUNID();

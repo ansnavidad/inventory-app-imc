@@ -154,6 +154,7 @@ namespace InventoryApp.DAL
                     modifiedProveedor.NUMERO_CUENTA = proveedorCuenta.NUMERO_CUENTA;
                     modifiedProveedor.CLABE = proveedorCuenta.CLABE;
                     modifiedProveedor.BENEFICIARIO = proveedorCuenta.BENEFICIARIO;
+                    modifiedProveedor.IS_ACTIVE = proveedorCuenta.IS_ACTIVE;
                     //Sync
                     modifiedProveedor.IS_MODIFIED = true;
                     modifiedProveedor.LAST_MODIFIED_DATE = UNID.getNewUNID();

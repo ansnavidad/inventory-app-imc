@@ -1443,7 +1443,7 @@ namespace InventoryApp.ViewModel.Sync
                 request.Resource = nameService;
                 request.RequestFormat = RestSharp.DataFormat.Json;
                 request.AddHeader("Content-type", "application/json");
-                request.AddBody(new { lastModifiedDate = equipoDataMapper.LastModifiedDate() });
+                request.AddBody(new { lastModifiedDate =marcaDataMapper.LastModifiedDate()});
                 IRestResponse response = client.Execute(request);
 
                 Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);

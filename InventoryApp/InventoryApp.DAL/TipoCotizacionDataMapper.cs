@@ -74,7 +74,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -151,7 +151,6 @@ namespace InventoryApp.DAL
                         var tipo = query.First();
 
                         tipo.TIPO_COTIZACION_NAME = ETipo.TIPO_COTIZACION_NAME;
-                        tipo.IS_ACTIVE = ETipo.IS_ACTIVE;
                         //Sync
                         tipo.IS_MODIFIED = true;
                         tipo.LAST_MODIFIED_DATE = UNID.getNewUNID();
@@ -162,6 +161,36 @@ namespace InventoryApp.DAL
                         entity.SaveChanges();
                     }
                 }    
+            }
+        }
+
+        public void udpateElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TIPO_COTIZACION ETipo = (TIPO_COTIZACION)element;
+
+                    var query = (from cust in entity.TIPO_COTIZACION
+                                 where cust.UNID_TIPO_COTIZACION == ETipo.UNID_TIPO_COTIZACION
+                                 select cust).ToList();
+                    if (query.Count > 0)
+                    {
+                        var tipo = query.First();
+
+                        tipo.TIPO_COTIZACION_NAME = ETipo.TIPO_COTIZACION_NAME;
+                        tipo.IS_ACTIVE = ETipo.IS_ACTIVE;
+                        //Sync
+                        tipo.IS_MODIFIED = true;
+                        tipo.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.SaveChanges();
+                    }
+                }
             }
         }
 

@@ -132,6 +132,7 @@ namespace InventoryApp.Model
                 {
                     _impFactura = value;
                     this.calculaTotal();
+                    this.calculaIVA();
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("ImpFactura"));
@@ -206,13 +207,35 @@ namespace InventoryApp.Model
 
         public void calculaTotal()
         {
-            this.Total = this._impFactura * (1 + (this._porIva/100));
+            //this.Total = this._impFactura * (1 + (this._porIva/100));
+            int aux = 0;
+            float faux = 0f;
+
+            faux = this._impFactura * (1 + (this._porIva / 100));
+            faux *= 100;
+            aux = (int)faux;
+            faux = aux;
+            faux /= 100;
+
+            this.Total = faux;
         }
 
         public void calculaIVA()
         {
-            this.Iva = this._impFactura * (this._porIva / 100);
+            //this.Iva = this._impFactura * (this._porIva / 100);
+            
+            int aux = 0;
+            float faux = 0f;
+
+            faux = this._impFactura * (this._porIva / 100);
+            faux *= 100;
+            aux = (int)faux;
+            faux = aux;
+            faux /= 100;
+
+            this.Iva = faux;
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -75,7 +75,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -128,6 +128,28 @@ namespace InventoryApp.DAL
         }
 
         public void udpateElement(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MONEDA moneda = (MONEDA)element;
+                    var modifiedMoneda = entity.MONEDAs.First(p => p.UNID_MONEDA == moneda.UNID_MONEDA);
+                    modifiedMoneda.MONEDA_NAME = moneda.MONEDA_NAME;
+                    modifiedMoneda.MONEDA_ABR = moneda.MONEDA_ABR;
+                    //Sync
+                    modifiedMoneda.IS_MODIFIED = true;
+                    modifiedMoneda.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void udpateElementSync(object element)
         {
             if (element != null)
             {

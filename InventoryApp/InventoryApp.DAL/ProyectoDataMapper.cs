@@ -75,7 +75,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -144,6 +144,33 @@ namespace InventoryApp.DAL
                             select cust).ToList();
 
                 if (query.Count>0)
+                {
+                    var pro = query.First();
+
+                    pro.PROYECTO_NAME = EPro.PROYECTO_NAME;
+                    //Sync
+                    pro.IS_MODIFIED = true;
+                    pro.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void udpateElementSync(object element)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                PROYECTO EPro = (PROYECTO)element;
+
+                var query = (from cust in entity.PROYECTOes
+                             where cust.UNID_PROYECTO == EPro.UNID_PROYECTO
+                             select cust).ToList();
+
+                if (query.Count > 0)
                 {
                     var pro = query.First();
 

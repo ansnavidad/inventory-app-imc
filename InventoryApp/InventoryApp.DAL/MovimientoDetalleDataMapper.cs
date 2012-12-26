@@ -132,7 +132,6 @@ namespace InventoryApp.DAL
                     modifiedMovimientoD.OBSERVACIONES = MovimientoD.OBSERVACIONES;
                     modifiedMovimientoD.UNID_ITEM = MovimientoD.UNID_ITEM;
                     modifiedMovimientoD.UNID_MOVIMIENTO = MovimientoD.UNID_MOVIMIENTO;
-                    modifiedMovimientoD.IS_ACTIVE = MovimientoD.IS_ACTIVE;
                     //Sync
                     modifiedMovimientoD.IS_MODIFIED = true;
                     modifiedMovimientoD.LAST_MODIFIED_DATE = UNID.getNewUNID();

@@ -78,7 +78,7 @@ namespace InventoryApp.DAL
                          var aux = query.First();
 
                          if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                             udpateElement((object)poco);
+                             udpateElementSync((object)poco);
                      }
                      //Inserción
                      else
@@ -197,12 +197,42 @@ namespace InventoryApp.DAL
                     Sol.EMPRESA = ESol.EMPRESA;
                     Sol.UNID_DEPARTAMENTO = ESol.UNID_DEPARTAMENTO;
                     Sol.DEPARTAMENTO = ESol.DEPARTAMENTO;
-                    Sol.IS_ACTIVE = ESol.IS_ACTIVE;
                     //Sync
                     Sol.IS_MODIFIED = true;
                     Sol.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+
+                }
+            }
+        }
+
+        public void udpateElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    SOLICITANTE ESol = (SOLICITANTE)element;
+
+                    var Sol = entity.SOLICITANTEs.First(p => p.UNID_SOLICITANTE == ESol.UNID_SOLICITANTE);
+
+                    Sol.SOLICITANTE_NAME = ESol.SOLICITANTE_NAME;
+                    Sol.EMAIL = ESol.EMAIL;
+                    Sol.VALIDADOR = ESol.VALIDADOR;
+                    Sol.UNID_EMPRESA = ESol.UNID_EMPRESA;
+                    Sol.EMPRESA = ESol.EMPRESA;
+                    Sol.UNID_DEPARTAMENTO = ESol.UNID_DEPARTAMENTO;
+                    Sol.DEPARTAMENTO = ESol.DEPARTAMENTO;
+                    Sol.IS_ACTIVE = ESol.IS_ACTIVE;
+                    //Sync
+                    Sol.IS_MODIFIED = true;
+                    Sol.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
                     entity.SaveChanges();

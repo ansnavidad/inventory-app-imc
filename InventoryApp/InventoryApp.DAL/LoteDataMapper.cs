@@ -109,7 +109,6 @@ namespace InventoryApp.DAL
                     var modifiedLote = entity.LOTEs.First(p => p.UNID_LOTE == lote.UNID_LOTE);
                     modifiedLote.IS_ACTIVE = lote.IS_ACTIVE;                    
                     modifiedLote.UNID_POM = lote.UNID_POM;
-                    modifiedLote.IS_ACTIVE = lote.IS_ACTIVE;
                     //Sync
                     modifiedLote.IS_MODIFIED = true;
                     modifiedLote.LAST_MODIFIED_DATE = UNID.getNewUNID();

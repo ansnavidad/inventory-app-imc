@@ -47,7 +47,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -73,6 +73,34 @@ namespace InventoryApp.DAL
         }
 
         public void udpateElement(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    FACTURA_VENTA factura = (FACTURA_VENTA)element;
+                    var modifiedFactura = entity.FACTURA_VENTA.First(p => p.UNID_FACTURA_VENTA == factura.UNID_FACTURA_VENTA);
+                    modifiedFactura.FOLIO = factura.FOLIO;
+                    modifiedFactura.IMPORTE_FACTURA = factura.IMPORTE_FACTURA;
+                    modifiedFactura.IVA_PESOS = factura.IVA_PESOS;
+                    modifiedFactura.POR_IVA = factura.POR_IVA;
+                    modifiedFactura.TIPO_CAMBIO = factura.TIPO_CAMBIO;
+                    modifiedFactura.TOTAL_DESC_FACTURA = factura.TOTAL_DESC_FACTURA;
+                    modifiedFactura.TOTAL_FACTURA = factura.TOTAL_FACTURA;
+                    modifiedFactura.UNID_MONEDA = factura.UNID_MONEDA;
+                    //Sync
+                    modifiedFactura.IS_MODIFIED = true;
+                    modifiedFactura.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void udpateElementSync(object element)
         {
             if (element != null)
             {

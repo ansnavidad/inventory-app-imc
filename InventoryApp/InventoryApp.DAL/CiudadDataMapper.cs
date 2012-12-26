@@ -76,7 +76,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -134,6 +134,28 @@ namespace InventoryApp.DAL
         }
 
         public void udpateElement(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    CIUDAD ciudad = (CIUDAD)element;
+                    var modifiedCiudad = entity.CIUDADs.First(p => p.UNID_CIUDAD == ciudad.UNID_CIUDAD);
+                    modifiedCiudad.ISO = ciudad.ISO;
+                    modifiedCiudad.CIUDAD1 = ciudad.CIUDAD1;
+                    //Sync
+                    modifiedCiudad.IS_MODIFIED = true;
+                    modifiedCiudad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void udpateElementSync(object element)
         {
             if (element != null)
             {

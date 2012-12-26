@@ -79,7 +79,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -111,7 +111,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElementRelation((object)poco);
+                            udpateElementRelationSync((object)poco);
                     }
                     //Inserción
                     else
@@ -191,7 +191,6 @@ namespace InventoryApp.DAL
                     modifiedAlmacen.MAIL = almacen.MAIL;
                     modifiedAlmacen.DIRECCION = almacen.DIRECCION;
                     modifiedAlmacen.MAIL_DEFAULT = almacen.MAIL_DEFAULT;
-                    modifiedAlmacen.IS_ACTIVE = almacen.IS_ACTIVE;
                     //Sync
                     modifiedAlmacen.IS_MODIFIED = true;
                     modifiedAlmacen.LAST_MODIFIED_DATE = UNID.getNewUNID();
@@ -204,7 +203,53 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void udpateElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ALMACEN almacen = (ALMACEN)element;
+                    var modifiedAlmacen = entity.ALMACENs.First(p => p.UNID_ALMACEN == almacen.UNID_ALMACEN);
+                    modifiedAlmacen.ALMACEN_NAME = almacen.ALMACEN_NAME;
+                    modifiedAlmacen.CONTACTO = almacen.CONTACTO;
+                    modifiedAlmacen.MAIL = almacen.MAIL;
+                    modifiedAlmacen.DIRECCION = almacen.DIRECCION;
+                    modifiedAlmacen.MAIL_DEFAULT = almacen.MAIL_DEFAULT;
+                    modifiedAlmacen.IS_ACTIVE = almacen.IS_ACTIVE;
+                    //Sync
+                    modifiedAlmacen.IS_MODIFIED = true;
+                    modifiedAlmacen.LAST_MODIFIED_DATE = UNID.getNewUNID();
+
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void udpateElementRelation(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ALMACEN_TECNICO relation = (ALMACEN_TECNICO)element;
+                    var modifiedRelation = entity.ALMACEN_TECNICO.First(p => p.UNID_ALMACEN == relation.UNID_ALMACEN && p.UNID_TECNICO == relation.UNID_TECNICO);                    
+                    //Sync
+                    modifiedRelation.IS_MODIFIED = true;
+                    modifiedRelation.LAST_MODIFIED_DATE = UNID.getNewUNID();
+
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void udpateElementRelationSync(object element)
         {
             if (element != null)
             {

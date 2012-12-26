@@ -76,7 +76,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -132,7 +132,7 @@ namespace InventoryApp.DAL
             return res;
         }
 
-        public void udpateElement(object element)
+        public void udpateElementSync(object element)
         {
             if (element != null)
             {
@@ -143,6 +143,28 @@ namespace InventoryApp.DAL
                     modifiedPais.PAIS = pais.PAIS;
                     modifiedPais.ISO = pais.ISO;
                     modifiedPais.IS_ACTIVE = pais.IS_ACTIVE;
+                    //Sync
+                    modifiedPais.IS_MODIFIED = true;
+                    modifiedPais.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void udpateElement(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    PAI pais = (PAI)element;
+                    var modifiedPais = entity.PAIS.First(p => p.UNID_PAIS == pais.UNID_PAIS);
+                    modifiedPais.PAIS = pais.PAIS;
+                    modifiedPais.ISO = pais.ISO;
                     //Sync
                     modifiedPais.IS_MODIFIED = true;
                     modifiedPais.LAST_MODIFIED_DATE = UNID.getNewUNID();

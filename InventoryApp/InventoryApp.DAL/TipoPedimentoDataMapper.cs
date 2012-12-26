@@ -78,7 +78,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -147,12 +147,36 @@ namespace InventoryApp.DAL
                     modifiedTipoPedimento.REGIMEN = tipoPedimento.REGIMEN;
                     modifiedTipoPedimento.NOTA = tipoPedimento.NOTA;
                     modifiedTipoPedimento.CLAVE = tipoPedimento.CLAVE;
-                    modifiedTipoPedimento.IS_ACTIVE = tipoPedimento.IS_ACTIVE;
                     //Sync
                     modifiedTipoPedimento.IS_MODIFIED = true;
                     modifiedTipoPedimento.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void udpateElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TIPO_PEDIMENTO tipoPedimento = (TIPO_PEDIMENTO)element;
+                    var modifiedTipoPedimento = entity.TIPO_PEDIMENTO.First(p => p.UNID_TIPO_PEDIMENTO == tipoPedimento.UNID_TIPO_PEDIMENTO);
+                    modifiedTipoPedimento.TIPO_PEDIMENTO_NAME = tipoPedimento.TIPO_PEDIMENTO_NAME;
+                    modifiedTipoPedimento.REGIMEN = tipoPedimento.REGIMEN;
+                    modifiedTipoPedimento.NOTA = tipoPedimento.NOTA;
+                    modifiedTipoPedimento.CLAVE = tipoPedimento.CLAVE;
+                    modifiedTipoPedimento.IS_ACTIVE = tipoPedimento.IS_ACTIVE;
+                    //Sync
+                    modifiedTipoPedimento.IS_MODIFIED = true;
+                    modifiedTipoPedimento.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
                     entity.SaveChanges();

@@ -76,7 +76,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -138,6 +138,27 @@ namespace InventoryApp.DAL
                     MARCA marca = (MARCA)element;
                     var modifiedMarca = entity.MARCAs.First(p => p.UNID_MARCA == marca.UNID_MARCA);
                     modifiedMarca.MARCA_NAME = marca.MARCA_NAME;
+                    //Sync
+                    modifiedMarca.IS_MODIFIED = true;
+                    modifiedMarca.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void udpateElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MARCA marca = (MARCA)element;
+                    var modifiedMarca = entity.MARCAs.First(p => p.UNID_MARCA == marca.UNID_MARCA);
+                    modifiedMarca.MARCA_NAME = marca.MARCA_NAME;
                     modifiedMarca.IS_ACTIVE = marca.IS_ACTIVE;
                     //Sync
                     modifiedMarca.IS_MODIFIED = true;
@@ -149,7 +170,6 @@ namespace InventoryApp.DAL
                     entity.SaveChanges();
                 }
             }
-
         }
 
         public void insertElement(object element)

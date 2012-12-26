@@ -716,7 +716,7 @@ namespace InventoryApp.ViewModel.Sync
                     syn.ResetDummy();
                 }
 
-                
+                this.Message = "Fin de la sincronización ...";
                 //Esta instrucción cierra la ventana
                 this.JobDone = true;
                 UploadProcessViewModel.IsRunning = false;

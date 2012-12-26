@@ -30,7 +30,7 @@ namespace InventoryApp.DAL
 
         }
 
-        public string GetJsonArticulo(long Last_Modified_Date)
+        public string GetJsonArticulo(long? Last_Modified_Date)
         {
             string res = null;
             List<ARTICULO> listArticulos = new List<ARTICULO>();

@@ -27,679 +27,834 @@ namespace InventoryApp.Service.Services
             return mensaje;
         }
 
-        public string downloadCategoria(long lastModifiedDate)
+        public string downloadCategoria(long? lastModifiedDate)
         {
             string respuesta = null;
-            CategoriaDataMapper dataMapper = new CategoriaDataMapper();
-            
-            respuesta = dataMapper.GetJsonCategoria(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                CategoriaDataMapper dataMapper = new CategoriaDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonCategoria(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta;
+        }
+
+        public string downloadAlmacen(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                AlmacenDataMapper dataMapper = new AlmacenDataMapper();
+
+                respuesta = dataMapper.GetJsonAlmacen(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta;
+        }
+
+        public string downloadMenu(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                AppMenuDataMapper dataMapper = new AppMenuDataMapper();
+
+                respuesta = dataMapper.GetJsonMenu(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta;
+        }
+
+        public string downloadRol(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                AppRolDataMapper dataMapper = new AppRolDataMapper();
+
+                respuesta = dataMapper.GetJsonRol(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta;
+        }
+
+        public string downloadRolmenu(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                AppRolMenuDataMapper dataMapper = new AppRolMenuDataMapper();
+
+                respuesta = dataMapper.GetJsonRolMenu(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta;
+        }
+
+        public string downloadUsuario(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                AppUsuario dataMapper = new AppUsuario();
+
+                respuesta = dataMapper.GetJsonUsuario(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta;
+        }
+
+        public string downloadUsuarioRol(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                AppUsuarioRol dataMapper = new AppUsuarioRol();
+
+                respuesta = dataMapper.GetJsonUsuarioRol(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta;
+        }
+
+        public string downloadArticulo(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                ArticuloDataMapper dataMapper = new ArticuloDataMapper();
+
+                respuesta = dataMapper.GetJsonArticulo(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null; 
+            }
 
             return respuesta;
         }
 
-        public string downloadAlmacen(long lastModifiedDate)
+        public string downloadCiudad(long? lastModifiedDate)
         {
             string respuesta = null;
-            AlmacenDataMapper dataMapper = new AlmacenDataMapper();
-            
-            respuesta = dataMapper.GetJsonAlmacen(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                CiudadDataMapper dataMapper = new CiudadDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonCiudad(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadMenu(long lastModifiedDate)
+        public string downloadCliente(long? lastModifiedDate)
         {
             string respuesta = null;
-            AppMenuDataMapper dataMapper = new AppMenuDataMapper();
-            
-            respuesta = dataMapper.GetJsonMenu(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                ClienteDataMapper dataMapper = new ClienteDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonCliente(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadRol(long lastModifiedDate)
+        public string downloadCotizacion(long? lastModifiedDate)
         {
             string respuesta = null;
-            AppRolDataMapper dataMapper = new AppRolDataMapper();
-            
-            respuesta = dataMapper.GetJsonRol(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                CotizacionDataMapper dataMapper = new CotizacionDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonCotizacion(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadRolmenu(long lastModifiedDate)
+        public string downloadDepartamento(long? lastModifiedDate)
         {
             string respuesta = null;
-            AppRolMenuDataMapper dataMapper = new AppRolMenuDataMapper();
-            
-            respuesta = dataMapper.GetJsonRolMenu(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                DepartamentoDataMapper dataMapper = new DepartamentoDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonDepartamento(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadUsuario(long lastModifiedDate)
+        public string downloadEmpresa(long? lastModifiedDate)
         {
             string respuesta = null;
-            AppUsuario dataMapper = new AppUsuario();
-            
-            respuesta = dataMapper.GetJsonUsuario(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                EmpresaDataMapper dataMapper = new EmpresaDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonEmpresa(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadUsuarioRol(long lastModifiedDate)
+        public string downloadEquipo(long? lastModifiedDate)
         {
             string respuesta = null;
-            AppUsuarioRol dataMapper = new AppUsuarioRol();
-            
-            respuesta = dataMapper.GetJsonUsuarioRol(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                EquipoDataMapper dataMapper = new EquipoDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonEquipo(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadArticulo(long lastModifiedDate)
+        public string downloadFactura(long? lastModifiedDate)
         {
             string respuesta = null;
-            ArticuloDataMapper dataMapper = new ArticuloDataMapper();
+            if (lastModifiedDate != null)
+            {
+                FacturaCompraDataMapper dataMapper = new FacturaCompraDataMapper();
 
-            respuesta = dataMapper.GetJsonArticulo(lastModifiedDate);
+                respuesta = dataMapper.GetJsonFactura(lastModifiedDate);
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadCiudad(long lastModifiedDate)
+        public string downloadFacturaDetalle(long? lastModifiedDate)
         {
             string respuesta = null;
-            CiudadDataMapper dataMapper = new CiudadDataMapper();
-            
-            respuesta = dataMapper.GetJsonCiudad(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                FacturaCompraDetalleDataMapper dataMapper = new FacturaCompraDetalleDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonFacturaDetalle(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadCliente(long lastModifiedDate)
+        public string downloadFacturaVenta(long? lastModifiedDate)
         {
             string respuesta = null;
-            ClienteDataMapper dataMapper = new ClienteDataMapper();
-            
-            respuesta = dataMapper.GetJsonCliente(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                FacturaVentaDataMapper dataMapper = new FacturaVentaDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonFacturaVenta(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadCotizacion(long lastModifiedDate)
+        public string downloadItem(long? lastModifiedDate)
         {
             string respuesta = null;
-            CotizacionDataMapper dataMapper = new CotizacionDataMapper();
-            
-            respuesta = dataMapper.GetJsonCotizacion(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                ItemDataMapper dataMapper = new ItemDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonItem(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadDepartamento(long lastModifiedDate)
+        public string downloadItemStatus(long? lastModifiedDate)
         {
             string respuesta = null;
-            DepartamentoDataMapper dataMapper = new DepartamentoDataMapper();
-            
-            respuesta = dataMapper.GetJsonDepartamento(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                ItemStatusDataMapper dataMapper = new ItemStatusDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonItemStatus(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadEmpresa(long lastModifiedDate)
+        public string downloadLote(long? lastModifiedDate)
         {
             string respuesta = null;
-            EmpresaDataMapper dataMapper = new EmpresaDataMapper();
-            
-            respuesta = dataMapper.GetJsonEmpresa(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                LoteDataMapper dataMapper = new LoteDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonLote(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadEquipo(long lastModifiedDate)
+        public string downloadMarca(long? lastModifiedDate)
         {
             string respuesta = null;
-            EquipoDataMapper dataMapper = new EquipoDataMapper();
-            
-            respuesta = dataMapper.GetJsonEquipo(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                MarcaDataMapper dataMapper = new MarcaDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonMarca(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadFactura(long lastModifiedDate)
+        public string downloadMedioEnvio(long? lastModifiedDate)
         {
             string respuesta = null;
-            FacturaCompraDataMapper dataMapper = new FacturaCompraDataMapper();
-            
-            respuesta = dataMapper.GetJsonFactura(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                MedioEnvioDataMapper dataMapper = new MedioEnvioDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonMedioEnvio(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadFacturaDetalle(long lastModifiedDate)
+        public string downloadModelo(long? lastModifiedDate)
         {
             string respuesta = null;
-            FacturaCompraDetalleDataMapper dataMapper = new FacturaCompraDetalleDataMapper();
-            
-            respuesta = dataMapper.GetJsonFacturaDetalle(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                ModeloDataMapper dataMapper = new ModeloDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonModelo(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadFacturaVenta(long lastModifiedDate)
+        public string downloadMoneda(long? lastModifiedDate)
         {
             string respuesta = null;
-            FacturaVentaDataMapper dataMapper = new FacturaVentaDataMapper();
-            
-            respuesta = dataMapper.GetJsonFacturaVenta(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                MonedaDataMapper dataMapper = new MonedaDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonMoneda(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadItem(long lastModifiedDate)
+        public string downloadMovimiento(long? lastModifiedDate)
         {
             string respuesta = null;
-            ItemDataMapper dataMapper = new ItemDataMapper();
-            
-            respuesta = dataMapper.GetJsonItem(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                MovimientoDataMapper dataMapper = new MovimientoDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonMovimiento(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadItemStatus(long lastModifiedDate)
+        public string downloadMovimientoDetalle(long? lastModifiedDate)
         {
             string respuesta = null;
-            ItemStatusDataMapper dataMapper = new ItemStatusDataMapper();
-            
-            respuesta = dataMapper.GetJsonItemStatus(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                MovimientoDetalleDataMapper dataMapper = new MovimientoDetalleDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonMovimientoDetalle(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadLote(long lastModifiedDate)
+        public string downloadPais(long? lastModifiedDate)
         {
             string respuesta = null;
-            LoteDataMapper dataMapper = new LoteDataMapper();
-            
-            respuesta = dataMapper.GetJsonLote(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                PaisDataMapper dataMapper = new PaisDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonPais(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadMarca(long lastModifiedDate)
+        public string downloadPedimento(long? lastModifiedDate)
         {
             string respuesta = null;
-            MarcaDataMapper dataMapper = new MarcaDataMapper();
-            
-            respuesta = dataMapper.GetJsonMarca(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                PedimentoDataMapper dataMapper = new PedimentoDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonPedimento(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadMedioEnvio(long lastModifiedDate)
+        public string downloadPomArticulo(long? lastModifiedDate)
         {
             string respuesta = null;
-            MedioEnvioDataMapper dataMapper = new MedioEnvioDataMapper();
-            
-            respuesta = dataMapper.GetJsonMedioEnvio(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                PomArticuloDataMapper dataMapper = new PomArticuloDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonPomArticulo(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadModelo(long lastModifiedDate)
+        public string downloadPom(long? lastModifiedDate)
         {
             string respuesta = null;
-            ModeloDataMapper dataMapper = new ModeloDataMapper();
-            
-            respuesta = dataMapper.GetJsonModelo(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                PomDataMapper dataMapper = new PomDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonPom(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadMoneda(long lastModifiedDate)
+        public string downloadPropiedad(long? lastModifiedDate)
         {
             string respuesta = null;
-            MonedaDataMapper dataMapper = new MonedaDataMapper();
-            
-            respuesta = dataMapper.GetJsonMoneda(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                PropiedadDataMapper dataMapper = new PropiedadDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonPropiedad(lastModifiedDate);
 
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta; 
+        }
+
+        public string downloadProveedorCuenta(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                ProveedorCuentaDataMapper dataMapper = new ProveedorCuentaDataMapper();
+
+                respuesta = dataMapper.GetJsonProveedorCuenta(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta; 
+        }
+
+        public string downloadProveedor(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                ProveedorDataMapper dataMapper = new ProveedorDataMapper();
+
+                respuesta = dataMapper.GetJsonProveedor(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta; 
+        }
+
+        public string downloadProyecto(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                ProyectoDataMapper dataMapper = new ProyectoDataMapper();
+
+                respuesta = dataMapper.GetJsonProyecto(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta; 
+        }
+
+        public string downloadRecibo(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                ReciboDataMapper dataMapper = new ReciboDataMapper();
+
+                respuesta = dataMapper.GetJsonRecibo(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta; 
+        }
+
+        public string downloadReciboMovimiento(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                ReciboMovimientoDataMapper dataMapper = new ReciboMovimientoDataMapper();
+
+                respuesta = dataMapper.GetJsonReciboMovimiento(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta; 
+        }
+
+        public string downloadReciboStatus(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                ReciboStatusDataMapper dataMapper = new ReciboStatusDataMapper();
+
+                respuesta = dataMapper.GetJsonReciboStatus(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta; 
+        }
+
+        public string downloadServicio(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                ServicioDataMapper dataMapper = new ServicioDataMapper();
+
+                respuesta = dataMapper.GetJsonServicio(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
             return respuesta;
         }
 
-        public string downloadMovimiento(long lastModifiedDate)
+        public string downloadTecnico(long? lastModifiedDate)
         {
             string respuesta = null;
-            MovimientoDataMapper dataMapper = new MovimientoDataMapper();
-            
-            respuesta = dataMapper.GetJsonMovimiento(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                TecnicoDataMapper dataMapper = new TecnicoDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonTecnico(lastModifiedDate);
 
-            return respuesta;
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta; 
         }
 
-        public string downloadMovimientoDetalle(long lastModifiedDate)
+        public string downloadTerminoEnvio(long? lastModifiedDate)
         {
             string respuesta = null;
-            MovimientoDetalleDataMapper dataMapper = new MovimientoDetalleDataMapper();
-            
-            respuesta = dataMapper.GetJsonMovimientoDetalle(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                TerminoEnvioDataMapper dataMapper = new TerminoEnvioDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonTerminoEnvio(lastModifiedDate);
 
-            return respuesta;
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta; 
         }
 
-        public string downloadPais(long lastModifiedDate)
+        public string downloadTipoCotizacion(long? lastModifiedDate)
         {
             string respuesta = null;
-            PaisDataMapper dataMapper = new PaisDataMapper();
-            
-            respuesta = dataMapper.GetJsonPais(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                TipoCotizacionDataMapper dataMapper = new TipoCotizacionDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonTipoCotizacion(lastModifiedDate);
 
-            return respuesta;
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta; 
         }
 
-        public string downloadPedimento(long lastModifiedDate)
+        public string downloadTipoEmpresa(long? lastModifiedDate)
         {
             string respuesta = null;
-            PedimentoDataMapper dataMapper = new PedimentoDataMapper();
-            
-            respuesta = dataMapper.GetJsonPedimento(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                TipoEmpresaDataMapper dataMapper = new TipoEmpresaDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonTipoEmpresa(lastModifiedDate);
 
-            return respuesta;
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta; 
         }
 
-        public string downloadPomArticulo(long lastModifiedDate)
+        public string downloadTipoMovimiento(long? lastModifiedDate)
         {
             string respuesta = null;
-            PomArticuloDataMapper dataMapper = new PomArticuloDataMapper();
-            
-            respuesta = dataMapper.GetJsonPomArticulo(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                TipoMovimientoDataMapper dataMapper = new TipoMovimientoDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonTipoMovimiento(lastModifiedDate);
 
-            return respuesta;
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta; 
         }
 
-        public string downloadPom(long lastModifiedDate)
+        public string downloadTipoPedimento(long? lastModifiedDate)
         {
             string respuesta = null;
-            PomDataMapper dataMapper = new PomDataMapper();
-            
-            respuesta = dataMapper.GetJsonPom(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                TipoPedimentoDataMapper dataMapper = new TipoPedimentoDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonTipoPedimento(lastModifiedDate);
 
-            return respuesta;
-        }
-
-        public string downloadPropiedad(long lastModifiedDate)
-        {
-            string respuesta = null;
-            PropiedadDataMapper dataMapper = new PropiedadDataMapper();
-            
-            respuesta = dataMapper.GetJsonPropiedad(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null; 
+            }
 
             return respuesta; 
         }
 
-        public string downloadProveedorCuenta(long lastModifiedDate)
+        public string downloadTransporte(long? lastModifiedDate)
         {
             string respuesta = null;
-            ProveedorCuentaDataMapper dataMapper = new ProveedorCuentaDataMapper();
-            
-            respuesta = dataMapper.GetJsonProveedorCuenta(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                TransporteDataMapper dataMapper = new TransporteDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonTransporte(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+                
+            }
+            return respuesta; 
+        }
+
+        public string downloadUltimoMovimiento(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                UltimoMovimientoDataMapper dataMapper = new UltimoMovimientoDataMapper();
+
+                respuesta = dataMapper.GetJsonUltimoMovimiento(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null; 
+            }
 
             return respuesta; 
         }
 
-        public string downloadProveedor(long lastModifiedDate)
+        public string downloadUnidad(long? lastModifiedDate)
         {
             string respuesta = null;
-            ProveedorDataMapper dataMapper = new ProveedorDataMapper();
-            
-            respuesta = dataMapper.GetJsonProveedor(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                UnidadDataMapper dataMapper = new UnidadDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonUnidad(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null; 
+            }
 
             return respuesta; 
         }
 
-        public string downloadProyecto(long lastModifiedDate)
+        public string downloadBanco(long? lastModifiedDate)
         {
             string respuesta = null;
-            ProyectoDataMapper dataMapper = new ProyectoDataMapper();
-            
-            respuesta = dataMapper.GetJsonProyecto(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                BancoDataMapper dataMapper = new BancoDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonBanco(lastModifiedDate);
 
-            return respuesta; 
-        }
-
-        public string downloadRecibo(long lastModifiedDate)
-        {
-            string respuesta = null;
-            ReciboDataMapper dataMapper = new ReciboDataMapper();
-            
-            respuesta = dataMapper.GetJsonRecibo(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
-            return respuesta; 
-        }
-
-        public string downloadReciboMovimiento(long lastModifiedDate)
-        {
-            string respuesta = null;
-            ReciboMovimientoDataMapper dataMapper = new ReciboMovimientoDataMapper();
-            
-            respuesta = dataMapper.GetJsonReciboMovimiento(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
-            return respuesta; 
-        }
-
-        public string downloadReciboStatus(long lastModifiedDate)
-        {
-            string respuesta = null;
-            ReciboStatusDataMapper dataMapper = new ReciboStatusDataMapper();
-            
-            respuesta = dataMapper.GetJsonReciboStatus(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
-            return respuesta; 
-        }
-
-        public string downloadServicio(long lastModifiedDate)
-        {
-            string respuesta = null;
-            ServicioDataMapper dataMapper = new ServicioDataMapper();
-
-            respuesta = dataMapper.GetJsonServicio(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null; 
+            }
 
             return respuesta;
         }
 
-        public string downloadTecnico(long lastModifiedDate)
+        public string downloadProveedorCategoria(long? lastModifiedDate)
         {
             string respuesta = null;
-            TecnicoDataMapper dataMapper = new TecnicoDataMapper();
-            
-            respuesta = dataMapper.GetJsonTecnico(lastModifiedDate);
+            if (lastModifiedDate != null)
+            {
+                ProveedorCategoriaDataMapper dataMapper = new ProveedorCategoriaDataMapper();
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                respuesta = dataMapper.GetJsonProveedorCategoria(lastModifiedDate);
 
-            return respuesta; 
-        }
-
-        public string downloadTerminoEnvio(long lastModifiedDate)
-        {
-            string respuesta = null;
-            TerminoEnvioDataMapper dataMapper = new TerminoEnvioDataMapper();
-            
-            respuesta = dataMapper.GetJsonTerminoEnvio(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
-            return respuesta; 
-        }
-
-        public string downloadTipoCotizacion(long lastModifiedDate)
-        {
-            string respuesta = null;
-            TipoCotizacionDataMapper dataMapper = new TipoCotizacionDataMapper();
-            
-            respuesta = dataMapper.GetJsonTipoCotizacion(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
-            return respuesta; 
-        }
-
-        public string downloadTipoEmpresa(long lastModifiedDate)
-        {
-            string respuesta = null;
-            TipoEmpresaDataMapper dataMapper = new TipoEmpresaDataMapper();
-            
-            respuesta = dataMapper.GetJsonTipoEmpresa(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
-            return respuesta; 
-        }
-
-        public string downloadTipoMovimiento(long lastModifiedDate)
-        {
-            string respuesta = null;
-            TipoMovimientoDataMapper dataMapper = new TipoMovimientoDataMapper();
-            
-            respuesta = dataMapper.GetJsonTipoMovimiento(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
-            return respuesta; 
-        }
-
-        public string downloadTipoPedimento(long lastModifiedDate)
-        {
-            string respuesta = null;
-            TipoPedimentoDataMapper dataMapper = new TipoPedimentoDataMapper();
-            
-            respuesta = dataMapper.GetJsonTipoPedimento(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
-            return respuesta; 
-        }
-
-        public string downloadTransporte(long lastModifiedDate)
-        {
-            string respuesta = null;
-            TransporteDataMapper dataMapper = new TransporteDataMapper();
-            
-            respuesta = dataMapper.GetJsonTransporte(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
-            return respuesta; 
-        }
-
-        public string downloadUltimoMovimiento(long lastModifiedDate)
-        {
-            string respuesta = null;
-            UltimoMovimientoDataMapper dataMapper = new UltimoMovimientoDataMapper();
-            
-            respuesta = dataMapper.GetJsonUltimoMovimiento(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
-            return respuesta; 
-        }
-
-        public string downloadUnidad(long lastModifiedDate)
-        {
-            string respuesta = null;
-            UnidadDataMapper dataMapper = new UnidadDataMapper();
-            
-            respuesta = dataMapper.GetJsonUnidad(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
-            return respuesta; 
-        }
-
-        public string downloadBanco(long lastModifiedDate)
-        {
-            string respuesta = null;
-            BancoDataMapper dataMapper = new BancoDataMapper();
-
-            respuesta = dataMapper.GetJsonBanco(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null; 
+            }
 
             return respuesta;
         }
 
-        public string downloadProveedorCategoria(long lastModifiedDate)
+        public string downloadAlmacenTecnico(long? lastModifiedDate)
         {
             string respuesta = null;
-            ProveedorCategoriaDataMapper dataMapper = new ProveedorCategoriaDataMapper();
+            if (lastModifiedDate != null)
+            {
+                AlmacenTecnicoDataMapper dataMapper = new AlmacenTecnicoDataMapper();
 
-            respuesta = dataMapper.GetJsonProveedorCategoria(lastModifiedDate);
+                respuesta = dataMapper.GetJsonAlmacenTecnico(lastModifiedDate);
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null; 
+            }
 
             return respuesta;
         }
 
-        public string downloadAlmacenTecnico(long lastModifiedDate)
+        public string downloadSolicitante(long? lastModifiedDate)
         {
             string respuesta = null;
-            AlmacenTecnicoDataMapper dataMapper = new AlmacenTecnicoDataMapper();
+            if (lastModifiedDate != null)
+            {
+                SolicitanteDataMapper dataMapper = new SolicitanteDataMapper();
 
-            respuesta = dataMapper.GetJsonAlmacenTecnico(lastModifiedDate);
+                respuesta = dataMapper.GetJsonSolicitante(lastModifiedDate);
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null; 
+            }
 
             return respuesta;
         }
-
-        public string downloadSolicitante(long lastModifiedDate)
+        
+        public string downloadInfraestructura(long? lastModifiedDate)
         {
             string respuesta = null;
-            SolicitanteDataMapper dataMapper = new SolicitanteDataMapper();
+            if (lastModifiedDate != null)
+            {
+                InfraestructuraDataMapper dataMapper = new InfraestructuraDataMapper();
 
-            respuesta = dataMapper.GetJsonSolicitante(lastModifiedDate);
+                respuesta = dataMapper.GetJsonInfraestructura(lastModifiedDate);
 
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
-            return respuesta;
-        }
-
-
-        public string downloadInfraestructura(long lastModifiedDate)
-        {
-            string respuesta = null;
-            InfraestructuraDataMapper dataMapper = new InfraestructuraDataMapper();
-
-            respuesta = dataMapper.GetJsonInfraestructura(lastModifiedDate);
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null; 
+            }
 
             return respuesta;
         }

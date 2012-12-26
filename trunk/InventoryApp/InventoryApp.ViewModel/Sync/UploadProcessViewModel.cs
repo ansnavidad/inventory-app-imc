@@ -747,8 +747,6 @@ namespace InventoryApp.ViewModel.Sync
             long serverDate = CallDownloadServiceGetServerLast();
             long localDate = ServerLastDataMapper.GetServerLastFecha();
 
-
-
             if (serverDate != 0 && localDate < serverDate){
             //{
             //    #region todos los catalogos de APP

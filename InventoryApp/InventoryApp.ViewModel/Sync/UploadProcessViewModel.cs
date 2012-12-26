@@ -364,7 +364,7 @@ namespace InventoryApp.ViewModel.Sync
                 if (res)
                 {
                     this.Message = "Enviando PROVEEDOR_CUENTA ...";
-                    res = CallServiceProveedorCategoria();
+                    res = CallServiceProveedorCuenta();
                     if (res)
                     {
                         proveedorCuentaDataMapper.ResetProveedorCuenta();

@@ -95,8 +95,8 @@ namespace InventoryApp.ViewModel.Sync
         //Prueba Adolfo
         string routeDownload = @"http://10.50.0.131:8080/Services/Broadcast.svc";
         //DATOS DE LA MAQUINA
-        string nomPC = System.Environment.UserDomainName;
-        string user = System.Environment.UserName;
+        string nomPC = null;
+        string user = null;
         string dataUser = null;
 
         string basicAuthUser;
@@ -152,6 +152,9 @@ namespace InventoryApp.ViewModel.Sync
             if (sync.Dummy())
             {
                 //Poner lógica de consumo de servicios para enviar los datos
+                System.Security.Principal.WindowsIdentity usr = System.Security.Principal.WindowsIdentity.GetCurrent();
+                nomPC = usr.Name;
+                user = System.Environment.UserName;
                 dataUser = uploadLogDataMapper.GetJsonUpLoadLog(new UPLOAD_LOG() { PC_NAME = nomPC, UNID_USUARIO = 1, IP_DIR = user });
                 bool res = true;
                 //#region todos los catalogos de APP

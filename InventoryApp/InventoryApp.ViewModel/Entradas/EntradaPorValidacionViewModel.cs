@@ -18,9 +18,6 @@ namespace InventoryApp.ViewModel.Entradas
         private UltimoMovimientoModel _ultimoMovimientoModel;
         private CatalogSolicitanteModel _catalogSolicitanteModel;
         private CatalogAlmacenModel _catalogAlmacenModel;
-        private CatalogAlmacenModel _catalogAlmacenProcedenciaModel;
-        private CatalogProveedorModel _catalogProveedorProcedenciaModel;
-        private CatalogClienteModel _catalogClienteProcedenciaModel;
         private CatalogItemModel _itemModel;
         private InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasViewModel _movimentoGridEntradas;
         private RelayCommand _addItemCommand;
@@ -52,18 +49,12 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.TipoMovimiento = mov;
                 this._itemModel = new CatalogItemModel(new ItemDataMapper());
                 this._catalogAlmacenModel = new CatalogAlmacenModel(dataMapper2);
-                this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
-                this._catalogProveedorProcedenciaModel = new CatalogProveedorModel(dataMapper3);
-                this._catalogClienteProcedenciaModel = new CatalogClienteModel(dataMapper4);
 
                 //Asignaciones especiales para los combos 
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
-                this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
-                this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
-                this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
                 this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
             }
             catch (ArgumentException a)
@@ -100,18 +91,12 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.TipoMovimiento = mov;
                 this._itemModel = new CatalogItemModel(new ItemDataMapper());
                 this._catalogAlmacenModel = new CatalogAlmacenModel(dataMapper2);
-                this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
-                this._catalogProveedorProcedenciaModel = new CatalogProveedorModel(dataMapper3);
-                this._catalogClienteProcedenciaModel = new CatalogClienteModel(dataMapper4);
 
                 //Asignaciones especiales para los combos 
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
-                this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
-                this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
-                this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
                 this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
             }
             catch (ArgumentException a)
@@ -162,18 +147,6 @@ namespace InventoryApp.ViewModel.Entradas
             }
         }
 
-        public CatalogProveedorModel CatalogProveedorProcedenciaModel
-        {
-            get
-            {
-                return _catalogProveedorProcedenciaModel;
-
-            }
-            set
-            {
-                _catalogProveedorProcedenciaModel = value;
-            }
-        }
 
         public CatalogAlmacenModel CatalogAlmacenModel
         {
@@ -188,30 +161,6 @@ namespace InventoryApp.ViewModel.Entradas
             }
         }
 
-        public CatalogClienteModel CatalogClienteProcedenciaModel
-        {
-            get
-            {
-                return _catalogClienteProcedenciaModel;
-
-            }
-            set
-            {
-                _catalogClienteProcedenciaModel = value;
-            }
-        }
-        public CatalogAlmacenModel CatalogAlmacenProcedenciaModel
-        {
-            get
-            {
-                return _catalogAlmacenProcedenciaModel;
-
-            }
-            set
-            {
-                _catalogAlmacenProcedenciaModel = value;
-            }
-        }
         public MovimientoModel MovimientoModel
         {
             get
@@ -278,9 +227,6 @@ namespace InventoryApp.ViewModel.Entradas
         {
             this._catalogSolicitanteModel.loadSolicitante();
             this._catalogAlmacenModel.loadItems();
-            this._catalogAlmacenProcedenciaModel.loadItems();
-            this._catalogProveedorProcedenciaModel.loadItems();
-            this._catalogClienteProcedenciaModel.loadCliente();
         }
 
         public CatalogItemViewModel CreateCatalogItemViewModel()

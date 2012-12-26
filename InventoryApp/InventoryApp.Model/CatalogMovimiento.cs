@@ -93,6 +93,8 @@ namespace InventoryApp.Model
                 this._destino = m.PROVEEDOR2.PROVEEDOR_NAME;
             else if (m.CLIENTE2 != null)
                 this._destino = m.CLIENTE2.CLIENTE1;
+            else if (m.INFRAESTRUCTURA != null)
+                this._destino = m.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
             else
                 this._destino = "";
 
@@ -102,6 +104,8 @@ namespace InventoryApp.Model
                 this._procedencia = m.PROVEEDOR.PROVEEDOR_NAME;
             else if (m.CLIENTE != null)
                 this._procedencia = m.CLIENTE.CLIENTE1;
+            else if (m.INFRAESTRUCTURA != null)
+                this._destino = m.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
             else
                 this._procedencia = "";
 

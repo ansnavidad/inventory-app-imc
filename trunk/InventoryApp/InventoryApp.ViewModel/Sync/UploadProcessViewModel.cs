@@ -434,7 +434,7 @@ namespace InventoryApp.ViewModel.Sync
                 if (res)
                 {
                     this.Message = "Enviando TRANSPORTE ...";
-                    res = CallServiceTipoPedimento();
+                    res = CallServiceTransporte();
                     if (res)
                     {
                         transporteDataMapper.ResetTransporte();

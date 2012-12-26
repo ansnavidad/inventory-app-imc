@@ -75,7 +75,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -151,8 +151,7 @@ namespace InventoryApp.DAL
                         var tipo = query.First();
 
                         tipo.SIGNO_MOVIMIENTO = ETipo.SIGNO_MOVIMIENTO;
-                        tipo.TIPO_MOVIMIENTO_NAME = ETipo.TIPO_MOVIMIENTO_NAME;
-                        tipo.IS_ACTIVE = ETipo.IS_ACTIVE;
+                        tipo.TIPO_MOVIMIENTO_NAME = ETipo.TIPO_MOVIMIENTO_NAME;                        
                         //Sync
                         tipo.IS_MODIFIED = true;
                         tipo.LAST_MODIFIED_DATE = UNID.getNewUNID();
@@ -162,10 +161,39 @@ namespace InventoryApp.DAL
                         //
                         entity.SaveChanges();
                     }
-
                 }
             }
+        }
 
+        public void udpateElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TIPO_MOVIMIENTO ETipo = (TIPO_MOVIMIENTO)element;
+
+                    var query = (from cust in entity.TIPO_MOVIMIENTO
+                                 where cust.UNID_TIPO_MOVIMIENTO == ETipo.UNID_TIPO_MOVIMIENTO
+                                 select cust).ToList();
+                    if (query.Count > 0)
+                    {
+                        var tipo = query.First();
+
+                        tipo.SIGNO_MOVIMIENTO = ETipo.SIGNO_MOVIMIENTO;
+                        tipo.TIPO_MOVIMIENTO_NAME = ETipo.TIPO_MOVIMIENTO_NAME;
+                        tipo.IS_ACTIVE = ETipo.IS_ACTIVE;
+                        //Sync
+                        tipo.IS_MODIFIED = true;
+                        tipo.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.SaveChanges();
+                    }
+                }
+            }
         }
 
         public void insertElement(object element)

@@ -76,7 +76,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -102,6 +102,30 @@ namespace InventoryApp.DAL
         }
 
         public void udpateElement(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    RECIBO_MOVIMIENTO reciboM = (RECIBO_MOVIMIENTO)element;
+                    var modifiedReciboM = entity.RECIBO_MOVIMIENTO.First(p => p.UNID_RECIBO_MOVIMIENTO == reciboM.UNID_RECIBO_MOVIMIENTO);
+                    modifiedReciboM.UNID_RECIBO = reciboM.UNID_RECIBO;
+                    modifiedReciboM.UNID_MOVIMIENTO = reciboM.UNID_MOVIMIENTO;
+                    modifiedReciboM.UNID_FACTURA = reciboM.UNID_FACTURA;
+                    //Sync
+                    modifiedReciboM.IS_MODIFIED = true;
+                    modifiedReciboM.IS_ACTIVE = true;
+                    modifiedReciboM.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void udpateElementSync(object element)
         {
             if (element != null)
             {

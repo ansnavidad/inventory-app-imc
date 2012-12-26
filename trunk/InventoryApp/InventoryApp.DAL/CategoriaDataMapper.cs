@@ -70,7 +70,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -168,6 +168,35 @@ namespace InventoryApp.DAL
 
                     var query = (from cust in entity.CATEGORIAs
                                  where cust.UNID_CATEGORIA==ETipo.UNID_CATEGORIA
+                                 select cust).ToList();
+                    if (query.Count > 0)
+                    {
+                        var tipo = query.First();
+
+                        tipo.CATEGORIA_NAME = ETipo.CATEGORIA_NAME;
+                        //Sync
+                        tipo.IS_MODIFIED = true;
+                        tipo.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public void udpateElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    CATEGORIA ETipo = (CATEGORIA)element;
+
+                    var query = (from cust in entity.CATEGORIAs
+                                 where cust.UNID_CATEGORIA == ETipo.UNID_CATEGORIA
                                  select cust).ToList();
                     if (query.Count > 0)
                     {

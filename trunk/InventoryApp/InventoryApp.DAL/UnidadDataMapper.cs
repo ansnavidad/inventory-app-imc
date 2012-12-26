@@ -74,7 +74,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -133,12 +133,33 @@ namespace InventoryApp.DAL
                     UNIDAD unidad = (UNIDAD)element;
                     var modifiedUnidad = entity.UNIDADs.First(p => p.UNID_UNIDAD == unidad.UNID_UNIDAD);
                     modifiedUnidad.UNIDAD1 = unidad.UNIDAD1;
-                    modifiedUnidad.IS_ACTIVE = unidad.IS_ACTIVE;
                     //Sync
                     modifiedUnidad.IS_MODIFIED = true;
                     modifiedUnidad.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void udpateElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    UNIDAD unidad = (UNIDAD)element;
+                    var modifiedUnidad = entity.UNIDADs.First(p => p.UNID_UNIDAD == unidad.UNID_UNIDAD);
+                    modifiedUnidad.UNIDAD1 = unidad.UNIDAD1;
+                    modifiedUnidad.IS_ACTIVE = unidad.IS_ACTIVE;
+                    //Sync
+                    modifiedUnidad.IS_MODIFIED = true;
+                    modifiedUnidad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
                     entity.SaveChanges();

@@ -75,7 +75,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -134,12 +134,33 @@ namespace InventoryApp.DAL
                     var modifiedMenu = entity.MENUs.First(p => p.UNID_MENU == menu.UNID_MENU);
                     modifiedMenu.IS_LEAF = menu.IS_LEAF;
                     modifiedMenu.MENU_NAME = menu.MENU_NAME;
-                    modifiedMenu.IS_ACTIVE = menu.IS_ACTIVE;
                     //Sync
                     modifiedMenu.IS_MODIFIED = true;
                     modifiedMenu.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();                    
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void udpateElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MENU menu = (MENU)element;
+                    var modifiedMenu = entity.MENUs.First(p => p.UNID_MENU == menu.UNID_MENU);
+                    modifiedMenu.IS_LEAF = menu.IS_LEAF;
+                    modifiedMenu.MENU_NAME = menu.MENU_NAME;
+                    modifiedMenu.IS_ACTIVE = menu.IS_ACTIVE;
+                    //Sync
+                    modifiedMenu.IS_MODIFIED = true;
+                    modifiedMenu.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     //
                     entity.SaveChanges();
                 }

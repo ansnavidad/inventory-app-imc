@@ -77,7 +77,7 @@ namespace InventoryApp.DAL
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElementSync((object)poco);
                     }
                     //Inserción
                     else
@@ -146,12 +146,37 @@ namespace InventoryApp.DAL
                     modifiedTerminoEnvio.GENERA_LOTES = terminoEnvio.GENERA_LOTES;
                     modifiedTerminoEnvio.SIGNIFICADO = terminoEnvio.SIGNIFICADO;
                     modifiedTerminoEnvio.TERMINO = terminoEnvio.TERMINO;
-                    modifiedTerminoEnvio.IS_ACTIVE = terminoEnvio.IS_ACTIVE;
                     //Sync
                     modifiedTerminoEnvio.IS_MODIFIED = true;
                     modifiedTerminoEnvio.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void udpateElementSync(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TERMINO_ENVIO terminoEnvio = (TERMINO_ENVIO)element;
+
+                    var modifiedTerminoEnvio = entity.TERMINO_ENVIO.First(p => p.UNID_TERMINO_ENVIO == terminoEnvio.UNID_TERMINO_ENVIO);
+                    modifiedTerminoEnvio.CLAVE = terminoEnvio.CLAVE;
+                    modifiedTerminoEnvio.GENERA_LOTES = terminoEnvio.GENERA_LOTES;
+                    modifiedTerminoEnvio.SIGNIFICADO = terminoEnvio.SIGNIFICADO;
+                    modifiedTerminoEnvio.TERMINO = terminoEnvio.TERMINO;
+                    modifiedTerminoEnvio.IS_ACTIVE = terminoEnvio.IS_ACTIVE;
+                    //Sync
+                    modifiedTerminoEnvio.IS_MODIFIED = true;
+                    modifiedTerminoEnvio.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
                     entity.SaveChanges();

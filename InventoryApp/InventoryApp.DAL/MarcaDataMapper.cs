@@ -138,6 +138,7 @@ namespace InventoryApp.DAL
                     MARCA marca = (MARCA)element;
                     var modifiedMarca = entity.MARCAs.First(p => p.UNID_MARCA == marca.UNID_MARCA);
                     modifiedMarca.MARCA_NAME = marca.MARCA_NAME;
+                    modifiedMarca.IS_ACTIVE = marca.IS_ACTIVE;
                     //Sync
                     modifiedMarca.IS_MODIFIED = true;
                     modifiedMarca.LAST_MODIFIED_DATE = UNID.getNewUNID();

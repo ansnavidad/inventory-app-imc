@@ -137,6 +137,7 @@ namespace InventoryApp.DAL
                     MODELO modelo = (MODELO)element;
                     var modifiedItemStatus = entity.MODELOes.First(p => p.UNID_MODELO == modelo.UNID_MODELO);
                     modifiedItemStatus.MODELO_NAME = modelo.MODELO_NAME;
+                    modifiedItemStatus.IS_ACTIVE = modelo.IS_ACTIVE;
                     //Sync
                     modifiedItemStatus.IS_MODIFIED = true;
                     modifiedItemStatus.LAST_MODIFIED_DATE = UNID.getNewUNID();

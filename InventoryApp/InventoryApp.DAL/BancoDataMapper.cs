@@ -133,6 +133,7 @@ namespace InventoryApp.DAL
                     BANCO banco = (BANCO)element;
                     var modifiedBanco = entity.BANCOes.First(p => p.UNID_BANCO == banco.UNID_BANCO);
                     modifiedBanco.BANCO_NAME = banco.BANCO_NAME;
+                    modifiedBanco.IS_ACTIVE = banco.IS_ACTIVE;
                     //Sync
                     modifiedBanco.IS_MODIFIED = true;
                     modifiedBanco.LAST_MODIFIED_DATE = UNID.getNewUNID();

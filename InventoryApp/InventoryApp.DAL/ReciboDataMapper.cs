@@ -232,6 +232,7 @@ namespace InventoryApp.DAL
                     {
                         r.UNID_SOLICITANTE = recibo.UNID_SOLICITANTE;
                         r.PO = recibo.PO;
+                        r.IS_ACTIVE = recibo.IS_ACTIVE;
                         //Sync
                         r.IS_MODIFIED = true;
                         r.IS_ACTIVE = true;

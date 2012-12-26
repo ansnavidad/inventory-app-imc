@@ -132,6 +132,7 @@ namespace InventoryApp.DAL
                     ROL rol = (ROL)element;
                     var modifiedRol = entity.ROLs.First(p => p.UNID_ROL == rol.UNID_ROL);
                     modifiedRol.ROL_NAME = rol.ROL_NAME;
+                    modifiedRol.IS_ACTIVE = rol.IS_ACTIVE;
                     //Sync
                     modifiedRol.IS_MODIFIED = true;
                     modifiedRol.LAST_MODIFIED_DATE = UNID.getNewUNID();

@@ -191,18 +191,13 @@ namespace InventoryApp.DAL
                     var Sol = entity.SOLICITANTEs.First(p => p.UNID_SOLICITANTE == ESol.UNID_SOLICITANTE);
                     
                     Sol.SOLICITANTE_NAME = ESol.SOLICITANTE_NAME;
-
                     Sol.EMAIL = ESol.EMAIL;
-
                     Sol.VALIDADOR = ESol.VALIDADOR;
-
                     Sol.UNID_EMPRESA = ESol.UNID_EMPRESA;
-
                     Sol.EMPRESA = ESol.EMPRESA;
-
                     Sol.UNID_DEPARTAMENTO = ESol.UNID_DEPARTAMENTO;
-
                     Sol.DEPARTAMENTO = ESol.DEPARTAMENTO;
+                    Sol.IS_ACTIVE = ESol.IS_ACTIVE;
                     //Sync
                     Sol.IS_MODIFIED = true;
                     Sol.LAST_MODIFIED_DATE = UNID.getNewUNID();

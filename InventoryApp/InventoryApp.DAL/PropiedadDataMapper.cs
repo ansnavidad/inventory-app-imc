@@ -133,6 +133,7 @@ namespace InventoryApp.DAL
                     PROPIEDAD propiedad = (PROPIEDAD)element;
                     var modifiedPropiedad = entity.PROPIEDADs.First(p => p.UNID_PROPIEDAD == propiedad.UNID_PROPIEDAD);
                     modifiedPropiedad.PROPIEDAD1 = propiedad.PROPIEDAD1;
+                    modifiedPropiedad.IS_ACTIVE = propiedad.IS_ACTIVE;
                     //Sync
                     modifiedPropiedad.IS_MODIFIED = true;
                     modifiedPropiedad.LAST_MODIFIED_DATE = UNID.getNewUNID();

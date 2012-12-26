@@ -142,6 +142,7 @@ namespace InventoryApp.DAL
                     DEPARTAMENTO departamento = (DEPARTAMENTO)element;
                     var modifiedDepartamento = entity.DEPARTAMENTOes.First(p => p.UNID_DEPARTAMENTO == departamento.UNID_DEPARTAMENTO);
                     modifiedDepartamento.DEPARTAMENTO_NAME = departamento.DEPARTAMENTO_NAME;
+                    modifiedDepartamento.IS_ACTIVE = departamento.IS_ACTIVE;
                     //Sync
                     modifiedDepartamento.IS_MODIFIED = true;
                     modifiedDepartamento.LAST_MODIFIED_DATE = UNID.getNewUNID();

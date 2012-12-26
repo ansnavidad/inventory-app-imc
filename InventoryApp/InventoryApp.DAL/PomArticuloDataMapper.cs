@@ -120,7 +120,8 @@ namespace InventoryApp.DAL
                     modifiedPomA.IS_ACTIVE = pomA.IS_ACTIVE;
                     modifiedPomA.DESCUENTO = pomA.DESCUENTO;
                     modifiedPomA.COSTO_UNITARIO = pomA.COSTO_UNITARIO;
-                    modifiedPomA.CANTIDAD = pomA.CANTIDAD;                    
+                    modifiedPomA.CANTIDAD = pomA.CANTIDAD;
+                    modifiedPomA.IS_ACTIVE = pomA.IS_ACTIVE;
                     //Sync
                     modifiedPomA.IS_MODIFIED = true;
                     modifiedPomA.LAST_MODIFIED_DATE = UNID.getNewUNID();

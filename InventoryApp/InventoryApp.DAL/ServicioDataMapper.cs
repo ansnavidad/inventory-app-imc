@@ -133,6 +133,7 @@ namespace InventoryApp.DAL
                     SERVICIO servicio = (SERVICIO)element;
                     var modifiedServicio = entity.SERVICIOs.First(p => p.UNID_SERVICIO == servicio.UNID_SERVICIO);
                     modifiedServicio.SERVICIO_NAME = servicio.SERVICIO_NAME;
+                    modifiedServicio.IS_ACTIVE = servicio.IS_ACTIVE;
                     //Sync
                     modifiedServicio.IS_MODIFIED = true;
                     modifiedServicio.LAST_MODIFIED_DATE = UNID.getNewUNID();

@@ -152,12 +152,10 @@ namespace InventoryApp.Model
                     var Emp = query.First();
 
                     Emp.EMPRESA_NAME = EEmp.EMPRESA_NAME;
-
                     Emp.DIRECCION = EEmp.DIRECCION;
-
                     Emp.RAZON_SOCIAL = EEmp.RAZON_SOCIAL;
-
                     Emp.RFC = EEmp.RFC;
+                    Emp.IS_ACTIVE = EEmp.IS_ACTIVE;
                     //Sync
                     Emp.IS_MODIFIED = true;
                     Emp.LAST_MODIFIED_DATE = UNID.getNewUNID();

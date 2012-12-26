@@ -161,6 +161,7 @@ namespace InventoryApp.DAL
                     CLIENTE cliente = (CLIENTE)element;
                     var modifiedCliente = entity.CLIENTEs.First(p => p.UNID_CLIENTE == cliente.UNID_CLIENTE);
                     modifiedCliente.CLIENTE1 = cliente.CLIENTE1;
+                    modifiedCliente.IS_ACTIVE = cliente.IS_ACTIVE;
                     //Sync
                     modifiedCliente.IS_MODIFIED = true;
                     modifiedCliente.LAST_MODIFIED_DATE = UNID.getNewUNID();

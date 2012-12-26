@@ -148,6 +148,7 @@ namespace InventoryApp.DAL
                     var pro = query.First();
 
                     pro.PROYECTO_NAME = EPro.PROYECTO_NAME;
+                    pro.IS_ACTIVE = EPro.IS_ACTIVE;
                     //Sync
                     pro.IS_MODIFIED = true;
                     pro.LAST_MODIFIED_DATE = UNID.getNewUNID();

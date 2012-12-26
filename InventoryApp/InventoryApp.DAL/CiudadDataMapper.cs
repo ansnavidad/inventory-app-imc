@@ -143,6 +143,7 @@ namespace InventoryApp.DAL
                     var modifiedCiudad = entity.CIUDADs.First(p => p.UNID_CIUDAD == ciudad.UNID_CIUDAD);                    
                     modifiedCiudad.ISO = ciudad.ISO;
                     modifiedCiudad.CIUDAD1 = ciudad.CIUDAD1;
+                    modifiedCiudad.IS_ACTIVE = ciudad.IS_ACTIVE;
                     //Sync
                     modifiedCiudad.IS_MODIFIED = true;
                     modifiedCiudad.LAST_MODIFIED_DATE = UNID.getNewUNID();

@@ -164,6 +164,7 @@ namespace InventoryApp.DAL
                     EQUIPO equipo = (EQUIPO)element;
                     var modifiedItemStatus = entity.EQUIPOes.First(p => p.UNID_EQUIPO == equipo.UNID_EQUIPO);
                     modifiedItemStatus.EQUIPO_NAME = equipo.EQUIPO_NAME;
+                    modifiedItemStatus.IS_ACTIVE = equipo.IS_ACTIVE;
                     //Sync
                     modifiedItemStatus.IS_MODIFIED = true;
                     modifiedItemStatus.LAST_MODIFIED_DATE = UNID.getNewUNID();

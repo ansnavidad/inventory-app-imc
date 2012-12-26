@@ -139,6 +139,7 @@ namespace InventoryApp.DAL
 
                     var modifiedMedioEnvio = entity.MEDIO_ENVIO.First(p => p.UNID_MEDIO_ENVIO == medioEnvio.UNID_MEDIO_ENVIO);
                     modifiedMedioEnvio.MEDIO_ENVIO_NAME = medioEnvio.MEDIO_ENVIO_NAME;
+                    modifiedMedioEnvio.IS_ACTIVE = medioEnvio.IS_ACTIVE;
                     //Sync
                     modifiedMedioEnvio.IS_MODIFIED = true;
                     modifiedMedioEnvio.LAST_MODIFIED_DATE = UNID.getNewUNID();

@@ -223,6 +223,7 @@ namespace InventoryApp.DAL
                     modifiedProveedor.TEL1 = proveedor.TEL1;
                     modifiedProveedor.TEL2 = proveedor.TEL2;
                     modifiedProveedor.PROVEEDOR_NAME = proveedor.PROVEEDOR_NAME;
+                    modifiedProveedor.IS_ACTIVE = proveedor.IS_ACTIVE;
                     //Sync
                     modifiedProveedor.IS_MODIFIED = true;
                     modifiedProveedor.LAST_MODIFIED_DATE = UNID.getNewUNID();
@@ -341,6 +342,7 @@ namespace InventoryApp.DAL
                 {
                     PROVEEDOR_CATEGORIA relation = (PROVEEDOR_CATEGORIA)element;
                     var modifiedRelation = entity.PROVEEDOR_CATEGORIA.First(p => p.UNID_PROVEEDOR == relation.UNID_PROVEEDOR && p.UNID_CATEGORIA == relation.UNID_CATEGORIA);
+                    modifiedRelation.IS_ACTIVE = relation.IS_ACTIVE;
                     //Sync
                     modifiedRelation.IS_MODIFIED = true;
                     modifiedRelation.LAST_MODIFIED_DATE = UNID.getNewUNID();

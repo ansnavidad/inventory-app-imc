@@ -138,9 +138,9 @@ namespace InventoryApp.DAL
                     INFRAESTRUCTURA infraestructura = (INFRAESTRUCTURA)element;
                     var modifiedItemStatus = entity.INFRAESTRUCTURAs.First(p => p.UNID_INFRAESTRUCTURA == infraestructura.UNID_INFRAESTRUCTURA);
                     modifiedItemStatus.INFRAESTRUCTURA_NAME = infraestructura.INFRAESTRUCTURA_NAME;
+                    modifiedItemStatus.IS_ACTIVE = infraestructura.IS_ACTIVE;
                     //Sync
-                    modifiedItemStatus.IS_MODIFIED = true;
-                    modifiedItemStatus.IS_ACTIVE = true;
+                    modifiedItemStatus.IS_MODIFIED = true;                    
                     modifiedItemStatus.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();

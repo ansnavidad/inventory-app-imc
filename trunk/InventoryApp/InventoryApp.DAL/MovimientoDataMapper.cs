@@ -137,7 +137,8 @@ namespace InventoryApp.DAL
                     trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
                     trans.TRANSPORTE = trans.TRANSPORTE;
                     trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                    trans.TECNICO = trans.TECNICO;  
+                    trans.TECNICO = trans.TECNICO;
+                    trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
                 }
 
                 return (object)res;
@@ -174,6 +175,7 @@ namespace InventoryApp.DAL
                         trans.TRANSPORTE = trans.TRANSPORTE;
                         trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
                         trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
                         final.Add(trans);
                     }
                 }
@@ -212,6 +214,7 @@ namespace InventoryApp.DAL
                         trans.TRANSPORTE = trans.TRANSPORTE;
                         trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
                         trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
                         final.Add(trans);
                     }
                 }
@@ -250,6 +253,7 @@ namespace InventoryApp.DAL
                         trans.TRANSPORTE = trans.TRANSPORTE;
                         trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
                         trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
                         final.Add(trans);
                     }
                 }

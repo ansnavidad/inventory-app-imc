@@ -25,6 +25,9 @@ namespace InventoryApp.View.Traspasos
             InitializeComponent();
             comboCliente.SelectedIndex = 0;
             comboBoxServicio.SelectedIndex = 0;
+
+            comboBoxAlmacenDestino.SelectedIndex = 0;
+            comboBoxAlmacenDestino.SelectedIndex = 1;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -33,43 +36,7 @@ namespace InventoryApp.View.Traspasos
             TraspasoStockViewModel entrada = this.DataContext as TraspasoStockViewModel;
             it.DataContext = entrada.CreateCatalogItemViewModel();
             it.ShowDialog();
-        }
-
-        private void radioButtonAlmacén_Checked(object sender, RoutedEventArgs e)
-        {
-            comboBoxAlmacenDestino.SelectedIndex = 0;
-
-            comboBoxAlmacenDestino.IsEnabled = true;
-            comboBoxProveedorDestino.IsEnabled = false;
-            comboBoxClienteDestino.IsEnabled = false;
-            comboBoxProveedorDestino.SelectedItem = null;
-            comboBoxClienteDestino.SelectedItem = null;
-        }
-
-        private void radioButtonCliente_Checked(object sender, RoutedEventArgs e)
-        {
-            comboBoxClienteDestino.SelectedIndex = 0;
-
-            comboBoxAlmacenDestino.IsEnabled = false;
-            comboBoxProveedorDestino.IsEnabled = false;
-            comboBoxClienteDestino.IsEnabled = true;
-            comboBoxAlmacenDestino.SelectedItem = null;
-            comboBoxProveedorDestino.SelectedItem = null;
-        }
-
-        private void radioButtonProveedor_Checked(object sender, RoutedEventArgs e)
-        {
-            if (comboBoxProveedorDestino != null)
-            {
-                comboBoxProveedorDestino.SelectedIndex = 0;
-
-                comboBoxAlmacenDestino.IsEnabled = false;
-                comboBoxProveedorDestino.IsEnabled = true;
-                comboBoxClienteDestino.IsEnabled = false;
-                comboBoxAlmacenDestino.SelectedItem = null;
-                comboBoxClienteDestino.SelectedItem = null;
-            }
-        }
+        }        
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {

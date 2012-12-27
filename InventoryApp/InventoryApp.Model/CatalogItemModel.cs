@@ -219,7 +219,7 @@ namespace InventoryApp.Model
                         if (um.ALMACEN != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "ALmacen: " + um.ALMACEN.ALMACEN_NAME;
+                            this.Mensaje2 += "Almacén: " + um.ALMACEN.ALMACEN_NAME;
                         }
                     }
 
@@ -308,7 +308,7 @@ namespace InventoryApp.Model
                         if (um.ALMACEN != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "ALmacen: " + um.ALMACEN.ALMACEN_NAME;
+                            this.Mensaje2 += "Almacén: " + um.ALMACEN.ALMACEN_NAME;
                         }
                     }
 
@@ -394,7 +394,7 @@ namespace InventoryApp.Model
                         if (um.ALMACEN != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "ALmacen: " + um.ALMACEN.ALMACEN_NAME;
+                            this.Mensaje2 += "Almacén: " + um.ALMACEN.ALMACEN_NAME;
                         }
                     }
 

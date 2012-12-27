@@ -85,27 +85,28 @@ namespace InventoryApp.Model
         {            
             this._totalItems = m.MOVIMIENTO_DETALLE.Count;
             
-            this._fecha = m.FECHA_MOVIMIENTO.Year + "/" + m.FECHA_MOVIMIENTO.Month + "/" + m.FECHA_MOVIMIENTO.Day;
+            //this._fecha = m.FECHA_MOVIMIENTO.Year + "/" + m.FECHA_MOVIMIENTO.Month + "/" + m.FECHA_MOVIMIENTO.Day;
+            this.Fecha = m.FECHA_MOVIMIENTO.ToString();
 
             if (m.ALMACEN != null)
-                this._destino = m.ALMACEN.ALMACEN_NAME;
+                this._destino = "Almacén: " + m.ALMACEN.ALMACEN_NAME;
             else if (m.PROVEEDOR2 != null)
-                this._destino = m.PROVEEDOR2.PROVEEDOR_NAME;
+                this._destino = "Proveedor: " + m.PROVEEDOR2.PROVEEDOR_NAME;
             else if (m.CLIENTE2 != null)
-                this._destino = m.CLIENTE2.CLIENTE1;
+                this._destino = "Cliente: " + m.CLIENTE2.CLIENTE1;
             else if (m.INFRAESTRUCTURA != null)
-                this._destino = m.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
+                this._destino = "Infraestructura: " + m.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
             else
                 this._destino = "";
 
             if (m.ALMACEN1 != null)
-                this._procedencia = m.ALMACEN1.ALMACEN_NAME;
+                this._procedencia = "Almacén: " + m.ALMACEN1.ALMACEN_NAME;
             else if (m.PROVEEDOR != null)
-                this._procedencia = m.PROVEEDOR.PROVEEDOR_NAME;
+                this._procedencia = "Proveedor: " + m.PROVEEDOR.PROVEEDOR_NAME;
             else if (m.CLIENTE != null)
-                this._procedencia = m.CLIENTE.CLIENTE1;
+                this._procedencia = "Cliente: " + m.CLIENTE.CLIENTE1;
             else if (m.INFRAESTRUCTURA != null)
-                this._destino = m.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
+                this._procedencia = "Infraestructura: " + m.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
             else
                 this._procedencia = "";
 

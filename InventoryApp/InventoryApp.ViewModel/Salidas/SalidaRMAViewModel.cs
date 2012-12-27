@@ -122,7 +122,7 @@ namespace InventoryApp.ViewModel.Salidas
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
                 TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
-                mov.UNID_TIPO_MOVIMIENTO = 1;
+                mov.UNID_TIPO_MOVIMIENTO = 9;
                 this._movimientoModel.TipoMovimiento = mov;
                 this._movimientoSalida = salida;
                 this._movimientoModel.PropertyChanged += OnPropertyChanged2;

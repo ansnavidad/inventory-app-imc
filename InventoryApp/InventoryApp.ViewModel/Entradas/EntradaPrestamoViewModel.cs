@@ -296,7 +296,7 @@ namespace InventoryApp.ViewModel.Entradas
             if (this.MovimientoModel.ProveedorProcedencia != null)
                 seleccion++;
 
-            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && !String.IsNullOrEmpty(this.MovimientoModel.Guia) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && seleccion == 1)
+            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && seleccion == 1)
                 _canInsertArticulo = true;
 
             return _canInsertArticulo;
@@ -349,7 +349,7 @@ namespace InventoryApp.ViewModel.Entradas
             if (this.MovimientoModel.ProveedorProcedencia != null)
                 seleccion++;
 
-            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && !String.IsNullOrEmpty(this.MovimientoModel.Guia) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && seleccion == 1)
+            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && seleccion == 1)
                 _canImprimir = true;
 
             return _canImprimir;

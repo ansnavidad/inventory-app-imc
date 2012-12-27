@@ -92,7 +92,7 @@ namespace InventoryApp.ViewModel.Traspasos
 
         public void AttempArticulo()
         {
-            this.CatalogItemModel.loadItems(_traspasoStockViewModel.MovimientoModel.AlmacenProcedencia);
+            this.CatalogItemModel.loadItems(_traspasoStockViewModel.MovimientoModel.AlmacenProcedencia, "Rafa estuvo aquí xD");
         }
 
         public bool CanAttempItems()

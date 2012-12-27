@@ -85,8 +85,8 @@ namespace InventoryApp.Model
         {            
             this._totalItems = m.MOVIMIENTO_DETALLE.Count;
             
-            //this._fecha = m.FECHA_MOVIMIENTO.Year + "/" + m.FECHA_MOVIMIENTO.Month + "/" + m.FECHA_MOVIMIENTO.Day;
-            this.Fecha = m.FECHA_MOVIMIENTO.ToString();
+            this._fecha = m.FECHA_MOVIMIENTO.Year + "/" + m.FECHA_MOVIMIENTO.Month + "/" + m.FECHA_MOVIMIENTO.Day;
+            //this.Fecha = m.FECHA_MOVIMIENTO.ToString();
 
             if (m.ALMACEN != null)
                 this._destino = "Almacén: " + m.ALMACEN.ALMACEN_NAME;

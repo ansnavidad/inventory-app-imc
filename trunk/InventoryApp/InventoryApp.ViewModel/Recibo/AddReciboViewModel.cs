@@ -83,12 +83,13 @@ namespace InventoryApp.ViewModel.Recibo
                     ,
                     UNID_ALMACEN_DESTINO = (mov.DestinoAlmacen != null) ? mov.DestinoAlmacen.UnidAlmacen : (long?)null
                     ,
-                    UNID_ALMACEN_PROCEDENCIA = (mov.OrigenAlmacen != null) ? mov.OrigenAlmacen.UnidAlmacen : (long?)null
-                    ,
-                    UNID_CLIENTE_PROCEDENCIA = (mov.OrigenCliente != null) ? mov.OrigenCliente.UnidCliente : (long?)null
-                    ,
-                    UNID_PROVEEDOR_PROCEDENCIA = (mov.OrigenProveedor != null) ? mov.OrigenProveedor.UnidProveedor : (long?)null
-                    ,
+                    //No Existe una procedencia en el recibo
+                    //UNID_ALMACEN_PROCEDENCIA = (mov.OrigenAlmacen != null) ? mov.OrigenAlmacen.UnidAlmacen : (long?)null
+                    //,
+                    //UNID_CLIENTE_PROCEDENCIA = (mov.OrigenCliente != null) ? mov.OrigenCliente.UnidCliente : (long?)null
+                    //,
+                    //UNID_PROVEEDOR_PROCEDENCIA = (mov.OrigenProveedor != null) ? mov.OrigenProveedor.UnidProveedor : (long?)null
+                    //,
                     TT = this.TroubleTicket
                     ,
                     UNID_TIPO_MOVIMIENTO = MovimientoRecibo

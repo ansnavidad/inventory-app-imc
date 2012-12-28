@@ -27,7 +27,7 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="272"/>
             <ColumnDefinition Width="36"/>
-            <ColumnDefinition Width="0*" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="81*" />
         </Grid.ColumnDefinitions>
         <Border Grid.ColumnSpan="6" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">

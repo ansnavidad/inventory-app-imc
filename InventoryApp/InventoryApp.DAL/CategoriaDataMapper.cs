@@ -112,6 +112,28 @@ namespace InventoryApp.DAL
             return res;
         }//
 
+        public CATEGORIA getElementByArticulo(ARTICULO articulo)
+        {
+            CATEGORIA res = new CATEGORIA();
+
+            try
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cat in entity.CATEGORIAs
+                                 where cat.UNID_CATEGORIA == articulo.UNID_CATEGORIA
+                                 select cat).First<CATEGORIA>();
+
+                    res = query;
+                }
+            }
+            catch (Exception)
+            {
+                ;
+            }
+            return res;
+        }//
+
         public object getElements()
         {
             object res = null;

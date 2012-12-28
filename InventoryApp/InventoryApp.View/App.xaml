@@ -62,6 +62,7 @@
              xmlns:catPropiedadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogPropiedad;assembly=InventoryApp.ViewModel"
              xmlns:propiedadViews="clr-namespace:InventoryApp.View.CatalogPropiedad"
              xmlns:EntradaViewModel="clr-namespace:InventoryApp.ViewModel.Entradas;assembly=InventoryApp.ViewModel"
+             xmlns:modifyItemViewModel="clr-namespace:InventoryApp.ViewModel.CatalogItem;assembly=InventoryApp.ViewModel"
              xmlns:EntradaView="clr-namespace:InventoryApp.View.Entradas"
              xmlns:SalidasViewModel="clr-namespace:InventoryApp.ViewModel.Salidas;assembly=InventoryApp.ViewModel"
              xmlns:SalidasView="clr-namespace:InventoryApp.View.Salidas"
@@ -96,6 +97,7 @@
         <reciboViewModel:AddMovimientoViewModel x:Key="addMovimientoViewModel" />
         
         <!--Movimientos-->        
+        <modifyItemViewModel:ModifyItemViewModel x:Key="ModifyItem" />
         <EntradaViewModel:EntradaPorValidacionViewModel x:Key="entradaPorValidacionViewModel" />
         <EntradaViewModel:EntradaPrestamoViewModel x:Key="entradaPrestamoViewModel" />
         <EntradaViewModel:EntradaDevolucionViewModel x:Key="entradaDevolucionViewModel" />

@@ -1,6 +1,8 @@
 ﻿using InventoryApp.DAL.Recibo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using InventoryApp.DAL.POCOS;
+using System.Collections.Generic;
 
 namespace DALTestProject
 {
@@ -74,6 +76,22 @@ namespace DALTestProject
             string expected = string.Empty; // TODO: Inicializar en un valor adecuado
             string actual;
             actual = target.GetJsonFacturaDetalle();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de GetDetallebyFactura
+        ///</summary>
+        [TestMethod()]
+        public void GetDetallebyFacturaTest()
+        {
+            FacturaCompraDetalleDataMapper target = new FacturaCompraDetalleDataMapper(); // TODO: Inicializar en un valor adecuado
+            FACTURA factura = new FACTURA(); // TODO: Inicializar en un valor adecuado
+            factura.UNID_FACTURA = 20121202234231731;
+            List<FACTURA_DETALLE> expected = null; // TODO: Inicializar en un valor adecuado
+            List<FACTURA_DETALLE> actual;
+            actual = target.GetDetallebyFactura(factura);
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }

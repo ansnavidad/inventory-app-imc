@@ -221,6 +221,12 @@
     <Compile Include="CatalogItemView.xaml.cs">
       <DependentUpon>CatalogItemView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogItem\AgregarFactura.xaml.cs">
+      <DependentUpon>AgregarFactura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogItem\ModifyItem.xaml.cs">
+      <DependentUpon>ModifyItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogMarca\AddMarca.xaml.cs">
       <DependentUpon>AddMarca.xaml</DependentUpon>
     </Compile>
@@ -799,6 +805,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CatalogItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogItem\AgregarFactura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogItem\ModifyItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

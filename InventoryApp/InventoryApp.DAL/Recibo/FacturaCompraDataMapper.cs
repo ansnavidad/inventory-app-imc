@@ -189,6 +189,54 @@ namespace InventoryApp.DAL.Recibo
             }
         }
 
+
+        public List<FACTURA> getFacturabyProveedores(List<PROVEEDOR> proveedores)
+        {
+            List<FACTURA> respuesta = new List<FACTURA>();
+            if (proveedores != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                   
+                    foreach (PROVEEDOR prov in proveedores)
+                    {
+                        var res = (from fact in entity.FACTURAs
+                                   where fact.UNID_PROVEEDOR == prov.UNID_PROVEEDOR
+                                   select fact).ToList<FACTURA>();
+
+                        foreach (FACTURA r in res)
+                        {
+                            r.PROVEEDOR = r.PROVEEDOR;
+                            r.MONEDA = r.MONEDA;
+                            r.IVA_POR = r.IVA_POR;
+                            respuesta.Add(r);
+                        }
+                    }
+                }
+            }
+
+            return respuesta;
+        }
+
+        public FACTURA getFacturabyDetalle(FACTURA_DETALLE detalle)
+        {
+            FACTURA respuesta = new FACTURA();
+            if (detalle != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+
+                    
+                        var res = (from fact in entity.FACTURAs
+                                   where fact.UNID_FACTURA == detalle.UNID_FACTURA
+                                   select fact).First<FACTURA>();
+                        respuesta = res;
+                }
+            }
+
+            return respuesta;
+        }
+
         public void insertElement(object element)
         {
             if (element != null)

@@ -11,6 +11,7 @@ namespace InventoryApp.Model.Recibo
 {
     public class FacturaCompraModel : ModelBase,IModelChangeTrack
     {
+        
         private IDataMapper _DataMapper;
 
         #region Properties

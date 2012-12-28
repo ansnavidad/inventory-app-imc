@@ -30,7 +30,7 @@ namespace InventoryApp.View.Recibo
             DlgAddFacturaView addFactura = new DlgAddFacturaView();
             AddReciboViewModel viewModel = this.ConvertDataContext(this.DataContext);
             addFactura.DataContext = viewModel.CreateAddFacturaViewModel(); ;
-            addFactura.Show();
+            addFactura.ShowDialog();
         }
 
         private void ConvertObjectSource()

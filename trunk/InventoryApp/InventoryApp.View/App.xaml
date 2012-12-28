@@ -75,6 +75,13 @@
              xmlns:TecnicoView="clr-namespace:InventoryApp.View.CatalogTecnico"        
              xmlns:InfraestructuraViews="clr-namespace:InventoryApp.View.CatalogInfraestructura"
              
+             
+             xmlns:reportesViewModel="clr-namespace:InventoryApp.ViewModel.Reportes;assembly=InventoryApp.ViewModel"
+             xmlns:reportesView="clr-namespace:InventoryApp.View.Reportes"
+             
+             
+             
+             
              StartupUri="MainWindow.xaml"
              >
     
@@ -347,8 +354,9 @@
         <!-- Modify Item -->
         <ObjectDataProvider x:Key="modifyItemViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
-
-
+        <!--Reportes-->
+        <ObjectDataProvider x:Key="reportesViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
 
         <!--CONVERTERS-->
         <rootViewModel:BoolToVisibilityValueConverter x:Key="boolVisibilityConverter" />
@@ -526,11 +534,9 @@
             <modifyItemView:ModifyItem/>
         </DataTemplate>
 
-
-
-
-
-
+        <DataTemplate DataType="{x:Type reportesViewModel:ReportesViewModel}">
+            <reportesView:ReportesMain/>
+        </DataTemplate>
 
         <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaConfiguracionViewModel}">
             <GridMovimientosView:GridSalidaConfiguracion/>
@@ -579,18 +585,6 @@
         <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridTraspasoStockViewModel}">
             <GridMovimientosView:GridTraspasoStock/>
         </DataTemplate>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         <DataTemplate DataType="{x:Type reciboViewModel:CatalogReciboViewModel}">

@@ -581,11 +581,8 @@
     <Compile Include="Recibo\ReciboView.xaml.cs">
       <DependentUpon>ReciboView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\ReporteInventarioMovimientosView.xaml.cs">
-      <DependentUpon>ReporteInventarioMovimientosView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Reportes\ReporteReciboView.xaml.cs">
-      <DependentUpon>ReporteReciboView.xaml</DependentUpon>
+    <Compile Include="Reportes\ReportesMain.xaml.cs">
+      <DependentUpon>ReportesMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="Salidas\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
@@ -1301,13 +1298,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Reportes\ReporteInventarioMovimientosView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Reportes\ReportesMain.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Reportes\ReporteReciboView.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Salidas\AddItem.xaml">
       <Generator>MSBuild:Compile</Generator>

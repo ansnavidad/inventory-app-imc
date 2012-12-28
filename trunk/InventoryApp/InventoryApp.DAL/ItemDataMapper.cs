@@ -52,6 +52,9 @@ namespace InventoryApp.DAL
                          UNID_FACTURA_DETALE = row.UNID_FACTURA_DETALE,
                          UNID_EMPRESA = row.UNID_EMPRESA,
                          STATUS = row.STATUS,
+                         CANTIDAD= row.CANTIDAD,
+                         PEDIMENTO_EXPO= row.PEDIMENTO_EXPO,
+                         PEDIMENTO_IMPO= row.PEDIMENTO_IMPO,
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
@@ -622,6 +625,9 @@ namespace InventoryApp.DAL
                     modifiedItem.NUMERO_SERIE = item.NUMERO_SERIE;
                     modifiedItem.IS_ACTIVE = item.IS_ACTIVE;
                     modifiedItem.COSTO_UNITARIO = item.COSTO_UNITARIO;
+                    modifiedItem.CANTIDAD = item.CANTIDAD;
+                    modifiedItem.PEDIMENTO_EXPO = item.PEDIMENTO_EXPO;
+                    modifiedItem.PEDIMENTO_IMPO = item.PEDIMENTO_IMPO;
                     //Sync
                     modifiedItem.IS_MODIFIED = true;
                     modifiedItem.LAST_MODIFIED_DATE = UNID.getNewUNID();
@@ -704,6 +710,9 @@ namespace InventoryApp.DAL
                          UNID_FACTURA_DETALE=row.UNID_FACTURA_DETALE,
                          UNID_EMPRESA=row.UNID_EMPRESA,
                          STATUS=row.STATUS,
+                         CANTIDAD = row.CANTIDAD,
+                         PEDIMENTO_EXPO = row.PEDIMENTO_EXPO,
+                         PEDIMENTO_IMPO = row.PEDIMENTO_IMPO,
                          IS_ACTIVE=row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
@@ -758,6 +767,9 @@ namespace InventoryApp.DAL
                          UNID_FACTURA_DETALE = row.UNID_FACTURA_DETALE,
                          UNID_EMPRESA = row.UNID_EMPRESA,
                          STATUS = row.STATUS,
+                         CANTIDAD = row.CANTIDAD,
+                         PEDIMENTO_EXPO = row.PEDIMENTO_EXPO,
+                         PEDIMENTO_IMPO = row.PEDIMENTO_IMPO,
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE

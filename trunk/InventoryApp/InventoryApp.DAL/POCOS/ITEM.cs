@@ -135,6 +135,12 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
+    
+        public virtual int CANTIDAD
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

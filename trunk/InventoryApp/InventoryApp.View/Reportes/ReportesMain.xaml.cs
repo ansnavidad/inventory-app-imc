@@ -21,7 +21,8 @@ namespace InventoryApp.View.Reportes
     {
         public ReportesMain()
         {
-            InitializeComponent();           
+            InitializeComponent();  
+         
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

@@ -114,6 +114,10 @@ namespace InventoryApp.ViewModel.Recibo
                         UNID_FACTURA_DETALE = item.FacturaDetalle.UnidFacturaCompraDetalle
                         ,
                         UNID_ARTICULO = item.Articulo.UnidArticulo
+                        , 
+                        PEDIMENTO_EXPO = item.PedimentoExpo
+                        , 
+                        PEDIMENTO_IMPO = item.PedimentoImpo
                         ,
                         IS_ACTIVE = true
                     };

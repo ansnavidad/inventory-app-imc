@@ -15,7 +15,7 @@
             <Label Content="Fecha:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,66,550,0" Name="label2" VerticalAlignment="Top" />
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,44,342,0" Name="textBlockFolio" VerticalAlignment="Top" Width="201" Text="{Binding MovimientoModel.UnidMovimiento, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,69,342,0" Name="textBlock2" VerticalAlignment="Top" Width="201" Text="{Binding MovimientoModel.FechaMovimiento, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            <Label Content="Pedimento Exportación:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,225,209,0" Name="label5" VerticalAlignment="Top" />
+            
             <DataGrid TabIndex="22" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="19,850,7,200" Name="dtGridTipoPedimento" VerticalAlignment="Stretch" ItemsSource="{Binding ItemModel.ItemModel}">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="25" />
@@ -69,7 +69,7 @@
         <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border5" Margin="16,641,18,679">
                 <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border3"></Border>
             </Border>
-            <TextBox TabIndex="4" Height="23" HorizontalAlignment="Right" Margin="0,225,41,0" MaxLength="254" Name="textBox2" Text="{Binding MovimientoModel.PedimentoExpo, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="161" />
+            
             <Border BorderBrush="Silver" BorderThickness="3" Height="3" Name="border6" Margin="26,532,14,787" />
             <Label Content="Moneda:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,688,510,0" Name="label4" VerticalAlignment="Top" />
             <ComboBox TabIndex="16" DisplayMemberPath="MONEDA_NAME" Height="23" HorizontalAlignment="Right" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogMonedaModel.Moneda}" Margin="0,688,336,0" Name="comboBox2" SelectedIndex="0" SelectedItem="{Binding FacturaVentaModel.Moneda, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_MONEDA" VerticalAlignment="Top" Width="171" />

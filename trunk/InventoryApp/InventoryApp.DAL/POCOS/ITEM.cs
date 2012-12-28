@@ -124,13 +124,13 @@ namespace InventoryApp.DAL.POCOS
             set;
         }
     
-        public virtual int PEDIMENTO_EXPO
+        public virtual double PEDIMENTO_EXPO
         {
             get;
             set;
         }
     
-        public virtual int PEDIMENTO_IMPO
+        public virtual double PEDIMENTO_IMPO
         {
             get;
             set;

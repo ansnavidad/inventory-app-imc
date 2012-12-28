@@ -829,8 +829,8 @@
           <Property Name="STATUS" Type="nvarchar" MaxLength="512" />
           <Property Name="IS_MODIFIED" Type="bit" Nullable="false" />
           <Property Name="LAST_MODIFIED_DATE" Type="bigint" Nullable="false" />
-          <Property Name="PEDIMENTO_EXPO" Type="int" Nullable="false" />
-          <Property Name="PEDIMENTO_IMPO" Type="int" Nullable="false" />
+          <Property Name="PEDIMENTO_EXPO" Type="float" Nullable="false" />
+          <Property Name="PEDIMENTO_IMPO" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="MOVIMENTO">
           <Key>
@@ -2781,8 +2781,8 @@
           <Property Name="STATUS" Type="String" MaxLength="512" Unicode="true" FixedLength="false" />
           <Property Name="IS_MODIFIED" Type="Boolean" Nullable="false" />
           <Property Name="LAST_MODIFIED_DATE" Type="Int64" Nullable="false" />
-          <Property Name="PEDIMENTO_EXPO" Type="Int32" Nullable="false" />
-          <Property Name="PEDIMENTO_IMPO" Type="Int32" Nullable="false" />
+          <Property Name="PEDIMENTO_EXPO" Type="Double" Nullable="false" />
+          <Property Name="PEDIMENTO_IMPO" Type="Double" Nullable="false" />
           <NavigationProperty Name="ARTICULO" Relationship="TAE2Model.ART_ARTICULO_INV_ITEM_FK1" FromRole="ITEM" ToRole="ARTICULO" />
           <NavigationProperty Name="ITEM_STATUS" Relationship="TAE2Model.CATINV_ITEM_STATUS_INV_ITEM_FK1" FromRole="ITEM" ToRole="ITEM_STATUS" />
           <NavigationProperty Name="MOVIMIENTO_DETALLE" Relationship="TAE2Model.INV_ITEM_INV_MOVIMIENTO_DETALLE_FK1" FromRole="ITEM" ToRole="MOVIMIENTO_DETALLE" />

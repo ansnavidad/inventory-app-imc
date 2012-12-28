@@ -169,6 +169,7 @@ namespace InventoryApp.DAL
                         entity.SaveChanges();
                         //
                         entity.ULTIMO_MOVIMIENTO.AddObject(ultimoMov);
+                        entity.SaveChanges();
                     }
                     else
                     {

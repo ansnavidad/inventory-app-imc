@@ -109,7 +109,7 @@ namespace InventoryApp.DAL
                     var res = (from i in Entity.ITEMs
                                     join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                     join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
-                                    where i.NUMERO_SERIE == numSerie && u2.UNID_ALMACEN == almacen.UNID_ALMACEN && i.IS_ACTIVE == true
+                               where i.NUMERO_SERIE == numSerie && u2.UNID_ALMACEN == almacen.UNID_ALMACEN && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                     select i).ToList();
 
                     if (((List<ITEM>)res).Count > 0)
@@ -143,7 +143,7 @@ namespace InventoryApp.DAL
                         
                         var res = (from i in Entity.ITEMs
                                    join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
-                                   where i.NUMERO_SERIE == numSerie && u1.UNID_ALMACEN == null && i.IS_ACTIVE == true
+                                   where i.NUMERO_SERIE == numSerie && u1.UNID_ALMACEN == null && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                    select i).ToList();                        
 
                         if (((List<ITEM>)res).Count > 0)
@@ -164,7 +164,7 @@ namespace InventoryApp.DAL
                         res = (from i in Entity.ITEMs
                                    join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                    join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
-                                   where i.NUMERO_SERIE == numSerie && u2.UNID_ALMACEN != almacen.UNID_ALMACEN && i.IS_ACTIVE == true
+                               where i.NUMERO_SERIE == numSerie && u2.UNID_ALMACEN != almacen.UNID_ALMACEN && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                    select i).ToList();
 
                         if (((List<ITEM>)res).Count > 0)
@@ -189,7 +189,7 @@ namespace InventoryApp.DAL
 
                         var res = (from i in Entity.ITEMs
                                    join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
-                                   where i.SKU == SKU && u1.UNID_ALMACEN == null && i.IS_ACTIVE == true
+                                   where i.SKU == SKU && u1.UNID_ALMACEN == null && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                    select i).ToList();
 
                         if (((List<ITEM>)res).Count > 0)
@@ -210,7 +210,7 @@ namespace InventoryApp.DAL
                         res = (from i in Entity.ITEMs
                                join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
-                               where i.SKU == SKU && u2.UNID_ALMACEN == almacen.UNID_ALMACEN && i.IS_ACTIVE == true
+                               where i.SKU == SKU && u2.UNID_ALMACEN == almacen.UNID_ALMACEN && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                select i).ToList();
 
                         if (((List<ITEM>)res).Count > 0)
@@ -242,7 +242,7 @@ namespace InventoryApp.DAL
                 if (!numSerie.Equals(""))
                 {
                     var res = (from i in Entity.ULTIMO_MOVIMIENTO
-                               where i.ITEM.NUMERO_SERIE == numSerie
+                               where i.ITEM.NUMERO_SERIE == numSerie && i.IS_ACTIVE == true
                                select i).ToList();
                     if (((List<ULTIMO_MOVIMIENTO>)res).Count > 0)
                     {
@@ -259,7 +259,7 @@ namespace InventoryApp.DAL
                 else
                 {
                     var res = (from i in Entity.ULTIMO_MOVIMIENTO
-                               where i.ITEM.SKU == SKU
+                               where i.ITEM.SKU == SKU && i.IS_ACTIVE == true
                                select i).ToList();
                     if (((List<ULTIMO_MOVIMIENTO>)res).Count > 0)
                     {
@@ -290,7 +290,7 @@ namespace InventoryApp.DAL
                     var res = (from i in Entity.ITEMs
                                join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
-                               where i.NUMERO_SERIE == numSerie && u2.UNID_ALMACEN == almacen.UNID_ALMACEN && i.IS_ACTIVE == true
+                               where i.NUMERO_SERIE == numSerie && u2.UNID_ALMACEN == almacen.UNID_ALMACEN && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                select i).ToList();
 
                     //var res = (from cust in Entity.ITEMs
@@ -318,7 +318,7 @@ namespace InventoryApp.DAL
                     var res = (from i in Entity.ITEMs
                                join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                join u2 in Entity.ALMACENs on u1.UNID_ALMACEN equals u2.UNID_ALMACEN
-                               where i.SKU == SKU && u2.UNID_ALMACEN == almacen.UNID_ALMACEN && i.IS_ACTIVE == true
+                               where i.SKU == SKU && u2.UNID_ALMACEN == almacen.UNID_ALMACEN && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                select i).ToList();
 
                     if (((List<ITEM>)res).Count > 0)
@@ -351,7 +351,7 @@ namespace InventoryApp.DAL
                     var res = (from i in Entity.ITEMs
                                join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                join u2 in Entity.CLIENTEs on u1.UNID_CLIENTE equals u2.UNID_CLIENTE
-                               where i.NUMERO_SERIE == numSerie && u2.UNID_CLIENTE == cliente.UNID_CLIENTE && i.IS_ACTIVE == true
+                               where i.NUMERO_SERIE == numSerie && u2.UNID_CLIENTE == cliente.UNID_CLIENTE && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                select i).ToList();
 
                     if (((List<ITEM>)res).Count > 0)
@@ -383,7 +383,7 @@ namespace InventoryApp.DAL
                     var res = (from i in Entity.ITEMs
                                join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                join u2 in Entity.INFRAESTRUCTURAs on u1.UNID_INFRAESTRUCTURA equals u2.UNID_INFRAESTRUCTURA
-                               where i.NUMERO_SERIE == numSerie && u2.UNID_INFRAESTRUCTURA == infraestructura.UNID_INFRAESTRUCTURA && i.IS_ACTIVE == true
+                               where i.NUMERO_SERIE == numSerie && u2.UNID_INFRAESTRUCTURA == infraestructura.UNID_INFRAESTRUCTURA && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                select i).ToList();
 
                     if (((List<ITEM>)res).Count > 0)
@@ -406,7 +406,7 @@ namespace InventoryApp.DAL
                     var res = (from i in Entity.ITEMs
                                join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                join u2 in Entity.INFRAESTRUCTURAs on u1.UNID_INFRAESTRUCTURA equals u2.UNID_INFRAESTRUCTURA
-                               where i.SKU == SKU && u2.UNID_INFRAESTRUCTURA == infraestructura.UNID_INFRAESTRUCTURA && i.IS_ACTIVE == true
+                               where i.SKU == SKU && u2.UNID_INFRAESTRUCTURA == infraestructura.UNID_INFRAESTRUCTURA && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                select i).ToList();
 
                     if (((List<ITEM>)res).Count > 0)
@@ -440,7 +440,7 @@ namespace InventoryApp.DAL
                         var res = (from i in Entity.ITEMs
                                    join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                    join u2 in Entity.PROVEEDORs on u1.UNID_PROVEEDOR equals u2.UNID_PROVEEDOR
-                                   where i.NUMERO_SERIE == numSerie && u2.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR && i.IS_ACTIVE == true
+                                   where i.NUMERO_SERIE == numSerie && u2.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                    select i).ToList();
 
                         if (((List<ITEM>)res).Count > 0)
@@ -462,7 +462,7 @@ namespace InventoryApp.DAL
                         var res = (from i in Entity.ITEMs
                                    join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                    join u2 in Entity.PROVEEDORs on u1.UNID_PROVEEDOR equals u2.UNID_PROVEEDOR
-                                   where i.SKU == SKU && u2.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR && i.IS_ACTIVE == true
+                                   where i.SKU == SKU && u2.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                    select i).ToList();
 
                         if (((List<ITEM>)res).Count > 0)
@@ -487,7 +487,7 @@ namespace InventoryApp.DAL
                         var res = (from i in Entity.ITEMs
                                    join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                    join u2 in Entity.CLIENTEs on u1.UNID_CLIENTE equals u2.UNID_CLIENTE
-                                   where i.NUMERO_SERIE == numSerie && u2.UNID_CLIENTE == cliente.UNID_CLIENTE && i.IS_ACTIVE == true
+                                   where i.NUMERO_SERIE == numSerie && u2.UNID_CLIENTE == cliente.UNID_CLIENTE && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                    select i).ToList();
 
                         if (((List<ITEM>)res).Count > 0)
@@ -509,7 +509,7 @@ namespace InventoryApp.DAL
                         var res = (from i in Entity.ITEMs
                                    join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                    join u2 in Entity.CLIENTEs on u1.UNID_CLIENTE equals u2.UNID_CLIENTE
-                                   where i.SKU == SKU && u2.UNID_CLIENTE == cliente.UNID_CLIENTE && i.IS_ACTIVE == true
+                                   where i.SKU == SKU && u2.UNID_CLIENTE == cliente.UNID_CLIENTE && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                    select i).ToList();
 
                         if (((List<ITEM>)res).Count > 0)
@@ -541,7 +541,7 @@ namespace InventoryApp.DAL
                     var res = (from i in Entity.ITEMs
                                join u1 in Entity.ULTIMO_MOVIMIENTO on i.UNID_ITEM equals u1.UNID_ITEM
                                join u2 in Entity.PROVEEDORs on u1.UNID_PROVEEDOR equals u2.UNID_PROVEEDOR
-                               where i.NUMERO_SERIE == numSerie && u2.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR && i.IS_ACTIVE == true
+                               where i.NUMERO_SERIE == numSerie && u2.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR && i.IS_ACTIVE == true && u1.IS_ACTIVE == true
                                select i).ToList();
 
                     if (((List<ITEM>)res).Count > 0)

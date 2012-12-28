@@ -17,7 +17,7 @@ namespace InventoryApp.View.CatalogItem
     /// <summary>
     /// Lógica de interacción para ModifyItem.xaml
     /// </summary>
-    public partial class ModifyItem : Window
+    public partial class ModifyItem : UserControl
     {
         public ModifyItem()
         {

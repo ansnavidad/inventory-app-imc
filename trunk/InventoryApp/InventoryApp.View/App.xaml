@@ -63,6 +63,7 @@
              xmlns:propiedadViews="clr-namespace:InventoryApp.View.CatalogPropiedad"
              xmlns:EntradaViewModel="clr-namespace:InventoryApp.ViewModel.Entradas;assembly=InventoryApp.ViewModel"
              xmlns:modifyItemViewModel="clr-namespace:InventoryApp.ViewModel.CatalogItem;assembly=InventoryApp.ViewModel"
+             xmlns:modifyItemView="clr-namespace:InventoryApp.View.CatalogItem"
              xmlns:EntradaView="clr-namespace:InventoryApp.View.Entradas"
              xmlns:SalidasViewModel="clr-namespace:InventoryApp.ViewModel.Salidas;assembly=InventoryApp.ViewModel"
              xmlns:SalidasView="clr-namespace:InventoryApp.View.Salidas"
@@ -72,7 +73,8 @@
              xmlns:GridMovimientosView="clr-namespace:InventoryApp.View.GridMovimientos"                          
              xmlns:TecnicoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogTecnico;assembly=InventoryApp.ViewModel"
              xmlns:TecnicoView="clr-namespace:InventoryApp.View.CatalogTecnico"        
-             xmlns:InfraestructuraViews="clr-namespace:InventoryApp.View.CatalogInfraestructura"                     
+             xmlns:InfraestructuraViews="clr-namespace:InventoryApp.View.CatalogInfraestructura"
+             
              StartupUri="MainWindow.xaml"
              >
     
@@ -342,8 +344,12 @@
         <ObjectDataProvider x:Key="CatalogReciboViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
+        <!-- Modify Item -->
+        <ObjectDataProvider x:Key="modifyItemViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
 
-    
+
+
         <!--CONVERTERS-->
         <rootViewModel:BoolToVisibilityValueConverter x:Key="boolVisibilityConverter" />
         
@@ -514,6 +520,10 @@
 
         <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridEntradasDevolucionViewModel}">
             <GridMovimientosView:EntradasDevolucion/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type modifyItemViewModel:ModifyItemViewModel}">
+            <modifyItemView:ModifyItem/>
         </DataTemplate>
 
 

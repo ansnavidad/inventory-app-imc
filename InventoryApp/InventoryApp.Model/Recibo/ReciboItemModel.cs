@@ -67,7 +67,7 @@ namespace InventoryApp.Model.Recibo
         private string _Status;
         public const string StatusPropertyName = "Status";
 
-        public float PedimentoExpo
+        public double PedimentoExpo
         {
             get { return _PedimentoExpo; }
             set
@@ -79,10 +79,10 @@ namespace InventoryApp.Model.Recibo
                 }
             }
         }
-        private float _PedimentoExpo;
+        private double _PedimentoExpo;
         public const string PedimentoExpoPropertyName = "PedimentoExpo";
 
-        public float PedimentoImpo
+        public double PedimentoImpo
         {
             get { return _PedimentoImpo; }
             set
@@ -94,7 +94,7 @@ namespace InventoryApp.Model.Recibo
                 }
             }
         }
-        private float _PedimentoImpo;
+        private double _PedimentoImpo;
         public const string PedimentoImpoPropertyName = "PedimentoExpo";
 
         public double CostoUnitario

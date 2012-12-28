@@ -19,6 +19,8 @@ namespace InventoryApp.Model
         private string _sku;
         private string _numeroSerie;
         private double _costoUnitario;
+        private double _pedimentoExpo;
+        private double _pedimentoImpo;
         private MODELO _modelo;
         private MARCA _marca;
         private CATEGORIA _categoria;
@@ -196,6 +198,34 @@ namespace InventoryApp.Model
             }
         }
 
+        public double PedimentoExpo
+        {
+            get { return this._pedimentoExpo; }
+            set
+            {
+                if (value != this._pedimentoExpo)
+                {
+                    this._pedimentoExpo = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("PedimentoExpo"));
+                }
+            }
+        }
+
+        public double PedimentoImpo
+        {
+            get { return this._pedimentoImpo; }
+            set
+            {
+                if (value != this._pedimentoImpo)
+                {
+                    this._pedimentoImpo = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("PedimentoImpo"));
+                }
+            }
+        }
+
         public CATEGORIA Categoria
         {
             get { return this._categoria; }
@@ -349,6 +379,8 @@ namespace InventoryApp.Model
             this.NUMERO_SERIE = item.NUMERO_SERIE;
             this._itemStatus = item.ITEM_STATUS;
             this.COSTO_UNITARIO = item.COSTO_UNITARIO;
+            this._pedimentoExpo = item.PEDIMENTO_EXPO;
+            this._pedimentoImpo = item.PEDIMENTO_IMPO;
             //this._facturaDetalle = item.FACTURA_DETALLE;
             this.IS_ACTIVE = item.IS_ACTIVE;
             this.IsChecked = false;
@@ -366,7 +398,7 @@ namespace InventoryApp.Model
 
         public void updateItem()
         {
-            this._dataMapper.udpateElement(new ITEM() {UNID_ITEM = this._unidItem, UNID_ARTICULO = this._articulo.UNID_ARTICULO, SKU = this._sku, NUMERO_SERIE = this._numeroSerie, ITEM_STATUS = this._itemStatus, COSTO_UNITARIO = this._costoUnitario, UNID_FACTURA_DETALE = this._facturaDetalle.UNID_FACTURA_DETALE});
+            this._dataMapper.udpateElement(new ITEM() {UNID_ITEM = this._unidItem, UNID_ARTICULO = this._articulo.UNID_ARTICULO, SKU = this._sku, NUMERO_SERIE = this._numeroSerie, ITEM_STATUS = this._itemStatus, COSTO_UNITARIO = this._costoUnitario, UNID_FACTURA_DETALE = this._facturaDetalle.UNID_FACTURA_DETALE, PEDIMENTO_IMPO = this._pedimentoImpo, PEDIMENTO_EXPO = this._pedimentoExpo});
         }
 
         public void updateFacturas()
@@ -387,6 +419,8 @@ namespace InventoryApp.Model
             this.ItemStatus = res.ITEM_STATUS;
             this.FacturaDetalle = res.FACTURA_DETALLE;
             this.CostoUnitario = res.COSTO_UNITARIO;
+            this.PedimentoExpo = res.PEDIMENTO_EXPO;
+            this.PedimentoImpo = res.PEDIMENTO_IMPO;
 
             CategoriaDataMapper datacat = new CategoriaDataMapper();
             this.Categoria = datacat.getElementByArticulo(res.ARTICULO);

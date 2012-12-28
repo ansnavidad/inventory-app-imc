@@ -118,11 +118,8 @@ namespace InventoryApp.DAL
                 MONEDA moneda = (MONEDA)element;
                 var query = (from cust in entitie.MONEDAs
                             where cust.UNID_MONEDA == moneda.UNID_MONEDA
-                            select cust).ToList();
-                if (query.Count>0)
-                {
-                    res = query;
-                }
+                            select cust).First();
+                res = query;
                 return res;
             }
         }

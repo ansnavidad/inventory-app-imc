@@ -91,6 +91,7 @@
     <Compile Include="DeleteDepartamento.cs" />
     <Compile Include="DeleteEmpresa.cs" />
     <Compile Include="DeleteEquipo.cs" />
+    <Compile Include="DeleteFacturaDetalleModel.cs" />
     <Compile Include="DeleteInfraestructura.cs" />
     <Compile Include="DeleteItemStatus.cs" />
     <Compile Include="DeleteMarca.cs" />

@@ -276,6 +276,7 @@ namespace InventoryApp.Model.Recibo
         public FacturaCompraDetalleModel()
         {
             this._DataMapper = new FacturaCompraDetalleDataMapper();
+            this.Articulo = new ArticuloModel();
             this.PropertyChanged += delegate(object sender, PropertyChangedEventArgs eventArgs)
             {
                 this._IsModified = true;

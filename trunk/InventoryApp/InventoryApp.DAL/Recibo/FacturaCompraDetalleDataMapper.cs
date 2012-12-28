@@ -116,6 +116,32 @@ namespace InventoryApp.DAL.Recibo
             }
         }
 
+        public List<FACTURA_DETALLE> GetDetallebyFactura(FACTURA factura)
+        {
+            List<FACTURA_DETALLE> fDetalles = new List<FACTURA_DETALLE>();
+
+            if (factura != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    var res = (from detalles in entity.FACTURA_DETALLE
+                               where detalles.UNID_FACTURA == factura.UNID_FACTURA
+                               select detalles).ToList();
+
+                    if (res != null)
+                    {
+                        foreach (FACTURA_DETALLE fd in (List<FACTURA_DETALLE>)res)
+                        {
+                            fd.ARTICULO = fd.ARTICULO;
+                            fDetalles.Add(fd);
+                        }
+                    }
+                }
+            }
+
+            return fDetalles;
+        }
+
         public void udpateElements(List<FACTURA_DETALLE> listFd)
         {
             using (var entity = new TAE2Entities())

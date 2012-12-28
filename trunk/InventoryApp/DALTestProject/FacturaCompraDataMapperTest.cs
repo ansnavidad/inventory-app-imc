@@ -94,5 +94,23 @@ namespace DALTestProject
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
+
+        /// <summary>
+        ///Una prueba de getFacturabyProveedores
+        ///</summary>
+        [TestMethod()]
+        public void getFacturabyProveedoresTest()
+        {
+            FacturaCompraDataMapper target = new FacturaCompraDataMapper(); // TODO: Inicializar en un valor adecuado
+            List<PROVEEDOR> proveedores = new List<PROVEEDOR>(); // TODO: Inicializar en un valor adecuado
+            PROVEEDOR prov = new PROVEEDOR();
+            prov.UNID_PROVEEDOR = 20121128165223029;
+            proveedores.Add(prov);
+            List<FACTURA> expected = null; // TODO: Inicializar en un valor adecuado
+            List<FACTURA> actual;
+            actual = target.getFacturabyProveedores(proveedores);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

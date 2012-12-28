@@ -1,6 +1,7 @@
 ﻿using InventoryApp.DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using InventoryApp.DAL.POCOS;
 
 namespace DALTestProject
 {
@@ -155,6 +156,22 @@ namespace DALTestProject
             string expected = string.Empty; // TODO: Inicializar en un valor adecuado
             string actual;
             actual = target.GetJsonItem();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getElement
+        ///</summary>
+        [TestMethod()]
+        public void getElementTest()
+        {
+            ItemDataMapper target = new ItemDataMapper(); // TODO: Inicializar en un valor adecuado
+            ITEM element = new ITEM();
+            element.NUMERO_SERIE = "a";// TODO: Inicializar en un valor adecuado
+            object expected = null; // TODO: Inicializar en un valor adecuado
+            object actual;
+            actual = target.getElement(element);
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }

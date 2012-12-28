@@ -168,13 +168,12 @@ namespace InventoryApp.DAL
 
                     var res = (from p in Entity.PROVEEDORs
                                where p.UNID_PROVEEDOR == Eprov.UNID_PROVEEDOR
-                               select p).ToList();
+                               select p).First();
 
-                    foreach (PROVEEDOR trans in ((List<PROVEEDOR>)res))
-                    {
-                        trans.CIUDAD = trans.CIUDAD;
-                        trans.PAI = trans.PAI;
-                    }
+                    
+                        res.CIUDAD = res.CIUDAD;
+                        res.PAI = res.PAI;
+                    
 
                     o = (object)res;                    
 
@@ -201,6 +200,35 @@ namespace InventoryApp.DAL
 
             return o;
         }
+
+        public List<PROVEEDOR> getElementsByCategoria(CATEGORIA categoria)
+        {
+            List<PROVEEDOR> res = new List<PROVEEDOR>();
+
+            try
+            {
+                using (var entity = new TAE2Entities())
+                {
+
+                    var o = (from provL in entity.PROVEEDOR_CATEGORIA
+                             join prov in entity.PROVEEDORs on provL.UNID_PROVEEDOR equals prov.UNID_PROVEEDOR
+                             join cat in entity.CATEGORIAs on provL.UNID_CATEGORIA equals cat.UNID_CATEGORIA
+                             where provL.UNID_CATEGORIA == categoria.UNID_CATEGORIA
+                             select prov).ToList<PROVEEDOR>();
+
+  
+                    foreach (PROVEEDOR c in o)
+                    {
+                        res.Add(c);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                ;
+            }
+            return res;
+        }//
 
         public void udpateElement(object element)
         {

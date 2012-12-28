@@ -292,6 +292,7 @@ namespace InventoryApp.ViewModel
                    case "Inicio":
                       page = new GridMovimientos.MovimientosGridViewModel();
                       break;
+
                     default:
                         break;
                 }

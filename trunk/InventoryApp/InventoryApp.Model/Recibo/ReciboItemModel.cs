@@ -67,6 +67,36 @@ namespace InventoryApp.Model.Recibo
         private string _Status;
         public const string StatusPropertyName = "Status";
 
+        public float PedimentoExpo
+        {
+            get { return _PedimentoExpo; }
+            set
+            {
+                if (_PedimentoExpo != value)
+                {
+                    _PedimentoExpo = value;
+                    OnPropertyChanged(PedimentoExpoPropertyName);
+                }
+            }
+        }
+        private float _PedimentoExpo;
+        public const string PedimentoExpoPropertyName = "PedimentoExpo";
+
+        public float PedimentoImpo
+        {
+            get { return _PedimentoImpo; }
+            set
+            {
+                if (_PedimentoImpo != value)
+                {
+                    _PedimentoImpo = value;
+                    OnPropertyChanged(PedimentoImpoPropertyName);
+                }
+            }
+        }
+        private float _PedimentoImpo;
+        public const string PedimentoImpoPropertyName = "PedimentoExpo";
+
         public double CostoUnitario
         {
             get { return _CostoUnitario; }

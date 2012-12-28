@@ -123,6 +123,18 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
+    
+        public virtual int PEDIMENTO_EXPO
+        {
+            get;
+            set;
+        }
+    
+        public virtual int PEDIMENTO_IMPO
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

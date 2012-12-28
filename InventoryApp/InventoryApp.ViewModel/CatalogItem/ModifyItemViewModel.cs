@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.CatalogItem
 {
-    public class ModifyItemViewModel
+    public class ModifyItemViewModel : IPageViewModel
     {
         public ItemModel _itemModel;
         public string _sku;
@@ -169,7 +169,8 @@ namespace InventoryApp.ViewModel.CatalogItem
         public bool CanAttempUpdateItem()
         {
             bool _canAddItem = true;
-            if (String.IsNullOrEmpty(this._itemModel.Sku) || String.IsNullOrEmpty(this._itemModel.NumeroSerie))
+            if (String.IsNullOrEmpty(this._itemModel.Sku) || String.IsNullOrEmpty(this._itemModel.NumeroSerie) || this.ItemModel.FacturaDetalle == null
+                || this._itemModel.Factura == null || this._itemModel.Articulo == null)
                 _canAddItem = false;
 
             return _canAddItem;
@@ -185,5 +186,17 @@ namespace InventoryApp.ViewModel.CatalogItem
             return new AgregarFacturaViewModel(this);
         }
         #endregion 
+    
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

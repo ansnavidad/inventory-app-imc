@@ -36,6 +36,7 @@ using InventoryApp.ViewModel.CatalogServicio;
 using InventoryApp.ViewModel.CatalogUnidad;
 using InventoryApp.ViewModel.CatalogTecnico;
 using InventoryApp.ViewModel.GridMovimientos;
+using InventoryApp.ViewModel.CatalogItem;
 using System.Windows;
 using InventoryApp.ViewModel.CatalogInfraestructura;
 
@@ -284,6 +285,9 @@ namespace InventoryApp.ViewModel
                     //Juan
                    case "Nuevo Recibo":
                         page = new Recibo.CatalogReciboViewModel();
+                      break;
+                   case "Modificar Item":
+                      page = new CatalogItem.ModifyItemViewModel();
                       break;
                    case "Inicio":
                       page = new GridMovimientos.MovimientosGridViewModel();

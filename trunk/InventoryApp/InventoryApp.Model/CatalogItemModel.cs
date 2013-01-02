@@ -122,27 +122,75 @@ namespace InventoryApp.Model
         {
             try
             {
+                bool ban = false;
+                this.Mensaje1 = "";
+                this.Mensaje2 = "";
                 object element = this._dataMapper.getElements_EntradasSalidasSerie(almacenDirecto, this._serie, this._sku);
+                FixupCollection<ItemModel> ic = new FixupCollection<ItemModel>();
+                
+                foreach (ItemModel elem in this.ItemModel)
+                {
+                    if (elem.IsChecked)
+                        ic.Add(elem);
+                }
+
+                this.ItemModel.Clear();
 
                 if (element != null)
                 {
-
-                    FixupCollection<ItemModel> ic = new FixupCollection<ItemModel>();
-
                     foreach (ITEM elemento in (List<ITEM>)element)
                     {
+                        ban = true;
                         ItemModel aux = new ItemModel(elemento);
                         ic.Add(aux);
                     }
-                    if (ic != null)
+
+                }
+                if (ic != null)
+                {
+                    this.ItemModel = ic;
+                }
+                if (!ban)
+                {
+                    this.Mensaje1 = "Este artículo no se encuentra en el lugar especificado";
+                    object element2 = this._dataMapper.getAlmacenDisponible(this._serie, this._sku);
+
+                    bool aux = false;
+                    this.Mensaje2 = "El artículo se encuentra en ";
+                    foreach (ULTIMO_MOVIMIENTO um in (List<ULTIMO_MOVIMIENTO>)element2)
                     {
-                        this.ItemModel = ic;
+
+                        if (um.CLIENTE != null)
+                        {
+                            this.Mensaje2 += "Cliente: " + um.CLIENTE.CLIENTE1;
+                            aux = true;
+                        }
+
+                        if (um.PROVEEDOR != null)
+                        {
+                            aux = true;
+                            this.Mensaje2 += "Proveedor: " + um.PROVEEDOR.PROVEEDOR_NAME;
+                        }
+
+                        if (um.INFRAESTRUCTURA != null)
+                        {
+                            aux = true;
+                            this.Mensaje2 += "Infraestructura: " + um.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
+                        }
+
+                        if (um.ALMACEN != null)
+                        {
+                            aux = true;
+                            this.Mensaje2 += "Almacén: " + um.ALMACEN.ALMACEN_NAME;
+                        }
                     }
+
+                    if (!aux)
+                        this.Mensaje2 = "El artículo no se encuentra en ningún cliente o proveedor";
                 }
             }
             catch (ArgumentException ae)
             {
-
                 ;
             }
             catch (Exception ex)

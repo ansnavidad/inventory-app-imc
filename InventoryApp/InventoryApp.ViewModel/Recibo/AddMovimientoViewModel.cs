@@ -359,6 +359,7 @@ namespace InventoryApp.ViewModel.Recibo
                 return facturas;
             }
         }
+        
 
         public AddMovimientoViewModel()
         {

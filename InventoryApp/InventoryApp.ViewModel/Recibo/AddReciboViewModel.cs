@@ -13,6 +13,8 @@ namespace InventoryApp.ViewModel.Recibo
 {
     public class AddReciboViewModel : ViewModelBase
     {
+        private CatalogItemStatusModel _catalogItemStatusModel;
+        private ReciboModel _addReciboModel;
         private const int MovimientoRecibo = 16;
         #region RelayCommands
         public ICommand AddMovimientoCmd
@@ -605,6 +607,15 @@ namespace InventoryApp.ViewModel.Recibo
         public AddReciboViewModel(CatalogReciboViewModel catalogReciboViewModel)
         {
             this._CatalogReciboViewModel = catalogReciboViewModel;
+            try
+            {
+
+                this._catalogItemStatusModel = new CatalogItemStatusModel(new ItemStatusDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
             this.init();
         }
 
@@ -765,6 +776,30 @@ namespace InventoryApp.ViewModel.Recibo
                 return new ModifyFacturaViewModel(this.SelectedFactura);
             else
                 return null;
+        }
+
+        //recibo
+        public CatalogItemStatusModel CatalogItemStatusModel
+        {
+            get
+            {
+                return _catalogItemStatusModel;
+            }
+            set
+            {
+                _catalogItemStatusModel = value;
+            }
+        }
+        public ReciboModel AddReciboModel
+        {
+            get
+            {
+                return _addReciboModel;
+            }
+            set
+            {
+                _addReciboModel = value;
+            }
         }
     }
 }

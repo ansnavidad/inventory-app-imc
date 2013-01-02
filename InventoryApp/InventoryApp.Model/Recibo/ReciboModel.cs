@@ -2,11 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.Model.Recibo
 {
     public class ReciboModel : ModelBase
     {
+        public ITEM_STATUS ItemStatus
+        {
+            get { return _ItemStatus; }
+            set
+            {
+                if (_ItemStatus != value)
+                {
+                    _ItemStatus = value;
+                    OnPropertyChanged(UnidReciboPropertyName);
+                }
+            }
+        }
+        private ITEM_STATUS _ItemStatus;
+        public const string ItemStatusPropertyName = "ItemStatus";
         public long UnidRecibo
         {
             get { return _UnidRecibo; }

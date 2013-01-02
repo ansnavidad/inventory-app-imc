@@ -42,44 +42,6 @@ namespace InventoryApp.Model
             }
         }
 
-        //public long UnidDepartamento
-        //{
-        //    get
-        //    {
-        //        return _unidDepartamento;
-        //    }
-        //    set
-        //    {
-        //        if (_unidDepartamento != value)
-        //        {
-        //            _unidDepartamento = value;
-        //            if (PropertyChanged != null)
-        //            {
-        //                this.PropertyChanged(this, new PropertyChangedEventArgs("UnidDepartamento"));
-        //            }
-        //        }
-        //    }
-        //}
-
-        //public long UnidEmpresa
-        //{
-        //    get
-        //    {
-        //        return _unidEmpresa;
-        //    }
-        //    set
-        //    {
-        //        if (_unidEmpresa != value)
-        //        {
-        //            _unidEmpresa = value;
-        //            if (PropertyChanged != null)
-        //            {
-        //                this.PropertyChanged(this, new PropertyChangedEventArgs("UnidEmpresa"));
-        //            }
-        //        }
-        //    }
-        //}
-
         public EMPRESA Empresa
         {
             get

@@ -33,8 +33,5 @@ namespace InventoryApp.View.Recibo
         {
             this.Close();
         }
-
-
-
     }
 }

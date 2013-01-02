@@ -145,7 +145,8 @@ namespace InventoryApp.ViewModel.Recibo
                     {
                         UNID_ITEM=item.UnidItem,
                         UNID_ALMACEN=mov.DestinoAlmacen.UnidAlmacen,
-                        UNID_MOVIMIENTO_DETALLE=item.UnidMovimientoDetalle
+                        UNID_MOVIMIENTO_DETALLE=item.UnidMovimientoDetalle,
+                        IS_ACTIVE=true
                     };
                     UltimoMovimientoDataMapper umDataMapper = new UltimoMovimientoDataMapper();
                     umDataMapper.udpateElement(ulitmoMovto);

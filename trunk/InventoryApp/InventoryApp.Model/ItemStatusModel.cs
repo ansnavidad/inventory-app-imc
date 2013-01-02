@@ -13,10 +13,29 @@ namespace InventoryApp.Model
         #region Fields
         private long _unidItemStatus;
         private string _itemStatusName;
+        private ItemStatusModel _itemStatusModel;
         private ItemStatusDataMapper _dataMapper;
         #endregion
 
         #region Props
+        public ItemStatusModel ItemStatusMode
+        {
+            get
+            {
+                return _itemStatusModel;
+            }
+            set
+            {
+                if (_itemStatusModel != value)
+                {
+                    _itemStatusModel = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("ItemStatusMode"));
+                    }
+                }
+            }
+        }
         public long UnidItemStatus
         {
             get

@@ -7,6 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="302" d:DesignWidth="658">
     <UserControl.Resources>
+        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
@@ -79,20 +80,20 @@
                   RowStyle="{StaticResource RowStyle}">
                 
                 <DataGrid.Columns>
-                    <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
-                    <!--<DataGridTemplateColumn Header="" Width="Auto">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>-->
                     <DataGridTextColumn Header="Equipo" Width="*" x:Name="equipoName" Binding="{Binding Path=Articulo.EquipoModel.EquipoName}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Model" Width="*" x:Name="modeloName" Binding="{Binding Path=Articulo.Modelo.MODELO_NAME}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Marca" Width="*" x:Name="marcaName" Binding="{Binding Path=Articulo.Marca.MARCA_NAME}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Serie" Width="*" x:Name="Serie" IsReadOnly="False" Binding="{Binding Path=NumeroSerie}"/>
                     <DataGridTextColumn Header="SKU" Width="*" x:Name="sku" IsReadOnly="False" Binding="{Binding Path=Sku}" />
                     <DataGridTextColumn Header="Status" Width="*" x:Name="status" Binding="{Binding Path=Status}" IsReadOnly="False"/>
+                    
+                    <!--<DataGridTemplateColumn Header="Status">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox Width="137" ItemsSource="{Binding Almacenes}" DisplayMemberPath="AlmacenName" SelectedItem="{Binding SelectedAlmacenDestino}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
                     <DataGridTextColumn Header="Pedimento Expo" Width="*" x:Name="pedimentoExpo" Binding="{Binding Path=PedimentoExpo}" IsReadOnly="False"/>
                     <DataGridTextColumn Header="Pedimento Impo" Width="*" x:Name="pedimentoImpo" Binding="{Binding Path=PedimentoImpo}" IsReadOnly="False"/>
                     

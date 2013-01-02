@@ -90,7 +90,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Command="{Binding UpdateItemCommand, Mode=OneWay}" Content="Guardar" Height="23" HorizontalAlignment="Stretch" Margin="34,327,163,0" Name="button2" VerticalAlignment="Stretch" Width="75" Grid.Column="2" Grid.Row="8" />
-        <Button Content="Agregar Factura" Height="23" HorizontalAlignment="Stretch" Margin="198,78,11,249" Name="button3" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="8" Click="button3_Click" Grid.ColumnSpan="2" />
+        <Button Command="{Binding AddFactura, Mode=OneWay}" Content="Agregar Factura" Height="23" HorizontalAlignment="Stretch" Margin="198,78,11,249" Name="button3" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="8" Click="button3_Click" Grid.ColumnSpan="2" />
         <Label Content="Pedimento Exportación :" Height="28" HorizontalAlignment="Left" Margin="11,2,0,0" Name="label10" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8" />
         <Label Content="Pedimento Importación :" Grid.ColumnSpan="2" Height="28" Margin="11,38,270,0" Name="label11" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8" />
         <TextBox Height="23" HorizontalAlignment="Left" Text="{Binding ItemModel.PedimentoExpo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,4,0,323" MaxLength="512" Name="textBoxPedimentoExpo" VerticalAlignment="Stretch" Width="83" Grid.Column="2" Grid.Row="8" />
@@ -98,5 +98,6 @@
         <Border BorderBrush="Silver" BorderThickness="3" Grid.ColumnSpan="5" Margin="0,15,12,12" Name="border6" Grid.Column="1" Grid.Row="3" />
         <Label Content="Cantidad :" Height="28" Margin="86,66,268,0" Name="label12" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" />
         <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="149,70,0,257" MaxLength="512" Name="textBox4" Text="{Binding ItemModel.CantidadItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="48" Grid.Row="8" Grid.ColumnSpan="2" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,0,0,17" Name="textBlock2" Text="{Binding ItemModel.Error, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="422" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" />
     </Grid>
 </UserControl>

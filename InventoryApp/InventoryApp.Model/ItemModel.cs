@@ -27,7 +27,9 @@ namespace InventoryApp.Model
         private CATEGORIA _categoria;
         private EQUIPO _equipo;
         private ItemDataMapper _dataMapper;
-        
+
+        private string _error;
+
         private ARTICULO _articulo;
         private ITEM_STATUS _itemStatus;
         private FACTURA_DETALLE _facturaDetalle;
@@ -99,6 +101,21 @@ namespace InventoryApp.Model
                     this._Facturas = value;
                     if (this.PropertyChanged != null)
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Facturas"));
+                }
+            }
+        }
+
+
+        public string Error
+        {
+            get { return this._error; }
+            set
+            {
+                if (value != this._error)
+                {
+                    this._error = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Error"));
                 }
             }
         }
@@ -177,6 +194,8 @@ namespace InventoryApp.Model
                     {
                         this.Proveedor = new PROVEEDOR();
                         this.Moneda = new MONEDA();
+                        this.FacturaDetalle = new FACTURA_DETALLE();
+                        this.Detalles = new ObservableCollection<DeleteFacturaDetalleModel>();
                     }
                     if (this.PropertyChanged != null)
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Factura"));
@@ -435,6 +454,7 @@ namespace InventoryApp.Model
             this.PedimentoExpo = new long();
             this.PedimentoImpo = new long();
             this.CantidadItem = new int();
+            this.Detalles = new ObservableCollection<DeleteFacturaDetalleModel>();
         }
 
         public void getElement()
@@ -442,6 +462,7 @@ namespace InventoryApp.Model
             ITEM aux = new ITEM();
             aux.SKU = this.Sku;
             aux.NUMERO_SERIE = this.NumeroSerie;
+            this.Error = "";
            
             ITEM res = (this._dataMapper.getElement(aux)) as ITEM;
             this.init();
@@ -486,6 +507,10 @@ namespace InventoryApp.Model
                     else
                         this.FacturaDetalle = new FACTURA_DETALLE();
                 }
+            }
+            else
+            {
+                this.Error = "El número de serie o SKU no existe";
             }
         }
 

@@ -8,6 +8,8 @@ using InventoryApp.Model.Recibo;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
+using Microsoft.Office.Interop.Excel;
+using System.Reflection;
 
 namespace InventoryApp.ViewModel.Recibo
 {
@@ -29,6 +31,19 @@ namespace InventoryApp.ViewModel.Recibo
             }
         }
         private RelayCommand _AddMovimientoCmd;
+
+        public ICommand AddImprimir
+        {
+            get
+            {
+                if (_AddImprimir == null)
+                {
+                    _AddImprimir = new RelayCommand(p => this.AttemptAddImprimir(), p => this.CanAttemptAddImprimir());
+                }
+                return _AddImprimir;
+            }
+        }
+        private RelayCommand _AddImprimir;
 
         private AddReciboViewModel _AddReciboViewModel;
         public AddReciboViewModel AddReciboViewModel
@@ -520,6 +535,59 @@ namespace InventoryApp.ViewModel.Recibo
 
             return canAttempt;
         }
+        
+        private void AttemptAddImprimir()
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.DefaultExt = ".xlsx";
+            dlg.Filter = "Documentos Excel (.xlsx)|*.xlsx";
+            if (dlg.ShowDialog() == true)
+            {
+                string filename = dlg.FileName;
+                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                excel.Visible = true;
+
+                Workbook excelPrint = excel.Workbooks.Open(@"C:\temp\elarainventarios\Factura.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
+
+                //Folio del recibo
+                excel.Cells[8, 9] = this._UnidMovimiento.ToString();
+                //Fecha
+                excel.Cells[8, 23] = this._SelectedFactura.FechaFactura;
+                //NOMBRE DEL PROVEEDOR
+                excel.Cells[11, 12] = this._SelectedOrigen.OrigenName;                
+                //ALMACÉN DE DESTINO:
+                excel.Cells[13, 12] = this._SelectedAlmacenDestino.AlmacenName;
+                //NÚMERO DE PEDIMENTO:
+                excel.Cells[19, 12] = this._SelectedFactura.NumeroPedimento.ToString();
+                //NÚMERO DE FACTURA:
+                excel.Cells[21, 12] = this._SelectedFactura.NumeroFactura.ToString();
+
+                //IMPORTE:
+                excel.Cells[17, 26] = this._SelectedFactura.Importe.ToString();
+                //IVA %
+                excel.Cells[19, 26] = this._SelectedFactura.PorIva.ToString();
+                //IVA $
+                excel.Cells[21, 26] = this._SelectedFactura.Iva.ToString();
+                //TOTAL $
+                excel.Cells[23, 26] = this._SelectedFactura.Total.ToString();                
+
+                excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            }
+        }
+
+        private bool CanAttemptAddImprimir()
+        {
+            bool canAttempt = false;
+
+            if (this.SelectedAlmacenDestino != null && this._SelectedOrigen != null)
+            {
+                canAttempt = true;
+            }
+
+            return canAttempt;
+        }
+
 
         public void init()
         {

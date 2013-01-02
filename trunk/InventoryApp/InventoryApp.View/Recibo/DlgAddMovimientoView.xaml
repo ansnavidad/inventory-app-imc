@@ -8,7 +8,9 @@
         </ContentControl>
         <DockPanel HorizontalAlignment="Stretch"  Height="40" DockPanel.Dock="Bottom" Margin="0"   >
             <Button Content="Agregar" Height="23" Width="75" HorizontalAlignment="Left" Click="Button_Click_1" Command="{Binding AddMovimientoCmd}"/>
-            <Button Content="Cancelar" Height="23"  Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Click="Button_Click" />
+            <Button Height="23" Width="30" Visibility="Hidden" />
+            <Button Content="Imprimir" Command="{Binding AddImprimir}"  Height="23" Width="75" />
+            <Button Content="Cancelar" Height="23"  Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Click="Button_Click" />            
         </DockPanel>
     </DockPanel>
 </Window>

@@ -15,10 +15,14 @@ namespace InventoryApp.ViewModel.CatalogItem
         public string _numeroSerie;
         private DeleteArticulo _articulo;
         private RelayCommand _modifyItemCommand;
+        private RelayCommand _addFactura;
         private RelayCommand _updateItemCommand;
         private CatalogArticuloModel _articuloModel;
         private CatalogCategoriaModel _categoriaModel;
         private CatalogItemStatusModel _catalogStatus;
+        private string _error;
+
+
 
         public ModifyItemViewModel()
         {
@@ -46,6 +50,18 @@ namespace InventoryApp.ViewModel.CatalogItem
             set
             {
                 _itemModel = value;
+            }
+        }
+
+        public string Error
+        {
+            get
+            {
+                return _error;
+            }
+            set
+            {
+                _error = value;
             }
         }
 
@@ -133,6 +149,19 @@ namespace InventoryApp.ViewModel.CatalogItem
             }
         }
 
+
+        public ICommand AddFactura
+        {
+            get
+            {
+                if (_addFactura == null)
+                {
+                    _addFactura = new RelayCommand(p => this.AttempAddFactura(), p => this.CanAttempAddFactura());
+                }
+                return _addFactura;
+            }
+        }
+
         public ICommand UpdateItemCommand
         {
             get
@@ -170,7 +199,7 @@ namespace InventoryApp.ViewModel.CatalogItem
         {
             bool _canAddItem = true;
             if (String.IsNullOrEmpty(this._itemModel.Sku) || String.IsNullOrEmpty(this._itemModel.NumeroSerie) || this.ItemModel.FacturaDetalle == null
-                || this._itemModel.Factura == null || this._itemModel.Articulo == null)
+                || this._itemModel.Factura == null || this._itemModel.Articulo == null ||  this._itemModel.CantidadItem < 1)
                 _canAddItem = false;
 
             return _canAddItem;
@@ -179,6 +208,20 @@ namespace InventoryApp.ViewModel.CatalogItem
         public void AttempUpdateMarca()
         {
             this._itemModel.updateItem();
+        }
+
+        public bool CanAttempAddFactura()
+        {
+            bool _canAddItem = true;
+            if (this._itemModel.Articulo == null)
+                _canAddItem = false;
+
+            return _canAddItem;
+        }
+
+        public void AttempAddFactura()
+        {
+            
         }
 
         public AgregarFacturaViewModel CreateAgregarFacturaViewModel()

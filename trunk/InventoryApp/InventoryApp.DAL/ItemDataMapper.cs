@@ -574,35 +574,44 @@ namespace InventoryApp.DAL
         public object getElement(object element)
         {
             object o = null;
-            if (element != null)
+
+            try
             {
-                ITEM item = (ITEM)element;
-                using (var entity = new TAE2Entities())
+                if (element != null)
                 {
-                    if (!String.IsNullOrEmpty(item.SKU))
+                    ITEM item = (ITEM)element;
+                    using (var entity = new TAE2Entities())
                     {
-                        var res = (from i in entity.ITEMs
-                                   where i.SKU == item.SKU
-                                   select i).First();
-                        res.ARTICULO = res.ARTICULO;
-                        res.ARTICULO.UNID_CATEGORIA = res.ARTICULO.UNID_CATEGORIA;
-                        res.ITEM_STATUS = res.ITEM_STATUS;
-                        res.FACTURA_DETALLE = res.FACTURA_DETALLE;
-                        o = res;
+                        if (!String.IsNullOrEmpty(item.SKU))
+                        {
+                            var res = (from i in entity.ITEMs
+                                       where i.SKU == item.SKU
+                                       select i).First();
+                            res.ARTICULO = res.ARTICULO;
+                            res.ARTICULO.UNID_CATEGORIA = res.ARTICULO.UNID_CATEGORIA;
+                            res.ITEM_STATUS = res.ITEM_STATUS;
+                            res.FACTURA_DETALLE = res.FACTURA_DETALLE;
+                            o = res;
+                        }
+                        else
+                        {
+                            var res = (from i in entity.ITEMs
+                                       where i.NUMERO_SERIE == item.NUMERO_SERIE
+                                       select i).First();
+                            res.ARTICULO = res.ARTICULO;
+                            res.ARTICULO.UNID_CATEGORIA = res.ARTICULO.UNID_CATEGORIA;
+                            res.ITEM_STATUS = res.ITEM_STATUS;
+                            res.FACTURA_DETALLE = res.FACTURA_DETALLE;
+                            o = res;
+                        }
+
                     }
-                    else
-                    {
-                        var res = (from i in entity.ITEMs
-                                   where i.NUMERO_SERIE == item.NUMERO_SERIE
-                                   select i).First();
-                        res.ARTICULO = res.ARTICULO;
-                        res.ARTICULO.UNID_CATEGORIA = res.ARTICULO.UNID_CATEGORIA;
-                        res.ITEM_STATUS = res.ITEM_STATUS;
-                        res.FACTURA_DETALLE = res.FACTURA_DETALLE;
-                        o = res;
-                    }
-                    
                 }
+            }
+            catch (Exception ex)
+            {
+                
+                ;
             }
 
             return o;

@@ -21,6 +21,7 @@ namespace InventoryApp.Model
         private double _costoUnitario;
         private double _pedimentoExpo;
         private double _pedimentoImpo;
+        private int _cantidaditem;
         private MODELO _modelo;
         private MARCA _marca;
         private CATEGORIA _categoria;
@@ -272,6 +273,20 @@ namespace InventoryApp.Model
             }
         }
 
+        public int CantidadItem
+        {
+            get { return this._cantidaditem; }
+            set
+            {
+                if (value != this._cantidaditem)
+                {
+                    this._cantidaditem = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("CantidadItem"));
+                }
+            }
+        }
+
         public long UnidItem
         {
             get { return this._unidItem; }
@@ -388,23 +403,40 @@ namespace InventoryApp.Model
             this._categoria = item.ARTICULO.CATEGORIA;
             this._marca = item.ARTICULO.MARCA;
             this._modelo = item.ARTICULO.MODELO;
+            this.Detalles = new ObservableCollection<DeleteFacturaDetalleModel>();
         }
 
         public ItemModel()
         {
             this._dataMapper = new ItemDataMapper();
+            this.Detalles = new ObservableCollection<DeleteFacturaDetalleModel>();
         }
 
 
         public void updateItem()
         {
-            this._dataMapper.udpateElement(new ITEM() {UNID_ITEM = this._unidItem, UNID_ARTICULO = this._articulo.UNID_ARTICULO, SKU = this._sku, NUMERO_SERIE = this._numeroSerie, ITEM_STATUS = this._itemStatus, COSTO_UNITARIO = this._costoUnitario, UNID_FACTURA_DETALE = this._facturaDetalle.UNID_FACTURA_DETALE, PEDIMENTO_IMPO = this._pedimentoImpo, PEDIMENTO_EXPO = this._pedimentoExpo});
+            this._dataMapper.udpateElement(new ITEM() {UNID_ITEM = this._unidItem, UNID_ARTICULO = this._articulo.UNID_ARTICULO, SKU = this._sku, NUMERO_SERIE = this._numeroSerie, ITEM_STATUS = this._itemStatus, COSTO_UNITARIO = this._costoUnitario, UNID_FACTURA_DETALE = this._facturaDetalle.UNID_FACTURA_DETALE, PEDIMENTO_IMPO = this._pedimentoImpo, PEDIMENTO_EXPO = this._pedimentoExpo, CANTIDAD = this._cantidaditem});
         }
 
         public void updateFacturas()
         {
             this.Facturas = GetFacturasbyProveedores(this._Proveedores);
         }
+
+        public void init()
+        {
+            this.Categoria = new CATEGORIA();
+            this.Articulo = new ARTICULO();
+            this.Proveedor = new PROVEEDOR();
+            this._unidItem = new long();
+            this.ItemStatus = new ITEM_STATUS();
+            this.FacturaDetalle = new FACTURA_DETALLE();
+            this.CostoUnitario = new long();
+            this.PedimentoExpo = new long();
+            this.PedimentoImpo = new long();
+            this.CantidadItem = new int();
+        }
+
         public void getElement()
         {
             ITEM aux = new ITEM();
@@ -412,40 +444,49 @@ namespace InventoryApp.Model
             aux.NUMERO_SERIE = this.NumeroSerie;
            
             ITEM res = (this._dataMapper.getElement(aux)) as ITEM;
-
-            this._unidItem = res.UNID_ITEM;
-            this.NumeroSerie = res.NUMERO_SERIE;
-            this.Sku = res.SKU;
-            this.ItemStatus = res.ITEM_STATUS;
-            this.FacturaDetalle = res.FACTURA_DETALLE;
-            this.CostoUnitario = res.COSTO_UNITARIO;
-            this.PedimentoExpo = res.PEDIMENTO_EXPO;
-            this.PedimentoImpo = res.PEDIMENTO_IMPO;
-
-            CategoriaDataMapper datacat = new CategoriaDataMapper();
-            this.Categoria = datacat.getElementByArticulo(res.ARTICULO);
-            
-            foreach( ARTICULO i in this.Articulos)
+            this.init();
+            if (res != null)
             {
-                if (i.UNID_ARTICULO == res.ARTICULO.UNID_ARTICULO)
-                    this.Articulo = i;
+                this._unidItem = res.UNID_ITEM;
+                this.NumeroSerie = res.NUMERO_SERIE;
+                this.Sku = res.SKU;
+                this.ItemStatus = res.ITEM_STATUS;
+                this.FacturaDetalle = res.FACTURA_DETALLE;
+                this.CostoUnitario = res.COSTO_UNITARIO;
+                this.PedimentoExpo = res.PEDIMENTO_EXPO;
+                this.PedimentoImpo = res.PEDIMENTO_IMPO;
+                this.CantidadItem = res.CANTIDAD;
+
+                CategoriaDataMapper datacat = new CategoriaDataMapper();
+                this.Categoria = datacat.getElementByArticulo(res.ARTICULO);
+
+                foreach (ARTICULO i in this.Articulos)
+                {
+                    if (i.UNID_ARTICULO == res.ARTICULO.UNID_ARTICULO)
+                        this.Articulo = i;
+                }
+
+                this.FacturaDetalle = res.FACTURA_DETALLE;
+                FACTURA temp = new FACTURA();
+                temp = GetFacturabyDetalle(this.FacturaDetalle);
+
+                foreach (FACTURA f in this.Facturas)
+                {
+                    if (temp.UNID_FACTURA == f.UNID_FACTURA)
+                        this.Factura = f;
+                }
+
+                foreach (DeleteFacturaDetalleModel d in this.Detalles)
+                {
+                    if (this.FacturaDetalle != null)
+                    {
+                        if (d.UNID_FACTURA_DETALE == this.FacturaDetalle.UNID_FACTURA_DETALE)
+                            this.FacturaDetalle = d;
+                    }
+                    else
+                        this.FacturaDetalle = new FACTURA_DETALLE();
+                }
             }
-
-            this.FacturaDetalle = res.FACTURA_DETALLE;
-            FACTURA temp = new FACTURA();
-            temp = GetFacturabyDetalle(this.FacturaDetalle);
-
-            foreach (FACTURA f in this.Facturas)
-            {
-                if (temp.UNID_FACTURA == f.UNID_FACTURA)
-                    this.Factura = f;
-            }
-
-           foreach(DeleteFacturaDetalleModel d in this.Detalles)
-           {
-               if (d.UNID_FACTURA_DETALE == this.FacturaDetalle.UNID_FACTURA_DETALE)
-                   this.FacturaDetalle = d;
-           }
         }
 
         private ObservableCollection<ARTICULO> GetArticulosByCategoria(CATEGORIA categoria)

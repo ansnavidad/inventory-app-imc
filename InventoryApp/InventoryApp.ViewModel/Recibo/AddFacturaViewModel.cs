@@ -487,5 +487,11 @@ namespace InventoryApp.ViewModel.Recibo
             return new AddFacturaArticuloViewModel(this);
         }
         #endregion
+
+
+        public IFacturaArticuloViewModel CreateFacturaArticuloViewModel()
+        {
+            return this.CreateAddFacturaArticuloViewModel();
+        }
     }
 }

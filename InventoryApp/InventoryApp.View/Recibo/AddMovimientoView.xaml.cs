@@ -38,5 +38,15 @@ namespace InventoryApp.View.Recibo
             AddMovimientoViewModel viewModel = dataSource as AddMovimientoViewModel;
             return viewModel;
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DlgMovimientoSelectAritucloView SelectArticulo = new DlgMovimientoSelectAritucloView();
+            AddMovimientoViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            SelectArticulo.DataContext = viewModel.CreateMovimientoSelectArticuloViewModel(e.AddedItems[0]);
+            SelectArticulo.ShowDialog();
+            BindingExpression be = this.cmbFactura.GetBindingExpression(ComboBox.SelectedItemProperty);
+            be.UpdateSource();
+        }
     }
 }

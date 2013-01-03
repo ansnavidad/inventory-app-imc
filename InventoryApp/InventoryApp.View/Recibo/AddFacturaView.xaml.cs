@@ -27,11 +27,11 @@ namespace InventoryApp.View.Recibo
 
         private void btnFacturaAdd_Click(object sender, RoutedEventArgs e)
         {
-            AddFacturaViewModel addFacturaViewModel = this.DataContext as AddFacturaViewModel;
-            if (addFacturaViewModel != null)
+            IFacturaViewModel facturaViewModel = this.DataContext as IFacturaViewModel;
+            if (facturaViewModel != null)
             {
                 DlgAddFacturaArticuloView addFacturaArticuloView = new DlgAddFacturaArticuloView();
-                addFacturaArticuloView.DataContext = addFacturaViewModel.CreateAddFacturaArticuloViewModel();
+                addFacturaArticuloView.DataContext = facturaViewModel.CreateFacturaArticuloViewModel();
                 addFacturaArticuloView.ShowDialog();
             }
         }

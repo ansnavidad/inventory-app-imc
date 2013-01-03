@@ -62,7 +62,7 @@
             <ComboBox   Grid.Column="1" Grid.Row="5" Height="23"    Name="cbDestino" Width="137" ItemsSource="{Binding Almacenes}" DisplayMemberPath="AlmacenName" SelectedItem="{Binding SelectedAlmacenDestino}"/>
 
             <TextBlock  Grid.Column="0" Grid.Row="1"  Margin="10,0" Text="Factura" Style="{StaticResource textCapTitle1}"  />
-            <ComboBox   Grid.Column="1" Grid.Row="1" Height="23"    Width="137" ItemsSource="{Binding FacturasDisponibles}" DisplayMemberPath="NumeroFactura" SelectedItem="{Binding SelectedFactura}"/>
+            <ComboBox   Name="cmbFactura" Grid.Column="1" Grid.Row="1" Height="23"    Width="137" ItemsSource="{Binding FacturasDisponibles}" DisplayMemberPath="NumeroFactura" SelectedItem="{Binding SelectedFactura, UpdateSourceTrigger=Explicit}" SelectionChanged="ComboBox_SelectionChanged"/>
 
             <DockPanel   Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="{StaticResource allCapColumnSpan}">
                 <Button Content="Agregar Desde Factura" Height="23"   HorizontalAlignment="Right" Margin="0,0,0,0" Click="Button_Click" Visibility="Hidden" />
@@ -77,26 +77,56 @@
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                   HorizontalScrollBarVisibility="Visible"
                        VerticalScrollBarVisibility="Visible"
+                  
                   RowStyle="{StaticResource RowStyle}">
-                
+                <DataGrid.Resources>
+                    <!-- the non-editing cell -->
+                    <DataTemplate x:Key="ReadonlyCellTemplate">
+                        <TextBlock Text="{Binding Path=Cantidad, Mode=TwoWay}" />
+                    </DataTemplate>
+
+                    <!-- the editing cell -->
+                    <DataTemplate x:Key="EditableCellTemplate">
+                        <TextBox Text="{Binding Path=Cantidad, Mode=TwoWay}" />
+                    </DataTemplate>
+                </DataGrid.Resources>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Especificar Cantidad" ></MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
                 <DataGrid.Columns>
+                    <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
+                    <!--<DataGridTemplateColumn Header="" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
                     <DataGridTextColumn Header="Equipo" Width="*" x:Name="equipoName" Binding="{Binding Path=Articulo.EquipoModel.EquipoName}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Model" Width="*" x:Name="modeloName" Binding="{Binding Path=Articulo.Modelo.MODELO_NAME}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Marca" Width="*" x:Name="marcaName" Binding="{Binding Path=Articulo.Marca.MARCA_NAME}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Serie" Width="*" x:Name="Serie" IsReadOnly="False" Binding="{Binding Path=NumeroSerie}"/>
                     <DataGridTextColumn Header="SKU" Width="*" x:Name="sku" IsReadOnly="False" Binding="{Binding Path=Sku}" />
                     <DataGridTextColumn Header="Status" Width="*" x:Name="status" Binding="{Binding Path=Status}" IsReadOnly="False"/>
-                    
-                    <!--<DataGridTemplateColumn Header="Status">
-                        <DataGridTemplateColumn.CellTemplate>
+                    <!--<DataGridTextColumn Header="Cantidad" Width="*" x:Name="cantidad"  Binding="{Binding Path=Cantidad}" />-->
+                    <DataGridTemplateColumn CellTemplate="{StaticResource ReadonlyCellTemplate}" Header="Cantidad">
+                        <DataGridTemplateColumn.CellEditingTemplate>
                             <DataTemplate>
-                                <ComboBox Width="137" ItemsSource="{Binding Almacenes}" DisplayMemberPath="AlmacenName" SelectedItem="{Binding SelectedAlmacenDestino}"/>
+                                <!-- the additional layer of content presenter -->
+                                <ContentPresenter x:Name="Presenter" Content="{Binding}" ContentTemplate="{StaticResource ReadonlyCellTemplate}" />
+                                <DataTemplate.Triggers>
+                                    <!-- dynamically switch the content template by IsEditable binding -->
+                                    <DataTrigger Binding="{Binding Path=IsCantidadEnabled}" Value="True">
+                                        <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource EditableCellTemplate}" />
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
                             </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>-->
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Pedimento Expo" Width="*" x:Name="pedimentoExpo" Binding="{Binding Path=PedimentoExpo}" IsReadOnly="False"/>
                     <DataGridTextColumn Header="Pedimento Impo" Width="*" x:Name="pedimentoImpo" Binding="{Binding Path=PedimentoImpo}" IsReadOnly="False"/>
-                    
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

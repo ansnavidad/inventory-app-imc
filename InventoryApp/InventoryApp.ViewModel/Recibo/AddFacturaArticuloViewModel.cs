@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.Recibo
 {
-    public class AddFacturaArticuloViewModel : ViewModelBase
+    public class AddFacturaArticuloViewModel : ViewModelBase, IFacturaArticuloViewModel
     {
         private IFacturaViewModel _AddFacturaViewModel;
         private RelayCommand _AddDetalle;
@@ -377,8 +377,15 @@ namespace InventoryApp.ViewModel.Recibo
                 ,
                 Unidad = this._SelectedUnidad
                 ,
-                ImpuestoUnitario=this._AddFacturaViewModel.PorIva
-                
+                ImpuestoUnitario = this._AddFacturaViewModel.PorIva,
+                Factura = new FacturaCompraModel()
+                {
+                    UnidFactura=this._AddFacturaViewModel.UnidFactura,
+                    NumeroFactura=this._AddFacturaViewModel.NumeroFactura,
+                    NumeroPedimento=this._AddFacturaViewModel.NumeroPedimento,
+                    PorIva=this._AddFacturaViewModel.PorIva,
+                    Proveedor=this._AddFacturaViewModel.SelectedProveedor
+                }
             };
             this._AddFacturaViewModel.FacturaDetalles.Add(facturaDetalle);
         }

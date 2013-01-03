@@ -186,8 +186,38 @@ namespace InventoryApp.Model.Recibo
         }
         private long _UnidMovimientoDetalle;
         public const string UnidMovimientoDetallePropertyName = "UnidMovimientoDetalle";
-        //recibo
-        public ItemStatusModel ItemStatus
+
+        public int Cantidad
+        {
+            get { return _Cantidad; }
+            set
+            {
+                if (_Cantidad != value)
+                {
+                    _Cantidad = value;
+                    OnPropertyChanged(CantidadPropertyName);
+                }
+            }
+        }
+        private int _Cantidad;
+        public const string CantidadPropertyName = "Cantidad";
+
+        public bool IsCantidadEnabled
+        {
+            get { return _IsCantidadEnabled; }
+            set
+            {
+                if (_IsCantidadEnabled != value)
+                {
+                    _IsCantidadEnabled = value;
+                    OnPropertyChanged(IsCantidadEnabledPropertyName);
+                }
+            }
+        }
+        private bool _IsCantidadEnabled;
+        public const string IsCantidadEnabledPropertyName = "IsCantidadEnabled";
+		
+		        public ItemStatusModel ItemStatus
         {
             get { return _ItemStatus; }
             set

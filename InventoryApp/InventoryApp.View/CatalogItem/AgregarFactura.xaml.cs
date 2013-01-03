@@ -22,5 +22,10 @@ namespace InventoryApp.View.CatalogItem
         {
             InitializeComponent();
         }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

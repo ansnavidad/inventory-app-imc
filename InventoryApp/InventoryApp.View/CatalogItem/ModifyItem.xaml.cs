@@ -31,5 +31,11 @@ namespace InventoryApp.View.CatalogItem
             addFactura.DataContext = viewModel.CreateAgregarFacturaViewModel(); ;
             addFactura.Show();
         }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("El item ha sido modificado");
+            
+        }
     }
 }

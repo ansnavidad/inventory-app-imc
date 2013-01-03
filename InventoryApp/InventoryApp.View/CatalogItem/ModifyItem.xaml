@@ -42,44 +42,42 @@
                  Text="{Binding ItemModel.NumeroSerie, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
         <!--Categoría-->
         <!--Marca-->
-        <Label Content="Articulo :" Grid.Row="5" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="92,1,0,0" Name="label4" VerticalAlignment="Top" />
+        <Label Content="Articulo :" Grid.Row="4" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="92,27,0,0" Name="label4" VerticalAlignment="Top" Grid.RowSpan="2" />
         <ComboBox SelectedItem="{Binding ItemModel.Articulo, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                   ItemsSource="{Binding ItemModel.Articulos, Mode=OneWay}"
                   Text="{Binding ItemModel.Articulo.ARTICULO1, Mode=TwoWay}"
-                  DisplayMemberPath="ARTICULO1" Height="23" HorizontalAlignment="Left" 
-                  Margin="0,4,0,0" Name="comboBox2" 
+                  DisplayMemberPath="ARTICULO1" Height="23" HorizontalAlignment="Left" Name="comboBox2" 
                   SelectedValuePath="UNID_ARTICULO" 
                   VerticalAlignment="Top" Width="120" Grid.Row="5" Grid.Column="2" />
         <!--Categoria-->
-        <Label Content="Categoria :" Grid.Row="4" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="82,4,0,0" Name="label5" VerticalAlignment="Top" Grid.RowSpan="2" />
+        <Label Content="Categoria :" Grid.Row="4" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="82,0,0,0" Name="label5" VerticalAlignment="Top" />
         <ComboBox SelectedItem="{Binding ItemModel.Categoria, Mode=TwoWay}" 
                   ItemsSource="{Binding CategoriaModel.Categoria, Mode=OneWay}"
                   Text="{Binding ItemModel.Categoria.CATEGORIA_NAME, Mode=TwoWay}"
                   DisplayMemberPath="CATEGORIA_NAME" Height="23" HorizontalAlignment="Left" 
-                  Margin="0,7,0,0" Name="comboBox3"  
+                  Margin="0,3,0,0" Name="comboBox3"  
                   SelectedValuePath="UNID_CATEGORIA"
                   VerticalAlignment="Top" Width="120" Grid.Row="4" Grid.Column="2" />
         <!--Equipo-->
-        <Label Content="Item Status :" Grid.Row="5" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="74,28,0,0" Name="label6" VerticalAlignment="Top" Grid.RowSpan="2" />
+        <Label Content="Item Status :" Grid.Row="5" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="74,24,0,0" Name="label6" VerticalAlignment="Top" Grid.RowSpan="2" />
         <ComboBox SelectedItem="{Binding ItemModel.ItemStatus, Mode=TwoWay}" 
                   ItemsSource="{Binding CatalogStatus.ItemStatus, Mode=OneWay}"
                   Text="{Binding ItemModel.ItemStatus.ITEM_STATUS_NAME, Mode=TwoWay}"
                   DisplayMemberPath="ITEM_STATUS_NAME" Height="23" HorizontalAlignment="Left" 
-                  SelectedValuePath="UNID_ITEM_STATUS"
-                  Margin="0,1,0,0" Name="comboBox4"
-                  VerticalAlignment="Top" Width="120" Grid.Row="6" Grid.Column="2"  />
+                  SelectedValuePath="UNID_ITEM_STATUS" Name="comboBox4"
+                  VerticalAlignment="Top" Width="120" Grid.Row="5" Grid.Column="2" Margin="0,27,0,0" Grid.RowSpan="2" />
         <Label Content="SKU :" Height="28" HorizontalAlignment="Left" Margin="106,2,0,0" Name="label1" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" />
         <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,4,0,3" MaxLength="512" Name="textBox1" Text="{Binding ItemModel.Sku, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="120" Grid.Row="2" />
         <Button Command="{Binding ModifyItemCommand, Mode=OneWay}" Content="Buscar" Height="23" HorizontalAlignment="Stretch" Margin="173,14,24,3" Name="button1" VerticalAlignment="Stretch" Width="75" Grid.Column="2" Grid.Row="1" />
-        <Label Content="Costo Unitario :" Height="28" HorizontalAlignment="Left" Margin="58,34,0,0" Name="label3" VerticalAlignment="Top" Grid.Column="1" Grid.Row="6" Grid.RowSpan="3" />
-        <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,0,0,1" MaxLength="512" Name="textBox2" Text="{Binding ItemModel.CostoUnitario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="83" Grid.Row="7" />
-        <Label Content="Factura:" Height="28" HorizontalAlignment="Left" Margin="116,35,0,0" Name="label7" VerticalAlignment="Top" Grid.Row="8" Grid.Column="2" />
-        <ComboBox DisplayMemberPath="FACTURA_NUMERO" Grid.Column="2" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding ItemModel.Facturas, Mode=OneWay}" Name="comboBox1" SelectedItem="{Binding ItemModel.Factura, Mode=TwoWay}" SelectedValuePath="UNID_FACTURA" Text="{Binding ItemModel.Factura.FACTURA_NUMERO, Mode=TwoWay}" VerticalAlignment="Top" Width="124" Grid.Row="8" Margin="173,35,0,0" Grid.ColumnSpan="2" />
-        <Label Content=" Proveedor :" Height="28" HorizontalAlignment="Left" Margin="38,95,0,0" Name="label8" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8" />
-        <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="113,99,0,228" Name="textBox3" Text="{Binding ItemModel.Proveedor.PROVEEDOR_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="120" Grid.Row="8" Grid.ColumnSpan="2" />
-        <Label Content=" Moneda :" Height="28" HorizontalAlignment="Left" Margin="47,127,0,0" Name="label9" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8" />
-        <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="113,126,0,201" Name="textBlock1" Text="{Binding ItemModel.Moneda.MONEDA_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="120" Grid.Row="8" Grid.ColumnSpan="2" />
-        <DataGrid SelectedItem="{Binding ItemModel.FacturaDetalle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  AutoGenerateColumns="False" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="8" ItemsSource="{Binding ItemModel.Detalles}"  Height="153" HorizontalAlignment="Left" Margin="23,162,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="424">
+        <Label Content="Costo Unitario :" Height="28" HorizontalAlignment="Left" Margin="58,30,0,0" Name="label3" VerticalAlignment="Top" Grid.Column="1" Grid.Row="6" Grid.RowSpan="2" />
+        <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,32,0,5" MaxLength="512" Name="textBox2" Text="{Binding ItemModel.CostoUnitario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="83" Grid.Row="6" Grid.RowSpan="2" />
+        <Label Content="Factura:" Height="28" HorizontalAlignment="Left" Margin="116,31,0,0" Name="label7" VerticalAlignment="Top" Grid.Row="8" Grid.Column="2" />
+        <ComboBox DisplayMemberPath="FACTURA_NUMERO" Grid.Column="2" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding ItemModel.Facturas, Mode=OneWay}" Name="comboBox1" SelectedItem="{Binding ItemModel.Factura, Mode=TwoWay}" SelectedValuePath="UNID_FACTURA" Text="{Binding ItemModel.Factura.FACTURA_NUMERO, Mode=TwoWay}" VerticalAlignment="Top" Width="124" Grid.Row="8" Margin="173,31,0,0" Grid.ColumnSpan="2" />
+        <Label Content=" Proveedor :" Height="28" HorizontalAlignment="Left" Margin="38,91,0,0" Name="label8" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8" />
+        <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="113,95,0,232" Name="textBox3" Text="{Binding ItemModel.Proveedor.PROVEEDOR_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="120" Grid.Row="8" Grid.ColumnSpan="2" />
+        <Label Content=" Moneda :" Height="28" HorizontalAlignment="Left" Margin="47,123,0,0" Name="label9" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8" />
+        <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="113,122,0,205" Name="textBlock1" Text="{Binding ItemModel.Moneda.MONEDA_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="120" Grid.Row="8" Grid.ColumnSpan="2" />
+        <DataGrid SelectedItem="{Binding ItemModel.FacturaDetalle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  AutoGenerateColumns="False" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="8" ItemsSource="{Binding ItemModel.Detalles}"  Height="133" HorizontalAlignment="Left" Margin="23,181,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="424">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Artículo" Width="*" x:Name="articuloNombre" Binding="{Binding Path=Articulo.ARTICULO1}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Cantidad" Width="*" x:Name="categoriaNombre" Binding="{Binding Path=CANTIDAD}" IsReadOnly="True"/>
@@ -89,15 +87,16 @@
                 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Command="{Binding UpdateItemCommand, Mode=OneWay}" Content="Guardar" Height="23" HorizontalAlignment="Stretch" Margin="34,327,163,0" Name="button2" VerticalAlignment="Stretch" Width="75" Grid.Column="2" Grid.Row="8" />
-        <Button Command="{Binding AddFactura, Mode=OneWay}" Content="Agregar Factura" Height="23" HorizontalAlignment="Stretch" Margin="198,78,11,249" Name="button3" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="8" Click="button3_Click" Grid.ColumnSpan="2" />
-        <Label Content="Pedimento Exportación :" Height="28" HorizontalAlignment="Left" Margin="11,2,0,0" Name="label10" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8" />
-        <Label Content="Pedimento Importación :" Grid.ColumnSpan="2" Height="28" Margin="11,38,270,0" Name="label11" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8" />
-        <TextBox Height="23" HorizontalAlignment="Left" Text="{Binding ItemModel.PedimentoExpo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,4,0,323" MaxLength="512" Name="textBoxPedimentoExpo" VerticalAlignment="Stretch" Width="83" Grid.Column="2" Grid.Row="8" />
-        <TextBox Height="23" HorizontalAlignment="Left" Text="{Binding ItemModel.PedimentoImpo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,40,0,287" MaxLength="512" Name="textBoxPedimentoImpo" VerticalAlignment="Stretch" Width="83" Grid.Column="2" Grid.Row="8" />
+        <Button Command="{Binding UpdateItemCommand, Mode=OneWay}" Content="Guardar" Height="23" HorizontalAlignment="Stretch" Margin="45,320,152,7" Name="button2" VerticalAlignment="Stretch" Width="75" Grid.Column="2" Grid.Row="8" Click="button2_Click" />
+        <Button Command="{Binding AddFactura, Mode=OneWay}" Content="Agregar Factura" Height="23" HorizontalAlignment="Stretch" Margin="198,74,11,253" Name="button3" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="8" Click="button3_Click" Grid.ColumnSpan="2" />
+        <Label Content="Pedimento Exportación :" Height="28" HorizontalAlignment="Left" Margin="11,22,0,0" Name="label10" VerticalAlignment="Top" Grid.Column="1" Grid.Row="7" Grid.RowSpan="2" />
+        <Label Content="Pedimento Importación :" Grid.ColumnSpan="2" Height="28" Margin="11,34,270,0" Name="label11" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8" />
+        <TextBox Height="23" HorizontalAlignment="Left" Text="{Binding ItemModel.PedimentoExpo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,327" MaxLength="512" Name="textBoxPedimentoExpo" VerticalAlignment="Stretch" Width="83" Grid.Column="2" Grid.Row="8" />
+        <TextBox Height="23" HorizontalAlignment="Left" Text="{Binding ItemModel.PedimentoImpo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,36,0,291" MaxLength="512" Name="textBoxPedimentoImpo" VerticalAlignment="Stretch" Width="83" Grid.Column="2" Grid.Row="8" />
         <Border BorderBrush="Silver" BorderThickness="3" Grid.ColumnSpan="5" Margin="0,15,12,12" Name="border6" Grid.Column="1" Grid.Row="3" />
-        <Label Content="Cantidad :" Height="28" Margin="86,66,268,0" Name="label12" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" />
-        <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="149,70,0,257" MaxLength="512" Name="textBox4" Text="{Binding ItemModel.CantidadItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="48" Grid.Row="8" Grid.ColumnSpan="2" />
+        <Label Content="Cantidad :" Height="28" Margin="86,65,268,0" Name="label12" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" />
+        <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="149,66,0,261" MaxLength="512" Name="textBox4" Text="{Binding ItemModel.CantidadItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="48" Grid.Row="8" Grid.ColumnSpan="2" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,0,0,17" Name="textBlock2" Text="{Binding ItemModel.Error, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="422" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" />
+        <Label Content="Seleccione un detalle de factura:" Grid.Column="1" Grid.Row="8" Height="28" HorizontalAlignment="Left" Margin="23,157,0,0" Name="label13" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="183" />
     </Grid>
 </UserControl>

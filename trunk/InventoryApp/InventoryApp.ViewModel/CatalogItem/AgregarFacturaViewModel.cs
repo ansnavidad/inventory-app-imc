@@ -55,7 +55,10 @@ namespace InventoryApp.ViewModel.CatalogItem
         {
             bool canAddDetalle = false;
 
-            if (this._facturaCompraModel.NumeroFactura != null)
+            if (this._facturaCompraModel.NumeroFactura != null && this._facturaCompraModel.FechaFactura != null
+                && this._facturaCompraModel.PorIva > 0 && this._facturaCompraModel.Proveedor != null &&
+                this._facturaCompraModel.Moneda != null && this._facturaCompraDetalleModel.Unidad != null
+                && this.FacturaCompraDetalleModel.Cantidad > 0 && this.FacturaCompraDetalleModel.CostoUnitario > 0)
             {
                 canAddDetalle = true;
             }

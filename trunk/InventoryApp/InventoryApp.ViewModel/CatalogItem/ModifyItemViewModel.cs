@@ -23,7 +23,7 @@ namespace InventoryApp.ViewModel.CatalogItem
         private string _error;
 
 
-
+  
         public ModifyItemViewModel()
         {
             try
@@ -208,6 +208,7 @@ namespace InventoryApp.ViewModel.CatalogItem
         public void AttempUpdateMarca()
         {
             this._itemModel.updateItem();
+            this.ItemModel.clear();
         }
 
         public bool CanAttempAddFactura()

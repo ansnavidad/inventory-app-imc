@@ -457,6 +457,23 @@ namespace InventoryApp.Model
             this.Detalles = new ObservableCollection<DeleteFacturaDetalleModel>();
         }
 
+        public void clear()
+        {
+            this.NumeroSerie = "";
+            this.Sku = "";
+            this.Categoria = new CATEGORIA();
+            this.Articulo = new ARTICULO();
+            this.Proveedor = new PROVEEDOR();
+            this._unidItem = new long();
+            this.ItemStatus = new ITEM_STATUS();
+            this.FacturaDetalle = new FACTURA_DETALLE();
+            this.CostoUnitario = new long();
+            this.PedimentoExpo = new long();
+            this.PedimentoImpo = new long();
+            this.CantidadItem = new int();
+            this.Detalles = new ObservableCollection<DeleteFacturaDetalleModel>();
+        }
+
         public void getElement()
         {
             ITEM aux = new ITEM();

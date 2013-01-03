@@ -575,8 +575,14 @@
     <Compile Include="Recibo\DlgModifyReciboView.xaml.cs">
       <DependentUpon>DlgModifyReciboView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Recibo\DlgMovimientoSelectAritucloView.xaml.cs">
+      <DependentUpon>DlgMovimientoSelectAritucloView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Recibo\ModifyFacturaView.xaml.cs">
       <DependentUpon>ModifyFacturaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\MovimientoSelectArticuloView.xaml.cs">
+      <DependentUpon>MovimientoSelectArticuloView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Recibo\ReciboView.xaml.cs">
       <DependentUpon>ReciboView.xaml</DependentUpon>
@@ -1290,7 +1296,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Recibo\DlgMovimientoSelectAritucloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Recibo\ModifyFacturaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\MovimientoSelectArticuloView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

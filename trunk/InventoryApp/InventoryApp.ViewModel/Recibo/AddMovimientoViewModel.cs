@@ -19,6 +19,8 @@ namespace InventoryApp.ViewModel.Recibo
         private const string TipoOrigenAlmacen = "Almacen";
         private const string TipoOrigenProveedor = "Proveedor";
 
+        private MovimientoSelectArticuloViewModel _MovimientoSelectArticuloViewModel;
+
         public ICommand AddMovimientoCmd
         {
             get
@@ -51,7 +53,6 @@ namespace InventoryApp.ViewModel.Recibo
             get { return _AddReciboViewModel; }
         }
         
-
         public long UnidMovimiento
         {
             get 
@@ -337,11 +338,11 @@ namespace InventoryApp.ViewModel.Recibo
                     {
                         UnidProveedor = _SelectedFactura.Proveedor.UnidProveedor,
                         ProveedorName=_SelectedFactura.Proveedor.ProveedorName
-                    }; ;
+                    }; 
 
                     this.Items = new ObservableCollection<ReciboItemModel>();
                     long unid = DAL.UNID.getNewUNID();
-                    this._SelectedFactura.FacturaDetalle.ToList().ForEach(o =>
+                    this._MovimientoSelectArticuloViewModel.FacturaDetalles.ToList().ForEach(o =>
                     {
                         for (int i = 0; i < o.Cantidad; i++)
                         {
@@ -352,7 +353,9 @@ namespace InventoryApp.ViewModel.Recibo
                                 FacturaDetalle = o,
                                 UnidMovimiento = this.UnidMovimiento,
                                 UnidItem = unid,
-                                UnidMovimientoDetalle = unid
+                                UnidMovimientoDetalle = unid,
+                                Cantidad= 1,
+                                IsCantidadEnabled= o.IsSelected?true:false
                             });
                         }
                     });
@@ -391,6 +394,18 @@ namespace InventoryApp.ViewModel.Recibo
         public AddMovimientoDetalleViewModel CreateAddMovimientoDetalleViewModel()
         {
             return new AddMovimientoDetalleViewModel(this,this._AddReciboViewModel);
+        }
+
+        public MovimientoSelectArticuloViewModel CreateMovimientoSelectArticuloViewModel()
+        {
+            this._MovimientoSelectArticuloViewModel= new MovimientoSelectArticuloViewModel(this.SelectedFactura);
+            return this._MovimientoSelectArticuloViewModel;
+        }
+
+        public MovimientoSelectArticuloViewModel CreateMovimientoSelectArticuloViewModel(Object SelectedFactura)
+        {
+            this._MovimientoSelectArticuloViewModel = new MovimientoSelectArticuloViewModel(SelectedFactura as FacturaCompraModel);
+            return this._MovimientoSelectArticuloViewModel;
         }
 
         private ObservableCollection<TipoPedimentoModel> GetTipoPedimento()

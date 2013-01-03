@@ -12,6 +12,19 @@ namespace InventoryApp.ViewModel.Recibo
     {
         ProveedorModel SelectedProveedor { get; }
         ObservableCollection<FacturaCompraDetalleModel> FacturaDetalles{get;}
-        double PorIva { get; set; }
+        IFacturaArticuloViewModel CreateFacturaArticuloViewModel();
+
+        DateTime FechaFactura { get; }
+        MonedaModel SelectedMoneda { get; }
+        String NumeroFactura { get; }
+        string NumeroPedimento { get; }
+        double PorIva { get; }
+        
+        long UnidFactura { get; }
+        
+        
+        
+        TipoPedimentoModel SelectedTipoPedimento { get; }
+        
     }
 }

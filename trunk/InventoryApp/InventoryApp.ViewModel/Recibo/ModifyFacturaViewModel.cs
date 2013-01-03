@@ -360,6 +360,7 @@ namespace InventoryApp.ViewModel.Recibo
                 this._SelectedFactura.Proveedor = this.SelectedProveedor;
                 this._SelectedFactura.IsNew = false;
                 this._SelectedFactura.IsModified = this.IsModified;
+                this._SelectedFactura.FacturaDetalle = this.FacturaDetalles;
             }
         }
 
@@ -514,6 +515,7 @@ namespace InventoryApp.ViewModel.Recibo
         {
             return new AddFacturaArticuloViewModel(this);
         }
+
         #endregion
 
         public bool IsModified
@@ -547,5 +549,11 @@ namespace InventoryApp.ViewModel.Recibo
             }
         }
         private bool _IsNew;
+
+
+        public IFacturaArticuloViewModel CreateFacturaArticuloViewModel()
+        {
+            return this.CreateAddFacturaArticuloViewModel();
+        }
     }
 }

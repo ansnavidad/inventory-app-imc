@@ -146,6 +146,7 @@ namespace InventoryApp.ViewModel.Recibo
                         UNID_ITEM=item.UnidItem,
                         UNID_ALMACEN=mov.DestinoAlmacen.UnidAlmacen,
                         UNID_MOVIMIENTO_DETALLE=item.UnidMovimientoDetalle,
+                        CANTIDAD = item.Cantidad,
                         IS_ACTIVE=true
                     };
                     UltimoMovimientoDataMapper umDataMapper = new UltimoMovimientoDataMapper();

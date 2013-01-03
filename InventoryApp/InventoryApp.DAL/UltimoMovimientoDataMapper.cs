@@ -115,6 +115,7 @@ namespace InventoryApp.DAL
 
                     if (query.Count == 0)
                     {
+                        ultimoMov.UNID_ULTIMO_MOVIMIENTO = UNID.getNewUNID();
                         //Sync
                         ultimoMov.IS_MODIFIED = true;
                         ultimoMov.LAST_MODIFIED_DATE = UNID.getNewUNID();

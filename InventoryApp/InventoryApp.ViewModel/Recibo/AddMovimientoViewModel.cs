@@ -344,7 +344,7 @@ namespace InventoryApp.ViewModel.Recibo
                     long unid = DAL.UNID.getNewUNID();
                     this._MovimientoSelectArticuloViewModel.FacturaDetalles.ToList().ForEach(o =>
                     {
-                        for (int i = 0; i < o.Cantidad; i++)
+                        if (o.IsSelected)
                         {
                             unid++;
                             this.Items.Add(new ReciboItemModel()
@@ -354,9 +354,28 @@ namespace InventoryApp.ViewModel.Recibo
                                 UnidMovimiento = this.UnidMovimiento,
                                 UnidItem = unid,
                                 UnidMovimientoDetalle = unid,
-                                Cantidad= 1,
-                                IsCantidadEnabled= o.IsSelected?true:false
+                                Cantidad = o.Cantidad,
+                                //IsCantidadEnabled = o.IsSelected ? true : false
+                                IsCantidadEnabled = true                               
                             });
+                        }
+                        else
+                        {
+                            for (int i = 0; i < o.Cantidad; i++)
+                            {
+                                unid++;
+                                this.Items.Add(new ReciboItemModel()
+                                {
+                                    Articulo = o.Articulo,
+                                    FacturaDetalle = o,
+                                    UnidMovimiento = this.UnidMovimiento,
+                                    UnidItem = unid,
+                                    UnidMovimientoDetalle = unid,
+                                    Cantidad = 1,
+                                    //IsCantidadEnabled = o.IsSelected ? true : false
+                                    IsCantidadEnabled = false
+                                });
+                            }
                         }
                     });
                 }

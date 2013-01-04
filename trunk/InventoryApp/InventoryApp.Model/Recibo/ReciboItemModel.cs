@@ -192,7 +192,7 @@ namespace InventoryApp.Model.Recibo
             get { return _Cantidad; }
             set
             {
-                if (_Cantidad != value)
+                if (_Cantidad != value)                
                 {
                     _Cantidad = value;
                     OnPropertyChanged(CantidadPropertyName);

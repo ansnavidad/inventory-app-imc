@@ -79,17 +79,21 @@
                        VerticalScrollBarVisibility="Visible"
                   
                   RowStyle="{StaticResource RowStyle}">
-                <DataGrid.Resources>
+
+                <!--Celda editable/no editable de Juan-->
+
+                <!--<DataGrid.Resources>-->
                     <!-- the non-editing cell -->
-                    <DataTemplate x:Key="ReadonlyCellTemplate">
+                    <!--<DataTemplate x:Key="ReadonlyCellTemplate">
                         <TextBlock Text="{Binding Path=Cantidad, Mode=TwoWay}" />
-                    </DataTemplate>
+                    </DataTemplate>-->
 
                     <!-- the editing cell -->
-                    <DataTemplate x:Key="EditableCellTemplate">
+                    <!--<DataTemplate x:Key="EditableCellTemplate">
                         <TextBox Text="{Binding Path=Cantidad, Mode=TwoWay}" />
                     </DataTemplate>
-                </DataGrid.Resources>
+                </DataGrid.Resources>-->
+                
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Especificar Cantidad" ></MenuItem>
@@ -110,21 +114,24 @@
                     <DataGridTextColumn Header="Serie" Width="*" x:Name="Serie" IsReadOnly="False" Binding="{Binding Path=NumeroSerie}"/>
                     <DataGridTextColumn Header="SKU" Width="*" x:Name="sku" IsReadOnly="False" Binding="{Binding Path=Sku}" />
                     <DataGridTextColumn Header="Status" Width="*" x:Name="status" Binding="{Binding Path=Status}" IsReadOnly="False"/>
-                    <!--<DataGridTextColumn Header="Cantidad" Width="*" x:Name="cantidad"  Binding="{Binding Path=Cantidad}" />-->
-                    <DataGridTemplateColumn CellTemplate="{StaticResource ReadonlyCellTemplate}" Header="Cantidad">
-                        <DataGridTemplateColumn.CellEditingTemplate>
-                            <DataTemplate>
+                                        
+                    <!--Celda editable/no editable de Juan-->
+                    
+                    <!--<DataGridTemplateColumn CellTemplate="{StaticResource ReadonlyCellTemplate}" Header="Cantidad">-->
+                        <!--<DataGridTemplateColumn.CellEditingTemplate>-->
+                            <!--<DataTemplate>-->
                                 <!-- the additional layer of content presenter -->
-                                <ContentPresenter x:Name="Presenter" Content="{Binding}" ContentTemplate="{StaticResource ReadonlyCellTemplate}" />
-                                <DataTemplate.Triggers>
+                                <!--<ContentPresenter x:Name="Presenter" Content="{Binding}" ContentTemplate="{StaticResource ReadonlyCellTemplate}" />-->
+                                <!--<DataTemplate.Triggers>-->
                                     <!-- dynamically switch the content template by IsEditable binding -->
-                                    <DataTrigger Binding="{Binding Path=IsCantidadEnabled}" Value="True">
-                                        <Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource EditableCellTemplate}" />
-                                    </DataTrigger>
-                                </DataTemplate.Triggers>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellEditingTemplate>
-                    </DataGridTemplateColumn>
+                                    <!--<DataTrigger Binding="{Binding Path=IsCantidadEnabled}" Value="True">-->
+                                        <!--<Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource EditableCellTemplate}" />-->
+                                    <!--</DataTrigger>-->
+                                <!--</DataTemplate.Triggers>-->
+                            <!--</DataTemplate>-->
+                        <!--</DataGridTemplateColumn.CellEditingTemplate>-->
+                    <!--</DataGridTemplateColumn>-->
+                    <DataGridTextColumn Header="Cantidad" Width="*" x:Name="cantidad" Binding="{Binding Path=Cantidad}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Pedimento Expo" Width="*" x:Name="pedimentoExpo" Binding="{Binding Path=PedimentoExpo}" IsReadOnly="False"/>
                     <DataGridTextColumn Header="Pedimento Impo" Width="*" x:Name="pedimentoImpo" Binding="{Binding Path=PedimentoImpo}" IsReadOnly="False"/>
                 </DataGrid.Columns>

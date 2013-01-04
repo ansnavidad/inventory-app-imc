@@ -70,7 +70,8 @@ namespace InventoryApp.DAL
                          UNID_TECNICO = row.UNID_TECNICO,
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         TECNICO1 = row.TECNICO1
                      });
                  });
                 if (listMovimiento.Count > 0)
@@ -139,6 +140,7 @@ namespace InventoryApp.DAL
                     trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
                     trans.TECNICO = trans.TECNICO;
                     trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                    trans.TECNICO1 = trans.TECNICO1;
                 }
 
                 return (object)res;
@@ -176,6 +178,7 @@ namespace InventoryApp.DAL
                         trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
                         trans.TECNICO = trans.TECNICO;
                         trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
                         final.Add(trans);
                     }
                 }
@@ -215,6 +218,7 @@ namespace InventoryApp.DAL
                         trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
                         trans.TECNICO = trans.TECNICO;
                         trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
                         final.Add(trans);
                     }
                 }
@@ -254,6 +258,7 @@ namespace InventoryApp.DAL
                         trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
                         trans.TECNICO = trans.TECNICO;
                         trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
                         final.Add(trans);
                     }
                 }
@@ -319,6 +324,7 @@ namespace InventoryApp.DAL
                     modifiedMovimiento.UNID_TECNICO = movimiento.UNID_TECNICO;
                     modifiedMovimiento.UNID_TIPO_MOVIMIENTO = movimiento.UNID_TIPO_MOVIMIENTO;
                     modifiedMovimiento.UNID_TRANSPORTE = movimiento.UNID_TRANSPORTE;
+                    modifiedMovimiento.UNID_TECNICO_TRAS = movimiento.UNID_TECNICO_TRAS;
                     //Sync
                     modifiedMovimiento.IS_MODIFIED = true;
                     modifiedMovimiento.LAST_MODIFIED_DATE = UNID.getNewUNID();
@@ -420,7 +426,8 @@ namespace InventoryApp.DAL
                          UNID_TECNICO=row.UNID_TECNICO,
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         TECNICO1 = row.TECNICO1
                      });
                  });
                 if (listMovimiento.Count > 0)
@@ -490,7 +497,8 @@ namespace InventoryApp.DAL
                          UNID_TECNICO = row.UNID_TECNICO,
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         TECNICO1 = row.TECNICO1
                      });
                  });
                 if (reset.Count > 0)

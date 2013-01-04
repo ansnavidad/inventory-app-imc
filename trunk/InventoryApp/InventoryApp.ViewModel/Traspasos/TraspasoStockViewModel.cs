@@ -58,13 +58,9 @@ namespace InventoryApp.ViewModel.Traspasos
                 //Asignaciones especiales para los combos 
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
-                this._movimientoModel.Servicio = _catalogServicioModel.Servicio[0];
-                this._movimientoModel.Cliente = _catalogClienteDestinoModel.Cliente[0];
                 this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
-                this._movimientoModel.AlmacenDestino = _catalogAlmacenDestinoModel.Almacen[0];
-                this._movimientoModel.ClienteDestino = _catalogClienteDestinoModel.Cliente[0];
-                this._movimientoModel.ProveedorDestino = _catalogProveedorDestinoModel.Proveedor[0];
+                this._movimientoModel.AlmacenDestino = _catalogAlmacenProcedenciaModel.Almacen[0];
                 this._movimientoModel.Transporte = _catalogTransporteModel.Transporte[0];
             }
             catch (ArgumentException a)
@@ -110,13 +106,9 @@ namespace InventoryApp.ViewModel.Traspasos
                 //Asignaciones especiales para los combos 
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
-                this._movimientoModel.Servicio = _catalogServicioModel.Servicio[0];
-                this._movimientoModel.Cliente = _catalogClienteDestinoModel.Cliente[0];
                 this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
-                this._movimientoModel.AlmacenDestino = _catalogAlmacenDestinoModel.Almacen[0];
-                this._movimientoModel.ClienteDestino = _catalogClienteDestinoModel.Cliente[0];
-                this._movimientoModel.ProveedorDestino = _catalogProveedorDestinoModel.Proveedor[0];
+                this._movimientoModel.AlmacenDestino = _catalogAlmacenProcedenciaModel.Almacen[0];
                 this._movimientoModel.Transporte = _catalogTransporteModel.Transporte[0];
             }
             catch (ArgumentException a)
@@ -317,7 +309,7 @@ namespace InventoryApp.ViewModel.Traspasos
             if (this.MovimientoModel.ProveedorDestino != null)
                 seleccion++;
 
-            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && !String.IsNullOrEmpty(this.MovimientoModel.DireccionEnvio) && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && seleccion == 1)
+            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && this.MovimientoModel.UnidAlmacenDestino != this.MovimientoModel.UnidAlmacenProcedencia)
                 _canInsertArticulo = true;
 
             return _canInsertArticulo;
@@ -348,7 +340,7 @@ namespace InventoryApp.ViewModel.Traspasos
             if (this.MovimientoModel.ProveedorDestino != null)
                 seleccion++;
 
-            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && !String.IsNullOrEmpty(this.MovimientoModel.DireccionEnvio) && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && seleccion == 1)
+            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && this.MovimientoModel.UnidAlmacenDestino != this.MovimientoModel.UnidAlmacenProcedencia)
                 _canImprimir = true;
 
             return _canImprimir;
@@ -376,39 +368,27 @@ namespace InventoryApp.ViewModel.Traspasos
                 //Solicitante y su área
                 excel.Cells[11, 12] = _movimientoModel.Solicitante.SOLICITANTE_NAME;
                 excel.Cells[13, 12] = _movimientoModel.Solicitante.Departamento.DEPARTAMENTO_NAME;
-                //Recibe
-                excel.Cells[15, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
-                //Procedencia                
-                excel.Cells[17, 12] = _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
-                //Destino
-                string p = "";
-
-                if (_movimientoModel.ProveedorDestino != null)
-                    p = _movimientoModel.ProveedorDestino.PROVEEDOR_NAME;
-                else if (_movimientoModel.AlmacenDestino != null)
-                    p = _movimientoModel.AlmacenDestino.ALMACEN_NAME;
-                else
-                    p = _movimientoModel.ClienteDestino.CLIENTE1;
-                excel.Cells[19, 12] = p;
-                //TT
-                excel.Cells[21, 12] = _movimientoModel.Tt;
                 //Empresa
-                excel.Cells[23, 12] = _movimientoModel.Empresa.EMPRESA_NAME;
-                //Transporte
-                excel.Cells[25, 12] = _movimientoModel.Transporte.TRANSPORTE_NAME;
-                //Contacto
-                excel.Cells[27, 12] = _movimientoModel.Contacto;
-                //Guia
-                excel.Cells[29, 12] = _movimientoModel.Guia;
-                //Nombre de Sitio
-                excel.Cells[31, 12] = _movimientoModel.SitioEnlace;
-                //Dirección
-                excel.Cells[33, 12] = _movimientoModel.DireccionEnvio;
-                //Servicio
-                excel.Cells[35, 12] = _movimientoModel.Servicio.SERVICIO_NAME;
-                //Cliente
-                excel.Cells[37, 12] = _movimientoModel.Cliente.CLIENTE1;
+                excel.Cells[15, 12] = _movimientoModel.Empresa.EMPRESA_NAME;
+                
+                //Procedencia                
+                excel.Cells[19, 12] = _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
+                //Técnico
+                excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
 
+                //Destino                
+                excel.Cells[25, 12] = _movimientoModel.AlmacenDestino.ALMACEN_NAME;
+                //Técnico
+                excel.Cells[27, 12] = _movimientoModel.Tecnico2.TECNICO_NAME;
+
+                //TT
+                excel.Cells[31, 12] = _movimientoModel.Tt;
+                //Transporte
+                excel.Cells[35, 12] = _movimientoModel.Transporte.TRANSPORTE_NAME;
+
+                //Guia
+                excel.Cells[37, 12] = _movimientoModel.Guia;
+                
                 int X = 44;
                 Microsoft.Office.Interop.Excel.Borders borders;
 

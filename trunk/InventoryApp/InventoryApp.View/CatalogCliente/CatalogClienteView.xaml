@@ -14,7 +14,7 @@
             <TextBlock Text="CONSULTA DE DATOS  [ CLIENTE ]" FontFamily="Arial" FontSize="15" Margin="0,0,0,0" Padding="5,10,0,10" Background="#eaedf4" Foreground="#525354"></TextBlock>
         </Border>
         <!--<Label Content="CONSULTA DE ITEM STATUS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />-->
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1"
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" CanUserDeleteRows="False"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridCliente"
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogClienteModel.Cliente}"
                   SelectedItem="{Binding CatalogClienteModel.SelectedCliente, Mode=TwoWay}"

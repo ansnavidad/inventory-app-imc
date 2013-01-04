@@ -32,7 +32,7 @@
         <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
                     Margin="0,0,170,0" Name="btnEliminar" VerticalAlignment="Stretch"
                     Width="75" Click="btnEliminar_Click" Command="{Binding DeleteTipoPedimentoCommand,Mode=OneWay}"  />
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" 
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" CanUserDeleteRows="False"
                   Name="dtGridTipoPedimento" VerticalAlignment="Stretch" ItemsSource="{Binding TipoPedimentoModel.TipoPedimento}" 
                   SelectedItem="{Binding TipoPedimentoModel.SelectedTipoPedimento, Mode=TwoWay}" 
                   MouseDoubleClick="dtGridItemStatus_MouseDoubleClick" Grid.Column="0" Grid.ColumnSpan="3"

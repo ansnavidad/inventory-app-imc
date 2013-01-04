@@ -29,7 +29,7 @@
         <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
                     Margin="0,0,170,0" Name="btnEliminar" VerticalAlignment="Stretch"
                     Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteModeloCommand,Mode=OneWay}"/>
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" 
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" CanUserDeleteRows="False" 
                   Name="dtGridModelo" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogModeloModel.Modelos}" 
                   SelectedItem="{Binding CatalogModeloModel.SelectedModelo, Mode=TwoWay}" MouseDoubleClick="dtGridModelo_MouseDoubleClick"
                    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"

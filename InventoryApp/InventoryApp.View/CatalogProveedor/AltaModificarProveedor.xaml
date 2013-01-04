@@ -75,7 +75,7 @@
                   SelectedItem="{Binding ProveedorEnvio.Ciudad,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                   ItemsSource="{Binding CatalogCiudadModel.Ciudad, Mode=OneWay}" DisplayMemberPath="CIUDAD1" 
                   SelectedValuePath="UNID_CIUDAD" SelectedIndex="0" Grid.Column="2" Grid.Row="5" />
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False"
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
                   HorizontalAlignment="Left" Margin="35,23,0,0" Name="dtGridCategoria"
                   VerticalAlignment="Top" ItemsSource="{Binding CatalogCategoriaModel.Categoria}"
                   SelectedItem="{Binding CatalogCategoriaModel.SelectedCategoria, Mode=TwoWay}"

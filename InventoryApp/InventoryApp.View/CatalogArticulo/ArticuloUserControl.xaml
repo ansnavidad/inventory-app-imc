@@ -32,7 +32,7 @@
         <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Margin="77,0,98,0"
                     Name="btnEliminar" VerticalAlignment="Stretch" Grid.Column="2" Command="{Binding DeleteArticuloCommand,Mode=OneWay}"
                     Width="75" Click="btnEliminar_Click"/>
-        <DataGrid AutoGenerateColumns="False" 
+        <DataGrid AutoGenerateColumns="False" CanUserDeleteRows="False"
                   SelectedItem="{Binding CatalogArticuloModel.SelectedArticulo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                   CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItems" 
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogArticuloModel.Articulos}" 

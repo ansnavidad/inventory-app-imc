@@ -69,7 +69,7 @@
                      Name="txtTecnico" VerticalAlignment="Stretch" Width="120"
                      Text="{Binding AddAlmacen.Mail, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                      MaxLength="512" />
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left"
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" HorizontalAlignment="Left"
                   ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"  
                   ItemsSource="{Binding CatalogTecnicoModel.Tecnico}" 
                   SelectedItem="{Binding CatalogTecnicoModel.SelectedTecnico, Mode=TwoWay}"

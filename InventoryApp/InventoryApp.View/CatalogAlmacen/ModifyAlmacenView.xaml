@@ -70,7 +70,7 @@
                      MaxLength="512" />
         <Label Content="Mail Default :" Grid.Row="5" Height="28" HorizontalAlignment="Right" Margin="0,2,0,0" Name="lblValidador" 
                VerticalAlignment="Stretch" Grid.Column="1" />
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" 
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
                   ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                   ItemsSource="{Binding CatalogTecnicoModel.Tecnico}"
                   SelectedItem="{Binding CatalogTecnicoModel.SelectedTecnico, Mode=TwoWay}"

@@ -69,7 +69,7 @@
             </DockPanel>
 
             <DataGrid  Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="{StaticResource allCapColumnSpan}"
-                  AutoGenerateColumns="False" CanUserAddRows="False"
+                  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridBanco"
                   SelectedItem="{Binding CatalogBancoModel.SelectedBanco, Mode=TwoWay}"
                   ItemsSource="{Binding Items}" 

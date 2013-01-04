@@ -32,7 +32,7 @@
         <!--<Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
                     Margin="0,0,170,0" Name="btnEliminar" VerticalAlignment="Stretch"
                     Width="75" Command="{Binding DeleteMonedaCommand,Mode=OneWay}"/>-->
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1"
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" CanUserDeleteRows="False"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridMoneda"
                   SelectedItem="{Binding SelectedRecibo, Mode=TwoWay}"
                   VerticalAlignment="Stretch" ItemsSource="{Binding Recibos}"

@@ -121,6 +121,8 @@ namespace InventoryApp.ViewModel.Recibo
                         , 
                         PEDIMENTO_IMPO = item.PedimentoImpo
                         ,
+                        CANTIDAD = item.Cantidad
+                        ,
                         IS_ACTIVE = true
                     };
                     ItemDataMapper itemDataMapper = new ItemDataMapper();
@@ -134,6 +136,8 @@ namespace InventoryApp.ViewModel.Recibo
                         UNID_ITEM = item.UnidItem
                         ,
                         UNID_MOVIMIENTO_DETALLE = item.UnidMovimientoDetalle
+                        ,
+                        CANTIDAD = item.Cantidad
                         ,
                         IS_ACTIVE = true
                     };

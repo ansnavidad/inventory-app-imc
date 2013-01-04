@@ -46,7 +46,7 @@
 
 
 
-            <DataGrid  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="{StaticResource allCapColumnSpan}"
+            <DataGrid  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" CanUserDeleteRows="False"
                   AutoGenerateColumns="False" CanUserAddRows="False"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridBanco"
                   SelectedItem="{Binding CatalogBancoModel.SelectedBanco, Mode=TwoWay}"

@@ -33,6 +33,9 @@ namespace InventoryApp.Model
         private TECNICO _tecnico;
         private long? _unidTecnico;
 
+        private TECNICO _tecnico2;
+        private long? _unidTecnico2;
+
         private string _tt;
         private string _contacto;
         private TRANSPORTE _transporte;
@@ -59,6 +62,7 @@ namespace InventoryApp.Model
         private EMPRESA _empresa;
         public ObservableCollection<DeleteSolicitante> _solicitantes;
         private ObservableCollection<TECNICO> _tecnicos;
+        private ObservableCollection<TECNICO> _tecnicos2;
         private INFRAESTRUCTURA _infraestructura;
         private long? _unidInfraestructura;
 
@@ -121,6 +125,25 @@ namespace InventoryApp.Model
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Tecnicos"));
+                    }
+                }
+            }
+        }
+        public ObservableCollection<TECNICO> Tecnicos2
+        {
+            get
+            {
+                return _tecnicos2;
+            }
+            set
+            {
+                if (_tecnicos2 != value)
+                {
+                    _tecnicos2 = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Tecnicos2"));
                     }
                 }
             }
@@ -252,6 +275,52 @@ namespace InventoryApp.Model
                 }
             }
         }
+
+        public TECNICO Tecnico2
+        {
+            get
+            {
+                return _tecnico2;
+            }
+            set
+            {
+                if (_tecnico2 != value)
+                {
+                    _tecnico2 = value;
+                    if (value != null)
+                    {
+                        this._unidTecnico2 = _tecnico2.UNID_TECNICO;
+                    }
+                    else
+                    {
+                        this._unidTecnico2 = null;
+                    }
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Tecnico2"));
+                    }
+                }
+            }
+        }
+        public long? UnidTecnico2
+        {
+            get
+            {
+                return _unidTecnico2;
+            }
+            set
+            {
+                if (_unidTecnico2 != value)
+                {
+                    _unidTecnico2 = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("UnidTecnico2"));
+                    }
+                }
+            }
+        }
+
         public long? UnidAlmacenProcedencia
         {
             get
@@ -446,13 +515,10 @@ namespace InventoryApp.Model
                 {
                     _almacenDestino = value;
 
-                    this._proveedorDestino = null;
-                    this._unidProveedorDestino = null;
-                    this._clienteDestino = null;
-                    this._unidClienteDestino = null;
+                    this._unidAlmacenDestino = _almacenDestino.UNID_ALMACEN;
 
-                    this._unidAlmacenDestino = ((_almacenDestino != null) ? _almacenDestino.UNID_ALMACEN : (long?)null);
-
+                    this.Tecnicos2 = GetTecnicosbyAlmacen(value);
+                    this.Tecnico2 = Tecnicos2[0];
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("AlmacenDestino"));
@@ -891,7 +957,8 @@ namespace InventoryApp.Model
                     PEDIMIENTO_EXPO = this._pedimentoExpo, 
                     PEDIMIENTO_IMPO = this._pedimentoImpo,
                     UNID_TECNICO = this._unidTecnico,
-                    UNID_INFRAESTRUCTURA = this._unidInfraestructura
+                    UNID_INFRAESTRUCTURA = this._unidInfraestructura,
+                    UNID_TECNICO_TRAS = this.UnidTecnico2
                     });
                 //_dataMapper.insertElement(new MOVIMENTO() {UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe, UNID_ALMACEN_DESTINO = this._unidSolicitante});          
             }

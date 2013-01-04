@@ -23,11 +23,9 @@ namespace InventoryApp.View.Traspasos
         public TraspasoStock()
         {
             InitializeComponent();
-            comboCliente.SelectedIndex = 0;
-            comboBoxServicio.SelectedIndex = 0;
-
             comboBoxAlmacenDestino.SelectedIndex = 0;
             comboBoxAlmacenDestino.SelectedIndex = 1;
+
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

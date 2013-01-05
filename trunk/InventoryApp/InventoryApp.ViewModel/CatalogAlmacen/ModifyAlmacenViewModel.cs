@@ -68,7 +68,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
         }
         #endregion
 
-         #region Constructors
+        #region Constructors
         /// <summary>
         /// Ejecuta la acción del command
         /// </summary>
@@ -112,6 +112,14 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                             this._modiAlmacen._auxUnidsTecnicos.Add(ite.UNID_TECNICO);
                         }
                     }
+                }
+
+                for (int i = 0; i < this._catalogTecnicoModel.Tecnico.Count; ) {
+
+                    if (!this._catalogTecnicoModel.Tecnico[i].IsChecked)
+                        this._catalogTecnicoModel.Tecnico.RemoveAt(i);
+                    else
+                        i++;
                 }
             }
             catch (ArgumentException ae)

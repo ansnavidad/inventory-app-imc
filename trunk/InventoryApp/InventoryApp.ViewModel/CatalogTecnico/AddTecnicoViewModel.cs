@@ -15,6 +15,7 @@ namespace InventoryApp.ViewModel.CatalogTecnico
         private RelayCommand _addTecnicoCommand;
         private CatalogTecnicoViewModel _catalogTecnicoViewModel;
         private CatalogCiudadModel _catalogCiudadModel;
+        private string _aux;
         #endregion
         //Exponer la propiedad de tipo de cotizacion
         #region Props
@@ -29,6 +30,7 @@ namespace InventoryApp.ViewModel.CatalogTecnico
                 _addTecnico = value;
             }
         }
+
 
         public CatalogCiudadModel CatalogCiudadModel
         {
@@ -78,6 +80,27 @@ namespace InventoryApp.ViewModel.CatalogTecnico
                 throw ex;
             }
         }
+
+        public AddTecnicoViewModel(CatalogTecnicoViewModel catalogTecnicoViewModel, string unidAlmacen)
+        {
+            this._addTecnico = new TecnicoModel(new TecnicoDataMapper());
+            this._catalogTecnicoViewModel = catalogTecnicoViewModel;
+            _aux = unidAlmacen;
+            try
+            {
+
+                this._catalogCiudadModel = new CatalogCiudadModel(new CiudadDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -89,29 +112,25 @@ namespace InventoryApp.ViewModel.CatalogTecnico
         public bool CanAttempAddTecnico()
         {
             bool _canAddTecnico = true;
-            if (String.IsNullOrEmpty(this._addTecnico.TecnicoName) || String.IsNullOrEmpty(this._addTecnico.Mail))
-            //{
-                //if (1<this._addTipoMovimiento.SignoMovimiento.Length)
-                //{
-                    _canAddTecnico = false;    
-                //}
-                
-            //}
+            if (String.IsNullOrEmpty(this._addTecnico.TecnicoName) || String.IsNullOrEmpty(this._addTecnico.Mail))            
+                _canAddTecnico = false;
 
             return _canAddTecnico;
         }
 
         public void AttempAddTecnico()
         {
+
+            
             this._addTecnico.saveTecnico();
             
-
-            //Puede ser que para pruebas unitarias catalogTipoMovimientoViewModel sea nulo ya que
-            //es una dependencia inyectada
             if (this._catalogTecnicoViewModel != null)
             {
                 this._catalogTecnicoViewModel.loadTecnico();
             }
+
+            AlmacenDataMapper alm = new AlmacenDataMapper();
+            alm.UpsertMixRelation(new DAL.POCOS.ALMACEN_TECNICO { UNID_ALMACEN = Int64.Parse(_aux), UNID_TECNICO = this._catalogTecnicoViewModel.CatalogTecnicoModel.Tecnico[this._catalogTecnicoViewModel.CatalogTecnicoModel.Tecnico.Count - 1].UNID_TECNICO });
         }
         #endregion
     }

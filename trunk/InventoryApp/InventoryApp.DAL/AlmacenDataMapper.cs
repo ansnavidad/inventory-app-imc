@@ -94,7 +94,14 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void loadSyncRelation(object element)
+
+
+
+
+
+
+
+        public void loadSyncRelation(ALMACEN_TECNICO element)
         {
             if (element != null)
             {
@@ -122,6 +129,57 @@ namespace InventoryApp.DAL
                     var modifiedRelation = entity.ALMACEN_TECNICO.First(p => p.UNID_ALMACEN == poco.UNID_ALMACEN && p.UNID_TECNICO == poco.UNID_TECNICO);
                     modifiedRelation.IS_MODIFIED = false;
                     entity.SaveChanges();
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+        public void UpsertMixRelation(ALMACEN_TECNICO element)
+        {
+            if (element != null)
+            {
+                ALMACEN_TECNICO poco = (ALMACEN_TECNICO)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.ALMACEN_TECNICO
+                                 where poco.UNID_ALMACEN == cust.UNID_ALMACEN && poco.UNID_TECNICO == cust.UNID_TECNICO
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        var query2 = (from cust in entity.ALMACEN_TECNICO
+                                     where poco.UNID_ALMACEN == cust.UNID_ALMACEN && poco.UNID_TECNICO == cust.UNID_TECNICO
+                                     select cust).ToList().First();
+                        poco.IS_ACTIVE = true;
+                        //Sync
+                        query2.IS_MODIFIED = true;
+                        query2.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                    }
+                    //Inserción
+                    else
+                    {
+                        poco.IS_ACTIVE = true;
+                        //Sync
+                        poco.IS_MODIFIED = true;
+                        poco.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+
+                        entity.ALMACEN_TECNICO.AddObject(poco);
+                        entity.SaveChanges();  
+                    }
                 }
             }
         }

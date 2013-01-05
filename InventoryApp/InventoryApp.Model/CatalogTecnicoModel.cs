@@ -74,6 +74,8 @@ namespace InventoryApp.Model
                     foreach (TECNICO item in (List<TECNICO>)element)
                     {
                         DeleteTecnico aux = new DeleteTecnico(item);
+                        
+                        
                         ic.Add(aux);
                     }
                 }

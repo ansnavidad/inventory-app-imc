@@ -186,7 +186,7 @@ namespace InventoryApp.ViewModel.Entradas
             {
                 if (item.CantidadMovimiento >= item.CantidadDisponible)
                     this.Error = "La cantidad de items en Movimiento excede la cantidad disponible";
-                if (item.IsChecked && item.CantidadDisponible >= item.CantidadMovimiento)
+                if (item.IsChecked && item.CantidadMovimiento > 0 &&item.CantidadDisponible >= item.CantidadMovimiento)
                     _canInsertArticulo = true;
             }
 

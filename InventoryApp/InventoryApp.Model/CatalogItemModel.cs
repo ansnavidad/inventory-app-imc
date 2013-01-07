@@ -234,7 +234,10 @@ namespace InventoryApp.Model
                             tmp = ultimomovimientodm.getCantidadItems(elemento, infra);
                         aux.CantidadDisponible = tmp.CANTIDAD;
                         aux.CantidadMovimiento = 1;
-                        ic.Add(aux);
+                        if (aux.CantidadDisponible > 0)
+                        {
+                            ic.Add(aux);
+                        }
                     }
 
                 }
@@ -331,7 +334,10 @@ namespace InventoryApp.Model
                             tmp = ultimomovimientodm.getCantidadItems(elemento, prov);
                         aux.CantidadDisponible = tmp.CANTIDAD;
                         aux.CantidadMovimiento = 1;
-                        ic.Add(aux);
+                        if (aux.CantidadDisponible > 0)
+                        {
+                            ic.Add(aux);
+                        }
                     }
                 
                 }
@@ -424,7 +430,10 @@ namespace InventoryApp.Model
                             tmp = ultimomovimientodm.getCantidadItems(elemento, almacenDirecto);
                         aux.CantidadDisponible = tmp.CANTIDAD;
                         aux.CantidadMovimiento = 1;
-                        ic.Add(aux);
+                        if (aux.CantidadDisponible > 0)
+                        {
+                            ic.Add(aux);
+                        }
                     }
                 }
                 if (ic != null)

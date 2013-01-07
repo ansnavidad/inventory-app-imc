@@ -16,10 +16,16 @@
         <GradientStop Color="#81DAF5"  Offset="5" />
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="MouseOver_GradientEffectElara" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
-        <GradientStop Color="#E5EAEE"  Offset="0" />
-        <GradientStop Color="#6387A3"  Offset="0.567" />
+    <LinearGradientBrush x:Key="MouseOver_GradientEffectElaraBlue" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+        <GradientStop Color="#E1E4E9"  Offset="0" />
+        <GradientStop Color="#FDFEFF" Offset="0.567" />
     </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="MouseOver_GradientEffectElara" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+        <GradientStop Color="#9CEAFC"  Offset="0" />
+        <GradientStop Color="#01D1FF"  Offset="0.567" />
+    </LinearGradientBrush>
+    
     <Style x:Key="bntBlue" TargetType="{x:Type Button}">
 
         <Setter Property="FontSize" Value="12" />
@@ -101,7 +107,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="bntElara" TargetType="{x:Type Button}">
+    <Style x:Key="bntElaraOrange" TargetType="{x:Type Button}">
 
         <Setter Property="FontSize" Value="12" />
         <Setter Property="Foreground" Value="#86581B"/>
@@ -123,6 +129,36 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource MouseOver_GradientEffectElara}" />
+                            <Setter Property="Cursor" Value="Hand" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="bntElaraBlue" TargetType="{x:Type Button}">
+
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="#0A0A2A"/>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"/>
+        <Setter Property="FontStretch" Value="Medium"></Setter>
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Name="ButtonBorder" CornerRadius="9" BorderBrush="#6E6E6E"  BorderThickness="1.5" >
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+                                <GradientStop Color="#FAFAFA"  Offset="0" />
+                                <GradientStop Color="#A4A4A4"  Offset="0.567" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource MouseOver_GradientEffectElaraBlue}" />
                             <Setter Property="Cursor" Value="Hand" />
                         </Trigger>
                     </ControlTemplate.Triggers>

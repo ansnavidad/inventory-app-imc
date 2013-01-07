@@ -79,7 +79,7 @@
                VerticalAlignment="Stretch" Grid.Column="1" />
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
                   ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
-                  ItemsSource="{Binding CatalogTecnicoModel.Tecnico}"
+                  ItemsSource="{Binding CatalogTecnicoModel.Tecnico, Mode=TwoWay}"
                   SelectedItem="{Binding CatalogTecnicoModel.SelectedTecnico, Mode=TwoWay}"
                   Margin="2,30,0,0" Name="dtGridTecnico" Height="140" Grid.RowSpan="6"  
                   Style="{StaticResource GridStyle}" VerticalAlignment="Top" Width="279"

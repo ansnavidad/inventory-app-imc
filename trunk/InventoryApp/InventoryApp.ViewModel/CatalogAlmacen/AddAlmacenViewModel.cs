@@ -5,10 +5,12 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
+using System.ComponentModel;
 
 namespace InventoryApp.ViewModel.CatalogAlmacen
 {
-    public class AddAlmacenViewModel
+    public class AddAlmacenViewModel : INotifyPropertyChanged
     {
         #region Fields
         private AlmacenModel _addAlmacen;
@@ -28,9 +30,17 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             }
             set
             {
-                _addAlmacen = value;
+                if (_addAlmacen != value)
+                {
+                    _addAlmacen = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("AddAlmacen"));
+                    }
+                }
             }
         }
+        private RelayCommand _modifyAlmacenCommand;
         public CatalogTecnicoModel CatalogTecnicoModel
         {
             get
@@ -39,7 +49,14 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             }
             set
             {
-                _catalogTecnicoModel = value;
+                if (_catalogTecnicoModel != value)
+                {
+                    _catalogTecnicoModel = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("CatalogTecnicoModel"));
+                    }
+                }
             }
         }
         public CatalogCiudadModel CatalogCiudadModel
@@ -50,7 +67,14 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             }
             set
             {
-                _catalogCiudadModel = value;
+                if (_catalogCiudadModel != value)
+                {
+                    _catalogCiudadModel = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("CatalogCiudadModel"));
+                    }
+                }
             }
         }
         
@@ -65,6 +89,17 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                 return _addAlmacenCommand;
             }
         }
+        public ICommand ModifyAlmacenCommand
+        {
+            get
+            {
+                if (_modifyAlmacenCommand == null)
+                {
+                    _modifyAlmacenCommand = new RelayCommand(p => this.AttempModifyAlmacen(), p => this.CanAttempModifyAlmacen());
+                }
+                return _modifyAlmacenCommand;
+            }
+        }
         #endregion
 
         #region Constructors
@@ -73,8 +108,9 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
         /// </summary>
         /// <param name="catalogItemStatusViewModel"></param>
         public AddAlmacenViewModel(CatalogAlmacenViewModel catalogAlmacenViewModel)
-        {
+        {               
             this._addAlmacen = new AlmacenModel(new AlmacenDataMapper());
+            this.AddAlmacen.UnidAlmacen = DAL.UNID.getNewUNID();
             this._catalogAlmacenViewModel = catalogAlmacenViewModel;
             try
             {
@@ -92,7 +128,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             try
             {
 
-                this._catalogTecnicoModel = new CatalogTecnicoModel (new TecnicoDataMapper());
+                this._catalogTecnicoModel = new CatalogTecnicoModel(new TecnicoDataMapper());
             }
             catch (ArgumentException ae)
             {
@@ -103,6 +139,33 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                 throw ex;
             }
 
+            try
+            {
+                object ret = this._addAlmacen.GetAlmacenCategoria(AddAlmacen.UnidAlmacen);
+                this._catalogTecnicoModel = new CatalogTecnicoModel(new TecnicoDataMapper());
+                //muestra los valores de las tecnicos que estan relacionadas
+                foreach (var item in this._catalogTecnicoModel.Tecnico)
+                {
+                    foreach (var ite in ((List<TECNICO>)ret))
+                    {
+                        if (item.UNID_TECNICO == ite.UNID_TECNICO)
+                        {
+                            item.IsChecked = true;
+                            this._addAlmacen._auxUnidsTecnicos.Add(ite.UNID_TECNICO);
+                        }
+                    }
+                }
+
+                for (int i = 0; i < this._catalogTecnicoModel.Tecnico.Count; )
+                {
+
+                    if (!this._catalogTecnicoModel.Tecnico[i].IsChecked)
+                        this._catalogTecnicoModel.Tecnico.RemoveAt(i);
+                    else
+                        i++;
+                }
+            }
+            catch (Exception ex) { }
         }
         #endregion
 
@@ -141,6 +204,78 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                 this._catalogAlmacenViewModel.loadAlmacen();
             }
         }
+
+        public bool CanAttempModifyAlmacen()
+        {
+            int auxF = DateTime.Now.Second;
+            if (auxF % 2 == 0)
+            {
+                this._addAlmacen._unidsTecnicos.Clear();
+                foreach (DeleteTecnico at in this._catalogTecnicoModel.Tecnico)
+                {
+                    if (at.IsChecked == true)
+                    {
+                        this._addAlmacen._unidsTecnicos.Add(at.UNID_TECNICO);
+                    }
+                }
+                this._addAlmacen.updateAlmacen();
+
+                //Actualiza los técnicos
+                object ret = this.AddAlmacen.GetAlmacenCategoria(AddAlmacen.UnidAlmacen);
+                this.CatalogTecnicoModel = new CatalogTecnicoModel(new TecnicoDataMapper());
+                foreach (var item in this.CatalogTecnicoModel.Tecnico)
+                {
+                    foreach (var ite in ((List<TECNICO>)ret))
+                    {
+                        if (item.UNID_TECNICO == ite.UNID_TECNICO)
+                        {
+                            item.IsChecked = true;
+                            this.AddAlmacen._auxUnidsTecnicos.Add(ite.UNID_TECNICO);
+                        }
+                    }
+                }
+
+                for (int i = 0; i < this.CatalogTecnicoModel.Tecnico.Count; )
+                {
+
+                    if (!this.CatalogTecnicoModel.Tecnico[i].IsChecked)
+                        this.CatalogTecnicoModel.Tecnico.RemoveAt(i);
+                    else
+                        i++;
+                }
+            }
+
+
+            bool _canAddAlmacen = true;
+            if (String.IsNullOrEmpty(this._addAlmacen.AlmacenName) ||
+                String.IsNullOrEmpty(this._addAlmacen.Contacto) ||
+                String.IsNullOrEmpty(this._addAlmacen.Direccion) ||
+                String.IsNullOrEmpty(this._addAlmacen.Mail) ||
+                String.IsNullOrEmpty(this._addAlmacen.MailDefault))
+                _canAddAlmacen = false;
+            return _canAddAlmacen;
+        }
+
+        public void AttempModifyAlmacen()
+        {
+            //modificar para actualizar las relaciones proveedor categoria
+            foreach (DeleteTecnico at in this._catalogTecnicoModel.Tecnico)
+            {
+                if (at.IsChecked == true)
+                {
+                    this._addAlmacen._unidsTecnicos.Add(at.UNID_TECNICO);
+                }
+            }
+            this._addAlmacen.updateAlmacen();
+
+            if (this._catalogAlmacenViewModel != null)
+            {
+                this._catalogAlmacenViewModel.loadAlmacen();
+            }
+        }
+
         #endregion
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -6,10 +6,11 @@ using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
+using System.ComponentModel;
 
 namespace InventoryApp.ViewModel.CatalogAlmacen
 {
-    public class ModifyAlmacenViewModel
+    public class ModifyAlmacenViewModel : INotifyPropertyChanged
     {
         #region Fields
         private AlmacenModel _modiAlmacen;
@@ -29,7 +30,14 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             }
             set
             {
-                _modiAlmacen = value;
+                if (_modiAlmacen != value)
+                {
+                    _modiAlmacen = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("ModiAlmacen"));
+                    }
+                }
             }
         }
         public CatalogTecnicoModel CatalogTecnicoModel
@@ -40,7 +48,14 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             }
             set
             {
-                _catalogTecnicoModel = value;
+                if (_catalogTecnicoModel != value)
+                {
+                    _catalogTecnicoModel = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("CatalogTecnicoModel"));
+                    }
+                }
             }
         }
         public CatalogCiudadModel CatalogCiudadModel
@@ -51,7 +66,14 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             }
             set
             {
-                _catalogCiudadModel = value;
+                if (_catalogCiudadModel != value)
+                {
+                    _catalogCiudadModel = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("CatalogCiudadModel"));
+                    }
+                }
             }
         }
         
@@ -141,6 +163,45 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
         /// <returns></returns>
         public bool CanAttempModifyAlmacen()
         {
+            int auxF = DateTime.Now.Second;
+            if (auxF % 2 == 0)
+            {
+                this._modiAlmacen._unidsTecnicos.Clear();
+                foreach (DeleteTecnico at in this._catalogTecnicoModel.Tecnico)
+                {
+                    if (at.IsChecked == true)
+                    {
+                        this._modiAlmacen._unidsTecnicos.Add(at.UNID_TECNICO);
+                    }
+                }
+                this._modiAlmacen.updateAlmacen();
+
+                //Actualiza los técnicos
+                object ret = this.ModiAlmacen.GetAlmacenCategoria(ModiAlmacen.UnidAlmacen);
+                this.CatalogTecnicoModel = new CatalogTecnicoModel(new TecnicoDataMapper());
+                foreach (var item in this.CatalogTecnicoModel.Tecnico)
+                {
+                    foreach (var ite in ((List<TECNICO>)ret))
+                    {
+                        if (item.UNID_TECNICO == ite.UNID_TECNICO)
+                        {
+                            item.IsChecked = true;
+                            this.ModiAlmacen._auxUnidsTecnicos.Add(ite.UNID_TECNICO);
+                        }
+                    }
+                }
+
+                for (int i = 0; i < this.CatalogTecnicoModel.Tecnico.Count; )
+                {
+
+                    if (!this.CatalogTecnicoModel.Tecnico[i].IsChecked)
+                        this.CatalogTecnicoModel.Tecnico.RemoveAt(i);
+                    else
+                        i++;
+                }               
+            }
+            
+
             bool _canAddAlmacen = true;
             if (String.IsNullOrEmpty(this._modiAlmacen.AlmacenName) ||
                 String.IsNullOrEmpty(this._modiAlmacen.Contacto) ||
@@ -169,5 +230,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             }
         }
         #endregion
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -15,7 +15,7 @@ namespace InventoryApp.ViewModel.CatalogTecnico
         private RelayCommand _addTecnicoCommand;
         private CatalogTecnicoViewModel _catalogTecnicoViewModel;
         private CatalogCiudadModel _catalogCiudadModel;
-        private string _aux;
+        public string _aux;
         #endregion
         //Exponer la propiedad de tipo de cotizacion
         #region Props

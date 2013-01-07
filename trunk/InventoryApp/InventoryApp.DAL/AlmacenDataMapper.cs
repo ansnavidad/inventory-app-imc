@@ -330,102 +330,110 @@ namespace InventoryApp.DAL
 
         public void updateRelacion(object element, List<long> unidTecnico, List<long> auxUnidTecnico)
         {
-            if (element != null)
+            try
             {
-                using (var entity = new TAE2Entities())
+                if (element != null && ((ALMACEN)element).UNID_ALMACEN != 0)
                 {
-                    ALMACEN almacen = (ALMACEN)element;
-                    var modifiedAlmacen = entity.ALMACENs.First(p => p.UNID_ALMACEN == almacen.UNID_ALMACEN);
-                    modifiedAlmacen.ALMACEN_NAME = almacen.ALMACEN_NAME;
-                    modifiedAlmacen.CONTACTO = almacen.CONTACTO;
-                    modifiedAlmacen.MAIL = almacen.MAIL;
-                    modifiedAlmacen.DIRECCION = almacen.DIRECCION;
-                    modifiedAlmacen.MAIL_DEFAULT = almacen.MAIL_DEFAULT;
-                    //Sync
-                    modifiedAlmacen.IS_MODIFIED = true;
-                    modifiedAlmacen.LAST_MODIFIED_DATE = UNID.getNewUNID();
-
-                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-
-                    entity.SaveChanges();
-                    //ELIMINA TODAS LAS RELACIONES QUE EXISTEN
-                    if (auxUnidTecnico.Count > 0)
+                    using (var entity = new TAE2Entities())
                     {
-                        foreach (var e in auxUnidTecnico)
-                        {
-                            //ALMACEN_TECNICO almacenTecnico = new ALMACEN_TECNICO();
-                            //var query = (from a in entity.ALMACENs
-                            //             join relation in entity.ALMACEN_TECNICO
-                            //             on a.UNID_ALMACEN equals relation.UNID_ALMACEN
-                            //             join t in entity.TECNICOes
-                            //             on relation.UNID_TECNICO equals t.UNID_TECNICO
-                            //             where a.UNID_ALMACEN == almacen.UNID_ALMACEN && t.UNID_TECNICO == e
-                            //             select relation).ToList().First();
-                            //entity.ALMACEN_TECNICO.DeleteObject((ALMACEN_TECNICO)query);
-                            //entity.SaveChanges();
+                        ALMACEN almacen = (ALMACEN)element;
+                        var modifiedAlmacen = entity.ALMACENs.First(p => p.UNID_ALMACEN == almacen.UNID_ALMACEN);
+                        modifiedAlmacen.ALMACEN_NAME = almacen.ALMACEN_NAME;
+                        modifiedAlmacen.CONTACTO = almacen.CONTACTO;
+                        modifiedAlmacen.MAIL = almacen.MAIL;
+                        modifiedAlmacen.DIRECCION = almacen.DIRECCION;
+                        modifiedAlmacen.MAIL_DEFAULT = almacen.MAIL_DEFAULT;
+                        //Sync
+                        modifiedAlmacen.IS_MODIFIED = true;
+                        modifiedAlmacen.LAST_MODIFIED_DATE = UNID.getNewUNID();
 
-                            ALMACEN_TECNICO almacenTecnico = new ALMACEN_TECNICO();
-                            var query = (from a in entity.ALMACENs
-                                         join relation in entity.ALMACEN_TECNICO
-                                         on a.UNID_ALMACEN equals relation.UNID_ALMACEN
-                                         join t in entity.TECNICOes
-                                         on relation.UNID_TECNICO equals t.UNID_TECNICO
-                                         where a.UNID_ALMACEN == almacen.UNID_ALMACEN && t.UNID_TECNICO == e
-                                         select relation).ToList().First();
-                            query.IS_ACTIVE = false;
-                            //Sync
-                            query.IS_MODIFIED = true;
-                            query.LAST_MODIFIED_DATE = UNID.getNewUNID();
-                            modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                            modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                            entity.SaveChanges();
-                            //
-                        }
-                    }
-                    //INSERTA LAS NUEVAS RELACIONES ALMACEN TECNICO
-                    if (unidTecnico.Count > 0)
-                    {
-                        foreach (var item in unidTecnico)
-                        {
-                            var query2 = (from cust in entity.ALMACEN_TECNICO
-                                          where cust.UNID_ALMACEN == almacen.UNID_ALMACEN && cust.UNID_TECNICO == item
-                                         select cust).ToList();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
 
-                            if (query2.Count > 0)
+                        entity.SaveChanges();
+                        //ELIMINA TODAS LAS RELACIONES QUE EXISTEN
+                        if (auxUnidTecnico.Count > 0)
+                        {
+                            foreach (var e in auxUnidTecnico)
                             {
-                                var query3 = query2.First();
+                                //ALMACEN_TECNICO almacenTecnico = new ALMACEN_TECNICO();
+                                //var query = (from a in entity.ALMACENs
+                                //             join relation in entity.ALMACEN_TECNICO
+                                //             on a.UNID_ALMACEN equals relation.UNID_ALMACEN
+                                //             join t in entity.TECNICOes
+                                //             on relation.UNID_TECNICO equals t.UNID_TECNICO
+                                //             where a.UNID_ALMACEN == almacen.UNID_ALMACEN && t.UNID_TECNICO == e
+                                //             select relation).ToList().First();
+                                //entity.ALMACEN_TECNICO.DeleteObject((ALMACEN_TECNICO)query);
+                                //entity.SaveChanges();
 
+                                ALMACEN_TECNICO almacenTecnico = new ALMACEN_TECNICO();
+                                var query = (from a in entity.ALMACENs
+                                             join relation in entity.ALMACEN_TECNICO
+                                             on a.UNID_ALMACEN equals relation.UNID_ALMACEN
+                                             join t in entity.TECNICOes
+                                             on relation.UNID_TECNICO equals t.UNID_TECNICO
+                                             where a.UNID_ALMACEN == almacen.UNID_ALMACEN && t.UNID_TECNICO == e
+                                             select relation).ToList().First();
+                                query.IS_ACTIVE = false;
                                 //Sync
-                                query3.IS_ACTIVE = true;
-                                query3.IS_MODIFIED = true;
-                                query3.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                                query.IS_MODIFIED = true;
+                                query.LAST_MODIFIED_DATE = UNID.getNewUNID();
                                 modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                                 modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                                 entity.SaveChanges();
                                 //
                             }
-                            else {
+                        }
+                        //INSERTA LAS NUEVAS RELACIONES ALMACEN TECNICO
+                        if (unidTecnico.Count > 0)
+                        {
+                            foreach (var item in unidTecnico)
+                            {
+                                var query2 = (from cust in entity.ALMACEN_TECNICO
+                                              where cust.UNID_ALMACEN == almacen.UNID_ALMACEN && cust.UNID_TECNICO == item
+                                              select cust).ToList();
 
-                                ALMACEN_TECNICO almacenTecnico = new ALMACEN_TECNICO();
-                                almacenTecnico.UNID_ALMACEN = almacen.UNID_ALMACEN;
-                                almacenTecnico.UNID_TECNICO = item;
+                                if (query2.Count > 0)
+                                {
+                                    var query3 = query2.First();
 
-                                //Sync
-                                almacenTecnico.IS_MODIFIED = true;
-                                almacenTecnico.IS_ACTIVE = true;
-                                almacenTecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
-                                modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                                modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                                entity.SaveChanges();
-                                //
+                                    //Sync
+                                    query3.IS_ACTIVE = true;
+                                    query3.IS_MODIFIED = true;
+                                    query3.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                                    modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                                    entity.SaveChanges();
+                                    //
+                                }
+                                else
+                                {
 
-                                entity.ALMACEN_TECNICO.AddObject(almacenTecnico);
-                                entity.SaveChanges();
+                                    ALMACEN_TECNICO almacenTecnico = new ALMACEN_TECNICO();
+                                    almacenTecnico.UNID_ALMACEN = almacen.UNID_ALMACEN;
+                                    almacenTecnico.UNID_TECNICO = item;
+
+                                    //Sync
+                                    almacenTecnico.IS_MODIFIED = true;
+                                    almacenTecnico.IS_ACTIVE = true;
+                                    almacenTecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                                    modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                                    entity.SaveChanges();
+                                    //
+
+                                    entity.ALMACEN_TECNICO.AddObject(almacenTecnico);
+                                    entity.SaveChanges();
+                                }
                             }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                                
             }
         }
 
@@ -510,7 +518,8 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     ALMACEN almacen = (ALMACEN)element;
-                    almacen.UNID_ALMACEN = UNID.getNewUNID();
+                    if (almacen.UNID_ALMACEN == 0)
+                        almacen.UNID_ALMACEN = UNID.getNewUNID();
                     //Sync
                     almacen.IS_MODIFIED = true;
                     almacen.LAST_MODIFIED_DATE = UNID.getNewUNID();

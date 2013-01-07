@@ -100,7 +100,7 @@ namespace InventoryApp.ViewModel.Traspasos
             bool _canInsertArticulo = false;
             foreach (ItemModel item in this._catalogItemModel.ItemModel)
             {
-                if (item.IsChecked && item.CantidadDisponible >= item.CantidadMovimiento)
+                if (item.IsChecked && item.CantidadMovimiento > 0 && item.CantidadDisponible >= item.CantidadMovimiento)
                     _canInsertArticulo = true;
             }
 

@@ -107,18 +107,26 @@ namespace InventoryApp.DAL
 
         public ULTIMO_MOVIMIENTO getCantidadItems(ITEM item, PROVEEDOR proveedor){
             ULTIMO_MOVIMIENTO um = new ULTIMO_MOVIMIENTO();
-            if (item != null && proveedor != null)
+            try
             {
-                using (var entity = new TAE2Entities())
+                if (item != null && proveedor != null)
                 {
-                    var r = (from p in entity.ULTIMO_MOVIMIENTO
-                             where p.UNID_ITEM == item.UNID_ITEM
-                             where p.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR
-                             select p).First();
-                    
-                    um = r;
+                    using (var entity = new TAE2Entities())
+                    {
+                        var r = (from p in entity.ULTIMO_MOVIMIENTO
+                                 where p.UNID_ITEM == item.UNID_ITEM
+                                 where p.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR
+                                 select p).First();
 
+                        um = r;
+
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                
+                ;
             }
 
             return um;
@@ -185,18 +193,26 @@ namespace InventoryApp.DAL
         public ULTIMO_MOVIMIENTO getCantidadItems(ITEM item, CLIENTE cliente)
         {
             ULTIMO_MOVIMIENTO um  = new ULTIMO_MOVIMIENTO();
-            if (item != null && cliente != null)
+            try
             {
-                using (var entity = new TAE2Entities())
+                if (item != null && cliente != null)
                 {
-                    var r = (from p in entity.ULTIMO_MOVIMIENTO
-                             where p.UNID_ITEM == item.UNID_ITEM
-                             where p.UNID_CLIENTE == cliente.UNID_CLIENTE
-                             select p).First();
+                    using (var entity = new TAE2Entities())
+                    {
+                        var r = (from p in entity.ULTIMO_MOVIMIENTO
+                                 where p.UNID_ITEM == item.UNID_ITEM
+                                 where p.UNID_CLIENTE == cliente.UNID_CLIENTE
+                                 select p).First();
 
-                    um = r;
+                        um = r;
 
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                
+                ;
             }
 
             return um;

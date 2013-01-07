@@ -37,7 +37,6 @@ namespace InventoryApp.View.Entradas
         private void radioButtonAlmacén_Checked(object sender, RoutedEventArgs e)
         {
             comboBoxAlmacenDestino.SelectedIndex = 0;
-
             comboBoxAlmacenDestino.IsEnabled = true;
             comboBoxProveedorDestino.IsEnabled = false;
             comboBoxClienteDestino.IsEnabled = false;

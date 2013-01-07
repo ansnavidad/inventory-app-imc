@@ -23,7 +23,7 @@
         <TreeView Grid.Column="0" Grid.Row="0" 
                   HorizontalAlignment="Stretch" Margin="2,2"
                   Name="treeView1" VerticalAlignment="Stretch" 
-                  ItemsSource="{Binding MenuModel}" Cursor="Hand" >
+                  ItemsSource="{Binding MenuModel}" Cursor="Hand">
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}">
                     

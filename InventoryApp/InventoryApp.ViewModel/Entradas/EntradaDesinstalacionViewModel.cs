@@ -64,7 +64,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.Transporte = _catalogTransporteModel.Transporte[0];
                 this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
                 this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
-                this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
+                //this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
@@ -115,7 +115,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.Transporte = _catalogTransporteModel.Transporte[0];
                 this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
                 this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
-                this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
+                //this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];

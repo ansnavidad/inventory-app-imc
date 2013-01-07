@@ -71,7 +71,8 @@ namespace InventoryApp.DAL
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
-                         TECNICO1 = row.TECNICO1
+                         TECNICO1 = row.TECNICO1,
+                         UNID_INFRAESTRUCTURA = row.UNID_INFRAESTRUCTURA
                      });
                  });
                 if (listMovimiento.Count > 0)
@@ -427,7 +428,8 @@ namespace InventoryApp.DAL
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
-                         TECNICO1 = row.TECNICO1
+                         TECNICO1 = row.TECNICO1,
+                         UNID_INFRAESTRUCTURA = row.UNID_INFRAESTRUCTURA
                      });
                  });
                 if (listMovimiento.Count > 0)
@@ -498,7 +500,8 @@ namespace InventoryApp.DAL
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
-                         TECNICO1 = row.TECNICO1
+                         TECNICO1 = row.TECNICO1,
+                         UNID_INFRAESTRUCTURA = row.UNID_INFRAESTRUCTURA
                      });
                  });
                 if (reset.Count > 0)

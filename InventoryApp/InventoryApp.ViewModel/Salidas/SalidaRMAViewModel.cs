@@ -71,7 +71,7 @@ namespace InventoryApp.ViewModel.Salidas
                 //Asignaciones especiales para los combos 
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
-                this._movimientoModel.Servicio = _catalogServicioModel.Servicio[0];
+                //this._movimientoModel.Servicio = _catalogServicioModel.Servicio[0];
                 this._movimientoModel.Cliente = _catalogClienteModel.Cliente[0];
                 this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
@@ -140,7 +140,7 @@ namespace InventoryApp.ViewModel.Salidas
                 //Asignaciones especiales para los combos 
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
-                this._movimientoModel.Servicio = _catalogServicioModel.Servicio[0];
+                //this._movimientoModel.Servicio = _catalogServicioModel.Servicio[0];
                 this._movimientoModel.Cliente = _catalogClienteModel.Cliente[0];
                 this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
@@ -371,7 +371,7 @@ namespace InventoryApp.ViewModel.Salidas
             if (this.MovimientoModel.ProveedorDestino != null)
                 seleccion++;
 
-            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.NombreSitio) && !String.IsNullOrEmpty(this.MovimientoModel.DireccionEnvio) && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && seleccion == 1)
+            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.NombreSitio) && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && seleccion == 1)
                 _canInsertArticulo = true;
             
             return _canInsertArticulo;
@@ -402,7 +402,7 @@ namespace InventoryApp.ViewModel.Salidas
             if (this.MovimientoModel.ProveedorDestino != null)
                 seleccion++;
 
-            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.NombreSitio) && !String.IsNullOrEmpty(this.MovimientoModel.DireccionEnvio) && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && seleccion == 1)
+            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.NombreSitio) && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && seleccion == 1)
                 _canImprimir = true;
 
             return _canImprimir;

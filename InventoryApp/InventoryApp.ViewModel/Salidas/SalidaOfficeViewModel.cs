@@ -77,7 +77,7 @@ namespace InventoryApp.ViewModel.Salidas
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenDestinoModel.Almacen[0];
                 this._movimientoModel.ClienteDestino = _catalogClienteDestinoModel.Cliente[0];
-                this._movimientoModel.ProveedorDestino = _catalogProveedorDestinoModel.Proveedor[0];                
+                //this._movimientoModel.ProveedorDestino = _catalogProveedorDestinoModel.Proveedor[0];                
             }
             catch (ArgumentException a)
             {
@@ -131,7 +131,7 @@ namespace InventoryApp.ViewModel.Salidas
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenDestinoModel.Almacen[0];
                 this._movimientoModel.ClienteDestino = _catalogClienteDestinoModel.Cliente[0];
-                this._movimientoModel.ProveedorDestino = _catalogProveedorDestinoModel.Proveedor[0];
+                //this._movimientoModel.ProveedorDestino = _catalogProveedorDestinoModel.Proveedor[0];
             }
             catch (ArgumentException a)
             {

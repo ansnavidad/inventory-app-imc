@@ -7,6 +7,8 @@ using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.Model;
 using InventoryApp.DAL.Recibo;
+using System.Net;
+using System.Net.Sockets;
 
 namespace InventoryApp.ViewModel.Sync
 {
@@ -96,8 +98,8 @@ namespace InventoryApp.ViewModel.Sync
         string routeDownload = @"http://10.50.0.131:8080/Services/Broadcast.svc";
         //DATOS DE LA MAQUINA
         string nomPC = null;
-        string user = null;
         string dataUser = null;
+        string ip = null;
 
         string basicAuthUser;
         string basicAuthPass;
@@ -132,7 +134,7 @@ namespace InventoryApp.ViewModel.Sync
             basicAuthUser = "Administrator";
             basicAuthPass = "Passw0rd1!";
 
-            this.Message = "Test";
+            this.Message = "Sincronizando";
             this._jobDone = false;
             t = new System.Timers.Timer(100);
             t.Enabled = true;
@@ -152,10 +154,19 @@ namespace InventoryApp.ViewModel.Sync
             if (sync.Dummy())
             {
                 //Poner lógica de consumo de servicios para enviar los datos
+                //NOMBRE DE LA MAQUINA
                 System.Security.Principal.WindowsIdentity usr = System.Security.Principal.WindowsIdentity.GetCurrent();
-                nomPC = usr.Name;
-                user = System.Environment.UserName;
-                dataUser = uploadLogDataMapper.GetJsonUpLoadLog(new UPLOAD_LOG() { PC_NAME = nomPC, UNID_USUARIO = 1, IP_DIR = user });
+                nomPC = usr.Name;               
+                //IP DE LA MAQUINA
+                var strHostName = Dns.GetHostName();
+                var ipEntry = Dns.GetHostEntry(strHostName);
+                var addr = ipEntry.AddressList;
+                var q = from a in addr
+                        where a.AddressFamily == AddressFamily.InterNetwork
+                        select a;
+                ip = q.Last().ToString();
+                //Serializa a string con formato json
+                dataUser = uploadLogDataMapper.GetJsonUpLoadLog(new UPLOAD_LOG() { PC_NAME = nomPC, UNID_USUARIO = 1, IP_DIR = ip });
                 bool res = true;
                 //#region todos los catalogos de APP
                 //if (res)

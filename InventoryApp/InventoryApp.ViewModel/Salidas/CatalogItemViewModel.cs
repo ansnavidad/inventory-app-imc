@@ -367,9 +367,10 @@ namespace InventoryApp.ViewModel.Salidas
         public bool CanAttempItems()
         {
             bool _canInsertArticulo = false;
+     
             foreach (ItemModel item in this._catalogItemModel.ItemModel)
             {
-                if (item.IsChecked)
+                if (item.IsChecked && item.CantidadDisponible >= item.CantidadMovimiento)
                     _canInsertArticulo = true;
             }
 

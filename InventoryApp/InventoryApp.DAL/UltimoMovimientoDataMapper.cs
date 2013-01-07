@@ -105,6 +105,104 @@ namespace InventoryApp.DAL
             throw new NotImplementedException();
         }
 
+        public ULTIMO_MOVIMIENTO getCantidadItems(ITEM item, PROVEEDOR proveedor){
+            ULTIMO_MOVIMIENTO um = new ULTIMO_MOVIMIENTO();
+            if (item != null && proveedor != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    var r = (from p in entity.ULTIMO_MOVIMIENTO
+                             where p.UNID_ITEM == item.UNID_ITEM
+                             where p.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR
+                             select p).First();
+                    
+                    um = r;
+
+                }
+            }
+
+            return um;
+        }
+
+        public ULTIMO_MOVIMIENTO getCantidadItems(ITEM item, ALMACEN almacen)
+        {
+            ULTIMO_MOVIMIENTO um = new ULTIMO_MOVIMIENTO();
+
+            try
+            {
+                if (item != null && almacen != null)
+                {
+                    using (var entity = new TAE2Entities())
+                    {
+                        var r = (from p in entity.ULTIMO_MOVIMIENTO
+                                 where p.UNID_ITEM == item.UNID_ITEM
+                                 where p.UNID_ALMACEN == almacen.UNID_ALMACEN
+                                 select p).First();
+
+                        um = r;
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                
+                ;
+            }
+
+            return um;
+        }
+
+        public ULTIMO_MOVIMIENTO getCantidadItems(ITEM item, INFRAESTRUCTURA infraestructura)
+        {
+            ULTIMO_MOVIMIENTO um = new ULTIMO_MOVIMIENTO();
+
+            try
+            {
+                if (item != null && infraestructura != null)
+                {
+                    using (var entity = new TAE2Entities())
+                    {
+                        var r = (from p in entity.ULTIMO_MOVIMIENTO
+                                 where p.UNID_ITEM == item.UNID_ITEM
+                                 where p.UNID_INFRAESTRUCTURA == infraestructura.UNID_INFRAESTRUCTURA
+                                 select p).First();
+
+                        um = r;
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                ;
+            }
+
+            return um;
+        }
+
+        public ULTIMO_MOVIMIENTO getCantidadItems(ITEM item, CLIENTE cliente)
+        {
+            ULTIMO_MOVIMIENTO um  = new ULTIMO_MOVIMIENTO();
+            if (item != null && cliente != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    var r = (from p in entity.ULTIMO_MOVIMIENTO
+                             where p.UNID_ITEM == item.UNID_ITEM
+                             where p.UNID_CLIENTE == cliente.UNID_CLIENTE
+                             select p).First();
+
+                    um = r;
+
+                }
+            }
+
+            return um;
+        }
+
+
         public void udpateElement(object element)
         {            
             if (element != null)
@@ -146,6 +244,37 @@ namespace InventoryApp.DAL
                         entity.SaveChanges();
                         //
                     }
+
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void udpateElement2(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ULTIMO_MOVIMIENTO ultimoMov = (ULTIMO_MOVIMIENTO)element;
+
+                   
+                        var modifiedMov = entity.ULTIMO_MOVIMIENTO.First(p => p.UNID_ULTIMO_MOVIMIENTO == ultimoMov.UNID_ULTIMO_MOVIMIENTO);
+
+                        modifiedMov.UNID_ALMACEN = ultimoMov.UNID_ALMACEN;
+                        modifiedMov.UNID_CLIENTE = ultimoMov.UNID_CLIENTE;
+                        modifiedMov.UNID_MOVIMIENTO_DETALLE = ultimoMov.UNID_MOVIMIENTO_DETALLE;
+                        modifiedMov.UNID_PROVEEDOR = ultimoMov.UNID_PROVEEDOR;
+                        modifiedMov.UNID_INFRAESTRUCTURA = ultimoMov.UNID_INFRAESTRUCTURA;
+                        modifiedMov.CANTIDAD = ultimoMov.CANTIDAD;
+                        //Sync
+                        modifiedMov.IS_MODIFIED = true;
+                        modifiedMov.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                    
 
                     entity.SaveChanges();
                 }
@@ -203,7 +332,26 @@ namespace InventoryApp.DAL
 
         public void insertElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ULTIMO_MOVIMIENTO art = (ULTIMO_MOVIMIENTO)element;
+
+
+                        art.UNID_ULTIMO_MOVIMIENTO = UNID.getNewUNID();
+                        //Sync
+                        art.IS_MODIFIED = true;
+                        art.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.ULTIMO_MOVIMIENTO.AddObject(art);
+                        entity.SaveChanges();
+                    
+                }
+            }
         }
 
         public void insertElementSny(object element)

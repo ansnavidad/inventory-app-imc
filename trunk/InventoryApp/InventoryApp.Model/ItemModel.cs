@@ -21,6 +21,8 @@ namespace InventoryApp.Model
         private double _costoUnitario;
         private double _pedimentoExpo;
         private double _pedimentoImpo;
+        private int _cantidadDisponible;
+        private int _cantidadMovimiento;
         private int _cantidaditem;
         private MODELO _modelo;
         private MARCA _marca;
@@ -119,6 +121,35 @@ namespace InventoryApp.Model
                 }
             }
         }
+
+        public int CantidadDisponible
+        {
+            get { return this._cantidadDisponible; }
+            set
+            {
+                if (value != this._cantidadDisponible)
+                {
+                    this._cantidadDisponible = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Cantidad Disponible"));
+                }
+            }
+        }
+
+        public int CantidadMovimiento
+        {
+            get { return this._cantidadMovimiento; }
+            set
+            {
+                if (value != this._cantidadMovimiento)
+                {
+                    this._cantidadMovimiento = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Cantidad Disponible"));
+                }
+            }
+        }
+
 
         public MONEDA Moneda
         {

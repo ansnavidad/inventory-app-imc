@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 
              mc:Ignorable="d" 
-             d:DesignHeight="1164" d:DesignWidth="622" SizeToContent="WidthAndHeight">
+             d:DesignHeight="1164" d:DesignWidth="722" SizeToContent="WidthAndHeight">
     <ScrollViewer>
         <Grid Name="gridAlta" Width="622">
 
@@ -18,14 +18,15 @@
 
             <DataGrid  TabIndex="17" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,726,14,0" Name="dtGridTipoPedimento" VerticalAlignment="Top" ItemsSource="{Binding ItemModel.ItemModel}" Height="320" HorizontalAlignment="Right" Width="596">
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="25" />
-                    <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Serie" x:Name="SERIE" Binding="{Binding Path=NUMERO_SERIE}" />
-                    <DataGridTextColumn IsReadOnly="True"  Width="100" Header="SKU" x:Name="SKU" Binding="{Binding Path=SKU}"></DataGridTextColumn>
-                    <DataGridTextColumn IsReadOnly="True"  Width="90" Header="Equipo" x:Name="EQUIPO" Binding="{Binding Path=Equipo.EQUIPO_NAME}"></DataGridTextColumn>
-                    <DataGridTextColumn IsReadOnly="True"  Width="90" Header="Modelo" x:Name="MODELO" Binding="{Binding Path=Modelo.MODELO_NAME}"></DataGridTextColumn>
-                    <DataGridTextColumn IsReadOnly="True"  Width="90" Header="Marca" x:Name="MARCA" Binding="{Binding Path=Marca.MARCA_NAME}"></DataGridTextColumn>
-                    <DataGridTextColumn IsReadOnly="True"  Width="98" Header="Status" x:Name="STATUS" Binding="{Binding Path=ItemStatus.ITEM_STATUS_NAME}"></DataGridTextColumn>
-                </DataGrid.Columns>
+                <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="25" />
+                <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Serie" x:Name="SERIE" Binding="{Binding Path=NUMERO_SERIE}" />
+                <DataGridTextColumn IsReadOnly="True"  Width="100" Header="SKU" x:Name="SKU" Binding="{Binding Path=SKU}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="80" Header="Equipo" x:Name="EQUIPO" Binding="{Binding Path=Equipo.EQUIPO_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="80" Header="Modelo" x:Name="MODELO" Binding="{Binding Path=Modelo.MODELO_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="70" Header="Marca" x:Name="MARCA" Binding="{Binding Path=Marca.MARCA_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="70" Header="Status" x:Name="STATUS" Binding="{Binding Path=ItemStatus.ITEM_STATUS_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="98" Header="Cantidad" x:Name="Cant" Binding="{Binding Path=CantidadMovimiento}"></DataGridTextColumn>
+               </DataGrid.Columns>
             </DataGrid>
             <Label Content="Empresa:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,53,208,0" Name="labelEmpresa" VerticalAlignment="Top" />
             <ComboBox TabIndex="1" DisplayMemberPath="EMPRESA_NAME" ItemsSource="{Binding CatalogEmpresaModel.Empresa, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  SelectedItem="{Binding MovimientoModel.Empresa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_EMPRESA" Height="23" HorizontalAlignment="Right" Margin="0,51,71,0" Name="comboBoxEmpresa" VerticalAlignment="Top" Width="131" SelectedIndex="0"/>

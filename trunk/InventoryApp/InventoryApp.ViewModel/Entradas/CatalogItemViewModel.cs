@@ -12,6 +12,7 @@ namespace InventoryApp.ViewModel.Entradas
     {
 
         private CatalogItemModel _catalogItemModel;
+        private string _error;
         private RelayCommand _addItemCommand;
         private RelayCommand _addItemsCommand;
         private EntradaPorValidacionViewModel _entradaPorValidacionViewModel;
@@ -19,6 +20,7 @@ namespace InventoryApp.ViewModel.Entradas
         private EntradaDevolucionViewModel _entradaDevolucionViewModel;
         private EntradaDesinstalacionViewModel _entradaDesinstalacionViewModel;
 
+      
         public CatalogItemViewModel(EntradaPorValidacionViewModel _entradaPorValidacionViewModel)
         {
             IDataMapper dataMapper = new ItemDataMapper();
@@ -54,6 +56,19 @@ namespace InventoryApp.ViewModel.Entradas
             this._entradaDesinstalacionViewModel = _entradaDesinstalacionViewModel;
 
         }
+
+        public string Error
+        {
+            get
+            {
+                return _error;
+            }
+            set
+            {
+                _error = value;
+            }
+        }
+
 
         public CatalogItemModel CatalogItemModel
         {
@@ -166,9 +181,12 @@ namespace InventoryApp.ViewModel.Entradas
         public bool CanAttempItems()
         {
             bool _canInsertArticulo = false;
+            this.Error = "";
             foreach (ItemModel item in this._catalogItemModel.ItemModel)
             {
-                if (item.IsChecked)
+                if (item.CantidadMovimiento >= item.CantidadDisponible)
+                    this.Error = "La cantidad de items en Movimiento excede la cantidad disponible";
+                if (item.IsChecked && item.CantidadDisponible >= item.CantidadMovimiento)
                     _canInsertArticulo = true;
             }
 
@@ -228,6 +246,7 @@ namespace InventoryApp.ViewModel.Entradas
 
         public void passItems(EntradaPrestamoViewModel entrada)
         {
+            int total = 0;
             foreach (ItemModel item in this._catalogItemModel.ItemModel)
             {
                 if (item.IsChecked)
@@ -244,6 +263,7 @@ namespace InventoryApp.ViewModel.Entradas
                     if (aux)
                     {
                         item.IsChecked = false;
+                        total += item.CantidadMovimiento;
                         this._entradaPrestamoViewModel.ItemModel.ItemModel.Add(item);
 
 
@@ -252,7 +272,7 @@ namespace InventoryApp.ViewModel.Entradas
                 }
 
             }
-            this.EntradaPrestamoViewModel.MovimientoModel.CantidadItems = this.EntradaPrestamoViewModel.ItemModel.ItemModel.Count();
+            this.EntradaPrestamoViewModel.MovimientoModel.CantidadItems = total;
 
         }
 

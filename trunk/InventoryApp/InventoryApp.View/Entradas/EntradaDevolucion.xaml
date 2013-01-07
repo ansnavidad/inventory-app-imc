@@ -29,15 +29,16 @@
         <Button TabIndex="13"  Content="BORRAR ITEMS" Command="{Binding DeleteItemCommand, Mode=OneWay}" Height="28" HorizontalAlignment="Right" Margin="0,416,24,0" Name="button2" VerticalAlignment="Top" Width="120" />
         <DataGrid TabIndex="14" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ItemModel.ItemModel}" Margin="0,451,10,0" Name="dtGridTipoPedimento" VerticalAlignment="Top" Height="222" HorizontalAlignment="Right" Width="596">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="25" />
-                <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Serie" x:Name="SERIE" Binding="{Binding Path=NUMERO_SERIE}" />
-                <DataGridTextColumn IsReadOnly="True"  Width="100" Header="SKU" x:Name="SKU" Binding="{Binding Path=SKU}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="90" Header="Equipo" x:Name="EQUIPO" Binding="{Binding Path=Equipo.EQUIPO_NAME}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="90" Header="Modelo" x:Name="MODELO" Binding="{Binding Path=Modelo.MODELO_NAME}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="90" Header="Marca" x:Name="MARCA" Binding="{Binding Path=Marca.MARCA_NAME}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="98" Header="Status" x:Name="STATUS" Binding="{Binding Path=ItemStatus.ITEM_STATUS_NAME}"></DataGridTextColumn>
+                    <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="25" />
+                    <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Serie" x:Name="SERIE" Binding="{Binding Path=NUMERO_SERIE}" />
+                    <DataGridTextColumn IsReadOnly="True"  Width="100" Header="SKU" x:Name="SKU" Binding="{Binding Path=SKU}"></DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True"  Width="80" Header="Equipo" x:Name="EQUIPO" Binding="{Binding Path=Equipo.EQUIPO_NAME}"></DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True"  Width="80" Header="Modelo" x:Name="MODELO" Binding="{Binding Path=Modelo.MODELO_NAME}"></DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True"  Width="70" Header="Marca" x:Name="MARCA" Binding="{Binding Path=Marca.MARCA_NAME}"></DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True"  Width="70" Header="Status" x:Name="STATUS" Binding="{Binding Path=ItemStatus.ITEM_STATUS_NAME}"></DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True"  Width="98" Header="Cantidad" x:Name="Cant" Binding="{Binding Path=CantidadMovimiento}"></DataGridTextColumn>
 
-            </DataGrid.Columns>
+                </DataGrid.Columns>
         </DataGrid>
         <Border BorderBrush="Silver" BorderThickness="3" Height="3" HorizontalAlignment="Left" Margin="13,251,0,0" Name="border1" VerticalAlignment="Top" Width="587"></Border>
         <RadioButton Content="Almacén" Height="16" HorizontalAlignment="Left" Margin="221,262,0,0" Name="radioButtonAlmacén" VerticalAlignment="Top" Checked="radioButtonAlmacén_Checked" Visibility="Hidden" />

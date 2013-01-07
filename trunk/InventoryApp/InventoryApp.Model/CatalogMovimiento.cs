@@ -83,7 +83,14 @@ namespace InventoryApp.Model
 
         public CatalogMovimiento(MOVIMENTO m)
         {            
-            this._totalItems = m.MOVIMIENTO_DETALLE.Count;
+            //this._totalItems = m.MOVIMIENTO_DETALLE.Count;
+
+            this.TotalItems = 0;
+
+            foreach (MOVIMIENTO_DETALLE detalle in m.MOVIMIENTO_DETALLE)
+            {
+                this.TotalItems += detalle.CANTIDAD;
+            }
             
             this._fecha = m.FECHA_MOVIMIENTO.Year + "/" + m.FECHA_MOVIMIENTO.Month + "/" + m.FECHA_MOVIMIENTO.Day;
             //this.Fecha = m.FECHA_MOVIMIENTO.ToString();

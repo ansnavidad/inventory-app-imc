@@ -228,6 +228,12 @@ namespace InventoryApp.Model
                     {
                         ban = true;
                         ItemModel aux = new ItemModel(elemento);
+                        UltimoMovimientoDataMapper ultimomovimientodm = new UltimoMovimientoDataMapper();
+                        ULTIMO_MOVIMIENTO tmp = new ULTIMO_MOVIMIENTO();
+                        if (infra != null)
+                            tmp = ultimomovimientodm.getCantidadItems(elemento, infra);
+                        aux.CantidadDisponible = tmp.CANTIDAD;
+                        aux.CantidadMovimiento = 1;
                         ic.Add(aux);
                     }
 
@@ -317,6 +323,14 @@ namespace InventoryApp.Model
                     {
                         ban = true;
                         ItemModel aux = new ItemModel(elemento);
+                        UltimoMovimientoDataMapper ultimomovimientodm = new UltimoMovimientoDataMapper();
+                        ULTIMO_MOVIMIENTO tmp = new ULTIMO_MOVIMIENTO();
+                        if (cliente != null)
+                            tmp = ultimomovimientodm.getCantidadItems(elemento, cliente);
+                        else if(prov != null)
+                            tmp = ultimomovimientodm.getCantidadItems(elemento, prov);
+                        aux.CantidadDisponible = tmp.CANTIDAD;
+                        aux.CantidadMovimiento = 1;
                         ic.Add(aux);
                     }
                 
@@ -404,6 +418,12 @@ namespace InventoryApp.Model
                     {
                         ban = true;
                         ItemModel aux = new ItemModel(elemento);
+                        UltimoMovimientoDataMapper ultimomovimientodm = new UltimoMovimientoDataMapper();
+                        ULTIMO_MOVIMIENTO tmp = new ULTIMO_MOVIMIENTO();
+                        if (almacenDirecto != null)
+                            tmp = ultimomovimientodm.getCantidadItems(elemento, almacenDirecto);
+                        aux.CantidadDisponible = tmp.CANTIDAD;
+                        aux.CantidadMovimiento = 1;
                         ic.Add(aux);
                     }
                 }

@@ -1,6 +1,7 @@
 ﻿using InventoryApp.DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using InventoryApp.DAL.POCOS;
 
 namespace DALTestProject
 {
@@ -76,6 +77,32 @@ namespace DALTestProject
             actual = target.GetJsonUltimoMovimiento();
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
+
+        /// <summary>
+        ///Una prueba de getCantidadItems
+        ///</summary>
+
+
+
+
+        /// <summary>
+        ///Una prueba de getCantidadItems
+        ///</summary>
+        [TestMethod()]
+        public void getCantidadItemsTest()
+        {
+            UltimoMovimientoDataMapper target = new UltimoMovimientoDataMapper(); // TODO: Inicializar en un valor adecuado
+            ITEM item = new ITEM(); // TODO: Inicializar en un valor adecuado
+            INFRAESTRUCTURA infraestructura = new INFRAESTRUCTURA(); // TODO: Inicializar en un valor adecuado
+            item.UNID_ITEM = 20130103181604156;
+            infraestructura.UNID_INFRAESTRUCTURA = 2;
+            ULTIMO_MOVIMIENTO expected = new ULTIMO_MOVIMIENTO();
+            expected.CANTIDAD = 100;// TODO: Inicializar en un valor adecuado
+            ULTIMO_MOVIMIENTO actual;
+            actual = target.getCantidadItems(item, infraestructura);
+            Assert.AreEqual(expected.CANTIDAD, actual.CANTIDAD);
+            
         }
     }
 }

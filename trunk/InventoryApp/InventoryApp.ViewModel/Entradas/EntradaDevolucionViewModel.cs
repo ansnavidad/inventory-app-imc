@@ -55,7 +55,7 @@ namespace InventoryApp.ViewModel.Entradas
                 //Asignaciones especiales para los combos 
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
-                this._movimientoModel.Cliente = _catalogClienteProcedenciaModel.Cliente[0];
+                //this._movimientoModel.Cliente = _catalogClienteProcedenciaModel.Cliente[0];
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
@@ -104,7 +104,7 @@ namespace InventoryApp.ViewModel.Entradas
                 //Asignaciones especiales para los combos 
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
-                this._movimientoModel.Cliente = _catalogClienteProcedenciaModel.Cliente[0];
+                //this._movimientoModel.Cliente = _catalogClienteProcedenciaModel.Cliente[0];
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];

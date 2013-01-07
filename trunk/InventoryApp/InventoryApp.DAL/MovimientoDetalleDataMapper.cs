@@ -48,7 +48,8 @@ namespace InventoryApp.DAL
                          OBSERVACIONES = row.OBSERVACIONES,
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         CANTIDAD=row.CANTIDAD
                      });
                  });
                 if (listMovimientoDetalle.Count > 0)
@@ -211,7 +212,8 @@ namespace InventoryApp.DAL
                          OBSERVACIONES=row.OBSERVACIONES,
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         CANTIDAD = row.CANTIDAD
                      });
                  });
                 if (listMovimientoDetalle.Count > 0)
@@ -260,7 +262,8 @@ namespace InventoryApp.DAL
                          OBSERVACIONES = row.OBSERVACIONES,
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         CANTIDAD = row.CANTIDAD
                      });
                  });
                 if (reset.Count > 0)

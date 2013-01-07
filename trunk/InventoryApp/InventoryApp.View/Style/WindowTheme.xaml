@@ -1,13 +1,37 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <LinearGradientBrush x:Key="DegradadoElara" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+        <GradientStop Color="#FFFFC934" Offset="0"/>
+        <GradientStop Color="#ed5d1e" Offset="0.567"/>
+    </LinearGradientBrush>
+    
     <Style x:Key="titleBorder" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="#ed5d1e" />
     </Style>
+    
+    <Style x:Key="titleBorderElara" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="{StaticResource DegradadoElara}" />
+    </Style>
+    
     <Style x:Key="titleLabel" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="#F2F2F2"></Setter>
         <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
         <Setter Property="FontStretch" Value="Normal"></Setter>
         <Setter Property="FontSize" Value="14"></Setter>
+    </Style>
+
+    <Style x:Key="titleLabelElara" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#FEFEFF"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontStretch" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+    </Style>
+    
+    <Style x:Key="titleCamposElara" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#5E4603"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
     </Style>
 </ResourceDictionary>
 

@@ -83,11 +83,11 @@
                 </Canvas>
             </StackPanel>
         </Grid>
-        <Border BorderBrush="#FF1626F2" BorderThickness="1" Grid.Row="2" Height="3" HorizontalAlignment="Stretch" Margin="0,9,0,0" 
+        <Border BorderBrush="#1039BF" BorderThickness="1" Grid.Row="2" Height="3" HorizontalAlignment="Stretch" Margin="0,9,0,0" 
                 Name="border1" VerticalAlignment="Top" Width="auto" Grid.ColumnSpan="2">
         </Border>
         <Label Content="Almacén Elara" Grid.Row="1" Height="30" HorizontalAlignment="Center" Margin="37,8,31,0" Name="expander3" 
-                   VerticalAlignment="Top" Foreground="#FF0000F7" FontWeight="Medium" FontStretch="Normal" FontFamily="Arial" FontSize="18" Width="137" BorderBrush="White" Background="White" >
+                   VerticalAlignment="Top" Foreground="#0B257C" FontWeight="Medium" FontStretch="Normal" FontFamily="Arial" FontSize="18" Width="137" BorderBrush="White" Background="White" >
 
         </Label>
     </Grid>

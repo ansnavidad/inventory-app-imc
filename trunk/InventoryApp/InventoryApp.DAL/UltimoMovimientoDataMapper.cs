@@ -48,7 +48,11 @@ namespace InventoryApp.DAL
                          UNID_PROVEEDOR = row.UNID_PROVEEDOR,
                          UNID_MOVIMIENTO_DETALLE = row.UNID_MOVIMIENTO_DETALLE,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         IS_ACTIVE=row.IS_ACTIVE,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         UNID_INFRAESTRUCTURA= row.UNID_INFRAESTRUCTURA,
+                         CANTIDAD=row.CANTIDAD,
+                         UNID_ULTIMO_MOVIMIENTO= row.UNID_ULTIMO_MOVIMIENTO
                      });
                  });
                 if (listUltimoMovimiento.Count > 0)
@@ -249,7 +253,11 @@ namespace InventoryApp.DAL
                          UNID_PROVEEDOR=row.UNID_PROVEEDOR,
                          UNID_MOVIMIENTO_DETALLE=row.UNID_MOVIMIENTO_DETALLE,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         IS_ACTIVE=row.IS_ACTIVE,
+                         UNID_INFRAESTRUCTURA = row.UNID_INFRAESTRUCTURA,
+                         CANTIDAD = row.CANTIDAD,
+                         UNID_ULTIMO_MOVIMIENTO=row.UNID_ULTIMO_MOVIMIENTO
                      });
                  });
                 if (listUltimoMovimiento.Count > 0)
@@ -298,7 +306,11 @@ namespace InventoryApp.DAL
                          UNID_PROVEEDOR = row.UNID_PROVEEDOR,
                          UNID_MOVIMIENTO_DETALLE = row.UNID_MOVIMIENTO_DETALLE,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         IS_ACTIVE=row.IS_ACTIVE,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         UNID_INFRAESTRUCTURA = row.UNID_INFRAESTRUCTURA,
+                         CANTIDAD = row.CANTIDAD,
+                         UNID_ULTIMO_MOVIMIENTO=row.UNID_ULTIMO_MOVIMIENTO
                      });
                  });
                 if (reset.Count > 0)

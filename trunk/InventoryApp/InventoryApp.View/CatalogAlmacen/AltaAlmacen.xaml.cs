@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using InventoryApp.View.CatalogTecnico;
 using InventoryApp.ViewModel.CatalogTecnico;
+using InventoryApp.ViewModel.CatalogAlmacen;
 
 namespace InventoryApp.View.CatalogAlmacen
 {
@@ -44,7 +45,7 @@ namespace InventoryApp.View.CatalogAlmacen
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             AltaTecnico view = new AltaTecnico();
-            AddTecnicoViewModel viewModel = new AddTecnicoViewModel(new CatalogTecnicoViewModel(), this.txtUnid.Text.ToString());
+            AddTecnicoViewModel viewModel = new AddTecnicoViewModel(new CatalogTecnicoViewModel(), this.txtUnid.Text.ToString(), (AddAlmacenViewModel)this.DataContext);
             view.DataContext = viewModel;
             view.ShowDialog();
         }

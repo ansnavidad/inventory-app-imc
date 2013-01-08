@@ -15,6 +15,8 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
         #region Fields
         private AlmacenModel _addAlmacen;
         private RelayCommand _addAlmacenCommand;
+        private RelayCommand _borrarTecCommand;
+
         private CatalogAlmacenViewModel _catalogAlmacenViewModel;
         private CatalogCiudadModel _catalogCiudadModel;
         private CatalogTecnicoModel _catalogTecnicoModel;
@@ -40,7 +42,6 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                 }
             }
         }
-        private RelayCommand _modifyAlmacenCommand;
         public CatalogTecnicoModel CatalogTecnicoModel
         {
             get
@@ -77,7 +78,17 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                 }
             }
         }
-        
+        public ICommand BorrarTecCommand
+        {
+            get
+            {
+                if (_borrarTecCommand == null)
+                {
+                    _borrarTecCommand = new RelayCommand(p => this.AttempBorrarTec(), p => this.CanAttempBorrarTec());
+                }
+                return _borrarTecCommand;
+            }
+        }
         public ICommand AddAlmacenCommand
         {
             get
@@ -89,99 +100,57 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                 return _addAlmacenCommand;
             }
         }
-        public ICommand ModifyAlmacenCommand
-        {
-            get
-            {
-                if (_modifyAlmacenCommand == null)
-                {
-                    _modifyAlmacenCommand = new RelayCommand(p => this.AttempModifyAlmacen(), p => this.CanAttempModifyAlmacen());
-                }
-                return _modifyAlmacenCommand;
-            }
-        }
         #endregion
 
         #region Constructors
-        /// <summary>
-        /// Ejecuta la acción del command
-        /// </summary>
-        /// <param name="catalogItemStatusViewModel"></param>
+
         public AddAlmacenViewModel(CatalogAlmacenViewModel catalogAlmacenViewModel)
         {               
             this._addAlmacen = new AlmacenModel(new AlmacenDataMapper());
-            this.AddAlmacen.UnidAlmacen = DAL.UNID.getNewUNID();
+            this.AddAlmacen.UnidAlmacen = DAL.UNID.getNewUNID();            
             this._catalogAlmacenViewModel = catalogAlmacenViewModel;
             try
             {
-
                 this._catalogCiudadModel = new CatalogCiudadModel(new CiudadDataMapper());
             }
-            catch (ArgumentException ae)
-            {
-                ;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            try
-            {
-
-                this._catalogTecnicoModel = new CatalogTecnicoModel(new TecnicoDataMapper());
-            }
-            catch (ArgumentException ae)
-            {
-                ;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            catch (ArgumentException ae) { ;}
+            catch (Exception ex) { }          
 
             try
-            {
-                object ret = this._addAlmacen.GetAlmacenCategoria(AddAlmacen.UnidAlmacen);
-                this._catalogTecnicoModel = new CatalogTecnicoModel(new TecnicoDataMapper());
-                //muestra los valores de las tecnicos que estan relacionadas
-                foreach (var item in this._catalogTecnicoModel.Tecnico)
-                {
-                    foreach (var ite in ((List<TECNICO>)ret))
-                    {
-                        if (item.UNID_TECNICO == ite.UNID_TECNICO)
-                        {
-                            item.IsChecked = true;
-                            this._addAlmacen._auxUnidsTecnicos.Add(ite.UNID_TECNICO);
-                        }
-                    }
-                }
-
-                for (int i = 0; i < this._catalogTecnicoModel.Tecnico.Count; )
-                {
-
-                    if (!this._catalogTecnicoModel.Tecnico[i].IsChecked)
-                        this._catalogTecnicoModel.Tecnico.RemoveAt(i);
-                    else
-                        i++;
-                }
+            {                
+                this._catalogTecnicoModel = new CatalogTecnicoModel(new TecnicoDataMapper());              
             }
+            catch (ArgumentException ae) {;}
             catch (Exception ex) { }
         }
         #endregion
 
         #region Methods
-        /// <summary>
-        /// Hace las validaciones necesarias para habilitar el command
-        /// Si esta función retorna false, el command es deshabilitado
-        /// </summary>
-        /// <returns></returns>
+
+        public bool CanAttempBorrarTec()
+        {
+            bool _canAddAlmacen = true;
+            return _canAddAlmacen;
+        }
+
+        public void AttempBorrarTec()
+        {
+            for (int i = 0; i < this._catalogTecnicoModel.Tecnico.Count; ) {
+
+                if (this._catalogTecnicoModel.Tecnico[i].IsChecked == true)
+                    this._catalogTecnicoModel.Tecnico.RemoveAt(i);
+                else
+                    i++;
+            }
+        }
+
         public bool CanAttempAddAlmacen()
         {
             bool _canAddAlmacen = true;
             if (String.IsNullOrEmpty(this._addAlmacen.AlmacenName) ||
                 String.IsNullOrEmpty(this._addAlmacen.Contacto) ||
-                String.IsNullOrEmpty(this._addAlmacen.Direccion)||
-                String.IsNullOrEmpty(this._addAlmacen.Mail)||
+                String.IsNullOrEmpty(this._addAlmacen.Direccion) ||
+                String.IsNullOrEmpty(this._addAlmacen.Mail) ||
                 String.IsNullOrEmpty(this._addAlmacen.MailDefault))
                 _canAddAlmacen = false;
             return _canAddAlmacen;
@@ -198,75 +167,6 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             }
 
             this._addAlmacen.saveAlmacen();
-
-            if (this._catalogAlmacenViewModel != null)
-            {
-                this._catalogAlmacenViewModel.loadAlmacen();
-            }
-        }
-
-        public bool CanAttempModifyAlmacen()
-        {
-            int auxF = DateTime.Now.Second;
-            if (auxF % 2 == 0)
-            {
-                this._addAlmacen._unidsTecnicos.Clear();
-                foreach (DeleteTecnico at in this._catalogTecnicoModel.Tecnico)
-                {
-                    if (at.IsChecked == true)
-                    {
-                        this._addAlmacen._unidsTecnicos.Add(at.UNID_TECNICO);
-                    }
-                }
-                this._addAlmacen.updateAlmacen();
-
-                //Actualiza los técnicos
-                object ret = this.AddAlmacen.GetAlmacenCategoria(AddAlmacen.UnidAlmacen);
-                this.CatalogTecnicoModel = new CatalogTecnicoModel(new TecnicoDataMapper());
-                foreach (var item in this.CatalogTecnicoModel.Tecnico)
-                {
-                    foreach (var ite in ((List<TECNICO>)ret))
-                    {
-                        if (item.UNID_TECNICO == ite.UNID_TECNICO)
-                        {
-                            item.IsChecked = true;
-                            this.AddAlmacen._auxUnidsTecnicos.Add(ite.UNID_TECNICO);
-                        }
-                    }
-                }
-
-                for (int i = 0; i < this.CatalogTecnicoModel.Tecnico.Count; )
-                {
-
-                    if (!this.CatalogTecnicoModel.Tecnico[i].IsChecked)
-                        this.CatalogTecnicoModel.Tecnico.RemoveAt(i);
-                    else
-                        i++;
-                }
-            }
-
-
-            bool _canAddAlmacen = true;
-            if (String.IsNullOrEmpty(this._addAlmacen.AlmacenName) ||
-                String.IsNullOrEmpty(this._addAlmacen.Contacto) ||
-                String.IsNullOrEmpty(this._addAlmacen.Direccion) ||
-                String.IsNullOrEmpty(this._addAlmacen.Mail) ||
-                String.IsNullOrEmpty(this._addAlmacen.MailDefault))
-                _canAddAlmacen = false;
-            return _canAddAlmacen;
-        }
-
-        public void AttempModifyAlmacen()
-        {
-            //modificar para actualizar las relaciones proveedor categoria
-            foreach (DeleteTecnico at in this._catalogTecnicoModel.Tecnico)
-            {
-                if (at.IsChecked == true)
-                {
-                    this._addAlmacen._unidsTecnicos.Add(at.UNID_TECNICO);
-                }
-            }
-            this._addAlmacen.updateAlmacen();
 
             if (this._catalogAlmacenViewModel != null)
             {

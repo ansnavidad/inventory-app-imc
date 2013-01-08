@@ -177,9 +177,24 @@ namespace InventoryApp.Model
                     CONTACTO = this._contacto,
                     MAIL = this._mail,
                     MAIL_DEFAULT = this._mailDefault,
-                    DIRECCION = this._direccion
+                    DIRECCION = this._direccion,
+                    UNID_ALMACEN = this.UnidAlmacen
+
                 },this._unidsTecnicos);
             }
+        }
+
+        public void updateAlmacen(string s)
+        {            
+            this._dataMapper.updateRelacion(new ALMACEN()
+            {
+                UNID_ALMACEN = this._unidAlmacen,
+                ALMACEN_NAME = this._almacenName,
+                CONTACTO = this._contacto,
+                MAIL = this._mail,
+                MAIL_DEFAULT = this._mailDefault,
+                DIRECCION = this._direccion
+            },this._unidsTecnicos,this._auxUnidsTecnicos, "s");
         }
 
         public void updateAlmacen()

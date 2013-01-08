@@ -437,6 +437,92 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void updateRelacion(object element, List<long> unidTecnico, List<long> auxUnidTecnico, string s)
+        {
+            try
+            {
+                if (element != null && ((ALMACEN)element).UNID_ALMACEN != 0)
+                {
+                    using (var entity = new TAE2Entities())
+                    {
+                        ALMACEN almacen = (ALMACEN)element;
+                        
+                        //ELIMINA TODAS LAS RELACIONES QUE EXISTEN
+                        if (auxUnidTecnico.Count > 0)
+                        {
+                            foreach (var e in auxUnidTecnico)
+                            {
+                                ALMACEN_TECNICO almacenTecnico = new ALMACEN_TECNICO();
+                                var query = (from a in entity.ALMACENs
+                                             join relation in entity.ALMACEN_TECNICO
+                                             on a.UNID_ALMACEN equals relation.UNID_ALMACEN
+                                             join t in entity.TECNICOes
+                                             on relation.UNID_TECNICO equals t.UNID_TECNICO
+                                             where a.UNID_ALMACEN == almacen.UNID_ALMACEN && t.UNID_TECNICO == e
+                                             select relation).ToList().First();
+                                query.IS_ACTIVE = false;
+                                //Sync
+                                query.IS_MODIFIED = true;
+                                query.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                                var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                                modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                                entity.SaveChanges();
+                                //
+                            }
+                        }
+                        //INSERTA LAS NUEVAS RELACIONES ALMACEN TECNICO
+                        if (unidTecnico.Count > 0)
+                        {
+                            foreach (var item in unidTecnico)
+                            {
+                                var query2 = (from cust in entity.ALMACEN_TECNICO
+                                              where cust.UNID_ALMACEN == almacen.UNID_ALMACEN && cust.UNID_TECNICO == item
+                                              select cust).ToList();
+
+                                if (query2.Count > 0)
+                                {
+                                    var query3 = query2.First();
+
+                                    //Sync
+                                    query3.IS_ACTIVE = true;
+                                    query3.IS_MODIFIED = true;
+                                    query3.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                                    entity.SaveChanges();
+                                    //
+                                }
+                                else
+                                {
+
+                                    ALMACEN_TECNICO almacenTecnico = new ALMACEN_TECNICO();
+                                    almacenTecnico.UNID_ALMACEN = almacen.UNID_ALMACEN;
+                                    almacenTecnico.UNID_TECNICO = item;
+
+                                    //Sync
+                                    almacenTecnico.IS_MODIFIED = true;
+                                    almacenTecnico.IS_ACTIVE = true;
+                                    almacenTecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                                    entity.SaveChanges();
+                                    //
+
+                                    entity.ALMACEN_TECNICO.AddObject(almacenTecnico);
+                                    entity.SaveChanges();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
         public void insertElement(object element)
         {
             if (element != null)

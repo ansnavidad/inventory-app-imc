@@ -275,8 +275,7 @@ namespace InventoryApp.DAL
                 return res;
             }
         }
-
-        
+       
         public List<BANCO> GetDeserializeBanco(string listPocos)
         {
             List<BANCO> res = null;

@@ -275,6 +275,38 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private MODELO _mODELO;
+    
+        public virtual ICollection<MAX_MIN> MAX_MIN
+        {
+            get
+            {
+                if (_mAX_MIN == null)
+                {
+                    var newCollection = new FixupCollection<MAX_MIN>();
+                    newCollection.CollectionChanged += FixupMAX_MIN;
+                    _mAX_MIN = newCollection;
+                }
+                return _mAX_MIN;
+            }
+            set
+            {
+                if (!ReferenceEquals(_mAX_MIN, value))
+                {
+                    var previousValue = _mAX_MIN as FixupCollection<MAX_MIN>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupMAX_MIN;
+                    }
+                    _mAX_MIN = value;
+                    var newValue = value as FixupCollection<MAX_MIN>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupMAX_MIN;
+                    }
+                }
+            }
+        }
+        private ICollection<MAX_MIN> _mAX_MIN;
 
         #endregion
         #region Association Fixup
@@ -416,6 +448,28 @@ namespace InventoryApp.DAL.POCOS
             if (e.OldItems != null)
             {
                 foreach (POM_ARTICULO item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.ARTICULO, this))
+                    {
+                        item.ARTICULO = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupMAX_MIN(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (MAX_MIN item in e.NewItems)
+                {
+                    item.ARTICULO = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (MAX_MIN item in e.OldItems)
                 {
                     if (ReferenceEquals(item.ARTICULO, this))
                     {

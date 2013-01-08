@@ -50,5 +50,65 @@ namespace InventoryApp.DAL.POCOS
         }
 
         #endregion
+        #region Navigation Properties
+    
+        public virtual ICollection<ITEM> ITEMs
+        {
+            get
+            {
+                if (_iTEMs == null)
+                {
+                    var newCollection = new FixupCollection<ITEM>();
+                    newCollection.CollectionChanged += FixupITEMs;
+                    _iTEMs = newCollection;
+                }
+                return _iTEMs;
+            }
+            set
+            {
+                if (!ReferenceEquals(_iTEMs, value))
+                {
+                    var previousValue = _iTEMs as FixupCollection<ITEM>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupITEMs;
+                    }
+                    _iTEMs = value;
+                    var newValue = value as FixupCollection<ITEM>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupITEMs;
+                    }
+                }
+            }
+        }
+        private ICollection<ITEM> _iTEMs;
+
+        #endregion
+        #region Association Fixup
+    
+        private void FixupITEMs(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (ITEM item in e.NewItems)
+                {
+                    item.PROPIEDAD = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (ITEM item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.PROPIEDAD, this))
+                    {
+                        item.PROPIEDAD = null;
+                    }
+                }
+            }
+        }
+
+        #endregion
     }
 }

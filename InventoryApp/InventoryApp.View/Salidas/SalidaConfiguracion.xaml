@@ -16,7 +16,10 @@
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,44,342,0" Name="textBlockFolio" VerticalAlignment="Top" Width="201" Text="{Binding MovimientoModel.UnidMovimiento, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,69,342,0" Name="textBlock2" VerticalAlignment="Top" Width="201" Text="{Binding MovimientoModel.FechaMovimiento, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
-            <DataGrid TabIndex="16" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,726,14,0" Name="dtGridTipoPedimento" VerticalAlignment="Top" ItemsSource="{Binding ItemModel.ItemModel}" Height="320" HorizontalAlignment="Right" Width="596">
+            <DataGrid TabIndex="16" 
+                      AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,726,14,0"
+                      Name="dtGridTipoPedimento" VerticalAlignment="Top"
+                      ItemsSource="{Binding ItemModel.ItemModel}" Height="320" HorizontalAlignment="Right" Width="596">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="25" />
                     <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Serie" x:Name="SERIE" Binding="{Binding Path=NUMERO_SERIE}" />

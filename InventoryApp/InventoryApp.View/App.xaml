@@ -79,6 +79,8 @@
              xmlns:reportesViewModel="clr-namespace:InventoryApp.ViewModel.Reportes;assembly=InventoryApp.ViewModel"
              xmlns:reportesView="clr-namespace:InventoryApp.View.Reportes"
              
+             xmlns:maxMinViewModel="clr-namespace:InventoryApp.ViewModel.MaxMin;assembly=InventoryApp.ViewModel"
+             xmlns:maxMinView="clr-namespace:InventoryApp.View.MaxMin"
              
              
              
@@ -358,6 +360,10 @@
         <ObjectDataProvider x:Key="reportesViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
+        <!--Máximos y mínimos-->
+        <ObjectDataProvider x:Key="maxMinViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
         <!--CONVERTERS-->
         <rootViewModel:BoolToVisibilityValueConverter x:Key="boolVisibilityConverter" />
         
@@ -536,6 +542,10 @@
 
         <DataTemplate DataType="{x:Type reportesViewModel:ReportesViewModel}">
             <reportesView:ReportesMain/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type maxMinViewModel:MaxMinViewModel}">
+            <maxMinView:MaxMinView/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaConfiguracionViewModel}">

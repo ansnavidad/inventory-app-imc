@@ -30,13 +30,21 @@ namespace InventoryApp.DAL.POCOS
             get { return _uNID_ARTICULO; }
             set
             {
-                if (_uNID_ARTICULO != value)
+                try
                 {
-                    if (ARTICULO != null && ARTICULO.UNID_ARTICULO != value)
+                    _settingFK = true;
+                    if (_uNID_ARTICULO != value)
                     {
-                        ARTICULO = null;
+                        if (ARTICULO != null && ARTICULO.UNID_ARTICULO != value)
+                        {
+                            ARTICULO = null;
+                        }
+                        _uNID_ARTICULO = value;
                     }
-                    _uNID_ARTICULO = value;
+                }
+                finally
+                {
+                    _settingFK = false;
                 }
             }
         }
@@ -59,13 +67,21 @@ namespace InventoryApp.DAL.POCOS
             get { return _uNID_ITEM_STATUS; }
             set
             {
-                if (_uNID_ITEM_STATUS != value)
+                try
                 {
-                    if (ITEM_STATUS != null && ITEM_STATUS.UNID_ITEM_STATUS != value)
+                    _settingFK = true;
+                    if (_uNID_ITEM_STATUS != value)
                     {
-                        ITEM_STATUS = null;
+                        if (ITEM_STATUS != null && ITEM_STATUS.UNID_ITEM_STATUS != value)
+                        {
+                            ITEM_STATUS = null;
+                        }
+                        _uNID_ITEM_STATUS = value;
                     }
-                    _uNID_ITEM_STATUS = value;
+                }
+                finally
+                {
+                    _settingFK = false;
                 }
             }
         }
@@ -82,13 +98,21 @@ namespace InventoryApp.DAL.POCOS
             get { return _uNID_FACTURA_DETALE; }
             set
             {
-                if (_uNID_FACTURA_DETALE != value)
+                try
                 {
-                    if (FACTURA_DETALLE != null && FACTURA_DETALLE.UNID_FACTURA_DETALE != value)
+                    _settingFK = true;
+                    if (_uNID_FACTURA_DETALE != value)
                     {
-                        FACTURA_DETALLE = null;
+                        if (FACTURA_DETALLE != null && FACTURA_DETALLE.UNID_FACTURA_DETALE != value)
+                        {
+                            FACTURA_DETALLE = null;
+                        }
+                        _uNID_FACTURA_DETALE = value;
                     }
-                    _uNID_FACTURA_DETALE = value;
+                }
+                finally
+                {
+                    _settingFK = false;
                 }
             }
         }
@@ -141,6 +165,31 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
+    
+        public virtual Nullable<long> UNID_PROPIEDAD
+        {
+            get { return _uNID_PROPIEDAD; }
+            set
+            {
+                try
+                {
+                    _settingFK = true;
+                    if (_uNID_PROPIEDAD != value)
+                    {
+                        if (PROPIEDAD != null && PROPIEDAD.UNID_PROPIEDAD != value)
+                        {
+                            PROPIEDAD = null;
+                        }
+                        _uNID_PROPIEDAD = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
+        }
+        private Nullable<long> _uNID_PROPIEDAD;
 
         #endregion
         #region Navigation Properties
@@ -174,6 +223,21 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private ITEM_STATUS _iTEM_STATUS;
+    
+        public virtual PROPIEDAD PROPIEDAD
+        {
+            get { return _pROPIEDAD; }
+            set
+            {
+                if (!ReferenceEquals(_pROPIEDAD, value))
+                {
+                    var previousValue = _pROPIEDAD;
+                    _pROPIEDAD = value;
+                    FixupPROPIEDAD(previousValue);
+                }
+            }
+        }
+        private PROPIEDAD _pROPIEDAD;
     
         public virtual ICollection<ULTIMO_MOVIMIENTO> ULTIMO_MOVIMIENTO
         {
@@ -257,6 +321,8 @@ namespace InventoryApp.DAL.POCOS
         #endregion
         #region Association Fixup
     
+        private bool _settingFK = false;
+    
         private void FixupARTICULO(ARTICULO previousValue)
         {
             if (previousValue != null && previousValue.ITEMs.Contains(this))
@@ -294,6 +360,30 @@ namespace InventoryApp.DAL.POCOS
                 {
                     UNID_ITEM_STATUS = ITEM_STATUS.UNID_ITEM_STATUS;
                 }
+            }
+        }
+    
+        private void FixupPROPIEDAD(PROPIEDAD previousValue)
+        {
+            if (previousValue != null && previousValue.ITEMs.Contains(this))
+            {
+                previousValue.ITEMs.Remove(this);
+            }
+    
+            if (PROPIEDAD != null)
+            {
+                if (!PROPIEDAD.ITEMs.Contains(this))
+                {
+                    PROPIEDAD.ITEMs.Add(this);
+                }
+                if (UNID_PROPIEDAD != PROPIEDAD.UNID_PROPIEDAD)
+                {
+                    UNID_PROPIEDAD = PROPIEDAD.UNID_PROPIEDAD;
+                }
+            }
+            else if (!_settingFK)
+            {
+                UNID_PROPIEDAD = null;
             }
         }
     

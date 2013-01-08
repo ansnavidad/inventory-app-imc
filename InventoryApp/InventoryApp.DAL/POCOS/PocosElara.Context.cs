@@ -240,6 +240,12 @@ namespace InventoryApp.DAL.POCOS
         }
         private ObjectSet<ITEM_STATUS> _iTEM_STATUS;
     
+        public ObjectSet<MAX_MIN> MAX_MIN
+        {
+            get { return _mAX_MIN  ?? (_mAX_MIN = CreateObjectSet<MAX_MIN>("MAX_MIN")); }
+        }
+        private ObjectSet<MAX_MIN> _mAX_MIN;
+    
         public ObjectSet<PROPIEDAD> PROPIEDADs
         {
             get { return _pROPIEDADs  ?? (_pROPIEDADs = CreateObjectSet<PROPIEDAD>("PROPIEDADs")); }

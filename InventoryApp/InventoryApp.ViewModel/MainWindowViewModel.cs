@@ -296,6 +296,9 @@ namespace InventoryApp.ViewModel
                    case "Reportes":
                       page = new Reportes.ReportesViewModel();
                       break;
+                   case "Máximos y Mínimos":
+                      page = new MaxMin.MaxMinViewModel();
+                      break;
                         
                     default:
                         break;

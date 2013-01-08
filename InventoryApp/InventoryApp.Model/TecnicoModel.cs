@@ -104,7 +104,8 @@ namespace InventoryApp.Model
                 _dataMapper.insertElement(new TECNICO() { IS_ACTIVE = true,
                                                           MAIL = this._mail,
                                                           TECNICO_NAME = this._tecnicoName,
-                                                          UNID_CIUDAD = this._ciudad.UNID_CIUDAD
+                                                          UNID_CIUDAD = this._ciudad.UNID_CIUDAD,
+                                                          UNID_TECNICO = this.UnidTecnico
                                                          });
             }
         }

@@ -17,6 +17,7 @@ namespace InventoryApp.ViewModel.CatalogTecnico
         private RelayCommand _addTecnicoCommand;
         private CatalogTecnicoViewModel _catalogTecnicoViewModel;
         private AddAlmacenViewModel _almData;
+        private ModifyAlmacenViewModel _almDataM;
         private CatalogCiudadModel _catalogCiudadModel;
         public string _aux;
         #endregion
@@ -105,6 +106,25 @@ namespace InventoryApp.ViewModel.CatalogTecnico
             }
         }
 
+        public AddTecnicoViewModel(CatalogTecnicoViewModel catalogTecnicoViewModel, ModifyAlmacenViewModel alData)
+        {
+            this._almDataM = alData;
+            this._addTecnico = new TecnicoModel(new TecnicoDataMapper());
+            this._catalogTecnicoViewModel = catalogTecnicoViewModel;            
+            try
+            {
+                this._catalogCiudadModel = new CatalogCiudadModel(new CiudadDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -123,32 +143,63 @@ namespace InventoryApp.ViewModel.CatalogTecnico
         }
 
         public void AttempAddTecnico()
-        {
-            
-            //this._addTecnico.saveTecnico();
-            
-            if (this._catalogTecnicoViewModel != null)
-            {
-                this._catalogTecnicoViewModel.loadTecnico();
-            }
-
+        {            
             TECNICO t = new TECNICO();
             t.UNID_TECNICO = DAL.UNID.getNewUNID();
             t.IS_ACTIVE = true;            
             t.IS_MODIFIED = true;             
-            t.UNID_TECNICO = this._catalogTecnicoViewModel.CatalogTecnicoModel.Tecnico[this._catalogTecnicoViewModel.CatalogTecnicoModel.Tecnico.Count - 1].UNID_TECNICO;
-            t.UNID_CIUDAD = this._catalogTecnicoViewModel.CatalogTecnicoModel.Tecnico[this._catalogTecnicoViewModel.CatalogTecnicoModel.Tecnico.Count - 1].UNID_CIUDAD;            
-            t.TECNICO_NAME = this._catalogTecnicoViewModel.CatalogTecnicoModel.Tecnico[this._catalogTecnicoViewModel.CatalogTecnicoModel.Tecnico.Count - 1].TECNICO_NAME;            
-            t.MAIL = this._catalogTecnicoViewModel.CatalogTecnicoModel.Tecnico[this._catalogTecnicoViewModel.CatalogTecnicoModel.Tecnico.Count - 1].TECNICO_NAME;
+            t.UNID_TECNICO = this._addTecnico.UnidTecnico;
+            t.UNID_CIUDAD = this._addTecnico.Ciudad.UNID_CIUDAD;
+            t.TECNICO_NAME = this._addTecnico.TecnicoName;
+            t.MAIL = this._addTecnico.Mail;
 
             DeleteTecnico tecAux = new DeleteTecnico(t);
             tecAux.IsChecked = false;
 
-            _almData.CatalogTecnicoModel.Tecnico.Add(tecAux);
-
-            //AlmacenDataMapper alm = new AlmacenDataMapper();
-            //alm.UpsertMixRelation(new DAL.POCOS.ALMACEN_TECNICO { UNID_ALMACEN = Int64.Parse(_aux), UNID_TECNICO = this._catalogTecnicoViewModel.CatalogTecnicoModel.Tecnico[this._catalogTecnicoViewModel.CatalogTecnicoModel.Tecnico.Count - 1].UNID_TECNICO });
+            if (_almData != null)
+                _almData.CatalogTecnicoModel.Tecnico.Add(tecAux);
+            else
+            {
+                _almDataM.CatalogTecnicoModel.Tecnico.Add(tecAux);
+                _almDataM.ModiAlmacen._unidsTecnicos.Add(tecAux.UNID_TECNICO);
+            }
         }
+
+        public void AttempAddTecnicoExternal(ALMACEN alm, CatalogTecnicoModel tec)
+        {
+            if (_almData != null)
+            {
+                for (int i = 0; i < tec.Tecnico.Count; i++)
+                {
+
+                    this._addTecnico.UnidTecnico = DAL.UNID.getNewUNID();
+                    this._addTecnico.Ciudad = new CIUDAD { UNID_CIUDAD = (long)tec.Tecnico[i].UNID_CIUDAD };
+                    this._addTecnico.Mail = tec.Tecnico[i].MAIL;
+                    this._addTecnico.TecnicoName = tec.Tecnico[i].TECNICO_NAME;
+
+                    this._addTecnico.saveTecnico();
+
+                    AlmacenDataMapper a = new AlmacenDataMapper();
+                    a.UpsertMixRelation(new DAL.POCOS.ALMACEN_TECNICO { UNID_ALMACEN = alm.UNID_ALMACEN, UNID_TECNICO = this._addTecnico.UnidTecnico });
+                }
+            }
+            else {
+
+                for (int i = 0; i < tec.Tecnico.Count; i++)
+                {
+                    this._addTecnico.UnidTecnico = DAL.UNID.getNewUNID();
+                    this._addTecnico.Ciudad = new CIUDAD { UNID_CIUDAD = (long)tec.Tecnico[i].UNID_CIUDAD };
+                    this._addTecnico.Mail = tec.Tecnico[i].MAIL;
+                    this._addTecnico.TecnicoName = tec.Tecnico[i].TECNICO_NAME;
+
+                    this._addTecnico.saveTecnico();
+
+                    AlmacenDataMapper a = new AlmacenDataMapper();
+                    a.UpsertMixRelation(new DAL.POCOS.ALMACEN_TECNICO { UNID_ALMACEN = alm.UNID_ALMACEN, UNID_TECNICO = this._addTecnico.UnidTecnico });
+                }
+            }
+        }
+
         #endregion
     }
 }

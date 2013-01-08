@@ -425,16 +425,8 @@ namespace InventoryApp.ViewModel.Salidas
                 excel.Cells[31, 12] = _movimientoModel.NombreSitio;
                 //Sitio/Enlace
                 excel.Cells[33, 12] = _movimientoModel.SitioEnlace;
-                //Servicio
-                excel.Cells[35, 12] = _movimientoModel.Servicio.SERVICIO_NAME;
-                //Cliente
-                excel.Cells[37, 12] = _movimientoModel.Cliente.CLIENTE1;
-                //Pedimento Expo
-                excel.Cells[39, 12] = _movimientoModel.PedimentoExpo;
-                //Dirección
-                excel.Cells[41, 12] = _movimientoModel.DireccionEnvio;
-
-                int X = 47;
+                
+                int X = 40;
                 Microsoft.Office.Interop.Excel.Borders borders;
 
                 for (int i = 0; i < ItemModel.ItemModel.Count; i++)

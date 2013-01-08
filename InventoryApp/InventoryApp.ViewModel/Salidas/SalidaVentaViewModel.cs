@@ -496,20 +496,12 @@ namespace InventoryApp.ViewModel.Salidas
                 excel.Cells[29, 12] = _movimientoModel.Guia;
                 //Nombre de Sitio
                 excel.Cells[31, 12] = _movimientoModel.NombreSitio;
-                //Dirección
-                excel.Cells[33, 12] = _movimientoModel.DireccionEnvio;
-                //Servicio
-                excel.Cells[35, 12] = _movimientoModel.Servicio.SERVICIO_NAME;
-                //Cliente
-                excel.Cells[37, 12] = _movimientoModel.Cliente.CLIENTE1;
-                //Pedimento Expo
-                excel.Cells[39, 12] = _movimientoModel.PedimentoExpo;
                 //No. de Factura
-                excel.Cells[41, 12] = _facturaVentaModel.Folio;
+                excel.Cells[33, 12] = _facturaVentaModel.Folio;
                 //Importe
-                excel.Cells[43, 12] = enletras(FacturaVentaModel.Total.ToString(), FacturaVentaModel.Moneda.MONEDA_NAME);
+                excel.Cells[35, 12] = enletras(FacturaVentaModel.Total.ToString(), FacturaVentaModel.Moneda.MONEDA_NAME);
 
-                int X = 51;
+                int X = 43;
                 Microsoft.Office.Interop.Excel.Borders borders;
 
                 for (int i = 0; i < ItemModel.ItemModel.Count; i++)

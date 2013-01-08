@@ -15,6 +15,8 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
         #region Fields
         private AlmacenModel _modiAlmacen;
         private RelayCommand _modifyAlmacenCommand;
+        private RelayCommand _borrarTecCommand;
+
         private CatalogAlmacenViewModel _catalogAlmacenViewModel;
         private CatalogCiudadModel _catalogCiudadModel;
         private CatalogTecnicoModel _catalogTecnicoModel;
@@ -76,7 +78,17 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                 }
             }
         }
-        
+        public ICommand BorrarTecCommand
+        {
+            get
+            {
+                if (_borrarTecCommand == null)
+                {
+                    _borrarTecCommand = new RelayCommand(p => this.AttempBorrarTec(), p => this.CanAttempBorrarTec());
+                }
+                return _borrarTecCommand;
+            }
+        }
         public ICommand ModifyAlmacenCommand
         {
             get
@@ -91,10 +103,6 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
         #endregion
 
         #region Constructors
-        /// <summary>
-        /// Ejecuta la acción del command
-        /// </summary>
-        /// <param name="catalogItemStatusViewModel"></param>
         public ModifyAlmacenViewModel(CatalogAlmacenViewModel catalogAlmacenViewModel, AlmacenModel selectedAlmacenModel)
         {
             this._modiAlmacen = new AlmacenModel(new AlmacenDataMapper());
@@ -122,7 +130,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             try
             {
                 object ret = this._modiAlmacen.GetAlmacenCategoria(selectedAlmacenModel.UnidAlmacen);
-                this._catalogTecnicoModel = new CatalogTecnicoModel(new TecnicoDataMapper());
+                this._catalogTecnicoModel = new CatalogTecnicoModel(new TecnicoDataMapper(), "s");
                 //muestra los valores de las tecnicos que estan relacionadas
                 foreach (var item in this._catalogTecnicoModel.Tecnico)
                 {
@@ -142,6 +150,13 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                         this._catalogTecnicoModel.Tecnico.RemoveAt(i);
                     else
                         i++;
+                }
+
+                for (int i = 0; i < this._catalogTecnicoModel.Tecnico.Count; i++)
+                {
+
+                    if (this._catalogTecnicoModel.Tecnico[i].IsChecked)
+                        this._catalogTecnicoModel.Tecnico[i].IsChecked = false;                    
                 }
             }
             catch (ArgumentException ae)
@@ -174,7 +189,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                         this._modiAlmacen._unidsTecnicos.Add(at.UNID_TECNICO);
                     }
                 }
-                this._modiAlmacen.updateAlmacen();
+                this._modiAlmacen.updateAlmacen(".");
 
                 //Actualiza los técnicos
                 object ret = this.ModiAlmacen.GetAlmacenCategoria(ModiAlmacen.UnidAlmacen);
@@ -198,7 +213,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                         this.CatalogTecnicoModel.Tecnico.RemoveAt(i);
                     else
                         i++;
-                }               
+                }
             }
             
 
@@ -227,6 +242,23 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             if (this._catalogAlmacenViewModel != null)
             {
                 this._catalogAlmacenViewModel.loadAlmacen();
+            }
+        }
+
+        public bool CanAttempBorrarTec()
+        {
+            bool _canAddAlmacen = true;
+            return _canAddAlmacen;
+        }
+
+        public void AttempBorrarTec()
+        {
+            for (int i = 0; i < this._catalogTecnicoModel.Tecnico.Count; ) {
+
+                if (this._catalogTecnicoModel.Tecnico[i].IsChecked == true)
+                    this._catalogTecnicoModel.Tecnico.RemoveAt(i);
+                else
+                    i++;
             }
         }
         #endregion

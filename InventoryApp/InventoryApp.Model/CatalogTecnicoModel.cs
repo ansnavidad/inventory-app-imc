@@ -55,9 +55,13 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new TecnicoDataMapper();
             this._tecnico = new FixupCollection<DeleteTecnico>();
-            //this._selectedTecnico = new DeleteTecnico();
-            this.loadItems();
-            
+        }
+
+        public CatalogTecnicoModel(IDataMapper dataMapper, string s)
+        {
+            this._dataMapper = new TecnicoDataMapper();
+            this._tecnico = new FixupCollection<DeleteTecnico>();
+            loadItems();
         }
 
         public void loadItems()

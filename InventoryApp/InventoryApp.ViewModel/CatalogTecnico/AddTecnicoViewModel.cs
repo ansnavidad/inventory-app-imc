@@ -125,7 +125,7 @@ namespace InventoryApp.ViewModel.CatalogTecnico
         public void AttempAddTecnico()
         {
             
-            this._addTecnico.saveTecnico();
+            //this._addTecnico.saveTecnico();
             
             if (this._catalogTecnicoViewModel != null)
             {

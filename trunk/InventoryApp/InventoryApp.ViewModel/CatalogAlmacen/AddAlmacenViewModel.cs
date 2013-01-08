@@ -7,6 +7,7 @@ using System.Windows.Input;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.ComponentModel;
+using InventoryApp.ViewModel.CatalogTecnico;
 
 namespace InventoryApp.ViewModel.CatalogAlmacen
 {
@@ -167,6 +168,8 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             }
 
             this._addAlmacen.saveAlmacen();
+            AddTecnicoViewModel addTec = new AddTecnicoViewModel(new CatalogTecnicoViewModel());
+            addTec.AttempAddTecnicoExternal(new ALMACEN { ALMACEN_NAME = this.AddAlmacen.AlmacenName, CONTACTO = this.AddAlmacen.Contacto, DIRECCION = this.AddAlmacen.Direccion, MAIL = this.AddAlmacen.Mail, MAIL_DEFAULT = this.AddAlmacen.MailDefault, IS_MODIFIED = true, IS_ACTIVE = true, UNID_ALMACEN = this.AddAlmacen.UnidAlmacen }, this._catalogTecnicoModel);
 
             if (this._catalogAlmacenViewModel != null)
             {

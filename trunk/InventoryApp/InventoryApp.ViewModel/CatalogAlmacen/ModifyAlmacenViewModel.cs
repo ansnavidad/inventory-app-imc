@@ -7,6 +7,7 @@ using System.Windows.Input;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.ComponentModel;
+using InventoryApp.ViewModel.CatalogTecnico;
 
 namespace InventoryApp.ViewModel.CatalogAlmacen
 {
@@ -32,14 +33,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             }
             set
             {
-                if (_modiAlmacen != value)
-                {
-                    _modiAlmacen = value;
-                    if (PropertyChanged != null)
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs("ModiAlmacen"));
-                    }
-                }
+                _modiAlmacen = value;
             }
         }
         public CatalogTecnicoModel CatalogTecnicoModel
@@ -89,13 +83,13 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                 return _borrarTecCommand;
             }
         }
-        public ICommand ModifyAlmacenCommand
+        public ICommand ModifyAlmacennCommand
         {
             get
             {
                 if (_modifyAlmacenCommand == null)
                 {
-                    _modifyAlmacenCommand = new RelayCommand(p => this.AttempModifyAlmacen(), p => this.CanAttempModifyAlmacen());
+                    _modifyAlmacenCommand = new RelayCommand(p => this.AttempModifyAlmacenn(), p => this.CanAttempModifyAlmacenn());
                 }
                 return _modifyAlmacenCommand;
             }
@@ -156,7 +150,10 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                 {
 
                     if (this._catalogTecnicoModel.Tecnico[i].IsChecked)
-                        this._catalogTecnicoModel.Tecnico[i].IsChecked = false;                    
+                    {
+                        this._catalogTecnicoModel.Tecnico[i].IsChecked = false;
+                        this._modiAlmacen._unidsTecnicos.Add(this._catalogTecnicoModel.Tecnico[i].UNID_TECNICO);
+                    }
                 }
             }
             catch (ArgumentException ae)
@@ -171,52 +168,8 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
         #endregion
 
         #region Methods
-        /// <summary>
-        /// Hace las validaciones necesarias para habilitar el command
-        /// Si esta función retorna false, el command es deshabilitado
-        /// </summary>
-        /// <returns></returns>
-        public bool CanAttempModifyAlmacen()
+        public bool CanAttempModifyAlmacenn()
         {
-            int auxF = DateTime.Now.Second;
-            if (auxF % 2 == 0)
-            {
-                this._modiAlmacen._unidsTecnicos.Clear();
-                foreach (DeleteTecnico at in this._catalogTecnicoModel.Tecnico)
-                {
-                    if (at.IsChecked == true)
-                    {
-                        this._modiAlmacen._unidsTecnicos.Add(at.UNID_TECNICO);
-                    }
-                }
-                this._modiAlmacen.updateAlmacen(".");
-
-                //Actualiza los técnicos
-                object ret = this.ModiAlmacen.GetAlmacenCategoria(ModiAlmacen.UnidAlmacen);
-                this.CatalogTecnicoModel = new CatalogTecnicoModel(new TecnicoDataMapper());
-                foreach (var item in this.CatalogTecnicoModel.Tecnico)
-                {
-                    foreach (var ite in ((List<TECNICO>)ret))
-                    {
-                        if (item.UNID_TECNICO == ite.UNID_TECNICO)
-                        {
-                            item.IsChecked = true;
-                            this.ModiAlmacen._auxUnidsTecnicos.Add(ite.UNID_TECNICO);
-                        }
-                    }
-                }
-
-                for (int i = 0; i < this.CatalogTecnicoModel.Tecnico.Count; )
-                {
-
-                    if (!this.CatalogTecnicoModel.Tecnico[i].IsChecked)
-                        this.CatalogTecnicoModel.Tecnico.RemoveAt(i);
-                    else
-                        i++;
-                }
-            }
-            
-
             bool _canAddAlmacen = true;
             if (String.IsNullOrEmpty(this._modiAlmacen.AlmacenName) ||
                 String.IsNullOrEmpty(this._modiAlmacen.Contacto) ||
@@ -227,17 +180,20 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             return _canAddAlmacen;
         }
 
-        public void AttempModifyAlmacen()
+        public void AttempModifyAlmacenn()
         {
             //modificar para actualizar las relaciones proveedor categoria
-            foreach (DeleteTecnico at in this._catalogTecnicoModel.Tecnico)
+            foreach (DeleteTecnico item in this._catalogTecnicoModel.Tecnico)
             {
-                if (at.IsChecked == true)
+                if (item.IsChecked == true)
                 {
-                    this._modiAlmacen._unidsTecnicos.Add(at.UNID_TECNICO);
+                    this._modiAlmacen._unidsTecnicos.Add(item.UNID_TECNICO);
                 }
             }
+
             this._modiAlmacen.updateAlmacen();
+            AddTecnicoViewModel addTec = new AddTecnicoViewModel(new CatalogTecnicoViewModel());
+            addTec.AttempAddTecnicoExternal(new ALMACEN { ALMACEN_NAME = this.ModiAlmacen.AlmacenName, CONTACTO = this.ModiAlmacen.Contacto, DIRECCION = this.ModiAlmacen.Direccion, MAIL = this.ModiAlmacen.Mail, MAIL_DEFAULT = this.ModiAlmacen.MailDefault, IS_MODIFIED = true, IS_ACTIVE = true, UNID_ALMACEN = this.ModiAlmacen.UnidAlmacen }, this._catalogTecnicoModel);
 
             if (this._catalogAlmacenViewModel != null)
             {
@@ -256,7 +212,10 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
             for (int i = 0; i < this._catalogTecnicoModel.Tecnico.Count; ) {
 
                 if (this._catalogTecnicoModel.Tecnico[i].IsChecked == true)
+                {
                     this._catalogTecnicoModel.Tecnico.RemoveAt(i);
+                    this._modiAlmacen._unidsTecnicos.RemoveAt(i);
+                }
                 else
                     i++;
             }

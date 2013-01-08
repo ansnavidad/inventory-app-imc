@@ -35,7 +35,7 @@
         <Button Content="Guardar" Grid.Row="7" Height="23"
                     HorizontalAlignment="Stretch" Margin="5,0"
                     Name="btnAgregar" VerticalAlignment="Stretch" Width="75"
-                    Command="{Binding ModifyAlmacenCommand,Mode=OneWay}"
+                    Command="{Binding ModifyAlmacennCommand,Mode=OneWay}"
                     Click="btnAgregar_Click" Grid.Column="1" />
         <Button Content="Cancelar" Grid.Column="2" Grid.Row="7" Height="23"
                     HorizontalAlignment="Stretch" Margin="5,0" Name="btnCancelar"

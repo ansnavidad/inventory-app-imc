@@ -206,12 +206,11 @@ namespace InventoryApp.DAL
                     TECNICO tecnico = (TECNICO)element;
 
                     var validacion = (from cust in entity.TECNICOes
-                                      where cust.TECNICO_NAME == tecnico.TECNICO_NAME
+                                      where cust.TECNICO_NAME == tecnico.TECNICO_NAME && cust.IS_ACTIVE == true
                                       select cust).ToList();
 
                     if (validacion.Count == 0)
                     {
-                        tecnico.UNID_TECNICO = UNID.getNewUNID();
                         //Sync
                         tecnico.IS_MODIFIED = true;
                         tecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();

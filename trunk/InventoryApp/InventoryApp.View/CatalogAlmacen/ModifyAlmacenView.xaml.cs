@@ -42,10 +42,10 @@ namespace InventoryApp.View.CatalogAlmacen
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
-        {        
+        {
             AltaTecnico view = new AltaTecnico();
-            //AddTecnicoViewModel viewModel = new AddTecnicoViewModel(new CatalogTecnicoViewModel(), this.txtUnid.Text.ToString(), (AddAlmacenViewModel)this.DataContext);
-            //view.DataContext = viewModel;
+            AddTecnicoViewModel viewModel = new AddTecnicoViewModel(new CatalogTecnicoViewModel(), (ModifyAlmacenViewModel)this.DataContext);
+            view.DataContext = viewModel;
             view.ShowDialog();
         }
     }

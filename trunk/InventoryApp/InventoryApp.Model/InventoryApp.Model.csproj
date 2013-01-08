@@ -59,6 +59,7 @@
     <Compile Include="CatalogInfraestructuraModel.cs" />
     <Compile Include="CatalogItemStatusModel.cs" />
     <Compile Include="CatalogMarcaModel.cs" />
+    <Compile Include="CatalogMaxMinModel.cs" />
     <Compile Include="CatalogMedioEnvioModel.cs" />
     <Compile Include="CatalogModeloModel.cs" />
     <Compile Include="CatalogMonedaModel.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="DeleteInfraestructura.cs" />
     <Compile Include="DeleteItemStatus.cs" />
     <Compile Include="DeleteMarca.cs" />
+    <Compile Include="DeleteMaxMin.cs" />
     <Compile Include="DeleteMedioEnvio.cs" />
     <Compile Include="DeleteModelo.cs" />
     <Compile Include="DeleteMoneda.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="ItemStatusModel.cs" />
     <Compile Include="LoteModel.cs" />
     <Compile Include="MarcaModel.cs" />
+    <Compile Include="MaxMinModel.cs" />
     <Compile Include="MedioEnvioModel.cs" />
     <Compile Include="MenuModel.cs" />
     <Compile Include="ModelBase.cs" />

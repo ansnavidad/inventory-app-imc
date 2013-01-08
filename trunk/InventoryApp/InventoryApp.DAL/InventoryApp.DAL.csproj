@@ -73,6 +73,7 @@
     <Compile Include="JSON\SerializerJson.cs" />
     <Compile Include="LoteDataMapper.cs" />
     <Compile Include="MarcaDataMapper.cs" />
+    <Compile Include="MaxMinDataMapper.cs" />
     <Compile Include="MedioEnvioDataMapper.cs" />
     <Compile Include="MenuDataMapper.cs" />
     <Compile Include="ModeloDataMapper.cs" />
@@ -141,6 +142,9 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\MARCA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MAX_MIN.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\MEDIO_ENVIO.cs">

@@ -47,5 +47,17 @@ namespace InventoryApp.View.CatalogItem
         {
 
         }
+
+        private void checkBox1_Checked(object sender, RoutedEventArgs e)
+        {
+            comboPropiedad.IsEnabled = true;
+            comboPropiedad.SelectedIndex = 0;
+        }
+
+        private void checkBox1_Unchecked(object sender, RoutedEventArgs e)
+        {
+            comboPropiedad.IsEnabled = false;
+            comboPropiedad.SelectedIndex = -1;
+        }
     }
 }

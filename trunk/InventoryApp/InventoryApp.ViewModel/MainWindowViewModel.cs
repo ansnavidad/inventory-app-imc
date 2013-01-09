@@ -299,6 +299,9 @@ namespace InventoryApp.ViewModel
                    case "Máximos y Mínimos":
                       page = new MaxMin.MaxMinViewModel();
                       break;
+                    case "Agregar Item":
+                      page = new CatalogItem.AgregarItemViewModel();
+                      break;
                         
                     default:
                         break;

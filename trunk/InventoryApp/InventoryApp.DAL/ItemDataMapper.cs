@@ -656,6 +656,7 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     ITEM item = (ITEM)element;
+                    item.IS_ACTIVE = true;
                     //Sync
                     item.IS_MODIFIED = true;
                     item.LAST_MODIFIED_DATE = UNID.getNewUNID();

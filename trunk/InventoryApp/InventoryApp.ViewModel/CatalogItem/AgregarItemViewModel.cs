@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace InventoryApp.ViewModel.CatalogItem
 {
-    public class AgregarItemViewModel
+    public class AgregarItemViewModel : IPageViewModel
     {
         public AgregarItemModel _itemModel;
         public string _sku;
@@ -23,6 +23,7 @@ namespace InventoryApp.ViewModel.CatalogItem
         private CatalogCategoriaModel _categoriaModel;
         private CatalogItemStatusModel _catalogStatus;
         private CatalogProveedorModel _catalogProveedor;
+        private CatalogPropiedadModel _catalogPropiedad;
         private string _error;
         private ObservableCollection<UltimoMovimientoModel> _ultimoMovimiento;
 
@@ -37,6 +38,7 @@ namespace InventoryApp.ViewModel.CatalogItem
                 this._catalogStatus = new CatalogItemStatusModel(new ItemStatusDataMapper());
                 this._catalogProveedor = new CatalogProveedorModel(new ProveedorDataMapper());
                 this._ultimoMovimiento = new ObservableCollection<UltimoMovimientoModel>();
+                this._catalogPropiedad = new CatalogPropiedadModel(new PropiedadDataMapper());
             }
             catch (ArgumentException ae)
             {
@@ -83,6 +85,18 @@ namespace InventoryApp.ViewModel.CatalogItem
             }
         }
 
+
+        public CatalogPropiedadModel CatalogPropiedad
+        {
+            get
+            {
+                return _catalogPropiedad;
+            }
+            set
+            {
+                _catalogPropiedad = value;
+            }
+        }
 
         public CatalogProveedorModel CatalogProveedor
         {

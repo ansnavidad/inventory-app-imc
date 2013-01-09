@@ -28,6 +28,7 @@ namespace InventoryApp.Model
         private MARCA _marca;
         private CATEGORIA _categoria;
         private EQUIPO _equipo;
+        private PROPIEDAD _propiedad;
         private ItemDataMapper _dataMapper;
 
         private string _error;
@@ -42,7 +43,20 @@ namespace InventoryApp.Model
         private MONEDA _moneda;
         ObservableCollection<DeleteFacturaDetalleModel> _detalles;
 
-        
+
+        public PROPIEDAD Propiedad
+        {
+            get { return this._propiedad; }
+            set
+            {
+                if (value != this._propiedad)
+                {
+                    this._propiedad = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Propiedad"));
+                }
+            }
+        }
 
         private ObservableCollection<ARTICULO> _Articulos;
         private List<PROVEEDOR> _Proveedores;
@@ -484,8 +498,13 @@ namespace InventoryApp.Model
 
         public void insertItem()
         {
+            long? propiedad = null;
+            if (this._propiedad != null)
+            {
+                propiedad = this._propiedad.UNID_PROPIEDAD;
+            }
             this._unidItem = UNID.getNewUNID();
-            this._dataMapper.insertElement(new ITEM() { UNID_ITEM = this._unidItem, UNID_ARTICULO = this._articulo.UNID_ARTICULO, SKU = this._sku, NUMERO_SERIE = this._numeroSerie, UNID_ITEM_STATUS = this._itemStatus.UNID_ITEM_STATUS, COSTO_UNITARIO = this._costoUnitario, UNID_FACTURA_DETALE = this._facturaDetalle.UNID_FACTURA_DETALE, PEDIMENTO_EXPO = this._pedimentoExpo, PEDIMENTO_IMPO = this._pedimentoImpo, CANTIDAD = this._cantidaditem });
+            this._dataMapper.insertElement(new ITEM() { UNID_ITEM = this._unidItem, UNID_PROPIEDAD = propiedad , UNID_ARTICULO = this._articulo.UNID_ARTICULO, SKU = this._sku, NUMERO_SERIE = this._numeroSerie, UNID_ITEM_STATUS = this._itemStatus.UNID_ITEM_STATUS, COSTO_UNITARIO = this._costoUnitario, UNID_FACTURA_DETALE = this._facturaDetalle.UNID_FACTURA_DETALE, PEDIMENTO_EXPO = this._pedimentoExpo, PEDIMENTO_IMPO = this._pedimentoImpo, CANTIDAD = this._cantidaditem });
             
 
         }

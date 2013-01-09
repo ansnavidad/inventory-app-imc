@@ -83,7 +83,7 @@
              xmlns:maxMinView="clr-namespace:InventoryApp.View.MaxMin"
              
              
-             
+       
              StartupUri="MainWindow.xaml"
              >
     
@@ -108,8 +108,6 @@
         <reciboViewModel:AddMovimientoViewModel x:Key="addMovimientoViewModel" />
         
         <!--Movimientos-->
-
-        <modifyItemViewModel:AgregarItemViewModel x:Key="addItemViewModel" />
         <EntradaViewModel:EntradaPorValidacionViewModel x:Key="entradaPorValidacionViewModel" />
         <EntradaViewModel:EntradaPrestamoViewModel x:Key="entradaPrestamoViewModel" />
         <EntradaViewModel:EntradaDevolucionViewModel x:Key="entradaDevolucionViewModel" />
@@ -539,6 +537,10 @@
 
         <DataTemplate DataType="{x:Type modifyItemViewModel:ModifyItemViewModel}">
             <modifyItemView:ModifyItem/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type modifyItemViewModel:AgregarItemViewModel}">
+            <modifyItemView:AddItemView/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type reportesViewModel:ReportesViewModel}">

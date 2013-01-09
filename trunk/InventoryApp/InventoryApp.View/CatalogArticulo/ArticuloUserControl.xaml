@@ -58,3 +58,71 @@
         </DataGrid>
     </Grid>
 </UserControl>
+
+
+
+
+
+
+
+
+
+
+<!--<UserControl x:Class="InventoryApp.View.CatalogArticulo.ArticuloUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600" 
+             DataContext="{StaticResource catalogArticuloViewModel}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label  Style="{StaticResource titleLabel}" Content="CONSULTA ARTÍCULO " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <Button  Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="163,4,12,4" Name="btnNuevo" 
+                         VerticalAlignment="Stretch" Width="75" Grid.Column="2" Click="btnAgregar_Click" />
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Margin="77,0,98,0"
+                    Name="btnEliminar" VerticalAlignment="Stretch" Grid.Column="2" Command="{Binding DeleteArticuloCommand,Mode=OneWay}"
+                    Width="75" Click="btnEliminar_Click"/>
+        <DataGrid AutoGenerateColumns="False" CanUserDeleteRows="False"
+                  SelectedItem="{Binding CatalogArticuloModel.SelectedArticulo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                  CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItems" 
+                  VerticalAlignment="Stretch" ItemsSource="{Binding CatalogArticuloModel.Articulos}" 
+                  MouseDoubleClick="dtGridItems_MouseDoubleClick" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+            <DataGrid.Columns>                
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" 
+                                      IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Artículo" Width="*" x:Name="articuloNombre" Binding="{Binding Path=ARTICULO1}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Categoría" Width="*" x:Name="categoriaNombre" Binding="{Binding Path=Categoria.CATEGORIA_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Marca" Width="*" x:Name="marcaaNombre" Binding="{Binding Path=Marca.MARCA_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Modelo" Width="*" x:Name="modeloNombre" Binding="{Binding Path=Modelo.MODELO_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Equipo" Width="*" x:Name="equipoaNombre" Binding="{Binding Path=Equipo.EQUIPO_NAME}" IsReadOnly="True"/>                
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>-->

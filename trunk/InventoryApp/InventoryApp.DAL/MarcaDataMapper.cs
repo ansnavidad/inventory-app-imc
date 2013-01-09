@@ -186,7 +186,7 @@ namespace InventoryApp.DAL
 
                     if (validacion.Count == 0)
                     {
-                        marca.UNID_MARCA = UNID.getNewUNID();
+                        
                         //Sync
                         marca.IS_MODIFIED = true;
                         marca.LAST_MODIFIED_DATE = UNID.getNewUNID();

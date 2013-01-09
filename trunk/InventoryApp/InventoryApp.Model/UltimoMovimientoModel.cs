@@ -17,7 +17,47 @@ namespace InventoryApp.Model
         private long? _unidInfraestructura;
         private long? _unidMovimientoDetalle;
         private int _cantidad;
+        private bool _isChecked;
+        private string _lugar;
+
         private UltimoMovimientoDataMapper _dataMapper;
+
+        public bool IsChecked
+        {
+            get
+            {
+                return _isChecked;
+            }
+            set
+            {
+                if (_isChecked != value)
+                {
+                    _isChecked = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("IsChecked"));
+                    }
+                }
+            }
+        }
+        public string Lugar
+        {
+            get
+            {
+                return _lugar;
+            }
+            set
+            {
+                if (_lugar != value)
+                {
+                    _lugar = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Lugar"));
+                    }
+                }
+            }
+        }
 
         public int Cantidad
         {
@@ -279,6 +319,29 @@ namespace InventoryApp.Model
             }
         }
 
+        public UltimoMovimientoModel(ALMACEN almacen, CLIENTE cliente, PROVEEDOR proveedor)
+        {
+            this._dataMapper = new UltimoMovimientoDataMapper();
+            this._isChecked = false;
+            if (almacen != null)
+            {
+                this._unidAlmacen = almacen.UNID_ALMACEN;
+                this.Lugar = "Almacen: " + almacen.ALMACEN_NAME;
+            }
+
+            if (proveedor != null)
+            {
+                this._unidProveedor = proveedor.UNID_PROVEEDOR;
+                this.Lugar = "Proveedor: " + proveedor.PROVEEDOR_NAME;
+            }
+
+            if (cliente != null)
+            {
+                this._unidCliente = cliente.UNID_CLIENTE;
+                this.Lugar = "Cliente: " + cliente.CLIENTE1;
+            }
+        }
+
         public UltimoMovimientoModel(IDataMapper dataMapper, long item, long? almacen, long? cliente, long? proveedor, long? movDet, int cantidad)
         {
             this._unidItem = item;
@@ -308,6 +371,7 @@ namespace InventoryApp.Model
                 this._dataMapper = dataMapper as UltimoMovimientoDataMapper;
             }
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -107,8 +107,9 @@
         <reciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />
         <reciboViewModel:AddMovimientoViewModel x:Key="addMovimientoViewModel" />
         
-        <!--Movimientos-->        
-        
+        <!--Movimientos-->
+
+        <modifyItemViewModel:AgregarItemViewModel x:Key="addItemViewModel" />
         <EntradaViewModel:EntradaPorValidacionViewModel x:Key="entradaPorValidacionViewModel" />
         <EntradaViewModel:EntradaPrestamoViewModel x:Key="entradaPrestamoViewModel" />
         <EntradaViewModel:EntradaDevolucionViewModel x:Key="entradaDevolucionViewModel" />

@@ -10,9 +10,8 @@ using InventoryApp.DAL.Recibo;
 
 namespace InventoryApp.Model
 {
-    public class ItemModel : ITEM, INotifyPropertyChanged
-    {
-        //item
+    public class AgregarItemModel  : ITEM, INotifyPropertyChanged
+    {//item
         private bool ban = false;
         private bool _isChecked;
         private string _nombre;
@@ -193,6 +192,7 @@ namespace InventoryApp.Model
                     if (!ban)
                     {
                         this.Categorias = this.GetCategoriasByProveedor();
+                        this.Facturas = GetFacturasbyProveedores(this._proveedor);
                         ban = false;
                     }
                     if (this.PropertyChanged != null)
@@ -239,14 +239,13 @@ namespace InventoryApp.Model
                     this._factura = value;
                     if (this._factura != null)
                     {
-                        ban = true;
-                        this.Proveedor = GetProveedorbyID((long)this._factura.UNID_PROVEEDOR);
+                        
                         this.Moneda = GetMonedabyID((long)this._factura.UNID_MONEDA);
                         this.Detalles = GetDetallebyFactura(this._factura);
                     }
                     else
                     {
-                        this.Proveedor = new PROVEEDOR();
+                        
                         this.Moneda = new MONEDA();
                         this.FacturaDetalle = new FACTURA_DETALLE();
                         this.Detalles = new ObservableCollection<DeleteFacturaDetalleModel>();
@@ -309,8 +308,6 @@ namespace InventoryApp.Model
                 {
                     this._categoria = value;
                     this.Articulos = GetArticulosByCategoria(this._categoria);
-                    this.Proveedores = GetProveedorbyCategoria(this._categoria);
-                    this.Facturas = GetFacturasbyProveedores(this._Proveedores);
 
                     if (this.PropertyChanged != null)
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Categoria"));
@@ -458,7 +455,7 @@ namespace InventoryApp.Model
             }
         }
 
-        public ItemModel(ITEM item) 
+        public AgregarItemModel(ITEM item) 
         {
             this._articulo = item.ARTICULO;
             this._nombre = item.ARTICULO.ARTICULO1;
@@ -479,13 +476,20 @@ namespace InventoryApp.Model
             this.Detalles = new ObservableCollection<DeleteFacturaDetalleModel>();
         }
 
-        public ItemModel()
+        public AgregarItemModel()
         {
             this._dataMapper = new ItemDataMapper();
             this.Detalles = new ObservableCollection<DeleteFacturaDetalleModel>();
         }
 
+        public void insertItem()
+        {
+            this._unidItem = UNID.getNewUNID();
+            this._dataMapper.insertElement(new ITEM() { UNID_ITEM = this._unidItem, UNID_ARTICULO = this._articulo.UNID_ARTICULO, SKU = this._sku, NUMERO_SERIE = this._numeroSerie, UNID_ITEM_STATUS = this._itemStatus.UNID_ITEM_STATUS, COSTO_UNITARIO = this._costoUnitario, UNID_FACTURA_DETALE = this._facturaDetalle.UNID_FACTURA_DETALE, PEDIMENTO_EXPO = this._pedimentoExpo, PEDIMENTO_IMPO = this._pedimentoImpo, CANTIDAD = this._cantidaditem });
+            
 
+        }
+         
         public void updateItem()
         {
             this._dataMapper.udpateElement(new ITEM() {UNID_ITEM = this._unidItem, UNID_ARTICULO = this._articulo.UNID_ARTICULO, SKU = this._sku, NUMERO_SERIE = this._numeroSerie, ITEM_STATUS = this._itemStatus, COSTO_UNITARIO = this._costoUnitario, UNID_FACTURA_DETALE = this._facturaDetalle.UNID_FACTURA_DETALE, PEDIMENTO_IMPO = this._pedimentoImpo, PEDIMENTO_EXPO = this._pedimentoExpo, CANTIDAD = this._cantidaditem});
@@ -493,7 +497,7 @@ namespace InventoryApp.Model
 
         public void updateFacturas()
         {
-            this.Facturas = GetFacturasbyProveedores(this._Proveedores);
+            this.Facturas = GetFacturasbyProveedores(this._proveedor);
         }
 
         public void init()
@@ -681,7 +685,7 @@ namespace InventoryApp.Model
         public PROVEEDOR GetProveedorbyID(long unidproveedor)
         {
             PROVEEDOR prov = new PROVEEDOR();
-            if (unidproveedor!= null)
+            if (unidproveedor!= 0)
             {
                 
                 PROVEEDOR aux = new PROVEEDOR();
@@ -709,11 +713,13 @@ namespace InventoryApp.Model
         }
 
 
-        private ObservableCollection<FACTURA> GetFacturasbyProveedores(List<PROVEEDOR> Proveedores)
+        private ObservableCollection<FACTURA> GetFacturasbyProveedores(PROVEEDOR proveedor)
         {
             ObservableCollection<FACTURA> facturasmodel = new ObservableCollection<FACTURA>();
             try
             {
+                List<PROVEEDOR> Proveedores = new List<PROVEEDOR>();
+                Proveedores.Add(proveedor);
                 FacturaCompraDataMapper facDataMapper = new FacturaCompraDataMapper();
                 List<FACTURA> facturas = facDataMapper.getFacturabyProveedores(Proveedores);
 

@@ -90,6 +90,8 @@
     <Compile Include="CatalogItemStatus\AddItemStatusViewModel.cs" />
     <Compile Include="CatalogItemStatus\CatalogItemStatusViewModel.cs" />
     <Compile Include="CatalogItem\AgregarFacturaViewModel.cs" />
+    <Compile Include="CatalogItem\AgregarItemDestinoViewModel.cs" />
+    <Compile Include="CatalogItem\AgregarItemViewModel.cs" />
     <Compile Include="CatalogItem\ModifyItemViewModel.cs" />
     <Compile Include="CatalogPropiedad\AddPropiedadViewModel.cs" />
     <Compile Include="CatalogPropiedad\CatalogPropiedadViewModel.cs" />

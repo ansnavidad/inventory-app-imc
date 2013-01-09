@@ -14,6 +14,7 @@ namespace InventoryApp.ViewModel.CatalogItem
     public class AgregarFacturaViewModel
     {
         private ModifyItemViewModel _modifyItemViewModel;
+        private AgregarItemViewModel _agregarItemViewModel;
         private FacturaCompraModel _facturaCompraModel;
         private FacturaCompraDetalleModel _facturaCompraDetalleModel;
         private ObservableCollection<ProveedorModel> _Proveedores;
@@ -47,7 +48,11 @@ namespace InventoryApp.ViewModel.CatalogItem
             aux.UnidFactura = this._facturaCompraModel.UnidFactura;
             this._facturaCompraDetalleModel.Factura = aux;
             this.FacturaCompraDetalleModel.saveFacturaDetalle();
-            this.ModifyItemViewModel.Update();
+
+            if (this.ModifyItemViewModel != null)
+                this.ModifyItemViewModel.Update();
+            else
+                this.AgregarItemViewModel.Update();
             
         }
 
@@ -102,6 +107,19 @@ namespace InventoryApp.ViewModel.CatalogItem
                 _Monedas = value;
             }
         }
+
+        public AgregarItemViewModel AgregarItemViewModel
+        {
+            get
+            {
+                return _agregarItemViewModel;
+            }
+            set
+            {
+                _agregarItemViewModel = value;
+            }
+        }
+
 
         public ModifyItemViewModel ModifyItemViewModel
         {
@@ -159,6 +177,26 @@ namespace InventoryApp.ViewModel.CatalogItem
                 ProveedorName = o.PROVEEDOR_NAME
             }));
             this._facturaCompraDetalleModel.Articulo.UnidArticulo = this._modifyItemViewModel.ItemModel.Articulo.UNID_ARTICULO;
+        }
+
+
+        public AgregarFacturaViewModel(AgregarItemViewModel agregaritemViewModel)
+        {
+            this._agregarItemViewModel = agregaritemViewModel;
+            this._facturaCompraModel = new FacturaCompraModel();
+            this._facturaCompraModel.Proveedor = new ProveedorModel(new ProveedorDataMapper());
+            this._facturaCompraModel.Proveedor.UnidProveedor = this._agregarItemViewModel._itemModel.Proveedor.UNID_PROVEEDOR;
+            this._facturaCompraModel.Proveedor.ProveedorName = this._agregarItemViewModel._itemModel.Proveedor.PROVEEDOR_NAME;
+            this.Proveedores = new ObservableCollection<ProveedorModel>();
+            this.Monedas = new ObservableCollection<MonedaModel>();
+            this.Monedas = this.GetMonedas();
+            this.FacturaCompraModel.FechaFactura = DateTime.Today;
+            this._facturaCompraDetalleModel = new FacturaCompraDetalleModel();
+            this.Unidades = GetUnidades();
+
+        
+           
+            this._facturaCompraDetalleModel.Articulo.UnidArticulo = this._agregarItemViewModel.ItemModel.Articulo.UNID_ARTICULO;
         }
 
         private ObservableCollection<UnidadModel> GetUnidades()

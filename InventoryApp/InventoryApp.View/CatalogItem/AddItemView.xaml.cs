@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogItem;
+
+namespace InventoryApp.View.CatalogItem
+{
+    /// <summary>
+    /// Lógica de interacción para AddItemView.xaml
+    /// </summary>
+    public partial class AddItemView : UserControl
+    {
+        public AddItemView()
+        {
+            InitializeComponent();
+        }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            AddFactura addFactura = new AddFactura();
+            AgregarItemViewModel viewModel = this.DataContext as AgregarItemViewModel;
+            addFactura.DataContext = viewModel.CreateAgregarFacturaViewModel(); ;
+            addFactura.Show();
+        }
+
+
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            AddDestinoView addFactura = new AddDestinoView();
+            AgregarItemViewModel viewModel = this.DataContext as AgregarItemViewModel;
+            addFactura.DataContext = viewModel.CreateAgregarDestinoViewModel(); ;
+            addFactura.Show();
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
+}

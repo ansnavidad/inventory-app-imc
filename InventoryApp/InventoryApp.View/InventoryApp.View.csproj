@@ -221,6 +221,15 @@
     <Compile Include="CatalogItemView.xaml.cs">
       <DependentUpon>CatalogItemView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogItem\AddDestinoView.xaml.cs">
+      <DependentUpon>AddDestinoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogItem\AddFactura.xaml.cs">
+      <DependentUpon>AddFactura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogItem\AddItemView.xaml.cs">
+      <DependentUpon>AddItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogItem\AgregarFactura.xaml.cs">
       <DependentUpon>AgregarFactura.xaml</DependentUpon>
     </Compile>
@@ -817,6 +826,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CatalogItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogItem\AddDestinoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogItem\AddFactura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogItem\AddItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

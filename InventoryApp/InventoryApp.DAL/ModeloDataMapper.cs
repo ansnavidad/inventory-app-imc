@@ -185,7 +185,7 @@ namespace InventoryApp.DAL
 
                     if (validacion.Count == 0)
                     {
-                        modelo.UNID_MODELO = UNID.getNewUNID();
+                        
                         //Sync
                         modelo.IS_MODIFIED = true;
                         modelo.LAST_MODIFIED_DATE = UNID.getNewUNID();

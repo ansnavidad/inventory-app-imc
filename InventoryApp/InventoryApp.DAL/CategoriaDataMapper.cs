@@ -252,8 +252,7 @@ namespace InventoryApp.DAL
                                       select cust).ToList();
 
                     if (validacion.Count == 0)
-                    {
-                        categoria.UNID_CATEGORIA = UNID.getNewUNID();
+                    {                        
                         //Sync
                         categoria.IS_MODIFIED = true;
                         categoria.LAST_MODIFIED_DATE = UNID.getNewUNID();

@@ -10,6 +10,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using InventoryApp.View.CatalogCategoria;
+using InventoryApp.ViewModel.CatalogCategoria;
+using InventoryApp.View.CatalogEquipo;
+using InventoryApp.ViewModel.CatalogEquipo;
+using InventoryApp.View.CatalogModelo;
+using InventoryApp.ViewModel.CatalogModelo;
+using InventoryApp.View.CatalogMarca;
+using InventoryApp.ViewModel.CatalogMarca;
 
 namespace InventoryApp.View.CatalogArticulo
 {
@@ -32,6 +40,6 @@ namespace InventoryApp.View.CatalogArticulo
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }        
     }
 }

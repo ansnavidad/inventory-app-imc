@@ -212,7 +212,7 @@ namespace InventoryApp.DAL
 
                     if (validacion.Count == 0)
                     {
-                        equipo.UNID_EQUIPO = UNID.getNewUNID();
+                        
                         //Sync
                         equipo.IS_MODIFIED = true;
                         equipo.LAST_MODIFIED_DATE = UNID.getNewUNID();

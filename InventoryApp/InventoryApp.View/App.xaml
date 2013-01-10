@@ -81,9 +81,9 @@
              
              xmlns:maxMinViewModel="clr-namespace:InventoryApp.ViewModel.MaxMin;assembly=InventoryApp.ViewModel"
              xmlns:maxMinView="clr-namespace:InventoryApp.View.MaxMin"
+             xmlns:jobViewModel="clr-namespace:InventoryApp.ViewModel.Job;assembly=InventoryApp.ViewModel"
+             xmlns:jobView="clr-namespace:InventoryApp.View.Job"
              
-             
-       
              StartupUri="MainWindow.xaml"
              >
     
@@ -363,6 +363,10 @@
         <ObjectDataProvider x:Key="maxMinViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
+        <!--Job-->
+        <ObjectDataProvider x:Key="jobViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
         <!--CONVERTERS-->
         <rootViewModel:BoolToVisibilityValueConverter x:Key="boolVisibilityConverter" />
         
@@ -603,6 +607,10 @@
         <DataTemplate DataType="{x:Type reciboViewModel:CatalogReciboViewModel}">
             <reciboViews:CatalogReciboView/>
         </DataTemplate>
-        
+
+        <DataTemplate DataType="{x:Type jobViewModel:JobViewModel}">
+            <jobView:JobView/>
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

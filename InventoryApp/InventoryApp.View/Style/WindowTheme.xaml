@@ -43,6 +43,13 @@
         <Setter Property="FontWeight" Value="Bold"></Setter>
         <Setter Property="FontSize" Value="12"></Setter>
     </Style>
+
+    <Style x:Key="titleElaraJob" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#5E4603"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+    </Style>
 </ResourceDictionary>
 
 <!--FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484"-->

@@ -102,6 +102,12 @@ namespace InventoryApp.DAL.POCOS
         }
         private ObjectSet<MODELO> _mODELOes;
     
+        public ObjectSet<TEST> TESTs
+        {
+            get { return _tESTs  ?? (_tESTs = CreateObjectSet<TEST>("TESTs")); }
+        }
+        private ObjectSet<TEST> _tESTs;
+    
         public ObjectSet<BANCO> BANCOes
         {
             get { return _bANCOes  ?? (_bANCOes = CreateObjectSet<BANCO>("BANCOes")); }
@@ -384,6 +390,16 @@ namespace InventoryApp.DAL.POCOS
         }
         private ObjectSet<POM_ARTICULO> _pOM_ARTICULO;
 
+        #endregion
+        #region Function Imports
+        public ObjectResult<TEST> SP_TAE2_JOB()
+        {
+            return base.ExecuteFunction<TEST>("SP_TAE2_JOB");
+        }
+        public void GetJob()
+        {
+          ExecuteFunction("SP_TAE2_JOB");
+        }
         #endregion
     }
 }

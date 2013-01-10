@@ -13,6 +13,8 @@ namespace InventoryApp.ViewModel.MaxMin
         private RelayCommand _deleteMaxMinCommand;
         private CatalogMaxMinModel _catalogMaxMinModel;
 
+        private MaxMinModel _addGridArticulos = new MaxMinModel();
+
         public ICommand DeleteMaxMinCommand
         {
             get

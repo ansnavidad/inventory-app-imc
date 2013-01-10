@@ -29,17 +29,19 @@
         </Border>
         <Label Content="Almacén:" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="1,0" Name="label1" VerticalAlignment="Center" />
         <ComboBox SelectedIndex="0" Grid.Column="1" Grid.Row="1" Height="23"
-                  SelectedItem="{Binding Articulo.Categoria,Mode=TwoWay}" 
-                  ItemsSource="{Binding AddMaxMin.Almacen, Mode=OneWay}"
+                  SelectedItem="{Binding AddMaxMin.Almacen,Mode=TwoWay}" 
+                  ItemsSource="{Binding CatalogAlmacenModel.Almacen, Mode=OneWay}"
                   DisplayMemberPath="ALMACEN_NAME" SelectedValuePath="UNID_ALMACEN"
                   HorizontalAlignment="Left" Margin="1,0"
                   Name="cbAlmacen" VerticalAlignment="Center" Width="140" />
-        <Button Content="Agregar Articulo" Grid.Column="1" Grid.Row="2" Height="23" HorizontalAlignment="Center" Margin="5,0" Name="button1" VerticalAlignment="Center" Width="95" />
+        <Button Content="Agregar Articulo" Grid.Column="1" Grid.Row="2"
+                Height="23" HorizontalAlignment="Center" Margin="5,0"
+                Name="btnAgregarArticulo" VerticalAlignment="Center"
+                Width="95" Click="btnAgregarArticulo_Click" />
         <Button Content="Borrar" Grid.Column="2" Grid.Row="2" Height="23" HorizontalAlignment="Center" Margin="5,0" Name="button2" VerticalAlignment="Center" Width="95" />
         <DataGrid AutoGenerateColumns="False" CanUserDeleteRows="False"
-                  SelectedItem="{Binding CatalogArticuloModel.SelectedArticulo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                   CanUserAddRows="False" HorizontalAlignment="Stretch" Name="dtGridItems" 
-                  VerticalAlignment="Stretch" ItemsSource="{Binding CatalogArticuloModel.Articulos}" 
+                  VerticalAlignment="Stretch" ItemsSource="{Binding AddArticulos}" 
                   Grid.Row="3" Grid.ColumnSpan="3"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
@@ -52,11 +54,11 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Artículo" Width="*" x:Name="articuloNombre" Binding="{Binding Path=ARTICULO1}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Categoría" Width="*" x:Name="categoriaNombre" Binding="{Binding Path=Categoria.CATEGORIA_NAME}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Marca" Width="*" x:Name="marcaaNombre" Binding="{Binding Path=Marca.MARCA_NAME}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Modelo" Width="*" x:Name="modeloNombre" Binding="{Binding Path=Modelo.MODELO_NAME}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Equipo" Width="*" x:Name="equipoaNombre" Binding="{Binding Path=Equipo.EQUIPO_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Artículo" Width="*" x:Name="articuloNombre" Binding="{Binding Path=Articulo.ArticuloName}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Categoría" Width="*" x:Name="categoriaNombre" Binding="{Binding Path=Articulo.Categoria.CATEGORIA_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Marca" Width="*" x:Name="marcaaNombre" Binding="{Binding Path=Articulo.Marca.MARCA_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Modelo" Width="*" x:Name="modeloNombre" Binding="{Binding Path=Articulo.Modelo.MODELO_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Equipo" Width="*" x:Name="equipoaNombre" Binding="{Binding Path=Articulo.EquipoModel.EquipoName}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Max" Width="50" x:Name="max" Binding="{Binding Path=Equipo.EQUIPO_NAME}" IsReadOnly="False"/>
                 <DataGridTextColumn Header="Min" Width="50" x:Name="min" Binding="{Binding Path=Equipo.EQUIPO_NAME}" IsReadOnly="False"/>
                 <!--<DataGridTextColumn Header="TOTAL" Width="*" x:Name="Total" Binding="{Binding Path=total}" IsReadOnly="True"/>-->

@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.MaxMin;
 
 namespace InventoryApp.View.MaxMin
 {
@@ -21,6 +22,22 @@ namespace InventoryApp.View.MaxMin
         public AddMaxMinView()
         {
             InitializeComponent();
+        }
+
+        private void btnAgregarArticulo_Click(object sender, RoutedEventArgs e)
+        {
+            AddArticuloView alta = new AddArticuloView();
+            try
+            {
+                AddMaxMinViewModel addMaxMinViewModel = new AddMaxMinViewModel();
+                addMaxMinViewModel = this.DataContext as AddMaxMinViewModel;
+                alta.DataContext = addMaxMinViewModel.CreateAddArticuloMaxMinViewModel();
+                alta.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

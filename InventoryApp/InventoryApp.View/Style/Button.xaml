@@ -167,4 +167,33 @@
         </Setter>
     </Style>
 
+    <Style x:Key="bntElaraOrangeJob" TargetType="{x:Type Button}">
+
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="#86581B"/>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"/>
+        <Setter Property="FontStretch" Value="Medium"></Setter>
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Name="ButtonBorder" CornerRadius="9" BorderBrush="#6E6E6E"  BorderThickness="1.5" >
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+                                <GradientStop Color="#FAFAFA"  Offset="0" />
+                                <GradientStop Color="#BDBDBD" Offset="0.567" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource MouseOver_GradientEffectElara}" />
+                            <Setter Property="Cursor" Value="Hand" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

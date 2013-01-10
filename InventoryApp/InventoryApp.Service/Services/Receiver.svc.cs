@@ -2495,5 +2495,14 @@ namespace InventoryApp.Service.Services
             #endregion
         }
         //------------------------- FIN DE SERVICIOS DE SUBIDA DE ARCHIVOS
+        //------------------------- EJECUCION DE JOB
+        public void ExecuteJob()
+        {
+
+            JobDataMapper dataMapper = new JobDataMapper();
+
+            dataMapper.executeJob();
+        }
+        //------------------------- FIN DE EJECUCION DE JOB
     }
 }

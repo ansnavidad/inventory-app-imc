@@ -8,7 +8,7 @@ using InventoryApp.DAL;
 
 namespace InventoryApp.Model
 {
-    public class MaxMinModel: INotifyPropertyChanged
+    public class MaxMinModel : INotifyPropertyChanged
     {
         #region Fields
         private long _unidMaxMin;
@@ -190,6 +190,7 @@ namespace InventoryApp.Model
 
         #endregion
 
+
         public void saveMaxMin()
         {
             if (_dataMapper != null)
@@ -211,6 +212,11 @@ namespace InventoryApp.Model
                 this._dataMapper = dataMapper as MaxMinDataMapper;
             }
 
+        }
+
+        public MaxMinModel()
+        {
+            this._dataMapper = new MaxMinDataMapper();
         }
         
         #endregion

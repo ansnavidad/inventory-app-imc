@@ -230,6 +230,8 @@ namespace InventoryApp.DAL.Recibo
                         var res = (from fact in entity.FACTURAs
                                    where fact.UNID_FACTURA == detalle.UNID_FACTURA
                                    select fact).First<FACTURA>();
+
+                        res.PROVEEDOR = res.PROVEEDOR;
                         respuesta = res;
                 }
             }

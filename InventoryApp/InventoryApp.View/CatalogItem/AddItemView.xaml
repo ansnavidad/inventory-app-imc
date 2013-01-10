@@ -117,6 +117,6 @@
         </DataGrid>
         <Button Command="{Binding DeleteMovimiento, Mode=OneWay}" Content="Borrar Destinos" Height="23" HorizontalAlignment="Stretch" Margin="93,284,80,0" Name="button4" VerticalAlignment="Top" Grid.Column="2" Grid.Row="8" />
         <ComboBox DisplayMemberPath="PROPIEDAD1" Grid.Column="2" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogPropiedad.Propiedad, Mode=OneWay}" Name="comboPropiedad" SelectedItem="{Binding ItemModel.Propiedad, Mode=TwoWay}" SelectedValuePath="UNID_PROPIEDAD" VerticalAlignment="Top" Width="120" Grid.Row="6" Margin="0,4,0,0" IsEnabled="False" />
-        <CheckBox Content="Propiedad:" Grid.Column="1" Grid.Row="6" Height="16" HorizontalAlignment="Left" Margin="74,8,0,0" Name="checkBox1" VerticalAlignment="Top" Checked="checkBox1_Checked" Unchecked="checkBox1_Unchecked" />
+        <CheckBox Content="Propiedad:" Grid.Column="1" Grid.Row="6" Height="16" Margin="74,8,2,0" Name="checkBox1" VerticalAlignment="Top" Checked="checkBox1_Checked" Unchecked="checkBox1_Unchecked" />
     </Grid>
 </UserControl>

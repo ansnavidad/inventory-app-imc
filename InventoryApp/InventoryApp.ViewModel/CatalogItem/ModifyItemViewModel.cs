@@ -5,12 +5,13 @@ using System.Text;
 using InventoryApp.DAL;
 using InventoryApp.Model;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace InventoryApp.ViewModel.CatalogItem
 {
     public class ModifyItemViewModel : IPageViewModel
     {
-        public ItemModel _itemModel;
+        public AgregarItemModel _itemModel;
         public string _sku;
         public string _numeroSerie;
         private DeleteArticulo _articulo;
@@ -19,8 +20,12 @@ namespace InventoryApp.ViewModel.CatalogItem
         private RelayCommand _updateItemCommand;
         private CatalogArticuloModel _articuloModel;
         private CatalogCategoriaModel _categoriaModel;
+        private CatalogProveedorModel _catalogProveedor;
         private CatalogItemStatusModel _catalogStatus;
+        private CatalogPropiedadModel _catalogPropiedad;
         private string _error;
+        private ObservableCollection<UltimoMovimientoModel> _ultimoMovimiento;
+
 
 
   
@@ -28,10 +33,13 @@ namespace InventoryApp.ViewModel.CatalogItem
         {
             try
             {
-                this._itemModel = new ItemModel();
+                this._itemModel = new AgregarItemModel();
                 this._articuloModel = new CatalogArticuloModel(new ArticuloDataMapper());
                 this._categoriaModel = new CatalogCategoriaModel(new CategoriaDataMapper());
                 this._catalogStatus = new CatalogItemStatusModel(new ItemStatusDataMapper());
+                this._ultimoMovimiento = new ObservableCollection<UltimoMovimientoModel>();
+                this._catalogProveedor = new CatalogProveedorModel(new ProveedorDataMapper());
+                this._catalogPropiedad = new CatalogPropiedadModel(new PropiedadDataMapper());
             }
             catch (ArgumentException ae)
             {
@@ -41,7 +49,41 @@ namespace InventoryApp.ViewModel.CatalogItem
 
         }
         #region Props
-        public ItemModel ItemModel
+        public CatalogProveedorModel CatalogProveedor
+        {
+            get
+            {
+                return _catalogProveedor;
+            }
+            set
+            {
+                _catalogProveedor = value;
+            }
+        }
+        public ObservableCollection<UltimoMovimientoModel> UltimoMovimiento
+        {
+            get
+            {
+                return _ultimoMovimiento;
+            }
+            set
+            {
+                _ultimoMovimiento = value;
+            }
+        }
+
+        public CatalogPropiedadModel CatalogPropiedad
+        {
+            get
+            {
+                return _catalogPropiedad;
+            }
+            set
+            {
+                _catalogPropiedad = value;
+            }
+        }
+        public AgregarItemModel ItemModel
         {
             get
             {
@@ -188,6 +230,15 @@ namespace InventoryApp.ViewModel.CatalogItem
         public void AttempModifyMarca()
         {
             this._itemModel.getElement();
+            
+            UltimoMovimientoModel aux = new UltimoMovimientoModel();
+            ObservableCollection<UltimoMovimientoModel> temp = aux.RegresaListaLugares(this._itemModel.UnidItem);
+
+            foreach (UltimoMovimientoModel um in temp)
+            {
+                this.UltimoMovimiento.Add(um);
+            }
+
         }
 
         public void Update()
@@ -209,6 +260,7 @@ namespace InventoryApp.ViewModel.CatalogItem
         {
             this._itemModel.updateItem();
             this.ItemModel.clear();
+            this.UltimoMovimiento.Clear();
         }
 
         public bool CanAttempAddFactura()

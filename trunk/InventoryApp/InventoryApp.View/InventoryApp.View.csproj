@@ -536,6 +536,12 @@
     <Compile Include="ItemACView.xaml.cs">
       <DependentUpon>ItemACView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Job\JobView.xaml.cs">
+      <DependentUpon>JobView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MaxMin\AddArticuloView.xaml.cs">
+      <DependentUpon>AddArticuloView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MaxMin\AddMaxMinView.xaml.cs">
       <DependentUpon>AddMaxMinView.xaml</DependentUpon>
     </Compile>
@@ -1245,6 +1251,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Job\JobView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1259,6 +1269,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ItemACView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MaxMin\AddArticuloView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

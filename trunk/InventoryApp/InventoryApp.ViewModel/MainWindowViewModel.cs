@@ -302,6 +302,9 @@ namespace InventoryApp.ViewModel
                     case "Agregar Item":
                       page = new CatalogItem.AgregarItemViewModel();
                       break;
+                    case "Carga de ítems":
+                      page = new Job.JobViewModel();
+                      break;
                         
                     default:
                         break;

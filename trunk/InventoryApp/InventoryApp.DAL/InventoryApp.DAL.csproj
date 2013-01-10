@@ -70,6 +70,7 @@
     <Compile Include="InfraestructuraDataMapper.cs" />
     <Compile Include="ItemDataMapper.cs" />
     <Compile Include="ItemStatusDataMapper.cs" />
+    <Compile Include="JobDataMapper.cs" />
     <Compile Include="JSON\SerializerJson.cs" />
     <Compile Include="LoteDataMapper.cs" />
     <Compile Include="MarcaDataMapper.cs" />
@@ -236,6 +237,9 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\TERMINO_ENVIO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TEST.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\TIPO_COTIZACION.cs">

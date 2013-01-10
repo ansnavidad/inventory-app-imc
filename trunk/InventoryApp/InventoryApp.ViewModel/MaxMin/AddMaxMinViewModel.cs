@@ -6,17 +6,18 @@ using InventoryApp.Model;
 using InventoryApp.ViewModel.CatalogArticulo;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using System.Collections.ObjectModel;
 
 namespace InventoryApp.ViewModel.MaxMin
 {
-    public class AddMaxMinViewModel
+    public class AddMaxMinViewModel:ViewModelBase
     {
         #region Fields
         private MaxMinModel _addMaxMin;
         private RelayCommand _addMaxMinCommand;
         private MaxMinViewModel _maxMinViewModel;
         private CatalogAlmacenModel _catalogAlmacenModel;
-        private CatalogArticuloModel _catalogArticuloModel;
+        //private CatalogArticuloModel _catalogArticuloModel;
         #endregion
 
         //Exponer la propiedad maxMin articulo y almacen
@@ -45,17 +46,17 @@ namespace InventoryApp.ViewModel.MaxMin
             }
         }
 
-        public CatalogArticuloModel CatalogArticuloModel
-        {
-            get
-            {
-                return _catalogArticuloModel;
-            }
-            set
-            {
-                _catalogArticuloModel = value;
-            }
-        }
+        //public CatalogArticuloModel CatalogArticuloModel
+        //{
+        //    get
+        //    {
+        //        return _catalogArticuloModel;
+        //    }
+        //    set
+        //    {
+        //        _catalogArticuloModel = value;
+        //    }
+        //}
 
         public ICommand AddMaxMinCommand
         {
@@ -69,6 +70,21 @@ namespace InventoryApp.ViewModel.MaxMin
             }
         }
         #endregion
+
+        public ObservableCollection<MaxMinModel> AddArticulos
+        {
+            get { return _AddArticulos; }
+            set
+            {
+                if (_AddArticulos != value)
+                {
+                    _AddArticulos = value;
+                    OnPropertyChanged(ArticulosPropertyName);
+                }
+            }
+        }
+        private ObservableCollection<MaxMinModel> _AddArticulos= new ObservableCollection<MaxMinModel>();
+        public const string ArticulosPropertyName = "AddArticulos";
 
         #region Constructors
         /// <summary>
@@ -93,23 +109,31 @@ namespace InventoryApp.ViewModel.MaxMin
                 throw ex;
             }
 
-            try
-            {
+            //try
+            //{
 
-                this._catalogArticuloModel = new CatalogArticuloModel(new ArticuloDataMapper());
-            }
-            catch (ArgumentException ae)
-            {
-                ;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //    this._catalogArticuloModel = new CatalogArticuloModel(new ArticuloDataMapper());
+            //}
+            //catch (ArgumentException ae)
+            //{
+            //    ;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
         }
+        public AddMaxMinViewModel()
+        { }
         #endregion
 
         #region Methods
+
+        public AddArticulosMaxMin CreateAddArticuloMaxMinViewModel()
+        {
+            return new AddArticulosMaxMin();
+        }
+
         /// <summary>
         /// Hace las validaciones necesarias para habilitar el command
         /// Si esta función retorna false, el command es deshabilitado
@@ -118,7 +142,7 @@ namespace InventoryApp.ViewModel.MaxMin
         public bool CanAttempAddMaxMin()
         {
             bool _canAddMaxMin = true;
-            if (this.CatalogArticuloModel.Articulos.Count != 0)
+            //if (this.CatalogArticuloModel.Articulos.Count != 0)
                 _canAddMaxMin = false;
 
             return _canAddMaxMin;
@@ -135,6 +159,8 @@ namespace InventoryApp.ViewModel.MaxMin
                 this._maxMinViewModel.loadMaxMin();
             }
         }
+
+        
         #endregion
     }
 }

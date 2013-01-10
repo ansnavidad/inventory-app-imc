@@ -1,17 +1,19 @@
-﻿using InventoryApp.ViewModel.Sync;
+﻿using InventoryApp.DAL.JSON;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
+using InventoryApp.DAL.POCOS;
 
 namespace DALTestProject
 {
     
     
     /// <summary>
-    ///Se trata de una clase de prueba para UploadProcessViewModelTest y se pretende que
-    ///contenga todas las pruebas unitarias UploadProcessViewModelTest.
+    ///Se trata de una clase de prueba para SerializerJsonTest y se pretende que
+    ///contenga todas las pruebas unitarias SerializerJsonTest.
     ///</summary>
     [TestClass()]
-    public class UploadProcessViewModelTest
+    public class SerializerJsonTest
     {
 
 
@@ -64,29 +66,29 @@ namespace DALTestProject
         #endregion
 
 
-
-
         /// <summary>
-        ///Una prueba de UploadData
+        ///Una prueba de SerializeParametros
         ///</summary>
         [TestMethod()]
-        public void UploadDataTest()
+        public void SerializeParametrosTest()
         {
-            UploadProcessViewModel target = new UploadProcessViewModel(); // TODO: Inicializar en un valor adecuado
-            target.UploadData();
-            Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
-        }
+            List<MOVIMENTO> algo = new List<MOVIMENTO>();
+            MOVIMENTO p1 = new MOVIMENTO();
 
-        /// <summary>
-        ///Una prueba de CallServiceMovimiento
-        ///</summary>
-        [TestMethod()]
-        public void CallServiceMovimientoTest()
-        {
-            UploadProcessViewModel target = new UploadProcessViewModel(); // TODO: Inicializar en un valor adecuado
-            bool expected = false; // TODO: Inicializar en un valor adecuado
-            bool actual;
-            actual = target.CallServiceMovimiento();
+            p1.UNID_MOVIMIENTO = 1111;
+            p1.FECHA_MOVIMIENTO = DateTime.Now;
+            p1.UNID_TIPO_MOVIMIENTO = 1;
+            p1.IS_ACTIVE = true;
+            p1.IS_MODIFIED = true;
+            p1.LAST_MODIFIED_DATE = 10000000;
+            p1.UNID_TECNICO_TRAS = 1;
+
+            algo.Add(p1);
+
+            object parametros = algo; // TODO: Inicializar en un valor adecuado
+            string expected = string.Empty; // TODO: Inicializar en un valor adecuado
+            string actual;
+            actual = SerializerJson.SerializeParametros(parametros);
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }

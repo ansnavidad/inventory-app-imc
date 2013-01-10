@@ -55,6 +55,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
@@ -111,6 +112,7 @@
     <Compile Include="ReciboDataMapperTest.cs" />
     <Compile Include="ReciboMovimientoDataMapperTest.cs" />
     <Compile Include="ReciboStatusDataMapperTest.cs" />
+    <Compile Include="SerializerJsonTest.cs" />
     <Compile Include="ServerLastDataMapperTest.cs" />
     <Compile Include="ServicioDataMapperTest.cs" />
     <Compile Include="SolicitanteDataMapperTest.cs" />

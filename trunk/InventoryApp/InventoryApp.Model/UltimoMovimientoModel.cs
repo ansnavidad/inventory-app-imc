@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace InventoryApp.Model
 {
@@ -372,6 +373,29 @@ namespace InventoryApp.Model
             }
         }
 
+        public UltimoMovimientoModel()
+        {
+            this._dataMapper = new UltimoMovimientoDataMapper();
+        }
+
+        public ObservableCollection<UltimoMovimientoModel> RegresaListaLugares(long? unidItem)
+        {
+            ITEM item = new ITEM();
+            item.UNID_ITEM = (long)unidItem;
+            ObservableCollection<UltimoMovimientoModel> movimientos = new ObservableCollection<UltimoMovimientoModel>();
+            List<ULTIMO_MOVIMIENTO> movimientoaux = new List<ULTIMO_MOVIMIENTO>();
+            this._dataMapper = new UltimoMovimientoDataMapper();
+            movimientoaux = this._dataMapper.getCantidadItems(item);
+
+            foreach (ULTIMO_MOVIMIENTO um in movimientoaux)
+            {
+                UltimoMovimientoModel temp = new UltimoMovimientoModel(um.ALMACEN, um.CLIENTE, um.PROVEEDOR);
+                temp._cantidad = um.CANTIDAD;
+                movimientos.Add(temp);
+            }
+
+            return movimientos;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -71,6 +71,6 @@
         <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,72,0,216" Name="textBlock1" Text="{Binding FacturaCompraDetalleModel.ImpuestoUnitario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="120" Grid.Row="8" />
         <Button Command="{Binding AddDetalle, Mode=OneWay}" Content="Guardar" Height="23" HorizontalAlignment="Stretch" Margin="188,276,9,12" Name="button2" VerticalAlignment="Stretch" Width="75" Grid.Column="2" Grid.Row="8" Click="button2_Click" />
         <DatePicker Grid.Column="2" Grid.Row="1" Height="25" HorizontalAlignment="Left" Margin="118,11,0,0" Name="datePicker1" VerticalAlignment="Top" Width="145" SelectedDate="{Binding FacturaCompraModel.FechaFactura, Mode=TwoWay}" />
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="75,5,0,2" Name="textBox4" Text="{Binding AgregarItemViewModel.ItemModel.Proveedor.PROVEEDOR_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="134" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="75,5,0,2" Name="textBox4" Text="{Binding FacturaCompraModel.Proveedor.ProveedorName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="134" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" />
     </Grid>
 </Window>

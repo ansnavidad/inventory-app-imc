@@ -218,6 +218,39 @@ namespace InventoryApp.DAL
             return um;
         }
 
+        public List<ULTIMO_MOVIMIENTO> getCantidadItems(ITEM item)
+        {
+            List<ULTIMO_MOVIMIENTO> um = new List<ULTIMO_MOVIMIENTO>();
+            try
+            {
+                if (item != null)
+                {
+                    using (var entity = new TAE2Entities())
+                    {
+                        var r = (from p in entity.ULTIMO_MOVIMIENTO
+                                 where p.UNID_ITEM == item.UNID_ITEM
+                                 select p).ToList();
+
+
+                        foreach (ULTIMO_MOVIMIENTO mov in (List<ULTIMO_MOVIMIENTO>)r)
+                        {
+                            mov.CLIENTE = mov.CLIENTE;
+                            mov.ALMACEN = mov.ALMACEN;
+                            mov.PROVEEDOR = mov.PROVEEDOR;
+                            um.Add(mov);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                ;
+            }
+
+            return um;
+        }
+
 
         public void udpateElement(object element)
         {            

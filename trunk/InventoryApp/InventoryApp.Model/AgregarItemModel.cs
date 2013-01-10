@@ -511,7 +511,12 @@ namespace InventoryApp.Model
          
         public void updateItem()
         {
-            this._dataMapper.udpateElement(new ITEM() {UNID_ITEM = this._unidItem, UNID_ARTICULO = this._articulo.UNID_ARTICULO, SKU = this._sku, NUMERO_SERIE = this._numeroSerie, ITEM_STATUS = this._itemStatus, COSTO_UNITARIO = this._costoUnitario, UNID_FACTURA_DETALE = this._facturaDetalle.UNID_FACTURA_DETALE, PEDIMENTO_IMPO = this._pedimentoImpo, PEDIMENTO_EXPO = this._pedimentoExpo, CANTIDAD = this._cantidaditem});
+            long? propiedad = null;
+            if (this._propiedad != null)
+            {
+                propiedad = this._propiedad.UNID_PROPIEDAD;
+            }
+            this._dataMapper.udpateElement(new ITEM() {UNID_ITEM = this._unidItem, UNID_PROPIEDAD= propiedad, UNID_ARTICULO = this._articulo.UNID_ARTICULO, SKU = this._sku, NUMERO_SERIE = this._numeroSerie, ITEM_STATUS = this._itemStatus, COSTO_UNITARIO = this._costoUnitario, UNID_FACTURA_DETALE = this._facturaDetalle.UNID_FACTURA_DETALE, PEDIMENTO_IMPO = this._pedimentoImpo, PEDIMENTO_EXPO = this._pedimentoExpo, CANTIDAD = this._cantidaditem});
         }
 
         public void updateFacturas()
@@ -548,6 +553,8 @@ namespace InventoryApp.Model
             this.PedimentoExpo = new long();
             this.PedimentoImpo = new long();
             this.CantidadItem = new int();
+            this.Propiedad = new PROPIEDAD();
+            
             this.Detalles = new ObservableCollection<DeleteFacturaDetalleModel>();
         }
 
@@ -571,19 +578,14 @@ namespace InventoryApp.Model
                 this.PedimentoExpo = res.PEDIMENTO_EXPO;
                 this.PedimentoImpo = res.PEDIMENTO_IMPO;
                 this.CantidadItem = res.CANTIDAD;
+                this.Propiedad = res.PROPIEDAD;
 
-                CategoriaDataMapper datacat = new CategoriaDataMapper();
-                this.Categoria = datacat.getElementByArticulo(res.ARTICULO);
-
-                foreach (ARTICULO i in this.Articulos)
-                {
-                    if (i.UNID_ARTICULO == res.ARTICULO.UNID_ARTICULO)
-                        this.Articulo = i;
-                }
+                
 
                 this.FacturaDetalle = res.FACTURA_DETALLE;
                 FACTURA temp = new FACTURA();
                 temp = GetFacturabyDetalle(this.FacturaDetalle);
+                this.Proveedor = temp.PROVEEDOR;
 
                 foreach (FACTURA f in this.Facturas)
                 {
@@ -600,6 +602,22 @@ namespace InventoryApp.Model
                     }
                     else
                         this.FacturaDetalle = new FACTURA_DETALLE();
+                }
+
+                CategoriaDataMapper datacat = new CategoriaDataMapper();
+                CATEGORIA auxcat = datacat.getElementByArticulo(res.ARTICULO);
+                foreach (CATEGORIA c in this.Categorias)
+                {
+                    if (c.UNID_CATEGORIA == auxcat.UNID_CATEGORIA)
+                    {
+                        this.Categoria = c;
+                    }
+                }
+
+                foreach (ARTICULO i in this.Articulos)
+                {
+                    if (i.UNID_ARTICULO == res.ARTICULO.UNID_ARTICULO)
+                        this.Articulo = i;
                 }
             }
             else

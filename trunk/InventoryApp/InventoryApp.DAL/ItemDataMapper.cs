@@ -591,6 +591,7 @@ namespace InventoryApp.DAL
                             res.ARTICULO.UNID_CATEGORIA = res.ARTICULO.UNID_CATEGORIA;
                             res.ITEM_STATUS = res.ITEM_STATUS;
                             res.FACTURA_DETALLE = res.FACTURA_DETALLE;
+                            res.PROPIEDAD = res.PROPIEDAD;
                             o = res;
                         }
                         else
@@ -602,6 +603,7 @@ namespace InventoryApp.DAL
                             res.ARTICULO.UNID_CATEGORIA = res.ARTICULO.UNID_CATEGORIA;
                             res.ITEM_STATUS = res.ITEM_STATUS;
                             res.FACTURA_DETALLE = res.FACTURA_DETALLE;
+                            res.PROPIEDAD = res.PROPIEDAD;
                             o = res;
                         }
 
@@ -637,6 +639,7 @@ namespace InventoryApp.DAL
                     modifiedItem.CANTIDAD = item.CANTIDAD;
                     modifiedItem.PEDIMENTO_EXPO = item.PEDIMENTO_EXPO;
                     modifiedItem.PEDIMENTO_IMPO = item.PEDIMENTO_IMPO;
+                    modifiedItem.UNID_PROPIEDAD = item.UNID_PROPIEDAD;
                     //Sync
                     modifiedItem.IS_MODIFIED = true;
                     modifiedItem.LAST_MODIFIED_DATE = UNID.getNewUNID();

@@ -26,7 +26,7 @@ namespace InventoryApp.View.CatalogItem
 
         private void button3_Click(object sender, RoutedEventArgs e)
         {
-            AgregarFactura addFactura = new AgregarFactura();
+            AddFactura addFactura = new AddFactura();
             ModifyItemViewModel viewModel = this.DataContext as ModifyItemViewModel;
             addFactura.DataContext = viewModel.CreateAgregarFacturaViewModel(); ;
             addFactura.Show();
@@ -37,5 +37,21 @@ namespace InventoryApp.View.CatalogItem
             MessageBox.Show("El item ha sido modificado");
             
         }
+
+        private void checkBox1_Checked(object sender, RoutedEventArgs e)
+        {
+            comboPropiedad.IsEnabled = true;
+           
+        }
+
+        private void checkBox1_Unchecked(object sender, RoutedEventArgs e)
+        {
+            comboPropiedad.IsEnabled = false;
+            comboPropiedad.SelectedIndex = -1;
+        }
+
+        
+
+     
     }
 }

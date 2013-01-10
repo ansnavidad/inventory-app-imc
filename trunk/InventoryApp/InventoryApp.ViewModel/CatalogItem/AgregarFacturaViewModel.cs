@@ -163,6 +163,9 @@ namespace InventoryApp.ViewModel.CatalogItem
         {
             this._modifyItemViewModel = modifyItemViewModel;
             this._facturaCompraModel = new FacturaCompraModel();
+            this._facturaCompraModel.Proveedor = new ProveedorModel(new ProveedorDataMapper());
+            this._facturaCompraModel.Proveedor.UnidProveedor = this._modifyItemViewModel._itemModel.Proveedor.UNID_PROVEEDOR;
+            this._facturaCompraModel.Proveedor.ProveedorName = this._modifyItemViewModel._itemModel.Proveedor.PROVEEDOR_NAME;
             this.Proveedores = new ObservableCollection<ProveedorModel>();
             this.Monedas = new ObservableCollection<MonedaModel>();
             this.Monedas = this.GetMonedas();
@@ -170,12 +173,8 @@ namespace InventoryApp.ViewModel.CatalogItem
             this._facturaCompraDetalleModel = new FacturaCompraDetalleModel();
             this.Unidades = GetUnidades();
 
-            this._modifyItemViewModel.ItemModel.Proveedores.ForEach(o => this.Proveedores.Add(new ProveedorModel(new ProveedorDataMapper())
-            {
-                UnidProveedor = o.UNID_PROVEEDOR
-                ,
-                ProveedorName = o.PROVEEDOR_NAME
-            }));
+
+
             this._facturaCompraDetalleModel.Articulo.UnidArticulo = this._modifyItemViewModel.ItemModel.Articulo.UNID_ARTICULO;
         }
 

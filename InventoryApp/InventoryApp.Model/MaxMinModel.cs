@@ -19,6 +19,7 @@ namespace InventoryApp.Model
         private MARCA _marca;
         private MODELO _modelo;
         private EQUIPO _equipo;
+        private EquipoModel _equipoModel;
         private ALMACEN _almacen;
         private MaxMinDataMapper _dataMapper;
         #endregion
@@ -114,6 +115,25 @@ namespace InventoryApp.Model
                     this._equipo = value;
                     if (this.PropertyChanged != null)
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Equipo"));
+                }
+            }
+        }
+
+        public EquipoModel EquipoModel
+        {
+            get
+            {
+                return _equipoModel;
+            }
+            set
+            {
+                if (_equipoModel != value)
+                {
+                    _equipoModel = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("EquipoModel"));
+                    }
                 }
             }
         }

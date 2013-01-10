@@ -14,7 +14,6 @@ namespace InventoryApp.ViewModel.MaxMin
     {
         private RelayCommand _addArticulosCommad;
         private MaxMinModel _addMaxMin;
-        //private MaxMinViewModel _maxMinViewModel = new MaxMinViewModel();
         private AddMaxMinViewModel _maxMinViewModel;
 
         public MaxMinModel AddMaxMin
@@ -40,7 +39,6 @@ namespace InventoryApp.ViewModel.MaxMin
                 return _addArticulosCommad;
             }
         }
-
 
         //filta por categoria el combo de articulo
         public CategoriaModel SelectedCategoria
@@ -258,28 +256,27 @@ namespace InventoryApp.ViewModel.MaxMin
         {
             MaxMinModel maxMinModel = new MaxMinModel()
             {
+                Categoria = this.SelectedArticulo.Categoria,
+                EquipoModel= this.SelectedArticulo.EquipoModel,
+                Marca = this.SelectedArticulo.Marca,
+                Modelo=this.SelectedArticulo.Modelo,
                 Articulo = new ARTICULO()
                 {
+                    ARTICULO1= this.SelectedArticulo.ArticuloName,
+                    CATEGORIA=this.SelectedArticulo.Categoria,
+                    //EQUIPO=this.SelectedArticulo.EquipoModel,
+                    MARCA=this.SelectedArticulo.Marca,
+                    MODELO=this.SelectedArticulo.Modelo,
                     UNID_ARTICULO = this.SelectedArticulo.UnidArticulo,
-                    UNID_CATEGORIA = SelectedArticulo.Categoria.UNID_CATEGORIA,
-                    UNID_EQUIPO = SelectedArticulo.EquipoModel.UnidEquipo,
-                    UNID_MARCA = SelectedArticulo.Marca.UNID_MARCA,
-                    UNID_MODELO = SelectedArticulo.Modelo.UNID_MODELO
-                }
-
+                    UNID_CATEGORIA = this.SelectedArticulo.Categoria.UNID_CATEGORIA,
+                    UNID_EQUIPO = this.SelectedArticulo.EquipoModel.UnidEquipo,
+                    UNID_MARCA = this.SelectedArticulo.Marca.UNID_MARCA,
+                    UNID_MODELO = this.SelectedArticulo.Modelo.UNID_MODELO
+                },
+                Max=0,
+                Min=0
             };
-            //ArticuloModel articuloModel = new ArticuloModel()
-            //{
-            //   UnidArticulo =this.SelectedArticulo.UnidArticulo,
-            //   Categoria=this.SelectedArticulo.Categoria,
-            //   EquipoModel=SelectedArticulo.EquipoModel,
-            //   Marca=SelectedArticulo.Marca,
-            //   Modelo=SelectedArticulo.Modelo
-            //};
-            //this._maxMinViewModel.loadAddArticulo(maxMinModel);
             this._maxMinViewModel.AddArticulos.Add(maxMinModel);
-            //this.AddMaxMin = maxMinModel;
-            //this.Articulos.Add(articuloModel);
         }
 
         public bool CanAttemptAddArticulo()

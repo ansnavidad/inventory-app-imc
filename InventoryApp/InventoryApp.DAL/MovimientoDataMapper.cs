@@ -410,7 +410,6 @@ namespace InventoryApp.DAL
                          UNID_CLIENTE_PROCEDENCIA=row.UNID_CLIENTE_PROCEDENCIA,
                          UNID_PROVEEDOR_PROCEDENCIA=row.UNID_PROVEEDOR_PROCEDENCIA,
                          UNID_SERVICIO=row.UNID_SERVICIO, 
-                         UNID_TECNICO_TRAS = row.UNID_TECNICO_TRAS,
                          TT=row.TT,
                          CONTACTO=row.CONTACTO,
                          UNID_TRANSPORTE=row.UNID_TRANSPORTE,
@@ -429,7 +428,8 @@ namespace InventoryApp.DAL
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,                         
-                         UNID_INFRAESTRUCTURA = row.UNID_INFRAESTRUCTURA
+                         UNID_INFRAESTRUCTURA = row.UNID_INFRAESTRUCTURA,
+                         UNID_TECNICO_TRAS = row.UNID_TECNICO_TRAS
                      });
                  });
                 if (listMovimiento.Count > 0)

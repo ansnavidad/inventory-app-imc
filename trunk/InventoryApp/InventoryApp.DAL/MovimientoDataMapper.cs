@@ -428,8 +428,7 @@ namespace InventoryApp.DAL
                          UNID_TECNICO=row.UNID_TECNICO,
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
-                         TECNICO1 = row.TECNICO1,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,                         
                          UNID_INFRAESTRUCTURA = row.UNID_INFRAESTRUCTURA
                      });
                  });
@@ -501,8 +500,7 @@ namespace InventoryApp.DAL
                          UNID_TECNICO = row.UNID_TECNICO,
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
-                         TECNICO1 = row.TECNICO1,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,                         
                          UNID_INFRAESTRUCTURA = row.UNID_INFRAESTRUCTURA
                      });
                  });

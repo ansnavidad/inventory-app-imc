@@ -252,6 +252,12 @@ namespace InventoryApp.DAL.POCOS
         }
         private ObjectSet<MAX_MIN> _mAX_MIN;
     
+        public ObjectSet<PROGRAMADO> PROGRAMADOes
+        {
+            get { return _pROGRAMADOes  ?? (_pROGRAMADOes = CreateObjectSet<PROGRAMADO>("PROGRAMADOes")); }
+        }
+        private ObjectSet<PROGRAMADO> _pROGRAMADOes;
+    
         public ObjectSet<PROPIEDAD> PROPIEDADs
         {
             get { return _pROPIEDADs  ?? (_pROPIEDADs = CreateObjectSet<PROPIEDAD>("PROPIEDADs")); }
@@ -398,8 +404,9 @@ namespace InventoryApp.DAL.POCOS
         }
         public void GetJob()
         {
-          ExecuteFunction("SP_TAE2_JOB");
+            ExecuteFunction<TEST>("SP_TAE2_JOB");
         }
+
         #endregion
     }
 }

@@ -14,14 +14,28 @@ namespace InventoryApp.ViewModel.CatalogProveedor
         #region Fields
         private ProveedorModel _proveedorModel;
         private RelayCommand _modifyProveedorCommand;
+        private RelayCommand _deleteProveedorCuentaCommand; 
         private CatalogProveedorViewModel _catalogProveedorViewModel;
         private CatalogCiudadModel _catalogCiudadModel;
         private CatalogPaisModel _catalogPaisModel;
         private CatalogCategoriaModel _catalogCategoriaModel;
+        private CatalogProveedorCuentaModel _catalogProveedorCuentaModel;
         #endregion
 
         //Exponer la propiedad item status
         #region Props
+        public CatalogProveedorCuentaModel CatalogProveedorCuentaModel
+        {
+            get
+            {
+                return _catalogProveedorCuentaModel;
+            }
+            set
+            {
+                _catalogProveedorCuentaModel = value;
+            }
+        }
+
         public CatalogCategoriaModel CatalogCategoriaModel
         {
             get
@@ -81,6 +95,17 @@ namespace InventoryApp.ViewModel.CatalogProveedor
                 return _modifyProveedorCommand; 
             }
         }
+        public ICommand DeleteProveedorCuentaCommand
+        {
+            get
+            {
+                if (_deleteProveedorCuentaCommand == null)
+                {
+                    _deleteProveedorCuentaCommand = new RelayCommand(p => this.AttempDeleteCuenta(), p => this.CanAttempDeleteCuenta());
+                }
+                return _deleteProveedorCuentaCommand;
+            }
+        }
         #endregion
 
         #region Constructors
@@ -119,7 +144,21 @@ namespace InventoryApp.ViewModel.CatalogProveedor
                         }
                     }
                 }
-
+                
+                object ret2 = this._proveedorModel.GetProveedorCuenta(selectedProveedorModel.UnidProveedor);
+                this._catalogProveedorCuentaModel = new CatalogProveedorCuentaModel(new ProveedorCuentaDataMapper());
+                //muestra los valores de las categorias que estan relacionadas
+                
+                foreach (var ite in ((List<PROVEEDOR_CUENTA>)ret2))
+                {
+                    //DeleteProveedorCuenta dpc = new DeleteProveedorCuenta(new PROVEEDOR_CUENTA { UNID_PROVEEDOR_CUENTA = ite.UNID_PROVEEDOR_CUENTA, UNID_PROVEEDOR = ite.UNID_PROVEEDOR, UNID_BANCO = ite.UNID_BANCO, NUMERO_CUENTA = ite.NUMERO_CUENTA, LAST_MODIFIED_DATE = ite.LAST_MODIFIED_DATE, IS_MODIFIED = ite.IS_MODIFIED, IS_ACTIVE = ite.IS_ACTIVE, BENEFICIARIO = ite.BENEFICIARIO, CLABE = ite.CLABE });
+                    DeleteProveedorCuenta dpc = new DeleteProveedorCuenta(ite);
+                    dpc.IsChecked = false;
+                    this._proveedorModel._auxUnidsCuenta.Add(ite.UNID_PROVEEDOR_CUENTA);
+                    this._proveedorModel._unidsCuenta.Add(ite.UNID_PROVEEDOR_CUENTA);
+                    this.CatalogProveedorCuentaModel.ProveedorCuenta.Add(dpc);                        
+                }
+                
             }
             catch (ArgumentException ae)
             {
@@ -132,21 +171,7 @@ namespace InventoryApp.ViewModel.CatalogProveedor
 
             try
             {
-
                 this._catalogCiudadModel = new CatalogCiudadModel(new CiudadDataMapper());
-            }
-            catch (ArgumentException ae)
-            {
-                ;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            try
-            {
-
                 this._catalogPaisModel = new CatalogPaisModel(new PaisDataMapper());
             }
             catch (ArgumentException ae)
@@ -185,13 +210,40 @@ namespace InventoryApp.ViewModel.CatalogProveedor
                     this._proveedorModel._unidsCategorias.Add(pc.UNID_CATEGORIA);
                 }   
             }
-            this._proveedorModel.updateProveedor();
+
+            foreach (DeleteProveedorCuenta pc in this.CatalogProveedorCuentaModel.ProveedorCuenta)
+            {
+                if (pc.IsChecked == true)
+                {
+                    this._proveedorModel._unidsCuenta.Add(pc.UNID_PROVEEDOR_CUENTA);
+                }
+            }
+
+            this._proveedorModel.updateProveedor(this.CatalogProveedorCuentaModel.ProveedorCuenta);
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya que
             //es una dependencia inyectada
             if (this._catalogProveedorViewModel != null)
             {
                 this._catalogProveedorViewModel.loadItems();
+            }
+        }
+
+        public bool CanAttempDeleteCuenta()
+        {
+            return true;
+        }
+        public void AttempDeleteCuenta()
+        {
+            for (int i = 0; i < this.CatalogProveedorCuentaModel.ProveedorCuenta.Count; )
+            {
+
+                if (this.CatalogProveedorCuentaModel.ProveedorCuenta[i].IsChecked){
+                    this.ProveedorModel._unidsCuenta.Remove(this.CatalogProveedorCuentaModel.ProveedorCuenta[i].UNID_PROVEEDOR_CUENTA);
+                    this.CatalogProveedorCuentaModel.ProveedorCuenta.RemoveAt(i);
+                }
+                else
+                    i++;
             }
         }
         #endregion

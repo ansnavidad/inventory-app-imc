@@ -25,6 +25,8 @@ namespace InventoryApp.Model
         private CATEGORIA _categoria;
         public List<long> _unidsCategorias;
         public List<long> _auxUnidsCategorias;
+        public List<long> _unidsCuenta;
+        public List<long> _auxUnidsCuenta;
         private ProveedorDataMapper _dataMapper;
         #endregion
 
@@ -265,6 +267,7 @@ namespace InventoryApp.Model
             {
                 _dataMapper.insertRelacion(new PROVEEDOR()
                 {
+                    UNID_PROVEEDOR = this.UnidProveedor,
                     IS_ACTIVE = true,
                     CALLE = this._calle,
                     CODIGO_POSTAL = this._codigoPostal,
@@ -280,8 +283,14 @@ namespace InventoryApp.Model
             }
         }
 
-        public void updateProveedor()
+        public void updateProveedor(FixupCollection<DeleteProveedorCuenta> coll)
         {
+            List<PROVEEDOR_CUENTA> listF = new List<PROVEEDOR_CUENTA>();
+            foreach (DeleteProveedorCuenta dd in coll) {
+
+                listF.Add(new PROVEEDOR_CUENTA { BENEFICIARIO = dd.BENEFICIARIO, CLABE = dd.CLABE, IS_ACTIVE = dd.IS_ACTIVE, IS_MODIFIED = dd.IS_MODIFIED, LAST_MODIFIED_DATE = dd.LAST_MODIFIED_DATE, NUMERO_CUENTA = dd.NUMERO_CUENTA, UNID_BANCO = dd.UNID_BANCO, UNID_PROVEEDOR_CUENTA = dd.UNID_PROVEEDOR_CUENTA, UNID_PROVEEDOR = dd.UNID_PROVEEDOR }); 
+            }
+
             this._dataMapper.updateRelacion(new PROVEEDOR()
             {
                 UNID_PROVEEDOR = this._unidProveedor,
@@ -296,13 +305,23 @@ namespace InventoryApp.Model
                 UNID_CIUDAD = this._ciudad.UNID_CIUDAD,
                 UNID_PAIS = this._pais.UNID_PAIS
             },this._unidsCategorias,
-            this._auxUnidsCategorias);
+            this._auxUnidsCategorias,
+            this._unidsCuenta,
+            this._auxUnidsCuenta,
+            listF
+            );
         }
 
         public object GetProveedorCategoria(long obj)
         {
             return this._dataMapper.getElementProveedorCategoria(obj);   
         }
+
+        public object GetProveedorCuenta(long obj)
+        {
+            return this._dataMapper.getElementProveedorCuenta(obj);
+        }
+
         #region Constructors
         public ProveedorModel(IDataMapper dataMapper)
         {
@@ -313,6 +332,8 @@ namespace InventoryApp.Model
             //varibles que guardan los ids de categorias
             this._unidsCategorias = new List<long>();
             this._auxUnidsCategorias = new List<long>();
+            this._auxUnidsCuenta = new List<long>();
+            this._unidsCuenta = new List<long>();
         }
         #endregion
 

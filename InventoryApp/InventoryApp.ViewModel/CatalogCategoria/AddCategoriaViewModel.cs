@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.CatalogArticulo;
 
 namespace InventoryApp.ViewModel.CatalogCategoria
 {
@@ -14,6 +15,8 @@ namespace InventoryApp.ViewModel.CatalogCategoria
         private CategoriaModel _addCategoria;
         private RelayCommand _addCategoriaCommand;
         private CatalogCategoriaViewModel _catalogCategoriaViewModel;
+        private AddArticuloViewModel _artVM;
+        private ModifyArticuloViewModel _artMod;
         #endregion
 
         //Exponer la propiedad categoria
@@ -53,6 +56,21 @@ namespace InventoryApp.ViewModel.CatalogCategoria
             this._addCategoria = new CategoriaModel(new CategoriaDataMapper());
             this._catalogCategoriaViewModel = catalogCategoriaViewModel;
         }
+
+        public AddCategoriaViewModel(CatalogCategoriaViewModel catalogCategoriaViewModel, AddArticuloViewModel artVM)
+        {
+            _artVM = artVM;
+            this._addCategoria = new CategoriaModel(new CategoriaDataMapper());
+            this._catalogCategoriaViewModel = catalogCategoriaViewModel;
+        }
+
+        public AddCategoriaViewModel(CatalogCategoriaViewModel catalogCategoriaViewModel, ModifyArticuloViewModel artVM)
+        {
+            _artMod = artVM;
+            this._addCategoria = new CategoriaModel(new CategoriaDataMapper());
+            this._catalogCategoriaViewModel = catalogCategoriaViewModel;
+        }
+
         #endregion
 
         #region Methods
@@ -79,6 +97,20 @@ namespace InventoryApp.ViewModel.CatalogCategoria
             if (this._catalogCategoriaViewModel != null)
             {
                 this._catalogCategoriaViewModel.loadItems();
+            }
+
+            if (_artVM != null) {
+
+                _artVM.CatalogCategoriaModel.loadItems();
+                _artVM.Articulo.Categoria = _artVM.CatalogCategoriaModel.Categoria[_artVM.CatalogCategoriaModel.Categoria.Count - 1];
+                //_artVM.CatalogCategoriaModel.SelectedCategoria = _artVM.CatalogCategoriaModel.Categoria[0];
+            }
+
+            if (_artMod != null)
+            {
+                _artMod.CatalogCategoriaModel.loadItems();
+                _artMod.Articulo.Categoria = _artMod.CatalogCategoriaModel.Categoria[_artMod.CatalogCategoriaModel.Categoria.Count - 1];
+                //_artVM.CatalogCategoriaModel.SelectedCategoria = _artVM.CatalogCategoriaModel.Categoria[0];
             }
         }
         #endregion

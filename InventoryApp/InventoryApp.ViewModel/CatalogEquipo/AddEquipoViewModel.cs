@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.CatalogArticulo;
 
 namespace InventoryApp.ViewModel.CatalogEquipo
 {
@@ -14,6 +15,8 @@ namespace InventoryApp.ViewModel.CatalogEquipo
         private EquipoModel _equipo;
         private RelayCommand _addItemCommand;
         private CatalogEquipoViewModel _catalogEquipoViewModel;
+        private AddArticuloViewModel _artVM;
+        private ModifyArticuloViewModel _artMod;
         #endregion
 
         //Exponer la propiedad item status
@@ -53,6 +56,21 @@ namespace InventoryApp.ViewModel.CatalogEquipo
             this._equipo = new EquipoModel(new EquipoDataMapper());
             this._catalogEquipoViewModel = catalogEquipoViewModel;
         }
+
+        public AddEquipoViewModel(CatalogEquipoViewModel catalogEquipoViewModel, AddArticuloViewModel artVM)
+        {
+            _artVM = artVM;
+            this._equipo = new EquipoModel(new EquipoDataMapper());
+            this._catalogEquipoViewModel = catalogEquipoViewModel;
+        }
+
+        public AddEquipoViewModel(CatalogEquipoViewModel catalogEquipoViewModel, ModifyArticuloViewModel artVM)
+        {
+            _artMod = artVM;
+            this._equipo = new EquipoModel(new EquipoDataMapper());
+            this._catalogEquipoViewModel = catalogEquipoViewModel;
+        }
+
         #endregion
 
         #region Methods
@@ -79,6 +97,20 @@ namespace InventoryApp.ViewModel.CatalogEquipo
             if (this._catalogEquipoViewModel != null)
             {
                 this._catalogEquipoViewModel.loadItems();
+            }
+
+            if (_artVM != null)
+            {
+                _artVM.CatalogEquipoModel.loadItems();
+                _artVM.Articulo.Equipo = _artVM.CatalogEquipoModel.Equipos[_artVM.CatalogEquipoModel.Equipos.Count - 1];
+                //_artVM.CatalogEquipoModel.SelectedEquipo = _artVM.CatalogEquipoModel.Equipos[0];
+            }
+
+            if (_artMod != null)
+            {
+                _artMod.CatalogEquipoModel.loadItems();
+                _artMod.Articulo.Equipo = _artMod.CatalogEquipoModel.Equipos[_artMod.CatalogEquipoModel.Equipos.Count - 1];
+                //_artVM.CatalogEquipoModel.SelectedEquipo = _artVM.CatalogEquipoModel.Equipos[0];
             }
         }
         #endregion

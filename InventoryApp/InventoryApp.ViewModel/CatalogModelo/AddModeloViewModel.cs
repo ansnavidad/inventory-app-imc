@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.CatalogArticulo;
 
 namespace InventoryApp.ViewModel.CatalogModelo
 {
@@ -14,6 +15,8 @@ namespace InventoryApp.ViewModel.CatalogModelo
         private ModeloModel _modelo;
         private RelayCommand _addItemCommand;
         private CatalogModeloViewModel _catalogModeloViewModel;
+        private AddArticuloViewModel _artVM;
+        private ModifyArticuloViewModel _artMod;
         #endregion
 
         //Exponer la propiedad item status
@@ -53,6 +56,21 @@ namespace InventoryApp.ViewModel.CatalogModelo
             this._modelo = new ModeloModel(new ModeloDataMapper());
             this._catalogModeloViewModel = catalogModeloViewModel;
         }
+
+        public AddModeloViewModel(CatalogModeloViewModel catalogModeloViewModel, AddArticuloViewModel artVM)
+        {
+            _artVM = artVM;
+            this._modelo = new ModeloModel(new ModeloDataMapper());
+            this._catalogModeloViewModel = catalogModeloViewModel;
+        }
+
+        public AddModeloViewModel(CatalogModeloViewModel catalogModeloViewModel, ModifyArticuloViewModel artVM)
+        {
+            _artMod = artVM;
+            this._modelo = new ModeloModel(new ModeloDataMapper());
+            this._catalogModeloViewModel = catalogModeloViewModel;
+        }
+
         #endregion
 
         #region Methods
@@ -79,6 +97,27 @@ namespace InventoryApp.ViewModel.CatalogModelo
             if (this._catalogModeloViewModel != null)
             {
                 this._catalogModeloViewModel.loadItems();
+            }
+
+            if (_artVM != null)
+            {
+                _artVM.CatalogModeloModel.loadItems();
+                _artVM.Articulo.Modelo = _artVM.CatalogModeloModel.Modelos[_artVM.CatalogModeloModel.Modelos.Count - 1];
+                //_artVM.CatalogModeloModel.SelectedModelo = _artVM.CatalogModeloModel.Modelos[0];
+            }
+
+            if (_artVM != null)
+            {
+                _artVM.CatalogModeloModel.loadItems();
+                _artVM.Articulo.Modelo = _artVM.CatalogModeloModel.Modelos[_artVM.CatalogModeloModel.Modelos.Count - 1];
+                //_artVM.CatalogModeloModel.SelectedModelo = _artVM.CatalogModeloModel.Modelos[0];
+            }
+
+            if (_artMod != null)
+            {
+                _artMod.CatalogModeloModel.loadItems();
+                _artMod.Articulo.Modelo = _artMod.CatalogModeloModel.Modelos[_artMod.CatalogModeloModel.Modelos.Count - 1];
+                //_artVM.CatalogModeloModel.SelectedModelo = _artVM.CatalogModeloModel.Modelos[0];
             }
         }
         #endregion

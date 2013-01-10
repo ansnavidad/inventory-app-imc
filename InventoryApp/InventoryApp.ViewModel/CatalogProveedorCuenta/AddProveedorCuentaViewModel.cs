@@ -5,6 +5,8 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.CatalogProveedor;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogProveedorCuenta
 {
@@ -16,6 +18,8 @@ namespace InventoryApp.ViewModel.CatalogProveedorCuenta
         private CatalogProveedorCuentaViewModel _catalogProveedorCuentaViewModel;
         private CatalogProveedorModel _catalogProveedorModel;
         private CatalogBancoModel _catalogBancoModel;
+        private AddProveedorViewModel _altaDM;
+        private ModifyProveedorViewModel _altaMod;
 
         #endregion
 
@@ -84,19 +88,6 @@ namespace InventoryApp.ViewModel.CatalogProveedorCuenta
             {
 
                 this._catalogBancoModel = new CatalogBancoModel(new BancoDataMapper());
-            }
-            catch (ArgumentException ae)
-            {
-                ;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            try
-            {
-
                 this._catalogProveedorModel = new CatalogProveedorModel(new ProveedorDataMapper());
             }
             catch (ArgumentException ae)
@@ -108,6 +99,49 @@ namespace InventoryApp.ViewModel.CatalogProveedorCuenta
                 throw ex;
             }
         }
+
+        public AddProveedorCuentaViewModel(CatalogProveedorCuentaViewModel catalogProveedorCuentaViewModel, AddProveedorViewModel altaDM)
+        {
+            _altaDM = altaDM;
+            this._proveedorCuentaModel = new ProveedorCuentaModel(new ProveedorCuentaDataMapper());
+            this._catalogProveedorCuentaViewModel = catalogProveedorCuentaViewModel;
+
+            try
+            {
+                this._catalogBancoModel = new CatalogBancoModel(new BancoDataMapper());
+                this._catalogProveedorModel = new CatalogProveedorModel(new ProveedorDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public AddProveedorCuentaViewModel(CatalogProveedorCuentaViewModel catalogProveedorCuentaViewModel, ModifyProveedorViewModel altaDM)
+        {
+            _altaMod = altaDM;
+            this._proveedorCuentaModel = new ProveedorCuentaModel(new ProveedorCuentaDataMapper());
+            this._catalogProveedorCuentaViewModel = catalogProveedorCuentaViewModel;
+
+            try
+            {
+                this._catalogBancoModel = new CatalogBancoModel(new BancoDataMapper());
+                this._catalogProveedorModel = new CatalogProveedorModel(new ProveedorDataMapper());
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -119,7 +153,7 @@ namespace InventoryApp.ViewModel.CatalogProveedorCuenta
         public bool CanAttempAddProveedorCuenta()
         {
             bool _canAddProveedorCuenta = true;
-            if (String.IsNullOrEmpty(this._proveedorCuentaModel.Beneficiario) || String.IsNullOrEmpty(this._proveedorCuentaModel.Clabe) || String.IsNullOrEmpty(this._proveedorCuentaModel.NumeroCuenta) || this._proveedorCuentaModel.Proveedor == null)
+            if (String.IsNullOrEmpty(this._proveedorCuentaModel.Beneficiario) || String.IsNullOrEmpty(this._proveedorCuentaModel.Clabe) || String.IsNullOrEmpty(this._proveedorCuentaModel.NumeroCuenta))
                 _canAddProveedorCuenta = false;
 
             return _canAddProveedorCuenta;
@@ -127,15 +161,65 @@ namespace InventoryApp.ViewModel.CatalogProveedorCuenta
 
         public void AttempAddProveedorCuenta()
         {
-            this._proveedorCuentaModel.saveProveedorCuenta();
+            if (_altaDM != null) {
 
-            //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya que
-            //es una dependencia inyectada
-            if (this._catalogProveedorCuentaViewModel != null)
-            {
-                this._catalogProveedorCuentaViewModel.loadItems();
+                PROVEEDOR_CUENTA provCuenta = new PROVEEDOR_CUENTA
+                {
+                    BANCO = this._proveedorCuentaModel.Banco
+                  ,
+                    BENEFICIARIO = this._proveedorCuentaModel.Beneficiario
+                  ,
+                    CLABE = this._proveedorCuentaModel.Clabe
+                  ,
+                    NUMERO_CUENTA = this._proveedorCuentaModel.NumeroCuenta
+                  ,
+                    UNID_BANCO = this._proveedorCuentaModel.Banco.UNID_BANCO
+                  ,
+                    UNID_PROVEEDOR = this._altaDM.ProveedorEnvio.UnidProveedor                  
+                  ,
+                    IS_ACTIVE = true
+                  ,
+                    IS_MODIFIED = true
+                };
+
+                DeleteProveedorCuenta provDel = new DeleteProveedorCuenta(provCuenta);
+                provDel.IsChecked = false;
+
+                this._altaDM.CatalogProveedorCuentaModel.ProveedorCuenta.Add(provDel);
             }
+
+            if (_altaMod != null)
+            {
+
+                PROVEEDOR_CUENTA provCuenta = new PROVEEDOR_CUENTA
+                {
+                    BANCO = this._proveedorCuentaModel.Banco
+                  ,
+                    BENEFICIARIO = this._proveedorCuentaModel.Beneficiario
+                  ,
+                    CLABE = this._proveedorCuentaModel.Clabe
+                  ,
+                    NUMERO_CUENTA = this._proveedorCuentaModel.NumeroCuenta
+                  ,
+                    UNID_BANCO = this._proveedorCuentaModel.Banco.UNID_BANCO
+                  ,
+                    UNID_PROVEEDOR = this._altaMod.ProveedorModel.UnidProveedor
+                  ,
+                    IS_ACTIVE = true
+                  ,
+                    IS_MODIFIED = true
+                  , 
+                    UNID_PROVEEDOR_CUENTA = UNID.getNewUNID() 
+                };
+
+                DeleteProveedorCuenta provDel = new DeleteProveedorCuenta(provCuenta);
+                provDel.IsChecked = false;
+
+                this._altaMod.CatalogProveedorCuentaModel.ProveedorCuenta.Add(provDel);
+                this._altaMod.ProveedorModel._unidsCuenta.Add(provDel.UNID_PROVEEDOR_CUENTA);
+            }  
         }
+
         #endregion
     }
 }

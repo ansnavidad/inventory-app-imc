@@ -1,7 +1,7 @@
 ﻿<Window x:Class="InventoryApp.View.CatalogArticulo.ModifyArticuloView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Modificar artículo" Height="300" Width="350" 
+        Title="Modificar artículo" Height="300" Width="479" 
         WindowStyle="ToolWindow" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
@@ -26,10 +26,12 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="163"/>
+            <ColumnDefinition Width="31" />
+            <ColumnDefinition Width="71*" />
         </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+        <Border Grid.ColumnSpan="5" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}">
             <Label Style="{StaticResource titleLabel}" Content="MODIFICAR ARTÍCULO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
         <!--Nombre Artículo-->
@@ -78,7 +80,11 @@
                   Margin="0,3,0,0" Name="comboBox4"
                   VerticalAlignment="Top" Width="120" Grid.Row="5" Grid.Column="2"  />
         <Button Content="Guardar" Grid.Row="7" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Command="{Binding ModifyItemCommand,Mode=OneWay}" Click="btnAgregar_Click" Grid.Column="1" />
-        <Button Content="Cancelar" Grid.Column="2" Grid.Row="7" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
+        <Button Content="Cancelar" Grid.Column="2" Grid.Row="7" Height="23" HorizontalAlignment="Stretch" Margin="27,13,18,14" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
+        <Button Content="Añadir Categoría" Height="23" HorizontalAlignment="Stretch" Margin="32,3,25,4" Name="buttonNCat" VerticalAlignment="Stretch" Grid.Column="3" Grid.Row="2" Click="buttonNCat_Click" />
+        <Button Content="Añadir Equipo" Grid.Row="5" Height="23" HorizontalAlignment="Stretch" Margin="32,1,25,6" Name="buttonNEquipo" VerticalAlignment="Stretch" Grid.Column="3" Click="buttonNEquipo_Click" />
+        <Button Content="Añadir Modelo" Grid.Row="4" Height="23" HorizontalAlignment="Stretch" Margin="32,1,25,6" Name="buttonNModelo" VerticalAlignment="Stretch" Grid.Column="3" Click="buttonNModelo_Click" />
+        <Button Content="Añadir Marca" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="32,1,25,6" Name="buttonNMarca" VerticalAlignment="Stretch" Grid.Column="3" Click="buttonNMarca_Click" />
     </Grid>
 </Window>
 

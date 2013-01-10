@@ -105,14 +105,9 @@ namespace InventoryApp.ViewModel.CatalogArticulo
         {
             this._articulo = new ArticuloModel(new ArticuloDataMapper());
             this._catalogArticuloViewModel = catalogArticuloViewModel;
-            this._articulo.Categoria = new DAL.POCOS.CATEGORIA { IS_ACTIVE = true, IS_MODIFIED = true, UNID_CATEGORIA = UNID.getNewUNID() };
-            this._articulo.Equipo = new DAL.POCOS.EQUIPO { IS_ACTIVE = true, IS_MODIFIED = true, UNID_EQUIPO = UNID.getNewUNID() + 1 };
-            this._articulo.Marca = new DAL.POCOS.MARCA { IS_ACTIVE = true, IS_MODIFIED = true, UNID_MARCA = UNID.getNewUNID() + 1 };
-            this._articulo.Modelo = new DAL.POCOS.MODELO { IS_ACTIVE = true, IS_MODIFIED = true, UNID_MODELO = UNID.getNewUNID() + 1 };
-            this._articulo.UnidArticulo = UNID.getNewUNID() + 1;
-
             try
             {
+
                 this._catalogCategoriaModel = new CatalogCategoriaModel(new CategoriaDataMapper());
                 this._catalogEquipoModel = new CatalogEquipoModel(new EquipoDataMapper());
                 this._catalogMarcaModel = new CatalogMarcaModel(new MarcaDataMapper());
@@ -140,10 +135,10 @@ namespace InventoryApp.ViewModel.CatalogArticulo
         {
             bool _canInsertArticulo = true;
             if (String.IsNullOrEmpty(this._articulo.ArticuloName) ||
-                String.IsNullOrEmpty(this._articulo.Modelo.MODELO_NAME) ||
-                String.IsNullOrEmpty(this._articulo.Marca.MARCA_NAME) ||
-                String.IsNullOrEmpty(this._articulo.Equipo.EQUIPO_NAME) ||
-                String.IsNullOrEmpty(this._articulo.Categoria.CATEGORIA_NAME))
+                this._articulo.Categoria == null ||
+                this._articulo.Equipo == null ||
+                this._articulo.Marca == null ||
+                this._articulo.Modelo == null)
                 _canInsertArticulo = false;
 
             return _canInsertArticulo;
@@ -162,8 +157,8 @@ namespace InventoryApp.ViewModel.CatalogArticulo
         }
         #endregion
     }
-
-    #region Código de catálogo sin relaciones
+    
+    #region Código de catálogo con relaciones
     
     //public class AddArticuloViewModel
     //{
@@ -262,9 +257,14 @@ namespace InventoryApp.ViewModel.CatalogArticulo
     //    {
     //        this._articulo = new ArticuloModel(new ArticuloDataMapper());
     //        this._catalogArticuloViewModel = catalogArticuloViewModel;
+    //        this._articulo.Categoria = new DAL.POCOS.CATEGORIA { IS_ACTIVE = true, IS_MODIFIED = true, UNID_CATEGORIA = UNID.getNewUNID() };
+    //        this._articulo.Equipo = new DAL.POCOS.EQUIPO { IS_ACTIVE = true, IS_MODIFIED = true, UNID_EQUIPO = UNID.getNewUNID() + 1 };
+    //        this._articulo.Marca = new DAL.POCOS.MARCA { IS_ACTIVE = true, IS_MODIFIED = true, UNID_MARCA = UNID.getNewUNID() + 1 };
+    //        this._articulo.Modelo = new DAL.POCOS.MODELO { IS_ACTIVE = true, IS_MODIFIED = true, UNID_MODELO = UNID.getNewUNID() + 1 };
+    //        this._articulo.UnidArticulo = UNID.getNewUNID() + 1;
+
     //        try
     //        {
-
     //            this._catalogCategoriaModel = new CatalogCategoriaModel(new CategoriaDataMapper());
     //            this._catalogEquipoModel = new CatalogEquipoModel(new EquipoDataMapper());
     //            this._catalogMarcaModel = new CatalogMarcaModel(new MarcaDataMapper());
@@ -292,10 +292,10 @@ namespace InventoryApp.ViewModel.CatalogArticulo
     //    {
     //        bool _canInsertArticulo = true;
     //        if (String.IsNullOrEmpty(this._articulo.ArticuloName) ||
-    //            this._articulo.Categoria == null ||
-    //            this._articulo.Equipo == null ||
-    //            this._articulo.Marca == null ||
-    //            this._articulo.Modelo == null)
+    //            String.IsNullOrEmpty(this._articulo.Modelo.MODELO_NAME) ||
+    //            String.IsNullOrEmpty(this._articulo.Marca.MARCA_NAME) ||
+    //            String.IsNullOrEmpty(this._articulo.Equipo.EQUIPO_NAME) ||
+    //            String.IsNullOrEmpty(this._articulo.Categoria.CATEGORIA_NAME))
     //            _canInsertArticulo = false;
 
     //        return _canInsertArticulo;
@@ -314,5 +314,6 @@ namespace InventoryApp.ViewModel.CatalogArticulo
     //    }
     //    #endregion
     //}
+        
     #endregion
 }

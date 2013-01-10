@@ -86,9 +86,7 @@ namespace InventoryApp.Model
         public CatalogProveedorCuentaModel(IDataMapper dataMapper)
         {
             this._dataMapper = new ProveedorCuentaDataMapper();
-            this._proveedorCuenta = new FixupCollection<DeleteProveedorCuenta>();
-            //this._selectedProveedorCuenta = new PROVEEDOR_CUENTA();
-            this.loadItems();
+            this._proveedorCuenta = new FixupCollection<DeleteProveedorCuenta>();            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

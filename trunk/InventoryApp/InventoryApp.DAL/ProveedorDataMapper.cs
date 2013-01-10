@@ -201,6 +201,28 @@ namespace InventoryApp.DAL
             return o;
         }
 
+        public object getElementProveedorCuenta(long element)
+        {
+            object o = null;
+                using (var Entity = new TAE2Entities())
+                {
+                    var query = (from p in Entity.PROVEEDORs
+                                 join c in Entity.PROVEEDOR_CUENTA
+                                 on p.UNID_PROVEEDOR equals c.UNID_PROVEEDOR
+                                 where c.IS_ACTIVE == true && p.UNID_PROVEEDOR == element && p.IS_ACTIVE == true
+                                 select c).ToList();
+                    foreach (PROVEEDOR_CUENTA a in query) {
+
+                        a.PROVEEDOR = a.PROVEEDOR;
+                        a.BANCO = a.BANCO;
+                    }
+
+                    o = query;                    
+                }
+
+            return o;
+        }
+        
         public List<PROVEEDOR> getElementsByCategoria(CATEGORIA categoria)
         {
             List<PROVEEDOR> res = new List<PROVEEDOR>();
@@ -297,7 +319,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void updateRelacion(object element, List<long> unidCategoria, List<long> auxUnidCategoria)
+        public void updateRelacion(object element, List<long> unidCategoria, List<long> auxUnidCategoria, List<long> unidCuenta, List<long> auxUnidCuenta, List<PROVEEDOR_CUENTA> listF)
         {
             if (element != null)
             {
@@ -325,6 +347,7 @@ namespace InventoryApp.DAL
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
+                    
                     //ELIMINA TODAS LAS RELACIONES QUE EXISTEN
                     if (auxUnidCategoria.Count > 0)
                     {
@@ -387,6 +410,74 @@ namespace InventoryApp.DAL
                                 //
 
                                 entity.PROVEEDOR_CATEGORIA.AddObject(proveedorCategoria);
+                                entity.SaveChanges();
+                            }
+                        }
+                    }
+
+                    //ELIMINA TODAS LAS RELACIONES DE PROVEEDOR_CUENTA
+                    if (auxUnidCuenta.Count > 0)
+                    {
+                        foreach (var e in auxUnidCuenta)
+                        {
+                            PROVEEDOR_CUENTA proveedorCuenta = new PROVEEDOR_CUENTA();
+                            var query = (from p in entity.PROVEEDORs
+                                         join relation in entity.PROVEEDOR_CUENTA
+                                         on p.UNID_PROVEEDOR equals relation.UNID_PROVEEDOR
+                                         where p.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR && relation.UNID_PROVEEDOR_CUENTA == e
+                                         select relation).ToList().First();
+
+                            query.IS_ACTIVE = false;
+                            //Sync
+                            query.IS_MODIFIED = true;
+                            query.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                            modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                            modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                            entity.SaveChanges();
+                            //
+                        }
+                    }
+                    //INSERTA LAS NUEVAS RELACIONES PROVEEDOR CUENTA
+                    if (unidCuenta.Count > 0)
+                    {
+                        foreach (var item in unidCuenta)
+                        {
+                            var query2 = (from cust in entity.PROVEEDOR_CUENTA
+                                          where cust.UNID_PROVEEDOR_CUENTA == item && cust.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR
+                                          select cust).ToList();
+
+                            if (query2.Count > 0)
+                            {
+                                var query3 = query2.First();
+
+                                //Sync
+                                query3.IS_ACTIVE = true;
+                                query3.IS_MODIFIED = true;
+                                query3.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                                modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                                modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                                entity.SaveChanges();
+                                //
+                            }
+                            else
+                            {
+                                PROVEEDOR_CUENTA proveedorCuenta = new PROVEEDOR_CUENTA();
+
+                                proveedorCuenta = listF.First(p => p.UNID_PROVEEDOR_CUENTA == item);
+
+                                proveedorCuenta.UNID_PROVEEDOR_CUENTA = item;
+                                proveedorCuenta.UNID_PROVEEDOR = proveedor.UNID_PROVEEDOR;
+                                proveedorCuenta.IS_ACTIVE = true;
+
+                                //Sync
+                                proveedorCuenta.IS_MODIFIED = true;
+                                proveedorCuenta.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                                modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                                modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                                entity.SaveChanges();
+                                //
+
+                                entity.PROVEEDOR_CUENTA.AddObject(proveedorCuenta);
                                 entity.SaveChanges();
                             }
                         }
@@ -505,7 +596,7 @@ namespace InventoryApp.DAL
 
                     if (validacion.Count == 0)
                     {
-                        proveedor.UNID_PROVEEDOR = UNID.getNewUNID();
+                        //proveedor.UNID_PROVEEDOR = UNID.getNewUNID();
                         //Sync
                         proveedor.IS_MODIFIED = true;
                         proveedor.LAST_MODIFIED_DATE = UNID.getNewUNID();
@@ -524,6 +615,7 @@ namespace InventoryApp.DAL
                             PROVEEDOR_CATEGORIA proveedorCategoria = new PROVEEDOR_CATEGORIA();
                             proveedorCategoria.UNID_CATEGORIA = item;
                             proveedorCategoria.UNID_PROVEEDOR = proveedor.UNID_PROVEEDOR;
+                            proveedorCategoria.IS_ACTIVE = true;
                             //Sync
                             proveedorCategoria.IS_MODIFIED = true;
                             proveedorCategoria.LAST_MODIFIED_DATE = UNID.getNewUNID();

@@ -10,6 +10,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using InventoryApp.View.CatalogProveedorCuenta;
+using InventoryApp.ViewModel.CatalogProveedorCuenta;
+using InventoryApp.ViewModel.CatalogProveedor;
 
 namespace InventoryApp.View.CatalogProveedor
 {
@@ -33,5 +36,13 @@ namespace InventoryApp.View.CatalogProveedor
         {
             this.Close();
         }
+
+        private void btnNuevaCuentaProveedor_Click(object sender, RoutedEventArgs e)
+        {
+            AltaModificarProveedorCuenta view = new AltaModificarProveedorCuenta();
+            AddProveedorCuentaViewModel viewModel = new AddProveedorCuentaViewModel(new CatalogProveedorCuentaViewModel(), (ModifyProveedorViewModel)this.DataContext);
+            view.DataContext = viewModel;
+            view.ShowDialog();
+        }  
     }
 }

@@ -17,7 +17,6 @@ namespace InventoryApp.ViewModel.MaxMin
         private RelayCommand _addMaxMinCommand;
         private MaxMinViewModel _maxMinViewModel;
         private CatalogAlmacenModel _catalogAlmacenModel;
-        //private CatalogArticuloModel _catalogArticuloModel;
         #endregion
 
         //Exponer la propiedad maxMin articulo y almacen
@@ -46,18 +45,6 @@ namespace InventoryApp.ViewModel.MaxMin
             }
         }
 
-        //public CatalogArticuloModel CatalogArticuloModel
-        //{
-        //    get
-        //    {
-        //        return _catalogArticuloModel;
-        //    }
-        //    set
-        //    {
-        //        _catalogArticuloModel = value;
-        //    }
-        //}
-
         public ICommand AddMaxMinCommand
         {
             get
@@ -83,7 +70,7 @@ namespace InventoryApp.ViewModel.MaxMin
                 }
             }
         }
-        private ObservableCollection<MaxMinModel> _AddArticulos= new ObservableCollection<MaxMinModel>();
+        private ObservableCollection<MaxMinModel> _AddArticulos = new ObservableCollection<MaxMinModel>();
         public const string ArticulosPropertyName = "AddArticulos";
 
         #region Constructors
@@ -141,16 +128,27 @@ namespace InventoryApp.ViewModel.MaxMin
         /// <returns></returns>
         public bool CanAttempAddMaxMin()
         {
-            bool _canAddMaxMin = true;
-            //if (this.CatalogArticuloModel.Articulos.Count != 0)
-                _canAddMaxMin = false;
-
+            bool _canAddMaxMin = false;
+            if(this.AddArticulos.Count!=0)
+                _canAddMaxMin = true;
             return _canAddMaxMin;
         }
 
         public void AttempAddMaxMin()
         {
-            this._addMaxMin.saveMaxMin();
+            //this._addMaxMin=this.AddArticulos;
+            
+            foreach (var item in this.AddArticulos)
+            {
+                this._addMaxMin.Articulo = item.Articulo;
+                //item.Articulo = this._addMaxMin.Articulo;
+                //item.Categoria = this._addMaxMin.Categoria;
+                //item.EquipoModel = this._addMaxMin.EquipoModel;
+                //item.Marca = this._addMaxMin.Marca;
+                //item.Modelo = this._addMaxMin.Modelo;
+                this._addMaxMin.saveMaxMin();
+            }
+            
 
             //Puede ser que para pruebas unitarias catalogProyectoViewModel sea nulo ya que
             //es una dependencia inyectada

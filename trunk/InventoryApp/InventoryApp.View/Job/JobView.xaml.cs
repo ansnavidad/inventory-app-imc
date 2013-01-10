@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using InventoryApp.ViewModel.Job;
+using System.Diagnostics;
+using System.Configuration;
 
 namespace InventoryApp.View.Job
 {
@@ -27,12 +29,17 @@ namespace InventoryApp.View.Job
 
         private void btnCarga_Click(object sender, RoutedEventArgs e)
         {
-            //lblCargaItems.Visibility = Visibility.Visible;
             JobViewModel job = new JobViewModel();
 
             job.CallServiceGetExecuteJob();
+
             lblCargaItems.Visibility = Visibility.Hidden;
 
+        }
+
+        private void btnRuta_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(ConfigurationManager.AppSettings["RutaArchivos"].ToString());
         }
     }
 }

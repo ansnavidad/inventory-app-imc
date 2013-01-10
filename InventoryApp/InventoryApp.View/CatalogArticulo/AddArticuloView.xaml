@@ -39,7 +39,7 @@
                Name="label2" VerticalAlignment="Top" Grid.ColumnSpan="2" />
         <TextBox MaxLength="512" Grid.Row="1" Grid.Column="2" Text="{Binding Articulo.ArticuloName, Mode=TwoWay,
                  UpdateSourceTrigger=PropertyChanged}" Height="23" HorizontalAlignment="Left" Margin="3,14,0,0" Name="textBox2" 
-                 VerticalAlignment="Top" Width="120" />
+                 VerticalAlignment="Top" Width="120" TabIndex="1" />
 
         <Label Content="Categoría :" Grid.Row="2" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="84,2,0,0" 
                Name="label3" VerticalAlignment="Top" Grid.ColumnSpan="2" />
@@ -48,7 +48,7 @@
                   ItemsSource="{Binding CatalogCategoriaModel.Categoria, Mode=TwoWay}"
                   DisplayMemberPath="CATEGORIA_NAME" SelectedValuePath="UNID_CATEGORIA"
                   Height="23" HorizontalAlignment="Left" Margin="3,3,0,0" 
-                  Name="comboBox1" VerticalAlignment="Top" Width="120" />
+                  Name="comboBox1" VerticalAlignment="Top" Width="120" TabIndex="2" />
 
         <Label Content="Equipo :" Grid.Row="3" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="97,2,0,0" Name="label6" VerticalAlignment="Top" />
         <ComboBox SelectedIndex="0" Grid.Row="3" Grid.Column="2"
@@ -57,7 +57,7 @@
                   DisplayMemberPath="EQUIPO_NAME" Height="23" HorizontalAlignment="Left" 
                   Margin="2,3,0,0" Name="comboBox4" 
                   SelectedValuePath="UNID_EQUIPO" VerticalAlignment="Top"
-                  Width="120" />
+                  Width="120" TabIndex="4" />
 
         <Label Content="Marca :" Grid.Row="5" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="101,3,0,0" Name="label4" VerticalAlignment="Top" Grid.RowSpan="2" />
         <ComboBox SelectedIndex="0" Grid.Row="5" Grid.Column="2"
@@ -66,7 +66,7 @@
                   ItemsSource="{Binding CatalogMarcaModel.Marcas, Mode=TwoWay}" 
                   Margin="3,3,0,0" Name="comboBox2" 
                   SelectedValuePath="UNID_MARCA" 
-                  VerticalAlignment="Top" Width="120" />
+                  VerticalAlignment="Top" Width="120" TabIndex="8" />
 
         <Label Content="Modelo :" Grid.Row="4" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="92,3,0,0" Name="label5" VerticalAlignment="Top" Grid.RowSpan="2" />
         <ComboBox SelectedIndex="0" Grid.Row="4" Grid.Column="2"
@@ -75,14 +75,14 @@
                   DisplayMemberPath="MODELO_NAME" Height="23" HorizontalAlignment="Left" 
                   Margin="2,3,0,0" Name="comboBox3" 
                   SelectedValuePath="UNID_MODELO" VerticalAlignment="Top" 
-                  Width="120"/>
+                  Width="120" TabIndex="6" />
         <Button Content="Guardar" Grid.Row="7" Grid.Column="1"  Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnAgregar" 
-                VerticalAlignment="Stretch" Width="75" Command="{Binding AddItemCommand,Mode=OneWay}" Click="btnAgregar_Click" />
+                VerticalAlignment="Stretch" Width="75" Command="{Binding AddItemCommand,Mode=OneWay}" Click="btnAgregar_Click" TabIndex="10" />
         <Button Content="Cancelar" Grid.Column="2" Grid.Row="7" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
-        <Button Content="Añadir Categoría" Height="23" HorizontalAlignment="Stretch" Margin="18,3,14,4" Name="buttonNCat" VerticalAlignment="Stretch" Grid.Column="3" Grid.Row="2" Click="buttonNCat_Click" />
-        <Button Content="Añadir Equipo" Height="23" HorizontalAlignment="Stretch" Margin="18,3,14,4" Name="buttonNEquipo" VerticalAlignment="Stretch" Grid.Column="3" Grid.Row="3" Click="buttonNEquipo_Click" />
-        <Button Content="Añadir Modelo" Height="23" HorizontalAlignment="Stretch" Margin="18,4,14,3" Name="buttonNModelo" VerticalAlignment="Stretch" Grid.Column="3" Grid.Row="4" Click="buttonNModelo_Click" />
-        <Button Content="Añadir Marca" Height="23" HorizontalAlignment="Stretch" Margin="18,4,14,3" Name="buttonNMarca" VerticalAlignment="Stretch" Grid.Column="3" Grid.Row="5" Click="buttonNMarca_Click" />
+        <Button Content="Añadir Categoría" Height="23" HorizontalAlignment="Stretch" Margin="18,3,14,4" Name="buttonNCat" VerticalAlignment="Stretch" Grid.Column="3" Grid.Row="2" Click="buttonNCat_Click" Uid="3" />
+        <Button Content="Añadir Equipo" Height="23" HorizontalAlignment="Stretch" Margin="18,3,14,4" Name="buttonNEquipo" VerticalAlignment="Stretch" Grid.Column="3" Grid.Row="3" Click="buttonNEquipo_Click" TabIndex="5" />
+        <Button Content="Añadir Modelo" Height="23" HorizontalAlignment="Stretch" Margin="18,4,14,3" Name="buttonNModelo" VerticalAlignment="Stretch" Grid.Column="3" Grid.Row="4" Click="buttonNModelo_Click" TabIndex="7" />
+        <Button Content="Añadir Marca" Height="23" HorizontalAlignment="Stretch" Margin="18,4,14,3" Name="buttonNMarca" VerticalAlignment="Stretch" Grid.Column="3" Grid.Row="5" Click="buttonNMarca_Click" TabIndex="9" />
     </Grid>
 </Window>
 

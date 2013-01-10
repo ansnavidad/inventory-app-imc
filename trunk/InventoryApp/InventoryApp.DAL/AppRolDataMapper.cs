@@ -201,21 +201,14 @@ namespace InventoryApp.DAL
                 {
                     ROL rol = (ROL)element;
 
-                    var validacion = (from cust in entity.ROLs
-                                      where cust.ROL_NAME == rol.ROL_NAME
-                                      select cust).ToList();
+                    //Sync
 
-                    if (validacion.Count == 0)
-                    {                        
-                        //Sync
-                        
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.ROLs.AddObject(rol);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.ROLs.AddObject(rol);
+                    entity.SaveChanges();                   
                 }
             }
         }

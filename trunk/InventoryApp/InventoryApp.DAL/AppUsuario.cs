@@ -179,22 +179,15 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     USUARIO usuario = (USUARIO)element;
-
-                    var validacion = (from cust in entity.USUARIOs
-                                      where cust.UNID_USUARIO == usuario.UNID_USUARIO
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                                       
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.USUARIOs.AddObject(usuario);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.USUARIOs.AddObject(usuario);
+                    entity.SaveChanges();                    
                 }
             }
         }

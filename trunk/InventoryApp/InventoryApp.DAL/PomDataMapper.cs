@@ -168,21 +168,14 @@ namespace InventoryApp.DAL
                 {
                     POM pom = (POM)element;
 
-                    var validacion = (from cust in entity.POMs
-                                      where cust.UNID_POM == pom.UNID_POM
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.POMs.AddObject(pom);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.POMs.AddObject(pom);
+                    entity.SaveChanges();
                 }
             }
         }

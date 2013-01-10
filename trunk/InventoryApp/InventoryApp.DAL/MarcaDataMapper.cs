@@ -209,21 +209,14 @@ namespace InventoryApp.DAL
                 {
                     MARCA marca = (MARCA)element;
 
-                    var validacion = (from cust in entity.MARCAs
-                                      where cust.MARCA_NAME == marca.MARCA_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.MARCAs.AddObject(marca);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.MARCAs.AddObject(marca);
+                    entity.SaveChanges();
                 }
             }
         }

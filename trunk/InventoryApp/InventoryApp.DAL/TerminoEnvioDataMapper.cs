@@ -221,21 +221,14 @@ namespace InventoryApp.DAL
                 {
                     TERMINO_ENVIO terminoEnvio = (TERMINO_ENVIO)element;
 
-                    var validacion = (from cust in entity.TERMINO_ENVIO
-                                      where cust.TERMINO == terminoEnvio.TERMINO
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
-                        entity.SaveChanges();
-                        //
-                        entity.TERMINO_ENVIO.AddObject(terminoEnvio);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
+                    entity.TERMINO_ENVIO.AddObject(terminoEnvio);
+                    entity.SaveChanges();
                 }
             }
         }

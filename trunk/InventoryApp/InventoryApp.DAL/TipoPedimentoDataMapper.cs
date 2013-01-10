@@ -221,21 +221,14 @@ namespace InventoryApp.DAL
                 {
                     TIPO_PEDIMENTO tipoPedimento = (TIPO_PEDIMENTO)element;
 
-                    var validacion = (from cust in entity.TIPO_PEDIMENTO
-                                      where cust.TIPO_PEDIMENTO_NAME == tipoPedimento.TIPO_PEDIMENTO_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.TIPO_PEDIMENTO.AddObject(tipoPedimento);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.TIPO_PEDIMENTO.AddObject(tipoPedimento);
+                    entity.SaveChanges();
                 }
             }
         }

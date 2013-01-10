@@ -275,21 +275,14 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     CATEGORIA categoria = (CATEGORIA)element;
-
-                    var validacion = (from cust in entity.CATEGORIAs
-                                      where cust.CATEGORIA_NAME == categoria.CATEGORIA_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {                        
-                        //Sync
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.CATEGORIAs.AddObject(categoria);
-                        entity.SaveChanges();
-                    }
+                      
+                    //Sync
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.CATEGORIAs.AddObject(categoria);
+                    entity.SaveChanges();
                 }
             }
         }

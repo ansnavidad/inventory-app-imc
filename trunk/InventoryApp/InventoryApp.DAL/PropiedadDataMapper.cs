@@ -204,21 +204,13 @@ namespace InventoryApp.DAL
                 {
                     PROPIEDAD propiedad = (PROPIEDAD)element;
 
-                    var validacion = (from cust in entity.PROPIEDADs
-                                      where cust.PROPIEDAD1 == propiedad.PROPIEDAD1
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
-                        
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.PROPIEDADs.AddObject(propiedad);
-                        entity.SaveChanges();
-                    }
+            //Sync                        
+            var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+            modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+            entity.SaveChanges();
+            //
+            entity.PROPIEDADs.AddObject(propiedad);
+            entity.SaveChanges();
                 }
             }
         }

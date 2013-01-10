@@ -230,21 +230,13 @@ namespace InventoryApp.DAL
                 {
                     TIPO_EMPRESA tra = (TIPO_EMPRESA)element;
 
-                    var validacion = (from cust in entity.TIPO_EMPRESA
-                                      where cust.TIPO_EMPRESA_NAME == tra.TIPO_EMPRESA_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
-                        
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.TIPO_EMPRESA.AddObject(tra);
-                        entity.SaveChanges();
-                    }
+                    //Sync                        
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.TIPO_EMPRESA.AddObject(tra);
+                    entity.SaveChanges();
                 }
             }
         }

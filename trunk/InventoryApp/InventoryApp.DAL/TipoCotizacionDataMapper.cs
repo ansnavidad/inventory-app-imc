@@ -231,21 +231,14 @@ namespace InventoryApp.DAL
                 {
                     TIPO_COTIZACION tipo = (TIPO_COTIZACION)element;
 
-                    var validacion = (from cust in entity.TIPO_COTIZACION
-                                      where cust.TIPO_COTIZACION_NAME == tipo.TIPO_COTIZACION_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.TIPO_COTIZACION.AddObject(tipo);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.TIPO_COTIZACION.AddObject(tipo);
+                    entity.SaveChanges();
                 }
             }
         }

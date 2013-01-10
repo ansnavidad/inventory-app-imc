@@ -204,22 +204,13 @@ namespace InventoryApp.DAL
                 {
                     UNIDAD unidad = (UNIDAD)element;
 
-                    var validacion = (from cust in entity.UNIDADs
-                                      where cust.UNIDAD1 == unidad.UNIDAD1
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        unidad.UNID_UNIDAD = UNID.getNewUNID();
-                        //Sync
-                        
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.UNIDADs.AddObject(unidad);
-                        entity.SaveChanges();
-                    }
+                    //Sync                        
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.UNIDADs.AddObject(unidad);
+                    entity.SaveChanges();
                 }
             }
         }

@@ -210,22 +210,15 @@ namespace InventoryApp.DAL
                 {
                     INFRAESTRUCTURA tra = (INFRAESTRUCTURA)element;
 
-                    var validacion = (from cust in entity.INFRAESTRUCTURAs
-                                      where cust.INFRAESTRUCTURA_NAME == tra.INFRAESTRUCTURA_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
-                        tra.IS_MODIFIED = true;
-                        tra.LAST_MODIFIED_DATE = UNID.getNewUNID();
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.INFRAESTRUCTURAs.AddObject(tra);
-                        entity.SaveChanges();
-                    }
+                    //Sync
+                    tra.IS_MODIFIED = true;
+                    tra.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.INFRAESTRUCTURAs.AddObject(tra);
+                    entity.SaveChanges();
                 }
             }
         }

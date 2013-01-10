@@ -354,22 +354,15 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     ARTICULO art = (ARTICULO)element;
-
-                    var validacion = (from cust in entity.ARTICULOes
-                                      where cust.ARTICULO1 == art.ARTICULO1
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                                        
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.ARTICULOes.AddObject(art);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.ARTICULOes.AddObject(art);
+                    entity.SaveChanges();                    
                 }
             }
         }

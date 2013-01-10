@@ -217,21 +217,14 @@ namespace InventoryApp.DAL
                 {
                     TRANSPORTE tra = (TRANSPORTE)element;
 
-                    var validacion = (from cust in entity.TRANSPORTEs
-                                      where cust.TRANSPORTE_NAME == tra.TRANSPORTE_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.TRANSPORTEs.AddObject(tra);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.TRANSPORTEs.AddObject(tra);
+                    entity.SaveChanges();
                 }
             }
         }

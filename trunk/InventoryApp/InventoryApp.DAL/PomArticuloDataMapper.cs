@@ -170,21 +170,14 @@ namespace InventoryApp.DAL
                 {
                     POM_ARTICULO pais = (POM_ARTICULO)element;
 
-                    var validacion = (from cust in entity.POM_ARTICULO
-                                      where cust.UNID_POM_ARTICULO == pais.UNID_POM_ARTICULO
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.POM_ARTICULO.AddObject(pais);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.POM_ARTICULO.AddObject(pais);
+                    entity.SaveChanges();
                 }
             }
         }

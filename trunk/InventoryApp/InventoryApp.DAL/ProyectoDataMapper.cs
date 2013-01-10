@@ -225,21 +225,14 @@ namespace InventoryApp.DAL
                 {
                     PROYECTO Proyecto = (PROYECTO)element;
 
-                    var validacion = (from cust in entity.PROYECTOes
-                                      where cust.PROYECTO_NAME == Proyecto.PROYECTO_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.PROYECTOes.AddObject(Proyecto);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.PROYECTOes.AddObject(Proyecto);
+                    entity.SaveChanges();
                 }
             }
         }

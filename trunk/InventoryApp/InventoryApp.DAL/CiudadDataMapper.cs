@@ -215,21 +215,14 @@ namespace InventoryApp.DAL
                 {
                     CIUDAD ciudad = (CIUDAD)element;
 
-                    var validacion = (from cust in entity.CIUDADs
-                                      where cust.CIUDAD1 == ciudad.CIUDAD1
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.CIUDADs.AddObject(ciudad);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.CIUDADs.AddObject(ciudad);
+                    entity.SaveChanges();
                 }
             }
         }

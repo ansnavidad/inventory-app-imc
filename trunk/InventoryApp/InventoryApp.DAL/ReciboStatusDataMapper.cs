@@ -176,21 +176,13 @@ namespace InventoryApp.DAL
                 {
                     RECIBO_STATUS reciboS = (RECIBO_STATUS)element;
 
-                    var validacion = (from cust in entity.RECIBO_STATUS
-                                      where cust.RECIBO_STATUS_NAME == reciboS.RECIBO_STATUS_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
-                        
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.RECIBO_STATUS.AddObject(reciboS);
-                        entity.SaveChanges();
-                    }
+                    //Sync                        
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.RECIBO_STATUS.AddObject(reciboS);
+                    entity.SaveChanges();
                 }
             }
         }

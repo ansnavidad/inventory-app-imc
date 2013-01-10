@@ -162,21 +162,13 @@ namespace InventoryApp.DAL
                 {
                     PEDIMENTO pedimento = (PEDIMENTO)element;
 
-                    var validacion = (from cust in entity.PEDIMENTOes
-                                      where cust.UNID_PEDIMENTO == pedimento.UNID_PEDIMENTO
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
-                        
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.PEDIMENTOes.AddObject(pedimento);
-                        entity.SaveChanges();
-                    }
+                    //Sync                        
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.PEDIMENTOes.AddObject(pedimento);
+                    entity.SaveChanges();
                 }
             }
         }

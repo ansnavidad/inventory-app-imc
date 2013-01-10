@@ -181,21 +181,14 @@ namespace InventoryApp.DAL
                 {
                     COTIZACION cotizacion = (COTIZACION)element;
 
-                    var validacion = (from cust in entity.COTIZACIONs
-                                      where cust.UNID_COTIZACION == cotizacion.UNID_COTIZACION
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.COTIZACIONs.AddObject(cotizacion);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.COTIZACIONs.AddObject(cotizacion);
+                    entity.SaveChanges();
                 }
             }
         }

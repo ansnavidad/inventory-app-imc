@@ -204,21 +204,14 @@ namespace InventoryApp.DAL
                 {
                     BANCO banco = (BANCO)element;
 
-                    var validacion = (from cust in entity.BANCOes
-                                      where cust.BANCO_NAME == banco.BANCO_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.BANCOes.AddObject(banco);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.BANCOes.AddObject(banco);
+                    entity.SaveChanges();
                 }
             }
         }

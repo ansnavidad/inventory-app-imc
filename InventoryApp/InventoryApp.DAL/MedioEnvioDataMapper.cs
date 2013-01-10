@@ -211,21 +211,14 @@ namespace InventoryApp.DAL
                 {
                     MEDIO_ENVIO medioEnvio = (MEDIO_ENVIO)element;
 
-                    var validacion = (from cust in entity.MEDIO_ENVIO
-                                      where cust.MEDIO_ENVIO_NAME == medioEnvio.MEDIO_ENVIO_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.MEDIO_ENVIO.AddObject(medioEnvio);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.MEDIO_ENVIO.AddObject(medioEnvio);
+                    entity.SaveChanges();
                 }
             }
         }

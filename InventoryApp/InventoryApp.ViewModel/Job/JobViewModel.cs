@@ -11,8 +11,8 @@ namespace InventoryApp.ViewModel.Job
         #region propiedades
         //servidor
         //imc
-        string routeService = @"http://192.168.0.116:2020/Services/Receiver.svc";
-        string prueba= @"http://localhost:8082/Services/Receiver.svc";
+        string routeService = @"http://10.50.0.131:8080/Services/Receiver.svc";
+        //string prueba = @"http://10.50.0.131:8080/Services/Receiver.svc";
         string basicAuthUser = "Administrator";
         string basicAuthPass = "Passw0rd1!";
         //string basicAuthUser = "ISAAC";

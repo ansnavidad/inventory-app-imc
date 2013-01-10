@@ -138,22 +138,15 @@ namespace InventoryApp.DAL
                 {
                     FACTURA factura = (FACTURA)element;
 
-                    var validacion = (from cust in entity.FACTURAs
-                                      where cust.UNID_FACTURA == factura.UNID_FACTURA
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
-                        factura.IS_MODIFIED = true;
-                        factura.LAST_MODIFIED_DATE = UNID.getNewUNID();
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.FACTURAs.AddObject(factura);
-                        entity.SaveChanges();
-                    }
+                    //Sync
+                    factura.IS_MODIFIED = true;
+                    factura.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.FACTURAs.AddObject(factura);
+                    entity.SaveChanges();
                 }
             }
         }

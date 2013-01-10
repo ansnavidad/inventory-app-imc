@@ -559,21 +559,14 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     ALMACEN almacen = (ALMACEN)element;
+                                          
+                    //Sync
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
 
-                    var validacion = (from cust in entity.ALMACENs
-                                      where cust.ALMACEN_NAME == almacen.ALMACEN_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {                        
-                        //Sync
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-
-                        entity.ALMACENs.AddObject(almacen);
-                        entity.SaveChanges();
-                    }
+                    entity.ALMACENs.AddObject(almacen);
+                    entity.SaveChanges();
                 }
             }
         }

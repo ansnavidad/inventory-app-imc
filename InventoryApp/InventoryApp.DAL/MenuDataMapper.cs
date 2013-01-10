@@ -201,22 +201,15 @@ namespace InventoryApp.DAL
                 {
                     MENU menu = (MENU)element;
 
-                    var validacion = (from cust in entity.MENUs
-                                      where cust.MENU_NAME == menu.MENU_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
-                        menu.IS_MODIFIED = true;
-                        menu.LAST_MODIFIED_DATE = UNID.getNewUNID();
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.MENUs.AddObject(menu);
-                        entity.SaveChanges();
-                    }
+                    //Sync
+                    menu.IS_MODIFIED = true;
+                    menu.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.MENUs.AddObject(menu);
+                    entity.SaveChanges();
                 }
             }
         }

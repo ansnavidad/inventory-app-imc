@@ -237,21 +237,14 @@ namespace InventoryApp.Model
                 {
                     EMPRESA empresa = (EMPRESA)element;
 
-                    var validacion = (from cust in entity.EMPRESAs
-                                      where cust.EMPRESA_NAME == empresa.EMPRESA_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
+                    //Sync
                         
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.EMPRESAs.AddObject(empresa);
-                        entity.SaveChanges();
-                    }
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.EMPRESAs.AddObject(empresa);
+                    entity.SaveChanges();
                 }
             }
         }

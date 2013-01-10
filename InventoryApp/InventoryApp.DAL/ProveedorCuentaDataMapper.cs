@@ -232,20 +232,13 @@ namespace InventoryApp.DAL
                 {
                     PROVEEDOR_CUENTA proveedorCuenta = (PROVEEDOR_CUENTA)element;
 
-                    var validacion = (from cust in entity.PROVEEDOR_CUENTA
-                                      where cust.NUMERO_CUENTA == proveedorCuenta.NUMERO_CUENTA
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                        entity.SaveChanges();
-                        //
-                        entity.PROVEEDOR_CUENTA.AddObject(proveedorCuenta);
-                        entity.SaveChanges();
-                    }
+                    //Sync
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.PROVEEDOR_CUENTA.AddObject(proveedorCuenta);
+                    entity.SaveChanges();
                 }
             }
         }

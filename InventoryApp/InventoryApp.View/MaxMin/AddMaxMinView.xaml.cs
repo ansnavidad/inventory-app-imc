@@ -26,18 +26,22 @@ namespace InventoryApp.View.MaxMin
 
         private void btnAgregarArticulo_Click(object sender, RoutedEventArgs e)
         {
-            AddArticuloView alta = new AddArticuloView();
-            try
-            {
-                AddMaxMinViewModel addMaxMinViewModel = new AddMaxMinViewModel();
-                addMaxMinViewModel = this.DataContext as AddMaxMinViewModel;
-                alta.DataContext = addMaxMinViewModel.CreateAddArticuloMaxMinViewModel();
-                alta.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            AddArticuloView altaView = new AddArticuloView();
+            AddArticulosMaxMin addArticuloViewModel = new AddArticulosMaxMin((AddMaxMinViewModel)this.DataContext);
+            altaView.DataContext = addArticuloViewModel;
+            altaView.ShowDialog();
+            //AddArticuloView alta = new AddArticuloView();
+            //try
+            //{
+            //    AddMaxMinViewModel addMaxMinViewModel = new AddMaxMinViewModel();
+            //    addMaxMinViewModel = this.DataContext as AddMaxMinViewModel;
+            //    alta.DataContext = addMaxMinViewModel.CreateAddArticuloMaxMinViewModel();
+            //    alta.ShowDialog();
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
         }
     }
 }

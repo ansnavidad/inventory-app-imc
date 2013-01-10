@@ -188,6 +188,9 @@
     <Compile Include="POCOS\POM_ARTICULO.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
+    <Compile Include="POCOS\PROGRAMADO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
     <Compile Include="POCOS\PROPIEDAD.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>

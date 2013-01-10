@@ -203,6 +203,38 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private ICollection<MAX_MIN> _mAX_MIN;
+    
+        public virtual ICollection<PROGRAMADO> PROGRAMADOes
+        {
+            get
+            {
+                if (_pROGRAMADOes == null)
+                {
+                    var newCollection = new FixupCollection<PROGRAMADO>();
+                    newCollection.CollectionChanged += FixupPROGRAMADOes;
+                    _pROGRAMADOes = newCollection;
+                }
+                return _pROGRAMADOes;
+            }
+            set
+            {
+                if (!ReferenceEquals(_pROGRAMADOes, value))
+                {
+                    var previousValue = _pROGRAMADOes as FixupCollection<PROGRAMADO>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupPROGRAMADOes;
+                    }
+                    _pROGRAMADOes = value;
+                    var newValue = value as FixupCollection<PROGRAMADO>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupPROGRAMADOes;
+                    }
+                }
+            }
+        }
+        private ICollection<PROGRAMADO> _pROGRAMADOes;
 
         #endregion
         #region Association Fixup
@@ -286,6 +318,28 @@ namespace InventoryApp.DAL.POCOS
             if (e.OldItems != null)
             {
                 foreach (MAX_MIN item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.ALMACEN, this))
+                    {
+                        item.ALMACEN = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupPROGRAMADOes(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (PROGRAMADO item in e.NewItems)
+                {
+                    item.ALMACEN = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (PROGRAMADO item in e.OldItems)
                 {
                     if (ReferenceEquals(item.ALMACEN, this))
                     {

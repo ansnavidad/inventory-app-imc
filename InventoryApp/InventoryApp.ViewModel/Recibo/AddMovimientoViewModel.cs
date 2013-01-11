@@ -595,8 +595,9 @@ namespace InventoryApp.ViewModel.Recibo
                 //NÚMERO DE PEDIMENTO:
                 excel.Cells[19, 12] = this._SelectedFactura.NumeroPedimento.ToString();
                 //NÚMERO DE FACTURA:
-                excel.Cells[21, 12] = this._SelectedFactura.NumeroFactura.ToString();
-
+                excel.Cells[21, 12] = this._SelectedFactura.NumeroFactura.ToString();                
+                //CANTIDAD DE ITEMS:
+                excel.Cells[17, 12] = this._Items.Count;
                 //IMPORTE:
                 excel.Cells[17, 26] = this._SelectedFactura.Importe.ToString();
                 //IVA %

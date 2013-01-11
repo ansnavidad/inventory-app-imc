@@ -16,11 +16,19 @@ namespace InventoryApp.DAL
             return resx;
         }
 
-         public long? LastModifiedDate()
+        public long? LastModifiedDate()
         {
             long? resul = null;
             using (var entity = new TAE2Entities())
             {
+                var resul0 = (from prov in entity.FACTURAs
+                              where prov.IS_ACTIVE == true
+                              where prov.IS_MODIFIED == false
+                              select prov.LAST_MODIFIED_DATE).ToList();
+
+                if (resul0.Count == 0)
+                    return resul;
+
                 resul = (from facturaDetalle in entity.FACTURAs
                          where facturaDetalle.IS_ACTIVE == true
                          where facturaDetalle.IS_MODIFIED == false

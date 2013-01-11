@@ -61,6 +61,7 @@ namespace InventoryApp.Model
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Min"));
                     }
+                    
                 }
             }
         }
@@ -72,7 +73,7 @@ namespace InventoryApp.Model
                 return _max;
             }
             set
-            {
+            {                 
                 if (_max != value)
                 {
                     _max = value;
@@ -238,6 +239,14 @@ namespace InventoryApp.Model
             _dataMapper.udpateElement(new MAX_MIN() { IS_ACTIVE = true, UNID_MAX_MIN=this._unidMaxMin, MAX = this._max, MIN = this._min, UNID_ALMACEN = this._almacen.UNID_ALMACEN, UNID_ARTICULO = this._articulo.UNID_ARTICULO });
         }
 
+        public void DeleteMaxMin()
+        {
+            if (_dataMapper != null)
+            {
+                _dataMapper.deleteElement(new MAX_MIN() { UNID_MAX_MIN=this.UnidMaxMin});
+            }
+        }
+
         #region Constructors
         public MaxMinModel(IDataMapper dataMapper)
         {
@@ -252,6 +261,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new MaxMinDataMapper();
         }
+        
         
         #endregion
 

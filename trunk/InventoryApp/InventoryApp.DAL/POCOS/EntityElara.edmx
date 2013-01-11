@@ -35,6 +35,7 @@
           <EntitySet Name="TIPO_EMPRESA" EntityType="TAE2Model.Store.TIPO_EMPRESA" store:Type="Tables" Schema="CAT" />
           <EntitySet Name="TIPO_PEDIMENTO" EntityType="TAE2Model.Store.TIPO_PEDIMENTO" store:Type="Tables" Schema="CAT" />
           <EntitySet Name="TRANSPORTE" EntityType="TAE2Model.Store.TRANSPORTE" store:Type="Tables" Schema="CAT" />
+          <EntitySet Name="UPDATE" EntityType="TAE2Model.Store.UPDATE" store:Type="Tables" Schema="CAT" />
           <EntitySet Name="UPLOAD_LOG" EntityType="TAE2Model.Store.UPLOAD_LOG" store:Type="Tables" Schema="CAT" />
           <EntitySet Name="ALMACEN" EntityType="TAE2Model.Store.ALMACEN" store:Type="Tables" Schema="CATINV" />
           <EntitySet Name="ALMACEN_TECNICO" EntityType="TAE2Model.Store.ALMACEN_TECNICO" store:Type="Tables" Schema="CATINV" />
@@ -669,6 +670,13 @@
           <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
           <Property Name="IS_MODIFIED" Type="bit" Nullable="false" />
           <Property Name="LAST_MODIFIED_DATE" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UPDATE">
+          <Key>
+            <PropertyRef Name="UNID_UPDATE" />
+          </Key>
+          <Property Name="UNID_UPDATE" Type="bigint" Nullable="false" />
+          <Property Name="VERSION" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UPLOAD_LOG">
           <Key>
@@ -2022,6 +2030,24 @@
         <Property Name="TecnicoInstalador" Type="nvarchar" MaxLength="32" />
       </EntityType>
       Se encontraron errores durante la generación:
+      advertencia 6013: La tabla o vista 'TAE2.dbo.STG_LOAD_ITEM' no tiene una clave principal definida y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+      
+      <EntityType Name="STG_LOAD_ITEM">
+        <Property Name="Equipo" Type="nvarchar" MaxLength="500" />
+        <Property Name="Marca" Type="nvarchar" MaxLength="500" />
+        <Property Name="Modelo" Type="nvarchar" MaxLength="500" />
+        <Property Name="NumeroSerie" Type="nvarchar" MaxLength="500" />
+        <Property Name="SKU" Type="nvarchar" MaxLength="500" />
+        <Property Name="UnidadMedida" Type="nvarchar" MaxLength="500" />
+        <Property Name="Cantidad" Type="float" />
+        <Property Name="Propiedad" Type="nvarchar" MaxLength="500" />
+        <Property Name="UltimoStatus" Type="nvarchar" MaxLength="500" />
+        <Property Name="Proyecto" Type="nvarchar" MaxLength="500" />
+        <Property Name="UltimoDestino" Type="nvarchar" MaxLength="500" />
+        <Property Name="Observaciones" Type="nvarchar" MaxLength="1000" />
+        <Property Name="UltimoDestino2" Type="nvarchar" MaxLength="500" />
+      </EntityType>
+      Se encontraron errores durante la generación:
       advertencia 6013: La tabla o vista 'TAE2.dbo.STG_PROVEEDOR' no tiene una clave principal definida y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
       
       <EntityType Name="STG_PROVEEDOR">
@@ -2073,6 +2099,7 @@
           <EntitySet Name="TIPO_EMPRESA" EntityType="TAE2Model.TIPO_EMPRESA" />
           <EntitySet Name="TIPO_PEDIMENTO" EntityType="TAE2Model.TIPO_PEDIMENTO" />
           <EntitySet Name="TRANSPORTEs" EntityType="TAE2Model.TRANSPORTE" />
+          <EntitySet Name="UPDATEs" EntityType="TAE2Model.UPDATE" />
           <EntitySet Name="UPLOAD_LOG" EntityType="TAE2Model.UPLOAD_LOG" />
           <EntitySet Name="ALMACENs" EntityType="TAE2Model.ALMACEN" />
           <EntitySet Name="ALMACEN_TECNICO" EntityType="TAE2Model.ALMACEN_TECNICO" />
@@ -2759,6 +2786,13 @@
           <Property Name="LAST_MODIFIED_DATE" Type="Int64" Nullable="false" />
           <NavigationProperty Name="TIPO_EMPRESA" Relationship="TAE2Model.CAT_TIPO_EMPRESA_CAT_TRANSPORTE_FK1" FromRole="TRANSPORTE" ToRole="TIPO_EMPRESA" />
           <NavigationProperty Name="MOVIMENTOes" Relationship="TAE2Model.CAT_TRANSPORTE_INV_MOVIMENTO_FK1" FromRole="TRANSPORTE" ToRole="MOVIMENTO" />
+        </EntityType>
+        <EntityType Name="UPDATE">
+          <Key>
+            <PropertyRef Name="UNID_UPDATE" />
+          </Key>
+          <Property Name="UNID_UPDATE" Type="Int64" Nullable="false" />
+          <Property Name="VERSION" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="UPLOAD_LOG">
           <Key>
@@ -4476,6 +4510,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UPDATEs">
+            <EntityTypeMapping TypeName="TAE2Model.UPDATE">
+              <MappingFragment StoreEntitySet="UPDATE">
+                <ScalarProperty Name="UNID_UPDATE" ColumnName="UNID_UPDATE" />
+                <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UPLOAD_LOG">
             <EntityTypeMapping TypeName="TAE2Model.UPLOAD_LOG">
               <MappingFragment StoreEntitySet="UPLOAD_LOG">
@@ -4974,19 +5016,20 @@
         <EntityTypeShape EntityType="TAE2Model.TIPO_EMPRESA" Width="1.5" PointX="4.5" PointY="31.5" Height="2.172587890624996" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.TIPO_PEDIMENTO" Width="1.5" PointX="2.25" PointY="78.625" Height="2.7494921874999818" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.TRANSPORTE" Width="1.5" PointX="6.75" PointY="31.25" Height="2.5571907552083388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.UPDATE" Width="1.5" PointX="0.75" PointY="18" Height="1.4033821614583246" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.UPLOAD_LOG" Width="1.5" PointX="14" PointY="20" Height="2.172587890624996" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.ALMACEN" Width="1.5" PointX="0.75" PointY="10" Height="3.7109993489583388" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.ALMACEN_TECNICO" Width="1.5" PointX="0.75" PointY="18" Height="1.9802864583333246" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.ALMACEN_TECNICO" Width="1.5" PointX="16.75" PointY="15" Height="1.9802864583333246" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.CLIENTE" Width="1.5" PointX="6.75" PointY="34.625" Height="2.749492187499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.ITEM_STATUS" Width="1.5" PointX="6.75" PointY="64.5" Height="2.557190755208353" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.ITEM_STATUS" Width="1.5" PointX="6.75" PointY="64.5" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.MAX_MIN" Width="1.5" PointX="3" PointY="10.125" Height="3.326396484374996" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.PROGRAMADO" Width="1.5" PointX="6" PointY="10.5" Height="2.7494921875000102" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.PROPIEDAD" Width="1.5" PointX="6.75" PointY="67.875" Height="2.1725878906249818" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.SERVICIO" Width="1.5" PointX="6.75" PointY="38.125" Height="2.172587890624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.SOLICITANTE1" Width="1.5" PointX="16.75" PointY="15" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.SOLICITANTE1" Width="1.5" PointX="16.75" PointY="18" Height="2.1725878906250102" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.TECNICO" Width="1.5" PointX="6.75" PointY="41" Height="2.9417936197916674" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.TIPO_MOVIMIENTO" Width="1.5" PointX="6.75" PointY="44.75" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.UNIDAD" Width="1.5" PointX="4.5" PointY="70.75" Height="2.1725878906249818" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.UNIDAD" Width="1.5" PointX="4.5" PointY="70.75" Height="2.1725878906250102" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.COTIZACION" Width="1.5" PointX="7.5" PointY="0.75" Height="4.48020507812501" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.CIUDAD" Width="1.5" PointX="4.5" PointY="18.125" Height="2.5571907552083246" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.PAI" Width="1.5" PointX="4.5" PointY="21.375" Height="2.3648893229166674" IsExpanded="true" />
@@ -5456,12 +5499,12 @@
           <ConnectorPoint PointX="9" PointY="8.691943667968804" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CATINV_UNIDAD_LOT_FACTURA_DETALLE_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="6" PointY="71.836293945312491" />
-          <ConnectorPoint PointX="6.354166666666667" PointY="71.836293945312491" />
-          <ConnectorPoint PointX="6.520833333333333" PointY="71.836293945312491" />
-          <ConnectorPoint PointX="6.572916666666667" PointY="71.836293945312491" />
-          <ConnectorPoint PointX="6.739583333333333" PointY="71.836293945312491" />
-          <ConnectorPoint PointX="7.468747500000001" PointY="71.836293945312491" />
+          <ConnectorPoint PointX="6" PointY="71.8362939453125" />
+          <ConnectorPoint PointX="6.354166666666667" PointY="71.8362939453125" />
+          <ConnectorPoint PointX="6.520833333333333" PointY="71.8362939453125" />
+          <ConnectorPoint PointX="6.572916666666667" PointY="71.8362939453125" />
+          <ConnectorPoint PointX="6.739583333333333" PointY="71.8362939453125" />
+          <ConnectorPoint PointX="7.468747500000001" PointY="71.8362939453125" />
           <ConnectorPoint PointX="7.468747500000001" PointY="73.875" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.COT_COTIZACION_POM_POM_FK1" ManuallyRouted="false">

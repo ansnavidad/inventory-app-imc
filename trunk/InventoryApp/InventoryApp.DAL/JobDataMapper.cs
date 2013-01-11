@@ -15,7 +15,6 @@ namespace InventoryApp.DAL
             using (TAE2Entities entity = new TAE2Entities())
             {
                 entity.GetJob();
-                //var query = entity.SP_TAE2_JOB();    
             }
         }
         

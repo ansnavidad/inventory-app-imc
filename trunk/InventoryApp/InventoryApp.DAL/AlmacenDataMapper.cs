@@ -102,13 +102,6 @@ namespace InventoryApp.DAL
             }
         }
 
-
-
-
-
-
-
-
         public void loadSyncRelation(ALMACEN_TECNICO element)
         {
             if (element != null)
@@ -140,14 +133,6 @@ namespace InventoryApp.DAL
                 }
             }
         }
-
-
-
-
-
-
-
-
 
         public void UpsertMixRelation(ALMACEN_TECNICO element)
         {

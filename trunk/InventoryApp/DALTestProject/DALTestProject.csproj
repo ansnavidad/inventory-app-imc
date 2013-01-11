@@ -130,6 +130,7 @@
     <Compile Include="UNIDTest.cs" />
     <Compile Include="UploadLogDataMapperTest.cs" />
     <Compile Include="UploadProcessViewModelTest.cs" />
+    <Compile Include="VersionViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InventoryApp.DAL\InventoryApp.DAL.csproj">

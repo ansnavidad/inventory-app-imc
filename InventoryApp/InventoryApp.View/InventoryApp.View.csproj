@@ -549,6 +549,9 @@
     <Compile Include="MaxMin\MaxMinView.xaml.cs">
       <DependentUpon>MaxMinView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MaxMin\ModiArticuloView.xaml.cs">
+      <DependentUpon>ModiArticuloView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MaxMin\ModifyMaxMinView.xaml.cs">
       <DependentUpon>ModifyMaxMinView.xaml</DependentUpon>
     </Compile>
@@ -1282,6 +1285,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MaxMin\MaxMinView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MaxMin\ModiArticuloView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

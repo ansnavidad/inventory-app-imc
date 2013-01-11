@@ -130,8 +130,23 @@ namespace InventoryApp.ViewModel.MaxMin
         public bool CanAttempAddMaxMin()
         {
             bool _canAddMaxMin = false;
-            if(this.AddArticulos.Count!=0)
-                _canAddMaxMin = true;
+            if (this.AddArticulos.Count != 0)
+            {
+                foreach (var item in this.AddArticulos)
+                {
+                    if (item.Max >= 0 && item.Min >= 0 && item.Max >= item.Min)
+                    {
+                        _canAddMaxMin = true;
+                    }
+                    else
+                    {
+                        _canAddMaxMin = false;
+                        break;
+                    }
+                }
+                
+            }
+                
             return _canAddMaxMin;
         }
 

@@ -178,6 +178,7 @@
     <Compile Include="MaxMin\AddArticulosMaxMin.cs" />
     <Compile Include="MaxMin\AddMaxMinViewModel.cs" />
     <Compile Include="MaxMin\MaxMinViewModel.cs" />
+    <Compile Include="MaxMin\ModiArticulosMaxMin.cs" />
     <Compile Include="MaxMin\ModifyMaxMinViewModel.cs" />
     <Compile Include="MenuViewModel.cs" />
     <Compile Include="Recibo\AddFacturaViewModel.cs" />
@@ -219,6 +220,7 @@
     </Compile>
     <Compile Include="Traspasos\CatalogItemViewModel.cs" />
     <Compile Include="Traspasos\TraspasoStockViewModel.cs" />
+    <Compile Include="Version\VersionViewModel.cs" />
     <Compile Include="ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>

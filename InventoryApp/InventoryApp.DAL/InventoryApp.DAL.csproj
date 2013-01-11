@@ -266,6 +266,9 @@
     <Compile Include="POCOS\UNIDAD.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
+    <Compile Include="POCOS\UPDATE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
     <Compile Include="POCOS\UPLOAD_LOG.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
@@ -302,6 +305,7 @@
     <Compile Include="UltimoMovimientoDataMapper.cs" />
     <Compile Include="UNID.cs" />
     <Compile Include="UnidadDataMapper.cs" />
+    <Compile Include="UpDateVersionDataMapper.cs" />
     <Compile Include="UploadLogDataMapper.cs" />
   </ItemGroup>
   <ItemGroup>

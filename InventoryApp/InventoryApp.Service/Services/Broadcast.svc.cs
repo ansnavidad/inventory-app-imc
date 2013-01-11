@@ -858,5 +858,19 @@ namespace InventoryApp.Service.Services
 
             return respuesta;
         }
+
+        public string GetVersion()
+        {
+            string respuesta = null;
+
+            UpDateVersionDataMapper dataMapper = new UpDateVersionDataMapper();
+
+            respuesta = dataMapper.GetJsonVersion();
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
+            return respuesta;
+        }
     }
 }

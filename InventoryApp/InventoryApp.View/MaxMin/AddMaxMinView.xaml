@@ -46,7 +46,9 @@
                   CanUserAddRows="False" HorizontalAlignment="Stretch" Name="dtGridItems" 
                   VerticalAlignment="Stretch" ItemsSource="{Binding Mode=TwoWay, Path=AddArticulos}" 
                   Grid.Row="3" Grid.ColumnSpan="3"
-                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" DataContext="{Binding}">
+                  Style="{StaticResource GridStyle}" 
+                  ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" 
+                  DataContext="{Binding}">
             <DataGrid.Columns>
                 
                 <DataGridTemplateColumn Header="" Width="Auto">

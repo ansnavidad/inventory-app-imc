@@ -216,6 +216,12 @@ namespace InventoryApp.DAL.POCOS
         }
         private ObjectSet<TRANSPORTE> _tRANSPORTEs;
     
+        public ObjectSet<UPDATE> UPDATEs
+        {
+            get { return _uPDATEs  ?? (_uPDATEs = CreateObjectSet<UPDATE>("UPDATEs")); }
+        }
+        private ObjectSet<UPDATE> _uPDATEs;
+    
         public ObjectSet<UPLOAD_LOG> UPLOAD_LOG
         {
             get { return _uPLOAD_LOG  ?? (_uPLOAD_LOG = CreateObjectSet<UPLOAD_LOG>("UPLOAD_LOG")); }
@@ -397,6 +403,7 @@ namespace InventoryApp.DAL.POCOS
         private ObjectSet<POM_ARTICULO> _pOM_ARTICULO;
 
         #endregion
+
         #region Function Imports
         public ObjectResult<TEST> SP_TAE2_JOB()
         {
@@ -408,5 +415,6 @@ namespace InventoryApp.DAL.POCOS
         }
 
         #endregion
+
     }
 }

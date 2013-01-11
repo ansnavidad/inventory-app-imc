@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventoryApp.Model;
+using System.Windows.Input;
 using System.Collections.ObjectModel;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
-using System.Windows.Input;
 
 namespace InventoryApp.ViewModel.MaxMin
 {
-    public class AddArticulosMaxMin : ViewModelBase
+    public class ModiArticulosMaxMin: ViewModelBase
     {
         private RelayCommand _addArticulosCommad;
         private MaxMinModel _addMaxMin;
@@ -139,19 +139,19 @@ namespace InventoryApp.ViewModel.MaxMin
 
         #region Constructor
 
-        public AddArticulosMaxMin()
+        public ModiArticulosMaxMin()
         {
             this.init();
         }
         //sobrecarga de agregar articulos
-        public AddArticulosMaxMin(AddMaxMinViewModel addMaxMinViewModel)
+        public ModiArticulosMaxMin(AddMaxMinViewModel addMaxMinViewModel)
         {
             this.init();
             _maxMinViewModel = new AddMaxMinViewModel();
             _maxMinViewModel = addMaxMinViewModel;
         }
         //sobrecarga para agregar articulos
-        public AddArticulosMaxMin(ModifyMaxMinViewModel modifyMaxMinViewModel)
+        public ModiArticulosMaxMin(ModifyMaxMinViewModel modifyMaxMinViewModel)
         {
             this.init();
             _modiMaxMinViewModel = new ModifyMaxMinViewModel();
@@ -309,6 +309,5 @@ namespace InventoryApp.ViewModel.MaxMin
             return canAddDetalle;
         }
         #endregion
-
     }
 }

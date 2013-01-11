@@ -22,6 +22,14 @@ namespace InventoryApp.DAL
             long? resul = null;
             using (var entity = new TAE2Entities())
             {
+                var resul0 = (from prov in entity.PROYECTOes
+                              where prov.IS_ACTIVE == true
+                              where prov.IS_MODIFIED == false
+                              select prov.LAST_MODIFIED_DATE).ToList();
+
+                if (resul0.Count == 0)
+                    return resul;
+
                 resul = (from proy in entity.PROYECTOes
                          where proy.IS_ACTIVE == true
                          where proy.IS_MODIFIED == false

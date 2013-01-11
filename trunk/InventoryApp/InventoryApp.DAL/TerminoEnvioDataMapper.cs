@@ -21,13 +21,20 @@ namespace InventoryApp.DAL
             long? resul = null;
             using (var entity = new TAE2Entities())
             {
+                var resul0 = (from prov in entity.TERMINO_ENVIO
+                              where prov.IS_ACTIVE == true
+                              where prov.IS_MODIFIED == false
+                              select prov.LAST_MODIFIED_DATE).ToList();
+
+                if (resul0.Count == 0)
+                    return resul;
+                
                 resul = (from termino in entity.TERMINO_ENVIO
                          where termino.IS_ACTIVE == true
                          where termino.IS_MODIFIED == false
                          select termino.LAST_MODIFIED_DATE).Max();
                 return resul;
             }
-
         }
 
         public string GetJsonTerminoEnvio(long? LMD)

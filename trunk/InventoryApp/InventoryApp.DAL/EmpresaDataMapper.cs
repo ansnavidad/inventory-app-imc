@@ -22,6 +22,14 @@ namespace InventoryApp.Model
             long? resul = null;
             using (var entity = new TAE2Entities())
             {
+                var resul0 = (from prov in entity.EMPRESAs
+                              where prov.IS_ACTIVE == true
+                              where prov.IS_MODIFIED == false
+                              select prov.LAST_MODIFIED_DATE).ToList();
+
+                if (resul0.Count == 0)
+                    return resul;
+
                 resul = (from empresa in entity.EMPRESAs
                          where empresa.IS_ACTIVE == true
                          where empresa.IS_MODIFIED == false

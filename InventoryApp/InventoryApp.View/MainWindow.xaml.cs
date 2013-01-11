@@ -21,6 +21,7 @@ using InventoryApp.DAL;
 using System.Windows.Media.Animation;
 using System.ComponentModel;
 using System.Web;
+using System.Configuration;
 
 namespace InventoryApp.View
 {
@@ -47,6 +48,8 @@ namespace InventoryApp.View
             //ci.DateTimeFormat.ShortDatePattern = "dd-MM-yyyy";
             //Thread.CurrentThread.CurrentCulture = ci;
             //NOMBRE DE LA MAQUINA
+            int SyncTime = Int32.Parse(ConfigurationManager.AppSettings["SyncTime"].ToString());
+
             System.Security.Principal.WindowsIdentity user = System.Security.Principal.WindowsIdentity.GetCurrent();
             string nomPC = user.Name;
             nomUser.Content = nomPC;
@@ -55,7 +58,7 @@ namespace InventoryApp.View
 
             DTimerUploadProcess = new DispatcherTimer();
             DTimerUploadProcess.Tick += new EventHandler(DTimerUploadProcess_Tick);
-            DTimerUploadProcess.Interval = new TimeSpan(0, 0, 600);
+            DTimerUploadProcess.Interval = new TimeSpan(0, 0, SyncTime);
             DTimerUploadProcess.Start();
         }
 

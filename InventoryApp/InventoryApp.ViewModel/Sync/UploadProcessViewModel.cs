@@ -9,6 +9,7 @@ using InventoryApp.Model;
 using InventoryApp.DAL.Recibo;
 using System.Net;
 using System.Net.Sockets;
+using System.Configuration;
 
 namespace InventoryApp.ViewModel.Sync
 {
@@ -93,9 +94,9 @@ namespace InventoryApp.ViewModel.Sync
         //servidor inmeta
         //string routeService2 = @"http://192.168.0.116:2020/Services/Receiver.svc";
         //servidor elara
-        string routeService = @"http://10.50.0.131:8080/Services/Receiver.svc";
+        string routeService = ConfigurationManager.AppSettings["RutaServicioSubida"].ToString();
         //Prueba Adolfo
-        string routeDownload = @"http://10.50.0.131:8080/Services/Broadcast.svc";
+        string routeDownload = ConfigurationManager.AppSettings["RutaServicioDescarga"].ToString();
         //DATOS DE LA MAQUINA
         string nomPC = null;
         string dataUser = null;

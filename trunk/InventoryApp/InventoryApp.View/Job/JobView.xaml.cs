@@ -31,9 +31,9 @@ namespace InventoryApp.View.Job
         {
             JobViewModel job = new JobViewModel();
 
+            MessageBox.Show("Cargando ítems", "Mensaje del Sistema", MessageBoxButton.OK, MessageBoxImage.Information);
             job.CallServiceGetExecuteJob();
-
-            lblCargaItems.Visibility = Visibility.Hidden;
+            btnCarga.IsEnabled = false;
 
         }
 

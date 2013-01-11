@@ -274,7 +274,8 @@ namespace InventoryApp.ViewModel.MaxMin
                     UNID_MODELO = this.SelectedArticulo.Modelo.UNID_MODELO
                 },
                 Max=0,
-                Min=0
+                Min=0,
+                IsChecked=false
             };
             this._maxMinViewModel.AddArticulos.Add(maxMinModel);
         }

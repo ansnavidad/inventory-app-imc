@@ -53,12 +53,13 @@ namespace InventoryApp.View.MaxMin
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
                 {
-                    ModifyMaxMinView dlgModify = new ModifyMaxMinView();
+                    ModifyMaxMinView modify = new ModifyMaxMinView();
                     try
                     {
-                        MaxMinViewModel maxMinViewModel = (this.DataContext as ObjectDataProvider).Data as MaxMinViewModel;
-                        dlgModify.DataContext = maxMinViewModel.CreateModifyMaxMinViewModel();
-                        dlgModify.ShowDialog();
+                        MaxMinViewModel maxMinViewModel = new MaxMinViewModel();
+                        maxMinViewModel = this.DataContext as MaxMinViewModel;
+                        modify.DataContext = maxMinViewModel.CreateModifyMaxMinViewModel();
+                        modify.ShowDialog();
                     }
                     catch (Exception ex)
                     {

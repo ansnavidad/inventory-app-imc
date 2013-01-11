@@ -37,6 +37,6 @@
                 HorizontalAlignment="Center" Margin="5,0" Name="btnRuta"
                 VerticalAlignment="Bottom" Width="130" Click="btnRuta_Click"
                 Style="{StaticResource bntElaraOrangeJob}" />
-        <Label Content="Cargando ítems..." Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="5,0" Name="lblCargaItems" VerticalAlignment="Top" Style="{StaticResource titleElaraJob}" />
+        
     </Grid>
 </UserControl>

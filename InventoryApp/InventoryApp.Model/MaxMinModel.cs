@@ -21,6 +21,7 @@ namespace InventoryApp.Model
         private EQUIPO _equipo;
         private EquipoModel _equipoModel;
         private ALMACEN _almacen;
+        private bool _isChecked;
         private MaxMinDataMapper _dataMapper;
         #endregion
 
@@ -208,8 +209,21 @@ namespace InventoryApp.Model
             }
         }
 
-        #endregion
+        public bool IsChecked
+        {
+            get { return this._isChecked; }
+            set
+            {
+                if (value != this._isChecked)
+                {
+                    this._isChecked = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("IsChecked"));
+                }
+            }
+        }
 
+        #endregion
 
         public void saveMaxMin()
         {

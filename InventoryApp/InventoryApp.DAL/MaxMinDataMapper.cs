@@ -8,6 +8,28 @@ namespace InventoryApp.DAL
 {
     public class MaxMinDataMapper : IDataMapper
     {
+        public object getElementArticulos(object element)
+        {
+            object res = null;
+            using (var entitie = new TAE2Entities())
+            {
+                MAX_MIN maxMin = (MAX_MIN)element;
+                res = (from cust in entitie.MAX_MIN
+                             where cust.UNID_ALMACEN == maxMin.UNID_ALMACEN && cust.IS_ACTIVE==true
+                             select cust).ToList();
+                foreach (MAX_MIN mm in ((List<MAX_MIN>)res))
+                {
+                    mm.ARTICULO = mm.ARTICULO;
+                    mm.ARTICULO.CATEGORIA = mm.ARTICULO.CATEGORIA;
+                    mm.ARTICULO.EQUIPO = mm.ARTICULO.EQUIPO;
+                    mm.ARTICULO.MODELO = mm.ARTICULO.MODELO;
+                    mm.ARTICULO.MARCA = mm.ARTICULO.MARCA;
+                    mm.ALMACEN = mm.ALMACEN;
+                }
+                return res;
+            }
+        }
+
         public object getElements()
         {
             FixupCollection<MAX_MIN> tp = new FixupCollection<MAX_MIN>();

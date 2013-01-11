@@ -95,6 +95,7 @@
     <Compile Include="JobDataMapperTest.cs" />
     <Compile Include="LoteDataMapperTest.cs" />
     <Compile Include="MarcaDataMapperTest.cs" />
+    <Compile Include="MaxMinDataMapperTest.cs" />
     <Compile Include="MedioEnvioDataMapperTest.cs" />
     <Compile Include="MenuDataMapperTest.cs" />
     <Compile Include="MenuModelTest.cs" />

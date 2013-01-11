@@ -15,6 +15,7 @@ namespace InventoryApp.ViewModel.MaxMin
         #region Fields
         private MaxMinModel _addMaxMin;
         private RelayCommand _addMaxMinCommand;
+        private RelayCommand _deleteArticuloCommand;
         private MaxMinViewModel _maxMinViewModel;
         private CatalogAlmacenModel _catalogAlmacenModel;
         #endregion
@@ -56,8 +57,21 @@ namespace InventoryApp.ViewModel.MaxMin
                 return _addMaxMinCommand;
             }
         }
+
+        public ICommand DeleteArticuloCommand
+        {
+            get
+            {
+                if (_deleteArticuloCommand == null)
+                {
+                    _deleteArticuloCommand = new RelayCommand(p => this.AttemptDeleteArticuloCommand(), p => this.CanAttemptDeleteArticuloCommand());
+                }
+                return _deleteArticuloCommand;
+            }
+        }
         #endregion
 
+        #region Coleccion en memoria de los articulos 
         public ObservableCollection<MaxMinModel> AddArticulos
         {
             get { return _AddArticulos; }
@@ -72,6 +86,7 @@ namespace InventoryApp.ViewModel.MaxMin
         }
         private ObservableCollection<MaxMinModel> _AddArticulos = new ObservableCollection<MaxMinModel>();
         public const string ArticulosPropertyName = "AddArticulos";
+        #endregion
 
         #region Constructors
         /// <summary>
@@ -95,23 +110,9 @@ namespace InventoryApp.ViewModel.MaxMin
             {
                 throw ex;
             }
-
-            //try
-            //{
-
-            //    this._catalogArticuloModel = new CatalogArticuloModel(new ArticuloDataMapper());
-            //}
-            //catch (ArgumentException ae)
-            //{
-            //    ;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
         }
-        public AddMaxMinViewModel()
-        { }
+
+        public AddMaxMinViewModel(){ }
         #endregion
 
         #region Methods
@@ -136,20 +137,14 @@ namespace InventoryApp.ViewModel.MaxMin
 
         public void AttempAddMaxMin()
         {
-            //this._addMaxMin=this.AddArticulos;
-            
             foreach (var item in this.AddArticulos)
             {
                 this._addMaxMin.Articulo = item.Articulo;
-                //item.Articulo = this._addMaxMin.Articulo;
-                //item.Categoria = this._addMaxMin.Categoria;
-                //item.EquipoModel = this._addMaxMin.EquipoModel;
-                //item.Marca = this._addMaxMin.Marca;
-                //item.Modelo = this._addMaxMin.Modelo;
+                this._addMaxMin.Max = item.Max;
+                this._addMaxMin.Min = item.Min;
                 this._addMaxMin.saveMaxMin();
             }
             
-
             //Puede ser que para pruebas unitarias catalogProyectoViewModel sea nulo ya que
             //es una dependencia inyectada
             if (this._maxMinViewModel != null)
@@ -158,6 +153,47 @@ namespace InventoryApp.ViewModel.MaxMin
             }
         }
 
+        public void AttemptDeleteArticuloCommand()
+        {
+
+            try
+            {
+                (from o in this.AddArticulos
+                 where o.IsChecked == true
+                 select o).ToList().ForEach(o => this.AddArticulos.Remove(o));
+            }
+            catch (Exception)
+            {
+                ;
+            }
+        }
+
+        public bool CanAttemptDeleteArticuloCommand()
+        {
+            bool canDeleteArticulo = false;
+
+            if (this.AddArticulos != null && this.AddArticulos.Count > 0)
+            {
+                int res = 0;
+                try
+                {
+                    res = (from o in this.AddArticulos
+                           where o.IsChecked == true
+                           select o).ToList().Count;
+                }
+                catch (Exception)
+                {
+                    res = 0;
+                }
+
+                if (res > 0)
+                {
+                    canDeleteArticulo = true;
+                }
+            }
+
+            return canDeleteArticulo;
+        }
         
         #endregion
     }

@@ -38,7 +38,10 @@
                 Height="23" HorizontalAlignment="Center" Margin="5,0"
                 Name="btnAgregarArticulo" VerticalAlignment="Center"
                 Width="95" Click="btnAgregarArticulo_Click" />
-        <Button Content="Borrar" Grid.Column="2" Grid.Row="2" Height="23" HorizontalAlignment="Center" Margin="5,0" Name="button2" VerticalAlignment="Center" Width="95" />
+        <Button Content="Eliminar" Grid.Column="2" Grid.Row="2" Height="23"
+                HorizontalAlignment="Center" Margin="5,0" Name="btnEliminar"
+                VerticalAlignment="Center" Width="95" 
+                Command="{Binding DeleteArticuloCommand, Mode=OneWay}"/>
         <DataGrid AutoGenerateColumns="False" CanUserDeleteRows="False"
                   CanUserAddRows="False" HorizontalAlignment="Stretch" Name="dtGridItems" 
                   VerticalAlignment="Stretch" ItemsSource="{Binding Mode=TwoWay, Path=AddArticulos}" 

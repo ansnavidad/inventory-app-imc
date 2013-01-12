@@ -49,6 +49,12 @@ namespace InventoryApp.DAL
             }
 
             return res;
-        }        
+        }
+
+        public Dictionary<string, string> GetResponseDictionary(string response)
+        {
+            Dictionary<string, string> resx = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
+            return resx;
+        }
     }
 }

@@ -22,6 +22,7 @@ using System.Windows.Media.Animation;
 using System.ComponentModel;
 using System.Web;
 using System.Configuration;
+using InventoryApp.ViewModel.Version;
 
 namespace InventoryApp.View
 {
@@ -75,6 +76,15 @@ namespace InventoryApp.View
             this.cnvTmpRot2.Visibility = Visibility.Visible;
         }
 
+        public void ShowImgVersion()
+        {
+        }
+
+        public void HideImgVersion()
+        {
+        }
+
+
         public void SetImgSyncMsg(string msg)
         {
             this.imgSyncFiles.ToolTip = msg;
@@ -83,6 +93,39 @@ namespace InventoryApp.View
 
         void DTimerUploadProcess_Tick(object sender, EventArgs e)
         {
+            //Condicionar UPLOAD_VERSION
+            if (!VersionViewModel.IsRunning)
+            {
+                VersionViewModel vm = new VersionViewModel();
+                vm.PropertyChanged += delegate(object sndr, PropertyChangedEventArgs args)
+                {
+                    if (args.PropertyName.ToLower() == "jobdone")
+                    {
+                        if (!((VersionViewModel)sndr).JobDone)
+                        {
+                            Action a = () => this.ShowImgVersion();
+                            this.Dispatcher.BeginInvoke(a);
+                        }
+                        else
+                        {
+                            Action a = () => this.HideImgVersion();
+                            this.Dispatcher.BeginInvoke(a);
+                        }
+                    }
+
+                    if (args.PropertyName.ToLower() == "message")
+                    {
+                        Action a = () => this.SetImgSyncMsg(((VersionViewModel)sndr).Message);
+                        this.Dispatcher.BeginInvoke(a);
+                    }
+                };
+                //DlgUpload ds = new DlgUpload();
+                //ds.DataContext = vm;
+                //ds.Owner = Application.Current.Windows[0];
+                //ds.ShowDialog();
+                vm.start();
+            }
+
             //Condicionar catsync
             if (!UploadProcessViewModel.IsRunning)
             {
@@ -122,7 +165,5 @@ namespace InventoryApp.View
         {
             this.DTimerUploadProcess_Tick(null, new EventArgs());
         }
-
-
     }
 }

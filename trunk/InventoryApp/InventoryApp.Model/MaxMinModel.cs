@@ -5,6 +5,8 @@ using System.Text;
 using System.ComponentModel;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
+using System.Globalization;
+using System.ComponentModel.DataAnnotations;
 
 namespace InventoryApp.Model
 {
@@ -26,7 +28,6 @@ namespace InventoryApp.Model
         #endregion
 
         #region Props
-
         public long UnidMaxMin
         {
             get
@@ -45,7 +46,7 @@ namespace InventoryApp.Model
                 }
             }
         }
-
+        
         public int? Min
         {
             get
@@ -56,11 +57,12 @@ namespace InventoryApp.Model
             {
                 if (_min != value)
                 {
+                    
                     _min = value;
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Min"));
-                    }
+                    }    
                     
                 }
             }
@@ -266,5 +268,11 @@ namespace InventoryApp.Model
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        
+
+        
     }
+
+
 }

@@ -23,6 +23,8 @@ using System.ComponentModel;
 using System.Web;
 using System.Configuration;
 using InventoryApp.ViewModel.Version;
+using InventoryApp.ViewModel;
+using System.Diagnostics;
 
 namespace InventoryApp.View
 {
@@ -91,44 +93,39 @@ namespace InventoryApp.View
             this.imgSyncFiles2.ToolTip = msg;
         }
 
+        private void actualiceAPP()
+        {
+            try
+            {
+                string instalacion = System.Configuration.ConfigurationManager.AppSettings["CarpetaInstalacion"];
+                string proceso = System.Configuration.ConfigurationManager.AppSettings["NombreProcesoActualizacion"];
+
+                if (!instalacion.EndsWith("\\"))
+                    instalacion += "\\";
+
+                System.Diagnostics.Process.Start(proceso);
+                this.Close();
+                Application.Current.Shutdown();
+                Process.GetCurrentProcess().Kill();
+            }
+            catch (Exception ex2)
+            {
+                System.Windows.MessageBox.Show("Error tratando de iniciar el proceso automático de actualización de la aplicación - " + ex2.Message);
+            }
+        }
+
         void DTimerUploadProcess_Tick(object sender, EventArgs e)
         {
-            //Condicionar UPLOAD_VERSION
-            if (!VersionViewModel.IsRunning)
-            {
-                VersionViewModel vm = new VersionViewModel();
-                vm.PropertyChanged += delegate(object sndr, PropertyChangedEventArgs args)
-                {
-                    if (args.PropertyName.ToLower() == "jobdone")
-                    {
-                        if (!((VersionViewModel)sndr).JobDone)
-                        {
-                            Action a = () => this.ShowImgVersion();
-                            this.Dispatcher.BeginInvoke(a);
-                        }
-                        else
-                        {
-                            Action a = () => this.HideImgVersion();
-                            this.Dispatcher.BeginInvoke(a);
-                        }
-                    }
-
-                    if (args.PropertyName.ToLower() == "message")
-                    {
-                        Action a = () => this.SetImgSyncMsg(((VersionViewModel)sndr).Message);
-                        this.Dispatcher.BeginInvoke(a);
-                    }
-                };
-                //DlgUpload ds = new DlgUpload();
-                //ds.DataContext = vm;
-                //ds.Owner = Application.Current.Windows[0];
-                //ds.ShowDialog();
-                vm.start();
-            }
-
             //Condicionar catsync
             if (!UploadProcessViewModel.IsRunning)
             {
+                if (VersionViewModel.NewVersion())
+                {
+                    if (System.Windows.MessageBox.Show("Se detectó una nueva actualización de la aplicación, desea actualizar ahora?", "Actualización automática", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
+                    {
+                        this.actualiceAPP();
+                    }
+                }
                 UploadProcessViewModel vm = new UploadProcessViewModel();
                 vm.PropertyChanged += delegate(object sndr, PropertyChangedEventArgs args)
                 {
@@ -150,7 +147,6 @@ namespace InventoryApp.View
                     {
                         Action a = () => this.SetImgSyncMsg(((UploadProcessViewModel)sndr).Message);
                         this.Dispatcher.BeginInvoke(a);
-                            
                     }
                 };
                 //DlgUpload ds = new DlgUpload();
@@ -158,6 +154,10 @@ namespace InventoryApp.View
                 //ds.Owner = Application.Current.Windows[0];
                 //ds.ShowDialog();
                 vm.start();
+            }
+            else {
+
+                VersionViewModel.IsRunning = false;
             }
         }
 

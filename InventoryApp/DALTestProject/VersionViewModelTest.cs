@@ -64,15 +64,6 @@ namespace DALTestProject
         #endregion
 
 
-        /// <summary>
-        ///Una prueba de CallServiceGetVersion
-        ///</summary>
-        [TestMethod()]
-        public void CallServiceGetVersionTest()
-        {
-            VersionViewModel target = new VersionViewModel(); // TODO: Inicializar en un valor adecuado
-            target.CallServiceGetVersion();
-            Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
-        }
+       
     }
 }

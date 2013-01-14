@@ -16,13 +16,13 @@
         "Entry"
         {
         "MsmKey" = "8:_294F66C44CA9F7ED8D3BB19F365EA1CF"
-        "OwnerKey" = "8:_9A0B4241CDF35ABE83D31B292B578497"
+        "OwnerKey" = "8:_B84AC0571F2E4C039CD53E5789ADD2C9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_294F66C44CA9F7ED8D3BB19F365EA1CF"
-        "OwnerKey" = "8:_B84AC0571F2E4C039CD53E5789ADD2C9"
+        "OwnerKey" = "8:_9A0B4241CDF35ABE83D31B292B578497"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -46,13 +46,25 @@
         "Entry"
         {
         "MsmKey" = "8:_44A47069E9AD74C4B0AD0334F505A36A"
-        "OwnerKey" = "8:_9A0B4241CDF35ABE83D31B292B578497"
+        "OwnerKey" = "8:_B84AC0571F2E4C039CD53E5789ADD2C9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_44A47069E9AD74C4B0AD0334F505A36A"
-        "OwnerKey" = "8:_B84AC0571F2E4C039CD53E5789ADD2C9"
+        "OwnerKey" = "8:_9A0B4241CDF35ABE83D31B292B578497"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_460D277A3E474F789C19B1D40C65B043"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_462DA8A15E05449F9397FEAA7CD9DC55"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -65,6 +77,18 @@
         {
         "MsmKey" = "8:_515EA265D5C876CE5E3D43C96B40710E"
         "OwnerKey" = "8:_B84AC0571F2E4C039CD53E5789ADD2C9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_560F6DD2B6C2438696467F4556C587E2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_61D9280449B54A87A68763E38EE6E8F3"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -82,6 +106,12 @@
         "Entry"
         {
         "MsmKey" = "8:_64FDFEBACBBA4812B151198A969452CC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9255D78FD14C43EDAA1C864718E79907"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -141,6 +171,24 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D1282B8437D441408BB8C51CDB1DC02F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D5D0EC82F58440F3B0E11F291FBFBCFE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F9A77C010B964F54839E347493C7EC90"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B84AC0571F2E4C039CD53E5789ADD2C9"
         "MsmSig" = "8:_UNDEFINED"
@@ -155,6 +203,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_4BEBF7543A15B3FBA1C81D9633D9CD18"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_44A47069E9AD74C4B0AD0334F505A36A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_294F66C44CA9F7ED8D3BB19F365EA1CF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -197,18 +257,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_9A0B4241CDF35ABE83D31B292B578497"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_44A47069E9AD74C4B0AD0334F505A36A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_294F66C44CA9F7ED8D3BB19F365EA1CF"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -273,6 +321,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -427,6 +488,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_460D277A3E474F789C19B1D40C65B043"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Images\\Header.png"
+            "TargetName" = "8:Header.png"
+            "Tag" = "8:"
+            "Folder" = "8:_FDB25C18AAE24E508EA0C7013B6AA971"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_462DA8A15E05449F9397FEAA7CD9DC55"
+            {
+            "SourcePath" = "8:..\\eVentasUpdater\\bin\\Debug\\NMTUpdater.vshost.exe.config"
+            "TargetName" = "8:NMTUpdater.vshost.exe.config"
+            "Tag" = "8:"
+            "Folder" = "8:_316F1F47DA9B405097414BBB1B157767"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4BEBF7543A15B3FBA1C81D9633D9CD18"
             {
             "AssemblyRegister" = "3:1"
@@ -489,6 +590,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_560F6DD2B6C2438696467F4556C587E2"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Images\\sync.png"
+            "TargetName" = "8:sync.png"
+            "Tag" = "8:"
+            "Folder" = "8:_FDB25C18AAE24E508EA0C7013B6AA971"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_61D9280449B54A87A68763E38EE6E8F3"
+            {
+            "SourcePath" = "8:..\\eVentasUpdater\\bin\\Debug\\App_20111030_.config"
+            "TargetName" = "8:App_20111030_.config"
+            "Tag" = "8:"
+            "Folder" = "8:_316F1F47DA9B405097414BBB1B157767"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6309DD72BFAD41DB50A834F004783E36"
             {
             "AssemblyRegister" = "3:1"
@@ -526,6 +667,26 @@
             "TargetName" = "8:Logo.ico"
             "Tag" = "8:"
             "Folder" = "8:_316F1F47DA9B405097414BBB1B157767"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9255D78FD14C43EDAA1C864718E79907"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Images\\Logo.png"
+            "TargetName" = "8:Logo.png"
+            "Tag" = "8:"
+            "Folder" = "8:_FDB25C18AAE24E508EA0C7013B6AA971"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -664,6 +825,66 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D1282B8437D441408BB8C51CDB1DC02F"
+            {
+            "SourcePath" = "8:..\\eVentasUpdater\\bin\\Debug\\NMTUpdater.exe.config"
+            "TargetName" = "8:NMTUpdater.exe.config"
+            "Tag" = "8:"
+            "Folder" = "8:_316F1F47DA9B405097414BBB1B157767"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D5D0EC82F58440F3B0E11F291FBFBCFE"
+            {
+            "SourcePath" = "8:..\\eVentasUpdater\\bin\\Debug\\eVentasUpdater.exe.config"
+            "TargetName" = "8:eVentasUpdater.exe.config"
+            "Tag" = "8:"
+            "Folder" = "8:_316F1F47DA9B405097414BBB1B157767"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F9A77C010B964F54839E347493C7EC90"
+            {
+            "SourcePath" = "8:..\\eVentasUpdater\\bin\\Debug\\eVentasUpdater.vshost.exe.config"
+            "TargetName" = "8:eVentasUpdater.vshost.exe.config"
+            "Tag" = "8:"
+            "Folder" = "8:_316F1F47DA9B405097414BBB1B157767"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -691,6 +912,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_FDB25C18AAE24E508EA0C7013B6AA971"
+                    {
+                    "Name" = "8:Images"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_2666FA66B026448E8A2AEA2836213FAB"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_D03B7E0498AE44CA9401144FD926FDFD"
@@ -721,7 +953,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Elara Inventarios"
         "ProductCode" = "8:{B87B394C-A67E-4842-B18D-B4216E65E9D6}"
-        "PackageCode" = "8:{9B8182E5-21AF-44FB-A8A0-9DF5B29F4E8E}"
+        "PackageCode" = "8:{35C57578-FFE5-4E3E-84D4-91BEF00F68E5}"
         "UpgradeCode" = "8:{9813D58F-06BF-44DF-A48B-2C0D4849B4A4}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

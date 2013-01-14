@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="630" d:DesignWidth="800" 
+             d:DesignHeight="430" d:DesignWidth="800" 
              DataContext="{StaticResource catalogArticuloViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -33,7 +33,7 @@
                     Name="btnEliminar" VerticalAlignment="Stretch" Grid.Column="2" Command="{Binding DeleteArticuloCommand,Mode=OneWay}"
                     Width="75" Click="btnEliminar_Click"/>
         
-            <DataGrid Height="600" AutoGenerateColumns="False" CanUserDeleteRows="False"
+            <DataGrid Height="400" AutoGenerateColumns="False" CanUserDeleteRows="False"
                   SelectedItem="{Binding CatalogArticuloModel.SelectedArticulo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                   CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItems" 
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogArticuloModel.Articulos}" 

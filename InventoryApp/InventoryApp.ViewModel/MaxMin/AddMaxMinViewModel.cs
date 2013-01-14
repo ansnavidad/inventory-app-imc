@@ -134,6 +134,9 @@ namespace InventoryApp.ViewModel.MaxMin
             {
                 foreach (var item in this.AddArticulos)
                 {
+                    this._addMaxMin.Max = item.Max;
+                    this._addMaxMin.Min = item.Min;
+
                     if (item.Max >= 0 && item.Min >= 0 && item.Max >= item.Min)
                     {
                         _canAddMaxMin = true;

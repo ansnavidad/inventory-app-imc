@@ -69,6 +69,7 @@
     <Compile Include="CatalogMovimiento.cs" />
     <Compile Include="CatalogMovimientoModel.cs" />
     <Compile Include="CatalogPaisModel.cs" />
+    <Compile Include="CatalogProgramadoModel.cs" />
     <Compile Include="CatalogPropiedadModel.cs" />
     <Compile Include="CatalogProveedorCuentaModel.cs" />
     <Compile Include="CatalogProveedorModel.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="DeleteModelo.cs" />
     <Compile Include="DeleteMoneda.cs" />
     <Compile Include="DeletePais.cs" />
+    <Compile Include="DeleteProgramado.cs" />
     <Compile Include="DeletePropiedad.cs" />
     <Compile Include="DeleteProveedor.cs" />
     <Compile Include="DeleteProveedorCuenta.cs" />
@@ -143,6 +145,7 @@
     <Compile Include="MovimientoSalidasModel.cs" />
     <Compile Include="PaisModel.cs" />
     <Compile Include="PedimentoModel.cs" />
+    <Compile Include="ProgramadoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CatalogItemModel.cs" />
     <Compile Include="PropiedadModel.cs" />

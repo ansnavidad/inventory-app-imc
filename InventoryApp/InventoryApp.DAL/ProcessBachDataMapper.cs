@@ -8,7 +8,7 @@ using InventoryApp.DAL.JSON;
 
 namespace InventoryApp.DAL
 {
-    public class ProcessBachDataMapper
+    public class ProcessBachDataMapper : IDataMapper
     {
         public Dictionary<string, string> GetResponseDictionary(string response)
         {
@@ -63,6 +63,31 @@ namespace InventoryApp.DAL
             }
 
             return res;
+        }
+
+        public object getElements()
+        {
+            throw new NotImplementedException();
+        }
+
+        public object getElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void udpateElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void insertElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void deleteElement(object element)
+        {
+            throw new NotImplementedException();
         }
     }
 }

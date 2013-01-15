@@ -2494,6 +2494,54 @@ namespace InventoryApp.Service.Services
             return mensaje;
             #endregion
         }
+
+        public string LoadMaxMin(string listPocos, string dataUser)
+        {
+            #region propiedades
+            string mensaje = null;
+            List<MAX_MIN> list;
+            UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA" };
+            MaxMinDataMapper dataMapper = new MaxMinDataMapper();
+            ServerLastDataMapper server = new ServerLastDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            try
+            {
+                list = dataMapper.GetDeserializeMaxMin(listPocos);
+
+                foreach (MAX_MIN item in list)
+                {
+                    //actualiza o pocoa a la tabla MAX_MIN
+                    dataMapper.loadSync(item);
+                }
+                //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
+                server.updateDumy();
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
+
+                if (poco != null)
+                {
+
+                    mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla MAX_MIN sincronizada" });
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                bitacora.MSG = ex.Message + "MAX_MIN" + ex.InnerException;
+                mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
+            }
+            return mensaje;
+            #endregion
+        }
+
         //------------------------- FIN DE SERVICIOS DE SUBIDA DE ARCHIVOS
         //------------------------- EJECUCION DE JOB
         public void ExecuteJob()

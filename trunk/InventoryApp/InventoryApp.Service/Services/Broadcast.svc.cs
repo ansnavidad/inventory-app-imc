@@ -859,6 +859,22 @@ namespace InventoryApp.Service.Services
             return respuesta;
         }
 
+        public string downloadMaxMin(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                MaxMinDataMapper dataMapper = new MaxMinDataMapper();
+
+                respuesta = dataMapper.GetJsonMaxMin(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+            }
+
+            return respuesta;
+        }
+
         public string GetVersion()
         {
             string respuesta = null;
@@ -872,5 +888,6 @@ namespace InventoryApp.Service.Services
 
             return respuesta;
         }
+
     }
 }

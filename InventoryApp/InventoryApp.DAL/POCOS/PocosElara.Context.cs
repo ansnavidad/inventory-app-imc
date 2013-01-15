@@ -144,6 +144,12 @@ namespace InventoryApp.DAL.POCOS
         }
         private ObjectSet<MONEDA> _mONEDAs;
     
+        public ObjectSet<PROCESS_BATCH> PROCESS_BATCH
+        {
+            get { return _pROCESS_BATCH  ?? (_pROCESS_BATCH = CreateObjectSet<PROCESS_BATCH>("PROCESS_BATCH")); }
+        }
+        private ObjectSet<PROCESS_BATCH> _pROCESS_BATCH;
+    
         public ObjectSet<PROVEEDOR> PROVEEDORs
         {
             get { return _pROVEEDORs  ?? (_pROVEEDORs = CreateObjectSet<PROVEEDOR>("PROVEEDORs")); }
@@ -403,7 +409,6 @@ namespace InventoryApp.DAL.POCOS
         private ObjectSet<POM_ARTICULO> _pOM_ARTICULO;
 
         #endregion
-
         #region Function Imports
         public ObjectResult<TEST> SP_TAE2_JOB()
         {
@@ -413,8 +418,6 @@ namespace InventoryApp.DAL.POCOS
         {
             ExecuteFunction<TEST>("SP_TAE2_JOB");
         }
-
         #endregion
-
     }
 }

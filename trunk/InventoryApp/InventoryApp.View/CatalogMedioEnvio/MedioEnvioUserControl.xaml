@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="312" d:DesignWidth="500"
+             d:DesignHeight="420" d:DesignWidth="700"
              DataContext="{StaticResource catalogMedioEnvioViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -27,12 +27,12 @@
         <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label Style="{StaticResource titleLabel}" Content="CONSULTA MEDIO ENVIO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <Button Content="Nuevo" Grid.Row="0" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" 
+        <Button Content="Nuevo" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="162,4,13,4" Name="btnNuevo" 
                 VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
-        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
-                    Margin="0,0,170,0" Name="btnEliminar" VerticalAlignment="Stretch" Command="{Binding DeleteMedioEnvioCommand,Mode=OneWay}"
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Column="2"
+                    Margin="73,0,102,0" Name="btnEliminar" VerticalAlignment="Stretch" Command="{Binding DeleteMedioEnvioCommand,Mode=OneWay}"
                     Width="75" Click="btnEliminar_Click" />
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" CanUserDeleteRows="False"
+        <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" CanUserDeleteRows="False"
                   Name="dtGridItemStatus" VerticalAlignment="Stretch" ItemsSource="{Binding MedioEnvioModel.MedioEnvio}" 
                   SelectedItem="{Binding MedioEnvioModel.SelectedMedioEnvio, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick"
                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="500"
+             d:DesignHeight="420" d:DesignWidth="700"
              DataContext="{StaticResource catalogClienteViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -27,7 +27,7 @@
         <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label Style="{StaticResource titleLabel}" Content="CONSULTA CLIENTE" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" CanUserDeleteRows="False"
+        <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" CanUserDeleteRows="False"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridCliente"
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogClienteModel.Cliente}"
                   SelectedItem="{Binding CatalogClienteModel.SelectedCliente, Mode=TwoWay}"
@@ -45,9 +45,9 @@
                 <DataGridTextColumn Header="Cliente" Width="*" x:Name="nombreCliente" Binding="{Binding Path=CLIENTE1}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="112,4,62,4" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" Grid.Column="2" />
+        <Button Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="157,4,18,4" Name="btnNuevo" VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" Grid.Column="2" />
         <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch"
-                Margin="21,4,154,3" Name="btnEliminar" VerticalAlignment="Stretch"
+                Margin="61,4,114,3" Name="btnEliminar" VerticalAlignment="Stretch"
                 Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteClienteCommand,Mode=OneWay}" Grid.Column="2" />
     </Grid>
 </UserControl>

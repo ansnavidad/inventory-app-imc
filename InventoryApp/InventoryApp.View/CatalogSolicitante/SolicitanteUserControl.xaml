@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="305" d:DesignWidth="598"
+             d:DesignHeight="420" d:DesignWidth="700" 
              DataContext="{StaticResource catalogSolicitanteViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -28,12 +28,12 @@
             <Label Style="{StaticResource titleLabel}" Content="CONSULTA SOLICITANTE" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
         <!--<Label Content="CONSULTA DE DATOS DE PROYECTO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />-->
-        <Button Content="Nuevo" Grid.Row="0" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" 
+        <Button Content="Nuevo" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="163,3,12,4" Name="btnNuevo" 
                 VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click"  />
-        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
-                    Margin="0,0,175,0" Name="btnEliminar" VerticalAlignment="Stretch"
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Column="2"
+                    Margin="75,3,100,4" Name="btnEliminar" VerticalAlignment="Stretch"
                     Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteSolicitanteCommand,Mode=OneWay}"/>
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" CanUserDeleteRows="False"
+        <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" CanUserDeleteRows="False"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridSolicitante"
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogSolicitanteModel.Solicitante}" 
                   SelectedItem="{Binding CatalogSolicitanteModel.SelectedSolicitante, Mode=TwoWay}"
@@ -49,11 +49,11 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Solicitante" x:Name="nombreSolicitante" Binding="{Binding Path=SOLICITANTE_NAME}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Empresa" x:Name="NombreEmpresa" Binding="{Binding Path=Empresa.EMPRESA_NAME}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Departamento" x:Name="NombreDepartamento" Binding="{Binding Path=Departamento.DEPARTAMENTO_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="150" Header="Solicitante" x:Name="nombreSolicitante" Binding="{Binding Path=SOLICITANTE_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Empresa" x:Name="NombreEmpresa" Binding="{Binding Path=Empresa.EMPRESA_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Departamento" x:Name="NombreDepartamento" Binding="{Binding Path=Departamento.DEPARTAMENTO_NAME}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Email" x:Name="Email" Binding="{Binding Path=EMAIL}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Validador" x:Name="Validador" Binding="{Binding Path=VALIDADOR}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Validador" x:Name="Validador" Binding="{Binding Path=VALIDADOR}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="368" d:DesignWidth="500"
+             d:DesignHeight="420" d:DesignWidth="700" 
              DataContext="{StaticResource catalogTecnicoViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -27,12 +27,12 @@
         <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label Style="{StaticResource titleLabel}" Content="CONSULTA TÉCNICO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <Button Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="112,7,62,0" Name="btnNuevo" Grid.Column="2"
+        <Button Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="162,2,12,5" Name="btnNuevo" Grid.Column="2"
                 VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
         <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Column="2"
-                    Margin="28,7,146,0" Name="btnEliminar" VerticalAlignment="Stretch" Command="{Binding DeleteTecnicoCommand,Mode=OneWay}"
+                    Margin="78,2,96,5" Name="btnEliminar" VerticalAlignment="Stretch" Command="{Binding DeleteTecnicoCommand,Mode=OneWay}"
                     Width="75" Click="btnEliminar_Click" />
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="-1,2,53,-2" CanUserDeleteRows="False"
+        <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="-1,1,0,-1" CanUserDeleteRows="False"
                   Name="dtGridTipoPedimento" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogTecnicoModel.Tecnico}" 
                   SelectedItem="{Binding CatalogTecnicoModel.SelectedTecnico, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick" Grid.ColumnSpan="3"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" Grid.Row="1">
@@ -45,9 +45,9 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="130" Header="Nombre" x:Name="NOMBRE" Binding="{Binding Path=TECNICO_NAME}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="120" Header="Mail" x:Name="MAIL" Binding="{Binding Path=MAIL}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="65" Header="Ciudad" x:Name="CIUDAD" Binding="{Binding Path=Ciudad.CIUDAD1}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Nombre" x:Name="NOMBRE" Binding="{Binding Path=TECNICO_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Mail" x:Name="MAIL" Binding="{Binding Path=MAIL}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="120" Header="Ciudad" x:Name="CIUDAD" Binding="{Binding Path=Ciudad.CIUDAD1}"></DataGridTextColumn>
                
             </DataGrid.Columns>
         </DataGrid>

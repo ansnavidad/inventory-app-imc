@@ -581,7 +581,7 @@ namespace InventoryApp.ViewModel.Recibo
                 Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
                 excel.Visible = true;
 
-                Workbook excelPrint = excel.Workbooks.Open(@"C:\temp\elarainventarios\Factura.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                Workbook excelPrint = excel.Workbooks.Open(@"C:\Programs\ElaraInventario\Resources\Factura.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                 Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
 
                 //Folio del recibo

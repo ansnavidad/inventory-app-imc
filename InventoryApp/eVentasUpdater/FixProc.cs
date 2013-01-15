@@ -346,7 +346,7 @@ namespace eVentasUpdater
                 else this.addStatusTextBoxLine("***No se encontraron actualizaciones a la aplicación. Usted ya cuenta con la última versión disponible.");
 
             }
-            else this.addStatusTextBoxLine("***No se pudo encontrar la carpeta de sincronización. Verifique su conexión a la red de PMI.");
+            else this.addStatusTextBoxLine("***No se pudo encontrar la carpeta de sincronización. Verifique su conexión a la red de Elara.");
 
 
             //if (zipActual.Contains("_3000.zip"))

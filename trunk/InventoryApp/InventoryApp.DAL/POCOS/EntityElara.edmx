@@ -23,6 +23,7 @@
           <EntitySet Name="INFRAESTRUCTURA" EntityType="TAE2Model.Store.INFRAESTRUCTURA" store:Type="Tables" Schema="CAT" />
           <EntitySet Name="MEDIO_ENVIO" EntityType="TAE2Model.Store.MEDIO_ENVIO" store:Type="Tables" Schema="CAT" />
           <EntitySet Name="MONEDA" EntityType="TAE2Model.Store.MONEDA" store:Type="Tables" Schema="CAT" />
+          <EntitySet Name="PROCESS_BATCH" EntityType="TAE2Model.Store.PROCESS_BATCH" store:Type="Tables" Schema="CAT" />
           <EntitySet Name="PROVEEDOR" EntityType="TAE2Model.Store.PROVEEDOR" store:Type="Tables" Schema="CAT" />
           <EntitySet Name="PROVEEDOR_CATEGORIA" EntityType="TAE2Model.Store.PROVEEDOR_CATEGORIA" store:Type="Tables" Schema="CAT" />
           <EntitySet Name="PROVEEDOR_CUENTA" EntityType="TAE2Model.Store.PROVEEDOR_CUENTA" store:Type="Tables" Schema="CAT" />
@@ -530,6 +531,17 @@
           <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
           <Property Name="IS_MODIFIED" Type="bit" Nullable="false" />
           <Property Name="LAST_MODIFIED_DATE" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROCESS_BATCH">
+          <Key>
+            <PropertyRef Name="ID_BATCH" />
+          </Key>
+          <Property Name="ID_BATCH" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PSTART_DATE" Type="datetime" />
+          <Property Name="PEND_DATE" Type="datetime" />
+          <Property Name="IS_DONE" Type="bit" />
+          <Property Name="PSTATUS" Type="nvarchar" MaxLength="250" />
+          <Property Name="ID_STATUS" Type="int" />
         </EntityType>
         <EntityType Name="PROVEEDOR">
           <Key>
@@ -2087,6 +2099,7 @@
           <EntitySet Name="INFRAESTRUCTURAs" EntityType="TAE2Model.INFRAESTRUCTURA" />
           <EntitySet Name="MEDIO_ENVIO" EntityType="TAE2Model.MEDIO_ENVIO" />
           <EntitySet Name="MONEDAs" EntityType="TAE2Model.MONEDA" />
+          <EntitySet Name="PROCESS_BATCH" EntityType="TAE2Model.PROCESS_BATCH" />
           <EntitySet Name="PROVEEDORs" EntityType="TAE2Model.PROVEEDOR" />
           <EntitySet Name="PROVEEDOR_CATEGORIA" EntityType="TAE2Model.PROVEEDOR_CATEGORIA" />
           <EntitySet Name="PROVEEDOR_CUENTA" EntityType="TAE2Model.PROVEEDOR_CUENTA" />
@@ -2628,6 +2641,17 @@
           <Property Name="LAST_MODIFIED_DATE" Type="Int64" Nullable="false" />
           <NavigationProperty Name="FACTURA_VENTA" Relationship="TAE2Model.CAT_MONEDA_INV_FACTURA_VENTA_FK1" FromRole="MONEDA" ToRole="FACTURA_VENTA" />
           <NavigationProperty Name="FACTURAs" Relationship="TAE2Model.CAT_MONEDA_LOT_FACTURA_FK1" FromRole="MONEDA" ToRole="FACTURA" />
+        </EntityType>
+        <EntityType Name="PROCESS_BATCH">
+          <Key>
+            <PropertyRef Name="ID_BATCH" />
+          </Key>
+          <Property Name="ID_BATCH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PSTART_DATE" Type="DateTime" />
+          <Property Name="PEND_DATE" Type="DateTime" />
+          <Property Name="IS_DONE" Type="Boolean" />
+          <Property Name="PSTATUS" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="ID_STATUS" Type="Int32" />
         </EntityType>
         <EntityType Name="PROVEEDOR">
           <Key>
@@ -4360,6 +4384,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PROCESS_BATCH">
+            <EntityTypeMapping TypeName="TAE2Model.PROCESS_BATCH">
+              <MappingFragment StoreEntitySet="PROCESS_BATCH">
+                <ScalarProperty Name="ID_BATCH" ColumnName="ID_BATCH" />
+                <ScalarProperty Name="PSTART_DATE" ColumnName="PSTART_DATE" />
+                <ScalarProperty Name="PEND_DATE" ColumnName="PEND_DATE" />
+                <ScalarProperty Name="IS_DONE" ColumnName="IS_DONE" />
+                <ScalarProperty Name="PSTATUS" ColumnName="PSTATUS" />
+                <ScalarProperty Name="ID_STATUS" ColumnName="ID_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PROVEEDORs">
             <EntityTypeMapping TypeName="TAE2Model.PROVEEDOR">
               <MappingFragment StoreEntitySet="PROVEEDOR">
@@ -5004,29 +5040,30 @@
         <EntityTypeShape EntityType="TAE2Model.INFRAESTRUCTURA" Width="1.5" PointX="6.75" PointY="15" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.MEDIO_ENVIO" Width="1.5" PointX="11.75" PointY="7" Height="1.9802864583333388" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.MONEDA" Width="1.5" PointX="4.5" PointY="48.375" Height="2.5571907552083388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.PROCESS_BATCH" Width="1.5" PointX="0.75" PointY="15" Height="2.1725878906250031" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.PROVEEDOR" Width="1.5" PointX="6.75" PointY="18.25" Height="5.2494108072916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.PROVEEDOR_CATEGORIA" Width="1.5" PointX="0.75" PointY="15" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.PROVEEDOR_CATEGORIA" Width="1.5" PointX="2.75" PointY="15" Height="1.9802864583333388" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.PROVEEDOR_CUENTA" Width="1.5" PointX="9" PointY="19.375" Height="3.1340950520833388" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.PROYECTO" Width="1.5" PointX="2.75" PointY="15" Height="1.9802864583333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.SERVER_LASTDATA" Width="1.5" PointX="13.75" PointY="7" Height="1.4033821614583282" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.PROYECTO" Width="1.5" PointX="13.75" PointY="7" Height="1.9802864583333282" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.SERVER_LASTDATA" Width="1.5" PointX="14.75" PointY="2" Height="1.4033821614583246" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.SOLICITANTE" Width="1.5" PointX="6.75" PointY="25.75" Height="3.5186979166666674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.SYNC" Width="1.5" PointX="14.75" PointY="2" Height="1.4033821614583246" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.TERMINO_ENVIO" Width="1.5" PointX="15.75" PointY="5" Height="2.5571907552083246" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.SYNC" Width="1.5" PointX="15.75" PointY="5" Height="1.4033821614583246" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.TERMINO_ENVIO" Width="1.5" PointX="0.75" PointY="18" Height="2.5571907552083246" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.TIPO_COTIZACION" Width="1.5" PointX="16.75" PointY="2" Height="1.9802864583333246" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.TIPO_EMPRESA" Width="1.5" PointX="4.5" PointY="31.5" Height="2.172587890624996" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.TIPO_PEDIMENTO" Width="1.5" PointX="2.25" PointY="78.625" Height="2.7494921874999818" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.TRANSPORTE" Width="1.5" PointX="6.75" PointY="31.25" Height="2.5571907552083388" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.UPDATE" Width="1.5" PointX="0.75" PointY="18" Height="1.4033821614583246" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.UPDATE" Width="1.5" PointX="16.75" PointY="15" Height="1.4033821614583246" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.UPLOAD_LOG" Width="1.5" PointX="14" PointY="20" Height="2.172587890624996" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.ALMACEN" Width="1.5" PointX="0.75" PointY="10" Height="3.7109993489583388" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.ALMACEN_TECNICO" Width="1.5" PointX="16.75" PointY="15" Height="1.9802864583333246" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.ALMACEN_TECNICO" Width="1.5" PointX="16.75" PointY="18" Height="1.9802864583333246" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.CLIENTE" Width="1.5" PointX="6.75" PointY="34.625" Height="2.749492187499996" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.ITEM_STATUS" Width="1.5" PointX="6.75" PointY="64.5" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.MAX_MIN" Width="1.5" PointX="3" PointY="10.125" Height="3.326396484374996" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.PROGRAMADO" Width="1.5" PointX="6" PointY="10.5" Height="2.7494921875000102" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.PROPIEDAD" Width="1.5" PointX="6.75" PointY="67.875" Height="2.1725878906249818" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.SERVICIO" Width="1.5" PointX="6.75" PointY="38.125" Height="2.172587890624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.SOLICITANTE1" Width="1.5" PointX="16.75" PointY="18" Height="2.1725878906250102" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.SOLICITANTE1" Width="1.5" PointX="17.75" PointY="5" Height="2.1725878906250102" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.TECNICO" Width="1.5" PointX="6.75" PointY="41" Height="2.9417936197916674" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.TIPO_MOVIMIENTO" Width="1.5" PointX="6.75" PointY="44.75" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.UNIDAD" Width="1.5" PointX="4.5" PointY="70.75" Height="2.1725878906250102" IsExpanded="true" />
@@ -5386,11 +5423,11 @@
           <ConnectorPoint PointX="13.322916666666666" PointY="6.4999999999999991" />
           <ConnectorPoint PointX="13.489583333333334" PointY="6.5" />
           <ConnectorPoint PointX="15.5" PointY="6.5" />
-          <ConnectorPoint PointX="15.5" PointY="7.8071907552083246" />
-          <ConnectorPoint PointX="15.541666666666666" PointY="7.8071907552083237" />
-          <ConnectorPoint PointX="15.708333333333334" PointY="7.8071907552083246" />
-          <ConnectorPoint PointX="17.25" PointY="7.8071907552083246" />
-          <ConnectorPoint PointX="17.25" PointY="9.75" />
+          <ConnectorPoint PointX="15.5" PointY="6.6533821614583246" />
+          <ConnectorPoint PointX="15.541666666666666" PointY="6.6533821614583237" />
+          <ConnectorPoint PointX="15.708333333333334" PointY="6.6533821614583246" />
+          <ConnectorPoint PointX="17.1249995" PointY="6.6533821614583246" />
+          <ConnectorPoint PointX="17.1249995" PointY="9.75" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.FK_CATINV_MAX_MIN_ALMACEN" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="10.910924479166667" />

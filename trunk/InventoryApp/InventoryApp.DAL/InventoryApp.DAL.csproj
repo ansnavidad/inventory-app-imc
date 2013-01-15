@@ -189,6 +189,9 @@
     <Compile Include="POCOS\POM_ARTICULO.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
+    <Compile Include="POCOS\PROCESS_BATCH.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
     <Compile Include="POCOS\PROGRAMADO.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
@@ -281,6 +284,7 @@
     </Compile>
     <Compile Include="PomArticuloDataMapper.cs" />
     <Compile Include="PomDataMapper.cs" />
+    <Compile Include="ProcessBachDataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropiedadDataMapper.cs" />
     <Compile Include="ProveedorCategoriaDataMapper.cs" />

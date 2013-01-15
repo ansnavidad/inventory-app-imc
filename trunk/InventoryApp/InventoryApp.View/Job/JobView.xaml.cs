@@ -41,5 +41,10 @@ namespace InventoryApp.View.Job
         {
             Process.Start(ConfigurationManager.AppSettings["RutaArchivos"].ToString());
         }
+
+        private void btnActualizar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -889,5 +889,20 @@ namespace InventoryApp.Service.Services
             return respuesta;
         }
 
+
+
+        public string GetProcessBach()
+        {
+            string respuesta = null;
+
+            ProcessBachDataMapper dataMapper = new ProcessBachDataMapper();
+
+            respuesta = dataMapper.GetJsonProcessBach();
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
+            return respuesta;
+        }
     }
 }

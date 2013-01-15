@@ -83,6 +83,7 @@ namespace InventoryApp.ViewModel.Sync
         TransporteDataMapper transporteDataMapper = new TransporteDataMapper();
         UltimoMovimientoDataMapper ultimoMovimientoDataMapper = new UltimoMovimientoDataMapper();
         UnidadDataMapper unidadDataMapper = new UnidadDataMapper();
+        MaxMinDataMapper maxMinDataMapper = new MaxMinDataMapper();
         UploadLogDataMapper uploadLogDataMapper = new UploadLogDataMapper();
         System.Timers.Timer t;
         string _message;
@@ -544,6 +545,16 @@ namespace InventoryApp.ViewModel.Sync
                         unidadDataMapper.ResetUnidad();
                     }
                 }
+
+                if (res)
+                {
+                    this.Message = "Enviando MAX_MIN ...";
+                    res = CallServiceMaxMin();
+                    if (res)
+                    {
+                        maxMinDataMapper.ResetMaxMin();
+                    }
+                }
                 #endregion
 
                 #region todos los catalogos de COT
@@ -991,6 +1002,12 @@ namespace InventoryApp.ViewModel.Sync
                     this.Message = "Descargando UNIDAD ...";
                     res = CallDownloadServiceUnidad(serverDate);
                 }
+
+                if (res)
+                {
+                    this.Message = "Descargando MAX_MIN ...";
+                    res = CallDownloadServiceMaxMin(serverDate);
+                }
                 #endregion
 
                 #region todos los catalogos de COT
@@ -1151,6 +1168,8 @@ namespace InventoryApp.ViewModel.Sync
             return responseSevice;
             #endregion
         }
+
+        #region  TODOS LOS METODOS DE DESCARGA
 
         #region Métodos de descarga de APP
 
@@ -1960,6 +1979,46 @@ namespace InventoryApp.ViewModel.Sync
 
                 if (list != null)
                     foreach (UNIDAD item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceMaxMin(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadMaxMin";
+            MaxMinDataMapper dataMapper = new MaxMinDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = unidadDataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<MAX_MIN> list;
+                list = dataMapper.GetDeserializeMaxMin(resx["downloadMaxMinResult"]);
+
+                if (list != null)
+                    foreach (MAX_MIN item in list)
                         dataMapper.loadSync(item);
 
             }
@@ -3337,7 +3396,11 @@ namespace InventoryApp.ViewModel.Sync
             #endregion
         }
         #endregion
-        
+
+        #endregion
+
+        #region TODOS LOS METODOS DE SUBIDA
+
         #region todos los metodos de APP
         public bool CallServiceMenu()
         {
@@ -4703,6 +4766,45 @@ namespace InventoryApp.ViewModel.Sync
             return responseSevice;
             #endregion
         }
+
+        public bool CallServiceMaxMin()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadMaxMin";
+            MaxMinDataMapper dataMapper = new MaxMinDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonMaxMin();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
         #endregion
 
         #region todos los metodos de GEO
@@ -5416,6 +5518,7 @@ namespace InventoryApp.ViewModel.Sync
             #endregion
         }
         #endregion
-		
+        #endregion
+
     }
 }

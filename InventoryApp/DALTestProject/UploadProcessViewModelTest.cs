@@ -90,5 +90,20 @@ namespace DALTestProject
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
         }
+
+        /// <summary>
+        ///Una prueba de CallDownloadServiceMaxMin
+        ///</summary>
+        [TestMethod()]
+        public void CallDownloadServiceMaxMinTest()
+        {
+            UploadProcessViewModel target = new UploadProcessViewModel(); // TODO: Inicializar en un valor adecuado
+            long serverDate = 0; // TODO: Inicializar en un valor adecuado
+            bool expected = false; // TODO: Inicializar en un valor adecuado
+            bool actual;
+            actual = target.CallDownloadServiceMaxMin(serverDate);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
+        }
     }
 }

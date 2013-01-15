@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="305" d:DesignWidth="629" 
+             d:DesignHeight="420" d:DesignWidth="700" 
              DataContext="{StaticResource catalogTerminoEnvioViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -27,12 +27,12 @@
         <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label Style="{StaticResource titleLabel}" Content="CONSULTA TÉRMINO ENVIO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <Button Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" Grid.Row="0" Grid.Column="2" 
+        <Button Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="164,3,12,5" Name="btnNuevo" Grid.Column="2" 
                 VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
-        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2" 
-                    Margin="0,0,175,0" Name="btnEliminar" VerticalAlignment="Stretch"
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Column="2" 
+                    Margin="76,3,100,5" Name="btnEliminar" VerticalAlignment="Stretch"
                     Width="75" Click="btnEliminar_Click" Command="{Binding DeleteTerminoEnvioCommand,Mode=OneWay}" />
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" CanUserDeleteRows="False"
+        <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" CanUserDeleteRows="False"
                   Name="dtGridTerminoEnvio" VerticalAlignment="Stretch" ItemsSource="{Binding Path=CatalogTerminoEnvioModel.TerminoEnvio}" 
                   SelectedItem="{Binding CatalogTerminoEnvioModel.SelectedTerminoEnvio, Mode=TwoWay}" 
                   MouseDoubleClick="dtGridItemStatus_MouseDoubleClick"  Grid.Column="0" Grid.ColumnSpan="3"
@@ -46,9 +46,9 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="200" Header="Clave" x:Name="CLAVE" Binding="{Binding Path=CLAVE}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="200" Header="Término" x:Name="TERMINO" Binding="{Binding Path=TERMINO}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="200" Header="Significado" x:Name="SIGNIFICADO" Binding="{Binding Path=SIGNIFICADO}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Clave" x:Name="CLAVE" Binding="{Binding Path=CLAVE}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="1.1*" Header="Término" x:Name="TERMINO" Binding="{Binding Path=TERMINO}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="1.1*" Header="Significado" x:Name="SIGNIFICADO" Binding="{Binding Path=SIGNIFICADO}"></DataGridTextColumn>
                 <DataGridCheckBoxColumn Header="Genera Lotes" IsReadOnly="True" Width="100" x:Name="GENERA_LOTES" Binding="{Binding Path=GENERA_LOTES}"></DataGridCheckBoxColumn>
             </DataGrid.Columns>
         </DataGrid>

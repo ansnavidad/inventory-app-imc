@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="370" d:DesignWidth="500"
+             d:DesignHeight="420" d:DesignWidth="700" 
              DataContext="{StaticResource catalogTipoPedimentoViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -27,12 +27,12 @@
         <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label Style="{StaticResource titleLabel}" Content="CONSULTA TIPO PEDIMENTO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <Button Content="Nuevo" Height="23" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" VerticalAlignment="Stretch" 
+        <Button Content="Nuevo" Height="23" Grid.Column="2" HorizontalAlignment="Stretch" Margin="164,3,12,5" Name="btnNuevo" VerticalAlignment="Stretch" 
                 Width="75" Click="btnNuevo_Click" />
-        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
-                    Margin="0,0,170,0" Name="btnEliminar" VerticalAlignment="Stretch"
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Column="2"
+                    Margin="78,3,96,5" Name="btnEliminar" VerticalAlignment="Stretch"
                     Width="75" Click="btnEliminar_Click" Command="{Binding DeleteTipoPedimentoCommand,Mode=OneWay}"  />
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" CanUserDeleteRows="False"
+        <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" CanUserDeleteRows="False"
                   Name="dtGridTipoPedimento" VerticalAlignment="Stretch" ItemsSource="{Binding TipoPedimentoModel.TipoPedimento}" 
                   SelectedItem="{Binding TipoPedimentoModel.SelectedTipoPedimento, Mode=TwoWay}" 
                   MouseDoubleClick="dtGridItemStatus_MouseDoubleClick" Grid.Column="0" Grid.ColumnSpan="3"
@@ -46,10 +46,10 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="140" Header="Nombre" x:Name="NOMBRE" Binding="{Binding Path=TIPO_PEDIMENTO_NAME}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="140" Header="Clave" x:Name="CLAVE" Binding="{Binding Path=CLAVE}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="140" Header="Régimen" x:Name="REGIMEN" Binding="{Binding Path=REGIMEN}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="177" Header="Nota" x:Name="NOTA" Binding="{Binding Path=NOTA}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Nombre" x:Name="NOMBRE" Binding="{Binding Path=TIPO_PEDIMENTO_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Clave" x:Name="CLAVE" Binding="{Binding Path=CLAVE}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Régimen" x:Name="REGIMEN" Binding="{Binding Path=REGIMEN}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="1.5*" Header="Nota" x:Name="NOTA" Binding="{Binding Path=NOTA}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

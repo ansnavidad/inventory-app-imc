@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="372" d:DesignWidth="640"
+             d:DesignHeight="420" d:DesignWidth="700" 
              DataContext="{StaticResource catalogProveedorCuentaViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -32,7 +32,7 @@
         <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Column="2"
                     Margin="78,3,96,4" Name="btnEliminar" VerticalAlignment="Stretch"
                     Width="75" Click="btnEliminar_Click"  Command="{Binding DeleteProveedorCuentaCommand,Mode=OneWay}"/>
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" CanUserDeleteRows="False"
+        <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" CanUserDeleteRows="False"
                   Name="dtGridTipoPedimento" VerticalAlignment="Stretch" ItemsSource="{Binding ProveedorCuentaModel.ProveedorCuenta}" 
                   SelectedItem="{Binding ProveedorCuentaModel.SelectedProveedorCuenta, Mode=TwoWay}" 
                   MouseDoubleClick="dtGridItemStatus_MouseDoubleClick" Grid.Column="0" Grid.ColumnSpan="3"
@@ -46,11 +46,11 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="150" Header="Beneficiario" x:Name="BENEFICIARIO" Binding="{Binding Path=BENEFICIARIO}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="120" Header="Clabe" x:Name="CLABE" Binding="{Binding Path=CLABE}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="150" Header="Número Cuenta" x:Name="NUMERO_CUENTA" Binding="{Binding Path=NUMERO_CUENTA}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="90" Header="Proveedor" x:Name="PROVEEDOR" Binding="{Binding Path=Proveedor.PROVEEDOR_NAME}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Banco" x:Name="BANCO" Binding="{Binding Path=Banco.BANCO_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Beneficiario" x:Name="BENEFICIARIO" Binding="{Binding Path=BENEFICIARIO}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Clabe" x:Name="CLABE" Binding="{Binding Path=CLABE}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="140" Header="Número Cuenta" x:Name="NUMERO_CUENTA" Binding="{Binding Path=NUMERO_CUENTA}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Proveedor" x:Name="PROVEEDOR" Binding="{Binding Path=Proveedor.PROVEEDOR_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="80" Header="Banco" x:Name="BANCO" Binding="{Binding Path=Banco.BANCO_NAME}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

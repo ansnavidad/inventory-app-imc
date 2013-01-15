@@ -305,6 +305,9 @@ namespace InventoryApp.ViewModel
                     case "Carga de ítems":
                       page = new Job.JobViewModel();
                       break;
+                    case "Programado":
+                      page = new CatalogProgramado.CatalogProgramadoViewModel();
+                      break;
                         
                     default:
                         break;

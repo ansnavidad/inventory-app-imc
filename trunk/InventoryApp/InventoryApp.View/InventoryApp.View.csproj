@@ -297,6 +297,15 @@
     <Compile Include="CatalogPais\PaisUserControl.xaml.cs">
       <DependentUpon>PaisUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogProgramado\AddArticuloView.xaml.cs">
+      <DependentUpon>AddArticuloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProgramado\AddProgramadoView.xaml.cs">
+      <DependentUpon>AddProgramadoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProgramado\CatalogProgramado.xaml.cs">
+      <DependentUpon>CatalogProgramado.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogPropiedad\AltaPropiedad.xaml.cs">
       <DependentUpon>AltaPropiedad.xaml</DependentUpon>
     </Compile>
@@ -933,6 +942,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CatalogPais\PaisUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProgramado\AddArticuloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProgramado\AddProgramadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProgramado\CatalogProgramado.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

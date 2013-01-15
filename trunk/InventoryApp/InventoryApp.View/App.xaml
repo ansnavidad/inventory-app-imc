@@ -75,15 +75,17 @@
              xmlns:TecnicoView="clr-namespace:InventoryApp.View.CatalogTecnico"        
              xmlns:InfraestructuraViews="clr-namespace:InventoryApp.View.CatalogInfraestructura"
              
-             
              xmlns:reportesViewModel="clr-namespace:InventoryApp.ViewModel.Reportes;assembly=InventoryApp.ViewModel"
              xmlns:reportesView="clr-namespace:InventoryApp.View.Reportes"
              
              xmlns:maxMinViewModel="clr-namespace:InventoryApp.ViewModel.MaxMin;assembly=InventoryApp.ViewModel"
              xmlns:maxMinView="clr-namespace:InventoryApp.View.MaxMin"
+             xmlns:catalogProgramadoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogProgramado;assembly=InventoryApp.ViewModel"
+             xmlns:catalogProgramadoView="clr-namespace:InventoryApp.View.CatalogProgramado"
              xmlns:jobViewModel="clr-namespace:InventoryApp.ViewModel.Job;assembly=InventoryApp.ViewModel"
              xmlns:jobView="clr-namespace:InventoryApp.View.Job"
-             
+                  
+        
              StartupUri="MainWindow.xaml"
              >
     
@@ -363,6 +365,10 @@
         <ObjectDataProvider x:Key="maxMinViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
+        <!--Programado-->
+        <ObjectDataProvider x:Key="programadoViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
         <!--Job-->
         <ObjectDataProvider x:Key="jobViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
@@ -610,6 +616,10 @@
 
         <DataTemplate DataType="{x:Type jobViewModel:JobViewModel}">
             <jobView:JobView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type catalogProgramadoViewModel:CatalogProgramadoViewModel}">
+            <catalogProgramadoView:CatalogProgramado/>
         </DataTemplate>
 
     </Application.Resources>

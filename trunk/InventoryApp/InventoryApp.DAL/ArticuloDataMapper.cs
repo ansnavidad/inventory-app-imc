@@ -73,6 +73,7 @@ namespace InventoryApp.DAL
         {
             if (element != null)
             {
+                
                 ARTICULO poco = (ARTICULO)element;
                 using (var entity = new TAE2Entities())
                 {

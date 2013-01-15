@@ -284,6 +284,7 @@
     </Compile>
     <Compile Include="PomArticuloDataMapper.cs" />
     <Compile Include="PomDataMapper.cs" />
+    <Compile Include="ProgramadoDataMapper.cs" />
     <Compile Include="ProcessBachDataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropiedadDataMapper.cs" />

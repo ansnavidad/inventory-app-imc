@@ -15,6 +15,36 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_020CEB2687214233AB2E6DEB67E285AF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_08DA8690584A4AAB978B82CAC375AA01"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1489919857CF4960B373A9ACF48B9EA5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_17B4CB4DAD0945FAB6F577AA954629E1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_189609467CBF49FDAD78B8F16A217F9B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_294F66C44CA9F7ED8D3BB19F365EA1CF"
         "OwnerKey" = "8:_B84AC0571F2E4C039CD53E5789ADD2C9"
         "MsmSig" = "8:_UNDEFINED"
@@ -35,6 +65,12 @@
         {
         "MsmKey" = "8:_34569D8A6EE0DF607E1C6B1E4882C86F"
         "OwnerKey" = "8:_3F59EE2E731A9DF1C3F37486AAE143F8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3BCC829CCC2F4BDF88CCBC1FA2FC87D9"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -87,12 +123,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_61D9280449B54A87A68763E38EE6E8F3"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_6309DD72BFAD41DB50A834F004783E36"
         "OwnerKey" = "8:_CB3A659D04A1A84941BBAA4708455FD5"
         "MsmSig" = "8:_UNDEFINED"
@@ -105,13 +135,37 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_64FDFEBACBBA4812B151198A969452CC"
+        "MsmKey" = "8:_64D392445D114362AF25C9D20A19CD68"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_776B98FD497E4C2D80EF0C971A29414D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_80546345409A4EC5B52653B7C2EFF9E3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_867050C4BE1A41C3B343D6F3E732993A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_9255D78FD14C43EDAA1C864718E79907"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9760D19DE15F4E748A5B1AB0A0251B11"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -125,6 +179,12 @@
         {
         "MsmKey" = "8:_9841C128138F016885435969A1E2B6E8"
         "OwnerKey" = "8:_B84AC0571F2E4C039CD53E5789ADD2C9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_99A38C98AD1747A9BBF341A9756CBBB7"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -147,7 +207,43 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A36051B165FE4F709B42B707623776E8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A9ADA1CB630E4A1A86A3C9E654858E68"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AA58E8C8425942B1B73D02B343BD9872"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B805DDD5D5E94753A8AE134C987D6E94"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B84AC0571F2E4C039CD53E5789ADD2C9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BA57A19E443E431994146F86D1B3633F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C3AF016C98134BF29D9B90EAC1677DDA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -177,13 +273,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D5D0EC82F58440F3B0E11F291FBFBCFE"
+        "MsmKey" = "8:_D535865714144CA89997995293AE3747"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F9A77C010B964F54839E347493C7EC90"
+        "MsmKey" = "8:_DC052A2FD05B45778DDC36F69A63E12C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FE3DB54C3DEC4122A2080AE6EBF62A3F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -191,6 +293,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B84AC0571F2E4C039CD53E5789ADD2C9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_189609467CBF49FDAD78B8F16A217F9B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_867050C4BE1A41C3B343D6F3E732993A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -364,6 +478,117 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_020CEB2687214233AB2E6DEB67E285AF"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\SalidaRevision.xlsx"
+            "TargetName" = "8:SalidaRevision.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_08DA8690584A4AAB978B82CAC375AA01"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\SalidaRenta.xlsx"
+            "TargetName" = "8:SalidaRenta.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1489919857CF4960B373A9ACF48B9EA5"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\SalidaVenta.xlsx"
+            "TargetName" = "8:SalidaVenta.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_17B4CB4DAD0945FAB6F577AA954629E1"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\SalidaConfiguracion.xlsx"
+            "TargetName" = "8:SalidaConfiguracion.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_189609467CBF49FDAD78B8F16A217F9B"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:RestSharp, Version=102.7.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_189609467CBF49FDAD78B8F16A217F9B"
+                    {
+                    "Name" = "8:RestSharp.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\RestSharp.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_294F66C44CA9F7ED8D3BB19F365EA1CF"
             {
             "AssemblyRegister" = "3:1"
@@ -424,6 +649,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3BCC829CCC2F4BDF88CCBC1FA2FC87D9"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\SalidaPrestamo.xlsx"
+            "TargetName" = "8:SalidaPrestamo.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3F59EE2E731A9DF1C3F37486AAE143F8"
@@ -610,26 +855,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_61D9280449B54A87A68763E38EE6E8F3"
-            {
-            "SourcePath" = "8:..\\eVentasUpdater\\bin\\Debug\\App_20111030_.config"
-            "TargetName" = "8:App_20111030_.config"
-            "Tag" = "8:"
-            "Folder" = "8:_316F1F47DA9B405097414BBB1B157767"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6309DD72BFAD41DB50A834F004783E36"
             {
             "AssemblyRegister" = "3:1"
@@ -661,12 +886,83 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_64FDFEBACBBA4812B151198A969452CC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_64D392445D114362AF25C9D20A19CD68"
             {
-            "SourcePath" = "8:C:\\temp\\elarainventarios\\Logo.ico"
-            "TargetName" = "8:Logo.ico"
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\EntradaDevolucion.xlsx"
+            "TargetName" = "8:EntradaDevolucion.xlsx"
             "Tag" = "8:"
-            "Folder" = "8:_316F1F47DA9B405097414BBB1B157767"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_776B98FD497E4C2D80EF0C971A29414D"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\EntradaValidacion.xlsx"
+            "TargetName" = "8:EntradaValidacion.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_80546345409A4EC5B52653B7C2EFF9E3"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\SalidaOffice.xlsx"
+            "TargetName" = "8:SalidaOffice.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_867050C4BE1A41C3B343D6F3E732993A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_867050C4BE1A41C3B343D6F3E732993A"
+                    {
+                    "Name" = "8:Newtonsoft.Json.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\Newtonsoft.Json.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -687,6 +983,26 @@
             "TargetName" = "8:Logo.png"
             "Tag" = "8:"
             "Folder" = "8:_FDB25C18AAE24E508EA0C7013B6AA971"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9760D19DE15F4E748A5B1AB0A0251B11"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\SalidaPruebas.xlsx"
+            "TargetName" = "8:SalidaPruebas.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -730,6 +1046,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_99A38C98AD1747A9BBF341A9756CBBB7"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\EntradaPrestamo.xlsx"
+            "TargetName" = "8:EntradaPrestamo.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_99EDBAE6B994415ABF16B45EC2CA5490"
@@ -794,6 +1130,126 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A36051B165FE4F709B42B707623776E8"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\SalidaObsequio.xlsx"
+            "TargetName" = "8:SalidaObsequio.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A9ADA1CB630E4A1A86A3C9E654858E68"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\SalidaCorrectivo.xlsx"
+            "TargetName" = "8:SalidaCorrectivo.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AA58E8C8425942B1B73D02B343BD9872"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Images\\Logo.ico"
+            "TargetName" = "8:Logo.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_FDB25C18AAE24E508EA0C7013B6AA971"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B805DDD5D5E94753A8AE134C987D6E94"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\Factura.xlsx"
+            "TargetName" = "8:Factura.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BA57A19E443E431994146F86D1B3633F"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\SalidaRMA.xlsx"
+            "TargetName" = "8:SalidaRMA.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C3AF016C98134BF29D9B90EAC1677DDA"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\SalidaDemo.xlsx"
+            "TargetName" = "8:SalidaDemo.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CB3A659D04A1A84941BBAA4708455FD5"
             {
             "AssemblyRegister" = "3:1"
@@ -845,12 +1301,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D5D0EC82F58440F3B0E11F291FBFBCFE"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D535865714144CA89997995293AE3747"
             {
-            "SourcePath" = "8:..\\eVentasUpdater\\bin\\Debug\\eVentasUpdater.exe.config"
-            "TargetName" = "8:eVentasUpdater.exe.config"
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\TraspasoStock.xlsx"
+            "TargetName" = "8:TraspasoStock.xlsx"
             "Tag" = "8:"
-            "Folder" = "8:_316F1F47DA9B405097414BBB1B157767"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -865,12 +1321,32 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F9A77C010B964F54839E347493C7EC90"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DC052A2FD05B45778DDC36F69A63E12C"
             {
-            "SourcePath" = "8:..\\eVentasUpdater\\bin\\Debug\\eVentasUpdater.vshost.exe.config"
-            "TargetName" = "8:eVentasUpdater.vshost.exe.config"
+            "SourcePath" = "8:..\\InventoryApp.View\\Resources\\EntradaDesinstalacion.xlsx"
+            "TargetName" = "8:EntradaDesinstalacion.xlsx"
             "Tag" = "8:"
-            "Folder" = "8:_316F1F47DA9B405097414BBB1B157767"
+            "Folder" = "8:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FE3DB54C3DEC4122A2080AE6EBF62A3F"
+            {
+            "SourcePath" = "8:..\\InventoryApp.View\\Style\\DataGridStyle.xaml"
+            "TargetName" = "8:DataGridStyle.xaml"
+            "Tag" = "8:"
+            "Folder" = "8:_CFC9B19E4BCF4FBCB7423CDA1C8218E6"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -912,6 +1388,28 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_CFC9B19E4BCF4FBCB7423CDA1C8218E6"
+                    {
+                    "Name" = "8:Style"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_777F030B133741BBAFCCF7C69CF34AF6"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_D4B2F0A9AA464A0CB5CD1889D28B069D"
+                    {
+                    "Name" = "8:Resources"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_002105DC959B4CAAA9BFC96B922B37C9"
+                        "Folders"
+                        {
+                        }
+                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_FDB25C18AAE24E508EA0C7013B6AA971"
                     {
                     "Name" = "8:Images"
@@ -953,7 +1451,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Elara Inventarios"
         "ProductCode" = "8:{B87B394C-A67E-4842-B18D-B4216E65E9D6}"
-        "PackageCode" = "8:{35C57578-FFE5-4E3E-84D4-91BEF00F68E5}"
+        "PackageCode" = "8:{B15AFAA8-3E4B-4FA7-85C4-EAF9DCA469C8}"
         "UpgradeCode" = "8:{9813D58F-06BF-44DF-A48B-2C0D4849B4A4}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1084,7 +1582,7 @@
             "Target" = "8:_B84AC0571F2E4C039CD53E5789ADD2C9"
             "Folder" = "8:_D03B7E0498AE44CA9401144FD926FDFD"
             "WorkingFolder" = "8:_316F1F47DA9B405097414BBB1B157767"
-            "Icon" = "8:_64FDFEBACBBA4812B151198A969452CC"
+            "Icon" = "8:_AA58E8C8425942B1B73D02B343BD9872"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_FD413052B50D4529B6BB2D0CBB40FB35"
@@ -1098,7 +1596,7 @@
             "Target" = "8:_B84AC0571F2E4C039CD53E5789ADD2C9"
             "Folder" = "8:_049752A7A4144891B4E33F84AB77852C"
             "WorkingFolder" = "8:_316F1F47DA9B405097414BBB1B157767"
-            "Icon" = "8:_64FDFEBACBBA4812B151198A969452CC"
+            "Icon" = "8:_AA58E8C8425942B1B73D02B343BD9872"
             "Feature" = "8:"
             }
         }
@@ -1500,34 +1998,6 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6FB784C24907403D9D3E8565CA1B7102"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_316F1F47DA9B405097414BBB1B157767"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:ContentFiles"
-            "OutputProjectGuid" = "8:{0D2F4C11-7723-4C65-AF5A-6D0D8FF96F80}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B84AC0571F2E4C039CD53E5789ADD2C9"
             {
             "SourcePath" = "8:..\\InventoryApp.View\\obj\\x86\\Debug\\InventoryApp.View.exe"

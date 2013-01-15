@@ -1422,9 +1422,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Resource Include="Logo.ico" />
+    <Resource Include="Images\Logo.ico" />
     <Content Include="Images\sync.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Newtonsoft.Json.dll" />
+    <Content Include="Resources\RestSharp.dll" />
     <Content Include="Style\DataGridStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1482,6 +1485,23 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\EntradaDesinstalacion.xlsx" />
+    <None Include="Resources\EntradaDevolucion.xlsx" />
+    <None Include="Resources\EntradaPrestamo.xlsx" />
+    <None Include="Resources\EntradaValidacion.xlsx" />
+    <None Include="Resources\Factura.xlsx" />
+    <None Include="Resources\SalidaConfiguracion.xlsx" />
+    <None Include="Resources\SalidaCorrectivo.xlsx" />
+    <None Include="Resources\SalidaDemo.xlsx" />
+    <None Include="Resources\SalidaObsequio.xlsx" />
+    <None Include="Resources\SalidaOffice.xlsx" />
+    <None Include="Resources\SalidaPrestamo.xlsx" />
+    <None Include="Resources\SalidaPruebas.xlsx" />
+    <None Include="Resources\SalidaRenta.xlsx" />
+    <None Include="Resources\SalidaRevision.xlsx" />
+    <None Include="Resources\SalidaRMA.xlsx" />
+    <None Include="Resources\SalidaVenta.xlsx" />
+    <None Include="Resources\TraspasoStock.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InventoryApp.DAL\InventoryApp.DAL.csproj">

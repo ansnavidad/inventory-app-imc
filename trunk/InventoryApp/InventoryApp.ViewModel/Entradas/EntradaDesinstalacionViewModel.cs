@@ -342,7 +342,7 @@ namespace InventoryApp.ViewModel.Entradas
                 Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
                 excel.Visible = true;
 
-                Workbook excelPrint = excel.Workbooks.Open(@"C:\temp\elarainventarios\EntradaDesinstalacion.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                Workbook excelPrint = excel.Workbooks.Open(@"C:\Programs\ElaraInventario\Resources\EntradaDesinstalacion.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                 Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
 
                 //Folio

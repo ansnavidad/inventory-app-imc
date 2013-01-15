@@ -36,8 +36,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="RestSharp">
-      <HintPath>..\..\..\..\..\..\..\..\DLL inventory\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=102.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\InventoryApp.View\Resources\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />

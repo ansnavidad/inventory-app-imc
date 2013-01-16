@@ -143,14 +143,14 @@ namespace InventoryApp.ViewModel.MaxMin
         {
             this.init();
         }
-        //sobrecarga de agregar articulos
+        //sobrecarga de agregar articulos 
         public AddArticulosMaxMin(AddMaxMinViewModel addMaxMinViewModel)
         {
             this.init();
-            _maxMinViewModel = new AddMaxMinViewModel();
-            _maxMinViewModel = addMaxMinViewModel;
+            this._maxMinViewModel = new AddMaxMinViewModel();
+            this._maxMinViewModel = addMaxMinViewModel;
         }
-        //sobrecarga para agregar articulos
+        //sobrecarga para modificar articulos
         public AddArticulosMaxMin(ModifyMaxMinViewModel modifyMaxMinViewModel)
         {
             this.init();
@@ -286,11 +286,11 @@ namespace InventoryApp.ViewModel.MaxMin
                 Min=0,
                 IsChecked=false
             };
-            if (_maxMinViewModel!=null)
+            if (this._maxMinViewModel!=null)
             {
                 this._maxMinViewModel.AddArticulos.Add(maxMinModel);    
             }
-            if (_modiMaxMinViewModel!=null)
+            if (this._modiMaxMinViewModel != null)
             {
                 this._modiMaxMinViewModel.ModiArticulos.Add(maxMinModel);
             }

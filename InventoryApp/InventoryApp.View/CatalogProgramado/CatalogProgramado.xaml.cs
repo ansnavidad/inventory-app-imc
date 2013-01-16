@@ -29,7 +29,8 @@ namespace InventoryApp.View.CatalogProgramado
             AddProgramadoView alta = new AddProgramadoView();
             try
             {
-                CatalogProgramadoViewModel catalogprogramadoViewModel = this.DataContext as CatalogProgramadoViewModel;
+                CatalogProgramadoViewModel catalogprogramadoViewModel = new CatalogProgramadoViewModel();
+                catalogprogramadoViewModel = this.DataContext as CatalogProgramadoViewModel;
                 alta.DataContext = catalogprogramadoViewModel.CreateAddProgramadoViewModel();
                 alta.ShowDialog();
             }
@@ -46,6 +47,25 @@ namespace InventoryApp.View.CatalogProgramado
 
         private void dtGridItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (sender != null)
+            {
+                DataGrid dg = sender as DataGrid;
+                if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
+                {
+                    ModifyProgramadoView modify = new ModifyProgramadoView();
+                    try
+                    {
+                        CatalogProgramadoViewModel catalogprogramadoViewModel = new CatalogProgramadoViewModel();
+                        catalogprogramadoViewModel = this.DataContext as CatalogProgramadoViewModel;
+                        modify.DataContext = catalogprogramadoViewModel.CreateModifyProgramadoViewModel();
+                        modify.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
             
         }
     }

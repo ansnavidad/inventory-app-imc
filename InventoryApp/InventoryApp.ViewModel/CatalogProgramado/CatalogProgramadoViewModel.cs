@@ -12,6 +12,19 @@ namespace InventoryApp.ViewModel.CatalogProgramado
     {
         private RelayCommand _deleteMaxMinCommand;
         private CatalogProgramadoModel _catalogProgramadoModel;
+        private ProgramadoModel _addGridArticulos = new ProgramadoModel();
+
+        public ICommand DeleteProgramadoCommand
+        {
+            get
+            {
+                if (_deleteMaxMinCommand == null)
+                {
+                    _deleteMaxMinCommand = new RelayCommand(p => this.AttempDeleteProgramado(), p => this.CanAttempDeleteProgramado());
+                }
+                return _deleteMaxMinCommand;
+            }
+        }
 
         public CatalogProgramadoViewModel()
         {
@@ -52,6 +65,54 @@ namespace InventoryApp.ViewModel.CatalogProgramado
         {
             return new AddProgramadoViewModel(this);
         }
+
+        /// <summary>
+        /// Crea una nueva instancia de ModifyMaxMinViewModel y se pasa asi mismo como parámetro y el item seleccionado
+        /// </summary>
+        /// <returns></returns>
+        public ModifyProgramadoViewModel CreateModifyProgramadoViewModel()
+        {
+            ProgramadoModel programadoModel = new ProgramadoModel(new ProgramadoDataMapper());
+            if (this._catalogProgramadoModel != null && this._catalogProgramadoModel.SelectedProgramado != null)
+            {
+                programadoModel.UnidProgramado = this._catalogProgramadoModel.SelectedProgramado.UNID_PROGRAMADO;
+                programadoModel.Programado = this._catalogProgramadoModel.SelectedProgramado.PROGRAMADO1;
+                programadoModel.Articulo = this._catalogProgramadoModel.SelectedProgramado.Articulo;
+                programadoModel.Almacen = this._catalogProgramadoModel.SelectedProgramado.Almacen;
+            }
+            return new ModifyProgramadoViewModel(this, programadoModel);
+        }
+
+        #region Methods
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempDeleteProgramado()
+        {
+            bool _canDeleteProgramado = false;
+            foreach (DeleteProgramado d in this._catalogProgramadoModel.Programado)
+            {
+                if (d.IsChecked == true)
+                {
+                    _canDeleteProgramado = true;
+                }
+            }
+
+            return _canDeleteProgramado;
+        }
+
+        public void AttempDeleteProgramado()
+        {
+            this._catalogProgramadoModel.deleteProgramado();
+
+            if (this._catalogProgramadoModel != null)
+            {
+                this._catalogProgramadoModel.loadProgramado();
+            }
+        }
+        #endregion
 
         public string PageName
         {

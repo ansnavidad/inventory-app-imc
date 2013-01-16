@@ -65,18 +65,6 @@ namespace DALTestProject
         #endregion
 
 
-        /// <summary>
-        ///Una prueba de min_Error
-        ///</summary>
-        [TestMethod()]
-        [DeploymentItem("InventoryApp.View.exe")]
-        public void min_ErrorTest()
-        {
-            AddMaxMinView_Accessor target = new AddMaxMinView_Accessor(); // TODO: Inicializar en un valor adecuado
-            object sender = null; // TODO: Inicializar en un valor adecuado
-            ValidationErrorEventArgs e = null; // TODO: Inicializar en un valor adecuado
-            target.min_Error(sender, e);
-            Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
-        }
+        
     }
 }

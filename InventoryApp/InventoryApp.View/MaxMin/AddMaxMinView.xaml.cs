@@ -42,17 +42,5 @@ namespace InventoryApp.View.MaxMin
         {
             this.Close();
         }
-
-        private void min_Error(object sender, ValidationErrorEventArgs e)
-        {
-            if (e.Action == ValidationErrorEventAction.Added)
-            {
-                ((Control)sender).ToolTip = e.Error.ErrorContent.ToString();
-            }
-            else
-            {
-                ((Control)sender).ToolTip = "test";
-            }
-        }
     }
 }

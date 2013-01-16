@@ -18,7 +18,9 @@ namespace InventoryApp.Model
         private MARCA _marca;
         private MODELO _modelo;
         private EQUIPO _equipo;
+        private EquipoModel _equipoModel;
         private ALMACEN _almacen;
+        private bool _isChecked;
         private ProgramadoDataMapper _dataMapper;
         #endregion
 
@@ -42,8 +44,6 @@ namespace InventoryApp.Model
                 }
             }
         }
-
-       
 
         public int? Programado
         {
@@ -96,6 +96,25 @@ namespace InventoryApp.Model
                     this._equipo = value;
                     if (this.PropertyChanged != null)
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Equipo"));
+                }
+            }
+        }
+
+        public EquipoModel EquipoModel
+        {
+            get
+            {
+                return _equipoModel;
+            }
+            set
+            {
+                if (_equipoModel != value)
+                {
+                    _equipoModel = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("EquipoModel"));
+                    }
                 }
             }
         }
@@ -170,6 +189,20 @@ namespace InventoryApp.Model
             }
         }
 
+        public bool IsChecked
+        {
+            get { return this._isChecked; }
+            set
+            {
+                if (value != this._isChecked)
+                {
+                    this._isChecked = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("IsChecked"));
+                }
+            }
+        }
+
         #endregion
 
          public void saveProgramado()
@@ -183,6 +216,14 @@ namespace InventoryApp.Model
         public void updateProgramado()
         {
             _dataMapper.udpateElement(new PROGRAMADO() { IS_ACTIVE = true, UNID_PROGRAMADO=this._unidProgramado, PROGRAMADO1 = this._programado, UNID_ALMACEN = this._almacen.UNID_ALMACEN, UNID_ARTICULO = this._articulo.UNID_ARTICULO });
+        }
+
+        public void DeleteProgramado()
+        {
+            if (_dataMapper != null)
+            {
+                _dataMapper.deleteElement(new PROGRAMADO() { UNID_PROGRAMADO = this._unidProgramado});
+            }
         }
 
         #region Constructors

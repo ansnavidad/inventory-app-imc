@@ -32,6 +32,28 @@ namespace InventoryApp.DAL
             }
         }
 
+        public object getElementArticulos(object element)
+        {
+            object res = null;
+            using (var entitie = new TAE2Entities())
+            {
+                PROGRAMADO programado = (PROGRAMADO)element;
+                res = (from cust in entitie.PROGRAMADOes
+                       where cust.UNID_ALMACEN == programado.UNID_ALMACEN && cust.IS_ACTIVE == true
+                       select cust).ToList();
+                foreach (PROGRAMADO pro in ((List<PROGRAMADO>)res))
+                {
+                    pro.ARTICULO = pro.ARTICULO;
+                    pro.ARTICULO.CATEGORIA = pro.ARTICULO.CATEGORIA;
+                    pro.ARTICULO.EQUIPO = pro.ARTICULO.EQUIPO;
+                    pro.ARTICULO.MODELO = pro.ARTICULO.MODELO;
+                    pro.ARTICULO.MARCA = pro.ARTICULO.MARCA;
+                    pro.ALMACEN = pro.ALMACEN;
+                }
+                return res;
+            }
+        }
+
         public object getElement(object element)
         {
             object res = null;
@@ -58,7 +80,6 @@ namespace InventoryApp.DAL
                     PROGRAMADO prog = (PROGRAMADO)element;
                     var modifiedMaxMin = entity.PROGRAMADOes.First(p => p.UNID_PROGRAMADO == prog.UNID_PROGRAMADO);
                     modifiedMaxMin.PROGRAMADO1 = prog.PROGRAMADO1;
-                    
                     //Sync
                     modifiedMaxMin.IS_MODIFIED = true;
                     modifiedMaxMin.LAST_MODIFIED_DATE = UNID.getNewUNID();

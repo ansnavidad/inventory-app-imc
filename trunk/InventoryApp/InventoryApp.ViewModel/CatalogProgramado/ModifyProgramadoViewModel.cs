@@ -4,34 +4,34 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
-using InventoryApp.DAL;
 using System.Collections.ObjectModel;
+using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 
-namespace InventoryApp.ViewModel.MaxMin
+namespace InventoryApp.ViewModel.CatalogProgramado
 {
-    public class ModifyMaxMinViewModel : ViewModelBase
+    public class ModifyProgramadoViewModel : ViewModelBase
     {
         #region Fields
-        private MaxMinModel _modiMaxMin;
-        private RelayCommand _modifyMaxMinCommand;
+        private ProgramadoModel _modiProgramado;
+        private RelayCommand _modifyProgramadoCommand;
         private RelayCommand _deleteArticuloCommand;
-        private MaxMinViewModel _maxMinViewModel;
+        private CatalogProgramadoViewModel _catalogProgramadoViewModel;
         private CatalogAlmacenModel _catalogAlmacenModel;
         #endregion
 
-        //Exponer la propiedad MaxMin almacen y articulo
+        //Exponer la propiedad programado almacen y articulo
         #region Props
 
-        public MaxMinModel ModiMaxMin
+        public ProgramadoModel ModiProgramado
         {
             get
             {
-                return _modiMaxMin;
+                return _modiProgramado;
             }
             set
             {
-                _modiMaxMin = value;
+                _modiProgramado = value;
             }
         }
 
@@ -47,15 +47,15 @@ namespace InventoryApp.ViewModel.MaxMin
             }
         }
 
-        public ICommand ModifyMaxMinCommand
+        public ICommand ModifyProgramadoCommand
         {
             get
             {
-                if (_modifyMaxMinCommand == null)
+                if (_modifyProgramadoCommand == null)
                 {
-                    _modifyMaxMinCommand = new RelayCommand(p => this.AttempModifyMaxMin(), p => this.CanAttempModifyMaxMin());
+                    _modifyProgramadoCommand = new RelayCommand(p => this.AttempModifyProgramado(), p => this.CanAttempModifyProgramado());
                 }
-                return _modifyMaxMinCommand;
+                return _modifyProgramadoCommand;
             }
         }
 
@@ -72,7 +72,7 @@ namespace InventoryApp.ViewModel.MaxMin
         }
         #endregion
 
-        public ObservableCollection<MaxMinModel> ModiArticulos
+        public ObservableCollection<ProgramadoModel> ModiArticulos
         {
             get { return _ModiArticulos; }
             set
@@ -84,10 +84,10 @@ namespace InventoryApp.ViewModel.MaxMin
                 }
             }
         }
-        private ObservableCollection<MaxMinModel> _ModiArticulos;
+        private ObservableCollection<ProgramadoModel> _ModiArticulos;
         public const string ArticulosPropertyName = "ModiArticulos";
 
-        public ObservableCollection<MaxMinModel> DeleteArticulos
+        public ObservableCollection<ProgramadoModel> DeleteArticulos
         {
             get { return _DeleteArticulos; }
             set
@@ -99,7 +99,7 @@ namespace InventoryApp.ViewModel.MaxMin
                 }
             }
         }
-        private ObservableCollection<MaxMinModel> _DeleteArticulos;
+        private ObservableCollection<ProgramadoModel> _DeleteArticulos;
         public const string DeleteArticulosPropertyName = "DeleteArticulos";
 
         #region Constructors
@@ -107,15 +107,14 @@ namespace InventoryApp.ViewModel.MaxMin
         /// Ejecuta la acción del command
         /// </summary>
         /// <param name="catalogItemStatusViewModel"></param>
-        public ModifyMaxMinViewModel(MaxMinViewModel maxMinViewModel, MaxMinModel selectedMaxMinModel)
+        public ModifyProgramadoViewModel(CatalogProgramadoViewModel catalogProgramadoViewModel, ProgramadoModel selectedProgramadoModel)
         {
-            this._modiMaxMin = new MaxMinModel(new MaxMinDataMapper());
-            this._maxMinViewModel = maxMinViewModel;
-            this._modiMaxMin.UnidMaxMin = selectedMaxMinModel.UnidMaxMin;
-            this._modiMaxMin.Max = selectedMaxMinModel.Max;
-            this._modiMaxMin.Min = selectedMaxMinModel.Min;
-            this._modiMaxMin.Almacen = selectedMaxMinModel.Almacen;
-            this._modiMaxMin.Articulo = selectedMaxMinModel.Articulo;
+            this._modiProgramado = new ProgramadoModel(new ProgramadoDataMapper());
+            this._catalogProgramadoViewModel = catalogProgramadoViewModel;
+            this._modiProgramado.UnidProgramado = selectedProgramadoModel.UnidProgramado;
+            this._modiProgramado.Programado = selectedProgramadoModel.Programado;
+            this._modiProgramado.Almacen = selectedProgramadoModel.Almacen;
+            this._modiProgramado.Articulo = selectedProgramadoModel.Articulo;
             try
             {
 
@@ -133,28 +132,29 @@ namespace InventoryApp.ViewModel.MaxMin
             this.init();
 
         }
-        public ModifyMaxMinViewModel(){}
+
+        public ModifyProgramadoViewModel() { }
         #endregion
 
         #region Methods
         public void init()
         {
-            this._ModiArticulos = new ObservableCollection<MaxMinModel>();
-            this._DeleteArticulos = new ObservableCollection<MaxMinModel>();
-            this._ModiArticulos = GetArticulos(this._modiMaxMin);    
+            this._ModiArticulos = new ObservableCollection<ProgramadoModel>();
+            this._DeleteArticulos = new ObservableCollection<ProgramadoModel>();
+            this._ModiArticulos = GetArticulos(this._modiProgramado);
         }
 
-        private ObservableCollection<MaxMinModel> GetArticulos(MaxMinModel maxMinArticulos)
+        private ObservableCollection<ProgramadoModel> GetArticulos(ProgramadoModel programadoArticulos)
         {
-            ObservableCollection<MaxMinModel> articuloModels = new ObservableCollection<MaxMinModel>();
+            ObservableCollection<ProgramadoModel> articuloModels = new ObservableCollection<ProgramadoModel>();
             try
             {
-                MaxMinDataMapper artDataMapper = new MaxMinDataMapper();
-                List<MAX_MIN> articulos = (List<MAX_MIN>)artDataMapper.getElementArticulos(new MAX_MIN() { UNID_ALMACEN = maxMinArticulos.Almacen.UNID_ALMACEN });
+                ProgramadoDataMapper artDataMapper = new ProgramadoDataMapper();
+                List<PROGRAMADO> articulos = (List<PROGRAMADO>)artDataMapper.getElementArticulos(new PROGRAMADO() { UNID_ALMACEN = programadoArticulos.Almacen.UNID_ALMACEN });
 
-                articulos.ForEach(o => articuloModels.Add(new MaxMinModel()
+                articulos.ForEach(o => articuloModels.Add(new ProgramadoModel()
                 {
-                     Articulo=o.ARTICULO,
+                    Articulo = o.ARTICULO,
 
                     EquipoModel = new EquipoModel(new EquipoDataMapper())
                     {
@@ -182,9 +182,8 @@ namespace InventoryApp.ViewModel.MaxMin
                         ,
                         MODELO_NAME = o.ARTICULO.MODELO.MODELO_NAME
                     },
-                    Max= o.MAX,
-                    Min=o.MIN,
-                    UnidMaxMin=o.UNID_MAX_MIN
+                    Programado=o.PROGRAMADO1,
+                    UnidProgramado = o.UNID_PROGRAMADO
                 }));
             }
             catch (Exception)
@@ -200,38 +199,38 @@ namespace InventoryApp.ViewModel.MaxMin
         /// Si esta función retorna false, el command es deshabilitado
         /// </summary>
         /// <returns></returns>
-        public bool CanAttempModifyMaxMin()
+        public bool CanAttempModifyProgramado()
         {
-            bool _canAddMaxMin = false;
+            bool _canAddProgramado = false;
             if (this.ModiArticulos.Count != 0)
             {
                 foreach (var item in this.ModiArticulos)
                 {
-                    if (item.Max >= 0 && item.Min >= 0 && item.Max >= item.Min)
+                    if (item.Programado >= 0)
                     {
-                        _canAddMaxMin = true;
+                        _canAddProgramado = true;
                     }
                     else
                     {
-                        _canAddMaxMin = false;
+                        _canAddProgramado = false;
                         break;
                     }
                 }
             }
-            return _canAddMaxMin;
+            return _canAddProgramado;
         }
 
-        public void AttempModifyMaxMin()
+        public void AttempModifyProgramado()
         {
             //valida si hay un elemento a eliminar
             if (this.DeleteArticulos.Count!=0)
             {
                 foreach (var item in this.DeleteArticulos)
                 {
-                    if (item.UnidMaxMin!=0)
+                    if (item.UnidProgramado!=0)
                     {
                         //eliminacion logiga
-                        this._modiMaxMin.DeleteMaxMin();    
+                        this._modiProgramado.DeleteProgramado();    
                     }
                 }
             }
@@ -239,26 +238,26 @@ namespace InventoryApp.ViewModel.MaxMin
             foreach (var item in this.ModiArticulos)
             {
                 //si el articulo existe actualiza si no inserta
-                this._modiMaxMin.UnidMaxMin = item.UnidMaxMin;
-                this._modiMaxMin.Articulo = item.Articulo;
-                this._modiMaxMin.Max = item.Max;
-                this._modiMaxMin.Min = item.Min;
-                if (item.UnidMaxMin!=0)
+                this._modiProgramado.UnidProgramado = item.UnidProgramado;
+                this._modiProgramado.Articulo = item.Articulo;
+                this._modiProgramado.Programado = item.Programado;
+                
+                if (item.UnidProgramado!=0)
                 {
-                    this._modiMaxMin.updateMaxMin();    
+                    this._modiProgramado.updateProgramado();    
                 }
                 else
                 {
-                    this._modiMaxMin.saveMaxMin();
+                    this._modiProgramado.saveProgramado();
                 }
                 
             }
           
             //Puede ser que para pruebas unitarias catalogProyectoViewModel sea nulo ya que
             //es una dependencia inyectada
-            if (this._maxMinViewModel != null)
+            if (this._catalogProgramadoViewModel != null)
             {
-                this._maxMinViewModel.loadMaxMin();
+                this._catalogProgramadoViewModel.loadProgramado();
             }
         }
 

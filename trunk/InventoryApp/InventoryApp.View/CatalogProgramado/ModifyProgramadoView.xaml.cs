@@ -10,20 +10,35 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogProgramado;
 
 namespace InventoryApp.View.CatalogProgramado
 {
     /// <summary>
-    /// Lógica de interacción para AddArticuloView.xaml
+    /// Lógica de interacción para ModifyProgramadoView.xaml
     /// </summary>
-    public partial class AddArticuloView : Window
+    public partial class ModifyProgramadoView : Window
     {
-        public AddArticuloView()
+        public ModifyProgramadoView()
         {
             InitializeComponent();
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            AddArticuloView altaView = new AddArticuloView();
+            AddArticulosProgramado addArticuloViewModel = new AddArticulosProgramado((ModifyProgramadoViewModel)this.DataContext);
+            altaView.DataContext = addArticuloViewModel;
+            altaView.ShowDialog();
+
+        }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

@@ -14,8 +14,8 @@ namespace InventoryApp.ViewModel.CatalogProgramado
     {
         private RelayCommand _addArticulosCommad;
         private ProgramadoModel _addProgramado;
-        //private MaxMinViewModel _maxMinViewModel = new MaxMinViewModel();
-        private AddProgramadoViewModel _programadoViewModel;
+        private AddProgramadoViewModel _addProgramadoViewModel;
+        private ModifyProgramadoViewModel _modiProgramadoViewModel;
 
         public ProgramadoModel AddProgramado
         {
@@ -28,19 +28,6 @@ namespace InventoryApp.ViewModel.CatalogProgramado
                 _addProgramado = value;
             }
         }
-
-        public AddProgramadoViewModel ProgramadoViewModel
-        {
-            get
-            {
-                return _programadoViewModel;
-            }
-            set
-            {
-                _programadoViewModel = value;
-            }
-        }
-
 
         public ICommand AddArticulosCommad
         {
@@ -153,11 +140,26 @@ namespace InventoryApp.ViewModel.CatalogProgramado
 
         #region Constructor
 
-        public AddArticulosProgramado(AddProgramadoViewModel addProgramado)
+        public AddArticulosProgramado() 
         {
             this.init();
-            this._programadoViewModel = addProgramado;
-            this._addProgramado = new ProgramadoModel();
+        }
+
+        //sobrecarga para agregar articulos
+        public AddArticulosProgramado(AddProgramadoViewModel addProgramadoViewModel)
+        {
+            this.init();
+            this._addProgramadoViewModel = new AddProgramadoViewModel();
+            this._addProgramadoViewModel = addProgramadoViewModel;
+            
+        }
+
+        //sobrecarga para modificar articulos
+        public AddArticulosProgramado(ModifyProgramadoViewModel modifyProgramadoViewModel)
+        {
+            this.init();
+            this._modiProgramadoViewModel = new ModifyProgramadoViewModel();
+            this._modiProgramadoViewModel = modifyProgramadoViewModel;
         }
         #endregion
 
@@ -266,26 +268,36 @@ namespace InventoryApp.ViewModel.CatalogProgramado
         public void AttemptAddArticulo()
         {
 
-            ARTICULO Articulo = new ARTICULO()
+            ProgramadoModel programadoModel = new ProgramadoModel()
+            {
+                Categoria = this.SelectedArticulo.Categoria,
+                EquipoModel = this.SelectedArticulo.EquipoModel,
+                Marca = this.SelectedArticulo.Marca,
+                Modelo = this.SelectedArticulo.Modelo,
+                Articulo = new ARTICULO()
                 {
-                    UNID_ARTICULO = this.SelectedArticulo.UnidArticulo,
                     ARTICULO1 = this.SelectedArticulo.ArticuloName,
-                    UNID_CATEGORIA = SelectedArticulo.Categoria.UNID_CATEGORIA,
-                    UNID_EQUIPO = SelectedArticulo.EquipoModel.UnidEquipo,
-                    UNID_MARCA = SelectedArticulo.Marca.UNID_MARCA,
-                    UNID_MODELO = SelectedArticulo.Modelo.UNID_MODELO
-                };
-
-            CATEGORIA cat = new CATEGORIA();
-            cat.UNID_CATEGORIA = this.SelectedCategoria.UnidCategoria;
-            cat.CATEGORIA_NAME = this.SelectedCategoria.CategoriaName;
-
-                
-            AddProgramado.Articulo = Articulo;
-            AddProgramado.Categoria = cat;
-            this.ProgramadoViewModel.AddArticulos.Add(AddProgramado);
-            //this.AddMaxMin = maxMinModel;
-            //this.Articulos.Add(articuloModel);
+                    CATEGORIA = this.SelectedArticulo.Categoria,
+                    //EQUIPO=this.SelectedArticulo.EquipoModel,
+                    MARCA = this.SelectedArticulo.Marca,
+                    MODELO = this.SelectedArticulo.Modelo,
+                    UNID_ARTICULO = this.SelectedArticulo.UnidArticulo,
+                    UNID_CATEGORIA = this.SelectedArticulo.Categoria.UNID_CATEGORIA,
+                    UNID_EQUIPO = this.SelectedArticulo.EquipoModel.UnidEquipo,
+                    UNID_MARCA = this.SelectedArticulo.Marca.UNID_MARCA,
+                    UNID_MODELO = this.SelectedArticulo.Modelo.UNID_MODELO
+                },
+                 Programado=0,
+                IsChecked = false
+            };
+            if (this._addProgramadoViewModel != null)
+            {
+                this._addProgramadoViewModel.AddArticulos.Add(programadoModel);
+            }
+            if (_modiProgramadoViewModel != null)
+            {
+                this._modiProgramadoViewModel.ModiArticulos.Add(programadoModel);
+            }
         }
 
         public bool CanAttemptAddArticulo()

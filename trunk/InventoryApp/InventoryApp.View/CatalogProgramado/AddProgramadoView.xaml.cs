@@ -26,10 +26,25 @@ namespace InventoryApp.View.CatalogProgramado
 
         private void btnAgregarArticulo_Click(object sender, RoutedEventArgs e)
         {
-             AddArticuloView altaView = new AddArticuloView();
-            AddProgramadoViewModel addArticuloViewModel = this.DataContext as AddProgramadoViewModel;
-            altaView.DataContext = addArticuloViewModel.CreateAddArticuloProgramadoViewModel();
+            AddArticuloView altaView = new AddArticuloView();
+            AddArticulosProgramado addArticuloViewModel = new AddArticulosProgramado((AddProgramadoViewModel)this.DataContext);
+            altaView.DataContext = addArticuloViewModel;
             altaView.ShowDialog();
+        }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

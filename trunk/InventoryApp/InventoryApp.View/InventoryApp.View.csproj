@@ -306,6 +306,9 @@
     <Compile Include="CatalogProgramado\CatalogProgramado.xaml.cs">
       <DependentUpon>CatalogProgramado.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogProgramado\ModifyProgramadoView.xaml.cs">
+      <DependentUpon>ModifyProgramadoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogPropiedad\AltaPropiedad.xaml.cs">
       <DependentUpon>AltaPropiedad.xaml</DependentUpon>
     </Compile>
@@ -954,6 +957,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogProgramado\CatalogProgramado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProgramado\ModifyProgramadoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

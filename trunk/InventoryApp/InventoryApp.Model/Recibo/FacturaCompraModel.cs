@@ -117,6 +117,21 @@ namespace InventoryApp.Model.Recibo
             }
         }
         public const string IvaPropertyName = "Iva";
+        
+        public double TC
+        {
+            get { return _tc; }
+            set
+            {
+                if (_tc != value)
+                {
+                    _tc = value;
+                    OnPropertyChanged(TCPropertyName);
+                }
+            }
+        }
+        private double _tc;
+        public const string TCPropertyName = "TC";
 
         public double Total
         {
@@ -245,7 +260,8 @@ namespace InventoryApp.Model.Recibo
                     UNID_PROVEEDOR = this._Proveedor.UnidProveedor,
                     UNID_MONEDA = this._Moneda.UnidMoneda,
                     NUMERO_PEDIMENTO=this._NumeroPedimento,
-                    IVA_POR=this._PorIva
+                    IVA_POR=this._PorIva,
+                    TC = this._tc
                 });
             }
         }

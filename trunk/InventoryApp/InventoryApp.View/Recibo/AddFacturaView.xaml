@@ -47,6 +47,7 @@
                 <RowDefinition Height="{StaticResource capRowHeight}" />
                 <RowDefinition Height="{StaticResource capRowHeight}" />
                 <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="76*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource descColWidth}" />
@@ -70,17 +71,17 @@
             <TextBlock Grid.Column="0" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Proveedor" VerticalAlignment="Top" />
             <ComboBox Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Proveedores}" SelectedItem="{Binding SelectedProveedor,Mode=TwoWay}" DisplayMemberPath="ProveedorName" Text="{Binding SelectedProveedor.ProveedorName}" IsEnabled="{Binding CanSelecteProveedor}" />
 
-            <TextBlock Grid.Column="3" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Moneda" VerticalAlignment="Top" />
-            <ComboBox Grid.Column="4" Grid.Row="2" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Monedas}" SelectedItem="{Binding SelectedMoneda}" DisplayMemberPath="MonedaName" />
+            <TextBlock Grid.Column="3" Grid.Row="3" Height="23" HorizontalAlignment="Left" Text="Moneda" VerticalAlignment="Top" Margin="0,4,0,0" />
+            <ComboBox Grid.Column="4" Grid.Row="3" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Monedas}" SelectedItem="{Binding SelectedMoneda}" DisplayMemberPath="MonedaName" />
 
-            <TextBlock Grid.Column="0" Grid.Row="3" Height="23" HorizontalAlignment="Left" Text="Número Pedimento" VerticalAlignment="Top" />
-            <TextBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding NumeroPedimento, Mode=TwoWay}" />
+            <TextBlock Grid.Row="4" Height="23" HorizontalAlignment="Left" Text="Número Pedimento" VerticalAlignment="Top" Margin="0,4,0,0" />
+            <TextBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding NumeroPedimento, Mode=TwoWay}" Margin="0,1,0,0" />
 
-            <TextBlock Grid.Column="3" Grid.Row="3" Height="23" HorizontalAlignment="Left" Text="Tipo Pedimento" VerticalAlignment="Top" />
-            <ComboBox Grid.Column="4" Grid.Row="3" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TipoPedimentos}" SelectedItem="{Binding SelectedTipoPedimento,Mode=TwoWay}" DisplayMemberPath="TipoPedimentoName"  />
+            <TextBlock Grid.Row="3" Height="23" HorizontalAlignment="Left" Text="Tipo Pedimento" VerticalAlignment="Top" Margin="0,4,0,0" />
+            <ComboBox Grid.Column="1" Grid.Row="3" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TipoPedimentos}" SelectedItem="{Binding SelectedTipoPedimento,Mode=TwoWay}" DisplayMemberPath="TipoPedimentoName" />
 
-            <TextBlock Grid.Column="0" Grid.Row="4" Height="23" HorizontalAlignment="Left" Text="% Iva" VerticalAlignment="Top" />
-            <TextBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding PorIva, Mode=TwoWay}" />
+            <TextBlock Grid.Column="3" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="% Iva" VerticalAlignment="Top" Margin="0,4,0,0" />
+            <TextBox Grid.Column="4" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding PorIva, Mode=TwoWay}" Margin="0,1,0,0" />
 
             <TextBlock Grid.Column="0" Grid.Row="5" Height="23" HorizontalAlignment="Left" Text="Items" VerticalAlignment="Top" />
             <DockPanel Grid.Column="5" Grid.Row="5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" >
@@ -107,6 +108,8 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,1,0,0" Text="Tipo de cambio" VerticalAlignment="Top" Grid.Column="3" Grid.Row="4" />
+            <TextBox HorizontalAlignment="Left" Text="{Binding TC, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="4" Grid.Row="4" />
         </Grid>
     </Grid>
 </UserControl>

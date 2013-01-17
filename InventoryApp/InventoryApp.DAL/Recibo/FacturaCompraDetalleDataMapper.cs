@@ -48,13 +48,20 @@ namespace InventoryApp.DAL.Recibo
             long? resul = null;
             using (var entity = new TAE2Entities())
             {
-                resul = (from articulo in entity.FACTURA_DETALLE
-                         where articulo.IS_ACTIVE == true
-                         where articulo.IS_MODIFIED == false
-                         select articulo.LAST_MODIFIED_DATE).Max();
+                var resul0 = (from prov in entity.FACTURA_DETALLE
+                              where prov.IS_ACTIVE == true
+                              where prov.IS_MODIFIED == false
+                              select prov.LAST_MODIFIED_DATE).ToList();
+
+                if (resul0.Count == 0)
+                    return resul;
+
+                resul = (from facturaDetalle in entity.FACTURA_DETALLE
+                         where facturaDetalle.IS_ACTIVE == true
+                         where facturaDetalle.IS_MODIFIED == false
+                         select facturaDetalle.LAST_MODIFIED_DATE).Max();
                 return resul;
             }
-
         }
 
         public string GetJsonFacturaDetalle(long? LMD)

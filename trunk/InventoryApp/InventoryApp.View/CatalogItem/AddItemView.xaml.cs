@@ -30,7 +30,7 @@ namespace InventoryApp.View.CatalogItem
             AddFactura addFactura = new AddFactura();
             AgregarItemViewModel viewModel = this.DataContext as AgregarItemViewModel;
             addFactura.DataContext = viewModel.CreateAgregarFacturaViewModel(); ;
-            addFactura.Show();
+            addFactura.ShowDialog();
         }
 
 

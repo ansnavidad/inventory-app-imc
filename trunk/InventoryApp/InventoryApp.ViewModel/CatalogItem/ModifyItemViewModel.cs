@@ -234,6 +234,8 @@ namespace InventoryApp.ViewModel.CatalogItem
             UltimoMovimientoModel aux = new UltimoMovimientoModel();
             ObservableCollection<UltimoMovimientoModel> temp = aux.RegresaListaLugares(this._itemModel.UnidItem);
 
+            this.UltimoMovimiento.Clear();
+
             foreach (UltimoMovimientoModel um in temp)
             {
                 this.UltimoMovimiento.Add(um);
@@ -249,8 +251,7 @@ namespace InventoryApp.ViewModel.CatalogItem
         public bool CanAttempUpdateItem()
         {
             bool _canAddItem = true;
-            if (String.IsNullOrEmpty(this._itemModel.Sku) || String.IsNullOrEmpty(this._itemModel.NumeroSerie) || this.ItemModel.FacturaDetalle == null
-                || this._itemModel.Factura == null || this._itemModel.Articulo == null ||  this._itemModel.CantidadItem < 1)
+            if ((String.IsNullOrEmpty(this._itemModel.Sku) && String.IsNullOrEmpty(this._itemModel.NumeroSerie)) || this.ItemModel.FacturaDetalle == null || this._itemModel.Factura == null || this._itemModel.Articulo == null || this._itemModel.CantidadItem < 1)
                 _canAddItem = false;
 
             return _canAddItem;

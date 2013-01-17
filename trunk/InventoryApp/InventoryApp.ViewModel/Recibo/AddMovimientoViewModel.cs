@@ -280,7 +280,7 @@ namespace InventoryApp.ViewModel.Recibo
             {
                 if (_Items != value)
                 {
-                    _Items = value;
+                    _Items = value;                    
                     OnPropertyChanged(ItemsPropertyName);
                 }
             }
@@ -532,6 +532,11 @@ namespace InventoryApp.ViewModel.Recibo
         {
             if (this._AddReciboViewModel != null)
             {
+                foreach (ReciboItemModel r in this.Items)
+                {
+                    r.CostoUnitario = r.FacturaDetalle.CostoUnitario;
+                }
+
                 InventoryApp.Model.Recibo.MovimientoModel movimiento = new InventoryApp.Model.Recibo.MovimientoModel()
                 {
                     DestinoAlmacen=this._SelectedAlmacenDestino

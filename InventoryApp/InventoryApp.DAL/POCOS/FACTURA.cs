@@ -24,6 +24,12 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
+
+        public virtual double TC
+        {
+            get;
+            set;
+        }
     
         public virtual Nullable<long> UNID_LOTE
         {

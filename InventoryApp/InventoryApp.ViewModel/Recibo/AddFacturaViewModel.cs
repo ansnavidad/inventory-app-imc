@@ -94,6 +94,21 @@ namespace InventoryApp.ViewModel.Recibo
         private double _PorIva;
         public const string PorIvaPropertyName = "PorIva";
 
+        public double TC
+        {
+            get { return _tc; }
+            set
+            {
+                if (_tc != value)
+                {
+                    _tc = value;
+                    OnPropertyChanged(TCPropertyName);
+                }
+            }
+        }
+        private double _tc;
+        public const string TCPropertyName = "TC";
+
         public String NumeroFactura
         {
             get { return _NumeroFactura; }
@@ -309,6 +324,8 @@ namespace InventoryApp.ViewModel.Recibo
                     PorIva = this.PorIva
                     ,
                     NumeroPedimento=this.NumeroPedimento
+                    , 
+                    TC = this.TC
                 };
                 this._AddReciboViewModel.Facturas.Add(factura);
             }

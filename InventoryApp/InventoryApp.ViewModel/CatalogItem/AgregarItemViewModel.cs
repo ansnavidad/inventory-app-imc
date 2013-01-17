@@ -24,6 +24,8 @@ namespace InventoryApp.ViewModel.CatalogItem
         private CatalogItemStatusModel _catalogStatus;
         private CatalogProveedorModel _catalogProveedor;
         private CatalogPropiedadModel _catalogPropiedad;
+        private CatalogMonedaModel _catalogMonedaModel;
+        private CatalogUnidadModel _catalogUnidadModel;
         private string _error;
         private ObservableCollection<UltimoMovimientoModel> _ultimoMovimiento;
 
@@ -39,6 +41,8 @@ namespace InventoryApp.ViewModel.CatalogItem
                 this._catalogProveedor = new CatalogProveedorModel(new ProveedorDataMapper());
                 this._ultimoMovimiento = new ObservableCollection<UltimoMovimientoModel>();
                 this._catalogPropiedad = new CatalogPropiedadModel(new PropiedadDataMapper());
+                this._catalogMonedaModel = new CatalogMonedaModel(new MonedaDataMapper());
+                this._catalogUnidadModel = new CatalogUnidadModel(new UnidadDataMapper());
             }
             catch (ArgumentException ae)
             {
@@ -98,6 +102,18 @@ namespace InventoryApp.ViewModel.CatalogItem
             }
         }
 
+        public CatalogUnidadModel CatalogUnidadModel
+        {
+            get
+            {
+                return _catalogUnidadModel;
+            }
+            set
+            {
+                _catalogUnidadModel = value;
+            }
+        }
+
         public CatalogProveedorModel CatalogProveedor
         {
             get
@@ -110,6 +126,17 @@ namespace InventoryApp.ViewModel.CatalogItem
             }
         }
 
+        public CatalogMonedaModel CatalogMonedaModel
+        {
+            get
+            {
+                return _catalogMonedaModel;
+            }
+            set
+            {
+                _catalogMonedaModel = value;
+            }
+        }
 
         public CatalogItemStatusModel CatalogStatus
         {

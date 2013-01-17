@@ -15,7 +15,7 @@
     </UserControl.Resources>
     <DockPanel Name="dockPanel1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" LastChildFill="False"  >
         <DockPanel DockPanel.Dock="Top" Height="50" Name="dockPanel2" HorizontalAlignment="Stretch" >
-            <Label Content="Confirme los artículos que se van a agregar" Height="28" Name="label1" />
+            <Label Content="Seleccione con 'Aplica cantidad' que artículos formarán un paquete teniendo el mismo SKU y número de serie." Height="28" Name="label1" />
         </DockPanel>
         <DockPanel DockPanel.Dock="Top"  Name="dockPanel3" HorizontalAlignment="Stretch" LastChildFill="False" VerticalAlignment="Stretch" >
             <DataGrid DockPanel.Dock="Top" CanUserDeleteRows="False"

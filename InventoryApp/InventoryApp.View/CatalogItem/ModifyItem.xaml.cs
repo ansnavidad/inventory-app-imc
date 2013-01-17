@@ -50,8 +50,24 @@ namespace InventoryApp.View.CatalogItem
             comboPropiedad.SelectedIndex = -1;
         }
 
-        
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            txtNomreStatus.IsEnabled = false;
+            textBox1.IsEnabled = false;
+            button1.IsEnabled = false;
+            BotonNueva.IsEnabled = true;
+        }
 
-     
+        private void BotonNueva_Click(object sender, RoutedEventArgs e)
+        {
+            txtNomreStatus.IsEnabled = true;
+            textBox1.IsEnabled = true;
+            button1.IsEnabled = true;
+            BotonNueva.IsEnabled = false;
+            
+            textBlock2.Text = "";
+            txtNomreStatus.Text = "";
+            textBox1.Text = "";
+        }          
     }
 }

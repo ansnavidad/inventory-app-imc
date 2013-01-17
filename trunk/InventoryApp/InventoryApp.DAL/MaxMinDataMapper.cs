@@ -196,7 +196,7 @@ namespace InventoryApp.DAL
                     var modifiedMaxMin = entity.MAX_MIN.First(p => p.UNID_MAX_MIN == maxMin.UNID_MAX_MIN);
                     modifiedMaxMin.MAX = maxMin.MAX;
                     modifiedMaxMin.MIN = maxMin.MIN;
-                    modifiedMaxMin.IS_ACTIVE = modifiedMaxMin.IS_ACTIVE;
+                    modifiedMaxMin.IS_ACTIVE = maxMin.IS_ACTIVE;
                     //Sync
                     modifiedMaxMin.IS_MODIFIED = true;
                     modifiedMaxMin.LAST_MODIFIED_DATE = UNID.getNewUNID();

@@ -875,6 +875,22 @@ namespace InventoryApp.Service.Services
             return respuesta;
         }
 
+        public string downloadProgramado(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                ProgramadoDataMapper dataMapper = new ProgramadoDataMapper();
+
+                respuesta = dataMapper.GetJsonProgramado(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+            }
+
+            return respuesta;
+        }
+
         public string GetVersion()
         {
             string respuesta = null;
@@ -889,8 +905,6 @@ namespace InventoryApp.Service.Services
             return respuesta;
         }
 
-
-
         public string GetProcessBach()
         {
             string respuesta = null;
@@ -904,5 +918,6 @@ namespace InventoryApp.Service.Services
 
             return respuesta;
         }
+
     }
 }

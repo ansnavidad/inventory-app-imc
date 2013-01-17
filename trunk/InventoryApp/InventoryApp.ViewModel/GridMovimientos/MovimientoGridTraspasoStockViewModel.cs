@@ -133,6 +133,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 _catalogAlmacenProcedenciaModel = value;
             }
         }
+
         public MovimientoGridModel MovimientoModel
         {
             get
@@ -145,6 +146,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 _movimientoGridModel = value;
             }
         }
+
         public CatalogItemModel ItemModel
         {
             get
@@ -170,7 +172,6 @@ namespace InventoryApp.ViewModel.GridMovimientos
             }
         }
 
-
         public void loadItems()
         {
             this._catalogSolicitanteModel.loadSolicitante();
@@ -179,6 +180,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
             this._catalogProveedorProcedenciaModel.loadItems();
             this._catalogClienteProcedenciaModel.loadCliente();
             this._catalogTipoPedimentoModel.loadItems();
+            this._catalogMovimientoModel.loadItemsTraspaso();
         }
 
         public void updateItems()

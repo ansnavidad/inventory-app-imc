@@ -14,6 +14,7 @@ namespace InventoryApp.ViewModel.Traspasos
 {
     public class TraspasoStockViewModel : IPageViewModel
     {
+        private CatalogMovimientoModel _catalogMovimientoModel;
         private CatalogEmpresaModel _catalogEmpresaModel;
         private MovimientoSalidasModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
@@ -41,6 +42,7 @@ namespace InventoryApp.ViewModel.Traspasos
                 IDataMapper dataMapper4 = new ClienteDataMapper();
                 IDataMapper dataMapper5 = new TransporteDataMapper();
                 IDataMapper dataMapper6 = new ServicioDataMapper();
+                IDataMapper dataMapper7 = new MovimientoDataMapper();
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
@@ -54,6 +56,7 @@ namespace InventoryApp.ViewModel.Traspasos
                 this._catalogClienteDestinoModel = new CatalogClienteModel(dataMapper4);
                 this._catalogTransporteModel = new CatalogTransporteModel(dataMapper5);
                 this._catalogServicioModel = new CatalogServicioModel(dataMapper6);
+                this._catalogMovimientoModel = new CatalogMovimientoModel(dataMapper7);
 
                 //Asignaciones especiales para los combos 
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
@@ -86,6 +89,7 @@ namespace InventoryApp.ViewModel.Traspasos
                 IDataMapper dataMapper5 = new TransporteDataMapper();
                 IDataMapper dataMapper6 = new ServicioDataMapper();
                 IDataMapper datamapper11 = new EmpresaDataMapper();
+                IDataMapper dataMapper7 = new MovimientoDataMapper();
 
                 this._catalogEmpresaModel = new CatalogEmpresaModel(datamapper11);
 
@@ -102,6 +106,7 @@ namespace InventoryApp.ViewModel.Traspasos
                 this._catalogClienteDestinoModel = new CatalogClienteModel(dataMapper4);
                 this._catalogTransporteModel = new CatalogTransporteModel(dataMapper5);
                 this._catalogServicioModel = new CatalogServicioModel(dataMapper6);
+                this._catalogMovimientoModel = new CatalogMovimientoModel(dataMapper7);
 
                 //Asignaciones especiales para los combos 
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
@@ -146,6 +151,7 @@ namespace InventoryApp.ViewModel.Traspasos
                 return _addItemCommand;
             }
         }
+
         public ICommand ImprimirCommand
         {
             get
@@ -157,6 +163,7 @@ namespace InventoryApp.ViewModel.Traspasos
                 return _imprimirCommand;
             }
         }
+
         public ICommand DeleteItemCommand
         {
             get
@@ -166,6 +173,19 @@ namespace InventoryApp.ViewModel.Traspasos
                     _deleteItemCommand = new RelayCommand(p => this.AttempDeleteArticulo(), p => this.CanAttempDeleteArticulo());
                 }
                 return _deleteItemCommand;
+            }
+        }
+
+        public CatalogMovimientoModel CatalogMovimientoModel
+        {
+            get
+            {
+                return _catalogMovimientoModel;
+
+            }
+            set
+            {
+                _catalogMovimientoModel = value;
             }
         }
 
@@ -233,6 +253,7 @@ namespace InventoryApp.ViewModel.Traspasos
                 _catalogClienteDestinoModel = value;
             }
         }
+
         public CatalogAlmacenModel CatalogAlmacenDestinoModel
         {
             get
@@ -245,6 +266,7 @@ namespace InventoryApp.ViewModel.Traspasos
                 _catalogAlmacenDestinoModel = value;
             }
         }
+
         public MovimientoSalidasModel MovimientoModel
         {
             get
@@ -257,6 +279,7 @@ namespace InventoryApp.ViewModel.Traspasos
                 _movimientoModel = value;
             }
         }
+
         public CatalogItemModel ItemModel
         {
             get
@@ -281,7 +304,6 @@ namespace InventoryApp.ViewModel.Traspasos
                 _catalogSolicitanteModel = value;
             }
         }
-
 
         public void loadItems()
         {
@@ -326,7 +348,9 @@ namespace InventoryApp.ViewModel.Traspasos
                 this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem, this._movimientoModel.UnidAlmacenDestino, this._movimientoModel.UnidClienteDestino, this._movimientoModel.UnidProveedorDestino, this._movimientoDetalleModel.UnidMovimientoDetalle, item.CantidadMovimiento);
                 this._ultimoMovimientoModel.updateArticulo(this.MovimientoModel.AlmacenProcedencia);
                 this._ultimoMovimientoModel.saveArticulo();
-            }            
+            }
+
+            this._catalogMovimientoModel.loadItemsTraspaso();
         }
 
         public bool CanAttempImprimir()

@@ -349,6 +349,7 @@ namespace InventoryApp.ViewModel.Traspasos
         public void AttempArticulo()
         {
             this._movimientoModel.saveArticulo();
+            this._movimientoTraspaso.updateItems();
 
             foreach (ItemModel item in this._itemModel.ItemModel)
             {
@@ -359,7 +360,7 @@ namespace InventoryApp.ViewModel.Traspasos
                 this._ultimoMovimientoModel.saveArticulo();
             }
 
-            this._catalogMovimientoModel.loadItemsTraspaso();
+            this._movimientoTraspaso.updateItems();
         }
 
         public bool CanAttempImprimir()

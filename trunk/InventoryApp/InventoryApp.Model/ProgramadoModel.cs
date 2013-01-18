@@ -22,6 +22,7 @@ namespace InventoryApp.Model
         private ALMACEN _almacen;
         private bool _isChecked;
         private ProgramadoDataMapper _dataMapper;
+        private string _mensajeError;
         #endregion
 
         #region Props
@@ -199,6 +200,26 @@ namespace InventoryApp.Model
                     this._isChecked = value;
                     if (this.PropertyChanged != null)
                         this.PropertyChanged(this, new PropertyChangedEventArgs("IsChecked"));
+                }
+            }
+        }
+
+        public string MensajeError
+        {
+            get
+            {
+                return _mensajeError;
+            }
+            set
+            {
+                if (_mensajeError != value)
+                {
+                    _mensajeError = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("MensajeError"));
+                    }
                 }
             }
         }

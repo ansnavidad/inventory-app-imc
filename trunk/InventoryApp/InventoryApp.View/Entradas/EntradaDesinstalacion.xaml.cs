@@ -32,6 +32,7 @@ namespace InventoryApp.View.Entradas
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            this.comboBoxClienteDestino.IsEnabled = false;
             AddItem it = new AddItem();
             EntradaDesinstalacionViewModel entrada = this.DataContext as EntradaDesinstalacionViewModel;
             it.DataContext = entrada.CreateCatalogItemViewModel();

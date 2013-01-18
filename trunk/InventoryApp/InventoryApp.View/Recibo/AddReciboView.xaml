@@ -158,8 +158,6 @@
                         <GridViewColumn Header="Origen" Width="150" DisplayMemberBinding="{Binding Path=Origen.OrigenName}" />
                         <GridViewColumn Header="Destino" Width="150" DisplayMemberBinding="{Binding Path=DestinoAlmacen.AlmacenName}" />
                         <GridViewColumn Header="Cantidad Items" Width="150" DisplayMemberBinding="{Binding Path=CantidadItems}" />
-                        <GridViewColumn Header="Sku Capturados" Width="150" DisplayMemberBinding="{Binding Path=ContItemSku}" />
-                        <GridViewColumn Header="# Serie Capturados" Width="150" DisplayMemberBinding="{Binding Path=ContItemSerie}" />                        
                         
                     </GridView>
                 </ListView.View>

@@ -27,6 +27,11 @@ namespace InventoryApp.View.Entradas
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            this.radioButtonProveedor.IsEnabled = false;
+            this.radioButtonCliente.IsEnabled = false;
+            this.comboBoxProveedorDestino.IsEnabled = false;
+            this.comboBoxClienteDestino.IsEnabled = false;
+            
             AddItem it = new AddItem();
             EntradaPrestamoViewModel entrada = this.DataContext as EntradaPrestamoViewModel;
             it.DataContext = entrada.CreateCatalogItemViewModel();

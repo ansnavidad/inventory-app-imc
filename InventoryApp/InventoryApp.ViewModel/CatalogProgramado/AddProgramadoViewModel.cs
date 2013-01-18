@@ -149,6 +149,10 @@ namespace InventoryApp.ViewModel.CatalogProgramado
                         break;
                     }
                 }
+                if (!_canAddProgramado)
+                    this._addProgramado.MensajeError = "Favor de validar que Cantidad a Programar sea mayor o igual a cero.";
+                else
+                    this._addProgramado.MensajeError = "";
 
             }
 

@@ -44,6 +44,27 @@
         <Setter Property="FontSize" Value="12"></Setter>
     </Style>
 
+    <Style x:Key="titleError" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#FC6070"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="13"></Setter>
+        <Setter Property="FontWeight" Value="bold"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Label">
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                  Value="True">
+                            <Setter Property="Foreground"
+                   Value="SteelBlue" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                    <ContentPresenter />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style x:Key="titleElaraJob" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="#5E4603"></Setter>
         <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>

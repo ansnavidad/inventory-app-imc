@@ -13,9 +13,10 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -65,12 +66,13 @@
                 <DataGridTextColumn Header="Programado" Width="*" x:Name="programado" Binding="{Binding Path=Programado}" IsReadOnly="False"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Guardar" Grid.Column="1" Grid.Row="4" Height="23"
+        <Button Content="Guardar" Grid.Column="1" Grid.Row="5" Height="23"
                 HorizontalAlignment="Right" Margin="5,0" Name="btnGuardar"
                 VerticalAlignment="Center" Width="75" Click="btnGuardar_Click"
                 Command="{Binding AddProgramadoCommand, Mode=OneWay}"/>
-        <Button Content="Cancelar" Grid.Column="2" Grid.Row="4" Height="23"
+        <Button Content="Cancelar" Grid.Column="2" Grid.Row="5" Height="23"
                 HorizontalAlignment="Center" Margin="5,0" Name="btnCancelar"
                 VerticalAlignment="Center" Width="75" Click="btnCancelar_Click" />
+        <Label Content="{Binding Path=AddProgramado.MensajeError}" Grid.Row="4" Height="30" HorizontalAlignment="Stretch" Name="label2" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Width="576" Style="{StaticResource titleError}" />
     </Grid>
 </Window>

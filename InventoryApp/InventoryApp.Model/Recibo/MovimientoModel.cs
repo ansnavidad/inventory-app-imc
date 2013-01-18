@@ -162,7 +162,14 @@ namespace InventoryApp.Model.Recibo
 
         public int CantidadItems
         {
-            get { return this._Items.Count; }
+            get {
+
+                int auxx = 0;
+                foreach (ReciboItemModel rr in this._Items)
+                    auxx += rr.Cantidad;
+
+                return auxx;             
+            }
         }
         
 

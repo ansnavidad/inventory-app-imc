@@ -27,6 +27,7 @@ namespace InventoryApp.View.Salidas
 
         private void buttonAgregarItems_Click(object sender, RoutedEventArgs e)
         {
+            this.comboBoxAlmacenOrigen.IsEnabled = false;
             AddItem it = new AddItem();
             SalidaCorrectivoViewModel salida = this.DataContext as SalidaCorrectivoViewModel;
             it.DataContext = salida.CreateCatalogItemViewModel();

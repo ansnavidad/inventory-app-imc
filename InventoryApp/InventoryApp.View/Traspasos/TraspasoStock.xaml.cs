@@ -20,18 +20,16 @@ namespace InventoryApp.View.Traspasos
     /// </summary>
     public partial class TraspasoStock : Window
     {
-        int aux;
-
         public TraspasoStock()
         {
             InitializeComponent();
             comboBoxAlmacenDestino.SelectedIndex = 0;
-            comboBoxAlmacenDestino.SelectedIndex = 1;
-            aux = 0;
+            comboBoxAlmacenDestino.SelectedIndex = 1;            
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            this.comboBoxAlmacenOrigen.IsEnabled = false;            
             AddItem it = new AddItem();
             TraspasoStockViewModel entrada = this.DataContext as TraspasoStockViewModel;
             it.DataContext = entrada.CreateCatalogItemViewModel();
@@ -65,9 +63,6 @@ namespace InventoryApp.View.Traspasos
 
         private void comboBoxAlmacenOrigen_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            aux++;
-            if (aux == 2)
-                this.comboBoxAlmacenOrigen.IsEnabled = false;
         }
     }
 }

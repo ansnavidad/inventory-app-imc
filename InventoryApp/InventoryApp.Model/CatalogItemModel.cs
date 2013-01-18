@@ -156,32 +156,32 @@ namespace InventoryApp.Model
                     object element2 = this._dataMapper.getAlmacenDisponible(this._serie, this._sku);
 
                     bool aux = false;
-                    this.Mensaje2 = "El artículo se encuentra en ";
+                    this.Mensaje2 = "El artículo se encuentra en: ";
                     foreach (ULTIMO_MOVIMIENTO um in (List<ULTIMO_MOVIMIENTO>)element2)
                     {
 
                         if (um.CLIENTE != null)
                         {
-                            this.Mensaje2 += "Cliente: " + um.CLIENTE.CLIENTE1;
+                            this.Mensaje2 += " El cliente: " + um.CLIENTE.CLIENTE1;
                             aux = true;
                         }
 
                         if (um.PROVEEDOR != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "Proveedor: " + um.PROVEEDOR.PROVEEDOR_NAME;
+                            this.Mensaje2 += " El proveedor: " + um.PROVEEDOR.PROVEEDOR_NAME;
                         }
 
                         if (um.INFRAESTRUCTURA != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "Infraestructura: " + um.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
+                            this.Mensaje2 += " La infraestructura: " + um.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
                         }
 
                         if (um.ALMACEN != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "Almacén: " + um.ALMACEN.ALMACEN_NAME;
+                            this.Mensaje2 += " El almacén: " + um.ALMACEN.ALMACEN_NAME;
                         }
                     }
 
@@ -251,32 +251,32 @@ namespace InventoryApp.Model
                     object element2 = this._dataMapper.getAlmacenDisponible(this._serie, this._sku);
 
                     bool aux = false;
-                    this.Mensaje2 = "El artículo se encuentra en ";
+                    this.Mensaje2 = "El artículo se encuentra en: ";
                     foreach (ULTIMO_MOVIMIENTO um in (List<ULTIMO_MOVIMIENTO>)element2)
                     {
 
                         if (um.CLIENTE != null)
                         {
-                            this.Mensaje2 += "Cliente: " + um.CLIENTE.CLIENTE1;
+                            this.Mensaje2 += " El cliente: " + um.CLIENTE.CLIENTE1;
                             aux = true;
                         }
 
                         if (um.PROVEEDOR != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "Proveedor: " + um.PROVEEDOR.PROVEEDOR_NAME;
+                            this.Mensaje2 += " El proveedor: " + um.PROVEEDOR.PROVEEDOR_NAME;
                         }
 
                         if (um.INFRAESTRUCTURA != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "Infraestructura: " + um.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
+                            this.Mensaje2 += " La infraestructura: " + um.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
                         }
 
                         if (um.ALMACEN != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "Almacén: " + um.ALMACEN.ALMACEN_NAME;
+                            this.Mensaje2 += " El almacén: " + um.ALMACEN.ALMACEN_NAME;
                         }
                     }
 
@@ -357,26 +357,26 @@ namespace InventoryApp.Model
 
                         if (um.CLIENTE != null)
                         {
-                            this.Mensaje2 += "Cliente: " + um.CLIENTE.CLIENTE1;
+                            this.Mensaje2 += " El cliente: " + um.CLIENTE.CLIENTE1;
                             aux = true;
                         }
 
                         if (um.PROVEEDOR != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "Proveedor: " + um.PROVEEDOR.PROVEEDOR_NAME;
+                            this.Mensaje2 += " El proveedor: " + um.PROVEEDOR.PROVEEDOR_NAME;
                         }
 
                         if (um.INFRAESTRUCTURA != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "Infraestructura: " + um.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
+                            this.Mensaje2 += " La infraestructura: " + um.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
                         }
 
                         if (um.ALMACEN != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "Almacén: " + um.ALMACEN.ALMACEN_NAME;
+                            this.Mensaje2 += "El almacén: " + um.ALMACEN.ALMACEN_NAME;
                         }
                     }
 
@@ -446,32 +446,32 @@ namespace InventoryApp.Model
                     object element2 = this._dataMapper.getAlmacenDisponible(this._serie, this._sku);
 
                     bool aux = false;
-                    this.Mensaje2 = "El artículo se encuentra ";
+                    this.Mensaje2 = "El artículo se encuentra en: ";
                     foreach (ULTIMO_MOVIMIENTO um in (List<ULTIMO_MOVIMIENTO>)element2)
                     {
                         aux = true;
                         if (um.CLIENTE != null)
                         {
-                            this.Mensaje2 += "Cliente: " + um.CLIENTE.CLIENTE1;
+                            this.Mensaje2 += " El cliente: " + um.CLIENTE.CLIENTE1;
                             aux = true;
                         }
 
                         if (um.PROVEEDOR != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "Proveedor: " + um.PROVEEDOR.PROVEEDOR_NAME;
+                            this.Mensaje2 += " El proveedor: " + um.PROVEEDOR.PROVEEDOR_NAME;
                         }
 
                         if (um.INFRAESTRUCTURA != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "Infraestructura: " + um.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
+                            this.Mensaje2 += " La infraestructura: " + um.INFRAESTRUCTURA.INFRAESTRUCTURA_NAME;
                         }
 
                         if (um.ALMACEN != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "Almacén: " + um.ALMACEN.ALMACEN_NAME;
+                            this.Mensaje2 += " El almacén: " + um.ALMACEN.ALMACEN_NAME;
                         }
                     }
 

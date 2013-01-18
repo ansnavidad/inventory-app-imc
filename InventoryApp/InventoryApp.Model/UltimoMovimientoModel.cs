@@ -297,12 +297,9 @@ namespace InventoryApp.Model
                     _dataMapper.udpateElement2(new ULTIMO_MOVIMIENTO { UNID_ULTIMO_MOVIMIENTO = tmp.UNID_ULTIMO_MOVIMIENTO, UNID_ITEM = this._unidItem, UNID_ALMACEN = this._unidAlmacen, UNID_CLIENTE = this.UnidCliente, UNID_MOVIMIENTO_DETALLE = this._unidMovimientoDetalle, UNID_PROVEEDOR = this._unidProveedor, UNID_INFRAESTRUCTURA = this._unidInfraestructura, IS_ACTIVE = true, CANTIDAD = this._cantidad });
                 }
                 
-
-                
                 //_dataMapper.insertElement(new MOVIMENTO() { UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO, UNID_ALMACEN_DESTINO = this._almacenDestino.UNID_ALMACEN, UNID_PROVEEDOR_DESTINO = this._proveedorDestino.UNID_PROVEEDOR, UNID_CLIENTE_DESTINO = this._clienteDestino.UNID_CLIENTE, UNID_ALMACEN_PROCEDENCIA = this._almacenProcedencia.UNID_ALMACEN, UNID_CLIENTE_PROCEDENCIA = this._clienteProcedencia.UNID_CLIENTE, UNID_PROVEEDOR_PROCEDENCIA = this._proveedorProcedencia.UNID_PROVEEDOR, UNID_SERVICIO = this._servicio.UNID_SERVICIO, TT = this._tt, CONTACTO = this._contacto, UNID_TRANSPORTE = this._transporte.UNID_TRANSPORTE, IS_ACTIVE = this._isActive, DIRECCION_ENVIO = this._direccionEnvio, SITIO_ENLACE = this._sitioEnlace, NOMBRE_SITIO = this._nombreSitio, RECIBE = this._recibe, GUIA = this._guia, UNID_CLIENTE = this._cliente.UNID_CLIENTE, UNID_PROVEEDOR = this._proveedor.UNID_PROVEEDOR, UNID_FACTURA_VENTA = this._facturaVenta.UNID_FACTURA_VENTA });
                 //_dataMapper.udpateElement(new ULTIMO_MOVIMIENTO { UNID_ITEM = this._unidItem, UNID_ALMACEN = this._unidAlmacen, UNID_CLIENTE = this.UnidCliente, UNID_MOVIMIENTO_DETALLE = this._unidMovimientoDetalle, UNID_PROVEEDOR = this._unidProveedor, UNID_INFRAESTRUCTURA = this._unidInfraestructura, IS_ACTIVE = true, CANTIDAD = this._cantidad });
                 //_dataMapper.udpateElement2(new ULTIMO_MOVIMIENTO { UNID_ITEM = this._unidItem, UNID_ALMACEN = this._unidAlmacen, UNID_CLIENTE = this.UnidCliente, UNID_MOVIMIENTO_DETALLE = this._unidMovimientoDetalle, UNID_PROVEEDOR = this._unidProveedor, UNID_INFRAESTRUCTURA = this._unidInfraestructura, IS_ACTIVE = true, CANTIDAD = this._cantidad });
-
             }
         }
         public UltimoMovimientoModel(IDataMapper dataMapper, long item, long? almacen, long? cliente, long? proveedor, long? movDet)
@@ -358,6 +355,20 @@ namespace InventoryApp.Model
             }
         }
 
+        public UltimoMovimientoModel(IDataMapper dataMapper, long item, long? movDet, int cantidad, long? infra)
+        {
+            this._unidItem = item;
+            this._unidAlmacen = null;
+            this._unidCliente = null;
+            this._unidProveedor = null;
+            this._unidInfraestructura = infra;
+            this._unidMovimientoDetalle = movDet;
+            this._cantidad = cantidad;
+            if ((dataMapper as UltimoMovimientoDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as UltimoMovimientoDataMapper;
+            }
+        }
 
         public UltimoMovimientoModel(IDataMapper dataMapper, long item, long? infraestructura, long? movDet)
         {

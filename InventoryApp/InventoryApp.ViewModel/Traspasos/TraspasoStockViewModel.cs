@@ -428,21 +428,27 @@ namespace InventoryApp.ViewModel.Traspasos
                     borders = excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].Borders;
                     borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
                     //DESCRIPCIÓN
-                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 26]].Merge();
-                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 26]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 22]].Merge();
+                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 22]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                     excel.Cells[X, 4] = ItemModel.ItemModel[i].Articulo.ARTICULO1;
-                    borders = excel.Range[excel.Cells[X, 4], excel.Cells[X, 26]].Borders;
+                    borders = excel.Range[excel.Cells[X, 4], excel.Cells[X, 22]].Borders;
                     borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
                     //N° DE SERIE
+                    excel.Range[excel.Cells[X, 23], excel.Cells[X, 26]].Merge();
+                    excel.Range[excel.Cells[X, 23], excel.Cells[X, 26]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    excel.Cells[X, 23] = ItemModel.ItemModel[i].NUMERO_SERIE;
+                    borders = excel.Range[excel.Cells[X, 23], excel.Cells[X, 26]].Borders;
+                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    //SKU
                     excel.Range[excel.Cells[X, 27], excel.Cells[X, 30]].Merge();
                     excel.Range[excel.Cells[X, 27], excel.Cells[X, 30]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                    excel.Cells[X, 27] = ItemModel.ItemModel[i].NUMERO_SERIE;
+                    excel.Cells[X, 27] = ItemModel.ItemModel[i].SKU;
                     borders = excel.Range[excel.Cells[X, 27], excel.Cells[X, 30]].Borders;
                     borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                    //MODELO
+                    //CANTIDAD
                     excel.Range[excel.Cells[X, 31], excel.Cells[X, 34]].Merge();
                     excel.Range[excel.Cells[X, 31], excel.Cells[X, 34]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                    excel.Cells[X, 31] = ItemModel.ItemModel[i].Modelo.MODELO_NAME;
+                    excel.Cells[X, 31] = ItemModel.ItemModel[i].CantidadMovimiento;
                     borders = excel.Range[excel.Cells[X, 31], excel.Cells[X, 34]].Borders;
                     borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
                     X++;

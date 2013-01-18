@@ -11,11 +11,11 @@
         <GradientStop Color="#153376" Offset="0.567"/>
     </LinearGradientBrush>
 
-    <Style x:Key="titleBorder" TargetType="{x:Type Border}">
+    <Style x:Key="titleBorderElaraOrange" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="#ed5d1e" />
     </Style>
 
-    <Style x:Key="titleBorderElaraOrange" TargetType="{x:Type Border}">
+    <Style x:Key="titleBorder" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="{StaticResource DegradadoElaraOrange}" />
     </Style>
 
@@ -50,21 +50,8 @@
         <Setter Property="FontWeight" Value="Bold"></Setter>
         <Setter Property="FontSize" Value="13"></Setter>
         <Setter Property="FontWeight" Value="bold"></Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Label">
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver"
-                  Value="True">
-                            <Setter Property="Foreground"
-                   Value="SteelBlue" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                    <ContentPresenter />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
+    
     <Style x:Key="titleElaraJob" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="#5E4603"></Setter>
         <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>

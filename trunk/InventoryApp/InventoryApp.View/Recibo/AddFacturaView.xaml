@@ -86,7 +86,7 @@
                 <Button Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Click="btnFacturaAdd_Click" Command="{Binding AddFacturaArticuloCommand}" />
                 <Button Content="Eliminar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Command="{Binding DeleteFacturaArticuloCommand}" />
             </DockPanel>
-            <ListView Grid.Row="6" Grid.ColumnSpan="5" Grid.RowSpan="5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding FacturaDetalles}" Style="{StaticResource ListViewElara}">
+            <ListView Grid.Row="6" Grid.ColumnSpan="5" Grid.RowSpan="5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding FacturaDetalles}" Style="{StaticResource ListViewElara}" Width="auto">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="" Width="30" >

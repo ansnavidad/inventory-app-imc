@@ -193,9 +193,7 @@
                         </Trigger>
                         <Trigger Property="IsEnabled"
                    Value="false">
-                            <Setter TargetName="Border"
-                    Property="Background"
-                    Value=" red"/>
+                            
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -229,13 +227,13 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter TargetName="HeaderBorder"
-                    Property="Background" Value="#FFFFFF"/>
+                    Property="Background" Value="#E6E6E6"/>
                             <Setter TargetName="HeaderContent"
                     Property="Margin" Value="1,1,0,0"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Foreground"
-                    Value="Brown"/>
+                    Value="#E6E6E6"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -262,18 +260,13 @@
                         <ControlTemplate TargetType="GridViewColumnHeader">
                             <Border Name="HeaderBorder"
               BorderThickness="0,1,0,1"
-              BorderBrush="Brown"
-              Background="LightGreen"/>
+              BorderBrush="#E6E6E6"
+              Background="#E6E6E6"/>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <!--<Style x:Key="{x:Type DataGridRowHeader}">
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-    </Style>-->
 
 </ResourceDictionary>

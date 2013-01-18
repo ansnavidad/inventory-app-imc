@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="700">
+             d:DesignHeight="500" d:DesignWidth="700">
     <UserControl.Resources>
         <GridLength x:Key="descColWidth">120</GridLength>
         <GridLength x:Key="captureColWidth">200</GridLength>
@@ -78,7 +78,7 @@
                 <RowDefinition Height="{StaticResource capRowHeight}" />
                 <RowDefinition Height="{StaticResource capRowHeight}" />
                 <RowDefinition Height="{StaticResource capRowHeight}" />
-                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <!--<RowDefinition Height="{StaticResource capRowHeight}" />-->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource descColWidth}" />
@@ -125,7 +125,7 @@
                 <RowDefinition Height="{StaticResource capRowHeight}" />
                 <RowDefinition Height="{StaticResource capRowHeight}" />
                 <RowDefinition Height="{StaticResource capRowHeight}" />
-                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <!--<RowDefinition Height="{StaticResource capRowHeight}" />-->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource descColWidth}" />

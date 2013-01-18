@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="700">
+             d:DesignHeight="400" d:DesignWidth="700">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -65,26 +65,26 @@
             <DataGrid Height="auto" Grid.Row="9" AutoGenerateColumns="False" CanUserAddRows="False"
                       CanUserDeleteRows="False" HorizontalAlignment="Stretch" Name="dtGridBanco"
                       SelectedItem="{Binding CatalogBancoModel.SelectedBanco, Mode=TwoWay}"
-                      ItemsSource="{Binding Items}" 
-                     Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
+                      ItemsSource="{Binding Items}" VerticalAlignment="Stretch"
+                      Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                       HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Auto"
-                  RowStyle="{StaticResource RowStyle}" Grid.ColumnSpan="{StaticResource allCapColumnSpan}"> 
+                      Grid.ColumnSpan="{StaticResource allCapColumnSpan}"> 
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Especificar Cantidad" ></MenuItem>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Equipo" Width="*" x:Name="equipoName" Binding="{Binding Path=Articulo.EquipoModel.EquipoName}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Model" Width="*" x:Name="modeloName" Binding="{Binding Path=Articulo.Modelo.MODELO_NAME}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Marca" Width="*" x:Name="marcaName" Binding="{Binding Path=Articulo.Marca.MARCA_NAME}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Serie" Width="*" x:Name="Serie" IsReadOnly="False" Binding="{Binding Path=NumeroSerie}"/>
-                    <DataGridTextColumn Header="SKU" Width="*" x:Name="sku" IsReadOnly="False" Binding="{Binding Path=Sku}" />
-                    <DataGridTextColumn Header="Status" Width="*" x:Name="status" Binding="{Binding Path=Status}" IsReadOnly="False"/>
-                    <DataGridTextColumn Header="Cantidad" Width="*" x:Name="cantidad" Binding="{Binding Path=Cantidad}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Pedimento Expo" Width="*" x:Name="pedimentoExpo" Binding="{Binding Path=PedimentoExpo}" IsReadOnly="False"/>
-                    <DataGridTextColumn Header="Pedimento Impo" Width="*" x:Name="pedimentoImpo" Binding="{Binding Path=PedimentoImpo}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Equipo" Width="150" x:Name="equipoName" Binding="{Binding Path=Articulo.EquipoModel.EquipoName}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Model" Width="150" x:Name="modeloName" Binding="{Binding Path=Articulo.Modelo.MODELO_NAME}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Marca" Width="150" x:Name="marcaName" Binding="{Binding Path=Articulo.Marca.MARCA_NAME}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Serie" Width="130" x:Name="Serie" IsReadOnly="False" Binding="{Binding Path=NumeroSerie}"/>
+                    <DataGridTextColumn Header="SKU" Width="130" x:Name="sku" IsReadOnly="False" Binding="{Binding Path=Sku}" />
+                    <DataGridTextColumn Header="Status" Width="130" x:Name="status" Binding="{Binding Path=Status}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Cantidad" Width="130" x:Name="cantidad" Binding="{Binding Path=Cantidad}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Pedimento Expo" Width="150" x:Name="pedimentoExpo" Binding="{Binding Path=PedimentoExpo}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Pedimento Impo" Width="150" x:Name="pedimentoImpo" Binding="{Binding Path=PedimentoImpo}" IsReadOnly="False"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

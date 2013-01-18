@@ -97,12 +97,18 @@ namespace InventoryApp.ViewModel.Traspasos
 
         public bool CanAttempItems()
         {
-            bool _canInsertArticulo = false;
+            bool _canInsertArticulo = true;            
+
             foreach (ItemModel item in this._catalogItemModel.ItemModel)
             {
-                if (item.IsChecked && item.CantidadMovimiento > 0 && item.CantidadDisponible >= item.CantidadMovimiento)
-                    _canInsertArticulo = true;
+                if (item.IsChecked && (item.CantidadMovimiento <= 0 || item.CantidadDisponible < item.CantidadMovimiento))
+                    _canInsertArticulo = false;
             }
+
+            if (!_canInsertArticulo)
+                this._catalogItemModel.Mensaje3 = "Favor de validar que Cantidad a Mover sea menor o igual que Cantidad Disponible y mayor a cero.";
+            else
+                this._catalogItemModel.Mensaje3 = "";
 
             return _canInsertArticulo;
         }
@@ -126,7 +132,10 @@ namespace InventoryApp.ViewModel.Traspasos
                     for (int i = 0; i < this._traspasoStockViewModel.ItemModel.ItemModel.Count; i++)
                     {
                         if (this._traspasoStockViewModel.ItemModel.ItemModel[i].UnidItem == item.UnidItem)
-                            aux = false;
+                        {
+                            this._traspasoStockViewModel.ItemModel.ItemModel[i].CantidadMovimiento = item.CantidadMovimiento;
+                            aux = false;                            
+                        }
                     }
 
                     if (aux)

@@ -366,17 +366,21 @@ namespace InventoryApp.ViewModel.Salidas
 
         public bool CanAttempItems()
         {
-            bool _canInsertArticulo = false;
-     
+            bool _canInsertArticulo = true;
+
             foreach (ItemModel item in this._catalogItemModel.ItemModel)
             {
-                if (item.IsChecked && item.CantidadMovimiento > 0 && item.CantidadDisponible >= item.CantidadMovimiento)
-                    _canInsertArticulo = true;
+                if (item.IsChecked && (item.CantidadMovimiento <= 0 || item.CantidadDisponible < item.CantidadMovimiento))
+                    _canInsertArticulo = false;
             }
+
+            if (!_canInsertArticulo)
+                this._catalogItemModel.Mensaje3 = "Favor de validar que Cantidad a Mover sea menor o igual que Cantidad Disponible y mayor a cero.";
+            else
+                this._catalogItemModel.Mensaje3 = "";
 
             return _canInsertArticulo;
         }
-
         public void AttempItems()
         {
             if (_salidaRentaViewModel != null)

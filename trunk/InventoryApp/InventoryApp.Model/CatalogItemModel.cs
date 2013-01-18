@@ -16,6 +16,7 @@ namespace InventoryApp.Model
         private string _sku;
         private string _mensaje1;
         private string _mensaje2;
+        private string _mensaje3;
         private ItemDataMapper _dataMapper;
 
         public FixupCollection<ItemModel> ItemModel
@@ -28,6 +29,20 @@ namespace InventoryApp.Model
             {
                 if (_itemModel != value)
                 {
+
+                    //bool aux = true;
+
+                    //foreach(ItemModel i in _itemModel){
+                    
+                    //    if(i.CantidadDisponible < i.CantidadMovimiento || i.CantidadMovimiento < 1)
+                    //        aux = false;
+                    //}
+
+                    //if (!aux)
+                    //    Mensaje3 = "Favor de validar que Cantidad a Mover sea menor o igual que Cantidad Disponible y mayor a cero.";
+                    //else
+                    //    Mensaje3 = "";
+
                     _itemModel = value;
                     if (PropertyChanged != null)
                     {
@@ -77,6 +92,25 @@ namespace InventoryApp.Model
             }
         }
 
+        public string Mensaje3
+        {
+            get
+            {
+                return _mensaje3;
+            }
+            set
+            {
+                if (_mensaje3 != value)
+                {
+                    _mensaje3 = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Mensaje3"));
+                    }
+                }
+            }
+        }
 
         public string Serie
         {
@@ -414,7 +448,7 @@ namespace InventoryApp.Model
                 foreach (ItemModel elem in this.ItemModel)
                 {
                     if (elem.IsChecked)
-                    {                        
+                    {
                         ic.Add(elem);
                     }
                 }
@@ -437,8 +471,20 @@ namespace InventoryApp.Model
                         aux.CantidadMovimiento = 1;
                         if (aux.CantidadDisponible > 0)
                         {
-                            aux.IsChecked = true;
-                            ic.Add(aux);
+                            bool auxx = true;
+                            foreach (ItemModel elem in ic)
+                            {
+                                if (elem.UNID_ITEM == aux.UNID_ITEM && elem.NUMERO_SERIE == aux.NUMERO_SERIE && elem.SKU == aux.SKU)
+                                {
+                                    auxx = false;
+                                }
+                            }
+
+                            if (auxx)
+                            {
+                                aux.IsChecked = true;
+                                ic.Add(aux);
+                            }
                         }
                     }
                 }
@@ -500,7 +546,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new ItemDataMapper();
             this._itemModel = new FixupCollection<ItemModel>();
-
+            this.Mensaje3 = "";
         }       
 
         public event PropertyChangedEventHandler PropertyChanged;

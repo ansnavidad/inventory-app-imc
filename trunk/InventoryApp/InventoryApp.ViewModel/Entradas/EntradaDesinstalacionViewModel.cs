@@ -482,7 +482,9 @@ namespace InventoryApp.ViewModel.Entradas
                 this._ultimoMovimientoModel.updateArticulo(this.MovimientoModel.ClienteProcedencia);
                 this._ultimoMovimientoModel.updateArticulo(this.MovimientoModel.ProveedorProcedencia);
                 this._ultimoMovimientoModel.saveArticulo();
-            }            
+            }
+
+            this._movimientoEntradas.updateItems();
         }
 
         public bool CanAttempDeleteArticulo()

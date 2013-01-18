@@ -379,6 +379,7 @@ namespace InventoryApp.ViewModel.Salidas
         public void AttempArticulo()
         {
             this._movimientoModel.saveArticulo();
+            this._movimientoSalida.updateItems();
 
             foreach (ItemModel item in this._itemModel.ItemModel)
             {
@@ -387,7 +388,9 @@ namespace InventoryApp.ViewModel.Salidas
                 this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem, this._movimientoModel.UnidAlmacenDestino, this._movimientoModel.UnidClienteDestino, this._movimientoModel.UnidProveedorDestino, this._movimientoDetalleModel.UnidMovimientoDetalle, item.CantidadMovimiento);
                 this._ultimoMovimientoModel.updateArticulo(this.MovimientoModel.AlmacenProcedencia);
                 this._ultimoMovimientoModel.saveArticulo();
-            }            
+            }
+
+            this._movimientoSalida.updateItems();
         }
 
         public bool CanAttempDeleteArticulo()

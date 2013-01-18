@@ -20,12 +20,14 @@ namespace InventoryApp.View.Traspasos
     /// </summary>
     public partial class TraspasoStock : Window
     {
+        int aux;
+
         public TraspasoStock()
         {
             InitializeComponent();
             comboBoxAlmacenDestino.SelectedIndex = 0;
             comboBoxAlmacenDestino.SelectedIndex = 1;
-
+            aux = 0;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -59,6 +61,13 @@ namespace InventoryApp.View.Traspasos
             this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
 
             this.Close();
+        }
+
+        private void comboBoxAlmacenOrigen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            aux++;
+            if (aux == 2)
+                this.comboBoxAlmacenOrigen.IsEnabled = false;
         }
     }
 }

@@ -15,7 +15,7 @@
     </UserControl.Resources>
     <DockPanel Name="dockPanel1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" LastChildFill="False"  >
         <DockPanel DockPanel.Dock="Top" Height="50" Name="dockPanel2" HorizontalAlignment="Stretch" >
-            <Label Content="Seleccione con 'Aplica cantidad' que artículos formarán un paquete teniendo el mismo SKU y número de serie." Height="28" Name="label1" />
+            <Label Content="Seleccione con 'Agrupar Items' que artículos formarán un paquete teniendo el mismo SKU y número de serie." Height="28" Name="label1" />
         </DockPanel>
         <DockPanel DockPanel.Dock="Top"  Name="dockPanel3" HorizontalAlignment="Stretch" LastChildFill="False" VerticalAlignment="Stretch" >
             <DataGrid DockPanel.Dock="Top" CanUserDeleteRows="False"
@@ -32,7 +32,7 @@
                     <DataGridTextColumn Header="Model" Width="*" x:Name="modeloName" Binding="{Binding Path=Articulo.Modelo.MODELO_NAME}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Marca" Width="*" x:Name="marcaName" Binding="{Binding Path=Articulo.Marca.MARCA_NAME}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Articulo" Width="*" x:Name="articuloName" Binding="{Binding Path=Articulo.Marca.MARCA_NAME}" IsReadOnly="True"/>
-                    <DataGridTemplateColumn Header="Aplica Cantidad" Width="Auto">
+                    <DataGridTemplateColumn Header="Agrupar Items" Width="Auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox HorizontalAlignment="Center"  x:Name="RowCheckBox" IsChecked="{Binding Path=IsSelected,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

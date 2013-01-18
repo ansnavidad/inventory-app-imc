@@ -33,7 +33,7 @@
         <Button TabIndex="12" Content="Agregar Items" Height="30" Margin="353,536,0,0" Name="button1" VerticalAlignment="Top" Click="button1_Click" HorizontalAlignment="Left" Width="120" />
         <Button TabIndex="13" Content="Borrar Items" Command="{Binding DeleteItemCommand, Mode=OneWay}" Height="30" Margin="0,536,17,0" Name="button2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" Click="button2_Click" />
         <DataGrid TabIndex="14" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ItemModel.ItemModel}" Margin="0,573,11,0" 
-Name="dtGridTipoPedimento" VerticalAlignment="Top" Height="222" HorizontalAlignment="Right" Width="595">
+Name="dtGridTipoPedimento" DataContextChanged="dtGridTipoPedimento_DataContextChanged"  VerticalAlignment="Top" Height="222" HorizontalAlignment="Right" Width="595">
             <DataGrid.Columns>
                     <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="25" />
                     <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Serie" x:Name="SERIE" Binding="{Binding Path=NUMERO_SERIE}" />

@@ -9,10 +9,11 @@ using System.Windows.Input;
 using InventoryApp.ViewModel.GridMovimientos;
 using Microsoft.Office.Interop.Excel;
 using System.Reflection;
+using System.ComponentModel;
 
 namespace InventoryApp.ViewModel.Traspasos
 {
-    public class TraspasoStockViewModel : IPageViewModel
+    public class TraspasoStockViewModel : IPageViewModel, INotifyPropertyChanged
     {
         private CatalogMovimientoModel _catalogMovimientoModel;
         private CatalogEmpresaModel _catalogEmpresaModel;
@@ -289,7 +290,15 @@ namespace InventoryApp.ViewModel.Traspasos
             }
             set
             {
-                _itemModel = value;
+                if (_itemModel != value)
+                {
+                    _itemModel = value;
+                    
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("ItemModel"));
+                    }
+                }
             }
         }
 
@@ -513,5 +522,7 @@ namespace InventoryApp.ViewModel.Traspasos
                 throw new NotImplementedException();
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

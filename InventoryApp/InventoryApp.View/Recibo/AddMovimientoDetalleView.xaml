@@ -22,8 +22,8 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
-        <Border BorderBrush="Silver" BorderThickness="1" DockPanel.Dock="Top"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TextBlock  Margin="10,0" Text="Agregar Detalle Movimiento desde Factura" />
+        <Border BorderBrush="Silver" BorderThickness="1" DockPanel.Dock="Top"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource titleBorder}">
+            <Label Style="{StaticResource titleLabel}" Content="Agregar Detalle Movimiento desde Factura " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Width="AUTO" />
         </Border>
 
         <Grid DockPanel.Dock="Top" >
@@ -37,16 +37,17 @@
                 <ColumnDefinition Width="{StaticResource descColWidth}" />
                 <ColumnDefinition Width="{StaticResource captureColWidth}" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="{StaticResource descColWidth}" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="90" />
                 <ColumnDefinition Width="{StaticResource captureColWidth}" />
             </Grid.ColumnDefinitions>
 
             <TextBlock  Grid.Column="0" Grid.Row="1"  Margin="10,0" Text="Factura" Style="{StaticResource textCapTitle1}"  />
             <ComboBox   Grid.Column="1" Grid.Row="1" Height="23"    Name="cbFactura" Width="137" ItemsSource="{Binding Facturas}" SelectedItem="{Binding SelectedFactura}" DisplayMemberPath="NumeroFactura" />
 
-            <DataGrid  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" CanUserDeleteRows="False"
+            <DataGrid Grid.Row="3" Grid.ColumnSpan="6" CanUserDeleteRows="False"
                   AutoGenerateColumns="False" CanUserAddRows="False"
-                  HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridBanco"
+                  HorizontalAlignment="Stretch" Name="dtGridBanco"
                   SelectedItem="{Binding CatalogBancoModel.SelectedBanco, Mode=TwoWay}"
                   VerticalAlignment="Stretch" ItemsSource="{Binding SelectedFactura.FacturaDetalle}" 
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
@@ -64,7 +65,7 @@
                     <DataGridTextColumn Header="Equipo" Width="110" x:Name="equipoName" Binding="{Binding Path=Articulo.Equipo.EQUIPO_NAME}" IsReadOnly="True"/>                    
                     <DataGridTextColumn Header="Marca" Width="110" x:Name="modeloName" Binding="{Binding Path=Articulo.Modelo.MODELO_NAME}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Articulo" Width="170" x:Name="marcaName" Binding="{Binding Path=Articulo.ArticuloName}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Cantidad Disponible" Width="120" x:Name="cantidad" Binding="{Binding Path=Cantidad}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Cantidad Disponible" Width="auto" x:Name="cantidad" Binding="{Binding Path=Cantidad}" IsReadOnly="False"/>
                     <DataGridTextColumn Header="Cantidad" Width="100" x:Name="cantidadElegida" Binding="{Binding Path=CantidadElegida}" IsReadOnly="False"/>
                 </DataGrid.Columns>
             </DataGrid>

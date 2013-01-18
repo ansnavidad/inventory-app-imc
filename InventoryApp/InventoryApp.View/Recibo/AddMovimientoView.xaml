@@ -5,9 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="302" d:DesignWidth="658">
+             d:DesignHeight="700" d:DesignWidth="700">
     <UserControl.Resources>
-        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
@@ -24,8 +23,9 @@
     </UserControl.Resources>
 
     <DockPanel>
-        <Border BorderBrush="Silver" BorderThickness="1" DockPanel.Dock="Top"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TextBlock  Margin="10,0" Text="Recibo Agregar Movimiento" />
+        <Border BorderBrush="Silver" BorderThickness="1" DockPanel.Dock="Top"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource titleBorder}">
+            <!--<TextBlock  Margin="10,0" Text="Recibo Agregar Movimiento" />-->
+            <Label Style="{StaticResource titleLabel}" Content="Recibo Agregar Movimiento" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Width="AUTO" />
         </Border>
 
         <Grid DockPanel.Dock="Top" >
@@ -39,9 +39,8 @@
                 <RowDefinition Height="10" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="10" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="10" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource descColWidth}" />
@@ -51,11 +50,7 @@
                 <ColumnDefinition Width="{StaticResource captureColWidth}" />
             </Grid.ColumnDefinitions>
 
-            <!--<TextBlock  Grid.Column="0" Grid.Row="1"  Margin="10,0" Text="Tipo de Origen" Style="{StaticResource textCapTitle1}"  />
-            <ComboBox   Grid.Column="1" Grid.Row="1" Height="23"    Name="cbTipoOrigen" Width="137" ItemsSource="{Binding TiposOrigen}" SelectedItem="{Binding SelectedTipoOrigen}" DisplayMemberPath="TipoOrigenName" />-->
-
             <TextBlock  Grid.Column="0" Grid.Row="3"  Margin="10,0" Text="Proveedor" Style="{StaticResource textCapTitle1}"  />
-            <!--<ComboBox   Grid.Column="1" Grid.Row="3" Height="23" Name="cbOrigen" Width="137" ItemsSource="{Binding Origenes}" DisplayMemberPath="OrigenName" SelectedItem="{Binding SelectedOrigen}"/>-->
             <TextBlock  Grid.Column="1" Grid.Row="3"  Margin="10,0" Text="{Binding SelectedOrigen.OrigenName}" Style="{StaticResource textCapTitle1}"  />
 
             <TextBlock  Grid.Column="0" Grid.Row="5"  Margin="10,0" Text="Destino" Style="{StaticResource textCapTitle1}"  />
@@ -67,70 +62,26 @@
             <DockPanel   Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="{StaticResource allCapColumnSpan}">
                 <Button Content="Agregar Desde Factura" Height="23"   HorizontalAlignment="Right" Margin="0,0,0,0" Click="Button_Click" Visibility="Hidden" />
             </DockPanel>
-
-            <DataGrid  Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="{StaticResource allCapColumnSpan}"
-                  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
-                  HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridBanco"
-                  SelectedItem="{Binding CatalogBancoModel.SelectedBanco, Mode=TwoWay}"
-                  ItemsSource="{Binding Items}" 
-                    Height="250"
-                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
-                  HorizontalScrollBarVisibility="Visible"
-                       VerticalScrollBarVisibility="Visible"
-                  
-                  RowStyle="{StaticResource RowStyle}">
-
-                <!--Celda editable/no editable de Juan-->
-
-                <!--<DataGrid.Resources>-->
-                    <!-- the non-editing cell -->
-                    <!--<DataTemplate x:Key="ReadonlyCellTemplate">
-                        <TextBlock Text="{Binding Path=Cantidad, Mode=TwoWay}" />
-                    </DataTemplate>-->
-
-                    <!-- the editing cell -->
-                    <!--<DataTemplate x:Key="EditableCellTemplate">
-                        <TextBox Text="{Binding Path=Cantidad, Mode=TwoWay}" />
-                    </DataTemplate>
-                </DataGrid.Resources>-->
-                
+            <DataGrid Height="auto" Grid.Row="9" AutoGenerateColumns="False" CanUserAddRows="False"
+                      CanUserDeleteRows="False" HorizontalAlignment="Stretch" Name="dtGridBanco"
+                      SelectedItem="{Binding CatalogBancoModel.SelectedBanco, Mode=TwoWay}"
+                      ItemsSource="{Binding Items}" 
+                     Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
+                  RowStyle="{StaticResource RowStyle}" Grid.ColumnSpan="{StaticResource allCapColumnSpan}"> 
                 <DataGrid.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Especificar Cantidad" ></MenuItem>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
-                    <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
-                    <!--<DataGridTemplateColumn Header="" Width="Auto">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>-->
                     <DataGridTextColumn Header="Equipo" Width="*" x:Name="equipoName" Binding="{Binding Path=Articulo.EquipoModel.EquipoName}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Model" Width="*" x:Name="modeloName" Binding="{Binding Path=Articulo.Modelo.MODELO_NAME}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Marca" Width="*" x:Name="marcaName" Binding="{Binding Path=Articulo.Marca.MARCA_NAME}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Serie" Width="*" x:Name="Serie" IsReadOnly="False" Binding="{Binding Path=NumeroSerie}"/>
                     <DataGridTextColumn Header="SKU" Width="*" x:Name="sku" IsReadOnly="False" Binding="{Binding Path=Sku}" />
                     <DataGridTextColumn Header="Status" Width="*" x:Name="status" Binding="{Binding Path=Status}" IsReadOnly="False"/>
-                                        
-                    <!--Celda editable/no editable de Juan-->
-                    
-                    <!--<DataGridTemplateColumn CellTemplate="{StaticResource ReadonlyCellTemplate}" Header="Cantidad">-->
-                        <!--<DataGridTemplateColumn.CellEditingTemplate>-->
-                            <!--<DataTemplate>-->
-                                <!-- the additional layer of content presenter -->
-                                <!--<ContentPresenter x:Name="Presenter" Content="{Binding}" ContentTemplate="{StaticResource ReadonlyCellTemplate}" />-->
-                                <!--<DataTemplate.Triggers>-->
-                                    <!-- dynamically switch the content template by IsEditable binding -->
-                                    <!--<DataTrigger Binding="{Binding Path=IsCantidadEnabled}" Value="True">-->
-                                        <!--<Setter TargetName="Presenter" Property="ContentTemplate" Value="{StaticResource EditableCellTemplate}" />-->
-                                    <!--</DataTrigger>-->
-                                <!--</DataTemplate.Triggers>-->
-                            <!--</DataTemplate>-->
-                        <!--</DataGridTemplateColumn.CellEditingTemplate>-->
-                    <!--</DataGridTemplateColumn>-->
                     <DataGridTextColumn Header="Cantidad" Width="*" x:Name="cantidad" Binding="{Binding Path=Cantidad}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Pedimento Expo" Width="*" x:Name="pedimentoExpo" Binding="{Binding Path=PedimentoExpo}" IsReadOnly="False"/>
                     <DataGridTextColumn Header="Pedimento Impo" Width="*" x:Name="pedimentoImpo" Binding="{Binding Path=PedimentoImpo}" IsReadOnly="False"/>
@@ -138,42 +89,4 @@
             </DataGrid>
         </Grid>
     </DockPanel>
-    <!--<Grid >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="10" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="10" />
-        </Grid.ColumnDefinitions>
-
-        <Grid Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="{StaticResource capRowHeight}" />
-                <RowDefinition Height="{StaticResource capRowHeight}" />
-                <RowDefinition Height="{StaticResource capRowHeight}" />
-                <RowDefinition Height="{StaticResource capRowHeight}" />
-                <RowDefinition Height="{StaticResource capRowHeight}" />
-                <RowDefinition Height="{StaticResource capRowHeight}" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource descColWidth}" />
-                <ColumnDefinition Width="{StaticResource captureColWidth}" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="{StaticResource descColWidth}" />
-                <ColumnDefinition Width="{StaticResource captureColWidth}" />
-            </Grid.ColumnDefinitions>
-            
-            
-            
-        </Grid>
-    </Grid>-->
 </UserControl>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="800">
+             d:DesignHeight="350" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,6 +15,7 @@
                     <GridLength x:Key="descColWidth">120</GridLength>
                     <GridLength x:Key="captureColWidth">200</GridLength>
                     <GridLength x:Key="capRowHeight">27</GridLength>
+                    <GridLength x:Key="capRowHeightSpa">35</GridLength>
                     <sys:Int32 x:Key="allCapColumnSpan">5</sys:Int32>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
@@ -23,11 +24,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
-            <RowDefinition Height="319" />
-            <RowDefinition Height="6" />
-            <RowDefinition Height="6" />
-            <RowDefinition Height="6" />
-            <RowDefinition Height="53*" />
+            <RowDefinition Height="319" />      
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
@@ -39,6 +36,7 @@
         <Grid Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="{StaticResource capRowHeightSpa}" />
                 <RowDefinition Height="{StaticResource capRowHeight}" />
                 <RowDefinition Height="{StaticResource capRowHeight}" />
                 <RowDefinition Height="{StaticResource capRowHeight}" />
@@ -46,7 +44,7 @@
                 <RowDefinition Height="{StaticResource capRowHeight}" />
                 <RowDefinition Height="{StaticResource capRowHeight}" />
                 <RowDefinition Height="{StaticResource capRowHeight}" />
-                <RowDefinition Height="{StaticResource capRowHeight}" />
+                <RowDefinition Height="68*" />
                 <RowDefinition Height="76*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -62,11 +60,11 @@
                 <Label  Style="{StaticResource titleLabel}" Content="Factura" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Width="AUTO" />
             </Border>
 
-            <TextBlock Grid.Column="0" Grid.Row="1" Height="23" HorizontalAlignment="Left" Text="Número de Factura" VerticalAlignment="Top" />
-            <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding NumeroFactura, Mode=TwoWay}" />
+            <TextBlock Grid.Row="1" Height="23" HorizontalAlignment="Left" Text="Número de Factura" VerticalAlignment="Center" Margin="0,8,0,4" />
+            <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Text="{Binding NumeroFactura, Mode=TwoWay}" Margin="0,8,0,4" />
 
-            <TextBlock Grid.Column="3" Grid.Row="1" Height="23" HorizontalAlignment="Left" Text="Fecha de Factura" VerticalAlignment="Top" />
-            <DatePicker Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectedDate="{Binding FechaFactura, Mode=TwoWay}" />
+            <TextBlock Grid.Column="3" Grid.Row="1" Height="23" HorizontalAlignment="Left" Text="Fecha de Factura" VerticalAlignment="Center" Margin="0,8,0,4" />
+            <DatePicker Grid.Column="4" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" SelectedDate="{Binding FechaFactura, Mode=TwoWay}" Margin="0,8,0,4" />
 
             <TextBlock Grid.Column="0" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Proveedor" VerticalAlignment="Top" />
             <ComboBox Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Proveedores}" SelectedItem="{Binding SelectedProveedor,Mode=TwoWay}" DisplayMemberPath="ProveedorName" Text="{Binding SelectedProveedor.ProveedorName}" IsEnabled="{Binding CanSelecteProveedor}" />
@@ -98,13 +96,13 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Categoría" Width="150" DisplayMemberBinding="{Binding Path=Articulo.Categoria.CATEGORIA_NAME }" />
-                        <GridViewColumn Header="Equipo" Width="150" DisplayMemberBinding="{Binding Path=Articulo.EquipoModel.EquipoName}" />
-                        <GridViewColumn Header="Marca" Width="150" DisplayMemberBinding="{Binding Path=Articulo.Marca.MARCA_NAME}" />
+                        <GridViewColumn Header="Categoría" Width="160" DisplayMemberBinding="{Binding Path=Articulo.Categoria.CATEGORIA_NAME }" />
+                        <GridViewColumn Header="Equipo" Width="160" DisplayMemberBinding="{Binding Path=Articulo.EquipoModel.EquipoName}" />
+                        <GridViewColumn Header="Marca" Width="160" DisplayMemberBinding="{Binding Path=Articulo.Marca.MARCA_NAME}" />
                         <GridViewColumn Header="Articulo" Width="170" DisplayMemberBinding="{Binding Path=Articulo.ArticuloName}" />
-                        <GridViewColumn Header="Cantidad" Width="120" DisplayMemberBinding="{Binding Path=Cantidad}" />
-                        <GridViewColumn Header="Costo Unitario" Width="120" DisplayMemberBinding="{Binding Path=CostoUnitario}" />
-                        <GridViewColumn Header="Precio Final" Width="120" DisplayMemberBinding="{Binding Path=PrecioFinal}" />
+                        <GridViewColumn Header="Cantidad" Width="160" DisplayMemberBinding="{Binding Path=Cantidad}" />
+                        <GridViewColumn Header="Costo Unitario" Width="160" DisplayMemberBinding="{Binding Path=CostoUnitario}" />
+                        <GridViewColumn Header="Precio Final" Width="160" DisplayMemberBinding="{Binding Path=PrecioFinal}" />
                     </GridView>
                 </ListView.View>
             </ListView>

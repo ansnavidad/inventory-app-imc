@@ -196,4 +196,9 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="bntElaraSimple" TargetType="{x:Type Button}">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontStretch" Value="Medium"></Setter>
+    </Style>
 </ResourceDictionary>

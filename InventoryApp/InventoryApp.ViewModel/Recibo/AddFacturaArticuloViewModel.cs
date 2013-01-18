@@ -166,8 +166,12 @@ namespace InventoryApp.ViewModel.Recibo
         public double PrecioFinal
         {
             get 
-            { 
-                return this.Cantidad* (this.CostoUnitario * (((this.ImpuestoUnitario/100))+1));
+            {   double aux = this.Cantidad* (this.CostoUnitario * (((this.ImpuestoUnitario/100))+1));
+                aux *= 100;
+                int aux2 = (int)aux;
+                aux = aux2;
+                aux /= 100;
+                return aux;
             }
         }
         public const string PrecioFinalPropertyName = "PrecioFinal";

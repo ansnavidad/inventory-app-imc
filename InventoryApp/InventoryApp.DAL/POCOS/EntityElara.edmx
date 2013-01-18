@@ -1036,6 +1036,7 @@
           <Property Name="IVA_POR" Type="float" />
           <Property Name="IS_MODIFIED" Type="bit" Nullable="false" />
           <Property Name="LAST_MODIFIED_DATE" Type="bigint" Nullable="false" />
+          <Property Name="TC" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="FACTURA_DETALLE">
           <Key>
@@ -3235,6 +3236,7 @@
           <Property Name="IVA_POR" Type="Double" />
           <Property Name="IS_MODIFIED" Type="Boolean" Nullable="false" />
           <Property Name="LAST_MODIFIED_DATE" Type="Int64" Nullable="false" />
+          <Property Name="TC" Type="Double" Nullable="false" />
           <NavigationProperty Name="MONEDA" Relationship="TAE2Model.CAT_MONEDA_LOT_FACTURA_FK1" FromRole="FACTURA" ToRole="MONEDA" />
           <NavigationProperty Name="PROVEEDOR" Relationship="TAE2Model.CAT_PROVEEDOR_LOT_FACTURA_FK1" FromRole="FACTURA" ToRole="PROVEEDOR" />
           <NavigationProperty Name="RECIBO_MOVIMIENTO" Relationship="TAE2Model.LOT_FACTURA_INV_RECIBO_MOVIMIENTO_FK1" FromRole="FACTURA" ToRole="RECIBO_MOVIMIENTO" />
@@ -4921,6 +4923,7 @@
                 <ScalarProperty Name="IVA_POR" ColumnName="IVA_POR" />
                 <ScalarProperty Name="IS_MODIFIED" ColumnName="IS_MODIFIED" />
                 <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="TC" ColumnName="TC" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5051,7 +5054,7 @@
         <EntityTypeShape EntityType="TAE2Model.TERMINO_ENVIO" Width="1.5" PointX="0.75" PointY="18" Height="2.5571907552083246" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.TIPO_COTIZACION" Width="1.5" PointX="16.75" PointY="2" Height="1.9802864583333246" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.TIPO_EMPRESA" Width="1.5" PointX="4.5" PointY="31.5" Height="2.172587890624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.TIPO_PEDIMENTO" Width="1.5" PointX="2.25" PointY="78.625" Height="2.7494921874999818" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.TIPO_PEDIMENTO" Width="1.5" PointX="2.25" PointY="78.875" Height="2.7494921874999818" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.TRANSPORTE" Width="1.5" PointX="6.75" PointY="31.25" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.UPDATE" Width="1.5" PointX="16.75" PointY="15" Height="1.4033821614583246" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.UPLOAD_LOG" Width="1.5" PointX="14" PointY="20" Height="2.172587890624996" IsExpanded="true" />
@@ -5071,17 +5074,17 @@
         <EntityTypeShape EntityType="TAE2Model.CIUDAD" Width="1.5" PointX="4.5" PointY="18.125" Height="2.5571907552083246" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.PAI" Width="1.5" PointX="4.5" PointY="21.375" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.FACTURA_VENTA" Width="1.5" PointX="6.75" PointY="47.875" Height="3.7109993489583246" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.ITEM" Width="1.5" PointX="9" PointY="64.5" Height="5.2494108072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.ITEM" Width="1.5" PointX="9" PointY="64.625" Height="5.2494108072916674" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.MOVIMENTO" Width="1.5" PointX="9" PointY="6.75" Height="10.249248046874982" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.MOVIMIENTO_DETALLE" Width="1.5" PointX="11.25" PointY="10.25" Height="3.1340950520833246" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.RECIBO" Width="1.5" PointX="12" PointY="1.875" Height="3.9033007812499818" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.RECIBO_MOVIMIENTO" Width="1.5" PointX="14.25" PointY="10.375" Height="2.9417936197916674" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.RECIBO_STATUS" Width="1.5" PointX="9.75" PointY="2.75" Height="2.1725878906249818" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.ULTIMO_MOVIMIENTO" Width="1.5" PointX="16.5" PointY="9.75" Height="4.2879036458333246" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.FACTURA" Width="1.5" PointX="4.5" PointY="73.75" Height="4.0956022135416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.FACTURA_DETALLE" Width="1.5" PointX="6.75" PointY="73.875" Height="4.4802050781249818" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.LOTE" Width="1.5" PointX="2.25" PointY="74.5" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAE2Model.PEDIMENTO" Width="1.5" PointX="4.5" PointY="78.5" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.FACTURA" Width="1.5" PointX="4.5" PointY="73.75" Height="4.2879036458333246" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.FACTURA_DETALLE" Width="1.5" PointX="6.75" PointY="74" Height="4.4802050781249818" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.LOTE" Width="1.5" PointX="2.25" PointY="74.625" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAE2Model.PEDIMENTO" Width="1.5" PointX="4.5" PointY="78.75" Height="2.9417936197916674" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.POM" Width="1.5" PointX="9.75" PointY="27.25" Height="3.5186979166666674" IsExpanded="true" />
         <EntityTypeShape EntityType="TAE2Model.POM_ARTICULO" Width="1.5" PointX="12" PointY="42.125" Height="3.5186979166666674" IsExpanded="true" />
         <AssociationConnector Association="TAE2Model.APP_MENU_APP_MENU_FK1" ManuallyRouted="false">
@@ -5134,13 +5137,13 @@
         <AssociationConnector Association="TAE2Model.ART_ARTICULO_INV_ITEM_FK1" ManuallyRouted="false">
           <ConnectorPoint PointX="8.25" PointY="58.3651025390625" />
           <ConnectorPoint PointX="9.75" PointY="58.3651025390625" />
-          <ConnectorPoint PointX="9.75" PointY="64.5" />
+          <ConnectorPoint PointX="9.75" PointY="64.625" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.ART_ARTICULO_LOT_FACTURA_DETALLE_FK1" ManuallyRouted="false">
           <ConnectorPoint PointX="8.25" PointY="60.604050231971151" />
           <ConnectorPoint PointX="8.625" PointY="60.979050231971151" />
-          <ConnectorPoint PointX="8.625" PointY="73.5" />
-          <ConnectorPoint PointX="8.2500000000000018" PointY="73.875" />
+          <ConnectorPoint PointX="8.625" PointY="73.625" />
+          <ConnectorPoint PointX="8.2500000000000018" PointY="74" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.ART_ARTICULO_POM_POM_ARTICULO_FK1" ManuallyRouted="false">
           <ConnectorPoint PointX="8.25" PointY="57.213798769531252" />
@@ -5336,8 +5339,8 @@
         <AssociationConnector Association="TAE2Model.CAT_PROVEEDOR_LOT_FACTURA_FK1" ManuallyRouted="false">
           <ConnectorPoint PointX="6.7823066923076922" PointY="23.499410807291667" />
           <ConnectorPoint PointX="6.65625" PointY="23.62546749959936" />
-          <ConnectorPoint PointX="6.65625" PointY="75.829053106770829" />
-          <ConnectorPoint PointX="6" PointY="75.829053106770829" />
+          <ConnectorPoint PointX="6.65625" PointY="75.925203822916657" />
+          <ConnectorPoint PointX="6" PointY="75.925203822916657" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.GEO_CIUDAD_CAT_PROVEEDOR_FK1" ManuallyRouted="false">
           <ConnectorPoint PointX="6" PointY="19.466095377604162" />
@@ -5379,8 +5382,8 @@
           <ConnectorPoint PointX="6.75" PointY="32.5862939453125" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_TIPO_PEDIMENTO_LOT_PEDIMENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.75" PointY="79.999746093749991" />
-          <ConnectorPoint PointX="4.5" PointY="79.999746093749991" />
+          <ConnectorPoint PointX="3.75" PointY="80.249746093749991" />
+          <ConnectorPoint PointX="4.5" PointY="80.249746093749991" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CAT_TRANSPORTE_INV_MOVIMENTO_FK1" ManuallyRouted="false">
           <ConnectorPoint PointX="8.25" PointY="31.264999" />
@@ -5482,10 +5485,10 @@
           <ConnectorPoint PointX="16.5624975" PointY="14.037903645833325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CATINV_ITEM_STATUS_INV_ITEM_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.25" PointY="65.778595377604177" />
-          <ConnectorPoint PointX="8.5416666666666661" PointY="65.778595377604177" />
-          <ConnectorPoint PointX="8.7083333333333339" PointY="65.778595377604177" />
-          <ConnectorPoint PointX="9" PointY="65.778595377604177" />
+          <ConnectorPoint PointX="8.25" PointY="65.841095377604177" />
+          <ConnectorPoint PointX="8.5416666666666661" PointY="65.841095377604177" />
+          <ConnectorPoint PointX="8.7083333333333339" PointY="65.841095377604177" />
+          <ConnectorPoint PointX="9" PointY="65.841095377604177" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.FK_CATINV_MAX_MIN_CATINV_MAX_MIN" ManuallyRouted="false">
           <ConnectorPoint PointX="3.5319230769230767" PointY="10.125" />
@@ -5494,10 +5497,10 @@
           <ConnectorPoint PointX="3.9784615384615383" PointY="10.125" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.FK_ITEM_PROPIEDAD" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.25" PointY="68.812205403645834" />
-          <ConnectorPoint PointX="8.5416666666666661" PointY="68.812205403645834" />
-          <ConnectorPoint PointX="8.7083333333333339" PointY="68.812205403645834" />
-          <ConnectorPoint PointX="9" PointY="68.812205403645834" />
+          <ConnectorPoint PointX="8.25" PointY="68.874705403645834" />
+          <ConnectorPoint PointX="8.5416666666666661" PointY="68.874705403645834" />
+          <ConnectorPoint PointX="8.7083333333333339" PointY="68.874705403645834" />
+          <ConnectorPoint PointX="9" PointY="68.874705403645834" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.CATINV_SERVICIO_INV_MOVIMENTO_FK1" ManuallyRouted="false">
           <ConnectorPoint PointX="8.25" PointY="38.131922076923075" />
@@ -5542,7 +5545,7 @@
           <ConnectorPoint PointX="6.572916666666667" PointY="71.8362939453125" />
           <ConnectorPoint PointX="6.739583333333333" PointY="71.8362939453125" />
           <ConnectorPoint PointX="7.468747500000001" PointY="71.8362939453125" />
-          <ConnectorPoint PointX="7.468747500000001" PointY="73.875" />
+          <ConnectorPoint PointX="7.468747500000001" PointY="74" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.COT_COTIZACION_POM_POM_FK1" ManuallyRouted="false">
           <ConnectorPoint PointX="8.46875" PointY="5.23020507812501" />
@@ -5558,21 +5561,21 @@
           <ConnectorPoint PointX="9" PointY="7.3556452226562" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.FK_ULTIMO_MOVIMIENTO_ITEM" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.5" PointY="67.124705403645834" />
-          <ConnectorPoint PointX="15.541664166666665" PointY="67.124705403645834" />
-          <ConnectorPoint PointX="15.708330833333333" PointY="67.124705403645834" />
-          <ConnectorPoint PointX="16.6250025" PointY="67.124705403645834" />
+          <ConnectorPoint PointX="10.5" PointY="67.249705403645834" />
+          <ConnectorPoint PointX="15.541664166666665" PointY="67.249705403645834" />
+          <ConnectorPoint PointX="15.708330833333333" PointY="67.249705403645834" />
+          <ConnectorPoint PointX="16.6250025" PointY="67.249705403645834" />
           <ConnectorPoint PointX="16.6250025" PointY="14.037903645833325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.INV_ITEM_INV_MOVIMIENTO_DETALLE_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.5" PointY="65.781100201822923" />
-          <ConnectorPoint PointX="11.40625" PointY="65.781100201822923" />
+          <ConnectorPoint PointX="10.5" PointY="65.906100201822923" />
+          <ConnectorPoint PointX="11.40625" PointY="65.906100201822923" />
           <ConnectorPoint PointX="11.40625" PointY="13.384095052083325" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.LOT_FACTURA_DETALLE_INV_ITEM_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.25" PointY="76.146355039062485" />
-          <ConnectorPoint PointX="9.75" PointY="76.146355039062485" />
-          <ConnectorPoint PointX="9.75" PointY="69.749410807291667" />
+          <ConnectorPoint PointX="8.25" PointY="76.271355039062485" />
+          <ConnectorPoint PointX="9.75" PointY="76.271355039062485" />
+          <ConnectorPoint PointX="9.75" PointY="69.874410807291667" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.INV_MOVIMENTO_INV_MOVIMIENTO_DETALLE_FK1" ManuallyRouted="false">
           <ConnectorPoint PointX="10.5" PointY="11.817047526041662" />
@@ -5607,36 +5610,36 @@
           <ConnectorPoint PointX="12" PointY="3.8362939453124909" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.LOT_FACTURA_INV_RECIBO_MOVIMIENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="6" PointY="73.78125" />
-          <ConnectorPoint PointX="6.572916666666667" PointY="73.78125" />
-          <ConnectorPoint PointX="6.739583333333333" PointY="73.78125" />
-          <ConnectorPoint PointX="7.3854141666666679" PointY="73.78125" />
-          <ConnectorPoint PointX="7.552080833333334" PointY="73.78125" />
-          <ConnectorPoint PointX="8.26041666666667" PointY="73.78125" />
-          <ConnectorPoint PointX="8.4270833333333375" PointY="73.78125" />
-          <ConnectorPoint PointX="9.6666666666666661" PointY="73.78125" />
-          <ConnectorPoint PointX="9.8333333333333339" PointY="73.78125" />
-          <ConnectorPoint PointX="15.6249975" PointY="73.78125" />
+          <ConnectorPoint PointX="6" PointY="73.8750025" />
+          <ConnectorPoint PointX="6.572916666666667" PointY="73.8750025" />
+          <ConnectorPoint PointX="6.739583333333333" PointY="73.8750025" />
+          <ConnectorPoint PointX="7.3854141666666679" PointY="73.8750025" />
+          <ConnectorPoint PointX="7.552080833333334" PointY="73.8750025" />
+          <ConnectorPoint PointX="8.2916641666666759" PointY="73.8750025" />
+          <ConnectorPoint PointX="8.4583308333333438" PointY="73.8750025" />
+          <ConnectorPoint PointX="9.6666666666666661" PointY="73.8750025" />
+          <ConnectorPoint PointX="9.8333333333333339" PointY="73.8750025" />
+          <ConnectorPoint PointX="15.6249975" PointY="73.8750025" />
           <ConnectorPoint PointX="15.6249975" PointY="13.316793619791667" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.LOT_FACTURA_LOT_FACTURA_DETALLE_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="6" PointY="76.899827660156248" />
-          <ConnectorPoint PointX="6.75" PointY="76.899827660156248" />
+          <ConnectorPoint PointX="6" PointY="77.044053734374984" />
+          <ConnectorPoint PointX="6.75" PointY="77.044053734374984" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.LOT_LOTE_LOT_FACTURA_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.75" PointY="75.682444661458334" />
-          <ConnectorPoint PointX="4.5" PointY="75.682444661458334" />
+          <ConnectorPoint PointX="3.75" PointY="75.807444661458334" />
+          <ConnectorPoint PointX="4.5" PointY="75.807444661458334" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.LOT_PEDIMENTO_LOT_FACTURA_DETALLE_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="6" PointY="79.970896809895834" />
-          <ConnectorPoint PointX="7.5" PointY="79.970896809895834" />
-          <ConnectorPoint PointX="7.5" PointY="78.355205078124982" />
+          <ConnectorPoint PointX="6" PointY="80.220896809895834" />
+          <ConnectorPoint PointX="7.5" PointY="80.220896809895834" />
+          <ConnectorPoint PointX="7.5" PointY="78.480205078124982" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.LOT_LOTE_LOT_PEDIMENTO_FK1" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.75" PointY="76.863734476762829" />
-          <ConnectorPoint PointX="4.125" PointY="77.238734476762829" />
-          <ConnectorPoint PointX="4.125" PointY="79.218621046875" />
-          <ConnectorPoint PointX="4.5" PointY="79.218621046875" />
+          <ConnectorPoint PointX="3.75" PointY="76.988734476762829" />
+          <ConnectorPoint PointX="4.125" PointY="77.363734476762829" />
+          <ConnectorPoint PointX="4.125" PointY="79.468621046875" />
+          <ConnectorPoint PointX="4.5" PointY="79.468621046875" />
         </AssociationConnector>
         <AssociationConnector Association="TAE2Model.POM_POM_POM_POM_ARTICULO_FK1" ManuallyRouted="false">
           <ConnectorPoint PointX="10.5" PointY="30.768697916666667" />

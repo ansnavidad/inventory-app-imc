@@ -24,12 +24,6 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
-
-        public virtual double TC
-        {
-            get;
-            set;
-        }
     
         public virtual Nullable<long> UNID_LOTE
         {
@@ -143,6 +137,12 @@ namespace InventoryApp.DAL.POCOS
         }
     
         public virtual long LAST_MODIFIED_DATE
+        {
+            get;
+            set;
+        }
+    
+        public virtual double TC
         {
             get;
             set;

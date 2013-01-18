@@ -27,8 +27,8 @@
         <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label Content="Recibos" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" Style="{StaticResource titleLabel}" />
         </Border>
-        <Button  Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="btnNuevo" VerticalAlignment="Stretch" 
-                 Width="75"  Grid.Row="0" Grid.Column="2" Command="{Binding AddReciboCmd}" Click="btnNuevo_Click" />
+        <Button  Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="162,4,13,4" Name="btnNuevo" VerticalAlignment="Stretch" 
+                 Width="75" Grid.Column="2" Command="{Binding AddReciboCmd}" Click="btnNuevo_Click" />
         <!--<Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2"
                     Margin="0,0,170,0" Name="btnEliminar" VerticalAlignment="Stretch"
                     Width="75" Command="{Binding DeleteMonedaCommand,Mode=OneWay}"/>-->

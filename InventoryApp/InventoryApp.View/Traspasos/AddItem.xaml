@@ -37,14 +37,15 @@ WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScre
                   ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" >
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn x:Name="check" MinWidth="25" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <DataGridTextColumn Header="Articulo" Width="95" x:Name="articuloNombre" Binding="{Binding Path=Articulo.ARTICULO1}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Artículo" Width="95" x:Name="articuloNombre" Binding="{Binding Path=Articulo.ARTICULO1}" IsReadOnly="True"/>
                 <DataGridTextColumn IsReadOnly="True" Width="95" Header="SKU" x:Name="SKU" Binding="{Binding Path=SKU}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Width="95" Header="N° Serie" x:Name="Serie" Binding="{Binding Path=NUMERO_SERIE}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True" Width="80" Header="Equipo" x:Name="EQUIPO" Binding="{Binding Path=Equipo.EQUIPO_NAME}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True" Width="80" Header="Modelo" x:Name="MODELO" Binding="{Binding Path=Modelo.MODELO_NAME}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True" Width="70" Header="Marca" x:Name="MARCA" Binding="{Binding Path=Marca.MARCA_NAME}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True" Width="70" Header="Status" x:Name="STATUS" Binding="{Binding Path=ItemStatus.ITEM_STATUS_NAME}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True" Width="80" Header="Disponible" x:Name="CantidadDisponible" Binding="{Binding Path=CantidadDisponible}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="False" Width="140" Header="En Movimiento" x:Name="CantidadMovimiento" Binding="{Binding Path=CantidadMovimiento}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Width="80" Header="Cantidad Disponible" x:Name="CantidadDisponible" Binding="{Binding Path=CantidadDisponible}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="False" Width="140" Header="Cantidad a Mover" x:Name="CantidadMovimiento" Binding="{Binding Path=CantidadMovimiento}"></DataGridTextColumn>
 
             </DataGrid.Columns>
         </DataGrid>
@@ -57,7 +58,7 @@ Margin="49,15,0,0" Name="txtNumSerie" VerticalAlignment="Top" Width="159" Grid.C
 Margin="0,28,44,0" Name="button2" VerticalAlignment="Top" Width="98" Grid.Column="2" Grid.Row="1" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="49,48,0,0" Name="txtSKU" Text="{Binding CatalogItemModel.SKU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="159" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1" IsEnabled="False"/>
         <Label Content="Seleccionar Items por:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,31,85,0" Name="label2" VerticalAlignment="Top" Width="139" Grid.Row="1" />
-        <RadioButton Content="Numero de Serie:" Grid.ColumnSpan="2" Grid.Row="1" Height="16" HorizontalAlignment="Left" Margin="187,22,0,0" Name="radioButton1" VerticalAlignment="Top" IsChecked="True" Checked="radioButton1_Checked" />
+        <RadioButton Content="Número de Serie:" Grid.ColumnSpan="2" Grid.Row="1" Height="16" HorizontalAlignment="Left" Margin="187,22,0,0" Name="radioButton1" VerticalAlignment="Top" IsChecked="True" Checked="radioButton1_Checked" />
         <RadioButton Content="SKU:" Height="16" HorizontalAlignment="Left" Margin="187,51,0,0" Name="radioButton2" VerticalAlignment="Top" Grid.Row="1" Checked="radioButton2_Checked" />
         <TextBlock Grid.Row="1" Height="26" HorizontalAlignment="Left" Margin="26,83,0,0" Name="textBlock1"  Text="{Binding CatalogItemModel.Mensaje1, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="584" Grid.ColumnSpan="3" Grid.RowSpan="2" />
         <TextBlock Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="26,21,0,0" Name="textBlock2" Text="{Binding CatalogItemModel.Mensaje2, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="584" />

@@ -142,6 +142,7 @@ namespace InventoryApp.Model
                     {
                         ban = true;
                         ItemModel aux = new ItemModel(elemento);
+                        aux.IsChecked = true;
                         ic.Add(aux);
                     }
 
@@ -236,6 +237,7 @@ namespace InventoryApp.Model
                         aux.CantidadMovimiento = 1;
                         if (aux.CantidadDisponible > 0)
                         {
+                            aux.IsChecked = true;
                             ic.Add(aux);
                         }
                     }
@@ -336,6 +338,7 @@ namespace InventoryApp.Model
                         aux.CantidadMovimiento = 1;
                         if (aux.CantidadDisponible > 0)
                         {
+                            aux.IsChecked = true;
                             ic.Add(aux);
                         }
                     }
@@ -411,7 +414,9 @@ namespace InventoryApp.Model
                 foreach (ItemModel elem in this.ItemModel)
                 {
                     if (elem.IsChecked)
+                    {                        
                         ic.Add(elem);
+                    }
                 }
 
                 this.ItemModel.Clear();
@@ -432,6 +437,7 @@ namespace InventoryApp.Model
                         aux.CantidadMovimiento = 1;
                         if (aux.CantidadDisponible > 0)
                         {
+                            aux.IsChecked = true;
                             ic.Add(aux);
                         }
                     }

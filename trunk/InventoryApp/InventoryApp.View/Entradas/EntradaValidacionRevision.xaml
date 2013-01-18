@@ -43,11 +43,23 @@
                         <DataGridTextColumn IsReadOnly="True"  Width="70" Header="Marca" x:Name="MARCA" Binding="{Binding Path=Marca.MARCA_NAME}"></DataGridTextColumn>
                         <DataGridTextColumn IsReadOnly="True"  Width="70" Header="Status" x:Name="STATUS" Binding="{Binding Path=ItemStatus.ITEM_STATUS_NAME}"></DataGridTextColumn>
                         <DataGridTextColumn IsReadOnly="True"  Width="98" Header="Cantidad" x:Name="Cant" Binding="{Binding Path=CantidadMovimiento}"></DataGridTextColumn>
-
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Command="{Binding showCustomerCommand}" Content="{Binding Path=Name}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
                 <Border BorderBrush="Silver" BorderThickness="3" Height="3" HorizontalAlignment="Left" Margin="13,229,0,0" Name="border1" VerticalAlignment="Top" Width="587"></Border>
-                <ComboBox TabIndex="5" Height="23" HorizontalAlignment="Right" Margin="0,251,211,0" Name="comboBoxInfraestructura" VerticalAlignment="Top" Width="159" DisplayMemberPath="INFRAESTRUCTURA_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogInfraestructuraModel.Infraestructuras}"  SelectedItem="{Binding MovimientoModel.Infraestructura, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_INFRAESTRUCTURA" SelectedIndex="0"/>
+                <ComboBox TabIndex="5" Height="23" HorizontalAlignment="Right" Margin="0,251,211,0"
+                          Name="comboBoxInfraestructura" VerticalAlignment="Top" Width="159"
+                          DisplayMemberPath="INFRAESTRUCTURA_NAME"
+                          ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogInfraestructuraModel.Infraestructuras}"
+                          SelectedItem="{Binding MovimientoModel.Infraestructura, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedValuePath="UNID_INFRAESTRUCTURA" SelectedIndex="0">
+                </ComboBox>
                 <Label Content="Procedencia:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,209,25,0" Name="label17" VerticalAlignment="Top" />
                 <ComboBox TabIndex="3" Height="23" HorizontalAlignment="Right" Margin="0,150,298,0" Name="comboBoxAlmacenOrigen" VerticalAlignment="Top" Width="176" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenDestino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN" SelectedIndex="0" />
                 <Label Content="Almacén de destino:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,148,482,0" Name="label3" VerticalAlignment="Top" />

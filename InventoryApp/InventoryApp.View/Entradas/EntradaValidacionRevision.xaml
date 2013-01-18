@@ -43,13 +43,6 @@
                         <DataGridTextColumn IsReadOnly="True"  Width="70" Header="Marca" x:Name="MARCA" Binding="{Binding Path=Marca.MARCA_NAME}"></DataGridTextColumn>
                         <DataGridTextColumn IsReadOnly="True"  Width="70" Header="Status" x:Name="STATUS" Binding="{Binding Path=ItemStatus.ITEM_STATUS_NAME}"></DataGridTextColumn>
                         <DataGridTextColumn IsReadOnly="True"  Width="98" Header="Cantidad" x:Name="Cant" Binding="{Binding Path=CantidadMovimiento}"></DataGridTextColumn>
-                        <DataGridTemplateColumn>
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Command="{Binding showCustomerCommand}" Content="{Binding Path=Name}"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
                 <Border BorderBrush="Silver" BorderThickness="3" Height="3" HorizontalAlignment="Left" Margin="13,229,0,0" Name="border1" VerticalAlignment="Top" Width="587"></Border>

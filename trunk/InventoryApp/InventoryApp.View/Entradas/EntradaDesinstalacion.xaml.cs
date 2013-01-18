@@ -27,14 +27,12 @@ namespace InventoryApp.View.Entradas
             comboCliente.SelectedIndex = 0;
              //EL ORIGEN ES EN REALIDAD EL DESTINO
             comboBoxSolicitante.SelectedIndex = 1;
-            comboBoxSolicitante.SelectedIndex = 0;
-
-            //this.dtGridTipoPedimento.DataContextChanged += new DataGridViewCellEventHandler(y_CellValueChanged);  
+            comboBoxSolicitante.SelectedIndex = 0;            
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            //this.comboBoxClienteDestino.IsEnabled = false;
+            this.comboBoxClienteDestino.IsEnabled = false;
             AddItem it = new AddItem();
             EntradaDesinstalacionViewModel entrada = this.DataContext as EntradaDesinstalacionViewModel;
             it.DataContext = entrada.CreateCatalogItemViewModel();
@@ -100,10 +98,7 @@ namespace InventoryApp.View.Entradas
 
         private void dtGridTipoPedimento_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if(this.dtGridTipoPedimento.Items.Count == 0)
-                this.comboBoxClienteDestino.IsEnabled = true;
-            else
-                this.comboBoxClienteDestino.IsEnabled = true;
+            
         }
     }
 }

@@ -29,20 +29,6 @@ namespace InventoryApp.Model
             {
                 if (_itemModel != value)
                 {
-
-                    //bool aux = true;
-
-                    //foreach(ItemModel i in _itemModel){
-                    
-                    //    if(i.CantidadDisponible < i.CantidadMovimiento || i.CantidadMovimiento < 1)
-                    //        aux = false;
-                    //}
-
-                    //if (!aux)
-                    //    Mensaje3 = "Favor de validar que Cantidad a Mover sea menor o igual que Cantidad Disponible y mayor a cero.";
-                    //else
-                    //    Mensaje3 = "";
-
                     _itemModel = value;
                     if (PropertyChanged != null)
                     {

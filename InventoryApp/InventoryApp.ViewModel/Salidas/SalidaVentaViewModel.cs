@@ -418,6 +418,7 @@ namespace InventoryApp.ViewModel.Salidas
             this._facturaVentaModel.saveFactura();
             this._movimientoModel.UnidFacturaVenta = this.FacturaVentaModel.UnidFacturaVenta;
             this._movimientoModel.saveArticulo();
+            this._movimientoSalida.updateItems();
 
             foreach (ItemModel item in this._itemModel.ItemModel)
             {
@@ -428,6 +429,8 @@ namespace InventoryApp.ViewModel.Salidas
                 this._ultimoMovimientoModel.updateArticulo(this.MovimientoModel.AlmacenProcedencia);
                 this._ultimoMovimientoModel.saveArticulo();
             }            
+            
+            this._movimientoSalida.updateItems();
         }
 
         public bool CanAttempImprimir()

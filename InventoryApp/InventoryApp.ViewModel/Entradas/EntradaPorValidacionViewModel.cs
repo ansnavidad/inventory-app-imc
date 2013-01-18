@@ -247,7 +247,7 @@ namespace InventoryApp.ViewModel.Entradas
         public void AttempArticulo()
         {
             this._movimientoModel.saveArticulo();
-            _movimentoGridEntradas.updateItems();
+            this._movimentoGridEntradas.updateItems();
 
             foreach (ItemModel item in this._itemModel.ItemModel)
             {
@@ -256,7 +256,9 @@ namespace InventoryApp.ViewModel.Entradas
                 this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem, this._movimientoModel.UnidAlmacenDestino, null, null, this._movimientoDetalleModel.UnidMovimientoDetalle, item.CantidadMovimiento);
                 this._ultimoMovimientoModel.updateArticulo(this.MovimientoModel.Infraestructura);
                 this._ultimoMovimientoModel.saveArticulo();
-            }            
+            }
+
+            this._movimentoGridEntradas.updateItems();
         }
 
         public bool CanAttempImprimir()

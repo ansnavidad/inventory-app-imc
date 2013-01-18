@@ -160,8 +160,10 @@ namespace InventoryApp.DAL
         {
             using (var Entity = new TAE2Entities())
             {
+                Entity.SaveChanges();
+
                 var res = (from p in Entity.MOVIMENTOes
-                           select p).ToList();
+                           select p).ToList();                
 
                 List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -188,6 +190,7 @@ namespace InventoryApp.DAL
                         trans.TECNICO = trans.TECNICO;
                         trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
                         trans.TECNICO1 = trans.TECNICO1;
+                        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;                        
                         final.Add(trans);
                     }
                 }

@@ -81,7 +81,41 @@
                     <DataGridTextColumn Header="Marca" Width="150" x:Name="marcaName" Binding="{Binding Path=Articulo.Marca.MARCA_NAME}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Serie" Width="130" x:Name="Serie" IsReadOnly="False" Binding="{Binding Path=NumeroSerie}"/>
                     <DataGridTextColumn Header="SKU" Width="130" x:Name="sku" IsReadOnly="False" Binding="{Binding Path=Sku}" />
-                    <DataGridTextColumn Header="Status" Width="130" x:Name="status" Binding="{Binding Path=Status}" IsReadOnly="False"/>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <!--<DataGridTextColumn Header="Status" Width="130" x:Name="status" Binding="{Binding Path=ItemStatus.ItemStatusName}" IsReadOnly="False"/>-->
+
+
+
+
+                    
+                    <DataGridTemplateColumn Header="Status" Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=ItemStatus.ItemStatusName,Mode=Default}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                        <DataGridTemplateColumn.CellEditingTemplate >
+                            <DataTemplate>
+                                <ComboBox Height="22" 
+                                      ItemsSource="{Binding Path=DataContext.ItemStatus,UpdateSourceTrigger=LostFocus, RelativeSource={RelativeSource AncestorType=DataGrid},Mode=Default}"
+                                      SelectedItem="{Binding Path=ItemStatus, Mode=TwoWay}" SelectedIndex="0"
+                                      DisplayMemberPath="ItemStatusName"
+                                      />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+
+                    </DataGridTemplateColumn>
+
+
+
+
                     <DataGridTextColumn Header="Cantidad" Width="130" x:Name="cantidad" Binding="{Binding Path=Cantidad}" IsReadOnly="True"/>                    
                 </DataGrid.Columns>
             </DataGrid>

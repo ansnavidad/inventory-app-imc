@@ -14,6 +14,7 @@ namespace InventoryApp.Model
         private long _unidItemStatus;
         private string _itemStatusName;
         private ItemStatusModel _itemStatusModel;
+        
         private ItemStatusDataMapper _dataMapper;
         #endregion
 

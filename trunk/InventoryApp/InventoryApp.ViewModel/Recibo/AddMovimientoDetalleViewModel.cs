@@ -6,6 +6,8 @@ using InventoryApp.Model.Recibo;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.DAL;
+using InventoryApp.Model;
 
 namespace InventoryApp.ViewModel.Recibo
 {
@@ -104,6 +106,7 @@ namespace InventoryApp.ViewModel.Recibo
                 var sel = (from o in this._SelectedFactura.FacturaDetalle
                            where o.IsSelected == true
                            select o).ToList();
+
                 long unid = DAL.UNID.getNewUNID();
                 sel.ForEach(o => {
                     for (int i = 0; i < o.Cantidad; i++)

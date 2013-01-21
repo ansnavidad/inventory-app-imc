@@ -177,6 +177,21 @@ namespace InventoryApp.ViewModel.Recibo
         private string _NumeroPedimento;
         public const string NumeroPedimentoPropertyName = "NumeroPedimento";
 
+        public string Msj
+        {
+            get { return _msj; }
+            set
+            {
+                if (_msj != value)
+                {
+                    _msj = value;
+                    OnPropertyChanged(MsjPropertyName);
+                }
+            }
+        }
+        private string _msj;
+        public const string MsjPropertyName = "Msj";
+
         public TipoPedimentoModel SelectedTipoPedimento
         {
             get { return _SelectedTipoPedimento; }
@@ -344,6 +359,17 @@ namespace InventoryApp.ViewModel.Recibo
                 canAddFactura = true;
             }
 
+            if (this._tc <= 0)
+            {
+
+                Msj = "El Tipo de Cambio debe de ser mayor a cero.";
+                return false;
+            }
+            else {
+
+                Msj = "";
+            }
+
             return canAddFactura;
         }
 
@@ -409,6 +435,7 @@ namespace InventoryApp.ViewModel.Recibo
         public void init()
         {
             this._CanSelecteProveedor = true;
+            this.TC = 1;
             this._Proveedores = this.GetProveedores();
             this._Monedas = this.GetMonedas();
             this._FacturaDetalles = new ObservableCollection<FacturaCompraDetalleModel>();

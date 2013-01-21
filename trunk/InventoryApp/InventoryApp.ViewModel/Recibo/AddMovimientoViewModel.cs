@@ -384,6 +384,29 @@ namespace InventoryApp.ViewModel.Recibo
         private FacturaCompraModel _SelectedFactura;
         public const string SelectedFacturaPropertyName = "SelectedFactura";
 
+        public ObservableCollection<ItemStatusModel> ItemStatus
+        {
+            get
+            {
+                if (_ItemStatus == null)
+                {
+                    _ItemStatus = this.GetStatuss();
+                }
+
+                return _ItemStatus;
+            }
+            set
+            {
+                if (_ItemStatus != value)
+                {
+                    _ItemStatus = value;
+                    OnPropertyChanged(ItemStatusPropertyName);
+                }
+            }
+        }
+        private ObservableCollection<ItemStatusModel> _ItemStatus;
+        public const string ItemStatusPropertyName = "ItemStatus";
+
         public ObservableCollection<FacturaCompraModel> FacturasDisponibles
         {
             get 
@@ -396,7 +419,6 @@ namespace InventoryApp.ViewModel.Recibo
                 return facturas;
             }
         }
-        
 
         public AddMovimientoViewModel()
         {
@@ -445,6 +467,32 @@ namespace InventoryApp.ViewModel.Recibo
             }
 
             return tpoPedimentos;
+        }
+
+        private ObservableCollection<ItemStatusModel> GetStatuss()
+        {
+            ObservableCollection<ItemStatusModel> ItemStatusAux = new ObservableCollection<ItemStatusModel>();
+
+            try
+            {
+                ItemStatusDataMapper dataMapper = new ItemStatusDataMapper();
+                
+                List<ITEM_STATUS> ii = new List<ITEM_STATUS>();
+                ii = (List<ITEM_STATUS>)dataMapper.getElements();
+
+                foreach (ITEM_STATUS i in ii) { 
+                    
+                    ItemStatusModel ism = new ItemStatusModel(new ItemStatusDataMapper());
+                    ism.ItemStatusName = i.ITEM_STATUS_NAME;
+                    ism.UnidItemStatus = i.UNID_ITEM_STATUS;
+                    ItemStatusAux.Add(ism);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return ItemStatusAux;
         }
 
         private ObservableCollection<OrigenClienteModel> GetOrigenClienteModel()

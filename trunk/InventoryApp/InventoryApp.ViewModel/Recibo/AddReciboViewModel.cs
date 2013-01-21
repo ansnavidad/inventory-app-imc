@@ -49,16 +49,6 @@ namespace InventoryApp.ViewModel.Recibo
                     fac.saveFacturaDetalle();
                 }
             }
-            //movimientos
-            //MovimientoModel movimi = new MovimientoModel(new MovimientoDataMapper());
-
-            //foreach (MovimientoModel mov in this.Movimientos)
-            //{
-            //    mov.UnidMovimiento = movimi.UnidMovimiento;
-            //    mov.FechaMovimiento = movimi.FechaMovimiento;
-            //    mov.saveArticulo();
-            //}
-            //items
 
             //Agregar recibo
             DAL.POCOS.RECIBO recibo = new DAL.POCOS.RECIBO()
@@ -100,6 +90,10 @@ namespace InventoryApp.ViewModel.Recibo
 
                 foreach (InventoryApp.Model.Recibo.ReciboItemModel item in mov.Items)
                 {
+                    long? aux = null;
+                    if (item.ItemStatus != null)
+                        aux = item.ItemStatus.UnidItemStatus;
+
                     //Agregar el item
                     DAL.POCOS.ITEM pItem = new DAL.POCOS.ITEM()
                     {
@@ -109,7 +103,7 @@ namespace InventoryApp.ViewModel.Recibo
                         ,
                         NUMERO_SERIE = item.NumeroSerie
                         ,
-                        UNID_ITEM_STATUS = 1
+                        UNID_ITEM_STATUS = aux
                         ,
                         COSTO_UNITARIO = item.CostoUnitario
                         ,
@@ -182,6 +176,16 @@ namespace InventoryApp.ViewModel.Recibo
             if ((this.Facturas != null && this.Facturas.Count > 0)&&(this.Movimientos != null && this.Movimientos.Count > 0) && this.SelectedSolicitante!=null)
             {
                 canAttempt = true;
+            }
+
+            if (this.Facturas.Count > this.Movimientos.Count)
+            {
+                Msj2 = "Favor de relacionar cada factura a un Movimiento de Recibo.";
+                return false;
+            }
+            else {
+                
+                Msj2 = "";
             }
 
             return canAttempt;
@@ -515,6 +519,21 @@ namespace InventoryApp.ViewModel.Recibo
         protected string _PO;
         public const string POPropertyName = "PO";
 
+        public string Msj2
+        {
+            get { return _msj2; }
+            set
+            {
+                if (_msj2 != value)
+                {
+                    _msj2 = value;
+                    OnPropertyChanged(Msj2PropertyName);
+                }
+            }
+        }
+        protected string _msj2;
+        public const string Msj2PropertyName = "Msj2";
+        
         public ObservableCollection<PedimentoModel> Pedimentos
         {
             get { return _Pedimentos; }

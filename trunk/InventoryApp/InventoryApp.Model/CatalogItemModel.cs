@@ -238,11 +238,18 @@ namespace InventoryApp.Model
                 object element = this._dataMapper.getElements_EntradasSalidasSerie(infra, this._serie, this._sku);
                 FixupCollection<ItemModel> ic = new FixupCollection<ItemModel>();
 
-
-                foreach (ItemModel elem in this.ItemModel)
+                if (this.ItemModel.Count == 0)
                 {
-                    if (elem.IsChecked)
-                        ic.Add(elem);
+
+                    this.Mensaje1 = "Este artículo no se encuentra en el lugar especificado";
+                }
+                else
+                {
+                    foreach (ItemModel elem in this.ItemModel)
+                    {
+                        if (elem.IsChecked)
+                            ic.Add(elem);
+                    }
                 }
 
                 this.ItemModel.Clear();
@@ -337,11 +344,18 @@ namespace InventoryApp.Model
                 object element = this._dataMapper.getElements_EntradasSalidasSerie(prov, cliente, this._serie, this._sku);
                 FixupCollection<ItemModel> ic = new FixupCollection<ItemModel>();
 
-
-                foreach (ItemModel elem in this.ItemModel)
+                if (this.ItemModel.Count == 0)
                 {
-                    if (elem.IsChecked)
-                        ic.Add(elem);
+
+                    this.Mensaje1 = "Este artículo no se encuentra en el lugar especificado";
+                }
+                else
+                {
+                    foreach (ItemModel elem in this.ItemModel)
+                    {
+                        if (elem.IsChecked)
+                            ic.Add(elem);
+                    }
                 }
 
                 this.ItemModel.Clear();
@@ -438,12 +452,19 @@ namespace InventoryApp.Model
                 object element = this._dataMapper.getElements_EntradasSalidasSerie2(almacenDirecto, this._serie, this._sku);
                 FixupCollection<ItemModel> ic = new FixupCollection<ItemModel>();
 
-
-                foreach (ItemModel elem in this.ItemModel)
+                if (this.ItemModel.Count == 0)
                 {
-                    if (elem.IsChecked)
+
+                    this.Mensaje1 = "Este artículo no se encuentra en el lugar especificado";
+                }
+                else
+                {
+                    foreach (ItemModel elem in this.ItemModel)
                     {
-                        ic.Add(elem);
+                        if (elem.IsChecked)
+                        {
+                            ic.Add(elem);
+                        }
                     }
                 }
 

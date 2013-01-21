@@ -76,12 +76,12 @@
             <TextBlock Grid.Row="6" Height="23" HorizontalAlignment="Right" Text="Costo Unitario :" VerticalAlignment="Center" Margin="0,2,2,2" />
             <TextBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Text="{Binding CostoUnitario,Mode=TwoWay}" />
 
-            <TextBlock Grid.Row="7" Height="23" Text="Impuesto Unitario :" VerticalAlignment="Center" Margin="1,2,3,2" />
-            <TextBlock Grid.Column="1" Grid.Row="7" Height="23" HorizontalAlignment="Left"  VerticalAlignment="Center" Text="{Binding ImpuestoUnitario,Mode=OneWay}" Margin="0,3,0,1" />
+            <TextBlock Grid.Row="7" Height="23" Text="IVA %:" VerticalAlignment="Center" Margin="67,3,198,1" Width="40" Grid.ColumnSpan="2" />
+            <TextBlock Grid.Column="1" Grid.Row="7" Height="23" HorizontalAlignment="Left"  VerticalAlignment="Center" Text="{Binding ImpuestoUnitario, Mode=OneWay}" Margin="0,3,0,1" />
             <!--<TextBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding ImpuestoUnitario,Mode=TwoWay}" />-->
             
             <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,2,2,0" Text="Precio Final :" VerticalAlignment="Center" Grid.Row="8" />
-            <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Text="{Binding PrecioFinal, Mode=OneWay}" VerticalAlignment="Center"  Grid.Row="8" Margin="0,3,0,1" />
+            <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Text="{Binding PrecioFinal, Mode=OneWay, StringFormat=C2}" VerticalAlignment="Center"  Grid.Row="8" Margin="0,3,0,1" />
         </Grid>
     </Grid>
 </UserControl>

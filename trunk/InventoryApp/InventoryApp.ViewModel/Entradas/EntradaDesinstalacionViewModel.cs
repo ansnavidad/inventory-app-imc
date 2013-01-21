@@ -359,15 +359,15 @@ namespace InventoryApp.ViewModel.Entradas
                 string p = "";
 
                 if (_movimientoModel.ProveedorProcedencia != null)
-                    p = _movimientoModel.ProveedorProcedencia.PROVEEDOR_NAME;
+                    p = "Proveedor : " + _movimientoModel.ProveedorProcedencia.PROVEEDOR_NAME;
                 else if (_movimientoModel.AlmacenProcedencia != null)
-                    p = _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
+                    p = "Almacén: " + _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
                 else
-                    p = _movimientoModel.ClienteProcedencia.CLIENTE1;
+                    p = "Cliente: " + _movimientoModel.ClienteProcedencia.CLIENTE1;
 
                 excel.Cells[17, 12] = p.ToString();
                 //Destino
-                excel.Cells[19, 12] = _movimientoModel.AlmacenDestino.ALMACEN_NAME;                
+                excel.Cells[19, 12] = "Almacén: " + _movimientoModel.AlmacenDestino.ALMACEN_NAME;                
                 //Recibe
                 excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
                 //Sitio/Enlace

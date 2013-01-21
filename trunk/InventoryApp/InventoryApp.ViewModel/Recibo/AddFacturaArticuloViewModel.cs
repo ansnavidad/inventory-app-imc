@@ -140,8 +140,14 @@ namespace InventoryApp.ViewModel.Recibo
 
         public double ImpuestoUnitario
         {
-            get { 
-                return this._AddFacturaViewModel.PorIva; 
+            get {
+
+                double aux = this._AddFacturaViewModel.PorIva;
+                //aux *= 100;
+                //int aux2 = (int)aux;
+                //aux = aux2;
+                //aux /= 100;                
+                return aux;
             }
         }
         public const string ImpuestoUnitarioPropertyName = "ImpuestoUnitario";
@@ -167,10 +173,10 @@ namespace InventoryApp.ViewModel.Recibo
         {
             get 
             {   double aux = this.Cantidad* (this.CostoUnitario * (((this.ImpuestoUnitario/100))+1));
-                aux *= 100;
-                int aux2 = (int)aux;
-                aux = aux2;
-                aux /= 100;
+                //aux *= 100;
+                //int aux2 = (int)aux;
+                //aux = aux2;
+                //aux /= 100;
                 return aux;
             }
         }

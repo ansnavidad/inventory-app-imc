@@ -431,16 +431,16 @@ namespace InventoryApp.ViewModel.Salidas
                 //Recibe
                 excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
                 //Procedencia                
-                excel.Cells[17, 12] = _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
+                excel.Cells[17, 12] = "Almacén: " + _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
                 //Destino
                 string p = "";
 
                 if (_movimientoModel.ProveedorDestino != null)
-                    p = _movimientoModel.ProveedorDestino.PROVEEDOR_NAME;
+                    p = "Proveedor : " + _movimientoModel.ProveedorDestino.PROVEEDOR_NAME;
                 else if (_movimientoModel.AlmacenDestino != null)
-                    p = _movimientoModel.AlmacenDestino.ALMACEN_NAME;
+                    p = "Almacén: " + _movimientoModel.AlmacenDestino.ALMACEN_NAME;
                 else
-                    p = _movimientoModel.ClienteDestino.CLIENTE1;
+                    p = "Cliente: " + _movimientoModel.ClienteDestino.CLIENTE1;
                 excel.Cells[19, 12] = p;
                 //TT
                 excel.Cells[23, 12] = _movimientoModel.Tt;

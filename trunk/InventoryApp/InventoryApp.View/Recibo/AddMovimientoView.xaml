@@ -82,9 +82,7 @@
                     <DataGridTextColumn Header="Serie" Width="130" x:Name="Serie" IsReadOnly="False" Binding="{Binding Path=NumeroSerie}"/>
                     <DataGridTextColumn Header="SKU" Width="130" x:Name="sku" IsReadOnly="False" Binding="{Binding Path=Sku}" />
                     <DataGridTextColumn Header="Status" Width="130" x:Name="status" Binding="{Binding Path=Status}" IsReadOnly="False"/>
-                    <DataGridTextColumn Header="Cantidad" Width="130" x:Name="cantidad" Binding="{Binding Path=Cantidad}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Pedimento Expo" Width="150" x:Name="pedimentoExpo" Binding="{Binding Path=PedimentoExpo}" IsReadOnly="False"/>
-                    <DataGridTextColumn Header="Pedimento Impo" Width="150" x:Name="pedimentoImpo" Binding="{Binding Path=PedimentoImpo}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Cantidad" Width="130" x:Name="cantidad" Binding="{Binding Path=Cantidad}" IsReadOnly="True"/>                    
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

@@ -108,7 +108,7 @@
             <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.RowSpan="4"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding Facturas}" SelectedItem="{Binding SelectedFactura}" MouseDoubleClick="ListView_MouseDoubleClick" >
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="" Width="30" >
+                        <GridViewColumn Header="Eliminar" Width="60" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox IsChecked="{Binding IsChecked, NotifyOnSourceUpdated=True, NotifyOnValidationError=True}" />
@@ -118,10 +118,10 @@
                         <GridViewColumn Header="# Pedimento" Width="150" DisplayMemberBinding="{Binding Path=NumeroPedimento}" />
                         <GridViewColumn Header="# Factura" Width="150" DisplayMemberBinding="{Binding Path=NumeroFactura}" />
                         <GridViewColumn Header="Proveedor" Width="150" DisplayMemberBinding="{Binding Path=Proveedor.ProveedorName}" />
-                        <GridViewColumn Header="Importe" Width="150" DisplayMemberBinding="{Binding Path=Importe}" />
+                        <GridViewColumn Header="Importe" Width="150" DisplayMemberBinding="{Binding Path=Importe, StringFormat=C2}" />
                         <GridViewColumn Header="Iva %" Width="150" DisplayMemberBinding="{Binding Path=PorIva}" />
-                        <GridViewColumn Header="Iva $" Width="150" DisplayMemberBinding="{Binding Path=Iva}" />
-                        <GridViewColumn Header="Total $" Width="150" DisplayMemberBinding="{Binding Path=Total}" />
+                        <GridViewColumn Header="Iva $" Width="150" DisplayMemberBinding="{Binding Path=Iva, StringFormat=C2}" />
+                        <GridViewColumn Header="Total $" Width="150" DisplayMemberBinding="{Binding Path=Total, StringFormat=C2}" />
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -156,7 +156,7 @@
             <ListView Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.RowSpan="4"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding Movimientos}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="" Width="30" >
+                        <GridViewColumn Header="Eliminar" Width="60" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox IsChecked="{Binding Path=IsChecked, NotifyOnSourceUpdated=True, NotifyOnValidationError=True}" />

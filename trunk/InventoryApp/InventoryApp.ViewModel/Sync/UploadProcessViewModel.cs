@@ -263,9 +263,6 @@ namespace InventoryApp.ViewModel.Sync
                     if (res)
                     {
                         art.ResetArticulo();
-                        this.Message = "Sincronizacion completada ...";
-                        //Esta instrucción cierra la ventana
-                        this.JobDone = true;
                     }
                 }
                 #endregion
@@ -3467,12 +3464,8 @@ namespace InventoryApp.ViewModel.Sync
             {
                 try
                 {
-                    //prueba
-                    //var client = new RestClient(routeService1);
-                    //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
-                    //servidor
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -3511,12 +3504,8 @@ namespace InventoryApp.ViewModel.Sync
             {
                 try
                 {
-                    //prueba
-                    //var client = new RestClient(routeService1);
-                    //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
-                    //servidor
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -3555,12 +3544,9 @@ namespace InventoryApp.ViewModel.Sync
             {
                 try
                 {
-                    //prueba
-                    //var client = new RestClient(routeService1);
-                    //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
-                    //servidor
+                    
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -3599,12 +3585,8 @@ namespace InventoryApp.ViewModel.Sync
             {
                 try
                 {
-                    //prueba
-                    //var client = new RestClient(routeService1);
-                    //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
-                    //servidor
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -3643,12 +3625,9 @@ namespace InventoryApp.ViewModel.Sync
             {
                 try
                 {
-                    //prueba
-                    //var client = new RestClient(routeService1);
-                    //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
-                    //servidor
+                    
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -3689,12 +3668,8 @@ namespace InventoryApp.ViewModel.Sync
             {
                 try
                 {
-                    //prueba
-                    //var client = new RestClient(routeService1);
-                    //client.Authenticator = new HttpBasicAuthenticator("ISAAC", "isaac");
-                    //servidor
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -3733,7 +3708,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -3772,7 +3747,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -3811,7 +3786,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -3850,7 +3825,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -3891,7 +3866,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -3930,7 +3905,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -3969,7 +3944,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4008,7 +3983,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4047,7 +4022,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4086,7 +4061,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4125,7 +4100,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4164,7 +4139,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4203,7 +4178,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4242,7 +4217,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4281,7 +4256,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4320,7 +4295,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4359,7 +4334,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4398,7 +4373,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4440,7 +4415,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4481,7 +4456,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4520,7 +4495,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4559,7 +4534,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4598,7 +4573,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4637,7 +4612,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4676,7 +4651,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4715,7 +4690,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4754,7 +4729,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4793,7 +4768,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4832,7 +4807,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4871,7 +4846,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4913,7 +4888,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4952,7 +4927,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -4993,7 +4968,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5032,7 +5007,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5071,7 +5046,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5110,7 +5085,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5149,7 +5124,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5188,7 +5163,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5227,7 +5202,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5266,7 +5241,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5305,7 +5280,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5344,7 +5319,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5386,7 +5361,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5425,7 +5400,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5464,7 +5439,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5503,7 +5478,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5544,7 +5519,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;
@@ -5583,7 +5558,7 @@ namespace InventoryApp.ViewModel.Sync
                 try
                 {
                     var client = new RestClient(routeService);
-                    client.Authenticator = new HttpBasicAuthenticator("Administrator", "Passw0rd1!");
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
                     var request = new RestRequest(Method.POST);
                     request.Resource = nameService;
                     request.RequestFormat = RestSharp.DataFormat.Json;

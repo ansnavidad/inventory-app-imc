@@ -79,7 +79,7 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     var query = (from cust in entity.ULTIMO_MOVIMIENTO
-                                 where poco.UNID_ITEM == cust.UNID_ITEM
+                                 where poco.UNID_ULTIMO_MOVIMIENTO == cust.UNID_ULTIMO_MOVIMIENTO
                                  select cust).ToList();
 
                     //Actualización
@@ -96,7 +96,7 @@ namespace InventoryApp.DAL
                         insertElementSny((object)poco);
                     }
 
-                    var modifiedMenu = entity.ULTIMO_MOVIMIENTO.First(p => p.UNID_ITEM == poco.UNID_ITEM);
+                    var modifiedMenu = entity.ULTIMO_MOVIMIENTO.First(p => p.UNID_ULTIMO_MOVIMIENTO == poco.UNID_ULTIMO_MOVIMIENTO);
                     modifiedMenu.IS_MODIFIED = false;
                     entity.SaveChanges();
                 }
@@ -336,7 +336,7 @@ namespace InventoryApp.DAL
                     ULTIMO_MOVIMIENTO ultimoMov = (ULTIMO_MOVIMIENTO)element;
 
                     var query = (from p in entity.ULTIMO_MOVIMIENTO
-                                 where p.UNID_ITEM == ultimoMov.UNID_ITEM
+                                 where p.UNID_ULTIMO_MOVIMIENTO == ultimoMov.UNID_ULTIMO_MOVIMIENTO
                                  select p).ToList();
 
                     if (query.Count == 0)
@@ -354,7 +354,7 @@ namespace InventoryApp.DAL
                     else
                     {
 
-                        var modifiedMov = entity.ULTIMO_MOVIMIENTO.First(p => p.UNID_ITEM == ultimoMov.UNID_ITEM);
+                        var modifiedMov = entity.ULTIMO_MOVIMIENTO.First(p => p.UNID_ULTIMO_MOVIMIENTO == ultimoMov.UNID_ULTIMO_MOVIMIENTO);
 
                         modifiedMov.UNID_ALMACEN = ultimoMov.UNID_ALMACEN;
                         modifiedMov.UNID_CLIENTE = ultimoMov.UNID_CLIENTE;
@@ -511,7 +511,7 @@ namespace InventoryApp.DAL
                 {
                     foreach (var item in reset)
                     {
-                        var modified = Entity.ULTIMO_MOVIMIENTO.First(p => p.UNID_ITEM == item.UNID_ITEM);
+                        var modified = Entity.ULTIMO_MOVIMIENTO.First(p => p.UNID_ULTIMO_MOVIMIENTO == item.UNID_ULTIMO_MOVIMIENTO);
                         modified.IS_MODIFIED = false;
                         Entity.SaveChanges();
                     }

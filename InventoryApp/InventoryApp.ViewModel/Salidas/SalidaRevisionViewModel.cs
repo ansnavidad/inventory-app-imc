@@ -422,11 +422,11 @@ namespace InventoryApp.ViewModel.Salidas
                 excel.Cells[13, 12] = _movimientoModel.Solicitante.SOLICITANTE_NAME;
                 excel.Cells[15, 12] = _movimientoModel.Solicitante.Departamento.DEPARTAMENTO_NAME;
                 //Recibe
-                excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
+                excel.Cells[19, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
                 //Procedencia                
-                excel.Cells[17, 12] = _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
+                excel.Cells[17, 12] = "Almacén: " + _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
                 //Destino                
-                excel.Cells[19, 12] = _movimientoModel.Infraestructura.INFRAESTRUCTURA_NAME;
+                excel.Cells[21, 12] = "Infraestructura: " + _movimientoModel.Infraestructura.INFRAESTRUCTURA_NAME;
                 //TT
                 excel.Cells[23, 12] = _movimientoModel.Tt;
                 //Empresa

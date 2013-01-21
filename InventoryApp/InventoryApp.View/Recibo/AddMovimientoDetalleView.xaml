@@ -54,7 +54,7 @@
                   RowStyle="{StaticResource RowStyle}">
                 <DataGrid.Columns>
                     <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
-                    <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn Header="Eliminar" Width="Auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsSelected,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

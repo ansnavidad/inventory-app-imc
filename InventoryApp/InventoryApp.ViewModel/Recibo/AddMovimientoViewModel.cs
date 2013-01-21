@@ -602,15 +602,25 @@ namespace InventoryApp.ViewModel.Recibo
                 //NÚMERO DE FACTURA:
                 excel.Cells[21, 12] = this._SelectedFactura.NumeroFactura.ToString();                
                 //CANTIDAD DE ITEMS:
-                excel.Cells[17, 12] = this._Items.Count;
+                int auxx = 0;
+                foreach (ReciboItemModel rr in this._Items) {
+
+                    auxx += rr.Cantidad;
+                }
+                excel.Cells[17, 12] = auxx;
                 //IMPORTE:
                 excel.Cells[17, 26] = this._SelectedFactura.Importe.ToString();
                 //IVA %
                 excel.Cells[19, 26] = this._SelectedFactura.PorIva.ToString();
                 //IVA $
-                excel.Cells[21, 26] = this._SelectedFactura.Iva.ToString();
+                double aux = this._SelectedFactura.Iva;
+                aux = Math.Round(aux, 2);                
+                excel.Cells[21, 26] = aux.ToString();
                 //TOTAL $
-                excel.Cells[23, 26] = this._SelectedFactura.Total.ToString();                
+                aux = this._SelectedFactura.Total;
+                aux = Math.Round(aux, 2);
+                excel.Cells[23, 26] = aux.ToString() + " " + this._SelectedFactura.Moneda.MonedaAbr;
+                //excel.Cells[23, 26] = this._SelectedFactura.Total.ToString();                
 
                 excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
             }

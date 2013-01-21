@@ -89,7 +89,7 @@
             <ListView Grid.Row="6" Grid.ColumnSpan="5" Grid.RowSpan="5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding FacturaDetalles}" Style="{StaticResource ListViewElara}" Width="auto">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="" Width="30" >
+                        <GridViewColumn Header="Eliminar" Width="60" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox IsChecked="{Binding Path=IsSelected, NotifyOnSourceUpdated=True, NotifyOnValidationError=True}" />
@@ -101,8 +101,8 @@
                         <GridViewColumn Header="Marca" Width="160" DisplayMemberBinding="{Binding Path=Articulo.Marca.MARCA_NAME}" />
                         <GridViewColumn Header="Articulo" Width="170" DisplayMemberBinding="{Binding Path=Articulo.ArticuloName}" />
                         <GridViewColumn Header="Cantidad" Width="160" DisplayMemberBinding="{Binding Path=Cantidad}" />
-                        <GridViewColumn Header="Costo Unitario" Width="160" DisplayMemberBinding="{Binding Path=CostoUnitario}" />
-                        <GridViewColumn Header="Precio Final" Width="160" DisplayMemberBinding="{Binding Path=PrecioFinal}" />
+                        <GridViewColumn Header="Costo Unitario" Width="160" DisplayMemberBinding="{Binding Path=CostoUnitario, StringFormat=C2}" />
+                        <GridViewColumn Header="Precio Final" Width="160" DisplayMemberBinding="{Binding Path=PrecioFinal, StringFormat=C2}" />
                     </GridView>
                 </ListView.View>
             </ListView>

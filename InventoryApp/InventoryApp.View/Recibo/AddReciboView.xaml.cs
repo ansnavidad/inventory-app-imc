@@ -23,6 +23,10 @@ namespace InventoryApp.View.Recibo
         public AddReciboView()
         {
             InitializeComponent();
+            this.ComboEmp.SelectedIndex = 1;
+            this.ComboEmp.SelectedIndex = 0;
+            this.ComboSol.SelectedIndex = 1;
+            this.ComboSol.SelectedIndex = 0;
         }
 
         private void btnFacturaAdd_Click(object sender, RoutedEventArgs e)

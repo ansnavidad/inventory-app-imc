@@ -51,22 +51,7 @@ namespace InventoryApp.Model.Recibo
         }
         private string _NumeroSerie;
         public const string NumeroSeriePropertyName = "NumeroSerie";
-
-        public string Status
-        {
-            get { return _Status; }
-            set
-            {
-                if (_Status != value)
-                {
-                    _Status = value;
-                    OnPropertyChanged(StatusPropertyName);
-                }
-            }
-        }
-        private string _Status;
-        public const string StatusPropertyName = "Status";
-
+        
         public double PedimentoExpo
         {
             get { return _PedimentoExpo; }
@@ -217,7 +202,7 @@ namespace InventoryApp.Model.Recibo
         private bool _IsCantidadEnabled;
         public const string IsCantidadEnabledPropertyName = "IsCantidadEnabled";
 		
-		        public ItemStatusModel ItemStatus
+		public ItemStatusModel ItemStatus
         {
             get { return _ItemStatus; }
             set

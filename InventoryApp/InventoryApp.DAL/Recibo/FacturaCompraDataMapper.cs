@@ -79,7 +79,8 @@ namespace InventoryApp.DAL.Recibo
                          IVA_POR = row.IVA_POR,
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         TC= row.TC
                      });
                  });
                 if (listFactura.Count > 0)
@@ -142,7 +143,8 @@ namespace InventoryApp.DAL.Recibo
                         MONEDA=rm.FACTURA.MONEDA,
                         PROVEEDOR=rm.FACTURA.PROVEEDOR,
                         IVA_POR=rm.FACTURA.IVA_POR,
-                        NUMERO_PEDIMENTO=rm.FACTURA.NUMERO_PEDIMENTO
+                        NUMERO_PEDIMENTO=rm.FACTURA.NUMERO_PEDIMENTO,
+                        
                     });
                 });
             }
@@ -176,6 +178,7 @@ namespace InventoryApp.DAL.Recibo
                     modifiedFactura.UNID_LOTE = factura.UNID_LOTE;
                     modifiedFactura.UNID_MONEDA = factura.UNID_MONEDA;
                     modifiedFactura.UNID_PROVEEDOR = factura.UNID_PROVEEDOR;
+                    modifiedFactura.TC = factura.TC;
                     //Sync
                     modifiedFactura.IS_MODIFIED = true;
                     modifiedFactura.IS_ACTIVE = true;
@@ -317,7 +320,8 @@ namespace InventoryApp.DAL.Recibo
                          IVA_POR=row.IVA_POR,
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         TC= row.TC
                      });
                  });
                 if (listFactura.Count > 0)
@@ -370,7 +374,8 @@ namespace InventoryApp.DAL.Recibo
                          IVA_POR = row.IVA_POR,
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         TC =row.TC
                      });
                  });
                 if (reset.Count > 0)

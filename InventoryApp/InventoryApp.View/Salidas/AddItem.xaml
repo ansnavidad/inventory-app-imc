@@ -25,7 +25,7 @@ WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScre
             <ColumnDefinition Width="250"/>
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
-            <Label Content="AGREGAR ITEMS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" Style="{StaticResource titleLabel}" />
+            <Label Content="AGREGAR ÍTEMS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" Style="{StaticResource titleLabel}" />
         </Border>
         <DataGrid AutoGenerateColumns="False" Height="282" 
                   HorizontalAlignment="Left" Margin="2,44,0,0"

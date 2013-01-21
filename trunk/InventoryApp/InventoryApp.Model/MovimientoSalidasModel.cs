@@ -518,7 +518,11 @@ namespace InventoryApp.Model
                     this._unidAlmacenDestino = _almacenDestino.UNID_ALMACEN;
 
                     this.Tecnicos2 = GetTecnicosbyAlmacen(value);
-                    this.Tecnico2 = Tecnicos2[0];
+
+                    if (this.Tecnicos2.Count != 0)
+                    {
+                        this.Tecnico2 = Tecnicos2[0];    
+                    }
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("AlmacenDestino"));
@@ -594,7 +598,10 @@ namespace InventoryApp.Model
                     this._unidAlmacenProcedencia = _almacenProcedencia.UNID_ALMACEN;
 
                     this.Tecnicos = GetTecnicosbyAlmacen(value);
-                    this.Tecnico = Tecnicos[0];
+                    if (this.Tecnicos.Count!=0)
+                    {
+                        this.Tecnico = Tecnicos[0];    
+                    }
                     
                     if (PropertyChanged != null)
                     {

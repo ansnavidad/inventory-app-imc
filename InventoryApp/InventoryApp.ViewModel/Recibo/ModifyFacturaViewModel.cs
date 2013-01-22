@@ -15,7 +15,26 @@ namespace InventoryApp.ViewModel.Recibo
 {
     public class ModifyFacturaViewModel : ViewModelBase, IFacturaViewModel, IViewModelChangeTrack
     {
+
+
+
+        public FacturaCompraModel SelectedFactura
+        {
+            get
+            {                
+                return _SelectedFactura;
+            }
+            set
+            {
+                if (_SelectedFactura != value)
+                {
+                    _SelectedFactura = value;
+                    OnPropertyChanged(SelectedFacturaPropertyName);
+                }
+            }
+        }
         private FacturaCompraModel _SelectedFactura;
+        public const string SelectedFacturaPropertyName = "SelectedFactura";
 
         public ICommand ModifyFacturaCommand
         {
@@ -162,7 +181,22 @@ namespace InventoryApp.ViewModel.Recibo
         }
         private string _NumeroPedimento;
         public const string NumeroPedimentoPropertyName = "NumeroPedimento";
-        
+
+        public string Msj1
+        {
+            get { return _Msj1; }
+            set
+            {
+                if (_Msj1 != value)
+                {
+                    _Msj1 = value;
+                    OnPropertyChanged(Msj1PropertyName);
+                }
+            }
+        }
+        private string _Msj1;
+        public const string Msj1PropertyName = "Msj1";
+
         public double TC
         {
             get { return _tc; }
@@ -306,6 +340,7 @@ namespace InventoryApp.ViewModel.Recibo
         #region Methods
         public void init()
         {
+            this.Msj1 = "";
             this.IsModified = false;
             this.IsNew = false;
             this.PropertyChanged += delegate(object sender, PropertyChangedEventArgs eventArgs)
@@ -392,7 +427,7 @@ namespace InventoryApp.ViewModel.Recibo
         public bool CanAttemptModifyFactura()
         {
             bool canAddFactura = false;
-
+            
             if (this._FacturaDetalles.Count > 0
                 && !String.IsNullOrEmpty(this.NumeroFactura)
                 && this._SelectedProveedor != null
@@ -423,6 +458,9 @@ namespace InventoryApp.ViewModel.Recibo
         public bool CanAttemptDeleteFacturaArticuloCommand()
         {
             bool canDeleteFacturaDetalle = false;
+
+            if (!this._SelectedFactura.HasNotRecibo)
+                return false;
 
             if (this._FacturaDetalles != null && this._FacturaDetalles.Count > 0)
             {
@@ -455,6 +493,15 @@ namespace InventoryApp.ViewModel.Recibo
         {
             bool canDeleteFacturaDetalle = false;
 
+            if (!this._SelectedFactura.HasNotRecibo)
+            {
+                this.Msj1 = "La factura no se puede modificar ya que está ligado a un recibo existente.";
+                return false;                
+            }
+            else {
+
+                this.Msj1 = "";
+            }
 
             if (this.SelectedProveedor != null)
             {

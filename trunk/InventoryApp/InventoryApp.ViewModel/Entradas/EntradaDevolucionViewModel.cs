@@ -63,7 +63,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
                 this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
                 this._movimientoModel.Transporte = _catalogTransporteModel.Transporte[0];
-                this._IsEnabled = true;
+                this._IsEnabledC = 0;
             }
             catch (ArgumentException a)
             {
@@ -113,7 +113,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
                 this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
                 this._movimientoModel.Transporte = _catalogTransporteModel.Transporte[0];
-                this._IsEnabled = true;
+                this._IsEnabledC = 0;
             }
             catch (ArgumentException a)
             {
@@ -163,20 +163,20 @@ namespace InventoryApp.ViewModel.Entradas
             }
         }
 
-        public bool IsEnabled
+        public int IsEnabledC
         {
-            get { return _IsEnabled; }
+            get { return _IsEnabledC; }
             set
             {
-                if (_IsEnabled != value)
+                if (_IsEnabledC != value)
                 {
-                    _IsEnabled = value;
-                    OnPropertyChanged(IsEnabledPropertyName);
+                    _IsEnabledC = value;
+                    OnPropertyChanged(IsEnabledCPropertyName);
                 }
             }
         }
-        private bool _IsEnabled;
-        public const string IsEnabledPropertyName = "IsEnabled";
+        private int _IsEnabledC;
+        public const string IsEnabledCPropertyName = "IsEnabledC";
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string name)
@@ -324,12 +324,7 @@ namespace InventoryApp.ViewModel.Entradas
 
             if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && seleccion == 1)
                 _canInsertArticulo = true;
-
-            if (this._itemModel.ItemModel.Count > 0)
-                this.IsEnabled = false;
-            else
-                this.IsEnabled = true;
-
+            
             return _canInsertArticulo;
         }
 

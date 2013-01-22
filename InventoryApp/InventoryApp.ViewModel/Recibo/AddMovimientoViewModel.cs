@@ -584,7 +584,7 @@ namespace InventoryApp.ViewModel.Recibo
                 {
                     r.CostoUnitario = r.FacturaDetalle.CostoUnitario;
                 }
-
+                this._SelectedFactura.HasNotRecibo = false;
                 InventoryApp.Model.Recibo.MovimientoModel movimiento = new InventoryApp.Model.Recibo.MovimientoModel()
                 {
                     DestinoAlmacen=this._SelectedAlmacenDestino

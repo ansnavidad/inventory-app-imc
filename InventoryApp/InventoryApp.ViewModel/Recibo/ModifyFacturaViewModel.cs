@@ -94,7 +94,7 @@ namespace InventoryApp.ViewModel.Recibo
         }
         private double _PorIva;
         public const string PorIvaPropertyName = "PorIva";
-
+        
         public String NumeroFactura
         {
             get { return _NumeroFactura; }
@@ -538,7 +538,7 @@ namespace InventoryApp.ViewModel.Recibo
 
         public AddFacturaArticuloViewModel CreateAddFacturaArticuloViewModel()
         {
-            return new AddFacturaArticuloViewModel(this);
+            return new AddFacturaArticuloViewModel(this);            
         }
 
         #endregion

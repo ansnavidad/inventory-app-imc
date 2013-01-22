@@ -188,6 +188,8 @@ namespace InventoryApp.ViewModel.Recibo
                 Msj2 = "";
             }
 
+
+
             return canAttempt;
         }
 
@@ -319,9 +321,23 @@ namespace InventoryApp.ViewModel.Recibo
             //eliminar facturas
             try
             {
-                (from o in this.Movimientos
-                 where o.IsChecked == true
-                 select o).ToList().ForEach(o => this.Movimientos.Remove(o));
+                for (int i = 0; i < this.Movimientos.Count; ) {
+
+                    if (this.Movimientos[i].IsChecked == true)
+                    {
+                        Model.Recibo.MovimientoModel aux = new Model.Recibo.MovimientoModel();
+                        aux = this.Movimientos[i];
+
+                        (from o in this.Facturas
+                         where o.UnidFactura == this.Movimientos[i].Factura.UnidFactura
+                         select o).ToList().ForEach(o => o.HasNotRecibo = true);
+
+                        this.Movimientos.Remove(aux);
+                    } else {
+                
+                        i++;
+                    }
+                } 
             }
             catch (Exception)
             {

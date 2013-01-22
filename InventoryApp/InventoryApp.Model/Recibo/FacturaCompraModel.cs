@@ -222,6 +222,21 @@ namespace InventoryApp.Model.Recibo
         private bool _IsActive;
         public const string IsActivePropertyName = "IsActive";
 
+        public bool HasNotRecibo
+        {
+            get { return _HasNotRecibo; }
+            set
+            {
+                if (_HasNotRecibo != value)
+                {
+                    _HasNotRecibo = value;
+                    OnPropertyChanged(HasNotReciboPropertyName);
+                }
+            }
+        }
+        private bool _HasNotRecibo;
+        public const string HasNotReciboPropertyName = "HasNotRecibo";
+
         public ObservableCollection<FacturaCompraDetalleModel> FacturaDetalle
         {
             get { return _FacturaDetalle; }
@@ -293,6 +308,7 @@ namespace InventoryApp.Model.Recibo
             this.FacturaDetalle = new ObservableCollection<FacturaCompraDetalleModel>();
             this.IsNew = true;
             this.IsModified = false;
+            this.HasNotRecibo = true;
         }
         #endregion
 

@@ -57,6 +57,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
+                this._IsEnabled = true;
             }
             catch (ArgumentException a)
             {
@@ -101,7 +102,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
-                
+                this._IsEnabled = true;
             }
             catch (ArgumentException a)
             {
@@ -390,9 +391,30 @@ namespace InventoryApp.ViewModel.Entradas
             }
         }
 
+        public bool IsEnabled
+        {
+            get { return _IsEnabled; }
+            set
+            {
+                if (_IsEnabled != value)
+                {
+                    _IsEnabled = value;
+                    OnPropertyChanged(IsEnabledPropertyName);
+                }
+            }
+        }
+        private bool _IsEnabled;
+        public const string IsEnabledPropertyName = "IsEnabled";
+
         public bool CanAttempDeleteArticulo()
         {
             bool _canDeleteArticulo = true;
+
+            if (this._itemModel.ItemModel.Count > 0)
+                this.IsEnabled = false;
+            else
+                this.IsEnabled = true;
+
             return _canDeleteArticulo;
         }
 

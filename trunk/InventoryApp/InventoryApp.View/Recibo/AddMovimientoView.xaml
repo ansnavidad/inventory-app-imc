@@ -97,15 +97,15 @@
                     <DataGridTemplateColumn Header="Status" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Path=ItemStatus.ItemStatusName,Mode=Default}"/>
+                                <TextBlock Text="{Binding Path=ItemStatus.ItemStatusName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
 
                         <DataGridTemplateColumn.CellEditingTemplate >
                             <DataTemplate>
                                 <ComboBox Height="22" 
-                                      ItemsSource="{Binding Path=DataContext.ItemStatus,UpdateSourceTrigger=LostFocus, RelativeSource={RelativeSource AncestorType=DataGrid},Mode=Default}"
-                                      SelectedItem="{Binding Path=ItemStatus, Mode=TwoWay}" SelectedIndex="0"
+                                      ItemsSource="{Binding Path=DataContext.ItemStatus, UpdateSourceTrigger=LostFocus, RelativeSource={RelativeSource AncestorType=DataGrid},Mode=Default}"
+                                      SelectedItem="{Binding Path=ItemStatus, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" SelectedIndex="0"
                                       DisplayMemberPath="ItemStatusName"
                                       />
                             </DataTemplate>

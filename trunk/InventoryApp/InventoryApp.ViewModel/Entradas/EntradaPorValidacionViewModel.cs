@@ -433,27 +433,27 @@ namespace InventoryApp.ViewModel.Entradas
             
         }
 
-        public ObservableCollection<ItemStatusModel> ItemStatus
+        public ObservableCollection<ItemStatusModel> ItemStatuss
         {
             get
             {
-                if (_ItemStatus == null)
+                if (_ItemStatuss == null)
                 {
-                    _ItemStatus = this.GetStatuss();
+                    _ItemStatuss = this.GetStatuss();
                 }
 
-                return _ItemStatus;
+                return _ItemStatuss;
             }
             set
             {
-                if (_ItemStatus != value)
+                if (_ItemStatuss != value)
                 {
-                    _ItemStatus = value;
+                    _ItemStatuss = value;
                     OnPropertyChanged(ItemStatusPropertyName);
                 }
             }
         }
-        private ObservableCollection<ItemStatusModel> _ItemStatus;
+        private ObservableCollection<ItemStatusModel> _ItemStatuss;
         public const string ItemStatusPropertyName = "ItemStatus";
 
         private ObservableCollection<ItemStatusModel> GetStatuss()

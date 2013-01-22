@@ -44,16 +44,16 @@
                         <!--<DataGridTextColumn IsReadOnly="True"  Width="70" Header="Status" x:Name="STATUS" Binding="{Binding Path=ItemStatus.ITEM_STATUS_NAME}"></DataGridTextColumn>-->
                         <DataGridTemplateColumn Header="Status" Width="100">
                             <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>    
-                                <TextBlock Text="{Binding Path=ItemStatus.ItemStatusName,Mode=Default}"/>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=ItemStatuss.ItemStatusName,Mode= TwoWay,UpdateSourceTrigger=LostFocus}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
 
                             <DataGridTemplateColumn.CellEditingTemplate >
                                 <DataTemplate>
                                     <ComboBox  Height="23" SelectedIndex="0" Width="100"
-                                    SelectedItem="{Binding ItemStatus,Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                    ItemsSource="{Binding DataContext.ItemStatus, UpdateSourceTrigger=LostFocus,RelativeSource={RelativeSource AncestorType= DataGrid},Mode=Default}"
+                                    SelectedItem="{Binding ItemStatuss,Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                    ItemsSource="{Binding DataContext.ItemStatuss, UpdateSourceTrigger=LostFocus,RelativeSource={RelativeSource AncestorType= DataGrid},Mode= TwoWay}"
                                     DisplayMemberPath="ItemStatusName"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellEditingTemplate>

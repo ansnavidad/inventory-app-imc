@@ -35,8 +35,8 @@ namespace InventoryApp.Model
         private string _error;
 
         private ARTICULO _articulo;
-        private ItemStatusModel _itemStatus;
-        private ITEM_STATUS _itemStatuss;
+        private ItemStatusModel _itemStatuss;
+        private ITEM_STATUS _itemStatus;
         private FACTURA_DETALLE _facturaDetalle;
         
         //Factura
@@ -448,21 +448,7 @@ namespace InventoryApp.Model
             }
         }
 
-        public ItemStatusModel ItemStatus
-        {
-            get { return this._itemStatus; }
-            set
-            {
-                if (value != this._itemStatus)
-                {
-                    this._itemStatus = value;
-                    if (this.PropertyChanged != null)
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("ItemStatus"));
-                }
-            }
-        }
-
-        public ITEM_STATUS ItemStatuss
+        public ItemStatusModel ItemStatuss
         {
             get { return this._itemStatuss; }
             set
@@ -472,6 +458,20 @@ namespace InventoryApp.Model
                     this._itemStatuss = value;
                     if (this.PropertyChanged != null)
                         this.PropertyChanged(this, new PropertyChangedEventArgs("ItemStatuss"));
+                }
+            }
+        }
+
+        public ITEM_STATUS ItemStatus
+        {
+            get { return this._itemStatus; }
+            set
+            {
+                if (value != this._itemStatus)
+                {
+                    this._itemStatus = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("ItemStatus"));
                 }
             }
         }
@@ -487,8 +487,8 @@ namespace InventoryApp.Model
             this.NUMERO_SERIE = item.NUMERO_SERIE;
             this._numeroSerie = item.NUMERO_SERIE;
             //this._itemStatuss.updateItemStatus = item.UNID_ITEM_STATUS;
-            this._itemStatuss = item.ITEM_STATUS;
-            this._itemStatus = new ItemStatusModel(null) { ItemStatusName = item.ITEM_STATUS.ITEM_STATUS_NAME, UnidItemStatus = long.Parse(item.UNID_ITEM_STATUS.ToString()) };
+            this._itemStatus = item.ITEM_STATUS;
+            this._itemStatuss = new ItemStatusModel(null) { ItemStatusName = item.ITEM_STATUS.ITEM_STATUS_NAME, UnidItemStatus = long.Parse(item.UNID_ITEM_STATUS.ToString()) };
             this.UNID_ITEM_STATUS = item.UNID_ITEM_STATUS;
             this.COSTO_UNITARIO = item.COSTO_UNITARIO;
             this._pedimentoExpo = item.PEDIMENTO_EXPO;
@@ -516,12 +516,12 @@ namespace InventoryApp.Model
 
         public void updateItem()
         {
-            this._dataMapper.udpateElement(new ITEM() { UNID_ITEM = this._unidItem, UNID_ARTICULO = this._articulo.UNID_ARTICULO, SKU = this._sku, NUMERO_SERIE = this._numeroSerie, ITEM_STATUS =this.ItemStatuss, COSTO_UNITARIO = this._costoUnitario, UNID_FACTURA_DETALE = this._facturaDetalle.UNID_FACTURA_DETALE, PEDIMENTO_IMPO = this._pedimentoImpo, PEDIMENTO_EXPO = this._pedimentoExpo, CANTIDAD = this._cantidaditem });
+            this._dataMapper.udpateElement(new ITEM() { UNID_ITEM = this._unidItem, UNID_ARTICULO = this._articulo.UNID_ARTICULO, SKU = this._sku, NUMERO_SERIE = this._numeroSerie, ITEM_STATUS =this.ItemStatus, COSTO_UNITARIO = this._costoUnitario, UNID_FACTURA_DETALE = this._facturaDetalle.UNID_FACTURA_DETALE, PEDIMENTO_IMPO = this._pedimentoImpo, PEDIMENTO_EXPO = this._pedimentoExpo, CANTIDAD = this._cantidaditem });
         }
 
         public void updateItemEntrada()
         {
-            this._dataMapper.udpateElementEntradaValidacion(new ITEM() { UNID_ITEM = this._unidItem, UNID_ITEM_STATUS =this.ItemStatus.UnidItemStatus });
+            this._dataMapper.udpateElementEntradaValidacion(new ITEM() { UNID_ITEM = this._unidItem, UNID_ITEM_STATUS =this.ItemStatuss.UnidItemStatus });
         }
 
         public void updateFacturas()
@@ -535,8 +535,8 @@ namespace InventoryApp.Model
             this.Articulo = new ARTICULO();
             this.Proveedor = new PROVEEDOR();
             this._unidItem = new long();
-            this.ItemStatuss = new  ITEM_STATUS();
-            this.ItemStatus = new ItemStatusModel(this._dataMapper2);
+            this.ItemStatus = new  ITEM_STATUS();
+            this.ItemStatuss = new ItemStatusModel(this._dataMapper2);
             this.FacturaDetalle = new FACTURA_DETALLE();
             this.CostoUnitario = new long();
             this.PedimentoExpo = new long();
@@ -553,8 +553,8 @@ namespace InventoryApp.Model
             this.Articulo = new ARTICULO();
             this.Proveedor = new PROVEEDOR();
             this._unidItem = new long();
-            this.ItemStatuss = new ITEM_STATUS();
-            this.ItemStatus = new ItemStatusModel(this._dataMapper2);
+            this.ItemStatus = new ITEM_STATUS();
+            this.ItemStatuss = new ItemStatusModel(this._dataMapper2);
             this.FacturaDetalle = new FACTURA_DETALLE();
             this.CostoUnitario = new long();
             this.PedimentoExpo = new long();
@@ -577,8 +577,8 @@ namespace InventoryApp.Model
                 this._unidItem = res.UNID_ITEM;
                 this.NumeroSerie = res.NUMERO_SERIE;
                 this.Sku = res.SKU;
-                this.ItemStatuss = res.ITEM_STATUS;
-                //this.ItemStatus.UnidItemStatus = res.UNID_ITEM_STATUS;
+                this.ItemStatus = res.ITEM_STATUS;
+                //this.ItemStatus.UNID_ITEM_STATUS = res.UNID_ITEM_STATUS;
                 this.FacturaDetalle = res.FACTURA_DETALLE;
                 this.CostoUnitario = res.COSTO_UNITARIO;
                 this.PedimentoExpo = res.PEDIMENTO_EXPO;

@@ -487,8 +487,11 @@ namespace InventoryApp.Model
             this.NUMERO_SERIE = item.NUMERO_SERIE;
             this._numeroSerie = item.NUMERO_SERIE;
             //this._itemStatuss.updateItemStatus = item.UNID_ITEM_STATUS;
-            this._itemStatus = item.ITEM_STATUS;
-            this._itemStatuss = new ItemStatusModel(null) { ItemStatusName = item.ITEM_STATUS.ITEM_STATUS_NAME, UnidItemStatus = long.Parse(item.UNID_ITEM_STATUS.ToString()) };
+            if (item.ITEM_STATUS!= null)
+            {
+                this._itemStatus = item.ITEM_STATUS;
+                this._itemStatuss = new ItemStatusModel(null) { ItemStatusName = item.ITEM_STATUS.ITEM_STATUS_NAME, UnidItemStatus = long.Parse(item.UNID_ITEM_STATUS.ToString()) };    
+            }
             this.UNID_ITEM_STATUS = item.UNID_ITEM_STATUS;
             this.COSTO_UNITARIO = item.COSTO_UNITARIO;
             this._pedimentoExpo = item.PEDIMENTO_EXPO;

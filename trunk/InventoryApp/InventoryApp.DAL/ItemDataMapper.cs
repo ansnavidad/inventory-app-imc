@@ -660,6 +660,27 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void udpateElementEntradaValidacion(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ITEM item = (ITEM)element;
+                    var modifiedItem = entity.ITEMs.First(p => p.UNID_ITEM == item.UNID_ITEM);
+                    modifiedItem.UNID_ITEM_STATUS = item.UNID_ITEM_STATUS;
+                    //Sync
+                    modifiedItem.IS_MODIFIED = true;
+                    modifiedItem.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void insertElement(object element)
         {
             if (element != null && (element as ITEM)!=null)

@@ -320,6 +320,7 @@ namespace InventoryApp.DAL
                             trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
                             trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
                             trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            
                         }
                         o = (object)res;
                     }

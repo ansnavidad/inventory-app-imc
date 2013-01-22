@@ -584,7 +584,14 @@ namespace InventoryApp.ViewModel.Recibo
                 {
                     r.CostoUnitario = r.FacturaDetalle.CostoUnitario;
                 }
-                this._SelectedFactura.HasNotRecibo = false;
+                //this._AddReciboViewModel.Facturas.HasNotRecibo = false;
+
+                for (int i = 0; i < this._AddReciboViewModel.Facturas.Count; i++) {
+
+                    if (this._AddReciboViewModel.Facturas[i].UnidFactura == this._SelectedFactura.UnidFactura)
+                        this._AddReciboViewModel.Facturas[i].HasNotRecibo = false;                        
+                }
+
                 InventoryApp.Model.Recibo.MovimientoModel movimiento = new InventoryApp.Model.Recibo.MovimientoModel()
                 {
                     DestinoAlmacen=this._SelectedAlmacenDestino

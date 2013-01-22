@@ -162,6 +162,21 @@ namespace InventoryApp.ViewModel.Recibo
         }
         private string _NumeroPedimento;
         public const string NumeroPedimentoPropertyName = "NumeroPedimento";
+        
+        public double TC
+        {
+            get { return _tc; }
+            set
+            {
+                if (_tc != value)
+                {
+                    _tc = value;
+                    OnPropertyChanged(TCPropertyName);
+                }
+            }
+        }
+        private double _tc;
+        public const string TCPropertyName = "TC";
 
         public TipoPedimentoModel SelectedTipoPedimento
         {
@@ -171,12 +186,12 @@ namespace InventoryApp.ViewModel.Recibo
                 if (_SelectedTipoPedimento != value)
                 {
                     _SelectedTipoPedimento = value;
-                    OnPropertyChanged(SelectedTipoPedimentoPropertyName);
+                    OnPropertyChanged(TipoPedimentoPropertyName);
                 }
             }
         }
         private TipoPedimentoModel _SelectedTipoPedimento;
-        public const string SelectedTipoPedimentoPropertyName = "SelectedTipoPedimento";
+        public const string TipoPedimentoPropertyName = "SelectedTipoPedimento";
 
         public ObservableCollection<TipoPedimentoModel> TipoPedimentos
         {
@@ -319,11 +334,19 @@ namespace InventoryApp.ViewModel.Recibo
             {
                 this.FechaFactura = this._SelectedFactura.FechaFactura;
                 this.NumeroFactura = this._SelectedFactura.NumeroFactura;
+                this.NumeroPedimento = this._SelectedFactura.NumeroPedimento;
+                this.TC = this._SelectedFactura.TC;
 
                 if (this._SelectedFactura.Proveedor != null)
                 {
                     this.SelectedProveedor =
                         this.Proveedores.FirstOrDefault(prv => prv.UnidProveedor == this._SelectedFactura.Proveedor.UnidProveedor);
+                }
+
+                if (this._SelectedFactura.TipoPedimento != null)
+                {
+                    this.SelectedTipoPedimento =
+                        this.TipoPedimentos.FirstOrDefault(tpe => tpe.UnidTipoPedimento == this._SelectedFactura.TipoPedimento.UnidTipoPedimento);
                 }
 
                 if (this._SelectedFactura.Moneda != null)
@@ -361,6 +384,8 @@ namespace InventoryApp.ViewModel.Recibo
                 this._SelectedFactura.IsNew = false;
                 this._SelectedFactura.IsModified = this.IsModified;
                 this._SelectedFactura.FacturaDetalle = this.FacturaDetalles;
+                this._SelectedFactura.TC = this.TC;
+                this._SelectedFactura.TipoPedimento = this.SelectedTipoPedimento;
             }
         }
 

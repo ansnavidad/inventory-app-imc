@@ -8,10 +8,11 @@ using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
 using Microsoft.Office.Interop.Excel;
 using System.Reflection;
+using System.ComponentModel;
 
 namespace InventoryApp.ViewModel.Entradas
 {
-    public class EntradaPrestamoViewModel : IPageViewModel
+    public class EntradaPrestamoViewModel : IPageViewModel, INotifyPropertyChanged
     {
         private MovimientoModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
@@ -62,6 +63,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
+                this._IsEnabled = true;
             }
             catch (ArgumentException a)
             {
@@ -109,6 +111,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
+                this._IsEnabled = true;
             }
             catch (ArgumentException a)
             {
@@ -156,6 +159,28 @@ namespace InventoryApp.ViewModel.Entradas
                 }
                 return _deleteItemCommand;
             }
+        }
+
+        public bool IsEnabled
+        {
+            get { return _IsEnabled; }
+            set
+            {
+                if (_IsEnabled != value)
+                {
+                    _IsEnabled = value;
+                    OnPropertyChanged(IsEnabledPropertyName);
+                }
+            }
+        }
+        private bool _IsEnabled;
+        public const string IsEnabledPropertyName = "IsEnabled";
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
         public CatalogProveedorModel CatalogProveedorProcedenciaModel
@@ -298,6 +323,11 @@ namespace InventoryApp.ViewModel.Entradas
 
             if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && seleccion == 1)
                 _canInsertArticulo = true;
+
+            if (this._itemModel.ItemModel.Count > 0)
+                this.IsEnabled = false;
+            else
+                this.IsEnabled = true;
 
             return _canInsertArticulo;
         }

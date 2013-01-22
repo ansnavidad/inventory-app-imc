@@ -177,6 +177,21 @@ namespace InventoryApp.Model.Recibo
         private ProveedorModel _Proveedor;
         public const string ProveedorPropertyName = "Proveedor";
 
+        public TipoPedimentoModel TipoPedimento
+        {
+            get { return _TipoPedimento; }
+            set
+            {
+                if (_TipoPedimento != value)
+                {
+                    _TipoPedimento = value;
+                    OnPropertyChanged(TipoPedimentoPropertyName);
+                }
+            }
+        }
+        private TipoPedimentoModel _TipoPedimento;
+        public const string TipoPedimentoPropertyName = "TipoPedimento";
+
         public MonedaModel Moneda
         {
             get { return _Moneda; }

@@ -8,10 +8,11 @@ using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
 using Microsoft.Office.Interop.Excel;
 using System.Reflection;
+using System.ComponentModel;
 
 namespace InventoryApp.ViewModel.Entradas
 {
-    public class EntradaPorValidacionViewModel : IPageViewModel
+    public class EntradaPorValidacionViewModel : IPageViewModel, INotifyPropertyChanged
     {
         private MovimientoModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
@@ -56,6 +57,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
+                this._IsEnabled = true;
             }
             catch (ArgumentException a)
             {
@@ -98,6 +100,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
+                this._IsEnabled = true;
             }
             catch (ArgumentException a)
             {
@@ -147,6 +150,27 @@ namespace InventoryApp.ViewModel.Entradas
             }
         }
 
+        public bool IsEnabled
+        {
+            get { return _IsEnabled; }
+            set
+            {
+                if (_IsEnabled != value)
+                {
+                    _IsEnabled = value;
+                    OnPropertyChanged(IsEnabledPropertyName);
+                }
+            }
+        }
+        private bool _IsEnabled;
+        public const string IsEnabledPropertyName = "IsEnabled";
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(name));
+        }
 
         public CatalogAlmacenModel CatalogAlmacenModel
         {
@@ -240,6 +264,11 @@ namespace InventoryApp.ViewModel.Entradas
 
             if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) )
                 _canImprimir = true;
+
+            if (this._itemModel.ItemModel.Count > 0)
+                this.IsEnabled = false;
+            else
+                this.IsEnabled = true;
 
             return _canImprimir;
         }

@@ -81,6 +81,7 @@ namespace InventoryApp.ViewModel.Salidas
                 this._movimientoModel.ClienteDestino = _catalogClienteDestinoModel.Cliente[0];
                 this._movimientoModel.ProveedorDestino = _catalogProveedorDestinoModel.Proveedor[0];
                 this._movimientoModel.Transporte = _catalogTransporteModel.Transporte[0];
+                this._IsEnabled = true;
             }
             catch (ArgumentException a)
             {
@@ -138,6 +139,7 @@ namespace InventoryApp.ViewModel.Salidas
                 this._movimientoModel.ClienteDestino = _catalogClienteDestinoModel.Cliente[0];
                 this._movimientoModel.ProveedorDestino = _catalogProveedorDestinoModel.Proveedor[0];
                 this._movimientoModel.Transporte = _catalogTransporteModel.Transporte[0];
+                this._IsEnabled = true;
             }
             catch (ArgumentException a)
             {
@@ -374,7 +376,12 @@ namespace InventoryApp.ViewModel.Salidas
 
             if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.NombreSitio) && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && seleccion == 1)
                 _canInsertArticulo = true;
-            
+
+            if (this._itemModel.ItemModel.Count > 0)
+                this.IsEnabled = false;
+            else
+                this.IsEnabled = true;
+
             return _canInsertArticulo;
         }
 
@@ -603,6 +610,27 @@ namespace InventoryApp.ViewModel.Salidas
         {
             if (ev.PropertyName.Equals("AlmacenProcedencia"))
                 this.Tecnicos = this.GetTecnicosByAlmacen(this.MovimientoModel.AlmacenProcedencia);
+        }
+
+        public bool IsEnabled
+        {
+            get { return _IsEnabled; }
+            set
+            {
+                if (_IsEnabled != value)
+                {
+                    _IsEnabled = value;
+                    OnPropertyChanged(IsEnabledPropertyName);
+                }
+            }
+        }
+        private bool _IsEnabled;
+        public const string IsEnabledPropertyName = "IsEnabled";
+
+        public void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

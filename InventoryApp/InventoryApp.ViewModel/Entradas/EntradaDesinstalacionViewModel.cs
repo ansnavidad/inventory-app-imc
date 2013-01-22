@@ -70,6 +70,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
                 //this._movimientoModel.Cliente = _catalogClienteProcedenciaModel.Cliente[0];
+                this._IsEnabled = true;
             }
             catch (ArgumentException a)
             {
@@ -121,6 +122,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
                 //this._movimientoModel.Cliente = _catalogClienteProcedenciaModel.Cliente[0];
+                this._IsEnabled = true;
             }
             catch (ArgumentException a)
             {
@@ -466,6 +468,11 @@ namespace InventoryApp.ViewModel.Entradas
             if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && seleccion == 1)
                 _canInsertArticulo = true;
 
+            if (this._itemModel.ItemModel.Count > 0)
+                this.IsEnabled = false;
+            else
+                this.IsEnabled = true;
+
             return _canInsertArticulo;
         }
 
@@ -535,6 +542,27 @@ namespace InventoryApp.ViewModel.Entradas
                     }
                 }
             }
+        }
+
+        public bool IsEnabled
+        {
+            get { return _IsEnabled; }
+            set
+            {
+                if (_IsEnabled != value)
+                {
+                    _IsEnabled = value;
+                    OnPropertyChanged(IsEnabledPropertyName);
+                }
+            }
+        }
+        private bool _IsEnabled;
+        public const string IsEnabledPropertyName = "IsEnabled";
+                
+        public void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
         private ObservableCollection<TECNICO> GetTecnicosByAlmacen(ALMACEN alm)

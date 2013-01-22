@@ -279,6 +279,7 @@ namespace InventoryApp.DAL
                             um.ALMACEN = um.ALMACEN;
                             um.CLIENTE = um.CLIENTE;
                             um.PROVEEDOR = um.PROVEEDOR;
+                            um.INFRAESTRUCTURA = um.INFRAESTRUCTURA;
                         }
                     }
                     o = (object)res;

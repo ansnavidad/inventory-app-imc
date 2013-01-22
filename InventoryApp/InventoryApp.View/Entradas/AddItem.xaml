@@ -41,7 +41,7 @@ WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScre
                 <DataGridTextColumn IsReadOnly="True" Width="80" Header="Equipo" x:Name="EQUIPO" Binding="{Binding Path=Equipo.EQUIPO_NAME}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True" Width="80" Header="Modelo" x:Name="MODELO" Binding="{Binding Path=Modelo.MODELO_NAME}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True" Width="70" Header="Marca" x:Name="MARCA" Binding="{Binding Path=Marca.MARCA_NAME}"></DataGridTextColumn>
-                <DataGridTextColumn IsReadOnly="True" Width="70" Header="Status" x:Name="STATUS" Binding="{Binding Path=ItemStatus.ITEM_STATUS_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Width="70" Header="Status" x:Name="STATUS" Binding="{Binding Path=ItemStatuss.ITEM_STATUS_NAME}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True" Width="150" Header="Cantidad Disponible" x:Name="CantidadDisponible" Binding="{Binding Path=CantidadDisponible}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="False" Width="150" Header="Cantidad a Mover" x:Name="CantidadMovimiento" Binding="{Binding Path=CantidadMovimiento}"></DataGridTextColumn>
             </DataGrid.Columns>

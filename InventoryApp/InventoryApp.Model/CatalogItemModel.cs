@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace InventoryApp.Model
 {
-    public class CatalogItemModel : INotifyPropertyChanged
+    public class CatalogItemModel : ModelBase,INotifyPropertyChanged
     {
         private FixupCollection<ItemModel> _itemModel;
         private string _serie;
@@ -18,6 +18,7 @@ namespace InventoryApp.Model
         private string _mensaje2;
         private string _mensaje3;
         private ItemDataMapper _dataMapper;
+        
 
         public FixupCollection<ItemModel> ItemModel
         {
@@ -562,7 +563,22 @@ namespace InventoryApp.Model
             this._dataMapper = new ItemDataMapper();
             this._itemModel = new FixupCollection<ItemModel>();
             this.Mensaje3 = "";
-        }       
+        }
+
+        public ItemStatusModel ItemStatus
+        {
+            get { return _ItemStatus; }
+            set
+            {
+                if (_ItemStatus != value)
+                {
+                    _ItemStatus = value;
+                    OnPropertyChanged(ItemStatusPropertyName);
+                }
+            }
+        }
+        private ItemStatusModel _ItemStatus;
+        public const string ItemStatusPropertyName = "ItemStatus";
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -8,11 +8,11 @@ using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
 using Microsoft.Office.Interop.Excel;
 using System.Reflection;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace InventoryApp.ViewModel.Entradas
 {
-    public class EntradaPorValidacionViewModel : IPageViewModel, INotifyPropertyChanged
+    public class EntradaPorValidacionViewModel : ViewModelBase,IPageViewModel
     {
         private MovimientoModel _movimientoModel;
         private MovimientoDetalleModel _movimientoDetalleModel;
@@ -24,7 +24,7 @@ namespace InventoryApp.ViewModel.Entradas
         private RelayCommand _addItemCommand;
         private RelayCommand _imprimirCommand;
         private RelayCommand _deleteItemCommand;
-
+        private CatalogItemStatusModel _catalogItemStatusModel;
 
         private CatalogEmpresaModel _catalogEmpresaModel;
         private CatalogInfraestructuraModel _catalogInfraestructuraModel;
@@ -57,7 +57,6 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
-                this._IsEnabled = true;
             }
             catch (ArgumentException a)
             {
@@ -80,6 +79,7 @@ namespace InventoryApp.ViewModel.Entradas
                 IDataMapper dataMapper4 = new ClienteDataMapper();
                 IDataMapper datamapper5 = new EmpresaDataMapper();
                 IDataMapper datamapper9 = new InfraestructuraDataMapper();
+                IDataMapper dataMapper10 = new ItemStatusDataMapper();
 
                 this._catalogInfraestructuraModel = new CatalogInfraestructuraModel(datamapper9);
                 this._catalogEmpresaModel = new CatalogEmpresaModel(datamapper5);
@@ -94,13 +94,14 @@ namespace InventoryApp.ViewModel.Entradas
                 this._itemModel = new CatalogItemModel(new ItemDataMapper());
                 this._catalogAlmacenModel = new CatalogAlmacenModel(dataMapper2);
 
+                this._catalogItemStatusModel = new CatalogItemStatusModel(dataMapper10);   
                 //Asignaciones especiales para los combos 
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
-                this._IsEnabled = true;
+                
             }
             catch (ArgumentException a)
             {
@@ -150,26 +151,16 @@ namespace InventoryApp.ViewModel.Entradas
             }
         }
 
-        public bool IsEnabled
+        public CatalogItemStatusModel CatalogItemStatusModel
         {
-            get { return _IsEnabled; }
+            get
+            {
+                return _catalogItemStatusModel;
+            }
             set
             {
-                if (_IsEnabled != value)
-                {
-                    _IsEnabled = value;
-                    OnPropertyChanged(IsEnabledPropertyName);
-                }
+                _catalogItemStatusModel = value;
             }
-        }
-        private bool _IsEnabled;
-        public const string IsEnabledPropertyName = "IsEnabled";
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
         public CatalogAlmacenModel CatalogAlmacenModel
@@ -197,6 +188,7 @@ namespace InventoryApp.ViewModel.Entradas
                 _movimientoModel = value;
             }
         }
+
         public CatalogItemModel ItemModel
         {
             get
@@ -246,7 +238,6 @@ namespace InventoryApp.ViewModel.Entradas
             }
         }
 
-
         public void loadItems()
         {
             this._catalogSolicitanteModel.loadSolicitante();
@@ -265,11 +256,6 @@ namespace InventoryApp.ViewModel.Entradas
             if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) )
                 _canImprimir = true;
 
-            if (this._itemModel.ItemModel.Count > 0)
-                this.IsEnabled = false;
-            else
-                this.IsEnabled = true;
-
             return _canImprimir;
         }
 
@@ -280,6 +266,7 @@ namespace InventoryApp.ViewModel.Entradas
 
             foreach (ItemModel item in this._itemModel.ItemModel)
             {
+
                 this._movimientoDetalleModel = new MovimientoDetalleModel(new MovimientoDetalleDataMapper(), this._movimientoModel.UnidMovimiento, item.UnidItem, item.CantidadMovimiento);
                 this._movimientoDetalleModel.saveArticulo();
                 this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem, this._movimientoModel.UnidAlmacenDestino, null, null, this._movimientoDetalleModel.UnidMovimientoDetalle, item.CantidadMovimiento);
@@ -420,6 +407,56 @@ namespace InventoryApp.ViewModel.Entradas
 
             this.MovimientoModel.CantidadItems = this.ItemModel.ItemModel.Count();
             
+        }
+
+        public ObservableCollection<ItemStatusModel> ItemStatus
+        {
+            get
+            {
+                if (_ItemStatus == null)
+                {
+                    _ItemStatus = this.GetStatuss();
+                }
+
+                return _ItemStatus;
+            }
+            set
+            {
+                if (_ItemStatus != value)
+                {
+                    _ItemStatus = value;
+                    OnPropertyChanged(ItemStatusPropertyName);
+                }
+            }
+        }
+        private ObservableCollection<ItemStatusModel> _ItemStatus;
+        public const string ItemStatusPropertyName = "ItemStatus";
+
+        private ObservableCollection<ItemStatusModel> GetStatuss()
+        {
+            ObservableCollection<ItemStatusModel> ItemStatusAux = new ObservableCollection<ItemStatusModel>();
+
+            try
+            {
+                ItemStatusDataMapper dataMapper = new ItemStatusDataMapper();
+
+                List<ITEM_STATUS> ii = new List<ITEM_STATUS>();
+                ii = (List<ITEM_STATUS>)dataMapper.getElements();
+
+                foreach (ITEM_STATUS i in ii)
+                {
+
+                    ItemStatusModel ism = new ItemStatusModel(new ItemStatusDataMapper());
+                    ism.ItemStatusName = i.ITEM_STATUS_NAME;
+                    ism.UnidItemStatus = i.UNID_ITEM_STATUS;
+                    ItemStatusAux.Add(ism);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return ItemStatusAux;
         }
 
         public string PageName

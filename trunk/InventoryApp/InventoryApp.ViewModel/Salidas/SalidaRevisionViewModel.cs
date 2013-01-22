@@ -75,6 +75,7 @@ namespace InventoryApp.ViewModel.Salidas
                 this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
+                this._IsEnabled = true;
             }
             catch (ArgumentException a)
             {
@@ -128,6 +129,7 @@ namespace InventoryApp.ViewModel.Salidas
                 this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
+                this._IsEnabled = true;
             }
             catch (ArgumentException a)
             {
@@ -368,7 +370,12 @@ namespace InventoryApp.ViewModel.Salidas
 
             if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt))
                 _canInsertArticulo = true;
-            
+
+            if (this._itemModel.ItemModel.Count > 0)
+                this.IsEnabled = false;
+            else
+                this.IsEnabled = true;
+
             return _canInsertArticulo;
         }
 
@@ -574,6 +581,27 @@ namespace InventoryApp.ViewModel.Salidas
         {
             if (ev.PropertyName.Equals("AlmacenProcedencia"))
                 this.Tecnicos = this.GetTecnicosByAlmacen(this.MovimientoModel.AlmacenProcedencia);
+        }
+
+        public bool IsEnabled
+        {
+            get { return _IsEnabled; }
+            set
+            {
+                if (_IsEnabled != value)
+                {
+                    _IsEnabled = value;
+                    OnPropertyChanged(IsEnabledPropertyName);
+                }
+            }
+        }
+        private bool _IsEnabled;
+        public const string IsEnabledPropertyName = "IsEnabled";
+
+        public void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

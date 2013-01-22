@@ -341,6 +341,8 @@ namespace InventoryApp.ViewModel.Recibo
                     NumeroPedimento=this.NumeroPedimento
                     , 
                     TC = this.TC
+                    , 
+                    TipoPedimento = this.SelectedTipoPedimento
                 };
                 this._AddReciboViewModel.Facturas.Add(factura);
             }

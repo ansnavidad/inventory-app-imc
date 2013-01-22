@@ -64,6 +64,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
                 this._IsEnabled = true;
+                this._IsEnabled2 = false;
             }
             catch (ArgumentException a)
             {
@@ -112,6 +113,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
                 this._IsEnabled = true;
+                this._IsEnabled2 = false;
             }
             catch (ArgumentException a)
             {
@@ -175,6 +177,21 @@ namespace InventoryApp.ViewModel.Entradas
         }
         private bool _IsEnabled;
         public const string IsEnabledPropertyName = "IsEnabled";
+
+        public bool IsEnabled2
+        {
+            get { return _IsEnabled2; }
+            set
+            {
+                if (_IsEnabled2 != value)
+                {
+                    _IsEnabled2 = value;
+                    OnPropertyChanged(IsEnabledPropertyName2);
+                }
+            }
+        }
+        private bool _IsEnabled2;
+        public const string IsEnabledPropertyName2 = "IsEnabled2";
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string name)
@@ -325,9 +342,15 @@ namespace InventoryApp.ViewModel.Entradas
                 _canInsertArticulo = true;
 
             if (this._itemModel.ItemModel.Count > 0)
+            {
                 this.IsEnabled = false;
+                this.IsEnabled2 = false;
+            }
             else
+            {
                 this.IsEnabled = true;
+                this.IsEnabled2 = false;
+            }
 
             return _canInsertArticulo;
         }

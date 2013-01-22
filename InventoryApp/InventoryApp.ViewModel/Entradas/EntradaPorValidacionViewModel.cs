@@ -24,8 +24,6 @@ namespace InventoryApp.ViewModel.Entradas
         private RelayCommand _addItemCommand;
         private RelayCommand _imprimirCommand;
         private RelayCommand _deleteItemCommand;
-        private CatalogItemStatusModel _catalogItemStatusModel;
-
         private CatalogEmpresaModel _catalogEmpresaModel;
         private CatalogInfraestructuraModel _catalogInfraestructuraModel;
 
@@ -95,7 +93,6 @@ namespace InventoryApp.ViewModel.Entradas
                 this._itemModel = new CatalogItemModel(new ItemDataMapper());
                 this._catalogAlmacenModel = new CatalogAlmacenModel(dataMapper2);
 
-                this._catalogItemStatusModel = new CatalogItemStatusModel(dataMapper10);   
                 //Asignaciones especiales para los combos 
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
@@ -151,19 +148,6 @@ namespace InventoryApp.ViewModel.Entradas
                 return _deleteItemCommand;
             }
         }
-
-        public CatalogItemStatusModel CatalogItemStatusModel
-        {
-            get
-            {
-                return _catalogItemStatusModel;
-            }
-            set
-            {
-                _catalogItemStatusModel = value;
-            }
-        }
-
         public CatalogAlmacenModel CatalogAlmacenModel
         {
             get

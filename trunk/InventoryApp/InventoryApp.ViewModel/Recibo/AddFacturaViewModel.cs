@@ -192,6 +192,21 @@ namespace InventoryApp.ViewModel.Recibo
         private string _msj;
         public const string MsjPropertyName = "Msj";
 
+        public bool HasNotRecibo
+        {
+            get { return _HasNotRecibo; }
+            set
+            {
+                if (_HasNotRecibo != value)
+                {
+                    _HasNotRecibo = value;
+                    OnPropertyChanged(HasNotReciboPropertyName);
+                }
+            }
+        }
+        private bool _HasNotRecibo;
+        public const string HasNotReciboPropertyName = "HasNotRecibo";
+
         public TipoPedimentoModel SelectedTipoPedimento
         {
             get { return _SelectedTipoPedimento; }
@@ -343,6 +358,8 @@ namespace InventoryApp.ViewModel.Recibo
                     TC = this.TC
                     , 
                     TipoPedimento = this.SelectedTipoPedimento
+                    ,
+                    HasNotRecibo = this.HasNotRecibo
                 };
                 this._AddReciboViewModel.Facturas.Add(factura);
             }
@@ -394,6 +411,9 @@ namespace InventoryApp.ViewModel.Recibo
         {
             bool canDeleteFacturaDetalle = false;
 
+            if (!this.HasNotRecibo)
+                return false;
+
             if (this._FacturaDetalles != null && this._FacturaDetalles.Count > 0)
             {
                 int res = 0;
@@ -425,6 +445,8 @@ namespace InventoryApp.ViewModel.Recibo
         {
             bool canDeleteFacturaDetalle = false;
 
+            if (!this.HasNotRecibo)
+                return false;
 
             if (this.SelectedProveedor != null)
             {
@@ -436,6 +458,7 @@ namespace InventoryApp.ViewModel.Recibo
 
         public void init()
         {
+            this.HasNotRecibo = true;
             this._CanSelecteProveedor = true;
             this.TC = 1;
             this._Proveedores = this.GetProveedores();

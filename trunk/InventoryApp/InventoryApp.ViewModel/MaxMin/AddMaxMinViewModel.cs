@@ -147,6 +147,11 @@ namespace InventoryApp.ViewModel.MaxMin
                         break;
                     }
                 }
+
+                if (!_canAddMaxMin)
+                    this._addMaxMin.MensajeError = "Favor de validar que Cantidad Máxima sea mayor o igual a cero. que la cantidad Mínima";
+                else
+                    this._addMaxMin.MensajeError = "";
                 
             }
                 

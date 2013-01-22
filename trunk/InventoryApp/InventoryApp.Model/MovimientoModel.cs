@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 
 namespace InventoryApp.Model
 {
-    public class MovimientoModel : INotifyPropertyChanged
+    public class MovimientoModel :INotifyPropertyChanged
     {
         #region Fields
         private long _unidMovimiento;
@@ -54,10 +54,30 @@ namespace InventoryApp.Model
         private long? _unidInfraestructura;
         private ObservableCollection<DeleteSolicitante> _solicitantes;
         private ObservableCollection<TECNICO> _tecnicos;
+        //private ITEM_STATUS _itemStatus;
         #endregion
 
         #region Props
-       
+
+        
+        //public ITEM_STATUS ItemStatus
+        //{
+        //    get
+        //    {
+        //        return _itemStatus;
+        //    }
+        //    set
+        //    {
+        //        if (_itemStatus != value)
+        //        {
+        //            _itemStatus = value;
+        //            if (PropertyChanged != null)
+        //            {
+        //                this.PropertyChanged(this, new PropertyChangedEventArgs("ItemStatus"));
+        //            }
+        //        }
+        //    }
+        //}
 
         public ObservableCollection<TECNICO> Tecnicos
         {
@@ -769,7 +789,7 @@ namespace InventoryApp.Model
                     UNID_FACTURA_VENTA = this._unidFacturaVenta,
                     UNID_SOLICITANTE = this._unidSolicitante,
                     UNID_TECNICO = this._unidTecnico,
-                    UNID_INFRAESTRUCTURA = this._unidInfraestructura
+                    UNID_INFRAESTRUCTURA = this._unidInfraestructura,
                 });
                 //_dataMapper.insertElement(new MOVIMENTO() {UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe, UNID_ALMACEN_DESTINO = this._unidSolicitante});
             }

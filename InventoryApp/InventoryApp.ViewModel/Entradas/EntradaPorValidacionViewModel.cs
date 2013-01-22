@@ -266,6 +266,8 @@ namespace InventoryApp.ViewModel.Entradas
 
             foreach (ItemModel item in this._itemModel.ItemModel)
             {
+                //actualiza el item status del item
+                item.updateItemEntrada();
 
                 this._movimientoDetalleModel = new MovimientoDetalleModel(new MovimientoDetalleDataMapper(), this._movimientoModel.UnidMovimiento, item.UnidItem, item.CantidadMovimiento);
                 this._movimientoDetalleModel.saveArticulo();

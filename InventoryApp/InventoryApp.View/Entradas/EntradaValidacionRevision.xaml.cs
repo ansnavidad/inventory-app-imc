@@ -29,9 +29,7 @@ namespace InventoryApp.View.Entradas
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            this.comboBoxInfraestructura.IsEnabled = false;
-            
+        {            
             AddItem it = new AddItem();
             EntradaPorValidacionViewModel entrada = this.DataContext as EntradaPorValidacionViewModel;
             it.DataContext = entrada.CreateCatalogItemViewModel();

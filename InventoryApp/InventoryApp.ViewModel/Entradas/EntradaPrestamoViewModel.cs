@@ -63,8 +63,12 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
-                this._IsEnabled = true;
-                this._IsEnabled2 = false;
+                this.IsEnabledCheck1 = true;
+                this.IsEnabledCheck2 = true;
+                this.IsEnabledCombo1 = true;
+                this.IsEnabledCombo2 = false;
+                this.IsCheck1 = true;
+                this.IsCheck2 = false;
             }
             catch (ArgumentException a)
             {
@@ -112,8 +116,12 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
-                this._IsEnabled = true;
-                this._IsEnabled2 = false;
+                this.IsEnabledCheck1 = true;
+                this.IsEnabledCheck2 = true;
+                this.IsEnabledCombo1 = true;
+                this.IsEnabledCombo2 = false;
+                this.IsCheck1 = true;
+                this.IsCheck2 = false;
             }
             catch (ArgumentException a)
             {
@@ -163,36 +171,96 @@ namespace InventoryApp.ViewModel.Entradas
             }
         }
 
-        public bool IsEnabled
+        public bool IsEnabledCheck1
         {
-            get { return _IsEnabled; }
+            get { return _IsEnabledCheck1; }
             set
             {
-                if (_IsEnabled != value)
+                if (_IsEnabledCheck1 != value)
                 {
-                    _IsEnabled = value;
-                    OnPropertyChanged(IsEnabledPropertyName);
+                    _IsEnabledCheck1 = value;
+                    OnPropertyChanged(IsEnabledCheck1PropertyName);
                 }
             }
         }
-        private bool _IsEnabled;
-        public const string IsEnabledPropertyName = "IsEnabled";
+        private bool _IsEnabledCheck1;
+        public const string IsEnabledCheck1PropertyName = "IsEnabledCheck1";
 
-        public bool IsEnabled2
+        public bool IsEnabledCheck2
         {
-            get { return _IsEnabled2; }
+            get { return _IsEnabledCheck2; }
             set
             {
-                if (_IsEnabled2 != value)
+                if (_IsEnabledCheck2 != value)
                 {
-                    _IsEnabled2 = value;
-                    OnPropertyChanged(IsEnabledPropertyName2);
+                    _IsEnabledCheck2 = value;
+                    OnPropertyChanged(IsEnabledCheck2PropertyName);
                 }
             }
         }
-        private bool _IsEnabled2;
-        public const string IsEnabledPropertyName2 = "IsEnabled2";
+        private bool _IsEnabledCheck2;
+        public const string IsEnabledCheck2PropertyName = "IsEnabledCheck2";
 
+        public bool IsEnabledCombo1
+        {
+            get { return _IsEnabledCombo1; }
+            set
+            {
+                if (_IsEnabledCombo1 != value)
+                {
+                    _IsEnabledCombo1 = value;
+                    OnPropertyChanged(IsEnabledCombo1PropertyName);
+                }
+            }
+        }
+        private bool _IsEnabledCombo1;
+        public const string IsEnabledCombo1PropertyName = "IsEnabledCombo1";
+
+        public bool IsEnabledCombo2
+        {
+            get { return _IsEnabledCombo2; }
+            set
+            {
+                if (_IsEnabledCombo2 != value)
+                {
+                    _IsEnabledCombo2 = value;
+                    OnPropertyChanged(IsEnabledCombo2PropertyName);
+                }
+            }
+        }
+        private bool _IsEnabledCombo2;
+        public const string IsEnabledCombo2PropertyName = "IsEnabledCombo2";
+        
+        public bool IsCheck2
+        {
+            get { return _IsCheck2; }
+            set
+            {
+                if (_IsCheck2 != value)
+                {
+                    _IsCheck2 = value;
+                    OnPropertyChanged(IsCheck2PropertyName);
+                }
+            }
+        }
+        private bool _IsCheck2;
+        public const string IsCheck2PropertyName = "IsCheck2";
+
+        public bool IsCheck1
+        {
+            get { return _IsCheck1; }
+            set
+            {
+                if (_IsCheck1 != value)
+                {
+                    _IsCheck1 = value;
+                    OnPropertyChanged(IsCheck1PropertyName);
+                }
+            }
+        }
+        private bool _IsCheck1;
+        public const string IsCheck1PropertyName = "IsCheck1";
+        
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string name)
         {
@@ -343,13 +411,26 @@ namespace InventoryApp.ViewModel.Entradas
 
             if (this._itemModel.ItemModel.Count > 0)
             {
-                this.IsEnabled = false;
-                this.IsEnabled2 = false;
+                this.IsEnabledCheck1 = false;
+                this.IsEnabledCheck2 = false;
+                this.IsEnabledCombo1 = false;
+                this.IsEnabledCombo2 = false;
             }
             else
             {
-                this.IsEnabled = true;
-                this.IsEnabled2 = false;
+                this.IsEnabledCheck1 = true;
+                this.IsEnabledCheck2 = true;
+
+                if (this.IsCheck1)
+                {
+                    this.IsEnabledCombo1 = true;
+                    this.IsEnabledCombo2 = false;
+                }
+                else {
+
+                    this.IsEnabledCombo1 = false;
+                    this.IsEnabledCombo2 = true;
+                }
             }
 
             return _canInsertArticulo;

@@ -267,8 +267,20 @@ namespace InventoryApp.Model
                         aux.CantidadMovimiento = 1;
                         if (aux.CantidadDisponible > 0)
                         {
-                            aux.IsChecked = true;
-                            ic.Add(aux);
+                            bool auxx = true;
+                            foreach (ItemModel elem in ic)
+                            {
+                                if (elem.UNID_ITEM == aux.UNID_ITEM && elem.NUMERO_SERIE == aux.NUMERO_SERIE && elem.SKU == aux.SKU)
+                                {
+                                    auxx = false;
+                                }
+                            }
+
+                            if (auxx)
+                            {
+                                aux.IsChecked = true;
+                                ic.Add(aux);
+                            }
                         }
                         else
                         {
@@ -377,8 +389,21 @@ namespace InventoryApp.Model
                         aux.CantidadMovimiento = 1;
                         if (aux.CantidadDisponible > 0)
                         {
-                            aux.IsChecked = true;
-                            ic.Add(aux);
+                            bool auxx = true;
+                            foreach (ItemModel elem in ic)
+                            {
+                                if (elem.UNID_ITEM == aux.UNID_ITEM && elem.NUMERO_SERIE == aux.NUMERO_SERIE && elem.SKU == aux.SKU)
+                                {
+                                    auxx = false;
+                                }
+                            }
+
+                            if (auxx)
+                            {
+                                aux.IsChecked = true;
+                                ic.Add(aux);
+                            }
+
                         }
                         else
                         {
@@ -423,7 +448,7 @@ namespace InventoryApp.Model
                         if (um.ALMACEN != null)
                         {
                             aux = true;
-                            this.Mensaje2 += "El almacén: " + um.ALMACEN.ALMACEN_NAME;
+                            this.Mensaje2 += " El almacén: " + um.ALMACEN.ALMACEN_NAME;
                         }
                     }
 

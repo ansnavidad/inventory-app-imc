@@ -409,15 +409,18 @@ namespace InventoryApp.DAL.POCOS
         private ObjectSet<POM_ARTICULO> _pOM_ARTICULO;
 
         #endregion
+
         #region Function Imports
         public ObjectResult<TEST> SP_TAE2_JOB()
         {
             return base.ExecuteFunction<TEST>("SP_TAE2_JOB");
         }
+
         public void GetJob()
         {
             ExecuteFunction<TEST>("SP_TAE2_JOB");
         }
+
         #endregion
     }
 }

@@ -60,7 +60,8 @@ namespace InventoryApp.DAL
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
                          UNID_INFRAESTRUCTURA= row.UNID_INFRAESTRUCTURA,
                          CANTIDAD=row.CANTIDAD,
-                         UNID_ULTIMO_MOVIMIENTO= row.UNID_ULTIMO_MOVIMIENTO
+                         UNID_ULTIMO_MOVIMIENTO= row.UNID_ULTIMO_MOVIMIENTO,
+                         UNID_ITEM_STATUS= row.UNID_ITEM_STATUS
                      });
                  });
                 if (listUltimoMovimiento.Count > 0)
@@ -248,7 +249,6 @@ namespace InventoryApp.DAL
             return um;
         }
 
-
         public void udpateElement(object element)
         {            
             if (element != null)
@@ -313,6 +313,7 @@ namespace InventoryApp.DAL
                         //modifiedMov.UNID_PROVEEDOR = ultimoMov.UNID_PROVEEDOR;
                         //modifiedMov.UNID_INFRAESTRUCTURA = ultimoMov.UNID_INFRAESTRUCTURA;
                         modifiedMov.CANTIDAD = ultimoMov.CANTIDAD;
+                        modifiedMov.UNID_ITEM_STATUS = ultimoMov.UNID_ITEM_STATUS;
                         //Sync
                         modifiedMov.IS_MODIFIED = true;
                         modifiedMov.LAST_MODIFIED_DATE = UNID.getNewUNID();
@@ -451,7 +452,8 @@ namespace InventoryApp.DAL
                          IS_ACTIVE=row.IS_ACTIVE,
                          UNID_INFRAESTRUCTURA = row.UNID_INFRAESTRUCTURA,
                          CANTIDAD = row.CANTIDAD,
-                         UNID_ULTIMO_MOVIMIENTO=row.UNID_ULTIMO_MOVIMIENTO
+                         UNID_ULTIMO_MOVIMIENTO=row.UNID_ULTIMO_MOVIMIENTO,
+                         UNID_ITEM_STATUS = row.UNID_ITEM_STATUS
                      });
                  });
                 if (listUltimoMovimiento.Count > 0)
@@ -504,7 +506,8 @@ namespace InventoryApp.DAL
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
                          UNID_INFRAESTRUCTURA = row.UNID_INFRAESTRUCTURA,
                          CANTIDAD = row.CANTIDAD,
-                         UNID_ULTIMO_MOVIMIENTO=row.UNID_ULTIMO_MOVIMIENTO
+                         UNID_ULTIMO_MOVIMIENTO=row.UNID_ULTIMO_MOVIMIENTO,
+                         UNID_ITEM_STATUS = row.UNID_ITEM_STATUS
                      });
                  });
                 if (reset.Count > 0)

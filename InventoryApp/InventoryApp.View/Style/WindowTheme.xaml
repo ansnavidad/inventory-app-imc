@@ -30,6 +30,13 @@
         <Setter Property="FontSize" Value="14"></Setter>
     </Style>
 
+    <Style x:Key="titleLabel2" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#F2F2F2"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontStretch" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+    </Style>
+
     <Style x:Key="titleLabelElara" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="#FEFEFF"></Setter>
         <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>

@@ -57,7 +57,8 @@ namespace InventoryApp.DAL
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
-                         CANTIDAD=row.CANTIDAD
+                         CANTIDAD=row.CANTIDAD,
+                         UNID_ITEM_STATUS= row.UNID_ITEM_STATUS
                      });
                  });
                 if (listMovimientoDetalle.Count > 0)
@@ -117,6 +118,7 @@ namespace InventoryApp.DAL
                 {
                     detalle.ITEM = detalle.ITEM;
                     detalle.MOVIMENTO = detalle.MOVIMENTO;
+                    detalle.ITEM_STATUS = detalle.ITEM_STATUS;
                 }
 
 
@@ -141,6 +143,7 @@ namespace InventoryApp.DAL
                     modifiedMovimientoD.OBSERVACIONES = MovimientoD.OBSERVACIONES;
                     modifiedMovimientoD.UNID_ITEM = MovimientoD.UNID_ITEM;
                     modifiedMovimientoD.UNID_MOVIMIENTO = MovimientoD.UNID_MOVIMIENTO;
+                    modifiedMovimientoD.UNID_ITEM_STATUS = MovimientoD.UNID_ITEM_STATUS;
                     //Sync
                     modifiedMovimientoD.IS_MODIFIED = true;
                     modifiedMovimientoD.LAST_MODIFIED_DATE = UNID.getNewUNID();
@@ -221,7 +224,8 @@ namespace InventoryApp.DAL
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
-                         CANTIDAD = row.CANTIDAD
+                         CANTIDAD = row.CANTIDAD,
+                         UNID_ITEM_STATUS= row.UNID_ITEM_STATUS
                      });
                  });
                 if (listMovimientoDetalle.Count > 0)
@@ -271,7 +275,8 @@ namespace InventoryApp.DAL
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
-                         CANTIDAD = row.CANTIDAD
+                         CANTIDAD = row.CANTIDAD,
+                         UNID_ITEM_STATUS= row.UNID_ITEM_STATUS
                      });
                  });
                 if (reset.Count > 0)

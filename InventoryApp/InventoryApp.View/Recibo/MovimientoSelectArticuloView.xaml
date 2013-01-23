@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="262" d:DesignWidth="600">
+             d:DesignHeight="262" d:DesignWidth="650">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,8 +14,10 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel Name="dockPanel1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" LastChildFill="False"  >
-        <DockPanel DockPanel.Dock="Top" Height="50" Name="dockPanel2" HorizontalAlignment="Stretch" >
-            <Label Content="Seleccione con 'Agrupar Items' que artículos formarán un paquete teniendo el mismo SKU y número de serie." Height="28" Name="label1" />
+        <DockPanel DockPanel.Dock="Top" Height="35" Name="dockPanel2" HorizontalAlignment="Stretch" >
+            <Border BorderBrush="Silver" BorderThickness="1" DockPanel.Dock="Top"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource titleBorder}">
+                <Label Content="Seleccione con 'Agrupar Items' que artículos formarán un paquete teniendo el mismo SKU y número de serie." Height="28" Name="label1" Style="{StaticResource titleLabel2}" />
+            </Border>
         </DockPanel>
         <DockPanel DockPanel.Dock="Top"  Name="dockPanel3" HorizontalAlignment="Stretch" LastChildFill="False" VerticalAlignment="Stretch" >
             <DataGrid DockPanel.Dock="Top" CanUserDeleteRows="False"

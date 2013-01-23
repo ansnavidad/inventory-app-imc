@@ -27,7 +27,7 @@ namespace InventoryApp.DAL
                               select prov.LAST_MODIFIED_DATE).ToList();
 
                 if (resul0.Count == 0)
-                    return resul;
+                    return 0;
 
                 resul = (from itemStatus in entity.ITEM_STATUS
                          where itemStatus.IS_ACTIVE == true

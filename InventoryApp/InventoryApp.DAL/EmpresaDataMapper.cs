@@ -28,7 +28,7 @@ namespace InventoryApp.Model
                               select prov.LAST_MODIFIED_DATE).ToList();
 
                 if (resul0.Count == 0)
-                    return resul;
+                    return 0;
 
                 resul = (from empresa in entity.EMPRESAs
                          where empresa.IS_ACTIVE == true

@@ -27,7 +27,7 @@ namespace InventoryApp.DAL
                               select prov.LAST_MODIFIED_DATE).ToList();
 
                 if (resul0.Count == 0)
-                    return resul;
+                    return 0;
 
                 resul = (from tipo in entity.TIPO_MOVIMIENTO
                          where tipo.IS_ACTIVE == true

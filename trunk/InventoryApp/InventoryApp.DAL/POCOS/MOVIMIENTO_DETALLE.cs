@@ -30,13 +30,21 @@ namespace InventoryApp.DAL.POCOS
             get { return _uNID_ITEM; }
             set
             {
-                if (_uNID_ITEM != value)
+                try
                 {
-                    if (ITEM != null && ITEM.UNID_ITEM != value)
+                    _settingFK = true;
+                    if (_uNID_ITEM != value)
                     {
-                        ITEM = null;
+                        if (ITEM != null && ITEM.UNID_ITEM != value)
+                        {
+                            ITEM = null;
+                        }
+                        _uNID_ITEM = value;
                     }
-                    _uNID_ITEM = value;
+                }
+                finally
+                {
+                    _settingFK = false;
                 }
             }
         }
@@ -47,13 +55,21 @@ namespace InventoryApp.DAL.POCOS
             get { return _uNID_MOVIMIENTO; }
             set
             {
-                if (_uNID_MOVIMIENTO != value)
+                try
                 {
-                    if (MOVIMENTO != null && MOVIMENTO.UNID_MOVIMIENTO != value)
+                    _settingFK = true;
+                    if (_uNID_MOVIMIENTO != value)
                     {
-                        MOVIMENTO = null;
+                        if (MOVIMENTO != null && MOVIMENTO.UNID_MOVIMIENTO != value)
+                        {
+                            MOVIMENTO = null;
+                        }
+                        _uNID_MOVIMIENTO = value;
                     }
-                    _uNID_MOVIMIENTO = value;
+                }
+                finally
+                {
+                    _settingFK = false;
                 }
             }
         }
@@ -88,9 +104,49 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
+    
+        public virtual Nullable<long> UNID_ITEM_STATUS
+        {
+            get { return _uNID_ITEM_STATUS; }
+            set
+            {
+                try
+                {
+                    _settingFK = true;
+                    if (_uNID_ITEM_STATUS != value)
+                    {
+                        if (ITEM_STATUS != null && ITEM_STATUS.UNID_ITEM_STATUS != value)
+                        {
+                            ITEM_STATUS = null;
+                        }
+                        _uNID_ITEM_STATUS = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
+        }
+        private Nullable<long> _uNID_ITEM_STATUS;
 
         #endregion
         #region Navigation Properties
+    
+        public virtual ITEM_STATUS ITEM_STATUS
+        {
+            get { return _iTEM_STATUS; }
+            set
+            {
+                if (!ReferenceEquals(_iTEM_STATUS, value))
+                {
+                    var previousValue = _iTEM_STATUS;
+                    _iTEM_STATUS = value;
+                    FixupITEM_STATUS(previousValue);
+                }
+            }
+        }
+        private ITEM_STATUS _iTEM_STATUS;
     
         public virtual ITEM ITEM
         {
@@ -156,6 +212,32 @@ namespace InventoryApp.DAL.POCOS
 
         #endregion
         #region Association Fixup
+    
+        private bool _settingFK = false;
+    
+        private void FixupITEM_STATUS(ITEM_STATUS previousValue)
+        {
+            if (previousValue != null && previousValue.MOVIMIENTO_DETALLE.Contains(this))
+            {
+                previousValue.MOVIMIENTO_DETALLE.Remove(this);
+            }
+    
+            if (ITEM_STATUS != null)
+            {
+                if (!ITEM_STATUS.MOVIMIENTO_DETALLE.Contains(this))
+                {
+                    ITEM_STATUS.MOVIMIENTO_DETALLE.Add(this);
+                }
+                if (UNID_ITEM_STATUS != ITEM_STATUS.UNID_ITEM_STATUS)
+                {
+                    UNID_ITEM_STATUS = ITEM_STATUS.UNID_ITEM_STATUS;
+                }
+            }
+            else if (!_settingFK)
+            {
+                UNID_ITEM_STATUS = null;
+            }
+        }
     
         private void FixupITEM(ITEM previousValue)
         {

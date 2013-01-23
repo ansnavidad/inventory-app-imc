@@ -132,6 +132,8 @@ namespace InventoryApp.ViewModel.Recibo
                         UNID_MOVIMIENTO_DETALLE = item.UnidMovimientoDetalle
                         ,
                         CANTIDAD = item.Cantidad
+                        , 
+                        UNID_ITEM_STATUS = item.ItemStatus.UnidItemStatus
                         ,
                         IS_ACTIVE = true
                     };
@@ -145,6 +147,7 @@ namespace InventoryApp.ViewModel.Recibo
                         UNID_ALMACEN=mov.DestinoAlmacen.UnidAlmacen,
                         UNID_MOVIMIENTO_DETALLE=item.UnidMovimientoDetalle,
                         CANTIDAD = item.Cantidad,
+                        UNID_ITEM_STATUS = item.ItemStatus.UnidItemStatus,                        
                         IS_ACTIVE=true
                     };
                     UltimoMovimientoDataMapper umDataMapper = new UltimoMovimientoDataMapper();
@@ -667,6 +670,11 @@ namespace InventoryApp.ViewModel.Recibo
             this._Facturas = new ObservableCollection<FacturaCompraModel>();
             this._Movimiento = new ObservableCollection<InventoryApp.Model.Recibo.MovimientoModel>();
             this._Empresas = this.GetEmpresas();
+            
+            if(this._Empresas != null && this._Empresas.Count > 0)
+                this.SelectedEmpresa = this._Empresas[0];
+            if (this._Solicitantes != null && this._Solicitantes.Count > 0)
+                this.SelectedSolicitante = this._Solicitantes[0];
         }
 
         private ObservableCollection<Model.EmpresaModel> GetEmpresas()

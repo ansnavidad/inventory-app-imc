@@ -188,6 +188,8 @@ namespace InventoryApp.ViewModel.Recibo
                 if (_Almacenes == null)
                 {
                     _Almacenes = this.GetAlmacenes();
+                    if (this._Almacenes != null && this._Almacenes.Count > 0)
+                        this.SelectedAlmacenDestino = this._Almacenes[0];
                 }
 
                 return _Almacenes;
@@ -342,11 +344,21 @@ namespace InventoryApp.ViewModel.Recibo
 
                     this.Items = new ObservableCollection<ReciboItemModel>();
                     long unid = DAL.UNID.getNewUNID();
+                    
                     this._MovimientoSelectArticuloViewModel.FacturaDetalles.ToList().ForEach(o =>
                     {
                         if (o.IsSelected)
                         {
                             unid++;
+
+                            ItemStatusModel it1 = null;
+
+                            if (this.ItemStatus != null && this.ItemStatus.Count > 0)
+                            {
+                                it1 = new ItemStatusModel(new ItemStatusDataMapper());
+                                it1 = this.ItemStatus[0];
+                            }
+                            
                             this.Items.Add(new ReciboItemModel()
                             {
                                 Articulo = o.Articulo,
@@ -355,6 +367,7 @@ namespace InventoryApp.ViewModel.Recibo
                                 UnidItem = unid,
                                 UnidMovimientoDetalle = unid,
                                 Cantidad = o.Cantidad,
+                                ItemStatus =  it1,
                                 //IsCantidadEnabled = o.IsSelected ? true : false
                                 IsCantidadEnabled = true                               
                             });
@@ -364,6 +377,14 @@ namespace InventoryApp.ViewModel.Recibo
                             for (int i = 0; i < o.Cantidad; i++)
                             {
                                 unid++;
+                                ItemStatusModel it1 = null;
+                                
+                                if (this.ItemStatus != null && this.ItemStatus.Count > 0)
+                                {
+                                    it1 = new ItemStatusModel(new ItemStatusDataMapper());
+                                    it1 = this.ItemStatus[0];
+                                }
+
                                 this.Items.Add(new ReciboItemModel()
                                 {
                                     Articulo = o.Articulo,
@@ -371,6 +392,7 @@ namespace InventoryApp.ViewModel.Recibo
                                     UnidMovimiento = this.UnidMovimiento,
                                     UnidItem = unid,
                                     UnidMovimientoDetalle = unid,
+                                    ItemStatus = it1,
                                     Cantidad = 1,
                                     //IsCantidadEnabled = o.IsSelected ? true : false
                                     IsCantidadEnabled = false

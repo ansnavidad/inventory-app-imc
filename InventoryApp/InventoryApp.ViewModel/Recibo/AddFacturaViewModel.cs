@@ -477,6 +477,13 @@ namespace InventoryApp.ViewModel.Recibo
                     this.CanSelecteProveedor = true;
                 }
             };
+
+            if (this._Proveedores != null && this._Proveedores.Count > 0)
+                this.SelectedProveedor = this._Proveedores[0];
+            if (this._Monedas != null && this._Monedas.Count > 0)
+                this.SelectedMoneda = this._Monedas[0];
+            if (this._TipoPedimentos != null && this._TipoPedimentos.Count > 0)
+                this.SelectedTipoPedimento = this._TipoPedimentos[0];           
         }
 
         private ObservableCollection<ProveedorModel> GetProveedores()

@@ -11,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
                 <ResourceDictionary>
                     <GridLength x:Key="descColWidth">120</GridLength>
                     <GridLength x:Key="captureColWidth">200</GridLength>
@@ -106,8 +107,8 @@
             </ListView>
             <TextBlock Height="23" HorizontalAlignment="Left" Margin="20,3,0,0" Text="Tipo de cambio" VerticalAlignment="Top" Grid.Row="4" />
             <TextBox HorizontalAlignment="Left" Text="{Binding TC, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="4" IsEnabled="{Binding Path=SelectedFactura.HasNotRecibo}" />
-            <Button Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Click="btnFacturaAdd_Click" Command="{Binding AddFacturaArticuloCommand}" Grid.Column="3" Margin="222,6,0,3" Grid.Row="6" />
-            <Button Content="Eliminar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,6,22,3" Command="{Binding DeleteFacturaArticuloCommand}" Grid.Column="4" Grid.Row="6"/>
+            <Button Style="{StaticResource btnElara}" Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Click="btnFacturaAdd_Click" Command="{Binding AddFacturaArticuloCommand}" Grid.Column="3" Margin="222,6,0,3" Grid.Row="6" />
+            <Button Style="{StaticResource btnElara}" Content="Eliminar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,6,22,3" Command="{Binding DeleteFacturaArticuloCommand}" Grid.Column="4" Grid.Row="6"/>
         </Grid>
     </Grid>
 </UserControl>

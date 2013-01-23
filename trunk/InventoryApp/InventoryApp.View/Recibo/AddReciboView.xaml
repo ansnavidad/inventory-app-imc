@@ -11,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
                 <ResourceDictionary>
                     <GridLength x:Key="descColWidth">120</GridLength>
                     <GridLength x:Key="captureColWidth">200</GridLength>
@@ -103,8 +104,8 @@
                 <Label  Style="{StaticResource titleLabel}" Content="Factura" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Width="AUTO" />
             </Border>
             <DockPanel Grid.Column="5" Grid.Row="0"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" >
-                <Button Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Click="btnFacturaAdd_Click" />
-                <Button Content="Eliminar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Command="{Binding DeleteFacturaCmd}" />
+                <Button Style="{StaticResource btnElara}" Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Click="btnFacturaAdd_Click" />
+                <Button Style="{StaticResource btnElara}" Content="Eliminar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Command="{Binding DeleteFacturaCmd}" />
             </DockPanel>
             <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.RowSpan="4"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding Facturas}" SelectedItem="{Binding SelectedFactura}" MouseDoubleClick="ListView_MouseDoubleClick" >
                 <ListView.View>
@@ -151,8 +152,8 @@
                 <Label  Style="{StaticResource titleLabel}" Content="Recibos" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Width="AUTO" />
             </Border>
             <DockPanel Grid.Column="5" Grid.Row="0"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" >
-                <Button Content="Agregar" Height="23" Width="75" HorizontalAlignment="Left" Click="Button_Click" Command="{Binding AddMvtoCmd}" />
-                <Button Content="Eliminar" Height="23" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Command="{Binding DeleteMvtoCmd}" />
+                <Button Style="{StaticResource btnElara}" Content="Agregar" Height="23" Width="75" HorizontalAlignment="Left" Click="Button_Click" Command="{Binding AddMvtoCmd}" />
+                <Button Style="{StaticResource btnElara}" Content="Eliminar" Height="23" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Command="{Binding DeleteMvtoCmd}" />
             </DockPanel>
             <ListView Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.RowSpan="4"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding Movimientos}">
                 <ListView.View>

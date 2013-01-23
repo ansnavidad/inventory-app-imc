@@ -11,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -27,18 +28,18 @@
         <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label  Style="{StaticResource titleLabel}" Content="CONSULTA ARTÍCULO " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <Button  Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="163,4,12,4" Name="btnNuevo" 
-                         VerticalAlignment="Stretch" Width="75" Grid.Column="2" Click="btnAgregar_Click" />
-        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Margin="77,0,98,0"
+        <Button  Content="Nuevo" Height="23" HorizontalAlignment="Center" Margin="163,4,12,3" Name="btnNuevo" 
+                         VerticalAlignment="Stretch" Width="75" Grid.Column="2" Click="btnAgregar_Click" Style="{StaticResource btnElara}" />
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Margin="77,4,98,3"
                     Name="btnEliminar" VerticalAlignment="Stretch" Grid.Column="2" Command="{Binding DeleteArticuloCommand,Mode=OneWay}"
-                    Width="75" Click="btnEliminar_Click"/>
+                    Width="75" Click="btnEliminar_Click" Style="{StaticResource btnElara}"/>
         
             <DataGrid Height="auto" AutoGenerateColumns="False" CanUserDeleteRows="False"
                   SelectedItem="{Binding CatalogArticuloModel.SelectedArticulo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                   CanUserAddRows="False" HorizontalAlignment="Stretch" Name="dtGridItems" 
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogArticuloModel.Articulos}" 
-                  MouseDoubleClick="dtGridItems_MouseDoubleClick" Grid.Row="2" Grid.ColumnSpan="3"
-                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+                  MouseDoubleClick="dtGridItems_MouseDoubleClick" Grid.ColumnSpan="3"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" Grid.Row="1">
                 <DataGrid.Columns>
                     <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
                     <DataGridTemplateColumn Header="" Width="Auto">

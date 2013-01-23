@@ -31,9 +31,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Agregar" Height="28" Width="90" HorizontalAlignment="Left" Click="Button_Click_1" Command="{Binding AddMovimientoCmd}" Margin="9,7,0,5" Style="{StaticResource bntElaraSimple}" />
-            <Button Grid.Column="1" Content="Imprimir" Command="{Binding AddImprimir}"  Height="28" Width="90" Style="{StaticResource bntElaraSimple}" />
-            <Button Grid.Column="2" Content="Cancelar" Height="28"  Width="90" HorizontalAlignment="Right" Margin="0,7,10,5" Click="Button_Click" Style="{StaticResource bntElaraSimple}" />
+            <Button Content="Agregar" Height="28" Width="90" HorizontalAlignment="Left" Click="Button_Click_1" Command="{Binding AddMovimientoCmd}" Margin="9,7,0,5" Style="{StaticResource btnElara}" />
+            <Button Grid.Column="1" Content="Imprimir" Command="{Binding AddImprimir}"  Height="28" Width="90" Style="{StaticResource btnElara}" />
+            <Button Grid.Column="2" Content="Cancelar" Height="28"  Width="90" HorizontalAlignment="Right" Margin="0,7,10,5" Click="Button_Click" Style="{StaticResource btnElara}" />
         </Grid>
     </Grid>
     <!--<DockPanel>

@@ -3,13 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:my="clr-namespace:InventoryApp.View.Recibo"
         Title="Agrupar Items" Height="354" Width="670" ResizeMode="NoResize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <DockPanel Height="324">
         <ContentControl HorizontalAlignment="Stretch" Name="contentControl1" VerticalAlignment="Stretch" DockPanel.Dock="Top">
             <my:MovimientoSelectArticuloView Height="264" />
         </ContentControl>
 
         <ContentControl HorizontalAlignment="Stretch" Name="contentControl2" VerticalAlignment="Stretch" DockPanel.Dock="Right" Width="289">
-            <Button Content="Aceptar" Height="23" Name="button1" Width="75" Click="button1_Click">
+            <Button Style="{StaticResource btnElara}" Content="Aceptar" Height="23" Name="button1" Width="75" Click="button1_Click">
             </Button>
         </ContentControl> 
     </DockPanel>

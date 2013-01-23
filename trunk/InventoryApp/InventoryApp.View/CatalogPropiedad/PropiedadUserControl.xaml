@@ -11,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -27,11 +28,11 @@
         <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label Style="{StaticResource titleLabel}" Content="CONSULTA PROPIEDAD" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <Button Content="Nuevo" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="164,3,12,5" Name="btnNuevo" 
-                VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click"  />
+        <Button Content="Nuevo" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="163,3,12,4" Name="btnNuevo" 
+                VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" Style="{StaticResource btnElara}" />
         <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Column="2"
-                    Name="btnEliminar" VerticalAlignment="Stretch" Margin="78,3,96,5"
-                    Width="75" Click="btnEliminar_Click" Command="{Binding DeletePropiedadCommand,Mode=OneWay}"/>
+                    Name="btnEliminar" VerticalAlignment="Stretch" Margin="78,3,96,4"
+                    Width="75" Click="btnEliminar_Click" Command="{Binding DeletePropiedadCommand,Mode=OneWay}" Style="{StaticResource btnElara}"/>
         <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridPropiedad"
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogPropiedadModel.Propiedad}"

@@ -4,6 +4,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Detalle Factura" Height="355" Width="350" ResizeMode="NoResize"
         SizeToContent="Manual" WindowState="Normal" WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <StackPanel>
         <ContentControl HorizontalAlignment="Stretch">
             <my:AddFacturaArticulo Loaded="AddFacturaArticulo_Loaded" />
@@ -13,12 +20,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Center" Command="{Binding AddMonedaCommand}" Click="btnFacturaAdd_Click" />
-            <Button Content="Cerrar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Center" Click="btnFacturaDel_Click" Grid.Column="1" />
+            <Button Style="{StaticResource btnElara}" Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Center" Command="{Binding AddMonedaCommand}" Click="btnFacturaAdd_Click" />
+            <Button Style="{StaticResource btnElara}" Content="Cerrar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Center" Click="btnFacturaDel_Click" Grid.Column="1" />
         </Grid>
-        <!--<DockPanel HorizontalAlignment="Stretch" >
-            <Button Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Command="{Binding AddMonedaCommand}" Click="btnFacturaAdd_Click" />
-            <Button Content="Cerrar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Click="btnFacturaDel_Click" />
-        </DockPanel>-->
     </StackPanel>
 </Window>

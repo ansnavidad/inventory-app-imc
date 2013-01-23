@@ -11,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -27,11 +28,11 @@
         <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label Style="{StaticResource titleLabel}" Content="CONSULTA MODELO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <Button Content="Nuevo" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="162,4,13,4" Name="btnNuevo" 
-                VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" />
+        <Button Content="Nuevo" Grid.Column="2" Height="23" HorizontalAlignment="Stretch" Margin="162,4,13,3" Name="btnNuevo" 
+                VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" Style="{StaticResource btnElara}" />
         <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Column="2"
                     Margin="74,0,101,0" Name="btnEliminar" VerticalAlignment="Stretch" Command="{Binding DeleteModeloCommand,Mode=OneWay}"
-                    Width="75" Click="btnEliminar_Click" />
+                    Width="75" Click="btnEliminar_Click" Style="{StaticResource btnElara}" />
         <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" CanUserDeleteRows="False" 
                   Name="dtGridModelo" VerticalAlignment="Stretch" ItemsSource="{Binding CatalogModeloModel.Modelos}" 
                   SelectedItem="{Binding CatalogModeloModel.SelectedModelo, Mode=TwoWay}" MouseDoubleClick="dtGridModelo_MouseDoubleClick"

@@ -30,8 +30,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button VerticalAlignment="Center" Content="Agregar" Command="{Binding AddMovimientoCmd}" Height="25" Width="90" HorizontalAlignment="Left" Click="Button_Click" Margin="10,7,0,7" Style="{StaticResource bntElaraSimple}" />
-            <Button VerticalAlignment="Center" Grid.Column="1" Content="Cancelar" Height="25"  Width="90" HorizontalAlignment="Right" Margin="0,7,10,7" Click="Button_Click_1" Style="{StaticResource bntElaraSimple}" />
+            <Button VerticalAlignment="Center" Content="Agregar" Command="{Binding AddMovimientoCmd}" Height="25" Width="90" HorizontalAlignment="Left" Click="Button_Click" Margin="10,7,0,7" Style="{StaticResource btnElara}" />
+            <Button VerticalAlignment="Center" Grid.Column="1" Content="Cancelar" Height="25"  Width="90" HorizontalAlignment="Right" Margin="0,7,10,7" Click="Button_Click_1" Style="{StaticResource btnElara}" />
         </Grid>
         
     </Grid>

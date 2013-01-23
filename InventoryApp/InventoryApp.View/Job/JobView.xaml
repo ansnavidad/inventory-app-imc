@@ -24,22 +24,22 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="110"/>
             </Grid.ColumnDefinitions>
             <Border  Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label  Style="{StaticResource titleLabel}" Content="CARGA DE ITEMS " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
             </Border>
-            <Button Command="{Binding JobCommand,Mode=OneWay}" Content="Ejecutar Carga" Grid.Column="2" Height="28"
+            <Button Command="{Binding JobCommand,Mode=OneWay}" Content="Ejecutar Carga" Grid.Column="2" Height="23"
                 HorizontalAlignment="Center" Margin="5,0" Name="btnCarga"
-                VerticalAlignment="Center" Width="90" Click="btnCarga_Click" />
-            <Button Command="{Binding JobCommand,Mode=OneWay}" Content="Abrir Carpeta" Grid.Column="3" Grid.Row="1" Height="28"
+                VerticalAlignment="Center" Width="100" Click="btnCarga_Click" Style="{StaticResource btnElara}" />
+            <Button Command="{Binding JobCommand,Mode=OneWay}" Content="Abrir Carpeta" Grid.Column="3" Grid.Row="1" Height="23"
                 HorizontalAlignment="Center" Margin="5,0" Name="btnRuta"
-                VerticalAlignment="Bottom" Width="90" Click="btnRuta_Click" />
-            <Button Command="{Binding ActualizarCommand,Mode=OneWay}" Content="Actualizar" Grid.Column="4" Height="28"
+                VerticalAlignment="Center" Width="100" Click="btnRuta_Click" Style="{StaticResource btnElara}" />
+            <Button Command="{Binding ActualizarCommand,Mode=OneWay}" Content="Actualizar" Grid.Column="4" Height="23"
                     HorizontalAlignment="Stretch" Margin="5,0" 
-                    Name="btnActualizar" VerticalAlignment="Center" Width="90" Click="btnActualizar_Click" />
+                    Name="btnActualizar" VerticalAlignment="Center" Width="100" Click="btnActualizar_Click" Style="{StaticResource btnElara}" />
         </Grid>
         <DataGrid AutoGenerateColumns="False" CanUserDeleteRows="False"                  
                   CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItems" 

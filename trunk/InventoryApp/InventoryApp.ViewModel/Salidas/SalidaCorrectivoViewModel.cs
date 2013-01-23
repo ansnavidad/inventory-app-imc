@@ -390,9 +390,9 @@ namespace InventoryApp.ViewModel.Salidas
 
             foreach (ItemModel item in this._itemModel.ItemModel)
             {
-                this._movimientoDetalleModel = new MovimientoDetalleModel(new MovimientoDetalleDataMapper(), this._movimientoModel.UnidMovimiento, item.UnidItem, item.CantidadMovimiento);
+                this._movimientoDetalleModel = new MovimientoDetalleModel(new MovimientoDetalleDataMapper(), this._movimientoModel.UnidMovimiento, item.UnidItem, item.CantidadMovimiento, item.UNID_ITEM_STATUS);
                 this._movimientoDetalleModel.saveArticulo();
-                this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem, this._movimientoModel.UnidAlmacenDestino, this._movimientoModel.UnidClienteDestino, this._movimientoModel.UnidProveedorDestino, this._movimientoDetalleModel.UnidMovimientoDetalle, item.CantidadMovimiento);
+                this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem, this._movimientoModel.UnidAlmacenDestino, this._movimientoModel.UnidClienteDestino, this._movimientoModel.UnidProveedorDestino, this._movimientoDetalleModel.UnidMovimientoDetalle, item.CantidadMovimiento, item.UNID_ITEM_STATUS);
                 this._ultimoMovimientoModel.updateArticulo(this.MovimientoModel.AlmacenProcedencia);
                 this._ultimoMovimientoModel.saveArticulo();
             }

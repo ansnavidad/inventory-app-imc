@@ -15,9 +15,6 @@ namespace InventoryApp.ViewModel.Recibo
 {
     public class ModifyFacturaViewModel : ViewModelBase, IFacturaViewModel, IViewModelChangeTrack
     {
-
-
-
         public FacturaCompraModel SelectedFactura
         {
             get

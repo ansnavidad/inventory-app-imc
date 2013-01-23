@@ -55,6 +55,9 @@ namespace InventoryApp.ViewModel.Recibo
 
                     //Cambiar el combo de articulo
                     this.Articulos = this.GetArticulosByCategoria(_SelectedCategoria);
+
+                    if (this._Articulos != null && this._Articulos.Count > 1)
+                        this.SelectedArticulo = this._Articulos[1];
                 }
             }
         }
@@ -253,6 +256,13 @@ namespace InventoryApp.ViewModel.Recibo
             this._Articulos = new ObservableCollection<ArticuloModel>();
             this._Unidades = this.GetUnidades();
             this._FacturaDetalle = new FacturaCompraDetalleModel();
+
+            if (this._Categorias != null && this._Categorias.Count > 1)
+                this.SelectedCategoria = this._Categorias[1];
+            if (this._Articulos != null && this._Articulos.Count > 1)
+                this.SelectedArticulo = this._Articulos[1];
+            if (this._Unidades != null && this._Unidades.Count > 1)
+                this.SelectedUnidad = this._Unidades[1];
         }
 
         private ObservableCollection<ArticuloModel> GetArticulosByCategoria(CategoriaModel categoria)

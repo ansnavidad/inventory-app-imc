@@ -97,6 +97,7 @@ namespace InventoryApp.Model
                 this._dataMapper = dataMapper as ItemStatusDataMapper;
             }
         }
+        public ItemStatusModel() { }
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -65,6 +65,10 @@ namespace InventoryApp.ViewModel.Recibo
             {
                 this.GetReciboData(this._CatalogReciboViewModel.SelectedRecibo.UnidRecibo);
                 this.Facturas= this.GetFacturas(this._CatalogReciboViewModel.SelectedRecibo.UnidRecibo);
+                
+                foreach (FacturaCompraModel ff in Facturas)
+                    ff.HasNotRecibo = false;
+
                 this.Movimientos = this.GetMovimientos(this._CatalogReciboViewModel.SelectedRecibo.UnidRecibo);
             }
         }

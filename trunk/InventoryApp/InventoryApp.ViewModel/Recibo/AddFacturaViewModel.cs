@@ -322,7 +322,7 @@ namespace InventoryApp.ViewModel.Recibo
         #region Constructors
         public AddFacturaViewModel()
         {
-            this.init();
+            this.init();            
         }
 
         public AddFacturaViewModel(AddReciboViewModel addReciboViewModel)
@@ -368,7 +368,7 @@ namespace InventoryApp.ViewModel.Recibo
         public bool CanAttemptAddFactura()
         {
             bool canAddFactura = false;
-
+            
             if (this._FacturaDetalles.Count > 0
                 && !String.IsNullOrEmpty(this.NumeroFactura)
                 && this._SelectedProveedor != null

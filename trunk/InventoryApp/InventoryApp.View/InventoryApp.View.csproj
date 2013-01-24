@@ -609,6 +609,9 @@
     <Compile Include="Recibo\DlgModifyFacturaView.xaml.cs">
       <DependentUpon>DlgModifyFacturaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Recibo\DlgModifyMovimientoView.xaml.cs">
+      <DependentUpon>DlgModifyMovimientoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Recibo\DlgModifyReciboView.xaml.cs">
       <DependentUpon>DlgModifyReciboView.xaml</DependentUpon>
     </Compile>
@@ -1371,6 +1374,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Recibo\DlgModifyFacturaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgModifyMovimientoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

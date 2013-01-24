@@ -200,6 +200,7 @@
     <Compile Include="Recibo\IFacturaArticuloViewModel.cs" />
     <Compile Include="Recibo\IFacturaViewModel.cs" />
     <Compile Include="Recibo\ModifyFacturaViewModel.cs" />
+    <Compile Include="Recibo\ModifyMovimientoViewModel.cs" />
     <Compile Include="Recibo\ModifyReciboViewModel.cs" />
     <Compile Include="Recibo\MovimientoSelectArticuloViewModel.cs" />
     <Compile Include="Recibo\ReciboViewModel.cs" />

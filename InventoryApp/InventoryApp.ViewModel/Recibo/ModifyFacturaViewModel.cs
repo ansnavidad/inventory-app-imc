@@ -424,7 +424,7 @@ namespace InventoryApp.ViewModel.Recibo
         public bool CanAttemptModifyFactura()
         {
             bool canAddFactura = false;
-            
+
             if (this._FacturaDetalles.Count > 0
                 && !String.IsNullOrEmpty(this.NumeroFactura)
                 && this._SelectedProveedor != null

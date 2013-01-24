@@ -176,7 +176,7 @@ namespace InventoryApp.ViewModel.Recibo
         {
             bool canAttempt = false;
 
-            if ((this.Facturas != null && this.Facturas.Count > 0)&&(this.Movimientos != null && this.Movimientos.Count > 0) && this.SelectedSolicitante!=null)
+            if ((this.Facturas != null && this.Facturas.Count > 0) && (this.Movimientos != null && this.Movimientos.Count > 0) && this.SelectedSolicitante != null && !string.IsNullOrEmpty(this.PO) && !string.IsNullOrEmpty(this.TroubleTicket))
             {
                 canAttempt = true;
             }
@@ -190,8 +190,6 @@ namespace InventoryApp.ViewModel.Recibo
                 
                 Msj2 = "";
             }
-
-
 
             return canAttempt;
         }
@@ -628,6 +626,21 @@ namespace InventoryApp.ViewModel.Recibo
         private FacturaCompraModel _SelectedFactura;
         public const string SelectedFacturaPropertyName = "SelectedFactura";
 
+        public Model.Recibo.MovimientoModel SelectedMovimiento
+        {
+            get { return _SelectedMovimiento; }
+            set
+            {
+                if (_SelectedMovimiento != value)
+                {
+                    _SelectedMovimiento = value;
+                    OnPropertyChanged(SelectedReciboPropertyName);
+                }
+            }
+        }
+        private Model.Recibo.MovimientoModel _SelectedMovimiento;
+        public const string SelectedReciboPropertyName = "SelectedMovimiento";
+
         public ObservableCollection<InventoryApp.Model.Recibo.MovimientoModel> Movimientos
         {
             get { return _Movimiento; }
@@ -823,6 +836,14 @@ namespace InventoryApp.ViewModel.Recibo
         {
             if (this.SelectedFactura != null)
                 return new ModifyFacturaViewModel(this.SelectedFactura);
+            else
+                return null;
+        }
+
+        public ModifyMovimientoViewModel CreateModifyMovimientoViewModel()
+        {
+            if (this.SelectedMovimiento != null)
+                return new ModifyMovimientoViewModel(this.SelectedMovimiento);
             else
                 return null;
         }

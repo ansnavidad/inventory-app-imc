@@ -68,5 +68,16 @@ namespace InventoryApp.View.Recibo
             }
         }
 
+        private void ListView_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+            DlgModifyMovimientoView dlgModifyMovimientoView = new DlgModifyMovimientoView();
+            AddReciboViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            ModifyMovimientoViewModel mfvm = viewModel.CreateModifyMovimientoViewModel();
+            if (mfvm != null)
+            {
+                dlgModifyMovimientoView.DataContext = mfvm;
+                dlgModifyMovimientoView.ShowDialog();
+            }
+        }
     }
 }

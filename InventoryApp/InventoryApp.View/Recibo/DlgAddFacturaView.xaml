@@ -18,15 +18,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="452*" />
             <RowDefinition Height="29" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="61" />
         </Grid.RowDefinitions>
+            <!--<DockPanel Grid.Row="0">-->
             <ScrollViewer Grid.Row="0" Height="AUTO" HorizontalAlignment="Stretch" Name="scrollViewer1" VerticalAlignment="Stretch" Width="AUTO" DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto">
                 <ContentControl HorizontalAlignment="Stretch" Name="contentControl1" VerticalAlignment="Stretch">
                     <my:AddFacturaView Height="452" />
                 </ContentControl>
             </ScrollViewer>
-        <Button VerticalAlignment="Center" Grid.Row="2" Name="btnAgregar" Content="Agregar" Height="28" Width="90" HorizontalAlignment="Left" Command="{Binding AddFacturaCommand}" Click="btnAgregar_Click" Style="{StaticResource btnElara}" Margin="9,11,0,11" />
-        <Button VerticalAlignment="Center" Grid.Row="2" Content="Cancelar" Height="28"  Width="90" HorizontalAlignment="Right" Click="Button_Click" Style="{StaticResource btnElara}" Margin="0,11,11,11" />
+        <Button VerticalAlignment="Center" Grid.Row="2" Name="btnAgregar" Content="Aceptar" Height="28" Width="90" HorizontalAlignment="Left" Command="{Binding AddFacturaCommand}" Click="btnAgregar_Click" Margin="12,20,0,13" Style="{StaticResource bntElaraSimple}" />
+        <Button VerticalAlignment="Center" Grid.Row="2" Content="Cancelar" Height="28"  Width="90" HorizontalAlignment="Right" Margin="0,21,12,12" Click="Button_Click" Style="{StaticResource bntElaraSimple}" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,6,0,0" Name="textBlockMensajito" Text="{Binding Path=Msj}" VerticalAlignment="Top" Grid.Row="1" FontFamily="Candara" FontWeight="Bold" FontSize="13" Foreground="#FFFF3B3B" />
     </Grid>
 </Window>

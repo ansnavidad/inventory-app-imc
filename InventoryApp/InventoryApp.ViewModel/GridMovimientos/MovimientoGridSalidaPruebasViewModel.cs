@@ -32,7 +32,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 IDataMapper dataMapper5 = new TipoPedimentoDataMapper();
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
-                this._catalogMovimientoModel = new CatalogMovimientoModel(new MovimientoDataMapper(), "Salidas", "Salidas");
+                this._catalogMovimientoModel = new CatalogMovimientoModel(new MovimientoDataMapper(), "Salida Pruebas");
                 TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
                 //mov.UNID_TIPO_MOVIMIENTO = 1;
                 //this._movimientoGridModel.TipoMovimiento = mov;

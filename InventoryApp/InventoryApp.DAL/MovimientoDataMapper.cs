@@ -154,8 +154,11 @@ namespace InventoryApp.DAL
 
                 return (object)res;
             }
-        }
+        }     
 
+        #region GetElements para los Grids de Movimientos (Salidas/Traspaso/Entradas)
+
+        //Ya no se usa
         public object getEntradasElements()
         {
             using (var Entity = new TAE2Entities())
@@ -163,7 +166,7 @@ namespace InventoryApp.DAL
                 Entity.SaveChanges();
 
                 var res = (from p in Entity.MOVIMENTOes
-                           select p).ToList();                
+                           select p).ToList();
 
                 List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -190,7 +193,7 @@ namespace InventoryApp.DAL
                         trans.TECNICO = trans.TECNICO;
                         trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
                         trans.TECNICO1 = trans.TECNICO1;
-                        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;                        
+                        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
                         final.Add(trans);
                     }
                 }
@@ -198,7 +201,7 @@ namespace InventoryApp.DAL
                 return (object)final;
             }
         }
-
+        //Ya no se usa
         public object getSalidasElements()
         {
             using (var Entity = new TAE2Entities())
@@ -211,6 +214,618 @@ namespace InventoryApp.DAL
                 foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
                 {
                     if (trans.UNID_TIPO_MOVIMIENTO > 4 && trans.UNID_TIPO_MOVIMIENTO < 16)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getEntradaValidacionElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                Entity.SaveChanges();
+
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 1)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getEntradaPrestamoElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                Entity.SaveChanges();
+
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 2)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getEntradaDevolucionElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                Entity.SaveChanges();
+
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 3)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getEntradaDesinstalacionElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                Entity.SaveChanges();
+
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 4)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getSalidaRentaElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 5)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getSalidaDemoElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 6)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getSalidaPrestamoElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 7)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getSalidaVentaElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 8)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getSalidaRMAElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 9)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getSalidaRevisionElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 10)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getSalidaPruebasElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 11)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getSalidaConfiguracionElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 12)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getSalidaObsequioElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 13)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getSalidaCorrectivoElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 14)
+                    {
+
+                        //Para conservar las prop. de navegación
+                        trans.ALMACEN = trans.ALMACEN;
+                        trans.ALMACEN1 = trans.ALMACEN1;
+                        trans.CLIENTE = trans.CLIENTE;
+                        trans.CLIENTE1 = trans.CLIENTE1;
+                        trans.CLIENTE2 = trans.CLIENTE2;
+                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                        trans.PROVEEDOR = trans.PROVEEDOR;
+                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                        trans.SERVICIO = trans.SERVICIO;
+                        trans.SOLICITANTE = trans.SOLICITANTE;
+                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                        trans.TRANSPORTE = trans.TRANSPORTE;
+                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                        trans.TECNICO = trans.TECNICO;
+                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                        trans.TECNICO1 = trans.TECNICO1;
+                        final.Add(trans);
+                    }
+                }
+
+                return (object)final;
+            }
+        }
+
+        public object getSalidaOfficeElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.MOVIMENTOes
+                           select p).ToList();
+
+                List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                {
+                    if (trans.UNID_TIPO_MOVIMIENTO == 15)
                     {
 
                         //Para conservar las prop. de navegación
@@ -278,6 +893,8 @@ namespace InventoryApp.DAL
                 return (object)final;
             }
         }
+
+        #endregion
 
         public object getElement(object element)
         {

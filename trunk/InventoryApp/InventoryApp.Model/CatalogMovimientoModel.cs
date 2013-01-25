@@ -71,7 +71,10 @@ namespace InventoryApp.Model
             }
             this.CatalogMovimiento = ic;
         }
+        
+        #region GetElements para los Grids de Movimientos (Salidas/Traspaso/Entradas)
 
+        //Ya no se usa
         public void loadItemsEntrada()
         {
             object element = this._dataMapper.getEntradasElements();
@@ -91,29 +94,7 @@ namespace InventoryApp.Model
             }
             this.CatalogMovimiento = ic;
         }
-
-
-        public void Updateitemsentrada()
-        {
-            object element = this._dataMapper.getEntradasElements();
-
-            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
-
-            if (element != null)
-            {
-                if (((List<MOVIMENTO>)element).Count > 0)
-                {
-                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
-                    {
-                        CatalogMovimiento aux = new CatalogMovimiento(item);
-                        ic.Add(aux);
-                    }
-                }
-            }
-            this.CatalogMovimiento = ic;
-        }
-
-
+        //Ya no se usa
         public void loadItemsSalida()
         {
             object element = this._dataMapper.getSalidasElements();
@@ -134,6 +115,306 @@ namespace InventoryApp.Model
             this.CatalogMovimiento = ic;
         }
 
+        public void loadItemsEntradaDesinstalacion()
+        {
+            object element = this._dataMapper.getEntradaDesinstalacionElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+        public void loadItemsEntradaDevolucion()
+        {
+            object element = this._dataMapper.getEntradaDevolucionElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+        public void loadItemsEntradaPrestamo()
+        {
+            object element = this._dataMapper.getEntradaPrestamoElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+        public void loadItemsEntradaValidacion()
+        {
+            object element = this._dataMapper.getEntradaValidacionElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+        public void loadItemsSalidaConfiguracion()
+        {
+            object element = this._dataMapper.getSalidaConfiguracionElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+        public void loadItemsSalidaCorrectivo()
+        {
+            object element = this._dataMapper.getSalidaCorrectivoElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+        public void loadItemsSalidaDemo()
+        {
+            object element = this._dataMapper.getSalidaDemoElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+        public void loadItemsSalidaObsequio()
+        {
+            object element = this._dataMapper.getSalidaObsequioElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+        public void loadItemsSalidaOffice()
+        {
+            object element = this._dataMapper.getSalidaOfficeElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+        public void loadItemsSalidaPrestamo()
+        {
+            object element = this._dataMapper.getSalidaPrestamoElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+        public void loadItemsSalidaPruebas()
+        {
+            object element = this._dataMapper.getSalidaPruebasElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+        public void loadItemsSalidaRenta()
+        {
+            object element = this._dataMapper.getSalidaRentaElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+        public void loadItemsSalidaRevision()
+        {
+            object element = this._dataMapper.getSalidaRevisionElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+        public void loadItemsSalidaRMA()
+        {
+            object element = this._dataMapper.getSalidaRMAElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+
+        public void loadItemsSalidaVenta()
+        {
+            object element = this._dataMapper.getSalidaVentaElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
+        
         public void loadItemsTraspaso()
         {
             object element = this._dataMapper.getTraspasos();
@@ -153,6 +434,8 @@ namespace InventoryApp.Model
             }
             this.CatalogMovimiento = ic;
         }
+
+        #endregion
 
         public CatalogMovimientoModel(IDataMapper dataMapper)
         {

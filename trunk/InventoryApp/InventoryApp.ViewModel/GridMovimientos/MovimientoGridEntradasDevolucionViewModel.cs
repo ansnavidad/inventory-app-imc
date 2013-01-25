@@ -183,7 +183,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
 
         public void updateItems()
         {
-            this.CatalogMovimientoModel.Updateitemsentrada();
+            this.CatalogMovimientoModel.loadItemsEntradaDevolucion();
         }
 
         public string PageName

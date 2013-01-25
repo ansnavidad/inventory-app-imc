@@ -360,6 +360,8 @@ namespace InventoryApp.ViewModel.Recibo
                     TipoPedimento = this.SelectedTipoPedimento
                     ,
                     HasNotRecibo = this.HasNotRecibo
+                    , 
+                    IsNew = true
                 };
                 this._AddReciboViewModel.Facturas.Add(factura);
             }

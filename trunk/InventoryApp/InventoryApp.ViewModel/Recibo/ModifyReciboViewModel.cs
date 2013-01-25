@@ -63,6 +63,7 @@ namespace InventoryApp.ViewModel.Recibo
         {
             if (this._CatalogReciboViewModel.SelectedRecibo != null)
             {
+                this._DelFacturas = new List<long>();
                 this.GetReciboData(this._CatalogReciboViewModel.SelectedRecibo.UnidRecibo);
                 this.Facturas= this.GetFacturas(this._CatalogReciboViewModel.SelectedRecibo.UnidRecibo);
                 
@@ -120,22 +121,32 @@ namespace InventoryApp.ViewModel.Recibo
                     UnidFactura = f.UNID_FACTURA,
                     FechaFactura = (DateTime)f.FECHA_FACTURA,
                     IsActive = f.IS_ACTIVE,
-                    IsChecked = false,
+                    IsChecked = false, 
+                    IsNew = false,
                     Moneda = new MonedaModel(null)
                     {
                         UnidMoneda = f.MONEDA.UNID_MONEDA,
                         MonedaName = f.MONEDA.MONEDA_NAME,
                         MonedaAbr = f.MONEDA.MONEDA_ABR
                     },
+                    TC = f.TC,
                     NumeroFactura = f.FACTURA_NUMERO,
                     FacturaDetalle = new ObservableCollection<FacturaCompraDetalleModel>(),
                     Proveedor = new ProveedorModel(null)
                     {
-                        UnidProveedor=f.PROVEEDOR.UNID_PROVEEDOR,
-                        ProveedorName=f.PROVEEDOR.PROVEEDOR_NAME
+                        UnidProveedor = f.PROVEEDOR.UNID_PROVEEDOR,
+                        ProveedorName = f.PROVEEDOR.PROVEEDOR_NAME
                     },
-                    PorIva=f.IVA_POR==null?0d:(double)f.IVA_POR,
-                    NumeroPedimento=f.NUMERO_PEDIMENTO
+                    PorIva = f.IVA_POR == null ? 0d : (double)f.IVA_POR,
+                    NumeroPedimento = f.NUMERO_PEDIMENTO,
+                    TipoPedimento = new TipoPedimentoModel(null) 
+                    { 
+                        UnidTipoPedimento = f.TIPO_PEDIMENTO.UNID_TIPO_PEDIMENTO,
+                        TipoPedimentoName = f.TIPO_PEDIMENTO.TIPO_PEDIMENTO_NAME,
+                        Clave = f.TIPO_PEDIMENTO.CLAVE,
+                        Nota = f.TIPO_PEDIMENTO.NOTA,
+                        Regimen = f.TIPO_PEDIMENTO.REGIMEN
+                    }
                 };
 
                 f.FACTURA_DETALLE.ToList().ForEach(fd => 
@@ -222,6 +233,7 @@ namespace InventoryApp.ViewModel.Recibo
                             Sku = md.ITEM.SKU,
                             NumeroSerie = md.ITEM.NUMERO_SERIE,
                             CostoUnitario = md.ITEM.COSTO_UNITARIO,
+                            Cantidad = md.ITEM.CANTIDAD, ItemStatus = new ItemStatusModel(null){ ItemStatusName = md.ITEM.ITEM_STATUS.ITEM_STATUS_NAME, UnidItemStatus = md.ITEM.ITEM_STATUS.UNID_ITEM_STATUS},
                             Articulo = new ArticuloModel()
                             {
                                 UnidArticulo = md.ITEM.ARTICULO.UNID_ARTICULO,
@@ -229,7 +241,12 @@ namespace InventoryApp.ViewModel.Recibo
                                 Categoria = md.ITEM.ARTICULO.CATEGORIA,
                                 Equipo = md.ITEM.ARTICULO.EQUIPO,
                                 Marca = md.ITEM.ARTICULO.MARCA,
-                                Modelo = md.ITEM.ARTICULO.MODELO
+                                Modelo = md.ITEM.ARTICULO.MODELO,
+                                EquipoModel = new EquipoModel(null) { 
+                                
+                                    EquipoName = md.ITEM.ARTICULO.EQUIPO.EQUIPO_NAME, 
+                                    UnidEquipo = md.ITEM.ARTICULO.EQUIPO.UNID_EQUIPO 
+                                }
                             }
                         });
 
@@ -294,7 +311,9 @@ namespace InventoryApp.ViewModel.Recibo
                         IVA_POR=item.PorIva,
                         UNID_MONEDA=item.Moneda.UnidMoneda,
                         UNID_PROVEEDOR=item.Proveedor.UnidProveedor,
-                        NUMERO_PEDIMENTO=item.NumeroPedimento
+                        NUMERO_PEDIMENTO=item.NumeroPedimento, 
+                        UNID_TIPO_PEDIMENTO = item.TipoPedimento.UnidTipoPedimento,
+                        TC = item.TC
                     });
 
                     //Generar Array para insertar/actualizar/eliminar las facturas
@@ -302,9 +321,11 @@ namespace InventoryApp.ViewModel.Recibo
                     foreach (FacturaCompraDetalleModel det in item.FacturaDetalle)
                     {
                         fds.Add(det.ConvertToPoco(det));
+                        fds[fds.Count - 1].UNID_FACTURA = item.UnidFactura;
                     }
 
-                    fcdDm.udpateElements(fds);
+                    if(fds.Count > 0)
+                        fcdDm.udpateElements(fds);
                 }
             }//end foreach
         }//end func

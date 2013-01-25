@@ -291,7 +291,8 @@ namespace InventoryApp.Model.Recibo
                     UNID_MONEDA = this._Moneda.UnidMoneda,
                     NUMERO_PEDIMENTO=this._NumeroPedimento,
                     IVA_POR=this._PorIva,
-                    TC = this._tc
+                    TC = this._tc, 
+                    UNID_TIPO_PEDIMENTO = this._TipoPedimento.UnidTipoPedimento 
                 });
             }
         }

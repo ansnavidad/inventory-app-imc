@@ -141,23 +141,29 @@ namespace InventoryApp.DAL
                                     COSTO_UNITARIO = md.ITEM.COSTO_UNITARIO,
                                     FACTURA_DETALLE = new FACTURA_DETALLE()
                                     {
-                                        FACTURA=md.ITEM.FACTURA_DETALLE.FACTURA,
-                                        UNID_FACTURA_DETALE=md.ITEM.UNID_FACTURA_DETALE,
-                                        CANTIDAD=md.ITEM.FACTURA_DETALLE.CANTIDAD,
-                                        DESCRIPCION=md.ITEM.FACTURA_DETALLE.DESCRIPCION,
-                                        IMPUESTO_UNITARIO=md.ITEM.FACTURA_DETALLE.IMPUESTO_UNITARIO,
-                                        NUMERO=md.ITEM.FACTURA_DETALLE.NUMERO
+                                        FACTURA = md.ITEM.FACTURA_DETALLE.FACTURA,
+                                        UNID_FACTURA_DETALE = md.ITEM.UNID_FACTURA_DETALE,
+                                        CANTIDAD = md.ITEM.FACTURA_DETALLE.CANTIDAD,
+                                        DESCRIPCION = md.ITEM.FACTURA_DETALLE.DESCRIPCION,
+                                        IMPUESTO_UNITARIO = md.ITEM.FACTURA_DETALLE.IMPUESTO_UNITARIO,
+                                        NUMERO = md.ITEM.FACTURA_DETALLE.NUMERO
                                     },
                                     NUMERO_SERIE = md.ITEM.NUMERO_SERIE,
                                     SKU = md.ITEM.SKU,
+                                    CANTIDAD = md.ITEM.CANTIDAD,
                                     ARTICULO = new ARTICULO()
                                     {
-                                        CATEGORIA=md.ITEM.ARTICULO.CATEGORIA,
-                                        MARCA=md.ITEM.ARTICULO.MARCA,
-                                        MODELO=md.ITEM.ARTICULO.MODELO,
-                                        EQUIPO=md.ITEM.ARTICULO.EQUIPO,
-                                        ARTICULO1=md.ITEM.ARTICULO.ARTICULO1,
-                                        UNID_ARTICULO=md.ITEM.ARTICULO.UNID_ARTICULO
+                                        CATEGORIA = md.ITEM.ARTICULO.CATEGORIA,
+                                        MARCA = md.ITEM.ARTICULO.MARCA,
+                                        MODELO = md.ITEM.ARTICULO.MODELO,
+                                        EQUIPO = md.ITEM.ARTICULO.EQUIPO,
+                                        ARTICULO1 = md.ITEM.ARTICULO.ARTICULO1,
+                                        UNID_ARTICULO = md.ITEM.ARTICULO.UNID_ARTICULO
+                                    },
+                                    ITEM_STATUS = new ITEM_STATUS()
+                                    {
+                                        ITEM_STATUS_NAME = md.ITEM.ITEM_STATUS.ITEM_STATUS_NAME,
+                                        UNID_ITEM_STATUS = md.ITEM.ITEM_STATUS.UNID_ITEM_STATUS
                                     }
                                 }
                             });

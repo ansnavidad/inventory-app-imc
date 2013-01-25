@@ -338,8 +338,8 @@ namespace InventoryApp.ViewModel.Recibo
         public void init()
         {
             this.Msj1 = "";
-            this.IsModified = false;
-            this.IsNew = false;
+            this.IsModified = _SelectedFactura.IsModified;            
+            this.IsNew = _SelectedFactura.IsNew;
             this.PropertyChanged += delegate(object sender, PropertyChangedEventArgs eventArgs)
             {
                 this.IsModified = true;
@@ -413,7 +413,7 @@ namespace InventoryApp.ViewModel.Recibo
                 this._SelectedFactura.NumeroPedimento = this.NumeroPedimento;
                 this._SelectedFactura.PorIva = this.PorIva;
                 this._SelectedFactura.Proveedor = this.SelectedProveedor;
-                this._SelectedFactura.IsNew = false;
+                this._SelectedFactura.IsNew = this.IsNew;
                 this._SelectedFactura.IsModified = this.IsModified;
                 this._SelectedFactura.FacturaDetalle = this.FacturaDetalles;
                 this._SelectedFactura.TC = this.TC;

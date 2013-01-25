@@ -153,19 +153,104 @@ namespace InventoryApp.DAL.Recibo
         {
             using (var entity = new TAE2Entities())
             {
-                foreach (FACTURA_DETALLE fd in listFd)
-                {
-                    var res = entity.FACTURA_DETALLE.First(o => o.UNID_FACTURA_DETALE == fd.UNID_FACTURA_DETALE);
-                    res.UNID_UNIDAD=fd.UNID_UNIDAD;
-                    res.UNID_ARTICULO=fd.UNID_ARTICULO;
-                    res.UNID_FACTURA=fd.UNID_FACTURA;
-                    res.PRECIO_UNITARIO=fd.PRECIO_UNITARIO;
-                    res.NUMERO=fd.NUMERO;
-                    res.IMPUESTO_UNITARIO = fd.IMPUESTO_UNITARIO;
-                    res.CANTIDAD = fd.CANTIDAD;
-                    res.IS_ACTIVE = fd.IS_ACTIVE;
+                //ELIMINAR
+                long UnidFactura = listFd[0].UNID_FACTURA;
 
+                var resFacs = (from c in entity.FACTURA_DETALLE
+                               where c.UNID_FACTURA == UnidFactura
+                               select c).ToList();
+
+                List<long> index = new List<long>();
+
+                for (int i = 0; i < resFacs.Count; i++) {
+                    bool aux = true;
+                    for (int j = 0; j < listFd.Count; j++) {
+                        if (resFacs[i].UNID_FACTURA_DETALE == listFd[j].UNID_FACTURA_DETALE)
+                            aux = false;
+                    }
+                    if (aux)
+                        index.Add(resFacs[i].UNID_FACTURA_DETALE);
+                }
+
+                foreach (long l in index) {
+                    var quiteE = (from c in entity.FACTURA_DETALLE
+                                  where c.UNID_FACTURA_DETALE == l
+                                  select c).First();
+
+                    quiteE.IS_ACTIVE = false;
+                    quiteE.IS_MODIFIED = true;
+                    //Sync
+                    quiteE.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
+             
+                    var quiteI = (from c in entity.ITEMs
+                                  where c.UNID_FACTURA_DETALE == l
+                                  select c).ToList();
+                    foreach (ITEM ii in quiteI) {
+                        ii.IS_ACTIVE = false;
+                        ii.IS_MODIFIED = true;
+                        //Sync
+                        ii.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSynccc = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                    }
+                }
+
+                entity.SaveChanges();
+
+                //UPSERT              
+                var FacDCheck = (from c in entity.FACTURA_DETALLE                               
+                                 select c).ToList();
+                foreach (FACTURA_DETALLE ff in listFd) {
+                    bool aux = false;
+                    foreach (FACTURA_DETALLE dd in FacDCheck) {
+                        if (ff.UNID_FACTURA_DETALE == dd.UNID_FACTURA_DETALE)
+                            aux = true;
+                    }
+
+                    //UPDATE
+                    if (aux)
+                    {
+                        var FacUp= (from c in entity.FACTURA_DETALLE
+                                    where c.UNID_FACTURA_DETALE == ff.UNID_FACTURA_DETALE
+                                    select c).First();
+
+                        FacUp.UNID_UNIDAD = ff.UNID_UNIDAD;
+                        FacUp.UNID_PEDIMENTO = ff.UNID_PEDIMENTO;
+                        FacUp.UNID_FACTURA_DETALE = ff.UNID_FACTURA_DETALE;
+                        FacUp.UNID_FACTURA = ff.UNID_FACTURA;
+                        FacUp.UNID_ARTICULO = ff.UNID_ARTICULO;
+                        FacUp.PRECIO_UNITARIO = ff.PRECIO_UNITARIO;
+                        FacUp.NUMERO = ff.NUMERO;
+                        FacUp.IMPUESTO_UNITARIO = ff.IMPUESTO_UNITARIO;
+                        FacUp.DESCRIPCION = ff.DESCRIPCION;
+                        FacUp.CANTIDAD = ff.CANTIDAD;
+                        FacUp.IS_ACTIVE = true;
+                        FacUp.IS_MODIFIED = true;
+                        
+                        //Sync
+                        FacUp.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                    }
+                    //INSERT
+                    else {
+
+                        ff.IS_MODIFIED = true;
+                        ff.IS_ACTIVE = true;
+
+                        //Sync
+                        ff.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();                       
+                        entity.FACTURA_DETALLE.AddObject(ff);
+
+                        entity.SaveChanges();
+                    }
                 }
             }
         }

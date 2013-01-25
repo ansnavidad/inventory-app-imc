@@ -359,22 +359,7 @@ namespace InventoryApp.Model
                 this.Lugar = "Cliente: " + cliente.CLIENTE1;
             }
         }
-
-        public UltimoMovimientoModel(IDataMapper dataMapper, long item, long? almacen, long? cliente, long? proveedor, long? movDet, int cantidad)
-        {
-            this._unidItem = item;
-            this._unidAlmacen = almacen;
-            this._unidCliente = cliente;
-            this._unidProveedor = proveedor;
-            this._unidInfraestructura = null;
-            this._unidMovimientoDetalle = movDet;
-            this._cantidad = cantidad;
-            if ((dataMapper as UltimoMovimientoDataMapper) != null)
-            {
-                this._dataMapper = dataMapper as UltimoMovimientoDataMapper;
-            }
-        }
-
+        
         public UltimoMovimientoModel(IDataMapper dataMapper, long item, long? almacen, long? cliente, long? proveedor, long? movDet, int cantidad, long? unidItemStatus)
         {
             this._unidItem = item;
@@ -391,7 +376,7 @@ namespace InventoryApp.Model
             }
         }
 
-        public UltimoMovimientoModel(IDataMapper dataMapper, long item, long? movDet, int cantidad, long? infra)
+        public UltimoMovimientoModel(IDataMapper dataMapper, long item, long? movDet, int cantidad, long? infra, long? itemStatus)
         {
             this._unidItem = item;
             this._unidAlmacen = null;
@@ -400,6 +385,7 @@ namespace InventoryApp.Model
             this._unidInfraestructura = infra;
             this._unidMovimientoDetalle = movDet;
             this._cantidad = cantidad;
+            this._unidItemStatus = itemStatus;
             if ((dataMapper as UltimoMovimientoDataMapper) != null)
             {
                 this._dataMapper = dataMapper as UltimoMovimientoDataMapper;

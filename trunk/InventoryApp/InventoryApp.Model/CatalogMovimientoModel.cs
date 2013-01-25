@@ -75,26 +75,26 @@ namespace InventoryApp.Model
         #region GetElements para los Grids de Movimientos (Salidas/Traspaso/Entradas)
 
         //Ya no se usa
-        public void loadItemsEntrada()
-        {
-            object element = this._dataMapper.getEntradasElements();
+        //public void loadItemsEntrada()
+        //{
+        //    object element = this._dataMapper.getEntradasElements();
 
-            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+        //    FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
 
-            if (element != null)
-            {
-                if (((List<MOVIMENTO>)element).Count > 0)
-                {
-                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
-                    {
-                        CatalogMovimiento aux = new CatalogMovimiento(item);
-                        ic.Add(aux);
-                    }
-                }
-            }
-            this.CatalogMovimiento = ic;
-        }
-        //Ya no se usa
+        //    if (element != null)
+        //    {
+        //        if (((List<MOVIMENTO>)element).Count > 0)
+        //        {
+        //            foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+        //            {
+        //                CatalogMovimiento aux = new CatalogMovimiento(item);
+        //                ic.Add(aux);
+        //            }
+        //        }
+        //    }
+        //    this.CatalogMovimiento = ic;
+        //}
+
         public void loadItemsSalida()
         {
             object element = this._dataMapper.getSalidasElements();
@@ -445,22 +445,47 @@ namespace InventoryApp.Model
             this.loadItems();
         }
 
-        public CatalogMovimientoModel(IDataMapper dataMapper, string opc)
+        //Constructor Entradas/Salidas
+        public CatalogMovimientoModel(IDataMapper dataMapper, string name)
         {
             this._dataMapper = new MovimientoDataMapper();
             this._catalogMovimiento = new FixupCollection<CatalogMovimiento>();
             this._selectedMovimiento = new MOVIMENTO();
-            this.loadItemsEntrada();
-        }
 
-        public CatalogMovimientoModel(IDataMapper dataMapper, string opc, string opan)
-        {
-            this._dataMapper = new MovimientoDataMapper();
-            this._catalogMovimiento = new FixupCollection<CatalogMovimiento>();
-            this._selectedMovimiento = new MOVIMENTO();
-            this.loadItemsSalida();
+            if (name.Equals("Entrada Validación/Entrada"))
+                this.loadItemsEntradaValidacion();
+            else if (name.Equals("Entrada Prestamo"))
+                this.loadItemsEntradaPrestamo();
+            else if (name.Equals("Entrada Devolucion"))
+                this.loadItemsEntradaDevolucion();
+            else if (name.Equals("Entrada Desinstalacion"))
+                this.loadItemsEntradaDesinstalacion();
+            else if (name.Equals("Salida Renta"))
+                this.loadItemsSalidaRenta();
+            else if (name.Equals("Salida Demo"))
+                this.loadItemsSalidaDemo();
+            else if (name.Equals("Salida Prestamo"))
+                this.loadItemsSalidaPrestamo();
+            else if (name.Equals("Salida Venta"))
+                this.loadItemsSalidaVenta();
+            else if (name.Equals("Salida RMA"))
+                this.loadItemsSalidaRMA();
+            else if (name.Equals("Salida Revision"))
+                this.loadItemsSalidaRevision();
+            else if (name.Equals("Salida Pruebas"))
+                this.loadItemsSalidaPruebas();
+            else if (name.Equals("Salida Configuración"))
+                this.loadItemsSalidaConfiguracion();
+            else if (name.Equals("Salida Obsequio"))
+                this.loadItemsSalidaObsequio();
+            else if (name.Equals("Salida Correctivo"))
+                this.loadItemsSalidaCorrectivo();
+            else if (name.Equals("Entregado"))
+                this.loadItemsSalidaOffice();
+            else if (name.Equals("SALIDAS"))
+                this.loadItemsSalida();
         }
-
+        //Constructor Traspasos
         public CatalogMovimientoModel(IDataMapper dataMapper, int i)
         {
             this._dataMapper = new MovimientoDataMapper();

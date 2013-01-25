@@ -272,7 +272,7 @@ namespace InventoryApp.Model
                 }
             }
         }
-
+         
         public void saveArticulo()
         {
             if (_dataMapper != null)

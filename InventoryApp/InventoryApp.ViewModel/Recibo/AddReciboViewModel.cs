@@ -30,6 +30,19 @@ namespace InventoryApp.ViewModel.Recibo
         }
         private RelayCommand _AddMovimientoCmd;
 
+        public ICommand AddMovimientoCmd2
+        {
+            get
+            {
+                if (_AddMovimientoCmd2 == null)
+                {
+                    _AddMovimientoCmd2 = new RelayCommand(p => this.AttemptAddMovimientoCmd2(), p => this.CanAttemptAddMovimientoCmd2());
+                }
+                return _AddMovimientoCmd2;
+            }
+        }
+        private RelayCommand _AddMovimientoCmd2;
+
         private void AttemptAddMovimientoCmd()
         {
             LoteModel lot = new LoteModel(new LoteDataMapper());
@@ -194,6 +207,188 @@ namespace InventoryApp.ViewModel.Recibo
             return canAttempt;
         }
 
+        private void AttemptAddMovimientoCmd2()
+        {
+            if (System.Windows.MessageBox.Show("¿Está seguro que desea finalizar el recibo actual? No se podrá editar posteriormente.", "Captura de Recibo", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
+            {
+                LoteModel lot = new LoteModel(new LoteDataMapper());
+                lot.UnidLote = UNID.getNewUNID();
+                lot.UnidPOM = UNID.getNewUNID();
+                lot.saveLote();
+                //factura
+                foreach (FacturaCompraModel item in this.Facturas)
+                {
+                    item.UnidLote = lot.UnidLote;
+                    item.UnidFactura = UNID.getNewUNID();                    
+                    item.saveFactura();
+                    //factura detalle
+                    foreach (FacturaCompraDetalleModel fac in item.FacturaDetalle)
+                    {
+                        fac.Factura = item;
+                        fac.saveFacturaDetalle();
+                    }
+                }
+
+                //Agregar recibo
+                DAL.POCOS.RECIBO recibo = new DAL.POCOS.RECIBO()
+                {
+
+                    UNID_RECIBO = this.UnidRecibo,
+                    FECHA_CREACION = this.FechaCreacion,
+                    TT = this.TroubleTicket,
+                    PO = this.PO,
+                    UNID_SOLICITANTE = (this.SelectedSolicitante.UnidSolicitante == 0) ? (long?)null : this.SelectedSolicitante.UnidSolicitante
+                };
+                ReciboDataMapper reciboDataMapper = new ReciboDataMapper();
+                reciboDataMapper.insertElement(recibo);
+
+
+                foreach (InventoryApp.Model.Recibo.MovimientoModel mov in this.Movimientos)
+                {
+                    //Agregar movimiento
+                    DAL.POCOS.MOVIMENTO movimiento = new MOVIMENTO()
+                    {
+                        UNID_MOVIMIENTO = mov.UnidMovimiento
+                        ,
+                        FECHA_MOVIMIENTO = mov.FechaCaptura
+                        ,
+                        UNID_ALMACEN_DESTINO = (mov.DestinoAlmacen != null) ? mov.DestinoAlmacen.UnidAlmacen : (long?)null
+                        ,
+                        UNID_ALMACEN_PROCEDENCIA = (mov.OrigenAlmacen != null) ? mov.OrigenAlmacen.UnidAlmacen : (long?)null
+                        ,
+                        UNID_CLIENTE_PROCEDENCIA = (mov.OrigenCliente != null) ? mov.OrigenCliente.UnidCliente : (long?)null
+                        ,
+                        UNID_PROVEEDOR_PROCEDENCIA = (mov.OrigenProveedor != null) ? mov.OrigenProveedor.UnidProveedor : (long?)null
+                        ,
+                        TT = this.TroubleTicket
+                        ,
+                        UNID_TIPO_MOVIMIENTO = MovimientoRecibo
+                        , 
+                        FINISHED = true
+                    };
+                    MovimientoDataMapper movDataMapper = new MovimientoDataMapper();
+                    movDataMapper.insertElement(movimiento);
+
+                    foreach (InventoryApp.Model.Recibo.ReciboItemModel item in mov.Items)
+                    {
+                        long? aux = null;
+                        if (item.ItemStatus != null)
+                            aux = item.ItemStatus.UnidItemStatus;
+
+                        //Agregar el item
+                        DAL.POCOS.ITEM pItem = new DAL.POCOS.ITEM()
+                        {
+                            UNID_ITEM = item.UnidItem
+                            ,
+                            SKU = item.Sku
+                            ,
+                            NUMERO_SERIE = item.NumeroSerie
+                            ,
+                            UNID_ITEM_STATUS = aux
+                            ,
+                            COSTO_UNITARIO = item.CostoUnitario
+                            ,
+                            UNID_FACTURA_DETALE = item.FacturaDetalle.UnidFacturaCompraDetalle
+                            ,
+                            UNID_ARTICULO = item.Articulo.UnidArticulo
+                            ,
+                            PEDIMENTO_EXPO = item.PedimentoExpo
+                            ,
+                            PEDIMENTO_IMPO = item.PedimentoImpo
+                            ,
+                            CANTIDAD = item.Cantidad
+                            ,
+                            IS_ACTIVE = true
+                        };
+                        ItemDataMapper itemDataMapper = new ItemDataMapper();
+                        itemDataMapper.insertElement(pItem);
+
+                        //Agregar detalle del movimiento
+                        DAL.POCOS.MOVIMIENTO_DETALLE movDetalle = new DAL.POCOS.MOVIMIENTO_DETALLE()
+                        {
+                            UNID_MOVIMIENTO = mov.UnidMovimiento
+                            ,
+                            UNID_ITEM = item.UnidItem
+                            ,
+                            UNID_MOVIMIENTO_DETALLE = item.UnidMovimientoDetalle
+                            ,
+                            CANTIDAD = item.Cantidad
+                            ,
+                            UNID_ITEM_STATUS = item.ItemStatus.UnidItemStatus
+                            ,
+                            IS_ACTIVE = true
+                        };
+                        MovimientoDetalleDataMapper mdDataMapper = new MovimientoDetalleDataMapper();
+                        mdDataMapper.insertElement(movDetalle);
+
+                        //Actualizar el último movimiento
+                        DAL.POCOS.ULTIMO_MOVIMIENTO ulitmoMovto = new DAL.POCOS.ULTIMO_MOVIMIENTO()
+                        {
+                            UNID_ITEM = item.UnidItem,
+                            UNID_ALMACEN = mov.DestinoAlmacen.UnidAlmacen,
+                            UNID_MOVIMIENTO_DETALLE = item.UnidMovimientoDetalle,
+                            CANTIDAD = item.Cantidad,
+                            UNID_ITEM_STATUS = item.ItemStatus.UnidItemStatus,
+                            IS_ACTIVE = true
+                        };
+                        UltimoMovimientoDataMapper umDataMapper = new UltimoMovimientoDataMapper();
+                        umDataMapper.udpateElement(ulitmoMovto);
+                    }
+
+                    //Agregar recibodetalle
+                    DAL.POCOS.RECIBO_MOVIMIENTO rm = new DAL.POCOS.RECIBO_MOVIMIENTO()
+                    {
+                        UNID_RECIBO = this._UnidRecibo,
+                        UNID_RECIBO_MOVIMIENTO = mov.UnidMovimiento,
+                        UNID_MOVIMIENTO = mov.UnidMovimiento,
+                        UNID_FACTURA = mov.Items.First().FacturaDetalle.Factura.UnidFactura
+                    };
+                    ReciboMovimientoDataMapper rmDataMaper = new ReciboMovimientoDataMapper();
+                    rmDataMaper.insertElement(rm);
+                }
+
+                if (this._CatalogReciboViewModel != null)
+                {
+                    this._CatalogReciboViewModel.updateCollection();
+                }
+            }
+        }
+
+        private bool CanAttemptAddMovimientoCmd2()
+        {
+            bool canAttempt = false;
+
+            if ((this.Facturas != null && this.Facturas.Count > 0) && (this.Movimientos != null && this.Movimientos.Count > 0) && this.SelectedSolicitante != null && !string.IsNullOrEmpty(this.PO) && !string.IsNullOrEmpty(this.TroubleTicket))
+            {
+                canAttempt = true;
+            }
+
+            if (this.Facturas.Count > this.Movimientos.Count)
+            {
+                Msj2 = "Favor de relacionar cada factura a un Movimiento de Recibo.";
+                return false;
+            }
+            else
+            {
+
+                Msj2 = "";
+            }
+
+            if (canAttempt) {
+
+                foreach(Model.Recibo.MovimientoModel mm in this.Movimientos) {
+
+                    foreach (ReciboItemModel rr in mm.Items) {
+
+                        if (string.IsNullOrEmpty(rr.Sku) || string.IsNullOrEmpty(rr.NumeroSerie))
+                            return false;
+                    }
+                }
+            }
+
+            return canAttempt;
+        }
+
         //AgregarMovimiento
         public ICommand AddMvtoCmd
         {
@@ -257,7 +452,7 @@ namespace InventoryApp.ViewModel.Recibo
                      on o.Factura.UnidFactura equals f.UnidFactura
                      where f.IsChecked == true
                      select o).ToList().ForEach(o =>
-                     {
+                     {                         
                          this.Movimientos.Remove(o);
                      });
                 }
@@ -272,7 +467,11 @@ namespace InventoryApp.ViewModel.Recibo
             {
                 (from o in this.Facturas
                  where o.IsChecked == true
-                 select o).ToList().ForEach(o => this.Facturas.Remove(o));
+                 select o).ToList().ForEach(o => 
+                 { 
+                     this.Facturas.Remove(o);
+                     this._DelFacturas.Add(o.UnidFactura);
+                 });
             }
             catch (Exception)
             {
@@ -550,7 +749,22 @@ namespace InventoryApp.ViewModel.Recibo
         }
         protected string _msj2;
         public const string Msj2PropertyName = "Msj2";
-        
+
+        public List<long> DelFacturas
+        {
+            get { return _DelFacturas; }
+            set
+            {
+                if (_DelFacturas != value)
+                {
+                    _DelFacturas = value;
+                    OnPropertyChanged(DelFacturasPropertyName);
+                }
+            }
+        }
+        protected List<long> _DelFacturas;
+        public const string DelFacturasPropertyName = "DelFacturas";
+
         public ObservableCollection<PedimentoModel> Pedimentos
         {
             get { return _Pedimentos; }
@@ -678,6 +892,7 @@ namespace InventoryApp.ViewModel.Recibo
 
         public void init()
         {
+            this._DelFacturas = new List<long>();
             this._Solicitantes = new ObservableCollection<SolicitanteModel>();//this.GetSolicitantes();
             this._Clientes = this.GetClientes();
             this._Facturas = new ObservableCollection<FacturaCompraModel>();

@@ -151,8 +151,16 @@ namespace InventoryApp.DAL.Recibo
                         MONEDA=rm.FACTURA.MONEDA,
                         PROVEEDOR=rm.FACTURA.PROVEEDOR,
                         IVA_POR=rm.FACTURA.IVA_POR,
-                        NUMERO_PEDIMENTO=rm.FACTURA.NUMERO_PEDIMENTO,
-                        
+                        NUMERO_PEDIMENTO=rm.FACTURA.NUMERO_PEDIMENTO, 
+                        TC = rm.FACTURA.TC,
+                        TIPO_PEDIMENTO = new TIPO_PEDIMENTO() 
+                        {
+                            TIPO_PEDIMENTO_NAME = rm.FACTURA.TIPO_PEDIMENTO.TIPO_PEDIMENTO_NAME,
+                            UNID_TIPO_PEDIMENTO = rm.FACTURA.TIPO_PEDIMENTO.UNID_TIPO_PEDIMENTO,
+                            REGIMEN = rm.FACTURA.TIPO_PEDIMENTO.REGIMEN,
+                            CLAVE = rm.FACTURA.TIPO_PEDIMENTO.CLAVE,
+                            NOTA = rm.FACTURA.TIPO_PEDIMENTO.NOTA 
+                        }
                     });
                 });
             }

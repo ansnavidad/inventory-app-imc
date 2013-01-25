@@ -15,8 +15,10 @@
             <my:AddReciboView />
         </ContentControl>
         <DockPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" DockPanel.Dock="Bottom" Height="34">
-            <Button Style="{StaticResource btnElara}" Content="Guardar"  Height="23" Width="75" HorizontalAlignment="Left" Click="Button_Click" Command="{Binding ModifyReciboCmd}"/>
-            <Button Style="{StaticResource btnElara}" Content="Cancelar" Height="23"  Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Click="Button_Click_1" />
+            <Button Style="{StaticResource btnElara}" Content="Guardar Avance"  Height="23" Width="126" HorizontalAlignment="Center" Click="Button_Click" Command="{Binding ModifyReciboCmd}"/>
+            <Button Command="{Binding AddMovimientoCmd2}" Content="Guardar y finalizar" Height="25" Style="{StaticResource btnElara}" Width="126" HorizontalAlignment="Center" Click="Button_Click_2" />
+            <Button Style="{StaticResource btnElara}" Content="Cancelar" Height="23"  Width="75" HorizontalAlignment="Center" Click="Button_Click_1" />
+            
         </DockPanel>
     </DockPanel>
 </Window>

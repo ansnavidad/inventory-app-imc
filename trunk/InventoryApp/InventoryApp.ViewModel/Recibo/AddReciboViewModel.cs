@@ -454,6 +454,7 @@ namespace InventoryApp.ViewModel.Recibo
                      select o).ToList().ForEach(o =>
                      {                         
                          this.Movimientos.Remove(o);
+                         this._DelMovs.Add(o.UnidMovimiento);
                      });
                 }
                 catch (Exception)
@@ -518,11 +519,10 @@ namespace InventoryApp.ViewModel.Recibo
 
         private void AttemptDeleteMvtoCmd()
         {
-            //eliminar facturas
             try
             {
                 for (int i = 0; i < this.Movimientos.Count; ) {
-
+                    
                     if (this.Movimientos[i].IsChecked == true)
                     {
                         Model.Recibo.MovimientoModel aux = new Model.Recibo.MovimientoModel();
@@ -533,6 +533,7 @@ namespace InventoryApp.ViewModel.Recibo
                          select o).ToList().ForEach(o => o.HasNotRecibo = true);
 
                         this.Movimientos.Remove(aux);
+                        this._DelMovs.Add(aux.UnidMovimiento);
                     } else {
                 
                         i++;
@@ -764,6 +765,21 @@ namespace InventoryApp.ViewModel.Recibo
         }
         protected List<long> _DelFacturas;
         public const string DelFacturasPropertyName = "DelFacturas";
+
+        public List<long> DelMovs
+        {
+            get { return _DelMovs; }
+            set
+            {
+                if (_DelMovs != value)
+                {
+                    _DelMovs = value;
+                    OnPropertyChanged(DelMovsPropertyName);
+                }
+            }
+        }
+        protected List<long> _DelMovs;
+        public const string DelMovsPropertyName = "DelMovs";
 
         public ObservableCollection<PedimentoModel> Pedimentos
         {

@@ -208,6 +208,42 @@ namespace InventoryApp.DAL.Recibo
             }
         }
 
+        public void deleteFacturas(List<long> FacturasEliminadas) {
+
+            using (var entity = new TAE2Entities())
+            {
+                List<long> FacturasAeliminar = new List<long>();
+
+                var res = (from fact in entity.FACTURAs
+                           select fact.UNID_FACTURA).ToList();
+                for (int i = 0; i < FacturasEliminadas.Count; i++) {
+
+                    for (int j = 0; j < res.Count; j++) {
+
+                        if (FacturasEliminadas[i] == res[j]) {
+
+                            FacturasAeliminar.Add(FacturasEliminadas[i]);
+                        }
+                    }
+                }
+
+                foreach (long l in FacturasAeliminar) {
+
+                    var del = (from f in entity.FACTURAs
+                               where f.UNID_FACTURA == l
+                               select f).First();
+
+                    del.IS_ACTIVE = false;
+                    del.IS_MODIFIED = true;
+                    
+                    //Sync
+                    del.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                }
+            }
+        }
 
         public List<FACTURA> getFacturabyProveedores(List<PROVEEDOR> proveedores)
         {

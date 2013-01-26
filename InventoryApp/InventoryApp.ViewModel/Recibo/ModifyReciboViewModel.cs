@@ -274,7 +274,7 @@ namespace InventoryApp.ViewModel.Recibo
             LoteModel lot=null;
             FacturaCompraDataMapper fcdmp = new FacturaCompraDataMapper();
             FacturaCompraDetalleDataMapper fcdDm = new FacturaCompraDetalleDataMapper();
-
+            
             //Guardar
             foreach (FacturaCompraModel item in this.Facturas)
             {
@@ -316,7 +316,7 @@ namespace InventoryApp.ViewModel.Recibo
                         TC = item.TC
                     });
 
-                    //Generar Array para insertar/actualizar/eliminar las facturas
+                    //Generar Array para insertar/actualizar/eliminar las factura detalle
                     List<FACTURA_DETALLE> fds = new List<FACTURA_DETALLE>();
                     foreach (FacturaCompraDetalleModel det in item.FacturaDetalle)
                     {
@@ -327,6 +327,8 @@ namespace InventoryApp.ViewModel.Recibo
                     if(fds.Count > 0)
                         fcdDm.udpateElements(fds);
                 }
+                //Borrar facturas
+                fcdmp.deleteFacturas(this._DelFacturas);
             }//end foreach
         }//end func
 

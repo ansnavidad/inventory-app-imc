@@ -107,64 +107,71 @@ namespace InventoryApp.DAL.Recibo
             {
                 //entity.ContextOptions.ProxyCreationEnabled = false;
                 RECIBO selRecibo = (from o in entity.RECIBOes
-                                    where o.UNID_RECIBO == recibo.UNID_RECIBO
+                                    where o.UNID_RECIBO == recibo.UNID_RECIBO && o.IS_ACTIVE == true
                                     select o).FirstOrDefault();
 
                 //var res = selRecibo.RECIBO_MOVIMIENTO.cl
                 selRecibo.RECIBO_MOVIMIENTO.ToList().ForEach(rm =>
                 {
-                    //Generar las facturas detalles
-                    FixupCollection<FACTURA_DETALLE> facturasDetalle = new FixupCollection<FACTURA_DETALLE>();
-                    rm.FACTURA.FACTURA_DETALLE.ToList().ForEach(fd =>
-                    {
-                        facturasDetalle.Add(new FACTURA_DETALLE()
-                        {
-                            UNID_FACTURA_DETALE = fd.UNID_FACTURA_DETALE,
-                            UNID_FACTURA = fd.UNID_FACTURA,
-                            ARTICULO = new ARTICULO()
-                            {
-                                UNID_ARTICULO=fd.ARTICULO.UNID_ARTICULO,
-                                ARTICULO1=fd.ARTICULO.ARTICULO1,
-                                CATEGORIA=fd.ARTICULO.CATEGORIA,
-                                EQUIPO=fd.ARTICULO.EQUIPO,
-                                MARCA=fd.ARTICULO.MARCA,
-                                MODELO=fd.ARTICULO.MODELO
-                            },
-                            CANTIDAD=fd.CANTIDAD,
-                            DESCRIPCION=fd.DESCRIPCION,
-                            IMPUESTO_UNITARIO=fd.IMPUESTO_UNITARIO,
-                            IS_ACTIVE=fd.IS_ACTIVE,
-                            NUMERO=fd.NUMERO,
-                            PEDIMENTO=fd.PEDIMENTO,
-                            PRECIO_UNITARIO=fd.PRECIO_UNITARIO,
-                            UNIDAD=fd.UNIDAD
-                        });
-                    });
 
-                    listFactura.Add(new FACTURA() 
+                    if (rm.IS_ACTIVE == true)
                     {
-                        UNID_FACTURA=rm.FACTURA.UNID_FACTURA,
-                        FACTURA_DETALLE=facturasDetalle,
-                        FACTURA_NUMERO=rm.FACTURA.FACTURA_NUMERO,
-                        FECHA_FACTURA=rm.FACTURA.FECHA_FACTURA,
-                        IS_ACTIVE=rm.FACTURA.IS_ACTIVE,
-                        MONEDA=rm.FACTURA.MONEDA,
-                        PROVEEDOR=rm.FACTURA.PROVEEDOR,
-                        IVA_POR=rm.FACTURA.IVA_POR,
-                        NUMERO_PEDIMENTO=rm.FACTURA.NUMERO_PEDIMENTO, 
-                        TC = rm.FACTURA.TC,
-                        TIPO_PEDIMENTO = new TIPO_PEDIMENTO() 
+                        //Generar las facturas detalles
+                        FixupCollection<FACTURA_DETALLE> facturasDetalle = new FixupCollection<FACTURA_DETALLE>();
+                        rm.FACTURA.FACTURA_DETALLE.ToList().ForEach(fd =>
                         {
-                            TIPO_PEDIMENTO_NAME = rm.FACTURA.TIPO_PEDIMENTO.TIPO_PEDIMENTO_NAME,
-                            UNID_TIPO_PEDIMENTO = rm.FACTURA.TIPO_PEDIMENTO.UNID_TIPO_PEDIMENTO,
-                            REGIMEN = rm.FACTURA.TIPO_PEDIMENTO.REGIMEN,
-                            CLAVE = rm.FACTURA.TIPO_PEDIMENTO.CLAVE,
-                            NOTA = rm.FACTURA.TIPO_PEDIMENTO.NOTA 
-                        }
-                    });
+                            if (fd.IS_ACTIVE == true)
+                            {
+                                facturasDetalle.Add(new FACTURA_DETALLE()
+                                {
+                                    UNID_FACTURA_DETALE = fd.UNID_FACTURA_DETALE,
+                                    UNID_FACTURA = fd.UNID_FACTURA,
+                                    ARTICULO = new ARTICULO()
+                                    {
+                                        UNID_ARTICULO = fd.ARTICULO.UNID_ARTICULO,
+                                        ARTICULO1 = fd.ARTICULO.ARTICULO1,
+                                        CATEGORIA = fd.ARTICULO.CATEGORIA,
+                                        EQUIPO = fd.ARTICULO.EQUIPO,
+                                        MARCA = fd.ARTICULO.MARCA,
+                                        MODELO = fd.ARTICULO.MODELO
+                                    },
+                                    CANTIDAD = fd.CANTIDAD,
+                                    DESCRIPCION = fd.DESCRIPCION,
+                                    IMPUESTO_UNITARIO = fd.IMPUESTO_UNITARIO,
+                                    IS_ACTIVE = fd.IS_ACTIVE,
+                                    NUMERO = fd.NUMERO,
+                                    PEDIMENTO = fd.PEDIMENTO,
+                                    PRECIO_UNITARIO = fd.PRECIO_UNITARIO,
+                                    UNIDAD = fd.UNIDAD
+                                });
+                            }
+                        });
+
+                        listFactura.Add(new FACTURA()
+                        {
+                            UNID_FACTURA = rm.FACTURA.UNID_FACTURA,
+                            FACTURA_DETALLE = facturasDetalle,
+                            FACTURA_NUMERO = rm.FACTURA.FACTURA_NUMERO,
+                            FECHA_FACTURA = rm.FACTURA.FECHA_FACTURA,
+                            IS_ACTIVE = rm.FACTURA.IS_ACTIVE,
+                            MONEDA = rm.FACTURA.MONEDA,
+                            PROVEEDOR = rm.FACTURA.PROVEEDOR,
+                            IVA_POR = rm.FACTURA.IVA_POR,
+                            NUMERO_PEDIMENTO = rm.FACTURA.NUMERO_PEDIMENTO,
+                            TC = rm.FACTURA.TC,
+                            TIPO_PEDIMENTO = new TIPO_PEDIMENTO()
+                            {
+                                TIPO_PEDIMENTO_NAME = rm.FACTURA.TIPO_PEDIMENTO.TIPO_PEDIMENTO_NAME,
+                                UNID_TIPO_PEDIMENTO = rm.FACTURA.TIPO_PEDIMENTO.UNID_TIPO_PEDIMENTO,
+                                REGIMEN = rm.FACTURA.TIPO_PEDIMENTO.REGIMEN,
+                                CLAVE = rm.FACTURA.TIPO_PEDIMENTO.CLAVE,
+                                NOTA = rm.FACTURA.TIPO_PEDIMENTO.NOTA
+                            }
+                        });
+                    }
                 });
             }
-
+            
             return listFactura;
         }
 
@@ -241,6 +248,26 @@ namespace InventoryApp.DAL.Recibo
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
+
+                    var delF_D = (from f in entity.FACTURA_DETALLE
+                                  where f.UNID_FACTURA == l
+                                  select f).ToList();
+                    
+                    if(delF_D != null && delF_D.Count > 0){
+
+                        foreach (FACTURA_DETALLE ff in delF_D)
+                        {
+                            var D = entity.FACTURA_DETALLE.First(p => p.UNID_FACTURA_DETALE == ff.UNID_FACTURA_DETALE);
+                            
+                            //Sync
+                            D.IS_ACTIVE = false;
+                            D.IS_MODIFIED = true;
+                            D.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                            modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                            modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                            entity.SaveChanges();
+                        }
+                    }
                 }
             }
         }

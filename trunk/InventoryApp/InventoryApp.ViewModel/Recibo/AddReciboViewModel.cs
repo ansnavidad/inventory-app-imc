@@ -209,8 +209,8 @@ namespace InventoryApp.ViewModel.Recibo
 
         private void AttemptAddMovimientoCmd2()
         {
-            if (System.Windows.MessageBox.Show("¿Está seguro que desea finalizar el recibo actual? No se podrá editar posteriormente.", "Captura de Recibo", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
-            {
+            //if (System.Windows.MessageBox.Show("¿Está seguro que desea finalizar el recibo actual? No se podrá editar posteriormente.", "Captura de Recibo", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
+            //{
                 LoteModel lot = new LoteModel(new LoteDataMapper());
                 lot.UnidLote = UNID.getNewUNID();
                 lot.UnidPOM = UNID.getNewUNID();
@@ -351,7 +351,7 @@ namespace InventoryApp.ViewModel.Recibo
                 {
                     this._CatalogReciboViewModel.updateCollection();
                 }
-            }
+            //}
         }
 
         private bool CanAttemptAddMovimientoCmd2()
@@ -909,6 +909,7 @@ namespace InventoryApp.ViewModel.Recibo
         public void init()
         {
             this._DelFacturas = new List<long>();
+            this._DelMovs = new List<long>();
             this._Solicitantes = new ObservableCollection<SolicitanteModel>();//this.GetSolicitantes();
             this._Clientes = this.GetClientes();
             this._Facturas = new ObservableCollection<FacturaCompraModel>();

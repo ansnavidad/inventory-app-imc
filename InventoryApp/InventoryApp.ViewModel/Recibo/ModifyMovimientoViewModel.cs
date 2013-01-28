@@ -337,15 +337,35 @@ namespace InventoryApp.ViewModel.Recibo
         private Model.Recibo.MovimientoModel _SelectedMovimiento;
         public const string SelectedReciboPropertyName = "SelectedMovimiento";
 
+        public bool ContB
+        {
+            get
+            {
+                return _ContB;
+            }
+            set
+            {
+                if (_ContB != value)
+                {
+                    _ContB = value;
+                    OnPropertyChanged(ContBPropertyName);
+                }
+            }
+        }
+        private bool _ContB;
+        public const string ContBPropertyName = "ContB";
+
         #region Constructors
         public ModifyMovimientoViewModel()
         {
+            this.ContB = true;
             this.init();
         }
 
-        public ModifyMovimientoViewModel(Model.Recibo.MovimientoModel SelectedMovimiento)
+        public ModifyMovimientoViewModel(Model.Recibo.MovimientoModel SelectedMovimiento, bool  admirar)
         {
             this._SelectedMovimiento = SelectedMovimiento;
+            this.ContB = admirar;
             this.init();
         }
         #endregion

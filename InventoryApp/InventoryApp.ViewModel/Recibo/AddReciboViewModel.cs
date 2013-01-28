@@ -389,6 +389,24 @@ namespace InventoryApp.ViewModel.Recibo
             return canAttempt;
         }
 
+        public bool ContB
+        {
+            get
+            {
+                return _ContB;
+            }
+            set
+            {
+                if (_ContB != value)
+                {
+                    _ContB = value;
+                    OnPropertyChanged(ContBPropertyName);
+                }
+            }
+        }
+        private bool _ContB;
+        public const string ContBPropertyName = "ContB";
+
         //AgregarMovimiento
         public ICommand AddMvtoCmd
         {
@@ -484,6 +502,9 @@ namespace InventoryApp.ViewModel.Recibo
         {
             bool canAttempt = false;
 
+            if (!ContB)
+                return false;
+
             //Validar que esté seleccionado un elemento del grid
             try
             {
@@ -549,6 +570,9 @@ namespace InventoryApp.ViewModel.Recibo
         private bool CanAttemptDeleteMvtoCmd()
         {
             bool canAttempt = false;
+
+            if (!ContB)
+                return false;
 
             //Validar que esté seleccionado un elemento del grid
             try
@@ -888,12 +912,14 @@ namespace InventoryApp.ViewModel.Recibo
 
         public AddReciboViewModel()
         {
+            this.ContB = true;
             this.init();
         }
 
         public AddReciboViewModel(CatalogReciboViewModel catalogReciboViewModel)
         {
-            this._CatalogReciboViewModel = catalogReciboViewModel;
+            this.ContB = true;
+             this._CatalogReciboViewModel = catalogReciboViewModel;
             try
             {
 
@@ -1067,7 +1093,7 @@ namespace InventoryApp.ViewModel.Recibo
         public ModifyFacturaViewModel CraeteModifyFacturaViewModel()
         {
             if (this.SelectedFactura != null)
-                return new ModifyFacturaViewModel(this.SelectedFactura);
+                return new ModifyFacturaViewModel(this.SelectedFactura, this.ContB);
             else
                 return null;
         }
@@ -1075,7 +1101,7 @@ namespace InventoryApp.ViewModel.Recibo
         public ModifyMovimientoViewModel CreateModifyMovimientoViewModel()
         {
             if (this.SelectedMovimiento != null)
-                return new ModifyMovimientoViewModel(this.SelectedMovimiento);
+                return new ModifyMovimientoViewModel(this.SelectedMovimiento, this.ContB);
             else
                 return null;
         }

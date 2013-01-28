@@ -444,7 +444,7 @@ namespace InventoryApp.ViewModel.Recibo
 
         public AddMovimientoViewModel()
         {
-
+            
         }
 
         public AddMovimientoViewModel(AddReciboViewModel addReciboViewModel)

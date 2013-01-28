@@ -88,7 +88,8 @@ namespace InventoryApp.DAL.Recibo
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
-                         TC= row.TC
+                         TC= row.TC, 
+                         UNID_TIPO_PEDIMENTO = row.UNID_TIPO_PEDIMENTO
                      });
                  });
                 if (listFactura.Count > 0)
@@ -400,7 +401,8 @@ namespace InventoryApp.DAL.Recibo
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
-                         TC= row.TC
+                         TC= row.TC,
+                         UNID_TIPO_PEDIMENTO = row.UNID_TIPO_PEDIMENTO
                      });
                  });
                 if (listFactura.Count > 0)
@@ -454,7 +456,8 @@ namespace InventoryApp.DAL.Recibo
                          IS_ACTIVE = row.IS_ACTIVE,
                          IS_MODIFIED = row.IS_MODIFIED,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
-                         TC =row.TC
+                         TC =row.TC,
+                         UNID_TIPO_PEDIMENTO = row.UNID_TIPO_PEDIMENTO
                      });
                  });
                 if (reset.Count > 0)

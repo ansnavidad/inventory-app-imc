@@ -15,6 +15,7 @@ namespace InventoryApp.ViewModel.Recibo
     public class ModifyReciboViewModel :  AddReciboViewModel
     {
         private const int MovimientoRecibo = 16;
+
         #region Commands
         //ModifyRecibo
         public ICommand ModifyReciboCmd
@@ -42,23 +43,7 @@ namespace InventoryApp.ViewModel.Recibo
         }
         private RelayCommand _ModifyMovimientoCmd2;
 
-        public bool ContB
-        {
-            get
-            {
-                return _ContB;
-            }
-            set
-            {
-                if (_ContB != value)
-                {
-                    _ContB = value;
-                    OnPropertyChanged(ContBPropertyName);
-                }
-            }
-        }
-        private bool _ContB;
-        public const string ContBPropertyName = "ContB";
+        
 
         public void AttemptModifyReciboCmd()
         {
@@ -88,8 +73,7 @@ namespace InventoryApp.ViewModel.Recibo
                         }
                     }                    
                 }                
-            }
-            
+            }            
             
             if (!ContB)
                 return false;
@@ -145,7 +129,6 @@ namespace InventoryApp.ViewModel.Recibo
         } 
 
         #endregion
-
 
         public ModifyReciboViewModel(CatalogReciboViewModel catalogReciboViewModel)
             : base(catalogReciboViewModel)

@@ -261,6 +261,24 @@ namespace InventoryApp.ViewModel.Recibo
         private ProveedorModel _SelectedProveedor;
         public const string SelectedProveedorPropertyName = "SelectedProveedor";
 
+        public bool ContB
+        {
+            get
+            {
+                return _ContB;
+            }
+            set
+            {
+                if (_ContB != value)
+                {
+                    _ContB = value;
+                    OnPropertyChanged(ContBPropertyName);
+                }
+            }
+        }
+        private bool _ContB;
+        public const string ContBPropertyName = "ContB";
+
         public bool CanSelecteProveedor
         {
             get { return _CanSelecteProveedor; }
@@ -324,12 +342,14 @@ namespace InventoryApp.ViewModel.Recibo
         #region Constructors
         public ModifyFacturaViewModel()
         {
+            this.ContB = true;
             this.init();
         }
 
-        public ModifyFacturaViewModel(FacturaCompraModel SelectedFactura)
+        public ModifyFacturaViewModel(FacturaCompraModel SelectedFactura, bool finished)
         {
             this._SelectedFactura = SelectedFactura;
+            this.ContB = finished;
             this.init();
         }
         #endregion

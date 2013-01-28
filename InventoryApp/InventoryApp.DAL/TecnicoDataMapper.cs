@@ -162,19 +162,31 @@ namespace InventoryApp.DAL
             object o = null;
             if (element != null)
             {
-                TECNICO Eprov = (TECNICO)element;
-                FixupCollection<TECNICO> tp = new FixupCollection<TECNICO>();
+            //    TECNICO Eprov = (TECNICO)element;
+            //    FixupCollection<TECNICO> tp = new FixupCollection<TECNICO>();
 
+            //    using (var Entity = new TAE2Entities())
+            //    {
+            //        var query = (from p in Entity.TECNICOes
+            //                     where p.UNID_TECNICO == Eprov.UNID_TECNICO
+            //                     select p).ToList();
+
+            //        if (query.Count > 0)
+            //        {
+            //            o = query;
+            //        }
+            //    }
+            //}
+            //return o;
+                TECNICO Eprov = (TECNICO)element;
                 using (var Entity = new TAE2Entities())
                 {
                     var query = (from p in Entity.TECNICOes
                                  where p.UNID_TECNICO == Eprov.UNID_TECNICO
-                                 select p).ToList();
+                                 select p).First();
 
-                    if (query.Count > 0)
-                    {
                         o = query;
-                    }
+                    
                 }
             }
             return o;

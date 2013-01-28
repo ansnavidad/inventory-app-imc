@@ -6,6 +6,7 @@ using InventoryApp.Model;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
+using InventoryApp.ViewModel.Entradas;
 
 namespace InventoryApp.ViewModel.GridMovimientos
 {
@@ -54,6 +55,12 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 throw ex;
             }
 
+        }
+        public MovimientoGridEntradasDesinstalacionViewModel(string readOnly)
+        {
+            IDataMapper dataMapper = new MovimientoDataMapper();
+            this._catalogMovimientoModel = new CatalogMovimientoModel(dataMapper); 
+                
         }
 
         public CatalogMovimientoModel CatalogMovimientoModel
@@ -133,6 +140,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 _catalogAlmacenProcedenciaModel = value;
             }
         }
+
         public MovimientoGridModel MovimientoModel
         {
             get
@@ -145,6 +153,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 _movimientoGridModel = value;
             }
         }
+
         public CatalogItemModel ItemModel
         {
             get
@@ -170,6 +179,52 @@ namespace InventoryApp.ViewModel.GridMovimientos
             }
         }
 
+        /// <summary>
+        /// Crea una nueva instancia de SoloLecturaEntradaDesistalacionViewModel y se pasa asi mismo como parámetro y el item seleccionado
+        /// </summary>
+        /// <returns></returns>
+        public ReadOnlyEntradaDesistalacionViewModel CreateReadOnlyEntradaDesistalacionViewModel()
+        {
+            MovimientoModel movimientoModel = new MovimientoModel(new MovimientoDataMapper(),"solo lectura");
+            if (this._catalogMovimientoModel != null && this._catalogMovimientoModel.SelectedMovimientoGrid != null)
+            {
+                movimientoModel.UnidMovimiento = this._catalogMovimientoModel.SelectedMovimientoGrid.UnidMovimiento;
+
+                movimientoModel.UnidAlmacenDestino = this._catalogMovimientoModel.SelectedMovimientoGrid.AlmacenDestino.UNID_ALMACEN;
+                movimientoModel.AlmacenDestino = this._catalogMovimientoModel.SelectedMovimientoGrid.AlmacenDestino;
+
+                movimientoModel.UnidAlmacenProcedencia = this._catalogMovimientoModel.SelectedMovimientoGrid.AlmacenProcedencia.UNID_ALMACEN;
+                movimientoModel.AlmacenProcedencia = this._catalogMovimientoModel.SelectedMovimientoGrid.AlmacenProcedencia;
+
+                movimientoModel.UnidClienteProcedencia = this._catalogMovimientoModel.SelectedMovimientoGrid.ClienteProcedencia.UNID_CLIENTE;
+                movimientoModel.ClienteProcedenciaLectura = this._catalogMovimientoModel.SelectedMovimientoGrid.ClienteProcedencia;
+
+                movimientoModel.UnidInfraestructura = this._catalogMovimientoModel.SelectedMovimientoGrid.UnidInfraestructura.UNID_INFRAESTRUCTURA;
+                movimientoModel.Infraestructura = this._catalogMovimientoModel.SelectedMovimientoGrid.UnidInfraestructura;
+
+                movimientoModel.UnidProveedorProcedencia = this._catalogMovimientoModel.SelectedMovimientoGrid.ProveedorProcedenia.UNID_PROVEEDOR;
+                movimientoModel.ProveedorProcedencia = this._catalogMovimientoModel.SelectedMovimientoGrid.ProveedorProcedenia;
+
+                movimientoModel.UnidTecnico = this._catalogMovimientoModel.SelectedMovimientoGrid.UnidTecnico.UNID_TECNICO;
+                movimientoModel.Tecnico = this._catalogMovimientoModel.SelectedMovimientoGrid.UnidTecnico;
+
+                movimientoModel.SolicitanteLectura = this._catalogMovimientoModel.SelectedMovimientoGrid.UnidSolicitante;
+
+                movimientoModel.Transporte = this._catalogMovimientoModel.SelectedMovimientoGrid.Transporte;
+
+                movimientoModel.Tt = this._catalogMovimientoModel.SelectedMovimientoGrid.Tt;
+                movimientoModel.SitioEnlace = this._catalogMovimientoModel.SelectedMovimientoGrid.SitioEnlace;
+                movimientoModel.NombreSitio = this._catalogMovimientoModel.SelectedMovimientoGrid.NombreSitio;
+                movimientoModel.Guia = this._catalogMovimientoModel.SelectedMovimientoGrid.Guia;
+                movimientoModel.Contacto = this._catalogMovimientoModel.SelectedMovimientoGrid.Contacto;
+                movimientoModel.FechaMovimiento = this._catalogMovimientoModel.SelectedMovimientoGrid.TimeFecha;
+                //carga el grid
+                this._itemModel.ItemModel = this._catalogMovimientoModel.SelectedMovimientoGrid.ArticulosLectura;
+                
+
+            }
+            return new ReadOnlyEntradaDesistalacionViewModel(this, movimientoModel);
+        }
 
         public void loadItems()
         {

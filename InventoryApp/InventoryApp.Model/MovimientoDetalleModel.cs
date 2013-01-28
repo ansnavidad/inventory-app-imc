@@ -134,6 +134,7 @@ namespace InventoryApp.Model
             this._unidMovimientoDetalle = UNID.getNewUNID();
             this._isActive = true;
             this._unidItemStatus = unidItemStatus;
+            
             if ((dataMapper as MovimientoDetalleDataMapper) != null)
             {
                 this._dataMapper = dataMapper as MovimientoDetalleDataMapper;

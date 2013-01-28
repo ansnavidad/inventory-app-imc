@@ -104,6 +104,7 @@
     <Compile Include="DeleteMedioEnvio.cs" />
     <Compile Include="DeleteModelo.cs" />
     <Compile Include="DeleteMoneda.cs" />
+    <Compile Include="DeleteMovimiento.cs" />
     <Compile Include="DeletePais.cs" />
     <Compile Include="DeleteProgramado.cs" />
     <Compile Include="DeletePropiedad.cs" />

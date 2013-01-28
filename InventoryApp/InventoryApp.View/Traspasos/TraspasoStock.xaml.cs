@@ -24,7 +24,8 @@ namespace InventoryApp.View.Traspasos
         {
             InitializeComponent();
             comboBoxAlmacenDestino.SelectedIndex = 0;
-            comboBoxAlmacenDestino.SelectedIndex = 1;            
+            comboBoxAlmacenDestino.SelectedIndex = 1;
+            comboBoxSolicitante.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

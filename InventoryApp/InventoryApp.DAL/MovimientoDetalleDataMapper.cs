@@ -126,6 +126,56 @@ namespace InventoryApp.DAL
             }
         }
 
+        public object getElementLectura(object element)
+        {
+            object res = null;
+            MOVIMIENTO_DETALLE it = (MOVIMIENTO_DETALLE)element;
+            List<MOVIMIENTO_DETALLE> reset = new List<MOVIMIENTO_DETALLE>();
+            using (var entity = new TAE2Entities())
+            {
+                res = (from items in entity.MOVIMIENTO_DETALLE
+                       where items.UNID_MOVIMIENTO == it.UNID_MOVIMIENTO && items.UNID_ITEM == it.UNID_ITEM && items.UNID_MOVIMIENTO_DETALLE == it.UNID_MOVIMIENTO_DETALLE
+                       select items).ToList();
+
+                //(from p in entity.MOVIMIENTO_DETALLE
+                // where p.UNID_MOVIMIENTO == it.UNID_MOVIMIENTO && p.UNID_ITEM == it.UNID_ITEM && p.UNID_MOVIMIENTO_DETALLE == it.UNID_MOVIMIENTO_DETALLE
+                // select p).ToList().ForEach(row =>
+                // {
+                //     reset.Add(new MOVIMIENTO_DETALLE
+                //     {
+                //         UNID_MOVIMIENTO_DETALLE = row.UNID_MOVIMIENTO_DETALLE,
+                //         UNID_ITEM = row.UNID_ITEM,
+                //         UNID_MOVIMIENTO = row.UNID_MOVIMIENTO,
+                //         OBSERVACIONES = row.OBSERVACIONES,
+                //         IS_ACTIVE = row.IS_ACTIVE,
+                //         IS_MODIFIED = row.IS_MODIFIED,
+                //         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                //         CANTIDAD = row.CANTIDAD,
+                //         UNID_ITEM_STATUS = row.UNID_ITEM_STATUS,
+                //         ITEM=row.ITEM,
+                //         ITEM_STATUS = row.ITEM_STATUS,
+                //         MOVIMENTO = row.MOVIMENTO
+                //     });
+                // });
+
+                foreach (MOVIMIENTO_DETALLE mov in ((List<MOVIMIENTO_DETALLE>)res))
+                {
+                    mov.ITEM = mov.ITEM;
+                    mov.ITEM.ARTICULO = mov.ITEM.ARTICULO;
+                    mov.ITEM.ARTICULO.CATEGORIA = mov.ITEM.ARTICULO.CATEGORIA;
+                    mov.ITEM.ARTICULO.MARCA = mov.ITEM.ARTICULO.MARCA;
+                    mov.ITEM.ARTICULO.MODELO = mov.ITEM.ARTICULO.MODELO;
+                    mov.ITEM.ARTICULO.EQUIPO = mov.ITEM.ARTICULO.EQUIPO;
+                    mov.ITEM_STATUS= mov.ITEM_STATUS;
+                    mov.ULTIMO_MOVIMIENTO = mov.ULTIMO_MOVIMIENTO;
+                    mov.MOVIMENTO = mov.MOVIMENTO;
+                }
+
+                //return res=reset;
+                return res;
+            }
+        }
+
         public object getElement(object element)
         {
             throw new NotImplementedException();

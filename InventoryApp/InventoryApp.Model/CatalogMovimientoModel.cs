@@ -10,6 +10,12 @@ namespace InventoryApp.Model
 {
     public class CatalogMovimientoModel : INotifyPropertyChanged
     {
+        #region propiedades 
+        private FixupCollection<DeleteMovimiento> _catalogMovimientoGrid;
+        private DeleteMovimiento _selectedMovimientoGrid;
+        private IDataMapper _dataMapperGrid;
+        #endregion
+
         private FixupCollection<CatalogMovimiento> _catalogMovimiento;
         private MOVIMENTO _selectedMovimiento;
         private MovimientoDataMapper _dataMapper;
@@ -33,6 +39,25 @@ namespace InventoryApp.Model
             }
         }
 
+        public FixupCollection<DeleteMovimiento> CatalogMovimientoGrid
+        {
+            get
+            {
+                return _catalogMovimientoGrid;
+            }
+            set
+            {
+                if (_catalogMovimientoGrid != value)
+                {
+                    _catalogMovimientoGrid = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("CatalogMovimientoGrid"));
+                    }
+                }
+            }
+        }
+
         public MOVIMENTO SelectedMovimiento
         {
             get
@@ -44,6 +69,25 @@ namespace InventoryApp.Model
                 if (_selectedMovimiento != value)
                 {
                     _selectedMovimiento = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("SelectedMovimiento"));
+                    }
+                }
+            }
+        }
+
+        public DeleteMovimiento SelectedMovimientoGrid
+        {
+            get
+            {
+                return _selectedMovimientoGrid;
+            }
+            set
+            {
+                if (_selectedMovimientoGrid != value)
+                {
+                    _selectedMovimientoGrid = value;
                     if (PropertyChanged != null)
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("SelectedMovimiento"));
@@ -69,31 +113,11 @@ namespace InventoryApp.Model
                     }
                 }
             }
+
             this.CatalogMovimiento = ic;
         }
         
         #region GetElements para los Grids de Movimientos (Salidas/Traspaso/Entradas)
-
-        //Ya no se usa
-        //public void loadItemsEntrada()
-        //{
-        //    object element = this._dataMapper.getEntradasElements();
-
-        //    FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
-
-        //    if (element != null)
-        //    {
-        //        if (((List<MOVIMENTO>)element).Count > 0)
-        //        {
-        //            foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
-        //            {
-        //                CatalogMovimiento aux = new CatalogMovimiento(item);
-        //                ic.Add(aux);
-        //            }
-        //        }
-        //    }
-        //    this.CatalogMovimiento = ic;
-        //}
 
         public void loadItemsSalida()
         {
@@ -113,6 +137,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsEntradaDesinstalacion()
@@ -133,6 +173,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsEntradaDevolucion()
@@ -153,6 +209,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsEntradaPrestamo()
@@ -173,6 +245,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsEntradaValidacion()
@@ -193,6 +281,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsSalidaConfiguracion()
@@ -213,6 +317,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsSalidaCorrectivo()
@@ -233,6 +353,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsSalidaDemo()
@@ -253,6 +389,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsSalidaObsequio()
@@ -273,6 +425,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsSalidaOffice()
@@ -293,6 +461,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsSalidaPrestamo()
@@ -313,6 +497,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsSalidaPruebas()
@@ -333,6 +533,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsSalidaRenta()
@@ -353,6 +569,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsSalidaRevision()
@@ -373,6 +605,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsSalidaRMA()
@@ -393,6 +641,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         public void loadItemsSalidaVenta()
@@ -413,6 +677,22 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
         
         public void loadItemsTraspaso()
@@ -433,6 +713,23 @@ namespace InventoryApp.Model
                 }
             }
             this.CatalogMovimiento = ic;
+
+
+            //SOLO LECTURA
+            FixupCollection<DeleteMovimiento> icGrid = new FixupCollection<DeleteMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        DeleteMovimiento aux = new DeleteMovimiento(item);
+                        icGrid.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimientoGrid = icGrid;
         }
 
         #endregion
@@ -441,6 +738,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new MovimientoDataMapper();
             this._catalogMovimiento = new FixupCollection<CatalogMovimiento>();
+            this._catalogMovimientoGrid = new FixupCollection<DeleteMovimiento>();
             this._selectedMovimiento = new MOVIMENTO();
             this.loadItems();
         }
@@ -450,6 +748,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new MovimientoDataMapper();
             this._catalogMovimiento = new FixupCollection<CatalogMovimiento>();
+            this._catalogMovimientoGrid = new FixupCollection<DeleteMovimiento>();
             this._selectedMovimiento = new MOVIMENTO();
 
             if (name.Equals("Entrada Validación/Entrada"))
@@ -490,6 +789,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new MovimientoDataMapper();
             this._catalogMovimiento = new FixupCollection<CatalogMovimiento>();
+            this._catalogMovimientoGrid = new FixupCollection<DeleteMovimiento>();
             this._selectedMovimiento = new MOVIMENTO();
             this.loadItemsTraspaso();
         }

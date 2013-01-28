@@ -397,6 +397,7 @@ namespace InventoryApp.DAL
             }
         }
 
+
         /// <summary>
         /// Método que serializa una List<ARTICULO> a Json
         /// </summary>

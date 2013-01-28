@@ -166,23 +166,35 @@ namespace InventoryApp.DAL
             {
                 using (var entitie = new TAE2Entities())
                 {
-                    SOLICITANTE solicitante = (SOLICITANTE)element;
+                    //SOLICITANTE solicitante = (SOLICITANTE)element;
                      
-                    var query= (from cust in entitie.SOLICITANTEs
-                     where cust.UNID_SOLICITANTE == solicitante.UNID_SOLICITANTE
-                     select cust).ToList();
+                    //var query= (from cust in entitie.SOLICITANTEs
+                    // where cust.UNID_SOLICITANTE == solicitante.UNID_SOLICITANTE
+                    // select cust).ToList();
 
-                    foreach (SOLICITANTE sol  in ((List<SOLICITANTE>)query))
-                    {
-                        sol.DEPARTAMENTO = sol.DEPARTAMENTO;
-                        sol.EMPRESA = sol.EMPRESA;
-                    }
+                    //foreach (SOLICITANTE sol  in ((List<SOLICITANTE>)query))
+                    //{
+                    //    sol.DEPARTAMENTO = sol.DEPARTAMENTO;
+                    //    sol.EMPRESA = sol.EMPRESA;
+                    //}
 
-                    if (query.Count > 0)
-                    {
+                    //if (query.Count > 0)
+                    //{
+                    //    res = query;
+                    //}
+                    // return res;
+
+                    SOLICITANTE solicitante = (SOLICITANTE)element;
+
+                    var query = (from cust in entitie.SOLICITANTEs
+                                 where cust.UNID_SOLICITANTE == solicitante.UNID_SOLICITANTE
+                                 select cust).First();
+                        query.DEPARTAMENTO = query.DEPARTAMENTO;
+                        query.EMPRESA = query.EMPRESA;
+                    
                         res = query;
-                    }
-                     return res;
+                    
+                    return res;
                 }
              }
             return res;

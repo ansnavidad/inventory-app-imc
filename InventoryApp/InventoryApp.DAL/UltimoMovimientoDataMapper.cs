@@ -126,6 +126,7 @@ namespace InventoryApp.DAL
                                  where p.UNID_ITEM == item.UNID_ITEM && p.UNID_PROVEEDOR == proveedor.UNID_PROVEEDOR
                                  select p).First();
 
+                        r.ITEM_STATUS = r.ITEM_STATUS;
                         um = r;
                     }
                 }
@@ -148,12 +149,19 @@ namespace InventoryApp.DAL
                 {
                     using (var entity = new TAE2Entities())
                     {
+                        //var r = (from p in entity.ULTIMO_MOVIMIENTO
+                        //         where p.UNID_ITEM == item.UNID_ITEM && p.UNID_ALMACEN == almacen.UNID_ALMACEN
+                        //         select p).First();
+                        //um = r;
                         var r = (from p in entity.ULTIMO_MOVIMIENTO
                                  where p.UNID_ITEM == item.UNID_ITEM && p.UNID_ALMACEN == almacen.UNID_ALMACEN
                                  select p).First();
-
                         um = r;
-
+                        if (r == null)
+                            return null;
+                        um.ITEM_STATUS = r.ITEM_STATUS;
+                        um = r;
+                        
                     }
                 }
             }
@@ -175,11 +183,20 @@ namespace InventoryApp.DAL
                 {
                     using (var entity = new TAE2Entities())
                     {
+                        //var r = (from p in entity.ULTIMO_MOVIMIENTO
+                        //         where p.UNID_ITEM == item.UNID_ITEM && p.UNID_INFRAESTRUCTURA == infraestructura.UNID_INFRAESTRUCTURA
+                        //         select p).First();
+
+                        //um = r;
+
                         var r = (from p in entity.ULTIMO_MOVIMIENTO
                                  where p.UNID_ITEM == item.UNID_ITEM && p.UNID_INFRAESTRUCTURA == infraestructura.UNID_INFRAESTRUCTURA
                                  select p).First();
-
+                        if (r == null)
+                            return null;
+                        um.ITEM_STATUS = r.ITEM_STATUS;
                         um = r;
+                        
                     }
                 }
             }
@@ -200,11 +217,21 @@ namespace InventoryApp.DAL
                 {
                     using (var entity = new TAE2Entities())
                     {
+                        //var r = (from p in entity.ULTIMO_MOVIMIENTO
+                        //         where p.UNID_ITEM == item.UNID_ITEM && p.UNID_CLIENTE == cliente.UNID_CLIENTE
+                        //         select p).First();
+
+                        //um = r;
+
                         var r = (from p in entity.ULTIMO_MOVIMIENTO
                                  where p.UNID_ITEM == item.UNID_ITEM && p.UNID_CLIENTE == cliente.UNID_CLIENTE
                                  select p).First();
 
+                        if (r == null)
+                            return null;
+                        um.ITEM_STATUS = r.ITEM_STATUS;
                         um = r;
+
                     }
                 }
             }
@@ -235,6 +262,7 @@ namespace InventoryApp.DAL
                             mov.CLIENTE = mov.CLIENTE;
                             mov.ALMACEN = mov.ALMACEN;
                             mov.PROVEEDOR = mov.PROVEEDOR;
+                            mov.ITEM_STATUS = mov.ITEM_STATUS;
                             um.Add(mov);
                         }
                     }
@@ -307,11 +335,7 @@ namespace InventoryApp.DAL
                    
                         var modifiedMov = entity.ULTIMO_MOVIMIENTO.First(p => p.UNID_ULTIMO_MOVIMIENTO == ultimoMov.UNID_ULTIMO_MOVIMIENTO);
 
-                        //modifiedMov.UNID_ALMACEN = ultimoMov.UNID_ALMACEN;
-                        //modifiedMov.UNID_CLIENTE = ultimoMov.UNID_CLIENTE;
-                        //modifiedMov.UNID_MOVIMIENTO_DETALLE = ultimoMov.UNID_MOVIMIENTO_DETALLE;
-                        //modifiedMov.UNID_PROVEEDOR = ultimoMov.UNID_PROVEEDOR;
-                        //modifiedMov.UNID_INFRAESTRUCTURA = ultimoMov.UNID_INFRAESTRUCTURA;
+                        
                         modifiedMov.CANTIDAD = ultimoMov.CANTIDAD;
                         modifiedMov.UNID_ITEM_STATUS = ultimoMov.UNID_ITEM_STATUS;
                         //Sync

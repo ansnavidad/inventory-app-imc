@@ -253,6 +253,7 @@ namespace InventoryApp.Model
                     item.UNID_ITEM = this.UnidItem;
                     ULTIMO_MOVIMIENTO aux = this._dataMapper.getCantidadItems(item, infraestructura);
                     aux.CANTIDAD -= this._cantidad;
+                    
                     this._dataMapper.udpateElement2(aux);
                 }
             }
@@ -359,7 +360,7 @@ namespace InventoryApp.Model
                 this.Lugar = "Cliente: " + cliente.CLIENTE1;
             }
         }
-        
+
         public UltimoMovimientoModel(IDataMapper dataMapper, long item, long? almacen, long? cliente, long? proveedor, long? movDet, int cantidad, long? unidItemStatus)
         {
             this._unidItem = item;

@@ -132,12 +132,12 @@ namespace InventoryApp.DAL
 
                 res = (from cust in entity.TRANSPORTEs
                        where cust.UNID_TRANSPORTE == Etra.UNID_TRANSPORTE
-                       select cust).ToList<TRANSPORTE>();
+                       select cust).First();
 
-                foreach (TRANSPORTE trans in ((List<TRANSPORTE>)res))
-                {
-                    trans.TIPO_EMPRESA = trans.TIPO_EMPRESA;
-                }
+                //foreach (TRANSPORTE trans in ((List<TRANSPORTE>)res))
+                //{
+                //    trans.TIPO_EMPRESA = trans.TIPO_EMPRESA;
+                //}
 
                 return res;
             }

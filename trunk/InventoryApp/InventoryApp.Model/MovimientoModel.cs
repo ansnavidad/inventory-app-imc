@@ -23,6 +23,7 @@ namespace InventoryApp.Model
         private PROVEEDOR _proveedorProcedencia;
         private long? _unidProveedorProcedencia;
         private CLIENTE _clienteProcedencia;
+        private CLIENTE _clienteProcedenciaLectura;
         private long? _unidClienteProcedencia;
         private ALMACEN _almacenProcedencia;
         private long? _unidAlmacenProcedencia;
@@ -47,37 +48,22 @@ namespace InventoryApp.Model
         private DeleteSolicitante _solicitante;
         private long? _unidSolicitante;
         private TECNICO _tecnico;
+        private TECNICO _tecnicoTrnas;
         private long? _unidTecnico;
         private MovimientoDataMapper _dataMapper;
         private EMPRESA _empresa;
         private INFRAESTRUCTURA _infraestructura;
         private long? _unidInfraestructura;
         private ObservableCollection<DeleteSolicitante> _solicitantes;
+        private SOLICITANTE _solicitanteLectura;
+        private EMPRESA _empresaLectura;
+        private ALMACEN _almacenProcedenciaLectura;
+        private DEPARTAMENTO _departamentoLectura;
         private ObservableCollection<TECNICO> _tecnicos;
-        //private ITEM_STATUS _itemStatus;
+        
         #endregion
 
         #region Props
-
-        
-        //public ITEM_STATUS ItemStatus
-        //{
-        //    get
-        //    {
-        //        return _itemStatus;
-        //    }
-        //    set
-        //    {
-        //        if (_itemStatus != value)
-        //        {
-        //            _itemStatus = value;
-        //            if (PropertyChanged != null)
-        //            {
-        //                this.PropertyChanged(this, new PropertyChangedEventArgs("ItemStatus"));
-        //            }
-        //        }
-        //    }
-        //}
 
         public ObservableCollection<TECNICO> Tecnicos
         {
@@ -478,6 +464,95 @@ namespace InventoryApp.Model
             }
         }
 
+        public CLIENTE ClienteProcedenciaLectura
+        {
+            get { return this._clienteProcedenciaLectura; }
+            set
+            {
+                if (value != this._clienteProcedenciaLectura)
+                {
+                    this._clienteProcedenciaLectura = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("ClienteProcedenciaLectura"));
+                }
+            }
+        }
+
+        public SOLICITANTE SolicitanteLectura
+        {
+            get { return this._solicitanteLectura; }
+            set
+            {
+                if (value != this._solicitanteLectura)
+                {
+                    this._solicitanteLectura = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("SolicitanteLectura"));
+                }
+            }
+        }
+
+        public EMPRESA EmpresaLectura
+        {
+            get { return this._empresaLectura; }
+            set
+            {
+                if (value != this._empresaLectura)
+                {
+                    this._empresaLectura = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("EmpresaLectura"));
+                }
+            }
+        }
+
+        public TECNICO TecnicoTrnas
+        {
+            get { return this._tecnicoTrnas; }
+            set
+            {
+                if (value != this._tecnicoTrnas)
+                {
+                    this._tecnicoTrnas = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("TecnicoTrnas"));
+                }
+            }
+        }
+
+        public DEPARTAMENTO DepartamentoLectura
+        {
+            get { return this._departamentoLectura; }
+            set
+            {
+                if (value != this._departamentoLectura)
+                {
+                    this._departamentoLectura = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("DepartamentoLectura"));
+                }
+            }
+        }
+
+        public ALMACEN AlmacenProcedenciaLectura
+        {
+            get
+            {
+                return _almacenProcedenciaLectura;
+            }
+            set
+            {
+                if (_almacenProcedenciaLectura != value)
+                {
+                    _almacenProcedenciaLectura = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("AlmacenProcedenciaLectura"));
+                    }
+                }
+            }
+        }
+
         public ALMACEN AlmacenProcedencia
         {
             get
@@ -868,6 +943,40 @@ namespace InventoryApp.Model
             this._solicitante = null;
             this._tecnico = new TECNICO();
             
+        }
+
+        public MovimientoModel(IDataMapper dataMapper, int mov)
+        {
+            
+            if ((dataMapper as MovimientoDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as MovimientoDataMapper;
+            }
+            this._tipoMovimiento = new TIPO_MOVIMIENTO();
+            this._almacenDestino = new ALMACEN();
+            this._proveedorProcedencia = new PROVEEDOR();
+            this._clienteProcedencia = new CLIENTE();
+            this._almacenProcedencia = new ALMACEN();
+            this._servicio = new SERVICIO();
+            this._transporte = new TRANSPORTE();
+            this._cliente = new CLIENTE();
+            this._proveedor = new PROVEEDOR();
+            this._facturaVenta = new FACTURA_VENTA();
+            this._solicitante = null;
+            this._tecnico = new TECNICO();
+            this._solicitanteLectura = new SOLICITANTE();
+            this._empresaLectura = new EMPRESA();
+            this._departamentoLectura = new DEPARTAMENTO();
+
+        }
+
+        public MovimientoModel(IDataMapper dataMapper, string readOnly)
+        {
+            if ((dataMapper as MovimientoDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as MovimientoDataMapper;
+            }
+
         }
         #endregion
 

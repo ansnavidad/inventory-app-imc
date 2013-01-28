@@ -480,6 +480,9 @@
     <Compile Include="Entradas\EntradaDesinstalacion.xaml.cs">
       <DependentUpon>EntradaDesinstalacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Entradas\EntradaDesinstalacionSoloLectura.xaml.cs">
+      <DependentUpon>EntradaDesinstalacionSoloLectura.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entradas\EntradaDevolucion.xaml.cs">
       <DependentUpon>EntradaDevolucion.xaml</DependentUpon>
     </Compile>
@@ -491,6 +494,9 @@
     </Compile>
     <Compile Include="CatalogTransporte\TransporteUserControl.xaml.cs">
       <DependentUpon>TransporteUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\EntradaValidacionRevisionSoloLectura.xaml.cs">
+      <DependentUpon>EntradaValidacionRevisionSoloLectura.xaml</DependentUpon>
     </Compile>
     <Compile Include="GridMovimientos\EntradasDesinstalacion.xaml.cs">
       <DependentUpon>EntradasDesinstalacion.xaml</DependentUpon>
@@ -657,6 +663,9 @@
     <Compile Include="Salidas\SalidaRevision.xaml.cs">
       <DependentUpon>SalidaRevision.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Salidas\SalidaRevisionSoloLectura.xaml.cs">
+      <DependentUpon>SalidaRevisionSoloLectura.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Salidas\SalidaRMA.xaml.cs">
       <DependentUpon>SalidaRMA.xaml</DependentUpon>
     </Compile>
@@ -671,6 +680,9 @@
     </Compile>
     <Compile Include="Traspasos\TraspasoStock.xaml.cs">
       <DependentUpon>TraspasoStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Traspasos\TraspasoStockSoloLectura.xaml.cs">
+      <DependentUpon>TraspasoStockSoloLectura.xaml</DependentUpon>
     </Compile>
     <Page Include="CatalogAlmacen\AlmacenUserControl.xaml">
       <SubType>Designer</SubType>
@@ -1192,6 +1204,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Entradas\EntradaDesinstalacionSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Entradas\EntradaDevolucion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1205,6 +1221,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogTransporte\TransporteUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\EntradaValidacionRevisionSoloLectura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1441,11 +1461,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Salidas\SalidaRevisionSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Salidas\SalidaRMA.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Salidas\SalidaVenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Traspasos\TraspasoStockSoloLectura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

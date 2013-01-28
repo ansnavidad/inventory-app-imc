@@ -26,6 +26,7 @@ namespace InventoryApp.View.Entradas
             FocusManager.SetFocusedElement(this, this.textBoxTT);
             comboBoxAlmacenOrigen.SelectedIndex = 1;
             comboBoxAlmacenOrigen.SelectedIndex = 0;
+            comboBoxSolicitante.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

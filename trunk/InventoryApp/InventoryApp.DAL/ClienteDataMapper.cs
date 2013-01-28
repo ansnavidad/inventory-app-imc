@@ -148,14 +148,22 @@ namespace InventoryApp.DAL
             object res = null;
             using (var entitie = new TAE2Entities())
             {
+                //CLIENTE cliente = (CLIENTE)element;
+                //var query = (from cust in entitie.CLIENTEs
+                //             where cust.UNID_CLIENTE == cliente.UNID_CLIENTE
+                //             select cust).ToList();
+                //if (query.Count > 0)
+                //{
+                //    res = query;
+                //}
+                //return res;
                 CLIENTE cliente = (CLIENTE)element;
                 var query = (from cust in entitie.CLIENTEs
                              where cust.UNID_CLIENTE == cliente.UNID_CLIENTE
-                             select cust).ToList();
-                if (query.Count > 0)
-                {
+                             select cust).First();
+                
                     res = query;
-                }
+                
                 return res;
             }
         }

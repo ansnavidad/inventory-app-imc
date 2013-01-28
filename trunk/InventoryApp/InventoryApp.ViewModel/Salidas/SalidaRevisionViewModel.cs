@@ -389,6 +389,7 @@ namespace InventoryApp.ViewModel.Salidas
                 this._movimientoDetalleModel = new MovimientoDetalleModel(new MovimientoDetalleDataMapper(), this._movimientoModel.UnidMovimiento, item.UnidItem, item.CantidadMovimiento, item.UNID_ITEM_STATUS);
                 this._movimientoDetalleModel.saveArticulo();
                 this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem, this._movimientoDetalleModel.UnidMovimientoDetalle, item.CantidadMovimiento, this._movimientoModel.UnidInfraestructura, item.UNID_ITEM_STATUS);
+                //this._ultimoMovimientoModel = new UltimoMovimientoModel(new UltimoMovimientoDataMapper(), item.UnidItem,this._movimientoModel.AlmacenProcedencia.UNID_ALMACEN,this._movimientoModel.Infraestructura.UNID_INFRAESTRUCTURA,this._movimientoDetalleModel.UnidMovimientoDetalle, item.CantidadMovimiento, item.UNID_ITEM_STATUS);
                 this._ultimoMovimientoModel.updateArticulo(this.MovimientoModel.AlmacenProcedencia);
                 this._ultimoMovimientoModel.saveArticulo();
             }

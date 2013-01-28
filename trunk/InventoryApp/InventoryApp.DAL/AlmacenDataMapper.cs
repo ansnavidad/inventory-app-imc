@@ -200,14 +200,21 @@ namespace InventoryApp.DAL
             object res = null;
             using (var entitie = new TAE2Entities())
             {
+                //ALMACEN almacen = (ALMACEN)element;
+                //var query = (from cust in entitie.ALMACENs
+                //             where cust.UNID_ALMACEN == almacen.UNID_ALMACEN
+                //             select cust).ToList();
+                //if (query.Count > 0)
+                //{
+                //    res = query;
+                //}
+                //return res;
                 ALMACEN almacen = (ALMACEN)element;
                 var query = (from cust in entitie.ALMACENs
                              where cust.UNID_ALMACEN == almacen.UNID_ALMACEN
-                             select cust).ToList();
-                if (query.Count > 0)
-                {
-                    res = query;
-                }
+                             select cust).First();
+
+                res = query;
                 return res;
             }
         }

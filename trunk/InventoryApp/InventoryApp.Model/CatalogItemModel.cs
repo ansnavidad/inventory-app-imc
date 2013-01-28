@@ -265,6 +265,7 @@ namespace InventoryApp.Model
                             tmp = ultimomovimientodm.getCantidadItems(elemento, infra);
                         aux.CantidadDisponible = tmp.CANTIDAD;
                         aux.CantidadMovimiento = 1;
+                        aux.ItemStatus = tmp.ITEM_STATUS;
                         if (aux.CantidadDisponible > 0)
                         {
                             bool auxx = true;
@@ -372,9 +373,6 @@ namespace InventoryApp.Model
                 if (element != null)
                 {
 
-
-
-
                     foreach (ITEM elemento in (List<ITEM>)element)
                     {
                         ban = true;
@@ -387,6 +385,7 @@ namespace InventoryApp.Model
                             tmp = ultimomovimientodm.getCantidadItems(elemento, prov);
                         aux.CantidadDisponible = tmp.CANTIDAD;
                         aux.CantidadMovimiento = 1;
+                        aux.ItemStatus = tmp.ITEM_STATUS;
                         if (aux.CantidadDisponible > 0)
                         {
                             bool auxx = true;
@@ -506,6 +505,7 @@ namespace InventoryApp.Model
                             tmp = ultimomovimientodm.getCantidadItems(elemento, almacenDirecto);
                         aux.CantidadDisponible = tmp.CANTIDAD;
                         aux.CantidadMovimiento = 1;
+                        aux.ItemStatus = tmp.ITEM_STATUS;
                         if (aux.CantidadDisponible > 0)
                         {
                             bool auxx = true;

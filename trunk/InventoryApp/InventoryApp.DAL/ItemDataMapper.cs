@@ -134,6 +134,7 @@ namespace InventoryApp.DAL
                             trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
                             trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
                             trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            
                         }
                         o = (object)res;
                     }
@@ -320,8 +321,10 @@ namespace InventoryApp.DAL
                             trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
                             trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
                             trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            trans.ULTIMO_MOVIMIENTO = trans.ULTIMO_MOVIMIENTO;
                             
                         }
+                        
                         o = (object)res;
                     }
                 }
@@ -345,6 +348,7 @@ namespace InventoryApp.DAL
                             trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
                             trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
                             trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            
                         }
                         o = (object)res;
                     }
@@ -378,6 +382,7 @@ namespace InventoryApp.DAL
                             trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
                             trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
                             trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            
                         }
                         o = (object)res;
                     }
@@ -409,6 +414,7 @@ namespace InventoryApp.DAL
                             trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
                             trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
                             trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            
                         }
                         o = (object)res;
                     }
@@ -432,6 +438,7 @@ namespace InventoryApp.DAL
                             trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
                             trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
                             trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            
                         }
                         o = (object)res;
                     }
@@ -466,6 +473,7 @@ namespace InventoryApp.DAL
                                 trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
                                 trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
                                 trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                                
                             }
                             o = (object)res;
                         }
@@ -488,6 +496,7 @@ namespace InventoryApp.DAL
                                 trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
                                 trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
                                 trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                                
                             }
                             o = (object)res;
                         }
@@ -513,6 +522,7 @@ namespace InventoryApp.DAL
                                 trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
                                 trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
                                 trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                                
                             }
                             o = (object)res;
                         }
@@ -535,6 +545,7 @@ namespace InventoryApp.DAL
                                 trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
                                 trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
                                 trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                                
                             }
                             o = (object)res;
                         }
@@ -567,7 +578,8 @@ namespace InventoryApp.DAL
                             trans.ARTICULO.EQUIPO = trans.ARTICULO.EQUIPO;
                             trans.ARTICULO.CATEGORIA = trans.ARTICULO.CATEGORIA;
                             trans.ARTICULO.MARCA = trans.ARTICULO.MARCA;
-                            trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;                            
+                            trans.ARTICULO.MODELO = trans.ARTICULO.MODELO;
+                            
                         }
                         o = (object)res;
                     }

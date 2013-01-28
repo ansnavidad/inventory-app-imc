@@ -11,12 +11,22 @@
         <GradientStop Color="#153376" Offset="0.567"/>
     </LinearGradientBrush>
 
+    <LinearGradientBrush x:Key="DegradadoElaraButton" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+        <GradientStop Color="#F2F2F2" Offset="0"/>
+        <GradientStop Color="#BDBDBD" Offset="0.567"/>
+    </LinearGradientBrush>
+    
+
     <Style x:Key="titleBorderElaraOrange" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="#ed5d1e" />
     </Style>
 
     <Style x:Key="titleBorder" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="{StaticResource DegradadoElaraOrange}" />
+    </Style>
+
+    <Style x:Key="titleBorder2" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="{StaticResource DegradadoElaraButton}" />
     </Style>
 
     <Style x:Key="titleBorderElaraBlue" TargetType="{x:Type Border}">

@@ -31,7 +31,6 @@ namespace InventoryApp.Model
         private EQUIPO _equipo;
         private ItemDataMapper _dataMapper;
         private ItemStatusDataMapper _dataMapper2;
-
         private string _error;
 
         private ARTICULO _articulo;
@@ -476,7 +475,6 @@ namespace InventoryApp.Model
             }
         }
 
-
         public ItemModel(ITEM item) 
         {
             this._articulo = item.ARTICULO;
@@ -490,7 +488,7 @@ namespace InventoryApp.Model
             if (item.ITEM_STATUS!= null)
             {
                 this._itemStatus = item.ITEM_STATUS;
-                this._itemStatuss = new ItemStatusModel(null) { ItemStatusName = item.ITEM_STATUS.ITEM_STATUS_NAME, UnidItemStatus = long.Parse(item.UNID_ITEM_STATUS.ToString()) };    
+                this._itemStatuss = new ItemStatusModel(null) { ItemStatusName = item.ITEM_STATUS.ITEM_STATUS_NAME, UnidItemStatus = long.Parse(item.UNID_ITEM_STATUS.ToString()) };
             }
             this.UNID_ITEM_STATUS = item.UNID_ITEM_STATUS;
             this.COSTO_UNITARIO = item.COSTO_UNITARIO;
@@ -503,10 +501,46 @@ namespace InventoryApp.Model
             this._categoria = item.ARTICULO.CATEGORIA;
             this._marca = item.ARTICULO.MARCA;
             this._modelo = item.ARTICULO.MODELO;
+            
             this.Detalles = new ObservableCollection<DeleteFacturaDetalleModel>();
 
             this._dataMapper = new ItemDataMapper();
             
+        }
+
+        public ItemModel(ITEM item, int lectura,ITEM_STATUS status)
+        {
+            this._articulo = item.ARTICULO;
+            this._nombre = item.ARTICULO.ARTICULO1;
+            this._unidItem = item.UNID_ITEM;
+            this._sku = item.SKU;
+            this.SKU = item.SKU;
+            this.NUMERO_SERIE = item.NUMERO_SERIE;
+            this._numeroSerie = item.NUMERO_SERIE;
+            this._cantidadMovimiento = lectura;
+            //this._itemStatuss.updateItemStatus = item.UNID_ITEM_STATUS;
+            if (status != null)
+            {
+                this._itemStatus = status;
+                //this._itemStatuss = new ItemStatusModel(null) { ItemStatusName = item.ITEM_STATUS.ITEM_STATUS_NAME, UnidItemStatus = long.Parse(item.UNID_ITEM_STATUS.ToString()) };
+                this._itemStatuss = new ItemStatusModel(null) { ItemStatusName = this._itemStatus.ITEM_STATUS_NAME, UnidItemStatus = this._itemStatus.UNID_ITEM_STATUS };
+            }
+            this.UNID_ITEM_STATUS = item.UNID_ITEM_STATUS;
+            this.COSTO_UNITARIO = item.COSTO_UNITARIO;
+            this._pedimentoExpo = item.PEDIMENTO_EXPO;
+            this._pedimentoImpo = item.PEDIMENTO_IMPO;
+            //this._facturaDetalle = item.FACTURA_DETALLE;
+            this.IS_ACTIVE = item.IS_ACTIVE;
+            this.IsChecked = false;
+            this._equipo = item.ARTICULO.EQUIPO;
+            this._categoria = item.ARTICULO.CATEGORIA;
+            this._marca = item.ARTICULO.MARCA;
+            this._modelo = item.ARTICULO.MODELO;
+
+            this.Detalles = new ObservableCollection<DeleteFacturaDetalleModel>();
+
+            this._dataMapper = new ItemDataMapper();
+
         }
 
         public ItemModel()

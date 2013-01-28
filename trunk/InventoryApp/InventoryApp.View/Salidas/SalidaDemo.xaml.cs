@@ -22,7 +22,9 @@ namespace InventoryApp.View.Salidas
     {
         public SalidaDemo()
         {
+            comboBoxClienteDestino = new ComboBox();
             InitializeComponent();
+            comboBoxSolicitante.SelectedIndex = 0;
         }
         private void buttonAgregarItems_Click(object sender, RoutedEventArgs e)
         {
@@ -37,7 +39,7 @@ namespace InventoryApp.View.Salidas
         {
             comboBoxAlmacenDestino.SelectedIndex = 0;
 
-            comboBoxAlmacenDestino.IsEnabled = true;
+            
             comboBoxProveedorDestino.IsEnabled = false;
             comboBoxClienteDestino.IsEnabled = false;
             comboBoxProveedorDestino.SelectedItem = null;
@@ -50,10 +52,8 @@ namespace InventoryApp.View.Salidas
             {
                 comboBoxProveedorDestino.SelectedIndex = 0;
 
-                comboBoxAlmacenDestino.IsEnabled = false;
                 comboBoxProveedorDestino.IsEnabled = true;
                 comboBoxClienteDestino.IsEnabled = false;
-                comboBoxAlmacenDestino.SelectedItem = null;
                 comboBoxClienteDestino.SelectedItem = null;
             }
         }
@@ -61,11 +61,8 @@ namespace InventoryApp.View.Salidas
         private void radioButtonCliente_Checked(object sender, RoutedEventArgs e)
         {
             comboBoxClienteDestino.SelectedIndex = 0;
-
-            comboBoxAlmacenDestino.IsEnabled = false;
             comboBoxProveedorDestino.IsEnabled = false;
             comboBoxClienteDestino.IsEnabled = true;
-            comboBoxAlmacenDestino.SelectedItem = null;
             comboBoxProveedorDestino.SelectedItem = null;
         }
 

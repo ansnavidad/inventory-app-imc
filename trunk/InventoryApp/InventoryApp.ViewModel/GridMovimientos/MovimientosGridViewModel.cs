@@ -29,10 +29,11 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 IDataMapper dataMapper2 = new AlmacenDataMapper();
                 IDataMapper dataMapper3 = new ProveedorDataMapper();
                 IDataMapper dataMapper4 = new ClienteDataMapper();
-                IDataMapper dataMapper5 = new TipoPedimentoDataMapper();                
+                IDataMapper dataMapper5 = new TipoPedimentoDataMapper();
+                IDataMapper dataMapper6 = new MovimientoDataMapper();                
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
-                this._catalogMovimientoModel = new CatalogMovimientoModel(new MovimientoDataMapper());
+                this._catalogMovimientoModel = new CatalogMovimientoModel(dataMapper6);
                 TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
                 //mov.UNID_TIPO_MOVIMIENTO = 1;
                 //this._movimientoGridModel.TipoMovimiento = mov;

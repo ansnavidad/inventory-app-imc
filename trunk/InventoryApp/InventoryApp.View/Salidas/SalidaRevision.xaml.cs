@@ -23,6 +23,7 @@ namespace InventoryApp.View.Salidas
         public SalidaRevision()
         {
             InitializeComponent();
+            comboBoxSolicitante.SelectedIndex = 0;
         }
 
         private void buttonAgregarItems_Click(object sender, RoutedEventArgs e)

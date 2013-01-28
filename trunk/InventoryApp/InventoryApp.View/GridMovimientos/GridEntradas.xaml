@@ -31,8 +31,9 @@
         <Button  Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="160,4,15,3" Name="btnNuevo" VerticalAlignment="Stretch" 
                  Width="75" Grid.Column="2" Command="{Binding AddReciboCmd}" Click="btnNuevo_Click" Style="{StaticResource btnElara}" />
         <DataGrid AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" Margin="0" Name="dtGridMovimiento"
-                  ItemsSource="{Binding CatalogMovimientoModel.CatalogMovimiento}"
-                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                  ItemsSource="{Binding CatalogMovimientoModel.CatalogMovimientoGrid}"
+                  SelectedItem="{Binding CatalogMovimientoModel.SelectedMovimientoGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" MouseDoubleClick="dtGridMovimiento_MouseDoubleClick"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Ultimo Movimiento" Width="*" x:Name="tipoMoviento" Binding="{Binding Path=TipoMovimiento}" IsReadOnly="True"/>

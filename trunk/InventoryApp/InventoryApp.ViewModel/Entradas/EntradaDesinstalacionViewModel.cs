@@ -28,6 +28,7 @@ namespace InventoryApp.ViewModel.Entradas
         private CatalogItemModel _itemModel;
         private CatalogTransporteModel _catalogTransporteModel;
         private CatalogTecnicoModel _catalogTecnicoModel;
+        private CatalogMovimientoModel _catalogMovimientoModel;
         private RelayCommand _addItemCommand;
         private RelayCommand _deleteItemCommand;
         private RelayCommand _imprimirCommand;
@@ -45,6 +46,9 @@ namespace InventoryApp.ViewModel.Entradas
                 IDataMapper dataMapper4 = new ClienteDataMapper();
                 IDataMapper dataMapper5 = new TransporteDataMapper();
                 IDataMapper dataMapper6 = new TecnicoDataMapper();
+                IDataMapper dataMapper7 = new MovimientoDataMapper();
+
+                this._catalogMovimientoModel = new CatalogMovimientoModel(dataMapper7);
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
                 this._movimientoModel = new MovimientoModel(new MovimientoDataMapper());
@@ -94,6 +98,9 @@ namespace InventoryApp.ViewModel.Entradas
                 IDataMapper dataMapper5 = new TransporteDataMapper();
                 IDataMapper dataMapper6 = new TecnicoDataMapper();
                 IDataMapper datamapper5 = new EmpresaDataMapper();
+                IDataMapper dataMapper7 = new MovimientoDataMapper();
+
+                this._catalogMovimientoModel = new CatalogMovimientoModel(dataMapper7);
 
                 this._catalogEmpresaModel = new CatalogEmpresaModel(datamapper5);
 
@@ -171,6 +178,19 @@ namespace InventoryApp.ViewModel.Entradas
             }
         }
 
+        public CatalogMovimientoModel CatalogMovimientoModel
+        {
+            get
+            {
+                return _catalogMovimientoModel;
+
+            }
+            set
+            {
+                _catalogMovimientoModel = value;
+            }
+        }
+
         public CatalogProveedorModel CatalogProveedorProcedenciaModel
         {
             get
@@ -238,6 +258,7 @@ namespace InventoryApp.ViewModel.Entradas
                 _catalogClienteProcedenciaModel = value;
             }
         }
+
         public CatalogAlmacenModel CatalogAlmacenProcedenciaModel
         {
             get
@@ -250,6 +271,7 @@ namespace InventoryApp.ViewModel.Entradas
                 _catalogAlmacenProcedenciaModel = value;
             }
         }
+
         public MovimientoModel MovimientoModel
         {
             get
@@ -262,6 +284,7 @@ namespace InventoryApp.ViewModel.Entradas
                 _movimientoModel = value;
             }
         }
+
         public CatalogItemModel ItemModel
         {
             get

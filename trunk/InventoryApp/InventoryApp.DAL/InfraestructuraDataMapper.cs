@@ -127,11 +127,18 @@ namespace InventoryApp.DAL
 
             using (var entity = new TAE2Entities())
             {
+                //INFRAESTRUCTURA TEmp = (INFRAESTRUCTURA)element;
+
+                //res = (from tipo in entity.INFRAESTRUCTURAs
+                //       where tipo.UNID_INFRAESTRUCTURA == TEmp.UNID_INFRAESTRUCTURA
+                //       select tipo).ToList();
+
+                //return res;
                 INFRAESTRUCTURA TEmp = (INFRAESTRUCTURA)element;
 
                 res = (from tipo in entity.INFRAESTRUCTURAs
                        where tipo.UNID_INFRAESTRUCTURA == TEmp.UNID_INFRAESTRUCTURA
-                       select tipo).ToList();
+                       select tipo).First();
 
                 return res;
             }

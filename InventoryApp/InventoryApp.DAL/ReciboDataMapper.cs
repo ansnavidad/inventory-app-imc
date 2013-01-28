@@ -16,6 +16,110 @@ namespace InventoryApp.DAL
             return resx;
         }
 
+        public void LimpiarRecibo(List<long> UnidsMovs, long UnidR) {
+
+            using (var Entity = new TAE2Entities())
+            {
+                List<long> EliminarR_M = new List<long>();
+                List<long> EliminarM = new List<long>();
+
+                var UnidsPorEliminar = (from r in Entity.RECIBO_MOVIMIENTO
+                                        where r.UNID_RECIBO == UnidR
+                                        select r).ToList();
+
+                if (UnidsPorEliminar != null && UnidsMovs != null && UnidsPorEliminar.Count > 0 && UnidsMovs.Count > 0)
+                {
+                    foreach (long u in UnidsMovs)
+                    {
+                        bool aux = true;
+
+                        int j = 0;
+                        for (j = 0; j < UnidsPorEliminar.Count; j++)
+                        {
+
+                            if (u == UnidsPorEliminar[j].UNID_MOVIMIENTO)
+                            {
+                                aux = false;
+                                break;
+                            }
+                        }
+
+                        if (!aux)
+                        {
+                            EliminarR_M.Add(UnidsPorEliminar[j].UNID_RECIBO_MOVIMIENTO);
+                            EliminarM.Add(u);
+                        }
+                    }
+
+                    foreach (long d in EliminarR_M)
+                    {
+
+                        var delR_M = (from r in Entity.RECIBO_MOVIMIENTO
+                                      where r.UNID_RECIBO_MOVIMIENTO == d
+                                      select r).First();
+                        //Sync
+                        delR_M.IS_ACTIVE = false;
+                        delR_M.IS_MODIFIED = true;
+
+                        delR_M.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = Entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        Entity.SaveChanges();
+                    }
+
+                    foreach (long d in EliminarM)
+                    {
+                        var delM = (from r in Entity.MOVIMENTOes
+                                    where r.UNID_MOVIMIENTO == d
+                                    select r).First();
+                        delM.IS_ACTIVE = false;
+                        delM.IS_MODIFIED = true;
+
+                        //Sync
+                        delM.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = Entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        Entity.SaveChanges();
+
+                        var delM_D = (from r in Entity.MOVIMIENTO_DETALLE
+                                      where r.UNID_MOVIMIENTO == d
+                                      select r).ToList();
+
+                        foreach (MOVIMIENTO_DETALLE m in delM_D)
+                        {
+
+                            var delU_M = (from r in Entity.ULTIMO_MOVIMIENTO
+                                          where r.UNID_MOVIMIENTO_DETALLE == m.UNID_MOVIMIENTO_DETALLE
+                                          select r).First();
+                            var delI = (from r in Entity.ITEMs
+                                        where r.UNID_ITEM == delU_M.UNID_ITEM
+                                        select r).First();
+                            var DelM = (from r in Entity.MOVIMIENTO_DETALLE
+                                        where r.UNID_MOVIMIENTO_DETALLE == m.UNID_MOVIMIENTO_DETALLE
+                                        select r).First();
+
+                            //Sync
+                            delU_M.IS_ACTIVE = false;
+                            delU_M.IS_MODIFIED = true;
+                            delU_M.LAST_MODIFIED_DATE = UNID.getNewUNID();
+
+                            delI.IS_ACTIVE = false;
+                            delI.IS_MODIFIED = true;
+                            delI.LAST_MODIFIED_DATE = UNID.getNewUNID();
+
+                            DelM.IS_ACTIVE = false;
+                            DelM.IS_MODIFIED = true;
+                            DelM.LAST_MODIFIED_DATE = UNID.getNewUNID();
+
+                            modifiedSync = Entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                            modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                            Entity.SaveChanges();
+                        }
+                    }
+                }
+            }
+        }
+
         public long? LastModifiedDate()
         {
             long? resul = null;
@@ -112,66 +216,73 @@ namespace InventoryApp.DAL
                 using (var Entity = new TAE2Entities())
                 {
                     var mvtos = (from o in Entity.RECIBOes
-                                 where o.UNID_RECIBO == recibo.UNID_RECIBO
+                                 where o.UNID_RECIBO == recibo.UNID_RECIBO && o.IS_ACTIVE == true
                                  select o).FirstOrDefault();
 
                     mvtos.RECIBO_MOVIMIENTO.ToList().ForEach(rm => 
                     {
-                        MOVIMENTO m=new MOVIMENTO()
+                        if (rm.IS_ACTIVE == true)
                         {
-                            UNID_MOVIMIENTO=rm.MOVIMENTO.UNID_MOVIMIENTO,
-                            ALMACEN=rm.MOVIMENTO.ALMACEN,
-                            CLIENTE=rm.MOVIMENTO.CLIENTE,
-                            CONTACTO=rm.MOVIMENTO.CONTACTO,
-                            PROVEEDOR=rm.MOVIMENTO.PROVEEDOR,
-                            FECHA_MOVIMIENTO=rm.MOVIMENTO.FECHA_MOVIMIENTO
-                        };
-
-                        FixupCollection<MOVIMIENTO_DETALLE> mdColl=new FixupCollection<MOVIMIENTO_DETALLE>();
-
-                        rm.MOVIMENTO.MOVIMIENTO_DETALLE.ToList().ForEach(md =>
-                        {
-                            mdColl.Add(new MOVIMIENTO_DETALLE()
+                            MOVIMENTO m = new MOVIMENTO()
                             {
-                                UNID_MOVIMIENTO_DETALLE = md.UNID_MOVIMIENTO_DETALLE,
-                                UNID_MOVIMIENTO = md.UNID_MOVIMIENTO,
-                                ITEM = new ITEM()
+                                UNID_MOVIMIENTO = rm.MOVIMENTO.UNID_MOVIMIENTO,
+                                ALMACEN = rm.MOVIMENTO.ALMACEN,
+                                CLIENTE = rm.MOVIMENTO.CLIENTE,
+                                CONTACTO = rm.MOVIMENTO.CONTACTO,
+                                PROVEEDOR = rm.MOVIMENTO.PROVEEDOR,
+                                FECHA_MOVIMIENTO = rm.MOVIMENTO.FECHA_MOVIMIENTO, 
+                                FINISHED = rm.MOVIMENTO.FINISHED
+                            };
+
+                            FixupCollection<MOVIMIENTO_DETALLE> mdColl = new FixupCollection<MOVIMIENTO_DETALLE>();
+
+                            rm.MOVIMENTO.MOVIMIENTO_DETALLE.ToList().ForEach(md =>
+                            {
+                                if (md.IS_ACTIVE == true)
                                 {
-                                    UNID_ITEM = md.ITEM.UNID_ITEM,
-                                    COSTO_UNITARIO = md.ITEM.COSTO_UNITARIO,
-                                    FACTURA_DETALLE = new FACTURA_DETALLE()
+                                    mdColl.Add(new MOVIMIENTO_DETALLE()
                                     {
-                                        FACTURA = md.ITEM.FACTURA_DETALLE.FACTURA,
-                                        UNID_FACTURA_DETALE = md.ITEM.UNID_FACTURA_DETALE,
-                                        CANTIDAD = md.ITEM.FACTURA_DETALLE.CANTIDAD,
-                                        DESCRIPCION = md.ITEM.FACTURA_DETALLE.DESCRIPCION,
-                                        IMPUESTO_UNITARIO = md.ITEM.FACTURA_DETALLE.IMPUESTO_UNITARIO,
-                                        NUMERO = md.ITEM.FACTURA_DETALLE.NUMERO
-                                    },
-                                    NUMERO_SERIE = md.ITEM.NUMERO_SERIE,
-                                    SKU = md.ITEM.SKU,
-                                    CANTIDAD = md.ITEM.CANTIDAD,
-                                    ARTICULO = new ARTICULO()
-                                    {
-                                        CATEGORIA = md.ITEM.ARTICULO.CATEGORIA,
-                                        MARCA = md.ITEM.ARTICULO.MARCA,
-                                        MODELO = md.ITEM.ARTICULO.MODELO,
-                                        EQUIPO = md.ITEM.ARTICULO.EQUIPO,
-                                        ARTICULO1 = md.ITEM.ARTICULO.ARTICULO1,
-                                        UNID_ARTICULO = md.ITEM.ARTICULO.UNID_ARTICULO
-                                    },
-                                    ITEM_STATUS = new ITEM_STATUS()
-                                    {
-                                        ITEM_STATUS_NAME = md.ITEM.ITEM_STATUS.ITEM_STATUS_NAME,
-                                        UNID_ITEM_STATUS = md.ITEM.ITEM_STATUS.UNID_ITEM_STATUS
-                                    }
+                                        UNID_MOVIMIENTO_DETALLE = md.UNID_MOVIMIENTO_DETALLE,
+                                        UNID_MOVIMIENTO = md.UNID_MOVIMIENTO,
+                                        ITEM = new ITEM()
+                                        {
+                                            UNID_ITEM = md.ITEM.UNID_ITEM,
+                                            COSTO_UNITARIO = md.ITEM.COSTO_UNITARIO,
+                                            FACTURA_DETALLE = new FACTURA_DETALLE()
+                                            {
+                                                FACTURA = md.ITEM.FACTURA_DETALLE.FACTURA,
+                                                UNID_FACTURA_DETALE = md.ITEM.UNID_FACTURA_DETALE,
+                                                CANTIDAD = md.ITEM.FACTURA_DETALLE.CANTIDAD,
+                                                DESCRIPCION = md.ITEM.FACTURA_DETALLE.DESCRIPCION,
+                                                IMPUESTO_UNITARIO = md.ITEM.FACTURA_DETALLE.IMPUESTO_UNITARIO,
+                                                NUMERO = md.ITEM.FACTURA_DETALLE.NUMERO
+                                            },
+                                            NUMERO_SERIE = md.ITEM.NUMERO_SERIE,
+                                            SKU = md.ITEM.SKU,
+                                            CANTIDAD = md.ITEM.CANTIDAD,
+                                            ARTICULO = new ARTICULO()
+                                            {
+                                                CATEGORIA = md.ITEM.ARTICULO.CATEGORIA,
+                                                MARCA = md.ITEM.ARTICULO.MARCA,
+                                                MODELO = md.ITEM.ARTICULO.MODELO,
+                                                EQUIPO = md.ITEM.ARTICULO.EQUIPO,
+                                                ARTICULO1 = md.ITEM.ARTICULO.ARTICULO1,
+                                                UNID_ARTICULO = md.ITEM.ARTICULO.UNID_ARTICULO
+                                            },
+                                            ITEM_STATUS = new ITEM_STATUS()
+                                            {
+                                                ITEM_STATUS_NAME = md.ITEM.ITEM_STATUS.ITEM_STATUS_NAME,
+                                                UNID_ITEM_STATUS = md.ITEM.ITEM_STATUS.UNID_ITEM_STATUS
+                                            }
+                                        }
+                                    });
                                 }
-                            });
-                        });//foreach movto detalle
+                            });//foreach movto detalle
 
-                        m.MOVIMIENTO_DETALLE = mdColl;
+                            m.MOVIMIENTO_DETALLE = mdColl;
 
-                        listMovimiento.Add(m);
+                            listMovimiento.Add(m);
+                        }
                     });
                 }
             }

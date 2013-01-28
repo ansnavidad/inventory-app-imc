@@ -158,6 +158,53 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void udpateElementRecibo(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    RECIBO_MOVIMIENTO reciboM = (RECIBO_MOVIMIENTO)element;
+
+                    var query = (from p in entity.RECIBO_MOVIMIENTO
+                                 where p.UNID_RECIBO_MOVIMIENTO == reciboM.UNID_RECIBO_MOVIMIENTO
+                                 select p).ToList();
+
+                    if (query.Count == 0)
+                    {
+                        //Sync
+                        reciboM.IS_MODIFIED = true;
+                        reciboM.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.RECIBO_MOVIMIENTO.AddObject(reciboM);
+                    }
+                    else
+                    {
+
+                        var modifiedReciboM = entity.RECIBO_MOVIMIENTO.First(p => p.UNID_RECIBO_MOVIMIENTO == reciboM.UNID_RECIBO_MOVIMIENTO);
+
+                        modifiedReciboM.UNID_RECIBO = reciboM.UNID_RECIBO;
+                        modifiedReciboM.UNID_MOVIMIENTO = reciboM.UNID_MOVIMIENTO;
+                        modifiedReciboM.UNID_FACTURA = reciboM.UNID_FACTURA;
+                        modifiedReciboM.IS_ACTIVE = reciboM.IS_ACTIVE;
+                        
+                        //Sync
+                        modifiedReciboM.IS_MODIFIED = true;
+                        modifiedReciboM.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                    }
+
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void insertElement(object element)
         {
             if (element != null && (element as RECIBO_MOVIMIENTO) != null)

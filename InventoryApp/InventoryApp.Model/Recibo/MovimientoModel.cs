@@ -23,6 +23,21 @@ namespace InventoryApp.Model.Recibo
         private bool _IsChecked;
         public const string IsCheckedPropertyName = "IsChecked";
 
+        public bool? Finished
+        {
+            get { return _Finished; }
+            set
+            {
+                if (_Finished != value)
+                {
+                    _Finished = value;
+                    OnPropertyChanged(FinishedPropertyName);
+                }
+            }
+        }
+        private bool? _Finished;
+        public const string FinishedPropertyName = "Finished";
+
         public long UnidMovimiento
         {
             get { return _UnidMovimiento; }

@@ -206,6 +206,55 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void udpateElementRecibo(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MOVIMIENTO_DETALLE movDet = (MOVIMIENTO_DETALLE)element;
+
+                    var query = (from p in entity.MOVIMIENTO_DETALLE
+                                 where p.UNID_MOVIMIENTO_DETALLE == movDet.UNID_MOVIMIENTO_DETALLE
+                                 select p).ToList();
+
+                    if (query.Count == 0)
+                    {
+                        //Sync
+                        movDet.IS_MODIFIED = true;
+                        movDet.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.MOVIMIENTO_DETALLE.AddObject(movDet);
+                    }
+                    else
+                    {
+                        var modifiedM_D = entity.MOVIMIENTO_DETALLE.First(p => p.UNID_ITEM == movDet.UNID_ITEM);
+
+                        modifiedM_D.IS_ACTIVE = movDet.IS_ACTIVE;
+                        modifiedM_D.OBSERVACIONES = movDet.OBSERVACIONES;
+                        modifiedM_D.UNID_ITEM = movDet.UNID_ITEM;
+                        modifiedM_D.UNID_MOVIMIENTO = movDet.UNID_MOVIMIENTO;
+                        modifiedM_D.UNID_ITEM_STATUS = movDet.UNID_ITEM_STATUS;
+                        modifiedM_D.CANTIDAD = movDet.CANTIDAD;
+                        modifiedM_D.UNID_ITEM_STATUS = movDet.UNID_ITEM_STATUS;
+
+                        //Sync
+                        modifiedM_D.IS_MODIFIED = true;
+                        modifiedM_D.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                    }
+
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void insertElement(object element)
         {
             if (element != null)

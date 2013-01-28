@@ -674,6 +674,62 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void updateElementRecibo(object element)
+        {
+
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ITEM item = (DAL.POCOS.ITEM)element;
+
+                    var query = (from p in entity.ITEMs
+                                 where p.UNID_ITEM == item.UNID_ITEM
+                                 select p).ToList();
+
+                    if (query.Count == 0)
+                    {
+                        //Sync
+                        item.IS_MODIFIED = true;
+                        item.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.ITEMs.AddObject(item);
+                    }
+                    else
+                    {
+                        var modifiedItem = entity.ITEMs.First(p => p.UNID_ITEM == item.UNID_ITEM);
+
+                        modifiedItem.UNID_ITEM_STATUS = item.UNID_ITEM_STATUS;
+                        modifiedItem.UNID_FACTURA_DETALE = item.UNID_FACTURA_DETALE;
+                        modifiedItem.UNID_EMPRESA = item.UNID_EMPRESA;
+                        modifiedItem.UNID_ARTICULO = item.UNID_ARTICULO;
+                        modifiedItem.STATUS = item.STATUS;
+                        modifiedItem.SKU = item.SKU;
+                        modifiedItem.NUMERO_SERIE = item.NUMERO_SERIE;
+                        modifiedItem.IS_ACTIVE = item.IS_ACTIVE;
+                        modifiedItem.COSTO_UNITARIO = item.COSTO_UNITARIO;
+                        modifiedItem.CANTIDAD = item.CANTIDAD;
+                        modifiedItem.PEDIMENTO_EXPO = item.PEDIMENTO_EXPO;
+                        modifiedItem.PEDIMENTO_IMPO = item.PEDIMENTO_IMPO;
+                        modifiedItem.UNID_PROPIEDAD = item.UNID_PROPIEDAD;                        
+
+                        //Sync
+                        modifiedItem.IS_MODIFIED = true;
+                        modifiedItem.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                    }
+
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void udpateElementEntradaValidacion(object element)
         {
             if (element != null)

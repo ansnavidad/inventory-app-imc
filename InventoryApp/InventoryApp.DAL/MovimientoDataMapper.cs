@@ -966,6 +966,77 @@ namespace InventoryApp.DAL
             }
         }
 
+
+        public void udpateElementRecibo(object element) {
+
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    DAL.POCOS.MOVIMENTO Mov = (DAL.POCOS.MOVIMENTO)element;
+
+                    var query = (from p in entity.MOVIMENTOes
+                                 where p.UNID_MOVIMIENTO == Mov.UNID_MOVIMIENTO
+                                 select p).ToList();
+
+                    if (query.Count == 0)
+                    {                        
+                        //Sync
+                        Mov.IS_MODIFIED = true;
+                        Mov.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.MOVIMENTOes.AddObject(Mov);
+                    }
+                    else
+                    {
+
+                        var modifiedMov = entity.MOVIMENTOes.First(p => p.UNID_MOVIMIENTO == Mov.UNID_MOVIMIENTO);
+
+                        modifiedMov.CONTACTO = Mov.CONTACTO;
+                        modifiedMov.DIRECCION_ENVIO = Mov.DIRECCION_ENVIO;
+                        modifiedMov.FINISHED = Mov.FINISHED;
+                        modifiedMov.GUIA = Mov.GUIA;
+                        modifiedMov.NOMBRE_SITIO = Mov.NOMBRE_SITIO;
+                        modifiedMov.PEDIMIENTO_EXPO = Mov.PEDIMIENTO_EXPO;
+                        modifiedMov.PEDIMIENTO_IMPO = Mov.PEDIMIENTO_IMPO;
+                        modifiedMov.RECIBE = Mov.RECIBE;
+                        modifiedMov.SITIO_ENLACE = Mov.SITIO_ENLACE;
+                        modifiedMov.TT = Mov.TT;
+                        modifiedMov.UNID_ALMACEN_DESTINO = Mov.UNID_ALMACEN_DESTINO;
+                        modifiedMov.UNID_ALMACEN_PROCEDENCIA = Mov.UNID_ALMACEN_PROCEDENCIA;
+                        modifiedMov.UNID_CLIENTE = Mov.UNID_CLIENTE;
+                        modifiedMov.UNID_CLIENTE_DESTINO = Mov.UNID_CLIENTE_DESTINO;
+                        modifiedMov.UNID_CLIENTE_PROCEDENCIA = Mov.UNID_CLIENTE_PROCEDENCIA;
+                        modifiedMov.UNID_FACTURA_VENTA = Mov.UNID_FACTURA_VENTA;
+                        modifiedMov.UNID_INFRAESTRUCTURA = Mov.UNID_INFRAESTRUCTURA;                        
+                        modifiedMov.UNID_PROVEEDOR = Mov.UNID_PROVEEDOR;
+                        modifiedMov.UNID_PROVEEDOR_DESTINO = Mov.UNID_PROVEEDOR_DESTINO;
+                        modifiedMov.UNID_PROVEEDOR_PROCEDENCIA = Mov.UNID_PROVEEDOR_PROCEDENCIA;
+                        modifiedMov.UNID_SERVICIO = Mov.UNID_SERVICIO;
+                        modifiedMov.UNID_SOLICITANTE = Mov.UNID_SOLICITANTE;
+                        modifiedMov.UNID_TECNICO = Mov.UNID_TECNICO;
+                        modifiedMov.UNID_TECNICO_TRAS = Mov.UNID_TECNICO_TRAS;
+                        modifiedMov.UNID_TIPO_MOVIMIENTO = Mov.UNID_TIPO_MOVIMIENTO;
+                        modifiedMov.UNID_TRANSPORTE = Mov.UNID_TRANSPORTE;
+                        modifiedMov.IS_ACTIVE = Mov.IS_ACTIVE;
+                        //Sync
+                        modifiedMov.IS_MODIFIED = true;
+                        modifiedMov.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                    }
+
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+
         public void insertElement(object element)
         {
             if (element != null)

@@ -5,7 +5,7 @@
         Title="Detalle de la Factura" Height="Auto" Width="791" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="510" SizeToContent="Height">
     <Grid>
         <DockPanel>
-            <ContentControl HorizontalAlignment="Stretch" Name="contentControl1" VerticalAlignment="Stretch" DockPanel.Dock="Top">
+            <ContentControl HorizontalAlignment="Stretch" Name="contentControl1" VerticalAlignment="Stretch" DockPanel.Dock="Top" IsEnabled="{Binding Path=ContB}">
                 <my:AddFacturaView />
             </ContentControl>
             <DockPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" DockPanel.Dock="Bottom" >

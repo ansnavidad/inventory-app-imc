@@ -21,7 +21,7 @@
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <ScrollViewer Grid.Row="0" Height="AUTO" HorizontalAlignment="Stretch" Name="scrollViewer1" VerticalAlignment="Stretch" Width="AUTO" DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto">
-            <ContentControl HorizontalAlignment="Stretch" Name="contentControl1" VerticalAlignment="Top" Height="400" >
+            <ContentControl HorizontalAlignment="Stretch" Name="contentControl1" VerticalAlignment="Top" Height="400" IsEnabled="{Binding Path=ContB}">
                 <my:AddMovimientoView x:Name="addMovimientoView1" />
             </ContentControl>
         </ScrollViewer>

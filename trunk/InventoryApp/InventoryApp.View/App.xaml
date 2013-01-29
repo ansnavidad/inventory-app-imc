@@ -86,7 +86,7 @@
              xmlns:jobView="clr-namespace:InventoryApp.View.Job"
                   
         
-             StartupUri="MainWindow.xaml"
+             StartupUri="CatalogFactura/AddReciboView.xaml"
              >
     
     <!--StartupUri="Recibo/ReciboView.xaml"-->

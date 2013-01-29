@@ -198,6 +198,24 @@
     <Compile Include="CatalogEquipo\ModifyEquipoView.xaml.cs">
       <DependentUpon>ModifyEquipoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogFactura\AddFacturaArticulo.xaml.cs">
+      <DependentUpon>AddFacturaArticulo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogFactura\AddFacturaView.xaml.cs">
+      <DependentUpon>AddFacturaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogFactura\AddReciboView.xaml.cs">
+      <DependentUpon>AddReciboView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogFactura\DlgAddFacturaArticuloView.xaml.cs">
+      <DependentUpon>DlgAddFacturaArticuloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogFactura\DlgAddFacturaView.xaml.cs">
+      <DependentUpon>DlgAddFacturaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogFactura\DlgModifyFacturaView.xaml.cs">
+      <DependentUpon>DlgModifyFacturaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogInfraestructura\InfraestructuraUserControl.xaml.cs">
       <DependentUpon>InfraestructuraUserControl.xaml</DependentUpon>
     </Compile>
@@ -825,6 +843,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogEquipo\ModifyEquipoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogFactura\AddFacturaArticulo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogFactura\AddFacturaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogFactura\AddReciboView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogFactura\DlgAddFacturaArticuloView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogFactura\DlgAddFacturaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogFactura\DlgModifyFacturaView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

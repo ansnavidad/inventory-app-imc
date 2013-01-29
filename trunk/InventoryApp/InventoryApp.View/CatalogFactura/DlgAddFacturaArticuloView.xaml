@@ -1,0 +1,27 @@
+﻿<Window xmlns:my="clr-namespace:InventoryApp.View.CatalogFactura"  
+        x:Class="InventoryApp.View.CatalogFactura.DlgAddFacturaArticuloView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Detalle Factura" Height="355" Width="350" ResizeMode="NoResize"
+        SizeToContent="Manual" WindowState="Normal" WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <StackPanel>
+        <ContentControl HorizontalAlignment="Stretch">
+            <my:AddFacturaArticulo Loaded="AddFacturaArticulo_Loaded" />
+        </ContentControl>
+        <Grid Height="25" Name="grid1" Width="328">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource btnElara}" Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Center" Command="{Binding AddMonedaCommand}" Click="btnFacturaAdd_Click" />
+            <Button Style="{StaticResource btnElara}" Content="Cerrar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Center" Click="btnFacturaDel_Click" Grid.Column="1" />
+        </Grid>
+    </StackPanel>
+</Window>

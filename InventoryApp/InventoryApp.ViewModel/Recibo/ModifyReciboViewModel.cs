@@ -340,15 +340,45 @@ namespace InventoryApp.ViewModel.Recibo
                                 Factura = new FacturaCompraModel() {
 
                                     UnidFactura = md.ITEM.FACTURA_DETALLE.UNID_FACTURA,
-                                    NumeroFactura = md.ITEM.FACTURA_DETALLE.FACTURA.FACTURA_NUMERO
-                                }
+                                    NumeroFactura = md.ITEM.FACTURA_DETALLE.FACTURA.FACTURA_NUMERO,
+                                    NumeroPedimento = md.ITEM.FACTURA_DETALLE.FACTURA.NUMERO_PEDIMENTO,
+                                    FechaFactura = (DateTime)md.ITEM.FACTURA_DETALLE.FACTURA.FECHA_FACTURA,
+                                    PorIva = (double)md.ITEM.FACTURA_DETALLE.FACTURA.IVA_POR,
+                                    TC = md.ITEM.FACTURA_DETALLE.FACTURA.TC,
+                                    Moneda = new MonedaModel(null)
+                                    {
+                                        MonedaAbr = md.ITEM.FACTURA_DETALLE.FACTURA.MONEDA.MONEDA_ABR
+                                    }
+                                }, 
+                                Cantidad = md.ITEM.FACTURA_DETALLE.CANTIDAD, 
+                                CostoUnitario = md.ITEM.FACTURA_DETALLE.PRECIO_UNITARIO, 
+                                CantidadElegida = md.ITEM.FACTURA_DETALLE.CANTIDAD
                             }
                         });
 
+                        ObservableCollection<FacturaCompraDetalleModel> FacAux = new ObservableCollection<FacturaCompraDetalleModel>();
+                            
+                        foreach(FACTURA_DETALLE df in md.ITEM.FACTURA_DETALLE.FACTURA.FACTURA_DETALLE){
+                                
+                            FacturaCompraDetalleModel auxx = new FacturaCompraDetalleModel();
+                            auxx.Cantidad = df.CANTIDAD;
+                            auxx.CostoUnitario = df.PRECIO_UNITARIO;
+                            FacAux.Add(auxx);
+                        }
+                        
                         mm.Factura = new FacturaCompraModel()
                         {
                             UnidFactura = md.ITEM.FACTURA_DETALLE.UNID_FACTURA,
-                            NumeroFactura=md.ITEM.FACTURA_DETALLE.FACTURA.FACTURA_NUMERO
+                            NumeroFactura = md.ITEM.FACTURA_DETALLE.FACTURA.FACTURA_NUMERO,
+
+                            NumeroPedimento = md.ITEM.FACTURA_DETALLE.FACTURA.NUMERO_PEDIMENTO,
+                            FechaFactura = (DateTime)md.ITEM.FACTURA_DETALLE.FACTURA.FECHA_FACTURA,
+                            PorIva = (double)md.ITEM.FACTURA_DETALLE.FACTURA.IVA_POR,
+                            TC = md.ITEM.FACTURA_DETALLE.FACTURA.TC,
+                            Moneda = new MonedaModel(null)
+                            {
+                                MonedaAbr = md.ITEM.FACTURA_DETALLE.FACTURA.MONEDA.MONEDA_ABR
+                            }, FacturaDetalle = FacAux
                         };
                     });
 

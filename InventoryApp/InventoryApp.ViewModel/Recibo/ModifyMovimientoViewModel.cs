@@ -553,6 +553,8 @@ namespace InventoryApp.ViewModel.Recibo
                 Workbook excelPrint = excel.Workbooks.Open(@"C:\Programs\ElaraInventario\Resources\Factura.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                 Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
 
+                
+
                 //Folio del recibo
                 excel.Cells[8, 9] = this._UnidMovimiento.ToString();
                 //Fecha
@@ -562,7 +564,8 @@ namespace InventoryApp.ViewModel.Recibo
                 //ALMACÉN DE DESTINO:
                 excel.Cells[13, 12] = this._SelectedAlmacenDestino.AlmacenName;
                 //NÚMERO DE PEDIMENTO:
-                excel.Cells[19, 12] = this._SelectedFactura.NumeroPedimento.ToString();
+                if (this._SelectedFactura.NumeroPedimento != null)
+                    excel.Cells[19, 12] = this._SelectedFactura.NumeroPedimento.ToString();
                 //NÚMERO DE FACTURA:
                 excel.Cells[21, 12] = this._SelectedFactura.NumeroFactura.ToString();
                 //CANTIDAD DE ITEMS:
@@ -574,17 +577,40 @@ namespace InventoryApp.ViewModel.Recibo
                 }
                 excel.Cells[17, 12] = auxx;
                 //IMPORTE:
-                excel.Cells[17, 26] = this._SelectedFactura.Importe.ToString();
+                if (this._EnabledT)
+                    excel.Cells[17, 26] = this._SelectedFactura.Importe.ToString();
+                else
+                    excel.Cells[17, 26] = (this._SelectedFactura.Importe/2).ToString();
                 //IVA %
                 excel.Cells[19, 26] = this._SelectedFactura.PorIva.ToString();
                 //IVA $
-                double aux = this._SelectedFactura.Iva;
-                aux = Math.Round(aux, 2);
-                excel.Cells[21, 26] = aux.ToString();
+                if (this._EnabledT)
+                {
+                    double aux = this._SelectedFactura.Iva;
+                    aux = Math.Round(aux, 2);
+                    excel.Cells[21, 26] = aux.ToString();
+                }
+                else {
+
+                    double aux = this._SelectedFactura.Iva;
+                    aux /= 2;
+                    aux = Math.Round(aux, 2);
+                    excel.Cells[21, 26] = aux.ToString();
+                }
                 //TOTAL $
-                aux = this._SelectedFactura.Total;
-                aux = Math.Round(aux, 2);
-                excel.Cells[23, 26] = aux.ToString() + " " + this._SelectedFactura.Moneda.MonedaAbr;
+                if (this._EnabledT)
+                {
+                    double aux = this._SelectedFactura.Total;
+                    aux = Math.Round(aux, 2);
+                    excel.Cells[23, 26] = aux.ToString() + " " + this._SelectedFactura.Moneda.MonedaAbr;
+                }
+                else {
+
+                    double aux = this._SelectedFactura.Total;
+                    aux /= 2;
+                    aux = Math.Round(aux, 2);
+                    excel.Cells[23, 26] = aux.ToString() + " " + this._SelectedFactura.Moneda.MonedaAbr;
+                }
                 //excel.Cells[23, 26] = this._SelectedFactura.Total.ToString();                
 
                 excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);

@@ -215,8 +215,8 @@ namespace InventoryApp.DAL
             {
                 using (var Entity = new TAE2Entities())
                 {
-                    var mvtos = (from o in Entity.RECIBOes
-                                 where o.UNID_RECIBO == recibo.UNID_RECIBO && o.IS_ACTIVE == true
+                    var mvtos = (from o in Entity.RECIBOes.Include("RECIBO_MOVIMIENTO.MOVIMENTO.MOVIMIENTO_DETALLE.ITEM.FACTURA_DETALLE.FACTURA.FACTURA_DETALLE")
+                                 where o.UNID_RECIBO == recibo.UNID_RECIBO && o.IS_ACTIVE == true 
                                  select o).FirstOrDefault();
 
                     mvtos.RECIBO_MOVIMIENTO.ToList().ForEach(rm => 
@@ -250,16 +250,36 @@ namespace InventoryApp.DAL
                                             COSTO_UNITARIO = md.ITEM.COSTO_UNITARIO,
                                             FACTURA_DETALLE = new FACTURA_DETALLE()
                                             {
-                                                FACTURA = md.ITEM.FACTURA_DETALLE.FACTURA,
+                                                FACTURA = new FACTURA()
+                                                {
+                                                    MONEDA = new MONEDA() { 
+                                                        MONEDA_ABR = md.ITEM.FACTURA_DETALLE.FACTURA.MONEDA.MONEDA_ABR  ,
+                                                        MONEDA_NAME = md.ITEM.FACTURA_DETALLE.FACTURA.MONEDA.MONEDA_NAME,
+                                                        UNID_MONEDA = md.ITEM.FACTURA_DETALLE.FACTURA.MONEDA.UNID_MONEDA
+                                                    }, 
+                                                    FACTURA_NUMERO = md.ITEM.FACTURA_DETALLE.FACTURA.FACTURA_NUMERO,
+                                                    FECHA_FACTURA = md.ITEM.FACTURA_DETALLE.FACTURA.FECHA_FACTURA,
+                                                    IVA_POR = md.ITEM.FACTURA_DETALLE.FACTURA.IVA_POR,
+                                                    TC = md.ITEM.FACTURA_DETALLE.FACTURA.TC,   
+                                                    NUMERO_PEDIMENTO = md.ITEM.FACTURA_DETALLE.FACTURA.NUMERO_PEDIMENTO,
+                                                    UNID_FACTURA = md.ITEM.FACTURA_DETALLE.FACTURA.UNID_FACTURA,
+                                                    UNID_TIPO_PEDIMENTO = md.ITEM.FACTURA_DETALLE.FACTURA.UNID_TIPO_PEDIMENTO,
+                                                    UNID_LOTE = md.ITEM.FACTURA_DETALLE.FACTURA.UNID_LOTE,
+                                                    UNID_PROVEEDOR = md.ITEM.FACTURA_DETALLE.FACTURA.UNID_PROVEEDOR,
+                                                    UNID_MONEDA = md.ITEM.FACTURA_DETALLE.FACTURA.UNID_MONEDA,    
+                                                    FACTURA_DETALLE = md.ITEM.FACTURA_DETALLE.FACTURA.FACTURA_DETALLE
+                                                },
+                                                //= md.ITEM.FACTURA_DETALLE.FACTURA,
                                                 UNID_FACTURA_DETALE = md.ITEM.UNID_FACTURA_DETALE,
                                                 CANTIDAD = md.ITEM.FACTURA_DETALLE.CANTIDAD,
                                                 DESCRIPCION = md.ITEM.FACTURA_DETALLE.DESCRIPCION,
                                                 IMPUESTO_UNITARIO = md.ITEM.FACTURA_DETALLE.IMPUESTO_UNITARIO,
+                                                PRECIO_UNITARIO = md.ITEM.FACTURA_DETALLE.PRECIO_UNITARIO,
                                                 NUMERO = md.ITEM.FACTURA_DETALLE.NUMERO
                                             },
                                             NUMERO_SERIE = md.ITEM.NUMERO_SERIE,
-                                            SKU = md.ITEM.SKU,
-                                            CANTIDAD = md.ITEM.CANTIDAD,
+                                            SKU = md.ITEM.SKU, 
+                                            CANTIDAD = md.ITEM.CANTIDAD, 
                                             ARTICULO = new ARTICULO()
                                             {
                                                 CATEGORIA = md.ITEM.ARTICULO.CATEGORIA,

@@ -211,12 +211,19 @@ namespace InventoryApp.ViewModel.Entradas
                 //Solicitante y su área
                 excel.Cells[13, 12] = _movimientoModel.SolicitanteLectura.SOLICITANTE_NAME;
                 excel.Cells[15, 12] = _movimientoModel.DepartamentoLectura.DEPARTAMENTO_NAME;
-                //Procedencia                
-                excel.Cells[17, 12] = "Infraestructura: " + _movimientoModel.Infraestructura.INFRAESTRUCTURA_NAME;
-                //Destino
-                excel.Cells[19, 12] = "Almacén: " + _movimientoModel.AlmacenDestino.ALMACEN_NAME;
-                //Recibe
-                excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
+                try
+                {
+                    //Procedencia                
+                    excel.Cells[17, 12] = "Infraestructura: " + _movimientoModel.Infraestructura.INFRAESTRUCTURA_NAME;
+                    //Destino
+                    excel.Cells[19, 12] = "Almacén: " + _movimientoModel.AlmacenDestino.ALMACEN_NAME;
+                    //Recibe
+                    excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
+                }
+                catch (Exception Ex)
+                {
+
+                }
                 //TT
                 excel.Cells[23, 12] = _movimientoModel.Tt;
 

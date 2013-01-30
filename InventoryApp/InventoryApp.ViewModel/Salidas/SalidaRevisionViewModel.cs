@@ -431,10 +431,17 @@ namespace InventoryApp.ViewModel.Salidas
                 excel.Cells[15, 12] = _movimientoModel.Solicitante.Departamento.DEPARTAMENTO_NAME;
                 //Recibe
                 excel.Cells[19, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
-                //Procedencia                
-                excel.Cells[17, 12] = "Almacén: " + _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
-                //Destino                
-                excel.Cells[21, 12] = "Infraestructura: " + _movimientoModel.Infraestructura.INFRAESTRUCTURA_NAME;
+                try
+                {
+                    //Procedencia                
+                    excel.Cells[17, 12] = "Almacén: " + _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
+                    //Destino                
+                    excel.Cells[21, 12] = "Infraestructura: " + _movimientoModel.Infraestructura.INFRAESTRUCTURA_NAME;
+                }
+                catch (Exception ex)
+                {
+
+                }
                 //TT
                 excel.Cells[23, 12] = _movimientoModel.Tt;
                 //Empresa

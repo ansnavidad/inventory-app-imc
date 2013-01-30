@@ -232,7 +232,7 @@ namespace InventoryApp.ViewModel.Recibo
                 };
 
                 f.FACTURA_DETALLE.ToList().ForEach(fd => 
-                {
+                {                    
                     fcm.FacturaDetalle.Add(new FacturaCompraDetalleModel()
                     {
                         UnidFacturaCompraDetalle = fd.UNID_FACTURA_DETALE,
@@ -357,13 +357,19 @@ namespace InventoryApp.ViewModel.Recibo
                         });
 
                         ObservableCollection<FacturaCompraDetalleModel> FacAux = new ObservableCollection<FacturaCompraDetalleModel>();
-                            
+
+                        List<long> unids = new List<long>();
+
                         foreach(FACTURA_DETALLE df in md.ITEM.FACTURA_DETALLE.FACTURA.FACTURA_DETALLE){
-                                
-                            FacturaCompraDetalleModel auxx = new FacturaCompraDetalleModel();
-                            auxx.Cantidad = df.CANTIDAD;
-                            auxx.CostoUnitario = df.PRECIO_UNITARIO;
-                            FacAux.Add(auxx);
+
+                            if (!unids.Contains(df.UNID_FACTURA_DETALE))
+                            {
+                                FacturaCompraDetalleModel auxx = new FacturaCompraDetalleModel();
+                                auxx.Cantidad = df.CANTIDAD;
+                                auxx.CostoUnitario = df.PRECIO_UNITARIO;
+                                FacAux.Add(auxx);
+                                unids.Add(df.UNID_FACTURA_DETALE);
+                            }
                         }
                         
                         mm.Factura = new FacturaCompraModel()
@@ -378,7 +384,8 @@ namespace InventoryApp.ViewModel.Recibo
                             Moneda = new MonedaModel(null)
                             {
                                 MonedaAbr = md.ITEM.FACTURA_DETALLE.FACTURA.MONEDA.MONEDA_ABR
-                            }, FacturaDetalle = FacAux
+                            }, 
+                            FacturaDetalle = FacAux
                         };
                     });
 

@@ -553,8 +553,6 @@ namespace InventoryApp.ViewModel.Recibo
                 Workbook excelPrint = excel.Workbooks.Open(@"C:\Programs\ElaraInventario\Resources\Factura.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                 Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
 
-                
-
                 //Folio del recibo
                 excel.Cells[8, 9] = this._UnidMovimiento.ToString();
                 //Fecha

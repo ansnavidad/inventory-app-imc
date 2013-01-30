@@ -112,7 +112,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="bntElaraOrange" TargetType="{x:Type Button}">
+    <!--<Style x:Key="bntElaraOrange" TargetType="{x:Type Button}">
 
         <Setter Property="FontSize" Value="12" />
         <Setter Property="Foreground" Value="#86581B"/>
@@ -141,7 +141,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
     <Style x:Key="bntElaraBlue" TargetType="{x:Type Button}">
 

@@ -147,7 +147,8 @@ namespace InventoryApp.DAL
                                .Include("INFRAESTRUCTURA")
                                .Include("TECNICO1")
                                .Include("ALMACEN")
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
                 return res;
             }
         }     
@@ -181,7 +182,9 @@ namespace InventoryApp.DAL
                            .Include("TECNICO1")
                            .Include("RECIBO_MOVIMIENTO")
                            where p.UNID_TIPO_MOVIMIENTO ==1 || p.UNID_TIPO_MOVIMIENTO==2 || p.UNID_TIPO_MOVIMIENTO==3|| p.UNID_TIPO_MOVIMIENTO==4
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
+                           
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -243,7 +246,8 @@ namespace InventoryApp.DAL
                            .Include("TECNICO1")
                            .Include("RECIBO_MOVIMIENTO")
                            where p.UNID_TIPO_MOVIMIENTO > 4 && p.UNID_TIPO_MOVIMIENTO < 16
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -304,7 +308,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO==1
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -366,7 +371,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO==2
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -429,7 +435,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO==3
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -491,7 +498,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO ==4
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -552,7 +560,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO==5
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -611,7 +620,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO==6
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -670,7 +680,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO==7
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -730,7 +741,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO==8
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -789,38 +801,40 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO==9
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 9)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 9)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
             }
         }
 
@@ -847,7 +861,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO == 10
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -906,7 +921,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO == 11
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -965,7 +981,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO==12
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -1024,7 +1041,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO == 13
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -1083,7 +1101,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO ==14
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -1142,7 +1161,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO == 15
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
@@ -1201,7 +1221,8 @@ namespace InventoryApp.DAL
                            .Include("INFRAESTRUCTURA")
                            .Include("TECNICO1")
                            where p.UNID_TIPO_MOVIMIENTO == 17
-                           select p).ToList();
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
 
                 //List<MOVIMENTO> final = new List<MOVIMENTO>();
 

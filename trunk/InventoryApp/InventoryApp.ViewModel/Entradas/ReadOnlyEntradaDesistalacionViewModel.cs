@@ -218,21 +218,28 @@ namespace InventoryApp.ViewModel.Entradas
                 //Solicitante y su área
                 excel.Cells[13, 12] = _movimientoModel.SolicitanteLectura.SOLICITANTE_NAME;
                 excel.Cells[15, 12] = _movimientoModel.DepartamentoLectura.DEPARTAMENTO_NAME;
-                //Procedencia
-                string p = "";
+                try
+                {
+                    //Procedencia
+                    string p = "";
 
-                if (_movimientoModel.ProveedorProcedencia != null && _movimientoModel.ProveedorProcedencia.UNID_PROVEEDOR!=0)
-                    p = "Proveedor : " + _movimientoModel.ProveedorProcedencia.PROVEEDOR_NAME;
-                else if (_movimientoModel.AlmacenProcedencia != null && _movimientoModel.AlmacenProcedencia.UNID_ALMACEN!=0)
-                    p = "Almacén: " + _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
-                else
-                    p = "Cliente: " + _movimientoModel.ClienteProcedenciaLectura.CLIENTE1;
+                    if (_movimientoModel.ProveedorProcedencia != null && _movimientoModel.ProveedorProcedencia.UNID_PROVEEDOR != 0)
+                        p = "Proveedor : " + _movimientoModel.ProveedorProcedencia.PROVEEDOR_NAME;
+                    else if (_movimientoModel.AlmacenProcedencia != null && _movimientoModel.AlmacenProcedencia.UNID_ALMACEN != 0)
+                        p = "Almacén: " + _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
+                    else
+                        p = "Cliente: " + _movimientoModel.ClienteProcedenciaLectura.CLIENTE1;
 
-                excel.Cells[17, 12] = p.ToString();
-                //Destino
-                excel.Cells[19, 12] = "Almacén: " + _movimientoModel.AlmacenDestino.ALMACEN_NAME;
-                //Recibe
-                excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
+                    excel.Cells[17, 12] = p.ToString();
+                    //Destino
+                    excel.Cells[19, 12] = "Almacén: " + _movimientoModel.AlmacenDestino.ALMACEN_NAME;
+                    //Recibe
+                    excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
+                }
+                catch (Exception Ex)
+                {
+                    
+                }
                 //Sitio/Enlace
                 excel.Cells[23, 12] = _movimientoModel.SitioEnlace;
                 //Nombre de Sitio

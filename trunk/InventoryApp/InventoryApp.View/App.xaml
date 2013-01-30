@@ -76,7 +76,10 @@
              xmlns:InfraestructuraViews="clr-namespace:InventoryApp.View.CatalogInfraestructura"
              
              xmlns:reportesViewModel="clr-namespace:InventoryApp.ViewModel.Reportes;assembly=InventoryApp.ViewModel"
-             xmlns:reportesView="clr-namespace:InventoryApp.View.Reportes"
+             xmlns:reportesView="clr-namespace:InventoryApp.View.Reportes"            
+             
+             xmlns:facturaCatalogViewModel="clr-namespace:InventoryApp.ViewModel.Recibo;assembly=InventoryApp.ViewModel"
+             xmlns:facturaCatalogView="clr-namespace:InventoryApp.View.Recibo"         
              
              xmlns:maxMinViewModel="clr-namespace:InventoryApp.ViewModel.MaxMin;assembly=InventoryApp.ViewModel"
              xmlns:maxMinView="clr-namespace:InventoryApp.View.MaxMin"
@@ -86,7 +89,7 @@
              xmlns:jobView="clr-namespace:InventoryApp.View.Job"
                   
         
-             StartupUri="CatalogFactura/AddReciboView.xaml"
+             StartupUri="MainWindow.xaml"
              >
     
     <!--StartupUri="Recibo/ReciboView.xaml"-->
@@ -361,6 +364,10 @@
         <ObjectDataProvider x:Key="reportesViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
+        <!--CatalogFactura-->
+        <ObjectDataProvider x:Key="facturaCatalogViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+        
         <!--Máximos y mínimos-->
         <ObjectDataProvider x:Key="maxMinViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
@@ -373,6 +380,7 @@
         <ObjectDataProvider x:Key="jobViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
+        
         <!--CONVERTERS-->
         <rootViewModel:BoolToVisibilityValueConverter x:Key="boolVisibilityConverter" />
         
@@ -557,6 +565,10 @@
             <reportesView:ReportesMain/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type facturaCatalogViewModel:FacturaCatalogViewModel}">
+            <facturaCatalogView:FacturaCatalogView/>
+        </DataTemplate>
+        
         <DataTemplate DataType="{x:Type maxMinViewModel:MaxMinViewModel}">
             <maxMinView:MaxMinView/>
         </DataTemplate>

@@ -130,15 +130,19 @@ namespace InventoryApp.DAL
                 {
                     ITEM_STATUS ESta = (ITEM_STATUS)element;
 
-                   var query= (from cust in entity.ITEM_STATUS
-                     where cust.UNID_ITEM_STATUS == ESta.UNID_ITEM_STATUS
-                     select cust).ToList();
+                   //var query= (from cust in entity.ITEM_STATUS
+                   //  where cust.UNID_ITEM_STATUS == ESta.UNID_ITEM_STATUS
+                   //  select cust).ToList();
 
-                   if (query.Count > 0)
-                    {
-                        res = query;
-                    }
-                    return res;
+                   //if (query.Count > 0)
+                   // {
+                   //     res = query;
+                   // }
+                   // return res;
+                    var query = (from cust in entity.ITEM_STATUS
+                                 where cust.UNID_ITEM_STATUS == ESta.UNID_ITEM_STATUS
+                                 select cust).First();
+                    res = query;
                 }
             }
             return res;

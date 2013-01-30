@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.GridMovimientos;
 
 namespace InventoryApp.View.GridMovimientos
 {
@@ -30,6 +31,31 @@ namespace InventoryApp.View.GridMovimientos
             InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasPrestamoViewModel viewModel = this.DataContext as InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasPrestamoViewModel;
             dlg.DataContext = new InventoryApp.ViewModel.Entradas.EntradaPrestamoViewModel(viewModel);
             dlg.ShowDialog();
+        }
+
+        private void dtGridMovimiento_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                DataGrid dg = sender as DataGrid;
+                if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
+                {
+                    Entradas.EntradaPrestamoSoloLectura readOnly = new Entradas.EntradaPrestamoSoloLectura();
+                    try
+                    {
+                        MovimientoGridEntradasPrestamoViewModel sololectura = new MovimientoGridEntradasPrestamoViewModel("solo lectura");
+                        sololectura = this.DataContext as MovimientoGridEntradasPrestamoViewModel;
+                        readOnly.DataContext = sololectura.CreateReadOnlyEntradaPrestamoViewModel();
+                        readOnly.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+
+                }
+            }
+
         }
     }
 }

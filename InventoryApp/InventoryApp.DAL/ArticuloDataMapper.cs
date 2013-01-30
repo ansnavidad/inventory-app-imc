@@ -116,16 +116,20 @@ namespace InventoryApp.DAL
                 using (var Entity = new TAE2Entities())
                 {
                     var res = (from p in Entity.ARTICULOes
+                               .Include("MODELO")
+                               .Include("MARCA")
+                               .Include("EQUIPO")
+                               .Include("CATEGORIA")
                                where p.UNID_CATEGORIA == Eprov.UNID_CATEGORIA
                                select p).ToList();
 
-                    foreach (ARTICULO trans in ((List<ARTICULO>)res))
-                    {
-                        trans.MODELO = trans.MODELO;
-                        trans.MARCA = trans.MARCA;
-                        trans.EQUIPO = trans.EQUIPO;
-                        trans.CATEGORIA = trans.CATEGORIA;                        
-                    }
+                    //foreach (ARTICULO trans in ((List<ARTICULO>)res))
+                    //{
+                    //    trans.MODELO = trans.MODELO;
+                    //    trans.MARCA = trans.MARCA;
+                    //    trans.EQUIPO = trans.EQUIPO;
+                    //    trans.CATEGORIA = trans.CATEGORIA;                        
+                    //}
 
                     o = (object)res;
                 }
@@ -203,16 +207,20 @@ namespace InventoryApp.DAL
             using (var entity = new TAE2Entities())
             {
                 res = (from articulo in entity.ARTICULOes
+                       .Include("MODELO")
+                       .Include("MARCA")
+                       .Include("EQUIPO")
+                       .Include("CATEGORIA")
                        where articulo.IS_ACTIVE == true
                        select articulo).ToList();
 
-                foreach (ARTICULO art in ((List<ARTICULO>)res))
-                {
-                    art.CATEGORIA = art.CATEGORIA;
-                    art.MARCA = art.MARCA;
-                    art.MODELO = art.MODELO;
-                    art.EQUIPO = art.EQUIPO;
-                }
+                //foreach (ARTICULO art in ((List<ARTICULO>)res))
+                //{
+                //    art.CATEGORIA = art.CATEGORIA;
+                //    art.MARCA = art.MARCA;
+                //    art.MODELO = art.MODELO;
+                //    art.EQUIPO = art.EQUIPO;
+                //}
 
                 return res;
             }
@@ -227,16 +235,20 @@ namespace InventoryApp.DAL
                 ARTICULO Etra = (ARTICULO)element;
 
                 res = (from cust in entity.ARTICULOes
+                       .Include("MODELO")
+                       .Include("MARCA")
+                       .Include("EQUIPO")
+                       .Include("CATEGORIA")
                        where cust.UNID_ARTICULO == Etra.UNID_ARTICULO
                        select cust).ToList();
 
-                foreach (ARTICULO art in ((List<ARTICULO>)res))
-                {
-                    art.CATEGORIA = art.CATEGORIA;
-                    art.MARCA = art.MARCA;
-                    art.MODELO = art.MODELO;
-                    art.EQUIPO = art.EQUIPO;
-                }
+                //foreach (ARTICULO art in ((List<ARTICULO>)res))
+                //{
+                //    art.CATEGORIA = art.CATEGORIA;
+                //    art.MARCA = art.MARCA;
+                //    art.MODELO = art.MODELO;
+                //    art.EQUIPO = art.EQUIPO;
+                //}
 
                 return res;
             }

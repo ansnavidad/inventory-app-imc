@@ -25,6 +25,7 @@ namespace InventoryApp.ViewModel.Entradas
         object proveedorDestino;
         object proveedorProcedencia;
         object tecnicoProcedencia;
+        object tecnicoDestino;
         object solicitante;
         private MovimientoModel _movimientoModel;
         private CatalogItemModel _itemModel;
@@ -38,6 +39,7 @@ namespace InventoryApp.ViewModel.Entradas
         private IDataMapper _dataMapperProveedorDestino;
         private IDataMapper _dataMapperProveedorProcedencia;
         private IDataMapper _dataMapperTecnico;
+        private IDataMapper _dataMapperTecnicoDestino;
         private IDataMapper _dataMapperSolicitante;
         private MovimientoGridEntradasViewModel _entradaPorValidacionViewModel;
         #endregion
@@ -89,9 +91,11 @@ namespace InventoryApp.ViewModel.Entradas
         {
             this._movimientoModel = new MovimientoModel(new MovimientoDataMapper(), 1);
             this._entradaPorValidacionViewModel = movimientoModel;
-
             this._itemModel = new CatalogItemModel(new ItemDataMapper());
+            DeleteMovimiento movLectura = new DeleteMovimiento();
 
+            //consulta por unidmovimiento
+            movLectura.GetMovimientos(selectedMovimientoModel.UnidMovimiento);
             this._dataMapperTransporte = new TransporteDataMapper();
             this._dataMapperInfraestructura = new InfraestructuraDataMapper();
             this._dataMapperAlmacenDestino = new AlmacenDataMapper();
@@ -101,44 +105,48 @@ namespace InventoryApp.ViewModel.Entradas
             this._dataMapperProveedorDestino = new ProveedorDataMapper();
             this._dataMapperProveedorProcedencia = new ProveedorDataMapper();
             this._dataMapperTecnico = new TecnicoDataMapper();
+            this._dataMapperTecnicoDestino = new TecnicoDataMapper();
             this._dataMapperSolicitante = new SolicitanteDataMapper();
-            
-            //consulta 
-            if (selectedMovimientoModel.AlmacenDestino != null && selectedMovimientoModel.AlmacenDestino.UNID_ALMACEN != 0)
-                almacenDestino = this._dataMapperAlmacenDestino.getElement(selectedMovimientoModel.AlmacenDestino);
 
-            if (selectedMovimientoModel.AlmacenProcedencia != null && selectedMovimientoModel.AlmacenProcedencia.UNID_ALMACEN != 0)
-                almacenProcedencia = this._dataMapperAlmacenProcedencia.getElement(selectedMovimientoModel.AlmacenProcedencia);
+            //consulta
+            if (movLectura.AlmacenDestino != null && movLectura.AlmacenDestino.UNID_ALMACEN != 0)
+                almacenDestino = this._dataMapperAlmacenDestino.getElement(movLectura.AlmacenDestino);
 
-            if (selectedMovimientoModel.ClienteProcedenciaLectura != null && selectedMovimientoModel.ClienteProcedenciaLectura.UNID_CLIENTE != 0)
-                clienteProcedencia = this._dataMapperClienteProcedencia.getElement(selectedMovimientoModel.ClienteProcedenciaLectura);
+            if (movLectura.AlmacenProcedencia != null && movLectura.AlmacenProcedencia.UNID_ALMACEN != 0)
+                almacenProcedencia = this._dataMapperAlmacenProcedencia.getElement(movLectura.AlmacenProcedencia);
 
-            if (selectedMovimientoModel.Infraestructura != null && selectedMovimientoModel.Infraestructura.UNID_INFRAESTRUCTURA!=0)
-                infraestructura = this._dataMapperInfraestructura.getElement(selectedMovimientoModel.Infraestructura);
+            if (movLectura.ClienteProcedencia != null && movLectura.ClienteProcedencia.UNID_CLIENTE != 0)
+                clienteProcedencia = this._dataMapperClienteProcedencia.getElement(movLectura.ClienteProcedencia);
 
-            if (selectedMovimientoModel.ProveedorProcedencia != null && selectedMovimientoModel.ProveedorProcedencia.UNID_PROVEEDOR != 0)
-                proveedorProcedencia = this._dataMapperAlmacenProcedencia.getElement(selectedMovimientoModel.ProveedorProcedencia);
+            if (movLectura.UnidInfraestructura != null && movLectura.UnidInfraestructura.UNID_INFRAESTRUCTURA != 0)
+                infraestructura = this._dataMapperInfraestructura.getElement(movLectura.UnidInfraestructura);
 
-            if (selectedMovimientoModel.Transporte != null && selectedMovimientoModel.Transporte.UNID_TRANSPORTE != 0)
-                transporte = this._dataMapperTransporte.getElement(selectedMovimientoModel.Transporte);
+            if (movLectura.ProveedorProcedenia != null && movLectura.ProveedorProcedenia.UNID_PROVEEDOR != 0)
+                proveedorProcedencia = this._dataMapperProveedorProcedencia.getElement(movLectura.ProveedorProcedenia);
 
-            if (selectedMovimientoModel.Tecnico != null)
-                tecnicoProcedencia = this._dataMapperTecnico.getElement(selectedMovimientoModel.Tecnico);
+            if (movLectura.Transporte != null && movLectura.Transporte.UNID_TRANSPORTE != 0)
+                transporte = this._dataMapperTransporte.getElement(movLectura.Transporte);
 
-            if (selectedMovimientoModel.SolicitanteLectura != null)
-                solicitante = this._dataMapperSolicitante.getElement(selectedMovimientoModel.SolicitanteLectura);
+            if (movLectura.UnidTecnico != null && movLectura.UnidTecnico.UNID_TECNICO != 0)
+                tecnicoProcedencia = this._dataMapperTecnico.getElement(movLectura.UnidTecnico);
+
+            if (movLectura.UnidTecnicoTrans != null && movLectura.UnidTecnicoTrans.UNID_TECNICO != 0)
+                tecnicoDestino = this._dataMapperTecnicoDestino.getElement(movLectura.UnidTecnicoTrans);
+
+            if (movLectura.UnidSolicitante != null && movLectura.UnidSolicitante.UNID_SOLICITANTE != 0)
+                solicitante = this._dataMapperSolicitante.getElement(movLectura.UnidSolicitante);
 
             //asignacion a propiedades de solo lectura
 
             this._movimientoModel.UnidMovimiento = selectedMovimientoModel.UnidMovimiento;
-            
-            
-            if (almacenDestino!=null)
+
+
+            if (almacenDestino != null)
                 this._movimientoModel.AlmacenDestino = almacenDestino as ALMACEN;
 
-            if (almacenProcedencia!=null)
-                this._movimientoModel.AlmacenProcedencia = almacenProcedencia as ALMACEN;
-            
+            if (almacenProcedencia != null)
+                this._movimientoModel.AlmacenProcedenciaLectura = almacenProcedencia as ALMACEN;
+
 
             if (clienteProcedencia != null)
                 this._movimientoModel.ClienteProcedenciaLectura = clienteProcedencia as CLIENTE;
@@ -152,24 +160,31 @@ namespace InventoryApp.ViewModel.Entradas
             if (tecnicoProcedencia != null)
                 this._movimientoModel.Tecnico = tecnicoProcedencia as TECNICO;
 
+            if (tecnicoDestino != null)
+                this._movimientoModel.TecnicoTrnas = tecnicoDestino as TECNICO;
+
             if (solicitante != null)
             {
                 this._movimientoModel.SolicitanteLectura = solicitante as SOLICITANTE;
                 this._movimientoModel.EmpresaLectura = ((SOLICITANTE)solicitante).EMPRESA;
                 this._movimientoModel.DepartamentoLectura = ((SOLICITANTE)solicitante).DEPARTAMENTO;
             }
-            
+
             if (transporte != null)
                 this._movimientoModel.Transporte = transporte as TRANSPORTE;
 
-            this._movimientoModel.Tt = selectedMovimientoModel.Tt;
-            this._movimientoModel.SitioEnlace = selectedMovimientoModel.SitioEnlace;
-            this._movimientoModel.NombreSitio = selectedMovimientoModel.NombreSitio;
-            this._movimientoModel.Guia = selectedMovimientoModel.Guia;
-            this._movimientoModel.Contacto = selectedMovimientoModel.Contacto;
-            this._movimientoModel.FechaMovimiento = selectedMovimientoModel.FechaMovimiento;
+            this._movimientoModel.Tt = movLectura.Tt;
+            this._movimientoModel.SitioEnlace = movLectura.SitioEnlace;
+            this._movimientoModel.NombreSitio = movLectura.NombreSitio;
+            this._movimientoModel.Guia = movLectura.Guia;
+            this._movimientoModel.Contacto = movLectura.Contacto;
+            this._movimientoModel.FechaMovimiento = movLectura.TimeFecha;
             //carga el grid
-            this._itemModel = movimientoModel.ItemModel;
+            if (movLectura.ArticulosLectura != null)
+            {
+                this._itemModel.ItemModel = movLectura.ArticulosLectura;
+                this._movimientoModel.CantidadItems = movLectura.ArticulosLectura.Count;
+            }
 
         }
         public ReadOnlyEntradaPorValidaionViewModel() { }
@@ -179,10 +194,10 @@ namespace InventoryApp.ViewModel.Entradas
 
         public bool CanAttempImprimir()
         {
-            bool _canImprimir = false;
+            bool _canImprimir = true;
 
-            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt))
-                _canImprimir = true;
+            //if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt))
+            //    _canImprimir = true;
 
             return _canImprimir;
         }

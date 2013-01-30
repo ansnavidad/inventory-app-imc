@@ -91,7 +91,7 @@
         
              StartupUri="MainWindow.xaml"
              >
-    
+    <!--StartupUri="CatalogFactura/AddReciboView.xaml"-->
     <!--StartupUri="Recibo/ReciboView.xaml"-->
     <!--StartupUri="MainWindow.xaml"-->
     <!--xmlns:vm="clr-namespace:InventoryApp.ViewModel.CatalogPais;assembly=InventoryApp.ViewModel"

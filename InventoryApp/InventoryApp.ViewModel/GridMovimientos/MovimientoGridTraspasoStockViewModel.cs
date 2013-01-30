@@ -60,7 +60,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
         public MovimientoGridTraspasoStockViewModel(string readOnly)
         {
             IDataMapper dataMapper = new MovimientoDataMapper();
-            this._catalogMovimientoModel = new CatalogMovimientoModel(dataMapper); 
+            this._catalogMovimientoModel = new CatalogMovimientoModel(dataMapper, "solo", 1); 
                 
         }
 
@@ -187,47 +187,11 @@ namespace InventoryApp.ViewModel.GridMovimientos
         public ReadOnlyTraspasoStockViewModel CreateReadOnlyTraspasoStockViewModel()
         {
             MovimientoModel movimientoModel = new MovimientoModel(new MovimientoDataMapper(), "solo lectura");
-            if (this._catalogMovimientoModel != null && this._catalogMovimientoModel.SelectedMovimientoGrid != null)
+            if (this._catalogMovimientoModel != null  && this._catalogMovimientoModel.SelectedMovimiento!=null)
             {
-                movimientoModel.UnidMovimiento = this._catalogMovimientoModel.SelectedMovimientoGrid.UnidMovimiento;
-
-                movimientoModel.UnidAlmacenDestino = this._catalogMovimientoModel.SelectedMovimientoGrid.AlmacenDestino.UNID_ALMACEN;
-                movimientoModel.AlmacenDestino = this._catalogMovimientoModel.SelectedMovimientoGrid.AlmacenDestino;
-
-                movimientoModel.UnidAlmacenProcedencia = this._catalogMovimientoModel.SelectedMovimientoGrid.AlmacenProcedencia.UNID_ALMACEN;
-                movimientoModel.AlmacenProcedenciaLectura = this._catalogMovimientoModel.SelectedMovimientoGrid.AlmacenProcedencia;
-
-                movimientoModel.UnidClienteProcedencia = this._catalogMovimientoModel.SelectedMovimientoGrid.ClienteProcedencia.UNID_CLIENTE;
-                movimientoModel.ClienteProcedenciaLectura = this._catalogMovimientoModel.SelectedMovimientoGrid.ClienteProcedencia;
-
-                movimientoModel.UnidInfraestructura = this._catalogMovimientoModel.SelectedMovimientoGrid.UnidInfraestructura.UNID_INFRAESTRUCTURA;
-                movimientoModel.Infraestructura = this._catalogMovimientoModel.SelectedMovimientoGrid.UnidInfraestructura;
-
-                movimientoModel.UnidProveedorProcedencia = this._catalogMovimientoModel.SelectedMovimientoGrid.ProveedorProcedenia.UNID_PROVEEDOR;
-                movimientoModel.ProveedorProcedencia = this._catalogMovimientoModel.SelectedMovimientoGrid.ProveedorProcedenia;
-
-                movimientoModel.UnidTecnico = this._catalogMovimientoModel.SelectedMovimientoGrid.UnidTecnico.UNID_TECNICO;
-                movimientoModel.Tecnico = this._catalogMovimientoModel.SelectedMovimientoGrid.UnidTecnico;
-
-                movimientoModel.TecnicoTrnas = this._catalogMovimientoModel.SelectedMovimientoGrid.UnidTecnicoTrans;
-
-                movimientoModel.SolicitanteLectura = this._catalogMovimientoModel.SelectedMovimientoGrid.UnidSolicitante;
-
-                movimientoModel.Transporte = this._catalogMovimientoModel.SelectedMovimientoGrid.Transporte;
-
-                movimientoModel.Tt = this._catalogMovimientoModel.SelectedMovimientoGrid.Tt;
-                movimientoModel.SitioEnlace = this._catalogMovimientoModel.SelectedMovimientoGrid.SitioEnlace;
-                movimientoModel.NombreSitio = this._catalogMovimientoModel.SelectedMovimientoGrid.NombreSitio;
-                movimientoModel.Guia = this._catalogMovimientoModel.SelectedMovimientoGrid.Guia;
-                movimientoModel.Contacto = this._catalogMovimientoModel.SelectedMovimientoGrid.Contacto;
-                movimientoModel.FechaMovimiento = this._catalogMovimientoModel.SelectedMovimientoGrid.TimeFecha;
-
-                //carga el grid
-                this._itemModel.ItemModel = this._catalogMovimientoModel.SelectedMovimientoGrid.ArticulosLectura;
-
-
+                movimientoModel.UnidMovimiento = this.CatalogMovimientoModel.SelectedMovimiento.UnidMovimiento;
             }
-            return new ReadOnlyTraspasoStockViewModel(this, movimientoModel);
+            return new ReadOnlyTraspasoStockViewModel(/*this,*/ movimientoModel);
         }
 
         public void loadItems()

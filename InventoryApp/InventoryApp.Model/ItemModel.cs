@@ -510,6 +510,7 @@ namespace InventoryApp.Model
 
         public ItemModel(ITEM item, int lectura,ITEM_STATUS status)
         {
+         this._dataMapper2 = new ItemStatusDataMapper();   
             this._articulo = item.ARTICULO;
             this._nombre = item.ARTICULO.ARTICULO1;
             this._unidItem = item.UNID_ITEM;
@@ -518,18 +519,17 @@ namespace InventoryApp.Model
             this.NUMERO_SERIE = item.NUMERO_SERIE;
             this._numeroSerie = item.NUMERO_SERIE;
             this._cantidadMovimiento = lectura;
-            //this._itemStatuss.updateItemStatus = item.UNID_ITEM_STATUS;
-            if (status != null)
+            
+            object itemStatusLectura = this._dataMapper2.getElement(status);
+            if (itemStatusLectura != null)
             {
-                this._itemStatus = status;
-                //this._itemStatuss = new ItemStatusModel(null) { ItemStatusName = item.ITEM_STATUS.ITEM_STATUS_NAME, UnidItemStatus = long.Parse(item.UNID_ITEM_STATUS.ToString()) };
+                this._itemStatus = itemStatusLectura as ITEM_STATUS;
                 this._itemStatuss = new ItemStatusModel(null) { ItemStatusName = this._itemStatus.ITEM_STATUS_NAME, UnidItemStatus = this._itemStatus.UNID_ITEM_STATUS };
             }
             this.UNID_ITEM_STATUS = item.UNID_ITEM_STATUS;
             this.COSTO_UNITARIO = item.COSTO_UNITARIO;
             this._pedimentoExpo = item.PEDIMENTO_EXPO;
             this._pedimentoImpo = item.PEDIMENTO_IMPO;
-            //this._facturaDetalle = item.FACTURA_DETALLE;
             this.IS_ACTIVE = item.IS_ACTIVE;
             this.IsChecked = false;
             this._equipo = item.ARTICULO.EQUIPO;
@@ -542,6 +542,7 @@ namespace InventoryApp.Model
             this._dataMapper = new ItemDataMapper();
 
         }
+        
 
         public ItemModel()
         {

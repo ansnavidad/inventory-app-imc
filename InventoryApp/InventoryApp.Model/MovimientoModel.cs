@@ -21,6 +21,7 @@ namespace InventoryApp.Model
         private long? _unidAlmacenDestino;
         
         private PROVEEDOR _proveedorProcedencia;
+        private PROVEEDOR _proveedorProcedenciaLectura;
         private long? _unidProveedorProcedencia;
         private CLIENTE _clienteProcedencia;
         private CLIENTE _clienteProcedenciaLectura;
@@ -433,6 +434,20 @@ namespace InventoryApp.Model
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("ProveedorProcedencia"));
                     }
+                }
+            }
+        }
+
+        public PROVEEDOR ProveedorProcedenciaLectura
+        {
+            get { return this._proveedorProcedenciaLectura; }
+            set
+            {
+                if (value != this._proveedorProcedenciaLectura)
+                {
+                    this._proveedorProcedenciaLectura = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("ProveedorProcedenciaLectura"));
                 }
             }
         }

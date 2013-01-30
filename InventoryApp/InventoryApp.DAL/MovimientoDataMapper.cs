@@ -129,31 +129,26 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.MOVIMENTOes
+                               .Include("ALMACEN")
+                               .Include("ALMACEN1")
+                               .Include("CLIENTE")
+                               .Include("CLIENTE1")
+                               .Include("CLIENTE2")
+                               .Include("FACTURA_VENTA")
+                               .Include("PROVEEDOR")
+                               .Include("PROVEEDOR1")
+                               .Include("PROVEEDOR2")
+                               .Include("SERVICIO")
+                               .Include("SOLICITANTE")
+                               .Include("TIPO_MOVIMIENTO")
+                               .Include("TRANSPORTE")
+                               .Include("MOVIMIENTO_DETALLE")
+                               .Include("TECNICO")
+                               .Include("INFRAESTRUCTURA")
+                               .Include("TECNICO1")
+                               .Include("ALMACEN")
                            select p).ToList();
-
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    //Para conservar las prop. de navegación
-                    trans.ALMACEN = trans.ALMACEN;
-                    trans.ALMACEN1 = trans.ALMACEN1;
-                    trans.CLIENTE = trans.CLIENTE;
-                    trans.CLIENTE1 = trans.CLIENTE1;
-                    trans.CLIENTE2 = trans.CLIENTE2;
-                    trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                    trans.PROVEEDOR = trans.PROVEEDOR;
-                    trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                    trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                    trans.SERVICIO = trans.SERVICIO;
-                    trans.SOLICITANTE = trans.SOLICITANTE;
-                    trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                    trans.TRANSPORTE = trans.TRANSPORTE;
-                    trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                    trans.TECNICO = trans.TECNICO;
-                    trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                    trans.TECNICO1 = trans.TECNICO1;
-                }
-
-                return (object)res;
+                return res;
             }
         }     
 
@@ -167,39 +162,60 @@ namespace InventoryApp.DAL
                 Entity.SaveChanges();
 
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           .Include("RECIBO_MOVIMIENTO")
+                           where p.UNID_TIPO_MOVIMIENTO ==1 || p.UNID_TIPO_MOVIMIENTO==2 || p.UNID_TIPO_MOVIMIENTO==3|| p.UNID_TIPO_MOVIMIENTO==4
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 1 || trans.UNID_TIPO_MOVIMIENTO == 2 || trans.UNID_TIPO_MOVIMIENTO == 3 || trans.UNID_TIPO_MOVIMIENTO == 4)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 1 || trans.UNID_TIPO_MOVIMIENTO == 2 || trans.UNID_TIPO_MOVIMIENTO == 3 || trans.UNID_TIPO_MOVIMIENTO == 4)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+
+                return res;
             }
         }
         //Ya no se usa
@@ -208,38 +224,58 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           .Include("RECIBO_MOVIMIENTO")
+                           where p.UNID_TIPO_MOVIMIENTO > 4 && p.UNID_TIPO_MOVIMIENTO < 16
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO > 4 && trans.UNID_TIPO_MOVIMIENTO < 16)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO > 4 && trans.UNID_TIPO_MOVIMIENTO < 16)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
             }
         }
 
@@ -250,39 +286,58 @@ namespace InventoryApp.DAL
                 Entity.SaveChanges();
 
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO==1
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 1)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 1)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
             }
         }
 
@@ -293,39 +348,59 @@ namespace InventoryApp.DAL
                 Entity.SaveChanges();
 
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO==2
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 2)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 2)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+
+                return res;
             }
         }
 
@@ -336,39 +411,58 @@ namespace InventoryApp.DAL
                 Entity.SaveChanges();
 
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO==3
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 3)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 3)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
             }
         }
 
@@ -379,39 +473,59 @@ namespace InventoryApp.DAL
                 Entity.SaveChanges();
 
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO ==4
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 4)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 4)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        trans.RECIBO_MOVIMIENTO = trans.RECIBO_MOVIMIENTO;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
+                     
             }
         }
 
@@ -420,38 +534,57 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO==5
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 5)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 5)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
             }
         }
 
@@ -460,38 +593,57 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO==6
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 6)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 6)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        final.Add(trans);
-                    }
-                }
+                //        Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
             }
         }
 
@@ -500,38 +652,58 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO==7
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 7)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 7)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+
+                return res;
             }
         }
 
@@ -540,38 +712,57 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO==8
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 8)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 8)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
             }
         }
 
@@ -580,6 +771,24 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO==9
                            select p).ToList();
 
                 List<MOVIMENTO> final = new List<MOVIMENTO>();
@@ -620,38 +829,57 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO == 10
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 10)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 10)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
             }
         }
 
@@ -660,38 +888,57 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO == 11
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 11)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 11)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
             }
         }
 
@@ -700,38 +947,57 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO==12
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 12)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 12)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
             }
         }
 
@@ -740,38 +1006,57 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO == 13
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 13)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 13)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
             }
         }
 
@@ -780,38 +1065,57 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO ==14
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 14)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 14)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
             }
         }
 
@@ -820,38 +1124,57 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO == 15
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 15)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 15)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
             }
         }
 
@@ -860,38 +1183,57 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO == 17
                            select p).ToList();
 
-                List<MOVIMENTO> final = new List<MOVIMENTO>();
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
 
-                foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                {
-                    if (trans.UNID_TIPO_MOVIMIENTO == 17)
-                    {
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 17)
+                //    {
 
-                        //Para conservar las prop. de navegación
-                        trans.ALMACEN = trans.ALMACEN;
-                        trans.ALMACEN1 = trans.ALMACEN1;
-                        trans.CLIENTE = trans.CLIENTE;
-                        trans.CLIENTE1 = trans.CLIENTE1;
-                        trans.CLIENTE2 = trans.CLIENTE2;
-                        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
-                        trans.PROVEEDOR = trans.PROVEEDOR;
-                        trans.PROVEEDOR1 = trans.PROVEEDOR1;
-                        trans.PROVEEDOR2 = trans.PROVEEDOR2;
-                        trans.SERVICIO = trans.SERVICIO;
-                        trans.SOLICITANTE = trans.SOLICITANTE;
-                        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
-                        trans.TRANSPORTE = trans.TRANSPORTE;
-                        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
-                        trans.TECNICO = trans.TECNICO;
-                        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
-                        trans.TECNICO1 = trans.TECNICO1;
-                        final.Add(trans);
-                    }
-                }
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        final.Add(trans);
+                //    }
+                //}
 
-                return (object)final;
+                //return (object)final;
+                return res;
             }
         }
 
@@ -905,17 +1247,15 @@ namespace InventoryApp.DAL
                 MOVIMENTO Eprov = (MOVIMENTO)element;
 
                 using (var Entity = new TAE2Entities())
-                {
+                { 
                     var res = (from p in Entity.MOVIMENTOes
+                                   .Include("MOVIMIENTO_DETALLE")
                                where p.UNID_MOVIMIENTO == Eprov.UNID_MOVIMIENTO
-                               select p).ToList();
-
-                    foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
-                    {
-                        //Para conservar las prop. de navegación
-                    }
-
-                    o = (object)res;
+                               select p).First();
+                    
+                    if (res == null)
+                        return null;
+                    o = res;
                 }
             }
             return o;
@@ -966,7 +1306,6 @@ namespace InventoryApp.DAL
                 }
             }
         }
-
 
         public void udpateElementRecibo(object element) {
 
@@ -1036,7 +1375,6 @@ namespace InventoryApp.DAL
                 }
             }
         }
-
 
         public void insertElement(object element)
         {

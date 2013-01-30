@@ -498,22 +498,29 @@ namespace InventoryApp.ViewModel.Entradas
                 //Solicitante y su área
                 excel.Cells[13, 12] = _movimientoModel.Solicitante.SOLICITANTE_NAME;
                 excel.Cells[15, 12] = _movimientoModel.Solicitante.Departamento.DEPARTAMENTO_NAME;
-                //Procedencia
-                string p = "";
+                try
+                {
+                    //Procedencia
+                    string p = "";
 
-                if (_movimientoModel.ProveedorProcedencia != null)
-                    p = "Proveedor : " + _movimientoModel.ProveedorProcedencia.PROVEEDOR_NAME;
-                else if (_movimientoModel.AlmacenProcedencia != null)
-                    p = "Almacén: " + _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
-                else
-                    p = "Cliente: " + _movimientoModel.ClienteProcedencia.CLIENTE1;
+                    if (_movimientoModel.ProveedorProcedencia != null)
+                        p = "Proveedor : " + _movimientoModel.ProveedorProcedencia.PROVEEDOR_NAME;
+                    else if (_movimientoModel.AlmacenProcedencia != null)
+                        p = "Almacén: " + _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
+                    else
+                        p = "Cliente: " + _movimientoModel.ClienteProcedencia.CLIENTE1;
 
-                excel.Cells[17, 12] = p.ToString();
+                    excel.Cells[17, 12] = p.ToString();
 
-                //Destino
-                excel.Cells[19, 12] = "Almacén: " + _movimientoModel.AlmacenDestino.ALMACEN_NAME;
-                //Recibe
-                excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
+                    //Destino
+                    excel.Cells[19, 12] = "Almacén: " + _movimientoModel.AlmacenDestino.ALMACEN_NAME;
+                    //Recibe
+                    excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
+                }
+                catch (Exception Ex)
+                {
+
+                }
                 //TT
                 excel.Cells[23, 12] = _movimientoModel.Tt;                
                 //Transporte

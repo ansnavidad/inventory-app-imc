@@ -9,9 +9,9 @@ using InventoryApp.DAL.POCOS;
 using InventoryApp.Model.Recibo;
 using System.Windows.Input;
 
-namespace InventoryApp.ViewModel.CatalogFactura
+namespace InventoryApp.ViewModel.Recibo
 {
-    public class AddReciboViewModel : ViewModelBase
+    public class FacturaCatalogViewModel : ViewModelBase, IPageViewModel
     {
         private CatalogItemStatusModel _catalogItemStatusModel;
         private ReciboModel _addReciboModel;
@@ -910,13 +910,13 @@ namespace InventoryApp.ViewModel.CatalogFactura
         protected ObservableCollection<InventoryApp.Model.Recibo.MovimientoModel> _Movimiento;
         public const string MovimientoPropertyName = "MovimientoModel";
 
-        public AddReciboViewModel()
+        public FacturaCatalogViewModel()
         {
             this.ContB = true;
             this.init();
         }
 
-        public AddReciboViewModel(CatalogReciboViewModel catalogReciboViewModel)
+        public FacturaCatalogViewModel(CatalogReciboViewModel catalogReciboViewModel)
         {
             this.ContB = true;
              this._CatalogReciboViewModel = catalogReciboViewModel;
@@ -1084,12 +1084,6 @@ namespace InventoryApp.ViewModel.CatalogFactura
             return addFacturaViewModel;
         }
 
-        public AddMovimientoViewModel CreateAddMovimientoViewModel()
-        {
-            AddMovimientoViewModel addFacturaViewModel = new AddMovimientoViewModel(this);
-            return addFacturaViewModel;
-        }
-
         public ModifyFacturaViewModel CraeteModifyFacturaViewModel()
         {
             if (this.SelectedFactura != null)
@@ -1127,6 +1121,18 @@ namespace InventoryApp.ViewModel.CatalogFactura
             set
             {
                 _addReciboModel = value;
+            }
+        }
+
+        public string PageName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
             }
         }
     }

@@ -285,6 +285,7 @@ namespace InventoryApp.ViewModel
                     //Juan
                    case "Nuevo Recibo":
                         page = new Recibo.CatalogReciboViewModel();
+                        //page = new Recibo.FacturaCatalogViewModel();
                       break;
                    case "Modificar Item":
                       page = new CatalogItem.ModifyItemViewModel();

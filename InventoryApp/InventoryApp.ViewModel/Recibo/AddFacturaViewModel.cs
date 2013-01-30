@@ -15,6 +15,7 @@ namespace InventoryApp.ViewModel.Recibo
     public class AddFacturaViewModel : ViewModelBase,IFacturaViewModel
     {
         private AddReciboViewModel _AddReciboViewModel;
+        private FacturaCatalogViewModel _FacturaCatalogViewModel;
 
         public ICommand AddFacturaCommand
         {
@@ -328,6 +329,12 @@ namespace InventoryApp.ViewModel.Recibo
         public AddFacturaViewModel(AddReciboViewModel addReciboViewModel)
         {
             this._AddReciboViewModel = addReciboViewModel;
+            this.init();
+        }
+
+        public AddFacturaViewModel(FacturaCatalogViewModel facturaCatalogViewModel)
+        {
+            this._FacturaCatalogViewModel = facturaCatalogViewModel;
             this.init();
         }
         #endregion

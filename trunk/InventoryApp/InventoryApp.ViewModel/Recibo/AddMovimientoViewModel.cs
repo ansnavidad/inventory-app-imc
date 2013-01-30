@@ -675,7 +675,8 @@ namespace InventoryApp.ViewModel.Recibo
                 //ALMACÉN DE DESTINO:
                 excel.Cells[13, 12] = this._SelectedAlmacenDestino.AlmacenName;
                 //NÚMERO DE PEDIMENTO:
-                excel.Cells[19, 12] = this._SelectedFactura.NumeroPedimento.ToString();
+                if (this._SelectedFactura.NumeroPedimento != null)
+                    excel.Cells[19, 12] = this._SelectedFactura.NumeroPedimento.ToString();
                 //NÚMERO DE FACTURA:
                 excel.Cells[21, 12] = this._SelectedFactura.NumeroFactura.ToString();                
                 //CANTIDAD DE ITEMS:

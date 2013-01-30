@@ -44,7 +44,7 @@ namespace InventoryApp.View
             set { dTimerUploadProcess = value; }
         }
 
-        public MainWindow()
+         public MainWindow()
         {
             InitializeComponent();
             //CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);

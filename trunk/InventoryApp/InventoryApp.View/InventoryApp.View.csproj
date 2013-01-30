@@ -489,8 +489,14 @@
     <Compile Include="Entradas\EntradaDevolucion.xaml.cs">
       <DependentUpon>EntradaDevolucion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Entradas\EntradaDevolucionSoloLectura.xaml.cs">
+      <DependentUpon>EntradaDevolucionSoloLectura.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entradas\EntradaPrestamo.xaml.cs">
       <DependentUpon>EntradaPrestamo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\EntradaPrestamoSoloLectura.xaml.cs">
+      <DependentUpon>EntradaPrestamoSoloLectura.xaml</DependentUpon>
     </Compile>
     <Compile Include="Entradas\EntradaValidacionRevision.xaml.cs">
       <DependentUpon>EntradaValidacionRevision.xaml</DependentUpon>
@@ -641,6 +647,9 @@
     </Compile>
     <Compile Include="Salidas\SalidaConfiguracion.xaml.cs">
       <DependentUpon>SalidaConfiguracion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaConfiguracionSoloLectura.xaml.cs">
+      <DependentUpon>SalidaConfiguracionSoloLectura.xaml</DependentUpon>
     </Compile>
     <Compile Include="Salidas\SalidaCorrectivo.xaml.cs">
       <DependentUpon>SalidaCorrectivo.xaml</DependentUpon>
@@ -1219,7 +1228,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Entradas\EntradaDevolucionSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Entradas\EntradaPrestamo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\EntradaPrestamoSoloLectura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1433,6 +1450,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Salidas\SalidaConfiguracion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaConfiguracionSoloLectura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

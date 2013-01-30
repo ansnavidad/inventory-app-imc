@@ -14,6 +14,7 @@ namespace InventoryApp.Model
         private string _destino;
         private string _procedencia;
         private string _tipoMovimiento;
+        private long _unidMovimiento;
 
         public int TotalItems
         {
@@ -80,6 +81,19 @@ namespace InventoryApp.Model
                 }
             }
         }
+        public long UnidMovimiento
+        {
+            get { return this._unidMovimiento; }
+            set
+            {
+                if (value != this._unidMovimiento)
+                {
+                    this._unidMovimiento = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("UnidMovimiento"));
+                }
+            }
+        }
 
         public CatalogMovimiento(MOVIMENTO m)
         {            
@@ -91,6 +105,7 @@ namespace InventoryApp.Model
             {
                 this.TotalItems += detalle.CANTIDAD;
             }
+            this._unidMovimiento = m.UNID_MOVIMIENTO;
             
             this._fecha = m.FECHA_MOVIMIENTO.Year + "/" + m.FECHA_MOVIMIENTO.Month + "/" + m.FECHA_MOVIMIENTO.Day;
             //this.Fecha = m.FECHA_MOVIMIENTO.ToString();

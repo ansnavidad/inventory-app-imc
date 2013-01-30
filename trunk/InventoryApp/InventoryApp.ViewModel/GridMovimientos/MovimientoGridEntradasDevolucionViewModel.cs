@@ -6,6 +6,7 @@ using InventoryApp.Model;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
+using InventoryApp.ViewModel.Entradas;
 
 namespace InventoryApp.ViewModel.GridMovimientos
 {
@@ -54,6 +55,13 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 throw ex;
             }
 
+        }
+
+        public MovimientoGridEntradasDevolucionViewModel(string readOnly)
+        {
+            IDataMapper dataMapper = new MovimientoDataMapper();
+            this._catalogMovimientoModel = new CatalogMovimientoModel(dataMapper, "solo", 1); 
+                
         }
 
         public CatalogMovimientoModel CatalogMovimientoModel
@@ -168,6 +176,20 @@ namespace InventoryApp.ViewModel.GridMovimientos
             {
                 _catalogSolicitanteModel = value;
             }
+        }
+
+        /// <summary>
+        /// Crea una nueva instancia de SoloLecturaEntradaDesistalacionViewModel y se pasa asi mismo como parámetro y el item seleccionado
+        /// </summary>
+        /// <returns></returns>
+        public ReadOnlyEntradaDevolucionViewModel CreateReadOnlyEntradaDevolucionViewModel()
+        {
+            MovimientoModel movimientoModel = new MovimientoModel(new MovimientoDataMapper(), "solo lectura");
+            if (this._catalogMovimientoModel != null && this._catalogMovimientoModel.SelectedMovimiento != null)
+            {
+                movimientoModel.UnidMovimiento = this.CatalogMovimientoModel.SelectedMovimiento.UnidMovimiento;
+            }
+            return new ReadOnlyEntradaDevolucionViewModel(this, movimientoModel);
         }
 
 

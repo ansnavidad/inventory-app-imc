@@ -522,7 +522,6 @@ namespace InventoryApp.DAL
             }
         }
 
-
         public void insertElement(object element)
         {
             if (element != null)

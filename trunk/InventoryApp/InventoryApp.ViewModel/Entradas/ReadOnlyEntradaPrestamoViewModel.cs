@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.ComponentModel;
 using InventoryApp.Model;
 using InventoryApp.DAL;
-using InventoryApp.ViewModel.GridMovimientos;
 using System.Windows.Input;
+using InventoryApp.ViewModel.GridMovimientos;
 using InventoryApp.DAL.POCOS;
+using System.ComponentModel;
 using Microsoft.Office.Interop.Excel;
 using System.Reflection;
 
-namespace InventoryApp.ViewModel.Traspasos
+namespace InventoryApp.ViewModel.Entradas
 {
-    public class ReadOnlyTraspasoStockViewModel: ViewModelBase, IPageViewModel, INotifyPropertyChanged
+    public class ReadOnlyEntradaPrestamoViewModel : ViewModelBase, IPageViewModel, INotifyPropertyChanged
     {
         #region Fields
         object almacenDestino;
@@ -41,7 +41,7 @@ namespace InventoryApp.ViewModel.Traspasos
         private IDataMapper _dataMapperTecnico;
         private IDataMapper _dataMapperTecnicoDestino;
         private IDataMapper _dataMapperSolicitante;
-        private MovimientoGridTraspasoStockViewModel _entradaPorValidacionViewModel;
+        private MovimientoGridEntradasPrestamoViewModel _entradaPrestamoViewModel;
         #endregion
 
         #region Props
@@ -79,7 +79,6 @@ namespace InventoryApp.ViewModel.Traspasos
                 return _imprimirCommand;
             }
         }
-
         #endregion
 
         #region Constructors
@@ -87,14 +86,13 @@ namespace InventoryApp.ViewModel.Traspasos
         /// Ejecuta la acción del command
         /// </summary>
         /// <param name="catalogItemStatusViewModel"></param>
-        public ReadOnlyTraspasoStockViewModel(/*MovimientoGridTraspasoStockViewModel movimientoModel,*/ MovimientoModel selectedMovimientoModel)
+        public ReadOnlyEntradaPrestamoViewModel(MovimientoGridEntradasPrestamoViewModel movimientoModel, MovimientoModel selectedMovimientoModel)
         {
             this._movimientoModel = new MovimientoModel(new MovimientoDataMapper(), 1);
-            //this._entradaPorValidacionViewModel = movimientoModel;
+            this._entradaPrestamoViewModel = movimientoModel;
             this._itemModel = new CatalogItemModel(new ItemDataMapper());
             DeleteMovimiento movLectura = new DeleteMovimiento();
-
-            //consulta por unidMovimiento
+            //consulta por unidmovimiento
             movLectura.GetMovimientos(selectedMovimientoModel.UnidMovimiento);
             this._dataMapperTransporte = new TransporteDataMapper();
             this._dataMapperInfraestructura = new InfraestructuraDataMapper();
@@ -127,13 +125,13 @@ namespace InventoryApp.ViewModel.Traspasos
             if (movLectura.Transporte != null && movLectura.Transporte.UNID_TRANSPORTE != 0)
                 transporte = this._dataMapperTransporte.getElement(movLectura.Transporte);
 
-            if (movLectura.UnidTecnico != null && movLectura.UnidTecnico.UNID_TECNICO!=0)
+            if (movLectura.UnidTecnico != null && movLectura.UnidTecnico.UNID_TECNICO != 0)
                 tecnicoProcedencia = this._dataMapperTecnico.getElement(movLectura.UnidTecnico);
 
-            if (movLectura.UnidTecnicoTrans != null && movLectura.UnidTecnicoTrans.UNID_TECNICO!=0)
+            if (movLectura.UnidTecnicoTrans != null && movLectura.UnidTecnicoTrans.UNID_TECNICO != 0)
                 tecnicoDestino = this._dataMapperTecnicoDestino.getElement(movLectura.UnidTecnicoTrans);
 
-            if (movLectura.UnidSolicitante != null && movLectura.UnidSolicitante.UNID_SOLICITANTE!=0)
+            if (movLectura.UnidSolicitante != null && movLectura.UnidSolicitante.UNID_SOLICITANTE != 0)
                 solicitante = this._dataMapperSolicitante.getElement(movLectura.UnidSolicitante);
 
             //asignacion a propiedades de solo lectura
@@ -155,7 +153,7 @@ namespace InventoryApp.ViewModel.Traspasos
                 this._movimientoModel.Infraestructura = infraestructura as INFRAESTRUCTURA;
 
             if (proveedorProcedencia != null)
-                this._movimientoModel.ProveedorProcedencia = proveedorProcedencia as PROVEEDOR;
+                this._movimientoModel.ProveedorProcedenciaLectura = proveedorProcedencia as PROVEEDOR;
 
             if (tecnicoProcedencia != null)
                 this._movimientoModel.Tecnico = tecnicoProcedencia as TECNICO;
@@ -180,19 +178,24 @@ namespace InventoryApp.ViewModel.Traspasos
             this._movimientoModel.Contacto = movLectura.Contacto;
             this._movimientoModel.FechaMovimiento = movLectura.TimeFecha;
             //carga el grid
-            this._itemModel.ItemModel = movLectura.ArticulosLectura;
-            this._movimientoModel.CantidadItems = movLectura.ArticulosLectura.Count;  
-            
+            if (movLectura.ArticulosLectura != null)
+            {
+                this._itemModel.ItemModel = movLectura.ArticulosLectura;
+                this._movimientoModel.CantidadItems = movLectura.ArticulosLectura.Count;
+            }
+
         }
-        public ReadOnlyTraspasoStockViewModel() { }
+        public ReadOnlyEntradaPrestamoViewModel() { }
         #endregion
 
         #region Metodos
+
         public bool CanAttempImprimir()
         {
             bool _canImprimir = true;
 
-            //if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && this.MovimientoModel.UnidAlmacenDestino != this.MovimientoModel.UnidAlmacenProcedencia)
+
+            //if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && !String.IsNullOrEmpty(this.MovimientoModel.Contacto))
             //    _canImprimir = true;
 
             return _canImprimir;
@@ -209,7 +212,7 @@ namespace InventoryApp.ViewModel.Traspasos
                 Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
                 excel.Visible = true;
 
-                Workbook excelPrint = excel.Workbooks.Open(@"C:\Programs\ElaraInventario\Resources\TraspasoStock.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                Workbook excelPrint = excel.Workbooks.Open(@"C:\Programs\ElaraInventario\Resources\EntradaPrestamo.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                 Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
 
                 //Folio
@@ -217,38 +220,45 @@ namespace InventoryApp.ViewModel.Traspasos
                 //Fecha
                 excel.Cells[8, 23] = _movimientoModel.FechaMovimiento;
 
-                //Solicitante y su área
-                excel.Cells[11, 12] = _movimientoModel.SolicitanteLectura.SOLICITANTE_NAME;
-                excel.Cells[13, 12] = _movimientoModel.DepartamentoLectura.DEPARTAMENTO_NAME;
                 //Empresa
-                excel.Cells[15, 12] = _movimientoModel.EmpresaLectura.EMPRESA_NAME;
+                excel.Cells[11, 12] = _movimientoModel.EmpresaLectura.EMPRESA_NAME;
+                //Solicitante y su área
+                excel.Cells[13, 12] = _movimientoModel.SolicitanteLectura.SOLICITANTE_NAME;
+                excel.Cells[15, 12] = _movimientoModel.DepartamentoLectura.DEPARTAMENTO_NAME;
+                //Procedencia
 
+                string p = "";
                 try
                 {
-                    //Procedencia                
-                    excel.Cells[19, 12] = "Almacén: " + _movimientoModel.AlmacenProcedenciaLectura.ALMACEN_NAME;
-                    //Técnico
-                    excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
 
-                    //Destino                
-                    excel.Cells[25, 12] = "Almacén: " + _movimientoModel.AlmacenDestino.ALMACEN_NAME;
-                    //Técnico
-                    excel.Cells[27, 12] = _movimientoModel.TecnicoTrnas.TECNICO_NAME;
+
+                    if (_movimientoModel.ProveedorProcedenciaLectura != null)
+                        p = "Proveedor : " + _movimientoModel.ProveedorProcedenciaLectura.PROVEEDOR_NAME;
+                    else
+                        p = "Cliente: " + _movimientoModel.ClienteProcedenciaLectura.CLIENTE1;
+
+                    excel.Cells[17, 12] = p.ToString();
+
+                    //Destino
+                    excel.Cells[19, 12] = "Almacén: " + _movimientoModel.AlmacenDestino.ALMACEN_NAME;
+                    //Recibe
+                    excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
                 }
-                catch (Exception Ex)
+                catch (Exception ex)
                 {
                     
+                    
                 }
-
                 //TT
-                excel.Cells[31, 12] = _movimientoModel.Tt;
+                excel.Cells[23, 12] = _movimientoModel.Tt;
                 //Transporte
-                excel.Cells[35, 12] = _movimientoModel.Transporte.TRANSPORTE_NAME;
-
+                excel.Cells[25, 12] = _movimientoModel.Transporte.TRANSPORTE_NAME;
+                //Contacto
+                excel.Cells[27, 12] = _movimientoModel.Contacto;
                 //Guia
-                excel.Cells[37, 12] = _movimientoModel.Guia;
+                excel.Cells[29, 12] = _movimientoModel.Guia;
 
-                int X = 44;
+                int X = 35;
                 Microsoft.Office.Interop.Excel.Borders borders;
 
                 for (int i = 0; i < ItemModel.ItemModel.Count; i++)
@@ -311,10 +321,14 @@ namespace InventoryApp.ViewModel.Traspasos
                 borders = excel.Range[excel.Cells[X, 18], excel.Cells[X + 2, 34]].Borders;
                 borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
 
+
+
                 excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
             }
         }
+
         #endregion
+
         public string PageName
         {
             get

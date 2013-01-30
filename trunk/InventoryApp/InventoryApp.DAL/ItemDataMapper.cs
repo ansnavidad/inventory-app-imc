@@ -593,6 +593,34 @@ namespace InventoryApp.DAL
             throw new NotImplementedException();
         }
 
+        public object getElementLectura(object element)
+        {
+             object res = null;
+             ITEM it = (ITEM)element;
+            
+            using (var entity = new TAE2Entities())
+            {
+               var query = (from items in entity.ITEMs
+                            .Include("ARTICULO")
+                            .Include("ARTICULO.CATEGORIA")
+                            .Include("ARTICULO.MARCA")
+                            .Include("ARTICULO.MODELO")
+                            .Include("ARTICULO.EQUIPO")
+                       where items.UNID_ITEM == it.UNID_ITEM 
+                       select items).First();
+               if (query == null)
+                    return res;
+
+                //query.ARTICULO = query.ARTICULO;
+                //query.ARTICULO.CATEGORIA = query.ARTICULO.CATEGORIA;
+                //query.ARTICULO.MARCA = query.ARTICULO.MARCA;
+                //query.ARTICULO.MODELO = query.ARTICULO.MODELO;
+                //query.ARTICULO.EQUIPO = query.ARTICULO.EQUIPO;
+
+                return res = query;
+            }
+        }
+
         public object getElement(object element)
         {
             object o = null;

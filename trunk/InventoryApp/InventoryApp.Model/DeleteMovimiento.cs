@@ -17,7 +17,11 @@ namespace InventoryApp.Model
         private string _tipoMovimiento;
 
         private MovimientoDetalleDataMapper _dataMapperArticulos;
+        private MovimientoDataMapper _dataMapperMovimentoLectuta;
+        private ItemDataMapper _dataMaperItemsLectura;
         object articulosLectura;
+        object movimientosLectura;
+        object itemsLectura;
         private FixupCollection<ItemModel> _articulosLectura;
         private long _unidMovimiento;
         private TIPO_MOVIMIENTO _tipoMovimientos;
@@ -468,7 +472,7 @@ namespace InventoryApp.Model
                 }
             }
         }
-
+        public DeleteMovimiento(){ }
         public DeleteMovimiento(MOVIMENTO m)
         {
             this._dataMapperArticulos = new MovimientoDetalleDataMapper();
@@ -599,6 +603,116 @@ namespace InventoryApp.Model
 
             this._tipoMovimiento = m.TIPO_MOVIMIENTO.TIPO_MOVIMIENTO_NAME;
         }
+        public void CargaMovimiento(MOVIMENTO m)
+        {
+            this._dataMapperArticulos = new MovimientoDetalleDataMapper();
+            this._dataMaperItemsLectura = new ItemDataMapper();
+            this._almacenDestino = new ALMACEN();
+            this._almacenProcedencia = new ALMACEN();
+            this._unidCliente = new CLIENTE();
+            this._clienteDestino = new CLIENTE();
+            this._clienteProcedencia = new CLIENTE();
+            this._unidFacturaVenta = new FACTURA_VENTA();
+            this._unidInfraestructura = new INFRAESTRUCTURA();
+            this._unidProveedor = new PROVEEDOR();
+            this._proveedorDestino = new PROVEEDOR();
+            this._proveedorProcedenia = new PROVEEDOR();
+            this._servicio = new SERVICIO();
+            this._unidSolicitante = new SOLICITANTE();
+            this._unidTecnico = new TECNICO();
+            this._unidTecnicoTrans = new TECNICO();
+            this._tipoMovimientos = new TIPO_MOVIMIENTO();
+            this._transporte = new TRANSPORTE();
+            this._unidTecnicoTrans = new TECNICO();
+
+
+            if (m.UNID_ALMACEN_DESTINO != null)
+                this._almacenDestino.UNID_ALMACEN = (long)m.UNID_ALMACEN_DESTINO;
+
+            if (m.UNID_ALMACEN_PROCEDENCIA != null)
+                this._almacenProcedencia.UNID_ALMACEN = (long)m.UNID_ALMACEN_PROCEDENCIA;
+
+            if (m.UNID_CLIENTE != null)
+                this._unidCliente.UNID_CLIENTE = (long)m.UNID_CLIENTE;
+
+            if (m.UNID_CLIENTE_DESTINO != null)
+                this._clienteDestino.UNID_CLIENTE = (long)m.UNID_CLIENTE_DESTINO;
+
+            if (m.UNID_CLIENTE_PROCEDENCIA != null)
+                this._clienteProcedencia.UNID_CLIENTE = (long)m.UNID_CLIENTE_PROCEDENCIA;
+
+            if (m.UNID_FACTURA_VENTA != null)
+                this._unidFacturaVenta.UNID_FACTURA_VENTA = (long)m.UNID_FACTURA_VENTA;
+
+            if (m.UNID_INFRAESTRUCTURA != null)
+                this._unidInfraestructura.UNID_INFRAESTRUCTURA = (long)m.UNID_INFRAESTRUCTURA;
+
+            if (m.UNID_MOVIMIENTO != null)
+                this._unidMovimiento = m.UNID_MOVIMIENTO;
+
+            if (m.UNID_PROVEEDOR != null)
+                this._unidProveedor.UNID_PROVEEDOR = (long)m.UNID_PROVEEDOR;
+
+            if (m.UNID_PROVEEDOR_DESTINO != null)
+                this._proveedorDestino.UNID_PROVEEDOR = (long)m.UNID_PROVEEDOR_DESTINO;
+
+            if (m.UNID_PROVEEDOR_PROCEDENCIA != null)
+                this._proveedorProcedenia.UNID_PROVEEDOR = (long)m.UNID_PROVEEDOR_PROCEDENCIA;
+
+            if (m.UNID_SERVICIO != null)
+                this._servicio.UNID_SERVICIO = (long)m.UNID_SERVICIO;
+
+            if (m.UNID_SOLICITANTE != null)
+                this._unidSolicitante.UNID_SOLICITANTE = (long)m.UNID_SOLICITANTE;
+
+            if (m.UNID_TECNICO != null)
+                this._unidTecnico.UNID_TECNICO = (long)m.UNID_TECNICO;
+
+            if (m.UNID_TECNICO_TRAS != null)
+                this._unidTecnicoTrans.UNID_TECNICO = (long)m.UNID_TECNICO_TRAS;
+
+            if (m.UNID_TIPO_MOVIMIENTO != null)
+                this._tipoMovimientos.UNID_TIPO_MOVIMIENTO = m.UNID_TIPO_MOVIMIENTO;
+
+            if (m.UNID_TRANSPORTE != null)
+                this._transporte.UNID_TRANSPORTE = (long)m.UNID_TRANSPORTE;
+
+            this._contacto = m.CONTACTO;
+            this._guia = m.GUIA;
+            this._sitioEnlace = m.SITIO_ENLACE;
+            this._nombreSitio = m.NOMBRE_SITIO;
+            this._tt = m.TT;
+            this._timeFecha = m.FECHA_MOVIMIENTO;
+
+            this.TotalItems = 0;
+            FixupCollection<ItemModel> ic = new FixupCollection<ItemModel>();
+            
+            foreach (MOVIMIENTO_DETALLE detalle in m.MOVIMIENTO_DETALLE)
+            {
+                ITEM itLec = new ITEM();
+                itLec.UNID_ITEM = (detalle.UNID_ITEM);
+                itemsLectura = this._dataMaperItemsLectura.getElementLectura(itLec);
+                ITEM_STATUS itemStatus = new ITEM_STATUS();
+                itemStatus.UNID_ITEM_STATUS = (long)detalle.UNID_ITEM_STATUS;
+                ItemModel aux = new ItemModel((ITEM)itemsLectura, detalle.CANTIDAD, itemStatus);
+                ic.Add(aux);    
+                this.ArticulosLectura = ic;
+            }
+            
+
+        }
+
+        public void GetMovimientos(long unidMovimiento)
+        {
+            this._dataMapperMovimentoLectuta = new MovimientoDataMapper();
+            MOVIMENTO mov = new MOVIMENTO();
+            mov.UNID_MOVIMIENTO = unidMovimiento;
+            //cosulta a movimiento
+            movimientosLectura = this._dataMapperMovimentoLectuta.getElement(mov);
+            CargaMovimiento((MOVIMENTO)movimientosLectura);
+            
+        }
+        
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

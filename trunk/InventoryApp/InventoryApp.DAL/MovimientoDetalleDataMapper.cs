@@ -137,27 +137,6 @@ namespace InventoryApp.DAL
                        where items.UNID_MOVIMIENTO == it.UNID_MOVIMIENTO && items.UNID_ITEM == it.UNID_ITEM && items.UNID_MOVIMIENTO_DETALLE == it.UNID_MOVIMIENTO_DETALLE
                        select items).ToList();
 
-                //(from p in entity.MOVIMIENTO_DETALLE
-                // where p.UNID_MOVIMIENTO == it.UNID_MOVIMIENTO && p.UNID_ITEM == it.UNID_ITEM && p.UNID_MOVIMIENTO_DETALLE == it.UNID_MOVIMIENTO_DETALLE
-                // select p).ToList().ForEach(row =>
-                // {
-                //     reset.Add(new MOVIMIENTO_DETALLE
-                //     {
-                //         UNID_MOVIMIENTO_DETALLE = row.UNID_MOVIMIENTO_DETALLE,
-                //         UNID_ITEM = row.UNID_ITEM,
-                //         UNID_MOVIMIENTO = row.UNID_MOVIMIENTO,
-                //         OBSERVACIONES = row.OBSERVACIONES,
-                //         IS_ACTIVE = row.IS_ACTIVE,
-                //         IS_MODIFIED = row.IS_MODIFIED,
-                //         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
-                //         CANTIDAD = row.CANTIDAD,
-                //         UNID_ITEM_STATUS = row.UNID_ITEM_STATUS,
-                //         ITEM=row.ITEM,
-                //         ITEM_STATUS = row.ITEM_STATUS,
-                //         MOVIMENTO = row.MOVIMENTO
-                //     });
-                // });
-
                 foreach (MOVIMIENTO_DETALLE mov in ((List<MOVIMIENTO_DETALLE>)res))
                 {
                     mov.ITEM = mov.ITEM;

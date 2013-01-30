@@ -413,16 +413,23 @@ namespace InventoryApp.ViewModel.Traspasos
                 excel.Cells[13, 12] = _movimientoModel.Solicitante.Departamento.DEPARTAMENTO_NAME;
                 //Empresa
                 excel.Cells[15, 12] = _movimientoModel.Empresa.EMPRESA_NAME;
-                
-                //Procedencia                
-                excel.Cells[19, 12] = "Almacén: " + _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
-                //Técnico
-                excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
+                try
+                {
 
-                //Destino                
-                excel.Cells[25, 12] = "Almacén: " + _movimientoModel.AlmacenDestino.ALMACEN_NAME;
-                //Técnico
-                excel.Cells[27, 12] = _movimientoModel.Tecnico2.TECNICO_NAME;
+                    //Procedencia                
+                    excel.Cells[19, 12] = "Almacén: " + _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
+                    //Técnico
+                    excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
+
+                    //Destino                
+                    excel.Cells[25, 12] = "Almacén: " + _movimientoModel.AlmacenDestino.ALMACEN_NAME;
+                    //Técnico
+                    excel.Cells[27, 12] = _movimientoModel.Tecnico2.TECNICO_NAME;
+                }
+                catch (Exception Ex)
+                {
+
+                }
 
                 //TT
                 excel.Cells[31, 12] = _movimientoModel.Tt;

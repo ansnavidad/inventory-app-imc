@@ -42,7 +42,7 @@ namespace InventoryApp.View.CatalogProgramado
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-
+           
         }
 
         private void dtGridItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)

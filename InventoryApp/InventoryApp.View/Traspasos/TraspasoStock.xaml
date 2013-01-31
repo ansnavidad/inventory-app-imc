@@ -171,7 +171,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Transporte:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
+                    <Label Content="Medio envió:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
                        HorizontalAlignment="Left" Name="transporte" VerticalAlignment="Bottom" />
                     <ComboBox Grid.Column="0" Grid.Row="1" TabIndex="9" DisplayMemberPath="TRANSPORTE_NAME" Height="23" HorizontalAlignment="Left" 
                               ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogTransporteModel.Transporte}"

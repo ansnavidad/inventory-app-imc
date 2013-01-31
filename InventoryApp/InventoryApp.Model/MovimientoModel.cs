@@ -22,9 +22,11 @@ namespace InventoryApp.Model
         
         private PROVEEDOR _proveedorProcedencia;
         private PROVEEDOR _proveedorProcedenciaLectura;
+        private PROVEEDOR _proveedorDestinoLectura;
         private long? _unidProveedorProcedencia;
         private CLIENTE _clienteProcedencia;
         private CLIENTE _clienteProcedenciaLectura;
+        private CLIENTE _clienteDestinoLectura;
         private long? _unidClienteProcedencia;
         private ALMACEN _almacenProcedencia;
         private long? _unidAlmacenProcedencia;
@@ -452,6 +454,20 @@ namespace InventoryApp.Model
             }
         }
 
+        public PROVEEDOR ProveedorDestinoLectura
+        {
+            get { return this._proveedorDestinoLectura; }
+            set
+            {
+                if (value != this._proveedorDestinoLectura)
+                {
+                    this._proveedorDestinoLectura = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("ProveedorDestinoLectura"));
+                }
+            }
+        }
+
         public CLIENTE ClienteProcedencia
         {
             get
@@ -489,6 +505,20 @@ namespace InventoryApp.Model
                     this._clienteProcedenciaLectura = value;
                     if (this.PropertyChanged != null)
                         this.PropertyChanged(this, new PropertyChangedEventArgs("ClienteProcedenciaLectura"));
+                }
+            }
+        }
+
+        public CLIENTE ClienteDestinoLectura
+        {
+            get { return this._clienteDestinoLectura; }
+            set
+            {
+                if (value != this._clienteDestinoLectura)
+                {
+                    this._clienteDestinoLectura = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("ClienteDestinoLectura"));
                 }
             }
         }

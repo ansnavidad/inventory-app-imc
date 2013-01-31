@@ -176,6 +176,26 @@ namespace InventoryApp.DAL.Recibo
             return listFactura;
         }
 
+        public List<FACTURA> GetFacturaListCatalog()
+        {
+            using (var entity = new TAE2Entities())
+            {
+                List<FACTURA> FacturasDB = (from f in entity.FACTURAs
+                                                .Include("MONEDA")
+                                                .Include("PROVEEDOR")
+                                                .Include("TIPO_PEDIMENTO")
+                                                .Include("FACTURA_DETALLE.ARTICULO")
+                                                .Include("FACTURA_DETALLE.ARTICULO.EQUIPO")
+                                                .Include("FACTURA_DETALLE.ARTICULO.CATEGORIA")
+                                                .Include("FACTURA_DETALLE.ARTICULO.MARCA")
+                                                .Include("FACTURA_DETALLE.ARTICULO.MODELO")
+                                                .Include("FACTURA_DETALLE.UNIDAD")
+                                            select f).ToList();
+
+                return FacturasDB;
+            }
+        }
+
         public object getElements()
         {
             throw new NotImplementedException();

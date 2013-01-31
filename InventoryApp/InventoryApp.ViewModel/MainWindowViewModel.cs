@@ -177,7 +177,7 @@ namespace InventoryApp.ViewModel
                         page = new CatalogItemStatusViewModel();
                         break;
                     case "Medio Envio":
-                        page = new CatalogMedioEnvioViewModel();
+                        page = new CatalogTransporteViewModel();
                         break;
                     case "Modelo":
                         page = new CatalogModeloViewModel();
@@ -221,9 +221,9 @@ namespace InventoryApp.ViewModel
                     case "Tipo Pedimento":
                         page = new CatalogTipoPedimentoViewModel();
                         break;
-                    case "Transporte":
-                        page = new CatalogTransporteViewModel();
-                        break;
+                    //case "Transporte":
+                    //    page = new CatalogTransporteViewModel();
+                    //    break;
                     case "Unidad":
                         page = new CatalogUnidadViewModel();
                         break;
@@ -287,9 +287,12 @@ namespace InventoryApp.ViewModel
                         page = new Recibo.CatalogReciboViewModel();
                         //page = new Recibo.FacturaCatalogViewModel();
                       break;
+                   case "Modificar Facturas":
+                      //page = new Recibo.FacturaCatalogViewModel();
+                      //break;
                    case "Modificar Item":
-                      page = new CatalogItem.ModifyItemViewModel();
-                      break;
+                      //page = new CatalogItem.ModifyItemViewModel();
+                      //break;
                    case "Inicio":
                       page = new GridMovimientos.MovimientosGridViewModel();
                       break;
@@ -301,8 +304,8 @@ namespace InventoryApp.ViewModel
                       page = new MaxMin.MaxMinViewModel();
                       break;
                     case "Agregar Item":
-                      page = new CatalogItem.AgregarItemViewModel();
-                      break;
+                      //page = new CatalogItem.AgregarItemViewModel();
+                      //break;
                     case "Carga de ítems":
                       page = new Job.JobViewModel();
                       break;

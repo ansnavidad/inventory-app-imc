@@ -41,7 +41,20 @@ namespace InventoryApp.View.GridMovimientos
             {
                 DataGrid dg = sender as DataGrid;
                 if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
-                { }
+                {
+                    SalidaConfiguracionSoloLectura readOnly = new SalidaConfiguracionSoloLectura();
+                    try
+                    {
+                        MovimientoGridSalidaConfiguracionViewModel sololectura = new MovimientoGridSalidaConfiguracionViewModel("solo lectura");
+                        sololectura = this.DataContext as MovimientoGridSalidaConfiguracionViewModel;
+                        readOnly.DataContext = sololectura.CreateReadOnlySalidaConfiguracionViewModel();
+                        readOnly.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
             }
 
         }

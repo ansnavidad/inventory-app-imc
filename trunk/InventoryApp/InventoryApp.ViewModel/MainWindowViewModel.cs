@@ -288,8 +288,8 @@ namespace InventoryApp.ViewModel
                         //page = new Recibo.FacturaCatalogViewModel();
                       break;
                    case "Modificar Facturas":
-                      //page = new Recibo.FacturaCatalogViewModel();
-                      //break;
+                       page = new Recibo.FacturaCatalogViewModel();
+                       break;
                    case "Modificar Item":
                       //page = new CatalogItem.ModifyItemViewModel();
                       //break;

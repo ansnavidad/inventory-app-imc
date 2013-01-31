@@ -96,9 +96,6 @@
     <Compile Include="CatalogAlmacen\AltaAlmacen.xaml.cs">
       <DependentUpon>AltaAlmacen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogAlmacen\CatalogAlmacenView.xaml.cs">
-      <DependentUpon>CatalogAlmacenView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CatalogAlmacen\ModifyAlmacenView.xaml.cs">
       <DependentUpon>ModifyAlmacenView.xaml</DependentUpon>
     </Compile>
@@ -107,9 +104,6 @@
     </Compile>
     <Compile Include="CatalogArticulo\ArticuloUserControl.xaml.cs">
       <DependentUpon>ArticuloUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CatalogArticulo\CatalogArticuloView.xaml.cs">
-      <DependentUpon>CatalogArticuloView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogArticulo\ModifyArticuloView.xaml.cs">
       <DependentUpon>ModifyArticuloView.xaml</DependentUpon>
@@ -120,17 +114,11 @@
     <Compile Include="CatalogBanco\BancoUserControl.xaml.cs">
       <DependentUpon>BancoUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogBanco\CatalogBancoView.xaml.cs">
-      <DependentUpon>CatalogBancoView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CatalogBanco\ModifyBancoView.xaml.cs">
       <DependentUpon>ModifyBancoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogCategoria\AltaCategoria.xaml.cs">
       <DependentUpon>AltaCategoria.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CatalogCategoria\CatalogCategoriaView.xaml.cs">
-      <DependentUpon>CatalogCategoriaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogCategoria\CategoriaUserControl.xaml.cs">
       <DependentUpon>CategoriaUserControl.xaml</DependentUpon>
@@ -141,9 +129,6 @@
     <Compile Include="CatalogCiudad\AltaModificarCiudad.xaml.cs">
       <DependentUpon>AltaModificarCiudad.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogCiudad\CatalogCiudadView.xaml.cs">
-      <DependentUpon>CatalogCiudadView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CatalogCiudad\CiudadUserControl.xaml.cs">
       <DependentUpon>CiudadUserControl.xaml</DependentUpon>
     </Compile>
@@ -152,9 +137,6 @@
     </Compile>
     <Compile Include="CatalogCliente\AltaCliente.xaml.cs">
       <DependentUpon>AltaCliente.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CatalogCliente\CatalogClienteView.xaml.cs">
-      <DependentUpon>CatalogClienteView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogCliente\ClienteUserControl.xaml.cs">
       <DependentUpon>ClienteUserControl.xaml</DependentUpon>
@@ -165,9 +147,6 @@
     <Compile Include="CatalogDepartamento\AddDepartamentoView.xaml.cs">
       <DependentUpon>AddDepartamentoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogDepartamento\CatalogDepartamentoView.xaml.cs">
-      <DependentUpon>CatalogDepartamentoView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CatalogDepartamento\DepartamentoUserControl.xaml.cs">
       <DependentUpon>DepartamentoUserControl.xaml</DependentUpon>
     </Compile>
@@ -177,9 +156,6 @@
     <Compile Include="CatalogEmpresa\AltaEmpresa.xaml.cs">
       <DependentUpon>AltaEmpresa.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogEmpresa\CatalogEmpresaView.xaml.cs">
-      <DependentUpon>CatalogEmpresaView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CatalogEmpresa\EmpresaUserControl.xaml.cs">
       <DependentUpon>EmpresaUserControl.xaml</DependentUpon>
     </Compile>
@@ -188,9 +164,6 @@
     </Compile>
     <Compile Include="CatalogEquipo\AddEquipoView.xaml.cs">
       <DependentUpon>AddEquipoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CatalogEquipo\CatalogEquipoView.xaml.cs">
-      <DependentUpon>CatalogEquipoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogEquipo\EquipoUserControl.xaml.cs">
       <DependentUpon>EquipoUserControl.xaml</DependentUpon>
@@ -212,9 +185,6 @@
     </Compile>
     <Compile Include="CatalogItemStatus\AltaItemStatus.xaml.cs">
       <DependentUpon>AltaItemStatus.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CatalogItemStatus\CatalogItemStatusView.xaml.cs">
-      <DependentUpon>CatalogItemStatusView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogItemStatus\ItemStatusUserControl.xaml.cs">
       <DependentUpon>ItemStatusUserControl.xaml</DependentUpon>
@@ -243,9 +213,6 @@
     <Compile Include="CatalogMarca\AddMarca.xaml.cs">
       <DependentUpon>AddMarca.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogMarca\CatalogMarcaView.xaml.cs">
-      <DependentUpon>CatalogMarcaView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CatalogMarca\MarcaUserControl.xaml.cs">
       <DependentUpon>MarcaUserControl.xaml</DependentUpon>
     </Compile>
@@ -254,9 +221,6 @@
     </Compile>
     <Compile Include="CatalogMedioEnvio\AltaModificarMedioEnvio.xaml.cs">
       <DependentUpon>AltaModificarMedioEnvio.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CatalogMedioEnvio\CatalogMedioEnvioView.xaml.cs">
-      <DependentUpon>CatalogMedioEnvioView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogMedioEnvio\MedioEnvioUserControl.xaml.cs">
       <DependentUpon>MedioEnvioUserControl.xaml</DependentUpon>
@@ -267,9 +231,6 @@
     <Compile Include="CatalogModelo\AddModeloView.xaml.cs">
       <DependentUpon>AddModeloView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogModelo\CatalogModeloView.xaml.cs">
-      <DependentUpon>CatalogModeloView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CatalogModelo\ModeloUserControl.xaml.cs">
       <DependentUpon>ModeloUserControl.xaml</DependentUpon>
     </Compile>
@@ -279,9 +240,6 @@
     <Compile Include="CatalogMoneda\AddMonedaView.xaml.cs">
       <DependentUpon>AddMonedaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogMoneda\CatalogMonedaView.xaml.cs">
-      <DependentUpon>CatalogMonedaView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CatalogMoneda\ModifyMonedaView.xaml.cs">
       <DependentUpon>ModifyMonedaView.xaml</DependentUpon>
     </Compile>
@@ -290,9 +248,6 @@
     </Compile>
     <Compile Include="CatalogPais\AltaModificarPais.xaml.cs">
       <DependentUpon>AltaModificarPais.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CatalogPais\CatalogPaisView.xaml.cs">
-      <DependentUpon>CatalogPaisView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogPais\ModifyPaisView.xaml.cs">
       <DependentUpon>ModifyPaisView.xaml</DependentUpon>
@@ -305,9 +260,6 @@
     </Compile>
     <Compile Include="CatalogProgramado\AddProgramadoView.xaml.cs">
       <DependentUpon>AddProgramadoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CatalogProgramado\CatalogProgramado.xaml.cs">
-      <DependentUpon>CatalogProgramado.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogProgramado\ModifyProgramadoView.xaml.cs">
       <DependentUpon>ModifyProgramadoView.xaml</DependentUpon>
@@ -704,10 +656,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CatalogAlmacen\CatalogAlmacenView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CatalogAlmacen\ModifyAlmacenView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -719,10 +667,6 @@
     <Page Include="CatalogArticulo\ArticuloUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CatalogArticulo\CatalogArticuloView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="CatalogArticulo\ModifyArticuloView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -736,19 +680,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CatalogBanco\CatalogBancoView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CatalogBanco\ModifyBancoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CatalogCategoria\AltaCategoria.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="CatalogCategoria\CatalogCategoriaView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -764,10 +700,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CatalogCiudad\CatalogCiudadView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CatalogCiudad\CiudadUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -777,10 +709,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CatalogCliente\AltaCliente.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CatalogCliente\CatalogClienteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -796,10 +724,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CatalogDepartamento\CatalogDepartamentoView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CatalogDepartamento\DepartamentoUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -812,10 +736,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CatalogEmpresa\CatalogEmpresaView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CatalogEmpresa\EmpresaUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -825,10 +745,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CatalogEquipo\AddEquipoView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="CatalogEquipo\CatalogEquipoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -857,10 +773,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogItemStatus\AltaItemStatus.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="CatalogItemStatus\CatalogItemStatusView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -900,10 +812,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CatalogMarca\CatalogMarcaView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CatalogMarca\MarcaUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -913,10 +821,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CatalogMedioEnvio\AltaModificarMedioEnvio.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="CatalogMedioEnvio\CatalogMedioEnvioView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -932,10 +836,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CatalogModelo\CatalogModeloView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CatalogModelo\ModeloUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -948,10 +848,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CatalogMoneda\CatalogMonedaView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CatalogMoneda\ModifyMonedaView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -961,10 +857,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogPais\AltaModificarPais.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="CatalogPais\CatalogPaisView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -981,10 +873,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogProgramado\AddProgramadoView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CatalogProgramado\CatalogProgramado.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -29,9 +30,9 @@
             <Label Style="{StaticResource titleLabel}" Content="MODIFICAR MARCA" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
         <Button  TabIndex="1" Content="Guardar" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnAgregar" 
-                VerticalAlignment="Stretch" Width="75" Command="{Binding ModifyItemCommand,Mode=OneWay}" Click="btnAgregar_Click" Grid.Column="1" />
+                VerticalAlignment="Stretch" Width="75" Command="{Binding ModifyItemCommand,Mode=OneWay}" Click="btnAgregar_Click" Grid.Column="1" Style="{StaticResource btnElara}"/>
         <Button Content="Cancelar" Grid.Column="2" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="5,0" 
-                Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
+                Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" Style="{StaticResource btnElara}"/>
         <Label Content="Nombre Marca :" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,25,0,7" Name="lblNombreStatus" 
                VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="2" />
         <TextBox MaxLength="254" Grid.Column="2" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="0,27,0,0" 

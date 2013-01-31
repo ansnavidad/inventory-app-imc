@@ -164,7 +164,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Transporte:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
+                    <Label Content="Medio envió:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
                        HorizontalAlignment="Left" Name="transporte" VerticalAlignment="Bottom" />
                     <TextBox Grid.Column="0" Grid.Row="1"  IsEnabled="False" Height="23" HorizontalAlignment="Left" Margin="15,0" Name="textBox20" TabIndex="16"
                          Text="{Binding MovimientoModel.Transporte.TRANSPORTE_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="180" />
@@ -235,15 +235,16 @@
                            Text="{Binding MovimientoModel.CantidadItems, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Width="97" />
                     <Button IsEnabled="False" Grid.Column="3" TabIndex="12" Content="Agregar Items" Height="30" VerticalAlignment="Center"
                             HorizontalAlignment="Center" Width="120" Name="button1" Style="{StaticResource btnElara}" />
-                    <Button Grid.Column="4" TabIndex="13" Content="Borrar Items" Height="30" IsCancel="False"
+                    <Button Grid.Column="4" TabIndex="13" Content="Borrar Items" Height="30" IsCancel="False" IsEnabled="False"
                         Name="button2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
                 <DataGrid Grid.Row="10" TabIndex="14" AutoGenerateColumns="False" CanUserAddRows="False"
                           ItemsSource="{Binding ItemModel.ItemModel}" HorizontalAlignment="Stretch" 
-                          VerticalAlignment="Stretch" Name="dtGridTipoPedimento" IsEnabled="False"
+                          VerticalAlignment="Stretch" Name="dtGridTipoPedimento" IsEnabled="True" Height="240" VerticalScrollBarVisibility="Auto"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" >
+                    
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="30" />
+                        <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="True" Width="30" />
                         <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Serie" x:Name="SERIE" Binding="{Binding Path=NUMERO_SERIE}" />
                         <DataGridTextColumn IsReadOnly="True"  Width="*" Header="SKU" x:Name="SKU" Binding="{Binding Path=SKU}"></DataGridTextColumn>
                         <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Equipo" x:Name="EQUIPO" Binding="{Binding Path=Equipo.EQUIPO_NAME}"></DataGridTextColumn>

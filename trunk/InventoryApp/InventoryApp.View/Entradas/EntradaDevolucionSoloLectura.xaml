@@ -204,7 +204,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Transporte:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
+                    <Label Content="Medio envió:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
                        HorizontalAlignment="Left" Name="transporte" VerticalAlignment="Bottom"/>
                     <TextBox Grid.Column="0" Grid.Row="1" IsEnabled="False" TabIndex="6" Height="23" MaxLength="1024" Name="txtTransporte" VerticalAlignment="Top" Margin="15,0"
                      Text="{Binding MovimientoModel.Transporte.TRANSPORTE_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="180" />
@@ -235,11 +235,11 @@
                     <Button IsEnabled="False" Grid.Column="4" TabIndex="13" Content="Borrar Items" Height="30"
                         Name="button2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
-                <DataGrid  IsEnabled="False" Grid.Row="8" TabIndex="14" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ItemModel.ItemModel}" 
-                          HorizontalAlignment="Stretch" Name="dtGridTipoPedimento"
+                <DataGrid  IsEnabled="True" Grid.Row="8" TabIndex="14" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ItemModel.ItemModel}" 
+                          HorizontalAlignment="Stretch" Name="dtGridTipoPedimento" Height="251" VerticalScrollBarVisibility="Auto"
                           VerticalAlignment="Stretch" Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="30" />
+                        <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="True" Width="30" />
                         <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Serie" x:Name="SERIE" Binding="{Binding Path=NUMERO_SERIE}" />
                         <DataGridTextColumn IsReadOnly="True"  Width="*" Header="SKU" x:Name="SKU" Binding="{Binding Path=SKU}"></DataGridTextColumn>
                         <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Equipo" x:Name="EQUIPO" Binding="{Binding Path=Equipo.EQUIPO_NAME}"></DataGridTextColumn>

@@ -217,7 +217,7 @@
                         <ColumnDefinition Width="150"/>
                         <ColumnDefinition Width="190"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Transporte:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
+                    <Label Content="Medio envió:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
                        HorizontalAlignment="Right" Name="transporte" VerticalAlignment="Center"/>
                     <ComboBox Grid.Column="1" TabIndex="8" DisplayMemberPath="TRANSPORTE_NAME" Height="23" 
                           ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogTransporteModel.Transporte}"
@@ -255,8 +255,8 @@
                         Name="button2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Click="button2_Click" Style="{StaticResource btnElara}" />
                 </Grid>
                 <DataGrid Grid.Row="8" TabIndex="14" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ItemModel.ItemModel}" HorizontalAlignment="Stretch"
-                          Height="auto" Name="dtGridTipoPedimento" DataContextChanged="dtGridTipoPedimento_DataContextChanged"  VerticalAlignment="Stretch"
-                          Margin="0,0,0,51" Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+                          Name="dtGridTipoPedimento" DataContextChanged="dtGridTipoPedimento_DataContextChanged"  VerticalAlignment="Stretch"
+                          Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" Height="251" VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="30" />
                         <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Serie" x:Name="SERIE" Binding="{Binding Path=NUMERO_SERIE}" />

@@ -225,7 +225,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Transporte:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
+                    <Label Content="Medio envió:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
                        HorizontalAlignment="Left" Name="transporte" VerticalAlignment="Bottom"/>
                     <ComboBox Grid.Column="0" Grid.Row="1" TabIndex="9" DisplayMemberPath="TRANSPORTE_NAME" Height="23" HorizontalAlignment="Left" 
                               ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogTransporteModel.Transporte}"
@@ -259,7 +259,7 @@
                         Name="button2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
                 <DataGrid Grid.Row="8" TabIndex="14" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ItemModel.ItemModel}" 
-                          HorizontalAlignment="Stretch" Name="dtGridTipoPedimento"
+                          HorizontalAlignment="Stretch" Name="dtGridTipoPedimento" Height="251" VerticalScrollBarVisibility="Auto"
                           VerticalAlignment="Stretch" Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="30" />

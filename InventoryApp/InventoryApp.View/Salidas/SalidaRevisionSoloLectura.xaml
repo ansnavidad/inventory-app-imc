@@ -201,12 +201,12 @@
                     <Button Grid.Column="4" TabIndex="13" Content="Borrar Items" Height="30" IsEnabled="False"
                         Name="button2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
-                <DataGrid  IsEnabled="False" Grid.Row="6" TabIndex="14" AutoGenerateColumns="False" CanUserAddRows="False"
+                <DataGrid  IsEnabled="True" Grid.Row="6" TabIndex="14" AutoGenerateColumns="False" CanUserAddRows="False"
                           ItemsSource="{Binding ItemModel.ItemModel}" HorizontalAlignment="Stretch" 
-                          VerticalAlignment="Stretch" Name="dtGridTipoPedimento"
+                          VerticalAlignment="Stretch" Name="dtGridTipoPedimento" Height="251" VerticalScrollBarVisibility="Auto"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" >
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="30" />
+                        <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="True" Width="30" />
                         <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Serie" x:Name="SERIE" Binding="{Binding Path=NUMERO_SERIE}" />
                         <DataGridTextColumn IsReadOnly="True"  Width="*" Header="SKU" x:Name="SKU" Binding="{Binding Path=SKU}"></DataGridTextColumn>
                         <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Equipo" x:Name="EQUIPO" Binding="{Binding Path=Equipo.EQUIPO_NAME}"></DataGridTextColumn>

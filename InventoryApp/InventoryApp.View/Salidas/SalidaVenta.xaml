@@ -226,7 +226,7 @@
                         <ColumnDefinition Width="150"/>
                         <ColumnDefinition Width="190"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Transporte:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
+                    <Label Content="Medio envió:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
                        HorizontalAlignment="Right" Name="transporte" VerticalAlignment="Center"/>
                     <ComboBox Grid.Column="1" TabIndex="10" Height="23" HorizontalAlignment="Left" Name="comboBoxTransporte" 
                               Width="180" SelectedIndex="0" DisplayMemberPath="TRANSPORTE_NAME" VerticalAlignment="Center"
@@ -311,7 +311,7 @@
                 </Grid>
                 <DataGrid Grid.Row="9" TabIndex="14" AutoGenerateColumns="False" CanUserAddRows="False"
                           ItemsSource="{Binding ItemModel.ItemModel}" HorizontalAlignment="Stretch" 
-                          VerticalAlignment="Stretch" Name="dtGridTipoPedimento"
+                          VerticalAlignment="Stretch" Name="dtGridTipoPedimento" Height="251" VerticalScrollBarVisibility="Auto"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="30" />

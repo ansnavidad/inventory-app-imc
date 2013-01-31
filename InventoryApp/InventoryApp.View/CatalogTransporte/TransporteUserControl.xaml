@@ -48,7 +48,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Transporte" Width="*" x:Name="transporteNombre" Binding="{Binding Path=TRANSPORTE_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Medio Envió" Width="*" x:Name="transporteNombre" Binding="{Binding Path=TRANSPORTE_NAME}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Tipo Empresa" Width="*" x:Name="tipoEmpresaNombre" Binding="{Binding Path=TipoEmpresa.TIPO_EMPRESA_NAME}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>

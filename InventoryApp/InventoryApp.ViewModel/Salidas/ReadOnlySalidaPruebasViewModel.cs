@@ -328,6 +328,7 @@ namespace InventoryApp.ViewModel.Salidas
                 borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
 
                 excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                excel.Visible = true;
             }
         }
         #endregion

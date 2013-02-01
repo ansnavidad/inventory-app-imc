@@ -6,6 +6,7 @@ using InventoryApp.Model;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
+using InventoryApp.ViewModel.Salidas;
 
 namespace InventoryApp.ViewModel.GridMovimientos
 {
@@ -54,6 +55,13 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 throw ex;
             }
 
+        }
+
+        public MovimientoGridSalidaCorrectivoViewModel(string readOnly)
+        {
+            IDataMapper dataMapper = new MovimientoDataMapper();
+            this._catalogMovimientoModel = new CatalogMovimientoModel(dataMapper, "solo", 1); 
+                
         }
 
         public CatalogMovimientoModel CatalogMovimientoModel
@@ -133,6 +141,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 _catalogAlmacenProcedenciaModel = value;
             }
         }
+
         public MovimientoGridModel MovimientoModel
         {
             get
@@ -145,6 +154,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 _movimientoGridModel = value;
             }
         }
+
         public CatalogItemModel ItemModel
         {
             get
@@ -170,6 +180,19 @@ namespace InventoryApp.ViewModel.GridMovimientos
             }
         }
 
+        /// <summary>
+        /// Crea una nueva instancia de SoloLecturaEntradaDesistalacionViewModel y se pasa asi mismo como parámetro y el item seleccionado
+        /// </summary>
+        /// <returns></returns>
+        public ReadOnlySalidaCorrectivoViewModel CreateReadOnlySalidaCorrectivoViewModel()
+        {
+            MovimientoModel movimientoModel = new MovimientoModel(new MovimientoDataMapper(), "solo lectura");
+            if (this._catalogMovimientoModel != null && this.CatalogMovimientoModel.SelectedMovimiento != null)
+            {
+                movimientoModel.UnidMovimiento = this.CatalogMovimientoModel.SelectedMovimiento.UnidMovimiento;
+            }
+            return new ReadOnlySalidaCorrectivoViewModel(movimientoModel);
+        }
 
         public void loadItems()
         {

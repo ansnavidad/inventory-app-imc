@@ -34,5 +34,28 @@ namespace InventoryApp.View.GridMovimientos
             dlg.DataContext = new SalidaCorrectivoViewModel(viewModel);
             dlg.ShowDialog();
         }
+
+        private void dtGridMovimiento_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                DataGrid dg = sender as DataGrid;
+                if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
+                {
+                    SalidaCorrectivoSoloLectura readOnly = new SalidaCorrectivoSoloLectura();
+                    try
+                    {
+                        MovimientoGridSalidaCorrectivoViewModel sololectura = new MovimientoGridSalidaCorrectivoViewModel("solo lectura");
+                        sololectura = this.DataContext as MovimientoGridSalidaCorrectivoViewModel;
+                        readOnly.DataContext = sololectura.CreateReadOnlySalidaCorrectivoViewModel();
+                        readOnly.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+        }
     }
 }

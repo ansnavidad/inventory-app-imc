@@ -10,6 +10,9 @@ using InventoryApp.DAL.POCOS;
 using System.ComponentModel;
 using Microsoft.Office.Interop.Excel;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace InventoryApp.ViewModel.Salidas
 {
@@ -213,7 +216,7 @@ namespace InventoryApp.ViewModel.Salidas
             {
                 string filename = dlg.FileName;
                 Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-                excel.Visible = true;
+                excel.Visible = false;
 
                 Workbook excelPrint = excel.Workbooks.Open(@"C:\Programs\ElaraInventario\Resources\SalidaRevision.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                 Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
@@ -310,8 +313,34 @@ namespace InventoryApp.ViewModel.Salidas
                 borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
 
                 excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                excel.Visible = true;
+                
             }
         }
+        
+        //private void KillSpecificExcelFileProcess(string excelFileName)
+        //{
+
+        //    string excel = excelFileName.Replace(".xlsx", "");
+
+            
+            
+
+        //    var processes = from p in Process.GetProcessesByName("EXCEL")
+        //                    select p;
+
+        //    foreach (var process in processes)
+        //    {
+        //        if (process.MainWindowTitle == "Microsoft Excel - " + excel)
+        //            process.Kill();
+        //        if (process.MainWindowTitle == "")
+        //            process.Kill();
+        //    }
+        //}
+
+        [DllImport("user32.dll")]
+
+        static extern int GetWindowThreadProcessId(int hWnd, out int lpdwProcessId);
         #endregion
 
         public string PageName

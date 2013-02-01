@@ -7,6 +7,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -32,11 +33,13 @@
                     HorizontalAlignment="Stretch" Margin="5,0"
                     Name="btnAgregar" VerticalAlignment="Stretch" Width="75"
                     Command="{Binding AddServicioCommand,Mode=OneWay}"
-                    Click="btnAgregar_Click" Grid.Column="1" />
+                    Click="btnAgregar_Click" Grid.Column="1" 
+                    Style="{StaticResource btnElara}"/>
         <Button Content="Cancelar" Grid.Column="2" Grid.Row="3"
-                    Height="23" HorizontalAlignment="Stretch" Margin="5,0"
+                    Height="23" HorizontalAlignment="Stretch" Margin="5,16,5,11"
                     Name="btnCancelar" VerticalAlignment="Stretch" Width="75"
-                    Click="btnCancelar_Click" />
+                    Click="btnCancelar_Click" 
+                    Style="{StaticResource btnElara}"/>
         <Label Content="Nombre Servicio :" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,19,149,3" 
                Name="lblNombreServicio" VerticalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="2" />
         <TextBox Grid.Column="2" Grid.Row="1" Height="23"

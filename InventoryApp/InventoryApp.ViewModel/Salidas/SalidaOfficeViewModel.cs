@@ -13,6 +13,8 @@ using System.ComponentModel;
 using InventoryApp.ViewModel.GridMovimientos;
 using Microsoft.Office.Interop.Excel;
 using System.Reflection;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace InventoryApp.ViewModel.Salidas
 {
@@ -422,7 +424,7 @@ namespace InventoryApp.ViewModel.Salidas
             {
                 string filename = dlg.FileName;
                 Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-                excel.Visible = true;
+                excel.Visible = false;
 
                 Workbook excelPrint = excel.Workbooks.Open(@"C:\Programs\ElaraInventario\Resources\SalidaOffice.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                 Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
@@ -527,6 +529,8 @@ namespace InventoryApp.ViewModel.Salidas
                 borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
 
                 excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+                excel.Visible = true;
             }
         }
 

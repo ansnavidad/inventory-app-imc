@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -34,8 +35,8 @@
                  Grid.Column="2" Grid.Row="1" />
         <Button Content="Guardar" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnAgregar" 
                 VerticalAlignment="Stretch" Width="75" Command="{Binding AddItemCommand,Mode=OneWay}" Click="btnAgregar_Click" 
-                Grid.Column="1" Grid.Row="3" />
+                Grid.Column="1" Grid.Row="3" Style="{StaticResource btnElara}"/>
         <Button Content="Cancelar" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnCancelar" 
-                VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" Grid.Column="2" Grid.Row="3" />
+                VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" Grid.Column="2" Grid.Row="3" Style="{StaticResource btnElara}"/>
     </Grid>
 </Window>

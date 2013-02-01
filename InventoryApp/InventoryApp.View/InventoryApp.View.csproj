@@ -591,11 +591,20 @@
     <Compile Include="Salidas\SalidaPrestamo.xaml.cs">
       <DependentUpon>SalidaPrestamo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Salidas\SalidaPrestamoSoloLectura.xaml.cs">
+      <DependentUpon>SalidaPrestamoSoloLectura.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Salidas\SalidaPruebas.xaml.cs">
       <DependentUpon>SalidaPruebas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Salidas\SalidaPruebasSoloLectura.xaml.cs">
+      <DependentUpon>SalidaPruebasSoloLectura.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Salidas\SalidaRenta.xaml.cs">
       <DependentUpon>SalidaRenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaRentaSoloLectura.xaml.cs">
+      <DependentUpon>SalidaRentaSoloLectura.xaml</DependentUpon>
     </Compile>
     <Compile Include="Salidas\SalidaRevision.xaml.cs">
       <DependentUpon>SalidaRevision.xaml</DependentUpon>
@@ -606,8 +615,14 @@
     <Compile Include="Salidas\SalidaRMA.xaml.cs">
       <DependentUpon>SalidaRMA.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Salidas\SalidaRMASoloLectura.xaml.cs">
+      <DependentUpon>SalidaRMASoloLectura.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Salidas\SalidaVenta.xaml.cs">
       <DependentUpon>SalidaVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaVentaSoloLectura.xaml.cs">
+      <DependentUpon>SalidaVentaSoloLectura.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sync\DlgUpload.xaml.cs">
       <DependentUpon>DlgUpload.xaml</DependentUpon>
@@ -1302,11 +1317,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Salidas\SalidaPrestamoSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Salidas\SalidaPruebas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Salidas\SalidaPruebasSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Salidas\SalidaRenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaRentaSoloLectura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1322,7 +1349,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Salidas\SalidaRMASoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Salidas\SalidaVenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaVentaSoloLectura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

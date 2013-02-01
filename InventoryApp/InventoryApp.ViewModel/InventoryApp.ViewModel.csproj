@@ -218,7 +218,12 @@
     <Compile Include="Salidas\ReadOnlySalidaDemoViewModel.cs" />
     <Compile Include="Salidas\ReadOnlySalidaObsequioViewModel.cs" />
     <Compile Include="Salidas\ReadOnlySalidaOfficeViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaPrestamoViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaPruebasViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaRentaViewModel.cs" />
     <Compile Include="Salidas\ReadOnlySalidaRevisionViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaRMAViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaVentaViewModel.cs" />
     <Compile Include="Salidas\SalidaConfiguracionViewModel.cs" />
     <Compile Include="Salidas\SalidaCorrectivoViewModel.cs" />
     <Compile Include="Salidas\SalidaDemoViewModel.cs" />

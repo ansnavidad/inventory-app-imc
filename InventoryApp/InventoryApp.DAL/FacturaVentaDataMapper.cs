@@ -77,7 +77,24 @@ namespace InventoryApp.DAL
 
         public object getElement(object element)
         {
-            throw new NotImplementedException();
+            object o = null;
+            if (element != null)
+            {
+                FACTURA_VENTA facVen = (FACTURA_VENTA)element;
+                using (var Entity = new TAE2Entities())
+                {
+                    var res = (from p in Entity.FACTURA_VENTA
+                                   .Include("MONEDA")
+                                   where p.UNID_FACTURA_VENTA==facVen.UNID_FACTURA_VENTA
+                               select p).First();
+
+                    if (res == null)
+                        return null;
+
+                    o = res;
+                }
+            }
+            return o;
         }
 
         public void udpateElement(object element)

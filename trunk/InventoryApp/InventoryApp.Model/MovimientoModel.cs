@@ -47,6 +47,7 @@ namespace InventoryApp.Model
         private PROVEEDOR _proveedor;
         private long? _unidProveedor;
         private FACTURA_VENTA _facturaVenta;
+        private FACTURA_VENTA _facturaVentaLectura;
         private long? _unidFacturaVenta;
         private DeleteSolicitante _solicitante;
         private long? _unidSolicitante;
@@ -63,7 +64,7 @@ namespace InventoryApp.Model
         private ALMACEN _almacenProcedenciaLectura;
         private DEPARTAMENTO _departamentoLectura;
         private ObservableCollection<TECNICO> _tecnicos;
-        
+        public float _totalLectura;
         #endregion
 
         #region Props
@@ -878,6 +879,39 @@ namespace InventoryApp.Model
             }
         }
 
+        public FACTURA_VENTA FacturaVentaLectura
+        {
+            get { return this._facturaVentaLectura; }
+            set
+            {
+                if (value != this._facturaVentaLectura)
+                {
+                    this._facturaVentaLectura = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("FacturaVentaLectura"));
+                }
+            }
+        }
+
+        public float TotalLectura
+        {
+            get
+            {
+                return _totalLectura;
+            }
+            set
+            {
+                if (_totalLectura != value)
+                {
+                    _totalLectura = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("TotalLectura"));
+                    }
+                }
+            }
+        }
+
         #endregion
 
         public void saveArticulo()
@@ -1024,6 +1058,15 @@ namespace InventoryApp.Model
 
         }
         #endregion
+
+        public void calculaTotal()
+        {
+
+            float faux = 0f;
+            faux = (float)this._facturaVentaLectura.IMPORTE_FACTURA + (float)this._facturaVentaLectura.IVA_PESOS;
+            
+            this.TotalLectura = faux;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

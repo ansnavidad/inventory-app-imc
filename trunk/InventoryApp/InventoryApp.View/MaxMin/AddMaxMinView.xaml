@@ -7,6 +7,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -36,13 +37,15 @@
                   HorizontalAlignment="Left" Margin="1,0"
                   Name="cbAlmacen" VerticalAlignment="Center" Width="140" DataContext="{Binding}" />
         <Button Content="Agregar Articulo" Grid.Column="1" Grid.Row="2"
-                Height="23" HorizontalAlignment="Center" Margin="5,0"
+                Height="23" HorizontalAlignment="Center" Margin="46,0,38,0"
                 Name="btnAgregarArticulo" VerticalAlignment="Center"
-                Width="95" Click="btnAgregarArticulo_Click" />
+                Width="116" Click="btnAgregarArticulo_Click" 
+                Style="{StaticResource btnElara}"/>
         <Button Content="Eliminar" Grid.Column="2" Grid.Row="2" Height="23"
                 HorizontalAlignment="Center" Margin="5,0" Name="btnEliminar"
                 VerticalAlignment="Center" Width="95" 
-                Command="{Binding DeleteArticuloCommand, Mode=OneWay}"/>
+                Command="{Binding DeleteArticuloCommand, Mode=OneWay}"
+                Style="{StaticResource btnElara}"/>
         <DataGrid AutoGenerateColumns="False" CanUserDeleteRows="False"
                   CanUserAddRows="False" HorizontalAlignment="Stretch" Name="dtGridItems" 
                   VerticalAlignment="Stretch" ItemsSource="{Binding Mode=TwoWay, Path=AddArticulos}" 
@@ -72,10 +75,12 @@
         <Button Content="Guardar" Grid.Column="1" Grid.Row="5" Height="23"
                 HorizontalAlignment="Center" Margin="5,0" Name="btnGuardar" 
                 VerticalAlignment="Center" Width="75" Click="btnGuardar_Click"
-                Command="{Binding AddMaxMinCommand, Mode=OneWay}"/>
+                Command="{Binding AddMaxMinCommand, Mode=OneWay}"
+                Style="{StaticResource btnElara}"/>
         <Button Content="Cancelar" Grid.Column="2" Grid.Row="5" Height="23"
                 HorizontalAlignment="Center" Margin="5,0" Name="btnCancelar"
-                VerticalAlignment="Center" Width="75" Click="btnCancelar_Click" />
+                VerticalAlignment="Center" Width="75" Click="btnCancelar_Click" 
+                Style="{StaticResource btnElara}"/>
         <Label Content="{Binding Path=AddMaxMin.MensajeError}" Grid.Row="4" Height="30" HorizontalAlignment="Stretch" Name="label2" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Width="576" Style="{StaticResource titleError}" />
     </Grid>
 </Window>

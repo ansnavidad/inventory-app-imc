@@ -8,6 +8,7 @@ WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScre
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -47,12 +48,12 @@ WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScre
             </DataGrid.Columns>
         </DataGrid>
         <Button Command="{Binding AddItemsCommand, Mode=OneWay}" Content="Agregar Items" Height="23" HorizontalAlignment="Left" 
-Margin="199,53,0,13" Name="btnAgregar" Width="96" Click="btnAgregar_Click" Grid.Row="4" Grid.ColumnSpan="2" />
-        <Button Content="Cancelar" Height="23" HorizontalAlignment="Left" Margin="9,54,0,12" Name="button1" Width="96" Click="button1_Click" Grid.Column="2" Grid.Row="4" />
+Margin="199,53,0,13" Name="btnAgregar" Width="96" Click="btnAgregar_Click" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource btnElara}"/>
+        <Button Content="Cancelar" Height="23" HorizontalAlignment="Left" Margin="9,54,0,12" Name="button1" Width="96" Click="button1_Click" Grid.Column="2" Grid.Row="4" Style="{StaticResource btnElara}"/>
         <TextBox Text="{Binding CatalogItemModel.Serie, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="23" HorizontalAlignment="Left" 
 Margin="49,15,0,0" Name="txtNumSerie" VerticalAlignment="Top" Width="159" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1" />
         <Button Command="{Binding AddItemCommand, Mode=OneWay}" Content="Buscar Item" Height="28" HorizontalAlignment="Right" 
-Margin="0,28,44,0" Name="button2" VerticalAlignment="Top" Width="98" Grid.Column="2" Grid.Row="1" />
+Margin="0,28,44,0" Name="button2" VerticalAlignment="Top" Width="98" Grid.Column="2" Grid.Row="1" Style="{StaticResource btnElara}"/>
         <TextBox Height="23" HorizontalAlignment="Left" Margin="49,48,0,0" Name="txtSKU" Text="{Binding CatalogItemModel.SKU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="159" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1" IsEnabled="False"/>
         <Label Content="Seleccionar Items por:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,31,85,0" Name="label2" VerticalAlignment="Top" Width="139" Grid.Row="1" />
         <RadioButton Content="Número de Serie:" Grid.ColumnSpan="2" Grid.Row="1" Height="16" HorizontalAlignment="Left" Margin="187,22,0,0" Name="radioButton1" VerticalAlignment="Top" IsChecked="True" Checked="radioButton1_Checked" />

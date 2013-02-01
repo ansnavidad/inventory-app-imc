@@ -483,7 +483,7 @@ namespace InventoryApp.ViewModel.Entradas
             {
                 string filename = dlg.FileName;
                 Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-                excel.Visible = true;
+                excel.Visible = false;
 
                 Workbook excelPrint = excel.Workbooks.Open(@"C:\Programs\ElaraInventario\Resources\EntradaDevolucion.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                 Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
@@ -596,6 +596,7 @@ namespace InventoryApp.ViewModel.Entradas
 
 
                 excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                excel.Visible = true;
             }
         }
 

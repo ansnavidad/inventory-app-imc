@@ -313,6 +313,7 @@ namespace InventoryApp.ViewModel.Salidas
                 borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
 
                 excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                //KillSpecificExcelFileProcess(dlg.SafeFileName);
                 excel.Visible = true;
 
 
@@ -328,13 +329,20 @@ namespace InventoryApp.ViewModel.Salidas
             var processes = from p in Process.GetProcessesByName("EXCEL")
                             select p;
 
-            foreach (var process in processes)
-            {
-                if (process.MainWindowTitle == "Microsoft Excel - " + excelFileName)
-                    process.Kill();
-                if (process.MainWindowTitle == "")
-                    process.Kill();
-            }
+            
+
+            //Process[] pProcess = System.Diagnostics.Process.GetProcessesByName("Excel");
+            //foreach (var process in pProcess)
+            //{
+            //    if (process.Parent == "MyApp.exe") process.Kill();
+            //}
+            //foreach (var process in processes)
+            //{
+            //    if (process.MainWindowTitle == "Microsoft Excel - " + excelFileName)
+            //        process.Kill();
+            //    if (process.MainWindowTitle == "")
+            //        process.Kill();
+            //}
         }
 
         [DllImport("user32.dll")]

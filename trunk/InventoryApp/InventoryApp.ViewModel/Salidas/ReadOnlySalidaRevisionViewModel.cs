@@ -314,29 +314,28 @@ namespace InventoryApp.ViewModel.Salidas
 
                 excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 excel.Visible = true;
+
+
                 
             }
         }
-        
-        //private void KillSpecificExcelFileProcess(string excelFileName)
-        //{
 
-        //    string excel = excelFileName.Replace(".xlsx", "");
+        private void KillSpecificExcelFileProcess(string excelFileName)
+        {
 
-            
-            
+            //string excel = excelFileName.Replace(".xlsx", "");
 
-        //    var processes = from p in Process.GetProcessesByName("EXCEL")
-        //                    select p;
+            var processes = from p in Process.GetProcessesByName("EXCEL")
+                            select p;
 
-        //    foreach (var process in processes)
-        //    {
-        //        if (process.MainWindowTitle == "Microsoft Excel - " + excel)
-        //            process.Kill();
-        //        if (process.MainWindowTitle == "")
-        //            process.Kill();
-        //    }
-        //}
+            foreach (var process in processes)
+            {
+                if (process.MainWindowTitle == "Microsoft Excel - " + excelFileName)
+                    process.Kill();
+                if (process.MainWindowTitle == "")
+                    process.Kill();
+            }
+        }
 
         [DllImport("user32.dll")]
 

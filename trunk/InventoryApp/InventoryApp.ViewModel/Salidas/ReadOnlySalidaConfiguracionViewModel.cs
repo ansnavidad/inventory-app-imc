@@ -220,7 +220,7 @@ namespace InventoryApp.ViewModel.Salidas
             {
                 string filename = dlg.FileName;
                 Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-                excel.Visible = true;
+                excel.Visible = false;
 
                 Workbook excelPrint = excel.Workbooks.Open(@"C:\Programs\ElaraInventario\Resources\SalidaConfiguracion.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                 Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
@@ -328,9 +328,8 @@ namespace InventoryApp.ViewModel.Salidas
                 borders = excel.Range[excel.Cells[X, 18], excel.Cells[X + 2, 34]].Borders;
                 borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
 
-
-
                 excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                excel.Visible = true;
             }
         }
         #endregion

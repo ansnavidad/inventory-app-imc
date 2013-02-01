@@ -579,8 +579,14 @@
     <Compile Include="Salidas\SalidaObsequio.xaml.cs">
       <DependentUpon>SalidaObsequio.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Salidas\SalidaObsequioSoloLectura.xaml.cs">
+      <DependentUpon>SalidaObsequioSoloLectura.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Salidas\SalidaOffice.xaml.cs">
       <DependentUpon>SalidaOffice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaOfficeSoloLectura.xaml.cs">
+      <DependentUpon>SalidaOfficeSoloLectura.xaml</DependentUpon>
     </Compile>
     <Compile Include="Salidas\SalidaPrestamo.xaml.cs">
       <DependentUpon>SalidaPrestamo.xaml</DependentUpon>
@@ -1280,7 +1286,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Salidas\SalidaObsequioSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Salidas\SalidaOffice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaOfficeSoloLectura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

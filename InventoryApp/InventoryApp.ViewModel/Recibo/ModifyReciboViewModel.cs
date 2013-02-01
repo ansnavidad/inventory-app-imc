@@ -562,7 +562,7 @@ namespace InventoryApp.ViewModel.Recibo
                         UNID_MOVIMIENTO_DETALLE = item.UnidMovimientoDetalle,
                         CANTIDAD = item.Cantidad,
                         UNID_ITEM_STATUS = item.ItemStatus.UnidItemStatus,
-                        IS_ACTIVE = true
+                        IS_ACTIVE = false
                     };
                     UltimoMovimientoDataMapper umDataMapper = new UltimoMovimientoDataMapper();
                     umDataMapper.udpateElement(ulitmoMovto);

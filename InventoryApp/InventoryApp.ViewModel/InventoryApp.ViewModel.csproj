@@ -214,6 +214,8 @@
     <Compile Include="Reportes\ReportesViewModel.cs" />
     <Compile Include="Salidas\CatalogItemViewModel.cs" />
     <Compile Include="Salidas\ReadOnlySalidaConfiguracionViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaCorrectivoViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaDemoViewModel.cs" />
     <Compile Include="Salidas\ReadOnlySalidaRevisionViewModel.cs" />
     <Compile Include="Salidas\SalidaConfiguracionViewModel.cs" />
     <Compile Include="Salidas\SalidaCorrectivoViewModel.cs" />

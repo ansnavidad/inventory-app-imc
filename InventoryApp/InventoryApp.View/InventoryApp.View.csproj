@@ -171,6 +171,9 @@
     <Compile Include="CatalogEquipo\ModifyEquipoView.xaml.cs">
       <DependentUpon>ModifyEquipoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogProgramado\CatalogProgramado.xaml.cs">
+      <DependentUpon>CatalogProgramado.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Recibo\FacturaCatalogView.xaml.cs">
       <DependentUpon>FacturaCatalogView.xaml</DependentUpon>
     </Compile>
@@ -564,8 +567,14 @@
     <Compile Include="Salidas\SalidaCorrectivo.xaml.cs">
       <DependentUpon>SalidaCorrectivo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Salidas\SalidaCorrectivoSoloLectura.xaml.cs">
+      <DependentUpon>SalidaCorrectivoSoloLectura.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Salidas\SalidaDemo.xaml.cs">
       <DependentUpon>SalidaDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaDemoSoloLectura.xaml.cs">
+      <DependentUpon>SalidaDemoSoloLectura.xaml</DependentUpon>
     </Compile>
     <Compile Include="Salidas\SalidaObsequio.xaml.cs">
       <DependentUpon>SalidaObsequio.xaml</DependentUpon>
@@ -711,6 +720,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogEquipo\ModifyEquipoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogProgramado\CatalogProgramado.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1251,7 +1264,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Salidas\SalidaCorrectivoSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Salidas\SalidaDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaDemoSoloLectura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

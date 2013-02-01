@@ -228,123 +228,125 @@ namespace InventoryApp.ViewModel.Salidas
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
             dlg.DefaultExt = ".xlsx";
             dlg.Filter = "Documentos Excel (.xlsx)|*.xlsx";
-            if (dlg.ShowDialog() == true)
-            {
-                string filename = dlg.FileName;
-                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-                excel.Visible = true;
 
-                Workbook excelPrint = excel.Workbooks.Open(@"C:\Programs\ElaraInventario\Resources\SalidaVenta.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
-                Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
-
-                //Folio
-                excel.Cells[8, 6] = _movimientoModel.UnidMovimiento.ToString();
-                //Fecha
-                excel.Cells[8, 23] = _movimientoModel.FechaMovimiento;
-
-                //Solicitante y su área
-                excel.Cells[13, 12] = _movimientoModel.SolicitanteLectura.SOLICITANTE_NAME;
-                excel.Cells[15, 12] = _movimientoModel.DepartamentoLectura.DEPARTAMENTO_NAME;
-                try
+                if (dlg.ShowDialog() == true)
                 {
-                    //Recibe
-                    excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
-                    //Procedencia                
-                    excel.Cells[17, 12] = "Almacén: " + _movimientoModel.AlmacenProcedenciaLectura.ALMACEN_NAME;
-                    //Destino
-                    string p = "";
+                    string filename = dlg.FileName;
+                    Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                    excel.Visible = true;
 
-                    if (_movimientoModel.ProveedorDestinoLectura != null)
-                        p = "Proveedor : " + _movimientoModel.ProveedorDestinoLectura.PROVEEDOR_NAME;
-                    else
-                        p = "Cliente: " + _movimientoModel.ClienteDestinoLectura.CLIENTE1;
-                    excel.Cells[19, 12] = p;
+                    Workbook excelPrint = excel.Workbooks.Open(@"C:\Programs\ElaraInventario\Resources\SalidaVenta.xlsx", Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                    Worksheet excelSheetPrint = (Worksheet)excelPrint.Worksheets[1];
+
+                    //Folio
+                    excel.Cells[8, 6] = _movimientoModel.UnidMovimiento.ToString();
+                    //Fecha
+                    excel.Cells[8, 23] = _movimientoModel.FechaMovimiento;
+
+                    //Solicitante y su área
+                    excel.Cells[13, 12] = _movimientoModel.SolicitanteLectura.SOLICITANTE_NAME;
+                    excel.Cells[15, 12] = _movimientoModel.DepartamentoLectura.DEPARTAMENTO_NAME;
+                    try
+                    {
+                        //Recibe
+                        excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
+                        //Procedencia                
+                        excel.Cells[17, 12] = "Almacén: " + _movimientoModel.AlmacenProcedenciaLectura.ALMACEN_NAME;
+                        //Destino
+                        string p = "";
+
+                        if (_movimientoModel.ProveedorDestinoLectura != null)
+                            p = "Proveedor : " + _movimientoModel.ProveedorDestinoLectura.PROVEEDOR_NAME;
+                        else
+                            p = "Cliente: " + _movimientoModel.ClienteDestinoLectura.CLIENTE1;
+                        excel.Cells[19, 12] = p;
+                    //TT
+                    excel.Cells[31, 12] = _movimientoModel.Tt;
+                    //Empresa
+                    excel.Cells[11, 12] = _movimientoModel.EmpresaLectura.EMPRESA_NAME;
+                    //Transporte
+                    excel.Cells[25, 12] = _movimientoModel.Transporte.TRANSPORTE_NAME;
+                    //Contacto
+                    excel.Cells[29, 12] = _movimientoModel.Contacto;
+                    //Guia
+                    excel.Cells[27, 12] = _movimientoModel.Guia;
+                    //Nombre de Sitio
+                    excel.Cells[23, 12] = _movimientoModel.NombreSitio;
+                    //No. de Factura
+                    excel.Cells[33, 12] = _movimientoModel.FacturaVentaLectura.FOLIO;
+                    //Importe
+                    excel.Cells[35, 12] = enletras(_movimientoModel.TotalLectura.ToString(), _movimientoModel.FacturaVentaLectura.MONEDA.MONEDA_NAME);
+                    }
+                    catch (Exception Ex)
+                    {
+
+                    }
+                    int X = 43;
+                    Microsoft.Office.Interop.Excel.Borders borders;
+
+                    for (int i = 0; i < ItemModel.ItemModel.Count; i++)
+                    {
+                        excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].Merge();
+                        excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        excel.Cells[X, 2] = (i + 1).ToString() + ".-";
+                        borders = excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].Borders;
+                        borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        //DESCRIPCIÓN
+                        excel.Range[excel.Cells[X, 4], excel.Cells[X, 22]].Merge();
+                        excel.Range[excel.Cells[X, 4], excel.Cells[X, 22]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        excel.Cells[X, 4] = ItemModel.ItemModel[i].Articulo.ARTICULO1;
+                        borders = excel.Range[excel.Cells[X, 4], excel.Cells[X, 22]].Borders;
+                        borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        //N° DE SERIE
+                        excel.Range[excel.Cells[X, 23], excel.Cells[X, 26]].Merge();
+                        excel.Range[excel.Cells[X, 23], excel.Cells[X, 26]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        excel.Cells[X, 23] = ItemModel.ItemModel[i].NUMERO_SERIE;
+                        borders = excel.Range[excel.Cells[X, 23], excel.Cells[X, 26]].Borders;
+                        borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        //SKU
+                        excel.Range[excel.Cells[X, 27], excel.Cells[X, 30]].Merge();
+                        excel.Range[excel.Cells[X, 27], excel.Cells[X, 30]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        excel.Cells[X, 27] = ItemModel.ItemModel[i].SKU;
+                        borders = excel.Range[excel.Cells[X, 27], excel.Cells[X, 30]].Borders;
+                        borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        //CANTIDAD
+                        excel.Range[excel.Cells[X, 31], excel.Cells[X, 34]].Merge();
+                        excel.Range[excel.Cells[X, 31], excel.Cells[X, 34]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        excel.Cells[X, 31] = ItemModel.ItemModel[i].CantidadMovimiento;
+                        borders = excel.Range[excel.Cells[X, 31], excel.Cells[X, 34]].Borders;
+                        borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        X++;
+                    }
+
+                    X += 2;
+                    excel.Cells[X, 3] = "OBSERVACIONES:";
+                    excel.Range[excel.Cells[X, 9], excel.Cells[X + 2, 33]].Merge();
+                    borders = excel.Range[excel.Cells[X, 9], excel.Cells[X + 2, 33]].Borders;
+                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+
+                    X += 4;
+                    excel.Range[excel.Cells[X, 2], excel.Cells[X, 17]].Merge();
+                    excel.Range[excel.Cells[X, 2], excel.Cells[X, 17]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    excel.Cells[X, 2] = "ENTREGADO POR:";
+                    excel.Cells[X, 2].Font.Bold = true;
+                    excel.Range[excel.Cells[X, 18], excel.Cells[X, 34]].Merge();
+                    excel.Range[excel.Cells[X, 18], excel.Cells[X, 34]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    excel.Cells[X, 18] = "RECIBIDO POR:";
+                    excel.Cells[X, 18].Font.Bold = true;
+                    X += 1;
+                    excel.Range[excel.Cells[X, 2], excel.Cells[X + 2, 17]].Merge();
+                    borders = excel.Range[excel.Cells[X, 2], excel.Cells[X + 2, 17]].Borders;
+                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    excel.Range[excel.Cells[X, 18], excel.Cells[X + 2, 34]].Merge();
+                    borders = excel.Range[excel.Cells[X, 18], excel.Cells[X + 2, 34]].Borders;
+                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+
+
+
+                    excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 }
-                catch (Exception Ex)
-                {
-
-                }
-                //TT
-                excel.Cells[31, 12] = _movimientoModel.Tt;
-                //Empresa
-                excel.Cells[11, 12] = _movimientoModel.EmpresaLectura.EMPRESA_NAME;
-                //Transporte
-                excel.Cells[25, 12] = _movimientoModel.Transporte.TRANSPORTE_NAME;
-                //Contacto
-                excel.Cells[29, 12] = _movimientoModel.Contacto;
-                //Guia
-                excel.Cells[27, 12] = _movimientoModel.Guia;
-                //Nombre de Sitio
-                excel.Cells[23, 12] = _movimientoModel.NombreSitio;
-                //No. de Factura
-                excel.Cells[33, 12] = _movimientoModel.FacturaVentaLectura.FOLIO;
-                //Importe
-                excel.Cells[35, 12] = enletras(_movimientoModel.TotalLectura.ToString(), _movimientoModel.FacturaVentaLectura.MONEDA.MONEDA_NAME);
-
-                int X = 43;
-                Microsoft.Office.Interop.Excel.Borders borders;
-
-                for (int i = 0; i < ItemModel.ItemModel.Count; i++)
-                {
-                    excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].Merge();
-                    excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                    excel.Cells[X, 2] = (i + 1).ToString() + ".-";
-                    borders = excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].Borders;
-                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                    //DESCRIPCIÓN
-                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 22]].Merge();
-                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 22]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                    excel.Cells[X, 4] = ItemModel.ItemModel[i].Articulo.ARTICULO1;
-                    borders = excel.Range[excel.Cells[X, 4], excel.Cells[X, 22]].Borders;
-                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                    //N° DE SERIE
-                    excel.Range[excel.Cells[X, 23], excel.Cells[X, 26]].Merge();
-                    excel.Range[excel.Cells[X, 23], excel.Cells[X, 26]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                    excel.Cells[X, 23] = ItemModel.ItemModel[i].NUMERO_SERIE;
-                    borders = excel.Range[excel.Cells[X, 23], excel.Cells[X, 26]].Borders;
-                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                    //SKU
-                    excel.Range[excel.Cells[X, 27], excel.Cells[X, 30]].Merge();
-                    excel.Range[excel.Cells[X, 27], excel.Cells[X, 30]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                    excel.Cells[X, 27] = ItemModel.ItemModel[i].SKU;
-                    borders = excel.Range[excel.Cells[X, 27], excel.Cells[X, 30]].Borders;
-                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                    //CANTIDAD
-                    excel.Range[excel.Cells[X, 31], excel.Cells[X, 34]].Merge();
-                    excel.Range[excel.Cells[X, 31], excel.Cells[X, 34]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                    excel.Cells[X, 31] = ItemModel.ItemModel[i].CantidadMovimiento;
-                    borders = excel.Range[excel.Cells[X, 31], excel.Cells[X, 34]].Borders;
-                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                    X++;
-                }
-
-                X += 2;
-                excel.Cells[X, 3] = "OBSERVACIONES:";
-                excel.Range[excel.Cells[X, 9], excel.Cells[X + 2, 33]].Merge();
-                borders = excel.Range[excel.Cells[X, 9], excel.Cells[X + 2, 33]].Borders;
-                borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-
-                X += 4;
-                excel.Range[excel.Cells[X, 2], excel.Cells[X, 17]].Merge();
-                excel.Range[excel.Cells[X, 2], excel.Cells[X, 17]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                excel.Cells[X, 2] = "ENTREGADO POR:";
-                excel.Cells[X, 2].Font.Bold = true;
-                excel.Range[excel.Cells[X, 18], excel.Cells[X, 34]].Merge();
-                excel.Range[excel.Cells[X, 18], excel.Cells[X, 34]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                excel.Cells[X, 18] = "RECIBIDO POR:";
-                excel.Cells[X, 18].Font.Bold = true;
-                X += 1;
-                excel.Range[excel.Cells[X, 2], excel.Cells[X + 2, 17]].Merge();
-                borders = excel.Range[excel.Cells[X, 2], excel.Cells[X + 2, 17]].Borders;
-                borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                excel.Range[excel.Cells[X, 18], excel.Cells[X + 2, 34]].Merge();
-                borders = excel.Range[excel.Cells[X, 18], excel.Cells[X + 2, 34]].Borders;
-                borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-
-
-
-                excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-            }
+            
+            
         }
 
         public string enletras(string num, string divisa)

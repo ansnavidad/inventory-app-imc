@@ -32,8 +32,8 @@
         <Button Content="Guardar" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="5,0" 
                     Name="btnAgregar" VerticalAlignment="Stretch" Width="75" 
                     Command="{Binding AddBancoCommand,Mode=OneWay}" Click="btnAgregar_Click" 
-                    Grid.Column="1" />
-        <Button Content="Cancelar" Grid.Column="2" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" />
+                    Grid.Column="1" Style="{StaticResource btnElara}" />
+        <Button Content="Cancelar" Grid.Column="2" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" Style="{StaticResource btnElara}" />
         <Label Style="{StaticResource titleCamposElara}" Content="Nombre Banco :" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,25,1,7" Name="lblNombreBanco" VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="2" />
             <TextBox Grid.Column="2" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="0,27,0,0" Name="txtNomreBanco" VerticalAlignment="Stretch" Width="120" Text="{Binding Banco.BancoName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="512"/>
         <Label Content="Agregar Banco" Height="28" HorizontalAlignment="Stretch" Margin="6,6,110,16" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184" />

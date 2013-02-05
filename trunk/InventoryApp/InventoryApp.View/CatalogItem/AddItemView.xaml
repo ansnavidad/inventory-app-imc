@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="700">
+             d:DesignHeight="640" d:DesignWidth="700">
              
     <UserControl.Resources>
         <ResourceDictionary>
@@ -109,14 +109,16 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60"/>
                         <RowDefinition Height="10"/>
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="120"/>
                         <RowDefinition Height="10"/>
                         <RowDefinition Height="40"/>
-                        <RowDefinition Height="175"/>
+                        <RowDefinition Height="120"/>
                         <RowDefinition Height="10"/>
                         <RowDefinition Height="40"/>
-                        <RowDefinition Height="175"/>
-                    </Grid.RowDefinitions>
+                        <RowDefinition Height="120"/>
+                    
+                </Grid.RowDefinitions>
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
@@ -143,40 +145,46 @@
                               ItemsSource="{Binding CatalogPropiedad.Propiedad, Mode=OneWay}" Name="comboPropiedad" 
                               SelectedItem="{Binding ItemModel.Propiedad, Mode=TwoWay}" SelectedValuePath="UNID_PROPIEDAD"
                               VerticalAlignment="Center" Width="180" IsEnabled="False" />
+                    <Label Grid.Row="1" Content="Proveedor:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
+                           HorizontalAlignment="Right" Name="categotia" VerticalAlignment="Center" Grid.Column="3" />
+                    <ComboBox  Grid.Column="4" Grid.Row="1"  TabIndex="3" DisplayMemberPath="PROVEEDOR_NAME" Height="23"
+                               HorizontalAlignment="Left" ItemsSource="{Binding CatalogProveedor.Proveedor, Mode=OneWay}" 
+                               Name="comboBox5" SelectedItem="{Binding ItemModel.Proveedor, Mode=TwoWay}" 
+                               SelectedValuePath="UNID_PROVEEDOR" VerticalAlignment="Center" Width="180" SelectedIndex="1"/>
                 </Grid>
                 <Border Grid.Row="1" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                <Grid Grid.Row="2" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                    </Grid.RowDefinitions>
+                <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="120"/>
-                        <ColumnDefinition Width="190"/>
+                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="170"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="120"/>
-                        <ColumnDefinition Width="190"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Content="Proveedor:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
-                       HorizontalAlignment="Right" Name="categotia" VerticalAlignment="Center" />
-                    <TextBox Height="23" HorizontalAlignment="Left" IsEnabled="False" MaxLength="32" Name="textBoxcategoria" TabIndex="5" VerticalAlignment="Center" Width="180"
-                             Text="{Binding MovimientoModel.ProveedorDestinoLectura.PROVEEDOR_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" />
-                    <Label Content="Categoria:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
-                       HorizontalAlignment="Right" Name="proveedor" VerticalAlignment="Center"  Grid.Row="1" />
-                    <TextBox Height="23" HorizontalAlignment="Left" IsEnabled="False" MaxLength="32" Name="textBox2" TabIndex="5" VerticalAlignment="Center" Width="180"
-                             Text="{Binding MovimientoModel.ProveedorDestinoLectura.PROVEEDOR_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" />
-                    <Label Grid.Column="3" Grid.Row="0" Content="Unidad:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
-                       HorizontalAlignment="Right" Name="cantida" VerticalAlignment="Center" />
-                    <TextBox Height="23" HorizontalAlignment="Left" IsEnabled="False" MaxLength="32" Name="textBoxcantidad" TabIndex="5" VerticalAlignment="Center" Width="180"
-                             Text="{Binding MovimientoModel.ClienteDestinoLectura.CLIENTE1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="0" />
-
-                    <Label Grid.Column="3" Grid.Row="1" Content="Moneda:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
-                       HorizontalAlignment="Right" Name="cliente" VerticalAlignment="Center" />
-                    <TextBox Height="23" HorizontalAlignment="Left" IsEnabled="False" MaxLength="32" Name="textBox7" TabIndex="5" VerticalAlignment="Center" Width="180"
-                             Text="{Binding MovimientoModel.ClienteDestinoLectura.CLIENTE1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="1" />
+                    <Button Grid.Column="0" TabIndex="14" Command="{Binding AddFactura, Mode=OneWay}" Content="Agregar Item" Height="30"
+                            HorizontalAlignment="Center"  Name="btnAgregarItem" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
+                    <Button Grid.Column="1" Command="{Binding AddFactura, Mode=OneWay}" Content="Borrar Item" Height="30" 
+                            Name="btnBorrarItem" TabIndex="14" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
-                <Border Grid.Row="3" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                <Grid Grid.Row="4">
+                <DataGrid Grid.Row="3" CanUserAddRows="False" AutoGenerateColumns="False" Height="120" HorizontalAlignment="Stretch" 
+                          ItemsSource="{Binding UltimoMovimiento}" Name="dataGridItme" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
+                          Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="" Width="auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn x:Name="categoria" Binding="{Binding Path=Cantidad}" Header="Categoria" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn x:Name="articulo" Binding="{Binding Path=Lugar}" Header="Articulo" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn x:Name="unidad" Binding="{Binding Path=Lugar}" Header="Unidad" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn x:Name="equipo" Binding="{Binding Path=Cantidad}" Header="Equipo" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn x:Name="costoUnitaio" Binding="{Binding Path=Cantidad}" Header="Costo Unitario" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn x:Name="precioFinal" Binding="{Binding Path=Cantidad}" Header="Precio Final" IsReadOnly="True" Width="*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Border Grid.Row="4" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                <Grid Grid.Row="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="170"/>
                         <ColumnDefinition Width="170"/>
@@ -187,10 +195,10 @@
                     <Button Grid.Column="1" Command="{Binding AddFactura, Mode=OneWay}" Content="Modificar Factura" Height="30" 
                             Name="button5" TabIndex="14" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
-                <DataGrid Grid.Row="5" SelectedItem="{Binding ItemModel.FacturaDetalle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalScrollBarVisibility="Auto"
+                <DataGrid Grid.Row="6" SelectedItem="{Binding ItemModel.FacturaDetalle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalScrollBarVisibility="Auto"
                           AutoGenerateColumns="False" ItemsSource="{Binding ItemModel.Detalles}" CanUserAddRows="False"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
-                          Height="175" HorizontalAlignment="Stretch" Name="dataGrid1" VerticalAlignment="Stretch">
+                          Height="120" HorizontalAlignment="Stretch" Name="dataGrid1" VerticalAlignment="Stretch">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Artículo" Width="*" x:Name="articuloNombre" Binding="{Binding Path=Articulo.ARTICULO1}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Cantidad" Width="*" x:Name="categoriaNombre" Binding="{Binding Path=CANTIDAD}" IsReadOnly="True"/>
@@ -198,8 +206,8 @@
                         <DataGridTextColumn Header="Impuesto Unitario" Width="*" x:Name="modeloNombre" Binding="{Binding Path=IMPUESTO_UNITARIO}" IsReadOnly="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Border Grid.Row="6" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                <Grid Grid.Row="7">
+                <Border Grid.Row="7" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                <Grid Grid.Row="8">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="170"/>
                         <ColumnDefinition Width="170"/>
@@ -210,7 +218,7 @@
                     <Button Grid.Column="1" TabIndex="15" Command="{Binding DeleteMovimiento, Mode=OneWay}" Content="Borrar Destinos" Height="30"
                             HorizontalAlignment="Center" Name="button4" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
-                <DataGrid Grid.Row="8" CanUserAddRows="False" AutoGenerateColumns="False" Height="175" HorizontalAlignment="Stretch" 
+                <DataGrid Grid.Row="9" CanUserAddRows="False" AutoGenerateColumns="False" Height="120" HorizontalAlignment="Stretch" 
                           ItemsSource="{Binding UltimoMovimiento}" Name="dataGrid2" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                     <DataGrid.Columns>
@@ -226,6 +234,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
+            
         </ScrollViewer>
         <Border Grid.Row="2" Style="{StaticResource titleBorder2}">
             <Grid >

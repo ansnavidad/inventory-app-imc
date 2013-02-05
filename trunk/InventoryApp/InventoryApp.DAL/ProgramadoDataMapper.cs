@@ -108,18 +108,14 @@ namespace InventoryApp.DAL
             using (var entity = new TAE2Entities())
             {
                 res = (from cust in entity.PROGRAMADOes
+                       .Include("ARTICULO")
+                       .Include("ARTICULO.CATEGORIA")
+                       .Include("ARTICULO.EQUIPO")
+                       .Include("ARTICULO.MODELO")
+                       .Include("ARTICULO.MARCA")
+                       .Include("ALMACEN")
                        where cust.IS_ACTIVE == true
                        select cust).ToList();
-
-                foreach (PROGRAMADO mm in ((List<PROGRAMADO>)res))
-                {
-                    mm.ARTICULO = mm.ARTICULO;
-                    mm.ARTICULO.CATEGORIA = mm.ARTICULO.CATEGORIA;
-                    mm.ARTICULO.EQUIPO = mm.ARTICULO.EQUIPO;
-                    mm.ARTICULO.MODELO = mm.ARTICULO.MODELO;
-                    mm.ARTICULO.MARCA = mm.ARTICULO.MARCA;
-                    mm.ALMACEN = mm.ALMACEN;
-                }
                 return res;
             }
         }
@@ -131,17 +127,15 @@ namespace InventoryApp.DAL
             {
                 PROGRAMADO programado = (PROGRAMADO)element;
                 res = (from cust in entitie.PROGRAMADOes
+                       .Include("ARTICULO")
+                       .Include("ARTICULO.CATEGORIA")
+                       .Include("ARTICULO.EQUIPO")
+                       .Include("ARTICULO.MODELO")
+                       .Include("ARTICULO.MARCA")
+                       .Include("ALMACEN")
                        where cust.UNID_ALMACEN == programado.UNID_ALMACEN && cust.IS_ACTIVE == true
                        select cust).ToList();
-                foreach (PROGRAMADO pro in ((List<PROGRAMADO>)res))
-                {
-                    pro.ARTICULO = pro.ARTICULO;
-                    pro.ARTICULO.CATEGORIA = pro.ARTICULO.CATEGORIA;
-                    pro.ARTICULO.EQUIPO = pro.ARTICULO.EQUIPO;
-                    pro.ARTICULO.MODELO = pro.ARTICULO.MODELO;
-                    pro.ARTICULO.MARCA = pro.ARTICULO.MARCA;
-                    pro.ALMACEN = pro.ALMACEN;
-                }
+                
                 return res;
             }
         }

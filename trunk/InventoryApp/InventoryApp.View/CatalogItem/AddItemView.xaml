@@ -168,7 +168,7 @@
                           ItemsSource="{Binding UltimoMovimiento}" Name="dataGridItme" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="" Width="auto">
+                        <DataGridTemplateColumn Header="Elimiar" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -200,6 +200,16 @@
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                           Height="120" HorizontalAlignment="Stretch" Name="dataGrid1" VerticalAlignment="Stretch">
                     <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Elimiar" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Fecha" Width="*" x:Name="fecha" Binding="{Binding Path=Articulo.ARTICULO1}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="#Factura" Width="*" x:Name="numFactura" Binding="{Binding Path=Articulo.ARTICULO1}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="#Pedimento" Width="*" x:Name="numPedimento" Binding="{Binding Path=Articulo.ARTICULO1}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Artículo" Width="*" x:Name="articuloNombre" Binding="{Binding Path=Articulo.ARTICULO1}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Cantidad" Width="*" x:Name="categoriaNombre" Binding="{Binding Path=CANTIDAD}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Precio Unitario" Width="*" x:Name="marcaaNombre" Binding="{Binding Path=PRECIO_UNITARIO}" IsReadOnly="True"/>
@@ -222,7 +232,7 @@
                           ItemsSource="{Binding UltimoMovimiento}" Name="dataGrid2" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="" Width="auto">
+                        <DataGridTemplateColumn Header="Elimiar" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -230,6 +240,21 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTextColumn x:Name="dataGridTextColumn1" Binding="{Binding Path=Lugar}" Header="Destino" IsReadOnly="True" Width="*" />
+                        <DataGridTemplateColumn Header="Status" Width="140">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=ItemStatuss.ItemStatusName,Mode= TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate >
+                                <DataTemplate>
+                                    <ComboBox  Height="23" SelectedIndex="0" Width="140"
+                                    SelectedItem="{Binding ItemStatuss,Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                    ItemsSource="{Binding DataContext.ItemStatuss, UpdateSourceTrigger=LostFocus,RelativeSource={RelativeSource AncestorType= DataGrid},Mode= TwoWay}"
+                                    DisplayMemberPath="ItemStatusName"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn x:Name="dataGridTextColumn2" Binding="{Binding Path=Cantidad}" Header="Cantidad" IsReadOnly="True" Width="80" />
                     </DataGrid.Columns>
                 </DataGrid>

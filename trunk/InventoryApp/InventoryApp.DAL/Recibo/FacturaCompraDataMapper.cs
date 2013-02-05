@@ -193,6 +193,7 @@ namespace InventoryApp.DAL.Recibo
                                                 .Include("FACTURA_DETALLE.ARTICULO.MARCA")
                                                 .Include("FACTURA_DETALLE.ARTICULO.MODELO")
                                                 .Include("FACTURA_DETALLE.UNIDAD")
+                                                where f.IS_ACTIVE == true
                                             select f).ToList();
 
                 return FacturasDB;

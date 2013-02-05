@@ -18,377 +18,8 @@ namespace InventoryApp.ViewModel.Recibo
         private ReciboModel _addReciboModel;
         private const int MovimientoRecibo = 16;
         #region RelayCommands
-        public ICommand AddMovimientoCmd
-        {
-            get
-            {
-                if (_AddMovimientoCmd == null)
-                {
-                    _AddMovimientoCmd = new RelayCommand(p => this.AttemptAddMovimientoCmd(), p => this.CanAttemptAddMovimientoCmd());
-                }
-                return _AddMovimientoCmd;
-            }
-        }
-        private RelayCommand _AddMovimientoCmd;
-
-        public ICommand AddMovimientoCmd2
-        {
-            get
-            {
-                if (_AddMovimientoCmd2 == null)
-                {
-                    _AddMovimientoCmd2 = new RelayCommand(p => this.AttemptAddMovimientoCmd2(), p => this.CanAttemptAddMovimientoCmd2());
-                }
-                return _AddMovimientoCmd2;
-            }
-        }
-        private RelayCommand _AddMovimientoCmd2;
-
-        private void AttemptAddMovimientoCmd()
-        {
-            LoteModel lot = new LoteModel(new LoteDataMapper());
-            lot.UnidLote = UNID.getNewUNID();
-            lot.UnidPOM = UNID.getNewUNID();
-            lot.saveLote();
-            //factura
-            foreach (FacturaCompraModel item in this.Facturas)
-            {
-                item.UnidLote = lot.UnidLote;
-                item.UnidFactura = UNID.getNewUNID();
-                item.saveFactura();
-                //factura detalle
-                foreach (FacturaCompraDetalleModel fac in item.FacturaDetalle)
-                {
-                    fac.Factura = item;
-                    fac.saveFacturaDetalle();
-                }
-            }
-
-            //Agregar recibo
-            DAL.POCOS.RECIBO recibo = new DAL.POCOS.RECIBO()
-            {
-                
-                UNID_RECIBO = this.UnidRecibo,
-                FECHA_CREACION = this.FechaCreacion,
-                TT = this.TroubleTicket,
-                PO = this.PO,
-                UNID_SOLICITANTE = (this.SelectedSolicitante.UnidSolicitante == 0) ? (long?)null : this.SelectedSolicitante.UnidSolicitante
-            };
-            ReciboDataMapper reciboDataMapper = new ReciboDataMapper();
-            reciboDataMapper.insertElement(recibo);
 
 
-            foreach (InventoryApp.Model.Recibo.MovimientoModel mov in this.Movimientos)
-            {
-                //Agregar movimiento
-                DAL.POCOS.MOVIMENTO movimiento = new MOVIMENTO()
-                {
-                    UNID_MOVIMIENTO = mov.UnidMovimiento
-                    ,
-                    FECHA_MOVIMIENTO = mov.FechaCaptura
-                    ,
-                    UNID_ALMACEN_DESTINO = (mov.DestinoAlmacen != null) ? mov.DestinoAlmacen.UnidAlmacen : (long?)null
-                    ,
-                    UNID_ALMACEN_PROCEDENCIA = (mov.OrigenAlmacen != null) ? mov.OrigenAlmacen.UnidAlmacen : (long?)null
-                    ,
-                    UNID_CLIENTE_PROCEDENCIA = (mov.OrigenCliente != null) ? mov.OrigenCliente.UnidCliente : (long?)null
-                    ,
-                    UNID_PROVEEDOR_PROCEDENCIA = (mov.OrigenProveedor != null) ? mov.OrigenProveedor.UnidProveedor : (long?)null
-                    ,
-                    TT = this.TroubleTicket
-                    ,
-                    UNID_TIPO_MOVIMIENTO = MovimientoRecibo
-                };
-                MovimientoDataMapper movDataMapper = new MovimientoDataMapper();
-                movDataMapper.insertElement(movimiento);
-
-                foreach (InventoryApp.Model.Recibo.ReciboItemModel item in mov.Items)
-                {
-                    long? aux = null;
-                    if (item.ItemStatus != null)
-                        aux = item.ItemStatus.UnidItemStatus;
-
-                    //Agregar el item
-                    DAL.POCOS.ITEM pItem = new DAL.POCOS.ITEM()
-                    {
-                        UNID_ITEM = item.UnidItem
-                        ,
-                        SKU = item.Sku
-                        ,
-                        NUMERO_SERIE = item.NumeroSerie
-                        ,
-                        UNID_ITEM_STATUS = aux
-                        ,
-                        COSTO_UNITARIO = item.CostoUnitario
-                        ,
-                        UNID_FACTURA_DETALE = item.FacturaDetalle.UnidFacturaCompraDetalle
-                        ,
-                        UNID_ARTICULO = item.Articulo.UnidArticulo
-                        , 
-                        PEDIMENTO_EXPO = item.PedimentoExpo
-                        , 
-                        PEDIMENTO_IMPO = item.PedimentoImpo
-                        ,
-                        CANTIDAD = item.Cantidad
-                        ,
-                        IS_ACTIVE = true
-                    };
-                    ItemDataMapper itemDataMapper = new ItemDataMapper();
-                    itemDataMapper.insertElement(pItem);
-
-                    //Agregar detalle del movimiento
-                    DAL.POCOS.MOVIMIENTO_DETALLE movDetalle = new DAL.POCOS.MOVIMIENTO_DETALLE()
-                    {
-                        UNID_MOVIMIENTO = mov.UnidMovimiento
-                        ,
-                        UNID_ITEM = item.UnidItem
-                        ,
-                        UNID_MOVIMIENTO_DETALLE = item.UnidMovimientoDetalle
-                        ,
-                        CANTIDAD = item.Cantidad
-                        , 
-                        UNID_ITEM_STATUS = item.ItemStatus.UnidItemStatus
-                        ,
-                        IS_ACTIVE = true
-                    };
-                    MovimientoDetalleDataMapper mdDataMapper = new MovimientoDetalleDataMapper();
-                    mdDataMapper.insertElement(movDetalle);
-
-                    //Actualizar el último movimiento
-                    DAL.POCOS.ULTIMO_MOVIMIENTO ulitmoMovto = new DAL.POCOS.ULTIMO_MOVIMIENTO()
-                    {
-                        UNID_ITEM=item.UnidItem,
-                        UNID_ALMACEN=mov.DestinoAlmacen.UnidAlmacen,
-                        UNID_MOVIMIENTO_DETALLE=item.UnidMovimientoDetalle,
-                        CANTIDAD = item.Cantidad,
-                        UNID_ITEM_STATUS = item.ItemStatus.UnidItemStatus,                        
-                        IS_ACTIVE=true
-                    };
-                    UltimoMovimientoDataMapper umDataMapper = new UltimoMovimientoDataMapper();
-                    umDataMapper.udpateElement(ulitmoMovto);
-                }
-
-                //Agregar recibodetalle
-                DAL.POCOS.RECIBO_MOVIMIENTO rm = new DAL.POCOS.RECIBO_MOVIMIENTO()
-                {
-                    UNID_RECIBO = this._UnidRecibo,
-                    UNID_RECIBO_MOVIMIENTO = mov.UnidMovimiento,
-                    UNID_MOVIMIENTO = mov.UnidMovimiento,
-                    UNID_FACTURA = mov.Items.First().FacturaDetalle.Factura.UnidFactura
-                };
-                ReciboMovimientoDataMapper rmDataMaper = new ReciboMovimientoDataMapper();
-                rmDataMaper.insertElement(rm);
-            }
-
-            if (this._CatalogReciboViewModel != null)
-            {
-                this._CatalogReciboViewModel.updateCollection();
-            }
-        }
-
-        private bool CanAttemptAddMovimientoCmd()
-        {
-            bool canAttempt = false;
-
-            if ((this.Facturas != null && this.Facturas.Count > 0) && (this.Movimientos != null && this.Movimientos.Count > 0) && this.SelectedSolicitante != null && !string.IsNullOrEmpty(this.PO) && !string.IsNullOrEmpty(this.TroubleTicket))
-            {
-                canAttempt = true;
-            }
-
-            if (this.Facturas.Count > this.Movimientos.Count)
-            {
-                Msj2 = "Favor de relacionar cada factura a un Movimiento de Recibo.";
-                return false;
-            }
-            else {
-                
-                Msj2 = "";
-            }
-
-            return canAttempt;
-        }
-
-        private void AttemptAddMovimientoCmd2()
-        {
-            //if (System.Windows.MessageBox.Show("¿Está seguro que desea finalizar el recibo actual? No se podrá editar posteriormente.", "Captura de Recibo", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
-            //{
-                LoteModel lot = new LoteModel(new LoteDataMapper());
-                lot.UnidLote = UNID.getNewUNID();
-                lot.UnidPOM = UNID.getNewUNID();
-                lot.saveLote();
-                //factura
-                foreach (FacturaCompraModel item in this.Facturas)
-                {
-                    item.UnidLote = lot.UnidLote;
-                    item.UnidFactura = UNID.getNewUNID();                    
-                    item.saveFactura();
-                    //factura detalle
-                    foreach (FacturaCompraDetalleModel fac in item.FacturaDetalle)
-                    {
-                        fac.Factura = item;
-                        fac.saveFacturaDetalle();
-                    }
-                }
-
-                //Agregar recibo
-                DAL.POCOS.RECIBO recibo = new DAL.POCOS.RECIBO()
-                {
-
-                    UNID_RECIBO = this.UnidRecibo,
-                    FECHA_CREACION = this.FechaCreacion,
-                    TT = this.TroubleTicket,
-                    PO = this.PO,
-                    UNID_SOLICITANTE = (this.SelectedSolicitante.UnidSolicitante == 0) ? (long?)null : this.SelectedSolicitante.UnidSolicitante
-                };
-                ReciboDataMapper reciboDataMapper = new ReciboDataMapper();
-                reciboDataMapper.insertElement(recibo);
-
-
-                foreach (InventoryApp.Model.Recibo.MovimientoModel mov in this.Movimientos)
-                {
-                    //Agregar movimiento
-                    DAL.POCOS.MOVIMENTO movimiento = new MOVIMENTO()
-                    {
-                        UNID_MOVIMIENTO = mov.UnidMovimiento
-                        ,
-                        FECHA_MOVIMIENTO = mov.FechaCaptura
-                        ,
-                        UNID_ALMACEN_DESTINO = (mov.DestinoAlmacen != null) ? mov.DestinoAlmacen.UnidAlmacen : (long?)null
-                        ,
-                        UNID_ALMACEN_PROCEDENCIA = (mov.OrigenAlmacen != null) ? mov.OrigenAlmacen.UnidAlmacen : (long?)null
-                        ,
-                        UNID_CLIENTE_PROCEDENCIA = (mov.OrigenCliente != null) ? mov.OrigenCliente.UnidCliente : (long?)null
-                        ,
-                        UNID_PROVEEDOR_PROCEDENCIA = (mov.OrigenProveedor != null) ? mov.OrigenProveedor.UnidProveedor : (long?)null
-                        ,
-                        TT = this.TroubleTicket
-                        ,
-                        UNID_TIPO_MOVIMIENTO = MovimientoRecibo
-                        , 
-                        FINISHED = true
-                    };
-                    MovimientoDataMapper movDataMapper = new MovimientoDataMapper();
-                    movDataMapper.insertElement(movimiento);
-
-                    foreach (InventoryApp.Model.Recibo.ReciboItemModel item in mov.Items)
-                    {
-                        long? aux = null;
-                        if (item.ItemStatus != null)
-                            aux = item.ItemStatus.UnidItemStatus;
-
-                        //Agregar el item
-                        DAL.POCOS.ITEM pItem = new DAL.POCOS.ITEM()
-                        {
-                            UNID_ITEM = item.UnidItem
-                            ,
-                            SKU = item.Sku
-                            ,
-                            NUMERO_SERIE = item.NumeroSerie
-                            ,
-                            UNID_ITEM_STATUS = aux
-                            ,
-                            COSTO_UNITARIO = item.CostoUnitario
-                            ,
-                            UNID_FACTURA_DETALE = item.FacturaDetalle.UnidFacturaCompraDetalle
-                            ,
-                            UNID_ARTICULO = item.Articulo.UnidArticulo
-                            ,
-                            PEDIMENTO_EXPO = item.PedimentoExpo
-                            ,
-                            PEDIMENTO_IMPO = item.PedimentoImpo
-                            ,
-                            CANTIDAD = item.Cantidad
-                            ,
-                            IS_ACTIVE = true
-                        };
-                        ItemDataMapper itemDataMapper = new ItemDataMapper();
-                        itemDataMapper.insertElement(pItem);
-
-                        //Agregar detalle del movimiento
-                        DAL.POCOS.MOVIMIENTO_DETALLE movDetalle = new DAL.POCOS.MOVIMIENTO_DETALLE()
-                        {
-                            UNID_MOVIMIENTO = mov.UnidMovimiento
-                            ,
-                            UNID_ITEM = item.UnidItem
-                            ,
-                            UNID_MOVIMIENTO_DETALLE = item.UnidMovimientoDetalle
-                            ,
-                            CANTIDAD = item.Cantidad
-                            ,
-                            UNID_ITEM_STATUS = item.ItemStatus.UnidItemStatus
-                            ,
-                            IS_ACTIVE = true
-                        };
-                        MovimientoDetalleDataMapper mdDataMapper = new MovimientoDetalleDataMapper();
-                        mdDataMapper.insertElement(movDetalle);
-
-                        //Actualizar el último movimiento
-                        DAL.POCOS.ULTIMO_MOVIMIENTO ulitmoMovto = new DAL.POCOS.ULTIMO_MOVIMIENTO()
-                        {
-                            UNID_ITEM = item.UnidItem,
-                            UNID_ALMACEN = mov.DestinoAlmacen.UnidAlmacen,
-                            UNID_MOVIMIENTO_DETALLE = item.UnidMovimientoDetalle,
-                            CANTIDAD = item.Cantidad,
-                            UNID_ITEM_STATUS = item.ItemStatus.UnidItemStatus,
-                            IS_ACTIVE = true
-                        };
-                        UltimoMovimientoDataMapper umDataMapper = new UltimoMovimientoDataMapper();
-                        umDataMapper.udpateElement(ulitmoMovto);
-                    }
-
-                    //Agregar recibodetalle
-                    DAL.POCOS.RECIBO_MOVIMIENTO rm = new DAL.POCOS.RECIBO_MOVIMIENTO()
-                    {
-                        UNID_RECIBO = this._UnidRecibo,
-                        UNID_RECIBO_MOVIMIENTO = mov.UnidMovimiento,
-                        UNID_MOVIMIENTO = mov.UnidMovimiento,
-                        UNID_FACTURA = mov.Items.First().FacturaDetalle.Factura.UnidFactura
-                    };
-                    ReciboMovimientoDataMapper rmDataMaper = new ReciboMovimientoDataMapper();
-                    rmDataMaper.insertElement(rm);
-                }
-
-                if (this._CatalogReciboViewModel != null)
-                {
-                    this._CatalogReciboViewModel.updateCollection();
-                }
-            //}
-        }
-
-        private bool CanAttemptAddMovimientoCmd2()
-        {
-            bool canAttempt = false;
-
-            if ((this.Facturas != null && this.Facturas.Count > 0) && (this.Movimientos != null && this.Movimientos.Count > 0) && this.SelectedSolicitante != null && !string.IsNullOrEmpty(this.PO) && !string.IsNullOrEmpty(this.TroubleTicket))
-            {
-                canAttempt = true;
-            }
-
-            if (this.Facturas.Count > this.Movimientos.Count)
-            {
-                Msj2 = "Favor de relacionar cada factura a un Movimiento de Recibo.";
-                return false;
-            }
-            else
-            {
-
-                Msj2 = "";
-            }
-
-            if (canAttempt) {
-
-                foreach(Model.Recibo.MovimientoModel mm in this.Movimientos) {
-
-                    foreach (ReciboItemModel rr in mm.Items) {
-
-                        if (string.IsNullOrEmpty(rr.Sku) || string.IsNullOrEmpty(rr.NumeroSerie))
-                            return false;
-                    }
-                }
-            }
-
-            return canAttempt;
-        }
 
         public bool ContB
         {
@@ -461,42 +92,15 @@ namespace InventoryApp.ViewModel.Recibo
 
         private void AttemptDeleteFacturaCmd()
         {
-            //Eliminar de movimientos
-            if (this.Movimientos.Count > 0)
-            {
-                try
-                {
-                    (from o in this.Movimientos
-                     join f in this._Facturas
-                     on o.Factura.UnidFactura equals f.UnidFactura
-                     where f.IsChecked == true
-                     select o).ToList().ForEach(o =>
-                     {                         
-                         this.Movimientos.Remove(o);
-                         this._DelMovs.Add(o.UnidMovimiento);
-                     });
-                }
-                catch (Exception)
-                {
-                    ;
-                }   
-            }
-
             //eliminar facturas
-            try
-            {
-                (from o in this.Facturas
-                 where o.IsChecked == true
-                 select o).ToList().ForEach(o => 
-                 { 
-                     this.Facturas.Remove(o);
-                     this._DelFacturas.Add(o.UnidFactura);
-                 });
-            }
-            catch (Exception)
-            {
-                ;
-            }
+
+            var Del = (from o in this.Facturas
+                       where o.IsChecked == true
+                       select o.UnidFactura).ToList();
+
+            FacturaCompraDataMapper FF = new FacturaCompraDataMapper();
+            FF.deleteFacturas(Del);
+            this.Facturas = this.GetFacturas();
         }
 
         private bool CanAttemptDeleteFacturaCmd()
@@ -980,36 +584,39 @@ namespace InventoryApp.ViewModel.Recibo
 
                 f.FACTURA_DETALLE.ToList().ForEach(fd =>
                 {
-                    fcm.FacturaDetalle.Add(new FacturaCompraDetalleModel()
+                    if (fd.IS_ACTIVE)
                     {
-                        UnidFacturaCompraDetalle = fd.UNID_FACTURA_DETALE,
-                        Articulo = new ArticuloModel()
+                        fcm.FacturaDetalle.Add(new FacturaCompraDetalleModel()
                         {
-                            UnidArticulo = fd.ARTICULO.UNID_ARTICULO,
-                            ArticuloName = fd.ARTICULO.ARTICULO1,
-                            Categoria = fd.ARTICULO.CATEGORIA,
-                            Equipo = fd.ARTICULO.EQUIPO,
-                            EquipoModel = new EquipoModel(null)
+                            UnidFacturaCompraDetalle = fd.UNID_FACTURA_DETALE,
+                            Articulo = new ArticuloModel()
                             {
-                                UnidEquipo = fd.ARTICULO.EQUIPO.UNID_EQUIPO,
-                                EquipoName = fd.ARTICULO.EQUIPO.EQUIPO_NAME
+                                UnidArticulo = fd.ARTICULO.UNID_ARTICULO,
+                                ArticuloName = fd.ARTICULO.ARTICULO1,
+                                Categoria = fd.ARTICULO.CATEGORIA,
+                                Equipo = fd.ARTICULO.EQUIPO,
+                                EquipoModel = new EquipoModel(null)
+                                {
+                                    UnidEquipo = fd.ARTICULO.EQUIPO.UNID_EQUIPO,
+                                    EquipoName = fd.ARTICULO.EQUIPO.EQUIPO_NAME
+                                },
+                                Marca = fd.ARTICULO.MARCA,
+                                Modelo = fd.ARTICULO.MODELO
                             },
-                            Marca = fd.ARTICULO.MARCA,
-                            Modelo = fd.ARTICULO.MODELO
-                        },
-                        Cantidad = fd.CANTIDAD,
-                        Descripcion = fd.DESCRIPCION,
-                        Factura = fcm,
-                        ImpuestoUnitario = fcm.PorIva,
-                        IsActive = fd.IS_ACTIVE,
-                        Numero = fd.NUMERO,
-                        CostoUnitario = fd.PRECIO_UNITARIO,
-                        Unidad = new UnidadModel(null)
-                        {
-                            UnidUnidad = fd.UNIDAD.UNID_UNIDAD,
-                            UnidadName = fd.UNIDAD.UNIDAD1
-                        }
-                    });
+                            Cantidad = fd.CANTIDAD,
+                            Descripcion = fd.DESCRIPCION,
+                            Factura = fcm,
+                            ImpuestoUnitario = fcm.PorIva,
+                            IsActive = fd.IS_ACTIVE,
+                            Numero = fd.NUMERO,
+                            CostoUnitario = fd.PRECIO_UNITARIO,
+                            Unidad = new UnidadModel(null)
+                            {
+                                UnidUnidad = fd.UNIDAD.UNID_UNIDAD,
+                                UnidadName = fd.UNIDAD.UNIDAD1
+                            }
+                        });
+                    }
                 });
 
                 facturas.Add(fcm);
@@ -1159,6 +766,14 @@ namespace InventoryApp.ViewModel.Recibo
         {
             if (this.SelectedFactura != null)
                 return new ModifyFacturaViewModel(this.SelectedFactura, this.ContB);
+            else
+                return null;
+        }
+
+        public ModifyFacturaViewModel CraeteModifyFacturaViewModel2()
+        {
+            if (this.SelectedFactura != null)
+                return new ModifyFacturaViewModel(this.SelectedFactura, this.ContB, true);
             else
                 return null;
         }

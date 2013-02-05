@@ -10,11 +10,13 @@ using System.Collections.Specialized;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.ComponentModel;
+using InventoryApp.DAL.Recibo;
 
 namespace InventoryApp.ViewModel.Recibo
 {
     public class ModifyFacturaViewModel : ViewModelBase, IFacturaViewModel, IViewModelChangeTrack
     {
+        bool Catalog;
         public FacturaCompraModel SelectedFactura
         {
             get
@@ -352,6 +354,15 @@ namespace InventoryApp.ViewModel.Recibo
             this.ContB = finished;
             this.init();
         }
+
+        public ModifyFacturaViewModel(FacturaCompraModel SelectedFactura, bool finished, bool catalog)
+        {
+            this._SelectedFactura = SelectedFactura;
+            this.ContB = finished;
+            this.Catalog = catalog;
+            this.init();
+        }
+
         #endregion
 
         #region Methods
@@ -425,6 +436,38 @@ namespace InventoryApp.ViewModel.Recibo
         
         public void AttemptModifyFactura()
         {
+            if (Catalog)
+            {
+                FacturaCompraDataMapper fcdmp = new FacturaCompraDataMapper();
+                FacturaCompraDetalleDataMapper fcdDm = new FacturaCompraDetalleDataMapper();
+
+                //Actualizar Factura
+                fcdmp.udpateElement(new FACTURA()
+                {
+                    UNID_FACTURA = this.SelectedFactura.UnidFactura,
+                    FACTURA_NUMERO = this.NumeroFactura,
+                    FECHA_FACTURA = this.FechaFactura,
+                    IS_ACTIVE = true,
+                    IVA_POR = this.PorIva,
+                    UNID_MONEDA = this.SelectedMoneda.UnidMoneda,
+                    UNID_PROVEEDOR = this.SelectedProveedor.UnidProveedor,
+                    NUMERO_PEDIMENTO = this.NumeroPedimento,
+                    UNID_TIPO_PEDIMENTO = this.SelectedTipoPedimento.UnidTipoPedimento,
+                    TC = this.TC
+                });
+
+                //Generar Array para insertar/actualizar/eliminar las factura detalle
+                List<FACTURA_DETALLE> fds = new List<FACTURA_DETALLE>();
+                foreach (FacturaCompraDetalleModel det in this.FacturaDetalles)
+                {
+                    fds.Add(det.ConvertToPoco(det));
+                    fds[fds.Count - 1].UNID_FACTURA = this.SelectedFactura.UnidFactura;
+                }
+
+                if (fds.Count > 0)
+                    fcdDm.udpateElements(fds);
+            }
+                
             if (this._SelectedFactura != null)
             {
                 this._SelectedFactura.FechaFactura = this.FechaFactura;
@@ -438,7 +481,7 @@ namespace InventoryApp.ViewModel.Recibo
                 this._SelectedFactura.FacturaDetalle = this.FacturaDetalles;
                 this._SelectedFactura.TC = this.TC;
                 this._SelectedFactura.TipoPedimento = this.SelectedTipoPedimento;
-            }
+            }            
         }
 
         public bool CanAttemptModifyFactura()

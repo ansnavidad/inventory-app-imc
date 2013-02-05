@@ -37,7 +37,7 @@ namespace InventoryApp.View.Recibo
         {
             DlgModifyFacturaView dlgModifyFacturaView = new DlgModifyFacturaView();
             FacturaCatalogViewModel viewModel = this.ConvertDataContext(this.DataContext);
-            ModifyFacturaViewModel mfvm = viewModel.CraeteModifyFacturaViewModel();
+            ModifyFacturaViewModel mfvm = viewModel.CraeteModifyFacturaViewModel2();
             if (mfvm != null)
             {
                 dlgModifyFacturaView.DataContext = mfvm;

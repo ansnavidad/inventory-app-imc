@@ -9,6 +9,7 @@ using System.Windows.Input;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.Collections.Specialized;
+using InventoryApp.DAL.Recibo;
 
 namespace InventoryApp.ViewModel.Recibo
 {
@@ -16,6 +17,7 @@ namespace InventoryApp.ViewModel.Recibo
     {
         private AddReciboViewModel _AddReciboViewModel;
         private FacturaCatalogViewModel _FacturaCatalogViewModel;
+        private bool CatalogFactura;
 
         public ICommand AddFacturaCommand
         {
@@ -335,6 +337,7 @@ namespace InventoryApp.ViewModel.Recibo
         public AddFacturaViewModel(FacturaCatalogViewModel facturaCatalogViewModel)
         {
             this._FacturaCatalogViewModel = facturaCatalogViewModel;
+            this.CatalogFactura = true;
             this.init();
         }
         #endregion
@@ -342,35 +345,51 @@ namespace InventoryApp.ViewModel.Recibo
         #region Methods
         public void AttemptAddFactura()
         {
-            if (this._AddReciboViewModel != null)
+            FacturaCompraModel factura = new FacturaCompraModel()
             {
-                FacturaCompraModel factura = new FacturaCompraModel()
+                UnidFactura = this.UnidFactura
+                ,
+                Proveedor = this.SelectedProveedor
+                ,
+                FechaFactura = this.FechaFactura
+                ,
+                NumeroFactura = this.NumeroFactura
+                ,
+                Moneda = this.SelectedMoneda
+                ,
+                FacturaDetalle = this._FacturaDetalles
+                ,
+                PorIva = this.PorIva
+                ,
+                NumeroPedimento = this.NumeroPedimento
+                ,
+                TC = this.TC
+                ,
+                TipoPedimento = this.SelectedTipoPedimento
+                ,
+                HasNotRecibo = this.HasNotRecibo
+                ,
+                IsNew = true
+            };
+
+            if (this.CatalogFactura)
+            {                               
+                factura.UnidFactura = UNID.getNewUNID();
+                factura.saveFactura2();
+                //factura detalle
+                foreach (FacturaCompraDetalleModel fac in factura.FacturaDetalle)
                 {
-                    UnidFactura = this.UnidFactura
-                    ,
-                    Proveedor = this.SelectedProveedor
-                    ,
-                    FechaFactura = this.FechaFactura
-                    ,
-                    NumeroFactura = this.NumeroFactura
-                    ,
-                    Moneda = this.SelectedMoneda
-                    ,
-                    FacturaDetalle = this._FacturaDetalles
-                    ,
-                    PorIva = this.PorIva
-                    ,
-                    NumeroPedimento=this.NumeroPedimento
-                    , 
-                    TC = this.TC
-                    , 
-                    TipoPedimento = this.SelectedTipoPedimento
-                    ,
-                    HasNotRecibo = this.HasNotRecibo
-                    , 
-                    IsNew = true
-                };
-                this._AddReciboViewModel.Facturas.Add(factura);
+                    fac.Factura = factura;
+                    fac.saveFacturaDetalle();
+                }
+                this._FacturaCatalogViewModel.Facturas = this.GetFacturas();
+            }
+            else
+            {
+                if (this._AddReciboViewModel != null)
+                {                    
+                    this._AddReciboViewModel.Facturas.Add(factura);
+                }
             }
         }
 
@@ -488,7 +507,7 @@ namespace InventoryApp.ViewModel.Recibo
             };
 
             if (this._Proveedores != null && this._Proveedores.Count > 0)
-                this.SelectedProveedor = this._Proveedores[0];
+                this.SelectedProveedor = this._Proveedores[1];
             if (this._Monedas != null && this._Monedas.Count > 0)
                 this.SelectedMoneda = this._Monedas[0];
             if (this._TipoPedimentos != null && this._TipoPedimentos.Count > 0)
@@ -571,6 +590,93 @@ namespace InventoryApp.ViewModel.Recibo
         {
             return new AddFacturaArticuloViewModel(this);
         }
+        
+        private ObservableCollection<FacturaCompraModel> GetFacturas()
+        {
+            FacturaCompraDataMapper fcDataMapper = new FacturaCompraDataMapper();
+
+            List<FACTURA> facturaList = fcDataMapper.GetFacturaListCatalog();
+
+            ObservableCollection<FacturaCompraModel> facturas = new ObservableCollection<FacturaCompraModel>();
+
+            facturaList.ForEach(f =>
+            {
+                FacturaCompraModel fcm = new FacturaCompraModel()
+                {
+                    UnidFactura = f.UNID_FACTURA,
+                    FechaFactura = (DateTime)f.FECHA_FACTURA,
+                    IsActive = f.IS_ACTIVE,
+                    IsChecked = false,
+                    IsNew = false,
+                    Moneda = new MonedaModel(null)
+                    {
+                        UnidMoneda = f.MONEDA.UNID_MONEDA,
+                        MonedaName = f.MONEDA.MONEDA_NAME,
+                        MonedaAbr = f.MONEDA.MONEDA_ABR
+                    },
+                    TC = f.TC,
+                    NumeroFactura = f.FACTURA_NUMERO,
+                    FacturaDetalle = new ObservableCollection<FacturaCompraDetalleModel>(),
+                    Proveedor = new ProveedorModel(null)
+                    {
+                        UnidProveedor = f.PROVEEDOR.UNID_PROVEEDOR,
+                        ProveedorName = f.PROVEEDOR.PROVEEDOR_NAME
+                    },
+                    PorIva = f.IVA_POR == null ? 0d : (double)f.IVA_POR,
+                    NumeroPedimento = f.NUMERO_PEDIMENTO,
+                    TipoPedimento = new TipoPedimentoModel(null)
+                    {
+                        UnidTipoPedimento = f.TIPO_PEDIMENTO.UNID_TIPO_PEDIMENTO,
+                        TipoPedimentoName = f.TIPO_PEDIMENTO.TIPO_PEDIMENTO_NAME,
+                        Clave = f.TIPO_PEDIMENTO.CLAVE,
+                        Nota = f.TIPO_PEDIMENTO.NOTA,
+                        Regimen = f.TIPO_PEDIMENTO.REGIMEN
+                    }
+                };
+
+                f.FACTURA_DETALLE.ToList().ForEach(fd =>
+                {
+                    if (fd.IS_ACTIVE)
+                    {
+                        fcm.FacturaDetalle.Add(new FacturaCompraDetalleModel()
+                        {
+                            UnidFacturaCompraDetalle = fd.UNID_FACTURA_DETALE,
+                            Articulo = new ArticuloModel()
+                            {
+                                UnidArticulo = fd.ARTICULO.UNID_ARTICULO,
+                                ArticuloName = fd.ARTICULO.ARTICULO1,
+                                Categoria = fd.ARTICULO.CATEGORIA,
+                                Equipo = fd.ARTICULO.EQUIPO,
+                                EquipoModel = new EquipoModel(null)
+                                {
+                                    UnidEquipo = fd.ARTICULO.EQUIPO.UNID_EQUIPO,
+                                    EquipoName = fd.ARTICULO.EQUIPO.EQUIPO_NAME
+                                },
+                                Marca = fd.ARTICULO.MARCA,
+                                Modelo = fd.ARTICULO.MODELO
+                            },
+                            Cantidad = fd.CANTIDAD,
+                            Descripcion = fd.DESCRIPCION,
+                            Factura = fcm,
+                            ImpuestoUnitario = fcm.PorIva,
+                            IsActive = fd.IS_ACTIVE,
+                            Numero = fd.NUMERO,
+                            CostoUnitario = fd.PRECIO_UNITARIO,
+                            Unidad = new UnidadModel(null)
+                            {
+                                UnidUnidad = fd.UNIDAD.UNID_UNIDAD,
+                                UnidadName = fd.UNIDAD.UNIDAD1
+                            }
+                        });
+                    }
+                });
+
+                facturas.Add(fcm);
+            });//factura foreach
+
+            return facturas;
+        }
+        
         #endregion
 
 

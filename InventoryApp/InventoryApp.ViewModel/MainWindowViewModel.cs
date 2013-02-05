@@ -291,8 +291,8 @@ namespace InventoryApp.ViewModel
                        page = new Recibo.FacturaCatalogViewModel();
                        break;
                    case "Modificar Item":
-                      //page = new CatalogItem.ModifyItemViewModel();
-                      //break;
+                      page = new CatalogItem.ModifyItemViewModel();
+                      break;
                    case "Inicio":
                       page = new GridMovimientos.MovimientosGridViewModel();
                       break;
@@ -304,8 +304,8 @@ namespace InventoryApp.ViewModel
                       page = new MaxMin.MaxMinViewModel();
                       break;
                     case "Agregar Item":
-                      //page = new CatalogItem.AgregarItemViewModel();
-                      //break;
+                      page = new CatalogItem.AgregarItemViewModel();
+                      break;
                     case "Carga de ítems":
                       page = new Job.JobViewModel();
                       break;

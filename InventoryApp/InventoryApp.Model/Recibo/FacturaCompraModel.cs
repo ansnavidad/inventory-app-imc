@@ -289,6 +289,27 @@ namespace InventoryApp.Model.Recibo
                     FECHA_FACTURA = this._FechaFactura,
                     UNID_PROVEEDOR = this._Proveedor.UnidProveedor,
                     UNID_MONEDA = this._Moneda.UnidMoneda,
+                    NUMERO_PEDIMENTO = this._NumeroPedimento,
+                    IVA_POR = this._PorIva,
+                    TC = this._tc,
+                    UNID_TIPO_PEDIMENTO = this._TipoPedimento.UnidTipoPedimento
+                });
+            }
+        }
+
+        public void saveFactura2()
+        {
+            if (_DataMapper != null)
+            {
+                _DataMapper.insertElement(new FACTURA()
+                {
+                    IS_ACTIVE = true,
+                    UNID_FACTURA = this._UnidFactura,
+                    UNID_LOTE = null,
+                    FACTURA_NUMERO = this._NumeroFactura,
+                    FECHA_FACTURA = this._FechaFactura,
+                    UNID_PROVEEDOR = this._Proveedor.UnidProveedor,
+                    UNID_MONEDA = this._Moneda.UnidMoneda,
                     NUMERO_PEDIMENTO=this._NumeroPedimento,
                     IVA_POR=this._PorIva,
                     TC = this._tc, 

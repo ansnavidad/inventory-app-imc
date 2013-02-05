@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="403" d:DesignWidth="759" >
+             d:DesignHeight="420" d:DesignWidth="700" >
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -23,23 +23,17 @@
     </UserControl.Resources>
     <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="10" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="33" />
-            <RowDefinition Height="286*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="359*" />
-            <ColumnDefinition Width="358*" />
-            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
         </Grid.ColumnDefinitions>
-
         <!-- información General -->
         <!-- información de movimientos -->
-        <ListView Grid.ColumnSpan="2" Grid.Row="3" ItemsSource="{Binding Facturas}" Margin="0,0,0,0" SelectedItem="{Binding SelectedFactura}" Grid.Column="1" MouseDoubleClick="ListView_MouseDoubleClick">
+        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Facturas}" Margin="0,0,0,0" SelectedItem="{Binding SelectedFactura}"  MouseDoubleClick="ListView_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Eliminar" Width="60">
@@ -59,10 +53,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Border BorderBrush="Silver" BorderThickness="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Stretch" Margin="0,2,0,0" Style="{StaticResource titleBorder}" VerticalAlignment="Stretch">
+        <Border Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}">
             <Label Content="Factura" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Style="{StaticResource titleLabel}" Width="AUTO" />
         </Border>
-        <Button Content="Agregar" Grid.Column="2" Grid.Row="2" Height="23" HorizontalAlignment="Left" IsEnabled="{Binding Path=ContB}" Margin="201,7,0,3" Name="btnFacturaAdd" Style="{StaticResource btnElara}" Width="75" Click="btnFacturaAdd_Click_1" />
-        <Button Command="{Binding DeleteFacturaCmd}" Content="Eliminar" Grid.Column="2" Grid.Row="2" Height="23" HorizontalAlignment="Right" Margin="0,6,2,4" Name="btnFacturaDel" Style="{StaticResource btnElara}" Width="75" />
+        <Button Content="Agregar" Grid.Column="2"  Height="23" HorizontalAlignment="Left" IsEnabled="{Binding Path=ContB}" Margin="163,4,12,3" Name="btnFacturaAdd" Style="{StaticResource btnElara}" Width="75" Click="btnFacturaAdd_Click_1" />
+        <Button Command="{Binding DeleteFacturaCmd}" Content="Eliminar" Grid.Column="2" Height="23" HorizontalAlignment="Right" Margin="77,0,98,0" Name="btnFacturaDel" Style="{StaticResource btnElara}" Width="75" />
     </Grid>
 </UserControl>

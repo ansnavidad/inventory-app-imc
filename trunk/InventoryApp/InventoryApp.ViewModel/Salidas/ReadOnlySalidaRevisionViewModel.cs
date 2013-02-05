@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Collections;
 
 namespace InventoryApp.ViewModel.Salidas
 {
@@ -313,41 +314,11 @@ namespace InventoryApp.ViewModel.Salidas
                 borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
 
                 excelSheetPrint.SaveAs(filename, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-                //KillSpecificExcelFileProcess(dlg.SafeFileName);
                 excel.Visible = true;
 
-
-                
             }
         }
-
-        private void KillSpecificExcelFileProcess(string excelFileName)
-        {
-
-            //string excel = excelFileName.Replace(".xlsx", "");
-
-            var processes = from p in Process.GetProcessesByName("EXCEL")
-                            select p;
-
-            
-
-            //Process[] pProcess = System.Diagnostics.Process.GetProcessesByName("Excel");
-            //foreach (var process in pProcess)
-            //{
-            //    if (process.Parent == "MyApp.exe") process.Kill();
-            //}
-            //foreach (var process in processes)
-            //{
-            //    if (process.MainWindowTitle == "Microsoft Excel - " + excelFileName)
-            //        process.Kill();
-            //    if (process.MainWindowTitle == "")
-            //        process.Kill();
-            //}
-        }
-
-        [DllImport("user32.dll")]
-
-        static extern int GetWindowThreadProcessId(int hWnd, out int lpdwProcessId);
+        
         #endregion
 
         public string PageName

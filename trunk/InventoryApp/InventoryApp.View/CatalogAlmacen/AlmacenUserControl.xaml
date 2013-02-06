@@ -37,7 +37,7 @@
         <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" Name="dtGridAlmacen" CanUserDeleteRows="False"
                   ItemsSource="{Binding CatalogAlmacenModel.Almacen}" 
                   SelectedItem="{Binding CatalogAlmacenModel.SelectedAlmacen, Mode=TwoWay}"
-                  MouseDoubleClick="dtGridAlmacen_MouseDoubleClick"
+                  MouseDoubleClick="dtGridAlmacen_MouseDoubleClick" 
                   Grid.Row="1" Margin="0,0,0,0" Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>

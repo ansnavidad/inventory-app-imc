@@ -73,9 +73,12 @@
         <Setter Property="HorizontalGridLinesBrush" Value="#f0f6ff"/>
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Background" Value="Transparent"/>
-
+        <Setter Property="RowBackground" Value="#F9F7F6"/>
+        <Setter Property="AlternatingRowBackground" Value="#EBEAE9"/>
     </Style>
-    
+
+            
+
     <Style x:Key="RowStyle" TargetType="{x:Type DataGridRow}">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -193,4 +196,22 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="RowStyleWithAlternation" TargetType="DataGridRow">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Background" Value="GhostWhite"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="ContextMenu" Value="{x:Null}"/>
+        <Style.Triggers>
+            <Trigger Property="AlternationIndex" Value="1">
+                <Setter Property="Background" Value="#FFD0D0E0"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#F9F99F"/>
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#F9F99F" />
+            </Trigger>
+            
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

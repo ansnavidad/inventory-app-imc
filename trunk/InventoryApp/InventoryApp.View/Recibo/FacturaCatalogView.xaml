@@ -33,30 +33,34 @@
         </Grid.ColumnDefinitions>
         <!-- información General -->
         <!-- información de movimientos -->
-        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Facturas}" Margin="0,0,0,0" SelectedItem="{Binding SelectedFactura}"  MouseDoubleClick="ListView_MouseDoubleClick">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Eliminar" Width="60">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox IsChecked="{Binding IsChecked, NotifyOnSourceUpdated=True, NotifyOnValidationError=True}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=NumeroPedimento}" Header="# Pedimento" Width="150" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=NumeroFactura}" Header="# Factura" Width="150" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Proveedor.ProveedorName}" Header="Proveedor" Width="150" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Importe, StringFormat=C2}" Header="Importe" Width="150" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=PorIva}" Header="Iva %" Width="150" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Iva, StringFormat=C2}" Header="Iva $" Width="150" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Total, StringFormat=C2}" Header="Total $" Width="150" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+        
         <Border Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}">
             <Label Content="Factura" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Style="{StaticResource titleLabel}" Width="AUTO" />
         </Border>
         <Button Content="Agregar" Grid.Column="2"  Height="23" HorizontalAlignment="Left" IsEnabled="{Binding Path=ContB}" Margin="163,4,12,3" Name="btnFacturaAdd" Style="{StaticResource btnElara}" Width="75" Click="btnFacturaAdd_Click_1" />
         <Button Command="{Binding DeleteFacturaCmd}" Content="Eliminar" Grid.Column="2" Height="23" HorizontalAlignment="Right" Margin="77,0,98,0" Name="btnFacturaDel" Style="{StaticResource btnElara}" Width="75" />
+        <DataGrid  Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" Name="dtGridFacturas" CanUserDeleteRows="False"
+                  ItemsSource="{Binding Facturas}" 
+                  SelectedItem="{Binding SelectedFactura, Mode=TwoWay}"
+                  MouseDoubleClick="dtGridFacturas_MouseDoubleClick" 
+                  Grid.Row="1" Margin="0,0,0,0" Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="# Pedimento" x:Name="numPedimento" Binding="{Binding Path=NumeroPedimento}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="# Factura" x:Name="numFactura" Binding="{Binding Path=NumeroFactura}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Proveedor" x:Name="proveedor" Binding="{Binding Path=Proveedor.ProveedorName}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Importe" x:Name="importe" Binding="{Binding Path=Importe}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Iva %" x:Name="porIva" Binding="{Binding Path=PorIva}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Iva $" x:Name="dineroIva" Binding="{Binding Path=Iva}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Total $" x:Name="total" Binding="{Binding Path=Total}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

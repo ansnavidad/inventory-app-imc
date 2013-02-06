@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using InventoryApp.ViewModel.CatalogItem;
 using InventoryApp.View.Recibo;
+using InventoryApp.ViewModel.Recibo;
 
 namespace InventoryApp.View.CatalogItem
 {
@@ -75,5 +76,12 @@ namespace InventoryApp.View.CatalogItem
             return viewModel;
         }
 
+        private void button7_Click(object sender, RoutedEventArgs e)
+        {
+            DlgAddFacturaView addFactura = new DlgAddFacturaView();
+            AgregarItemViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addFactura.DataContext = viewModel.CreateAddFacturaViewModel();
+            addFactura.ShowDialog();
+        }
     }
 }

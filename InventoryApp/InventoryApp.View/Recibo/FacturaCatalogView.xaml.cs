@@ -33,22 +33,42 @@ namespace InventoryApp.View.Recibo
             addFactura.ShowDialog();
         }
 
-        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            DlgModifyFacturaView dlgModifyFacturaView = new DlgModifyFacturaView();
-            FacturaCatalogViewModel viewModel = this.ConvertDataContext(this.DataContext);
-            ModifyFacturaViewModel mfvm = viewModel.CraeteModifyFacturaViewModel2();
-            if (mfvm != null)
-            {
-                dlgModifyFacturaView.DataContext = mfvm;
-                dlgModifyFacturaView.ShowDialog();
-            }
-        }
+        //private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    DlgModifyFacturaView dlgModifyFacturaView = new DlgModifyFacturaView();
+        //    FacturaCatalogViewModel viewModel = this.ConvertDataContext(this.DataContext);
+        //    ModifyFacturaViewModel mfvm = viewModel.CraeteModifyFacturaViewModel2();
+        //    if (mfvm != null)
+        //    {
+        //        dlgModifyFacturaView.DataContext = mfvm;
+        //        dlgModifyFacturaView.ShowDialog();
+        //    }
+        //}
 
         private FacturaCatalogViewModel ConvertDataContext(object dataSource)
         {
             FacturaCatalogViewModel viewModel = dataSource as FacturaCatalogViewModel;
             return viewModel;
+        }
+
+        private void dtGridFacturas_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                DataGrid dg = sender as DataGrid;
+                if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
+                {
+                    DlgModifyFacturaView dlgModifyFacturaView = new DlgModifyFacturaView();
+                    FacturaCatalogViewModel viewModel = this.ConvertDataContext(this.DataContext);
+                    ModifyFacturaViewModel mfvm = viewModel.CraeteModifyFacturaViewModel2();
+                    if (mfvm != null)
+                    {
+                        dlgModifyFacturaView.DataContext = mfvm;
+                        dlgModifyFacturaView.ShowDialog();
+                    }
+                }
+            }
+
         }
     }
 }

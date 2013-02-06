@@ -37,7 +37,7 @@
                   SelectedItem="{Binding CatalogProgramadoModel.SelectedProgramado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                   CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItems" 
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogProgramadoModel.Programado}" 
-                  MouseDoubleClick="dtGridItems_MouseDoubleClick" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                  MouseDoubleClick="dtGridItems_MouseDoubleClick" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="" Width="Auto">

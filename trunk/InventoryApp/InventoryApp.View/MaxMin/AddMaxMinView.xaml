@@ -52,7 +52,7 @@
                   Grid.Row="3" Grid.ColumnSpan="3"
                   Style="{StaticResource GridStyle}" 
                   ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" 
-                  DataContext="{Binding}" >
+                  DataContext="{Binding}"  RowStyle="{StaticResource RowStyle}" >
             <DataGrid.Columns>
                 
                 <DataGridTemplateColumn Header="" Width="Auto">

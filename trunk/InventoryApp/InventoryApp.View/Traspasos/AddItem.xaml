@@ -33,7 +33,7 @@ WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScre
                   Name="dataGrid1" VerticalAlignment="Top" 
                   Width="742"  CanUserAddRows="False"
                   ItemsSource="{Binding CatalogItemModel.ItemModel}"
-                  Grid.ColumnSpan="3" Grid.Row="2"
+                  Grid.ColumnSpan="3" Grid.Row="2" RowStyle="{StaticResource RowStyle}" 
                   Style="{StaticResource GridStyle}" Grid.RowSpan="2"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" >

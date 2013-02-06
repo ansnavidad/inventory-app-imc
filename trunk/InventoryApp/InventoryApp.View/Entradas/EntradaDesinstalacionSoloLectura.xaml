@@ -240,7 +240,7 @@
                         Name="button2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
                 <DataGrid IsEnabled="True" Grid.Row="8" TabIndex="14" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ItemModel.ItemModel}" 
-                          HorizontalAlignment="Stretch" Name="dtGridTipoPedimento" VerticalAlignment="Stretch" Style="{StaticResource GridStyle}" 
+                          HorizontalAlignment="Stretch" Name="dtGridTipoPedimento" VerticalAlignment="Stretch" Style="{StaticResource GridStyle}"
                           ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" Height="251" VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="False" Width="30" />

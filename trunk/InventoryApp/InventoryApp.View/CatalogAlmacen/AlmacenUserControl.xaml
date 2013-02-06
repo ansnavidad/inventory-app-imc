@@ -38,7 +38,7 @@
                   ItemsSource="{Binding CatalogAlmacenModel.Almacen}" 
                   SelectedItem="{Binding CatalogAlmacenModel.SelectedAlmacen, Mode=TwoWay}"
                   MouseDoubleClick="dtGridAlmacen_MouseDoubleClick"
-                  Grid.Row="1" Margin="0,0,0,0" Grid.Column="0" Grid.ColumnSpan="3"
+                  Grid.Row="1" Margin="0,0,0,0" Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <!--<DataGridCheckBoxColumn Header="" IsReadOnly="False" Width="25" x:Name="ISCHECK" Binding="{Binding Path=Is_Check}"></DataGridCheckBoxColumn>-->

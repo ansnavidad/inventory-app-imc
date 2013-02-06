@@ -10,11 +10,13 @@ using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.Collections.Specialized;
 using InventoryApp.DAL.Recibo;
+using InventoryApp.ViewModel.CatalogItem;
 
 namespace InventoryApp.ViewModel.Recibo
 {
     public class AddFacturaViewModel : ViewModelBase,IFacturaViewModel
     {
+        private AgregarItemViewModel _AgregarItemViewModel;
         private AddReciboViewModel _AddReciboViewModel;
         private FacturaCatalogViewModel _FacturaCatalogViewModel;
         private bool CatalogFactura;
@@ -337,6 +339,13 @@ namespace InventoryApp.ViewModel.Recibo
         public AddFacturaViewModel(FacturaCatalogViewModel facturaCatalogViewModel)
         {
             this._FacturaCatalogViewModel = facturaCatalogViewModel;
+            this.CatalogFactura = true;
+            this.init();
+        }
+
+        public AddFacturaViewModel(AgregarItemViewModel agregarItemViewModel)
+        {
+            this._AgregarItemViewModel = agregarItemViewModel;
             this.CatalogFactura = true;
             this.init();
         }

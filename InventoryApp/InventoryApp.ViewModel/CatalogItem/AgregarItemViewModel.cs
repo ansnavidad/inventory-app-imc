@@ -7,6 +7,7 @@ using InventoryApp.Model;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using InventoryApp.ViewModel.Recibo;
+using InventoryApp.Model.Recibo;
 
 namespace InventoryApp.ViewModel.CatalogItem
 {
@@ -144,7 +145,12 @@ namespace InventoryApp.ViewModel.CatalogItem
         }
         public void AttempDeleteFactura()
         {
-
+            if (this.FacturaCollection[0].IsChecked)
+            {                
+                this.FillWithItemDetalles = true;
+                this.FillWithIFactura = false;
+                this.FacturaCollection = new ObservableCollection<FacturaCompraModel>();
+            }
         }
 
         public bool FillWithIFactura
@@ -436,6 +442,56 @@ namespace InventoryApp.ViewModel.CatalogItem
             }
         }
         public AgregarItemModel _itemModel;
+        
+        public ObservableCollection<AgregarItemModel> ItemModelCollection
+        {
+            get
+            {
+                return _ItemModelCollection;
+            }
+            set
+            {
+                if (_ItemModelCollection != value)
+                {
+                    _ItemModelCollection = value;
+                    OnPropertyChanged("ItemModelCollection");
+                }
+            }
+        }
+        private ObservableCollection<AgregarItemModel> _ItemModelCollection;
+
+        public FacturaCompraModel Factura
+        {
+            get
+            {
+                return _Factura;
+            }
+            set
+            {
+                _Factura = value;
+            }
+        }
+        public FacturaCompraModel _Factura;
+
+        public ObservableCollection<FacturaCompraModel> FacturaCollection
+        {
+            get
+            {
+                return _FacturaCollection;
+            }
+            set
+            {
+                if (_FacturaCollection != value)
+                {
+                    _FacturaCollection = value;
+                    OnPropertyChanged("FacturaCollection");
+                }
+            }
+        }
+        private ObservableCollection<FacturaCompraModel> _FacturaCollection;
+
+
+
 
         public CatalogPropiedadModel CatalogPropiedad
         {
@@ -541,23 +597,6 @@ namespace InventoryApp.ViewModel.CatalogItem
         }
         private CatalogCategoriaModel _categoriaModel;
 
-        public ObservableCollection<AgregarItemModel> ItemModelCollection
-        {
-            get
-            {
-                return _ItemModelCollection;
-            }
-            set
-            {
-                if (_ItemModelCollection != value)
-                {
-                    _ItemModelCollection = value;
-                    OnPropertyChanged("ItemModelCollection");
-                }
-            }
-        }
-        private ObservableCollection<AgregarItemModel> _ItemModelCollection;
-
         public ObservableCollection<UltimoMovimientoModel> UltimoMovimiento
         {
             get
@@ -593,6 +632,12 @@ namespace InventoryApp.ViewModel.CatalogItem
         public AddFacturaArticuloViewModel CreateAddFacturaArticuloViewModel()
         {
             AddFacturaArticuloViewModel addFacturaViewModel = new AddFacturaArticuloViewModel(this, true);
+            return addFacturaViewModel;
+        }
+
+        public AddFacturaViewModel CreateAddFacturaViewModel()
+        {
+            AddFacturaViewModel addFacturaViewModel = new AddFacturaViewModel(this);
             return addFacturaViewModel;
         }
         

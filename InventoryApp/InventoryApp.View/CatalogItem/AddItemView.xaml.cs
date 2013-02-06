@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using InventoryApp.ViewModel.CatalogItem;
+using InventoryApp.View.Recibo;
 
 namespace InventoryApp.View.CatalogItem
 {
@@ -59,5 +60,20 @@ namespace InventoryApp.View.CatalogItem
             comboPropiedad.IsEnabled = false;
             comboPropiedad.SelectedIndex = -1;
         }
+
+        private void btnAgregarItem_Click(object sender, RoutedEventArgs e)
+        {
+            DlgAddFacturaArticuloView addFactura = new DlgAddFacturaArticuloView();
+            AgregarItemViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addFactura.DataContext = viewModel.CreateAddFacturaArticuloViewModel();
+            addFactura.ShowDialog();
+        }
+
+        private AgregarItemViewModel ConvertDataContext(object dataSource)
+        {
+            AgregarItemViewModel viewModel = dataSource as AgregarItemViewModel;
+            return viewModel;
+        }
+
     }
 }

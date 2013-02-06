@@ -159,48 +159,47 @@
                         <ColumnDefinition Width="170"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" TabIndex="14" Command="{Binding AddFactura, Mode=OneWay}" Content="Agregar Item" Height="23"
-                            HorizontalAlignment="Center"  Name="btnAgregarItem" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
-                    <Button Grid.Column="1" Command="{Binding AddFactura, Mode=OneWay}" Content="Borrar Item" Height="23" 
+                    <Button Grid.Column="0" TabIndex="14" Content="Agregar Item" Height="30" IsEnabled="{Binding Path=FillWithItemDetallesAnterior}"
+                            HorizontalAlignment="Center"  Name="btnAgregarItem" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}" Click="btnAgregarItem_Click" />
+                    <Button Grid.Column="1" Command="{Binding DeleteItemDetallesCommand, Mode=OneWay}" Content="Borrar Item" Height="30" 
                             Name="btnBorrarItem" TabIndex="14" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
                 <DataGrid Grid.Row="3" CanUserAddRows="False" AutoGenerateColumns="False" Height="120" HorizontalAlignment="Stretch" 
-                          ItemsSource="{Binding UltimoMovimiento}" Name="dataGridItme" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
-                          Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" RowStyle="{StaticResource RowStyle}">
+                          ItemsSource="{Binding ItemModelCollection}" Name="dataGridItme" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
+                          Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Eliminar" Width="auto">
+                        <DataGridTemplateColumn Header="Elimiar" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn x:Name="categoria" Binding="{Binding Path=Cantidad}" Header="Categoria" IsReadOnly="True" Width="*" />
-                        <DataGridTextColumn x:Name="articulo" Binding="{Binding Path=Lugar}" Header="Articulo" IsReadOnly="True" Width="*" />
-                        <DataGridTextColumn x:Name="unidad" Binding="{Binding Path=Lugar}" Header="Unidad" IsReadOnly="True" Width="*" />
-                        <DataGridTextColumn x:Name="equipo" Binding="{Binding Path=Cantidad}" Header="Equipo" IsReadOnly="True" Width="*" />
-                        <DataGridTextColumn x:Name="costoUnitaio" Binding="{Binding Path=Cantidad}" Header="Costo Unitario" IsReadOnly="True" Width="*" />
-                        <DataGridTextColumn x:Name="precioFinal" Binding="{Binding Path=Cantidad}" Header="Precio Final" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn x:Name="categoria" Binding="{Binding Path=Categoria.UNID_CATEGORIA}" Header="Categoría" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn x:Name="articulo" Binding="{Binding Path=Articulo.ARTICULO1}" Header="Artículo" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn x:Name="cantidad" Binding="{Binding Path=CantidadItem}" Header="Cantidad" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn x:Name="equipo" Binding="{Binding Path=Equipo.EQUIPO_NAME}" Header="Equipo" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn x:Name="costoUnitario" Binding="{Binding Path=CostoUnitario}" Header="Costo Unitario" IsReadOnly="True" Width="*" />                        
                     </DataGrid.Columns>
                 </DataGrid>
                 <Border Grid.Row="4" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                 <Grid Grid.Row="5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="170"/>
-                        <ColumnDefinition Width="170"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="145"/>
+                        <ColumnDefinition Width="145"/>
+                        <ColumnDefinition Width="393"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" TabIndex="14" Command="{Binding AddFactura, Mode=OneWay}" Content="Agregar Factura" Height="30"
-                            HorizontalAlignment="Center"  Name="button3" VerticalAlignment="Center" Click="button3_Click" Width="120" Style="{StaticResource btnElara}" />
-                    <Button Grid.Column="1" Command="{Binding AddFactura, Mode=OneWay}" Content="Modificar Factura" Height="30" 
-                            Name="button5" TabIndex="14" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
+                    <Button TabIndex="14" Content="Agregar Factura" Height="23" IsEnabled="{Binding Path=FillWithItemDetalles}"
+                            HorizontalAlignment="Center"  Name="button3" VerticalAlignment="Center" Click="button3_Click" Width="120" Style="{StaticResource btnElara}" Margin="12,9,13,8" />
+                    <Button Grid.Column="1" Command="{Binding DeleteFacturaCommand, Mode=OneWay}" Content="Borrar Factura" Height="23" 
+                            Name="button5" TabIndex="14" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" Margin="13,9,12,8" />
                 </Grid>
                 <DataGrid Grid.Row="6" SelectedItem="{Binding ItemModel.FacturaDetalle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalScrollBarVisibility="Auto"
                           AutoGenerateColumns="False" ItemsSource="{Binding ItemModel.Detalles}" CanUserAddRows="False"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
-                          Height="120" HorizontalAlignment="Stretch" Name="dataGrid1" VerticalAlignment="Stretch" RowStyle="{StaticResource RowStyle}">
+                          Height="120" HorizontalAlignment="Stretch" Name="dataGrid1" VerticalAlignment="Stretch">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Eliminar" Width="*">
+                        <DataGridTemplateColumn Header="Elimiar" Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -219,20 +218,20 @@
                 <Border Grid.Row="7" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                 <Grid Grid.Row="8">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="170"/>
-                        <ColumnDefinition Width="170"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="145"/>
+                        <ColumnDefinition Width="145"/>
+                        <ColumnDefinition Width="393"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" TabIndex="16" Content="Agregar Destinos" Height="30" HorizontalAlignment="Center" 
+                    <Button Grid.Column="0" TabIndex="16" Content="Agregar Destinos" Height="23" HorizontalAlignment="Center" IsEnabled="{Binding Path=FillWithIFactura}"
                             Name="button1" VerticalAlignment="Center" Click="button1_Click" Width="120" Style="{StaticResource btnElara}"/>
-                    <Button Grid.Column="1" TabIndex="15" Command="{Binding DeleteMovimiento, Mode=OneWay}" Content="Borrar Destinos" Height="30"
+                    <Button Grid.Column="1" TabIndex="15" Command="{Binding DeleteDestinosCommand, Mode=OneWay}" Content="Borrar Destinos" Height="23"
                             HorizontalAlignment="Center" Name="button4" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
                 <DataGrid Grid.Row="9" CanUserAddRows="False" AutoGenerateColumns="False" Height="120" HorizontalAlignment="Stretch" 
                           ItemsSource="{Binding UltimoMovimiento}" Name="dataGrid2" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
-                          Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" RowStyle="{StaticResource RowStyle}">
+                          Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Eliminar" Width="auto">
+                        <DataGridTemplateColumn Header="Elimiar" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -269,7 +268,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="1" TabIndex="17" Command="{Binding UpdateItemCommand, Mode=OneWay}" Style="{StaticResource btnElara}"
+                <Button Grid.Column="1" TabIndex="17" Style="{StaticResource btnElara}" Command="{Binding Path=GuardarCommand}"
                         Content="Guardar" Height="30" HorizontalAlignment="Center" Name="button2" VerticalAlignment="Center" Width="120" Click="button2_Click" />
                 <Button Grid.Column="2" Command="{Binding UpdateItemCommand, Mode=OneWay}" Content="Cancelar" Height="30" HorizontalAlignment="Center"
                         Name="button6" TabIndex="17" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />

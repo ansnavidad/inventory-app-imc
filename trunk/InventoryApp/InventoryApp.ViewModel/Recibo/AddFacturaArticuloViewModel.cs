@@ -8,11 +8,13 @@ using InventoryApp.DAL;
 using System.Collections.ObjectModel;
 using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
+using InventoryApp.ViewModel.CatalogItem;
 
 namespace InventoryApp.ViewModel.Recibo
 {
     public class AddFacturaArticuloViewModel : ViewModelBase, IFacturaArticuloViewModel
     {
+        private AgregarItemViewModel VM;
         private IFacturaViewModel _AddFacturaViewModel;
         private RelayCommand _AddDetalle;
 
@@ -144,13 +146,14 @@ namespace InventoryApp.ViewModel.Recibo
         public double ImpuestoUnitario
         {
             get {
-
-                double aux = this._AddFacturaViewModel.PorIva;
-                //aux *= 100;
-                //int aux2 = (int)aux;
-                //aux = aux2;
-                //aux /= 100;                
-                return aux;
+                if (_AddFacturaViewModel != null)
+                {
+                    double aux = this._AddFacturaViewModel.PorIva;
+                    return aux;
+                }
+                else {
+                    return 0;
+                }
             }
         }
         public const string ImpuestoUnitarioPropertyName = "ImpuestoUnitario";
@@ -246,6 +249,18 @@ namespace InventoryApp.ViewModel.Recibo
             this._AddFacturaViewModel = factura;
             this.init(factura);
         }
+
+        public AddFacturaArticuloViewModel(AgregarItemViewModel vm, bool b)
+        {
+            this.VM = vm;
+
+            ProveedorModel p = new ProveedorModel(null);
+            p.UnidProveedor = VM.ItemModel.Proveedor.UNID_PROVEEDOR;
+            
+            this._Proveedor = p;
+            this.init();
+        }
+
         #endregion
 
         #region Methods
@@ -253,6 +268,21 @@ namespace InventoryApp.ViewModel.Recibo
         {
             this._AddFacturaViewModel = factura;
             this._Categorias = this.GetCategoriasByProveedor();
+            this._Articulos = new ObservableCollection<ArticuloModel>();
+            this._Unidades = this.GetUnidades();
+            this._FacturaDetalle = new FacturaCompraDetalleModel();
+
+            if (this._Categorias != null && this._Categorias.Count > 1)
+                this.SelectedCategoria = this._Categorias[1];
+            if (this._Articulos != null && this._Articulos.Count > 1)
+                this.SelectedArticulo = this._Articulos[1];
+            if (this._Unidades != null && this._Unidades.Count > 1)
+                this.SelectedUnidad = this._Unidades[1];
+        }
+
+        public void init()
+        {   
+            this._Categorias = this.GetCategoriasByProveedor2();
             this._Articulos = new ObservableCollection<ArticuloModel>();
             this._Unidades = this.GetUnidades();
             this._FacturaDetalle = new FacturaCompraDetalleModel();
@@ -360,6 +390,31 @@ namespace InventoryApp.ViewModel.Recibo
 
             return categorias;
         }
+        
+        private ObservableCollection<CategoriaModel> GetCategoriasByProveedor2()
+        {
+            ObservableCollection<CategoriaModel> categorias = new ObservableCollection<CategoriaModel>();
+
+            try
+            {
+                CategoriaDataMapper catDataMapper = new CategoriaDataMapper();
+                List<CATEGORIA> categoriaResult = catDataMapper.getElementsByProveedor(new PROVEEDOR()
+                {
+                    UNID_PROVEEDOR = VM.ItemModel.Proveedor.UNID_PROVEEDOR
+                });
+                categoriaResult.ForEach(o => categorias.Add(new CategoriaModel(catDataMapper)
+                {
+                    UnidCategoria = o.UNID_CATEGORIA,
+                    CategoriaName = o.CATEGORIA_NAME
+                }));
+            }
+            catch (Exception)
+            {
+                //Validar excepción
+            }
+
+            return categorias;
+        }
 
         private ObservableCollection<UnidadModel> GetUnidades()
         {
@@ -385,29 +440,57 @@ namespace InventoryApp.ViewModel.Recibo
 
         public void AttemptAddDetalle()
         {
-            FacturaCompraDetalleModel facturaDetalle = new FacturaCompraDetalleModel()
+            if (VM == null)
             {
-                UnidFacturaCompraDetalle = DAL.UNID.getNewUNID()
-                ,
-                Articulo = this._SelectedArticulo
-                ,
-                Cantidad = this._Cantidad
-                ,
-                CostoUnitario = this.CostoUnitario
-                ,
-                Unidad = this._SelectedUnidad
-                ,
-                ImpuestoUnitario = this._AddFacturaViewModel.PorIva,
-                Factura = new FacturaCompraModel()
+                FacturaCompraDetalleModel facturaDetalle = new FacturaCompraDetalleModel()
                 {
-                    UnidFactura=this._AddFacturaViewModel.UnidFactura,
-                    NumeroFactura=this._AddFacturaViewModel.NumeroFactura,
-                    NumeroPedimento=this._AddFacturaViewModel.NumeroPedimento,
-                    PorIva=this._AddFacturaViewModel.PorIva,
-                    Proveedor=this._AddFacturaViewModel.SelectedProveedor
-                }
-            };
-            this._AddFacturaViewModel.FacturaDetalles.Add(facturaDetalle);
+                    UnidFacturaCompraDetalle = DAL.UNID.getNewUNID()
+                    ,
+                    Articulo = this._SelectedArticulo
+                    ,
+                    Cantidad = this._Cantidad
+                    ,
+                    CostoUnitario = this.CostoUnitario
+                    ,
+                    Unidad = this._SelectedUnidad
+                    ,
+                    ImpuestoUnitario = this._AddFacturaViewModel.PorIva,
+                    Factura = new FacturaCompraModel()
+                    {
+                        UnidFactura = this._AddFacturaViewModel.UnidFactura,
+                        NumeroFactura = this._AddFacturaViewModel.NumeroFactura,
+                        NumeroPedimento = this._AddFacturaViewModel.NumeroPedimento,
+                        PorIva = this._AddFacturaViewModel.PorIva,
+                        Proveedor = this._AddFacturaViewModel.SelectedProveedor
+                    }
+                };
+                this._AddFacturaViewModel.FacturaDetalles.Add(facturaDetalle);
+            }
+            else {
+
+                VM.ItemModel.Articulo = new ARTICULO()
+                {
+                    ARTICULO1 = this._SelectedArticulo.ArticuloName,
+                    UNID_ARTICULO = this._SelectedArticulo.UnidArticulo
+                };
+                VM.ItemModel.Categoria = new CATEGORIA()
+                {
+                    CATEGORIA_NAME = this.SelectedArticulo.Categoria.CATEGORIA_NAME,
+                    UNID_CATEGORIA = this.SelectedArticulo.Categoria.UNID_CATEGORIA
+                };
+                VM.ItemModel.Equipo = new EQUIPO()
+                {
+                    EQUIPO_NAME = this.SelectedArticulo.EquipoModel.EquipoName,
+                    UNID_EQUIPO = this.SelectedArticulo.EquipoModel.UnidEquipo
+                };
+                VM.ItemModel.CostoUnitario = this.CostoUnitario;
+                VM.ItemModel.CantidadItem = this._Cantidad;
+
+                VM.ItemModelCollection = new ObservableCollection<AgregarItemModel>();
+                VM.ItemModelCollection.Add(VM.ItemModel);
+                VM.FillWithItemDetallesAnterior = false;
+                VM.FillWithItemDetalles = true;
+            }
         }
 
         public bool CanAttemptAddDetalle()

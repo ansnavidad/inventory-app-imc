@@ -25,7 +25,7 @@
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridBanco"
                   SelectedItem="{Binding CatalogBancoModel.SelectedBanco, Mode=TwoWay}"
                   ItemsSource="{Binding FacturaDetalles}" 
-                  Height="210"
+                  Height="210" 
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                   HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"
                   RowStyle="{StaticResource RowStyle}">

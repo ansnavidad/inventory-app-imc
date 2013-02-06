@@ -7,6 +7,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -19,8 +20,8 @@
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150" />
-            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="200" />
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
@@ -37,17 +38,17 @@
                   Name="cbAlmacen" VerticalAlignment="Center"
                   Width="140" IsEnabled="False" />
         <Button Content="Agregar Articulo" Grid.Column="1" Grid.Row="2" Height="23"
-                HorizontalAlignment="Center" Margin="5,0" Name="btnAgregar"
-                VerticalAlignment="Center" Width="95" Click="btnAgregar_Click" />
+                HorizontalAlignment="Right" Margin="5,0" Name="btnAgregar"
+                VerticalAlignment="Center" Width="120" Click="btnAgregar_Click" Style="{StaticResource btnElara}"  />
         <Button Content="Eliminar" Grid.Column="2" Grid.Row="2" Height="23"
                 HorizontalAlignment="Center" Margin="5,0" Name="btnEliminar"
                 VerticalAlignment="Center" Width="95" Click="btnEliminar_Click"
-                Command="{Binding DeleteArticuloCommand, Mode=OneWay}"/>
+                Command="{Binding DeleteArticuloCommand, Mode=OneWay}" Style="{StaticResource btnElara}" />
         <DataGrid AutoGenerateColumns="False" CanUserDeleteRows="False"
                   SelectedItem="{Binding CatalogArticuloModel.SelectedArticulo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                   CanUserAddRows="False" HorizontalAlignment="Stretch" Name="dtGridItems" 
                   VerticalAlignment="Stretch" ItemsSource="{Binding Path=ModiArticulos,Mode=TwoWay}" 
-                  Grid.Row="3" Grid.ColumnSpan="3"
+                  Grid.Row="3" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}" 
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
 
@@ -68,11 +69,11 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Guardar" Grid.Column="1" Grid.Row="4" Height="23"
-                HorizontalAlignment="Center" Margin="5,0" Name="btnGuardar"
+                HorizontalAlignment="Right" Margin="5,0" Name="btnGuardar"
                 VerticalAlignment="Center" Width="75" Click="btnGuardar_Click"
-                Command="{Binding ModifyProgramadoCommand, Mode=OneWay}"/>
+                Command="{Binding ModifyProgramadoCommand, Mode=OneWay}" Style="{StaticResource btnElara}" />
         <Button Content="Cancelar" Grid.Column="2" Grid.Row="4" Height="23"
                 HorizontalAlignment="Center" Margin="5,0" Name="btnCancelar"
-                VerticalAlignment="Center" Width="75" Click="btnCancelar_Click" />
+                VerticalAlignment="Center" Width="75" Click="btnCancelar_Click" Style="{StaticResource btnElara}" />
     </Grid>
 </Window>

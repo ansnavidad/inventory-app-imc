@@ -67,7 +67,7 @@
                       SelectedItem="{Binding CatalogBancoModel.SelectedBanco, Mode=TwoWay}"
                       ItemsSource="{Binding Items}" VerticalAlignment="Stretch"
                       Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
-                      HorizontalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto" RowStyle="{StaticResource RowStyle}" 
                       VerticalScrollBarVisibility="Auto"
                       Grid.ColumnSpan="{StaticResource allCapColumnSpan}"> 
                 <DataGrid.ContextMenu>

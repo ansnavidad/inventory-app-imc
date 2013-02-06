@@ -38,7 +38,7 @@
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogPropiedadModel.Propiedad}"
                   SelectedItem="{Binding CatalogPropiedadModel.SelectedPropiedad, Mode=TwoWay}"
                   MouseDoubleClick="dtGridPropiedad_MouseDoubleClick" 
-                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="" Width="Auto">

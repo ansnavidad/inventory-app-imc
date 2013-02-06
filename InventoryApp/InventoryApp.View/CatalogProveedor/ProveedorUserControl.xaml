@@ -36,7 +36,7 @@
         <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" CanUserDeleteRows="False"
                   Name="dtGridTipoPedimento" VerticalAlignment="Stretch" ItemsSource="{Binding ProveedorModel.Proveedor}" 
                   SelectedItem="{Binding ProveedorModel.SelectedProveedor, Mode=TwoWay}" MouseDoubleClick="dtGridItemStatus_MouseDoubleClick"
-                  Grid.Column="0" Grid.ColumnSpan="3"
+                  Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <!--<DataGridCheckBoxColumn Header="" IsReadOnly="False" Width="25" x:Name="ISCHECK" Binding="{Binding Path=Is_Check}"></DataGridCheckBoxColumn>-->

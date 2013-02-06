@@ -81,7 +81,7 @@
                   VerticalAlignment="Top" ItemsSource="{Binding CatalogCategoriaModel.Categoria}"
                   SelectedItem="{Binding CatalogCategoriaModel.SelectedCategoria, Mode=TwoWay}"
                   Grid.Row="1" Grid.Column="3" Grid.RowSpan="7" Width="237" Height="265"
-                  Style="{StaticResource GridStyle}"
+                  Style="{StaticResource GridStyle}" RowStyle="{StaticResource RowStyle}"
                   ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="" Width="Auto">
@@ -99,7 +99,13 @@
         </Border>
         <Button Content="Nuevo" Grid.Column="3" Height="23" HorizontalAlignment="Stretch" Margin="170,12,25,271" Name="btnNuevaCuentaProveedor" VerticalAlignment="Stretch" Width="75" Grid.Row="9" Click="btnNuevaCuentaProveedor_Click" Style="{StaticResource btnElara}"/>
         <Button Command="{Binding DeleteProveedorCuentaCommand, Mode=OneWay}" Content="Eliminar" Grid.Column="3" Height="23" HorizontalAlignment="Stretch" Margin="84,12,110,271" Name="btnEliminar" VerticalAlignment="Stretch" Width="75" Grid.Row="9" Style="{StaticResource btnElara}"/>
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="9" HorizontalAlignment="Stretch" ItemsSource="{Binding CatalogProveedorCuentaModel.ProveedorCuenta, Mode=TwoWay}" Margin="14,52,16,51" Name="dtGridTipoPedimento" SelectedItem="{Binding CatalogProveedorCuentaModel.SelectedProveedorCuenta, Mode=TwoWay}" Style="{StaticResource GridStyle}" VerticalAlignment="Stretch">
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" 
+                  ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
+                  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="9" HorizontalAlignment="Stretch" 
+                  ItemsSource="{Binding CatalogProveedorCuentaModel.ProveedorCuenta, Mode=TwoWay}" 
+                  Margin="14,52,16,51" Name="dtGridTipoPedimento" 
+                  SelectedItem="{Binding CatalogProveedorCuentaModel.SelectedProveedorCuenta, Mode=TwoWay}" 
+                  Style="{StaticResource GridStyle}" VerticalAlignment="Stretch" RowStyle="{StaticResource RowStyle}">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>

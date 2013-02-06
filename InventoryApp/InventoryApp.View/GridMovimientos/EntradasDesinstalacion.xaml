@@ -33,7 +33,7 @@
         <DataGrid AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" Margin="0" Name="dtGridMovimiento"
                   ItemsSource="{Binding CatalogMovimientoModel.CatalogMovimiento}"
                   SelectedItem="{Binding CatalogMovimientoModel.SelectedMovimiento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" MouseDoubleClick="dtGridMovimiento_MouseDoubleClick"
+                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" MouseDoubleClick="dtGridMovimiento_MouseDoubleClick" RowStyle="{StaticResource RowStyle}" 
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Ultimo Movimiento" Width="*" x:Name="tipoMoviento" Binding="{Binding Path=TipoMovimiento}" IsReadOnly="True"/>

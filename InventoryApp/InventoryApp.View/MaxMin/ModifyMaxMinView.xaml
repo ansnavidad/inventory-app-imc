@@ -49,7 +49,7 @@
                   SelectedItem="{Binding CatalogArticuloModel.SelectedArticulo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                   CanUserAddRows="False" HorizontalAlignment="Stretch" Name="dtGridItems" 
                   VerticalAlignment="Stretch" ItemsSource="{Binding Path=ModiArticulos,Mode=TwoWay}" 
-                  Grid.Row="3" Grid.ColumnSpan="3"
+                  Grid.Row="3" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}" 
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
 

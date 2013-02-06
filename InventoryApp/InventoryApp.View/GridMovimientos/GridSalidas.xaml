@@ -29,7 +29,7 @@
         </Border>
         <DataGrid AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" Margin="0" Name="dtGridMovimiento"
                   ItemsSource="{Binding CatalogMovimientoModel.CatalogMovimiento}"
-                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}" 
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Ultimas Salidas" Width="*" x:Name="tipoMoviento" Binding="{Binding Path=TipoMovimiento}" IsReadOnly="True"/>

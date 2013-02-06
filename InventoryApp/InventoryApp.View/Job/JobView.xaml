@@ -44,7 +44,7 @@
         <DataGrid AutoGenerateColumns="False" CanUserDeleteRows="False"                  
                   CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItems" 
                   VerticalAlignment="Stretch" ItemsSource="{Binding ProccesBatch}" 
-                  Grid.Row="1" Grid.Column="0" Style="{StaticResource GridStyle}"
+                  Grid.Row="1" Grid.Column="0" Style="{StaticResource GridStyle}" RowStyle="{StaticResource RowStyle}" 
                   ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID PROCESO" Width="*" x:Name="ID_BATCH" Binding="{Binding Path=ID_BATCH}" IsReadOnly="True"/>

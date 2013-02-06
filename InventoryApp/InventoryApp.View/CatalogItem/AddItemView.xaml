@@ -159,16 +159,16 @@
                         <ColumnDefinition Width="170"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" TabIndex="14" Command="{Binding AddFactura, Mode=OneWay}" Content="Agregar Item" Height="30"
+                    <Button Grid.Column="0" TabIndex="14" Command="{Binding AddFactura, Mode=OneWay}" Content="Agregar Item" Height="23"
                             HorizontalAlignment="Center"  Name="btnAgregarItem" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
-                    <Button Grid.Column="1" Command="{Binding AddFactura, Mode=OneWay}" Content="Borrar Item" Height="30" 
+                    <Button Grid.Column="1" Command="{Binding AddFactura, Mode=OneWay}" Content="Borrar Item" Height="23" 
                             Name="btnBorrarItem" TabIndex="14" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
                 <DataGrid Grid.Row="3" CanUserAddRows="False" AutoGenerateColumns="False" Height="120" HorizontalAlignment="Stretch" 
                           ItemsSource="{Binding UltimoMovimiento}" Name="dataGridItme" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
-                          Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+                          Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" RowStyle="{StaticResource RowStyle}">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Elimiar" Width="auto">
+                        <DataGridTemplateColumn Header="Eliminar" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -198,9 +198,9 @@
                 <DataGrid Grid.Row="6" SelectedItem="{Binding ItemModel.FacturaDetalle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalScrollBarVisibility="Auto"
                           AutoGenerateColumns="False" ItemsSource="{Binding ItemModel.Detalles}" CanUserAddRows="False"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
-                          Height="120" HorizontalAlignment="Stretch" Name="dataGrid1" VerticalAlignment="Stretch">
+                          Height="120" HorizontalAlignment="Stretch" Name="dataGrid1" VerticalAlignment="Stretch" RowStyle="{StaticResource RowStyle}">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Elimiar" Width="*">
+                        <DataGridTemplateColumn Header="Eliminar" Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -230,9 +230,9 @@
                 </Grid>
                 <DataGrid Grid.Row="9" CanUserAddRows="False" AutoGenerateColumns="False" Height="120" HorizontalAlignment="Stretch" 
                           ItemsSource="{Binding UltimoMovimiento}" Name="dataGrid2" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
-                          Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+                          Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" RowStyle="{StaticResource RowStyle}">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Elimiar" Width="auto">
+                        <DataGridTemplateColumn Header="Eliminar" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

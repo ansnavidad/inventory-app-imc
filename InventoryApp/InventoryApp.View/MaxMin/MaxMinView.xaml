@@ -36,7 +36,7 @@
         <DataGrid Height="auto" AutoGenerateColumns="False" CanUserDeleteRows="False"
                   SelectedItem="{Binding CatalogMaxMinModel.SelectedMaxMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                   CanUserAddRows="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridItems" 
-                  VerticalAlignment="Stretch" ItemsSource="{Binding CatalogMaxMinModel.MaxMin}" 
+                  VerticalAlignment="Stretch" ItemsSource="{Binding CatalogMaxMinModel.MaxMin}" RowStyle="{StaticResource RowStyle}" 
                   MouseDoubleClick="dtGridItems_MouseDoubleClick" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>

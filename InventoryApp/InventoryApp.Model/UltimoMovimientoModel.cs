@@ -21,6 +21,7 @@ namespace InventoryApp.Model
         private int _cantidad;
         private bool _isChecked;
         private string _lugar;
+        private DeleteItemStatus _ItemStatus2;
 
         private UltimoMovimientoDataMapper _dataMapper;
 
@@ -212,6 +213,24 @@ namespace InventoryApp.Model
             }
         }
 
+        public DeleteItemStatus ItemStatus2
+        {
+            get
+            {
+                return _ItemStatus2;
+            }
+            set
+            {
+                if (_ItemStatus2 != value)
+                {
+                    _ItemStatus2 = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("ItemStatus2"));
+                    }
+                }
+            }
+        } 
         
         public void updateArticulo(CLIENTE cliente)
         {

@@ -174,7 +174,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn x:Name="categoria" Binding="{Binding Path=Categoria.UNID_CATEGORIA}" Header="Categoría" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn x:Name="categoria" Binding="{Binding Path=Categoria.CATEGORIA_NAME}" Header="Categoría" IsReadOnly="True" Width="*" />
                         <DataGridTextColumn x:Name="articulo" Binding="{Binding Path=Articulo.ARTICULO1}" Header="Artículo" IsReadOnly="True" Width="*" />
                         <DataGridTextColumn x:Name="cantidad" Binding="{Binding Path=CantidadItem}" Header="Cantidad" IsReadOnly="True" Width="*" />
                         <DataGridTextColumn x:Name="equipo" Binding="{Binding Path=Equipo.EQUIPO_NAME}" Header="Equipo" IsReadOnly="True" Width="*" />
@@ -190,8 +190,6 @@
                         <ColumnDefinition Width="145" />
                         <ColumnDefinition Width="145" />
                     </Grid.ColumnDefinitions>
-                    <Button TabIndex="14" Content="Modificar Factura" Height="23" IsEnabled="{Binding Path=FillWithItemDetalles}"
-                            HorizontalAlignment="Center"  Name="button3" VerticalAlignment="Center" Click="button3_Click" Width="120" Style="{StaticResource btnElara}" Margin="14,9,11,8" Grid.Column="3" />
                     <Button Grid.Column="1" Command="{Binding DeleteFacturaCommand, Mode=OneWay}" Content="Borrar Factura" Height="23" 
                             Name="button5" TabIndex="14" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" Margin="13,9,12,8" />
                     <Button  Content="Crear Factura" Height="23" HorizontalAlignment="Center" Margin="15,9,10,8" Name="button7" Style="{StaticResource btnElara}" TabIndex="14" VerticalAlignment="Center" Width="120" Grid.Column="4" Click="button7_Click" IsEnabled="{Binding Path=FillWithItemDetalles}"/>

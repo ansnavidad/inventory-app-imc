@@ -485,6 +485,7 @@ namespace InventoryApp.ViewModel.Recibo
                 };
                 VM.ItemModel.CostoUnitario = this.CostoUnitario;
                 VM.ItemModel.CantidadItem = this._Cantidad;
+                VM.ItemModel.UnidUnidad = this._SelectedUnidad.UnidUnidad;
 
                 VM.ItemModelCollection = new ObservableCollection<AgregarItemModel>();
                 VM.ItemModelCollection.Add(VM.ItemModel);

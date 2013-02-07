@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using InventoryApp.ViewModel.Recibo;
 using InventoryApp.Model.Recibo;
+using System.Windows.Forms;
 
 namespace InventoryApp.ViewModel.CatalogItem
 {
@@ -296,7 +297,124 @@ namespace InventoryApp.ViewModel.CatalogItem
         }
         public void AttempGuardar()
         {
+            //Agregar Factura detalle
+            FacturaCompraDetalleModel fd = new FacturaCompraDetalleModel();
+            fd.UnidFacturaCompraDetalle = UNID.getNewUNID();
+            fd.Factura = new FacturaCompraModel();
+            fd.Factura.UnidFactura = FacturaCollection[0].UnidFactura;
+            fd.Articulo = new ArticuloModel();
+            fd.Articulo.UnidArticulo = ItemModelCollection[0].Articulo.UNID_ARTICULO;
+            fd.Cantidad = ItemModelCollection[0].CantidadItem;
+            fd.CostoUnitario = ItemModelCollection[0].CostoUnitario;
+            fd.ImpuestoUnitario = FacturaCollection[0].PorIva;
+            fd.Unidad = new UnidadModel(null);
+            fd.Unidad.UnidUnidad = ItemModelCollection[0].UnidUnidad;
+            fd.saveFacturaDetalle();
 
+            //Agregar el item
+            DAL.POCOS.ITEM pItem = new DAL.POCOS.ITEM()
+            {
+                UNID_ITEM = UNID.getNewUNID()
+                ,
+                SKU = ItemModel.Sku
+                ,
+                NUMERO_SERIE = ItemModel.NumeroSerie
+                ,
+                UNID_ITEM_STATUS = UltimoMovimiento[0].ItemStatus2.UNID_ITEM_STATUS
+                ,
+                COSTO_UNITARIO = ItemModelCollection[0].CostoUnitario
+                ,
+                UNID_FACTURA_DETALE = fd.UnidFacturaCompraDetalle
+                ,
+                UNID_ARTICULO = ItemModelCollection[0].Articulo.UNID_ARTICULO
+                ,
+                PEDIMENTO_EXPO = 0
+                ,
+                PEDIMENTO_IMPO = 0
+                ,
+                CANTIDAD = ItemModelCollection[0].CantidadItem
+                ,
+                IS_ACTIVE = true
+            };
+            ItemDataMapper itemDataMapper = new ItemDataMapper();
+            itemDataMapper.insertElement(pItem);
+
+            //Agregar movimiento Dummy
+            DAL.POCOS.MOVIMENTO mov = new DAL.POCOS.MOVIMENTO()
+            {
+
+                UNID_MOVIMIENTO = UNID.getNewUNID()
+                ,
+                FECHA_MOVIMIENTO = DateTime.Now
+                ,
+                UNID_TIPO_MOVIMIENTO = 16
+                ,
+                IS_ACTIVE = false
+                ,
+                IS_MODIFIED = true
+            };
+            MovimientoDataMapper movDataMapper = new MovimientoDataMapper();
+            movDataMapper.insertElement(mov);
+
+            foreach (UltimoMovimientoModel um in UltimoMovimiento)
+            {
+                //Agregar detalle del movimiento
+                DAL.POCOS.MOVIMIENTO_DETALLE movDetalle = new DAL.POCOS.MOVIMIENTO_DETALLE()
+                {
+                    UNID_MOVIMIENTO = mov.UNID_MOVIMIENTO
+                    ,
+                    UNID_ITEM = pItem.UNID_ITEM
+                    ,
+                    UNID_MOVIMIENTO_DETALLE = UNID.getNewUNID()
+                    ,
+                    CANTIDAD = um.Cantidad
+                    ,
+                    UNID_ITEM_STATUS = um.ItemStatus2.UNID_ITEM_STATUS
+                    ,
+                    IS_ACTIVE = true
+                };
+                MovimientoDetalleDataMapper mdDataMapper = new MovimientoDetalleDataMapper();
+                mdDataMapper.insertElement(movDetalle);
+
+                //Actualizar el último movimiento
+                DAL.POCOS.ULTIMO_MOVIMIENTO ulitmoMovto = new DAL.POCOS.ULTIMO_MOVIMIENTO()
+                {
+                    UNID_ITEM = pItem.UNID_ITEM,
+                    UNID_ALMACEN = um.UnidAlmacen,
+                    UNID_PROVEEDOR = um.UnidProveedor,
+                    UNID_CLIENTE = um.UnidCliente,
+                    UNID_MOVIMIENTO_DETALLE = movDetalle.UNID_MOVIMIENTO_DETALLE,
+                    CANTIDAD = um.Cantidad,
+                    UNID_ITEM_STATUS = um.ItemStatus2.UNID_ITEM_STATUS,
+                    IS_ACTIVE = true
+                };
+                UltimoMovimientoDataMapper umDataMapper = new UltimoMovimientoDataMapper();
+                umDataMapper.insertElement(ulitmoMovto);               
+            }
+
+            MessageBox.Show("Se ha agregado el Item correctamente");
+
+            this.FillWithItemDetallesAnterior = true;
+            this.FillWithDestinos = false;
+            this.FillWithDestinos2 = false;
+            this.FillWithIFactura = false;
+            this.FillWithItemDetalles = false;
+
+            this.Sku = null;
+            this.NumeroSerie = null;
+            this.Error = null;
+
+            this.ItemModel = new AgregarItemModel();
+            this.ItemModelCollection = new ObservableCollection<AgregarItemModel>();
+            this.Factura = new FacturaCompraModel();
+            this.FacturaCollection = new ObservableCollection<FacturaCompraModel>();
+            this.CatalogProveedor = new CatalogProveedorModel(new ProveedorDataMapper());
+            if (this.CatalogProveedor != null && this.CatalogProveedor.Proveedor.Count > 1)
+                this.ItemModel.Proveedor = this.CatalogProveedor.Proveedor[1];
+
+            this.CatalogStatus = new CatalogItemStatusModel(new ItemStatusDataMapper());
+            this.UltimoMovimiento = new ObservableCollection<UltimoMovimientoModel>();
+            this.CatalogPropiedad = new CatalogPropiedadModel(new PropiedadDataMapper());   
         }
 
         #endregion

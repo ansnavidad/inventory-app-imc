@@ -16,6 +16,7 @@ namespace InventoryApp.Model
         private bool _isChecked;
         private string _nombre;
         private long _unidItem;
+        private long _UnidUnidad;
         private string _sku;
         private string _numeroSerie;
         private double _costoUnitario;
@@ -381,6 +382,20 @@ namespace InventoryApp.Model
                     this._unidItem = value;
                     if (this.PropertyChanged != null)
                         this.PropertyChanged(this, new PropertyChangedEventArgs("UnidItem"));
+                }
+            }
+        }
+
+        public long UnidUnidad
+        {
+            get { return this._UnidUnidad; }
+            set
+            {
+                if (value != this._UnidUnidad)
+                {
+                    this._UnidUnidad = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("UnidUnidad"));
                 }
             }
         }

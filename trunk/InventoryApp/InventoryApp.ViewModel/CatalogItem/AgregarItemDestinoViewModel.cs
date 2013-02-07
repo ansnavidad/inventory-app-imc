@@ -116,6 +116,8 @@ namespace InventoryApp.ViewModel.CatalogItem
         public void AttempAgregarMovimiento()
         {
             UltimoMovimientoModel movimiento = new UltimoMovimientoModel(this._agregarItemDestinoModel.Almacen, this._agregarItemDestinoModel.Cliente, this._agregarItemDestinoModel.Proveedor);
+            if (this.AgregarItemViewModel.CatalogStatus.ItemStatus[0] != null && this.AgregarItemViewModel.CatalogStatus.ItemStatus.Count > 0)
+                movimiento.ItemStatus2 = this.AgregarItemViewModel.CatalogStatus.ItemStatus[0];
             movimiento.Cantidad = this._agregarItemDestinoModel.Cantidad;
             this.AgregarItemViewModel.UltimoMovimiento.Add(movimiento);
             this.AgregarItemViewModel.FillWithIFactura = false;

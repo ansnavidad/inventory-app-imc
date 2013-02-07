@@ -9,16 +9,17 @@ using InventoryApp.DAL.POCOS;
 using InventoryApp.Model.Recibo;
 using System.Windows.Input;
 using InventoryApp.DAL.Recibo;
+using InventoryApp.ViewModel.CatalogItem;
 
 namespace InventoryApp.ViewModel.Recibo
 {
-    public class FacturaCatalogViewModel : ViewModelBase, IPageViewModel
+    public class FacturaCatalogAgregarItemViewModel : ViewModelBase, IPageViewModel
     {
         private CatalogItemStatusModel _catalogItemStatusModel;
-        private ReciboModel _addReciboModel;
-        private const int MovimientoRecibo = 16;
+        private AgregarItemViewModel _AgregarItemViewModel;
+                
         #region RelayCommands
-
+        
         public bool ContB
         {
             get
@@ -37,164 +38,33 @@ namespace InventoryApp.ViewModel.Recibo
         private bool _ContB;
         public const string ContBPropertyName = "ContB";
 
-        //AgregarMovimiento
-        public ICommand AddMvtoCmd
+        public ICommand SelectFacturaCmd
         {
             get
             {
-                if (_AddMvtoCmd == null)
+                if (_SelectFacturaCmd == null)
                 {
-                    _AddMvtoCmd = new RelayCommand(p => this.AttemptAddMvtoCmd(), p => this.CanAttemptAddMvtoCmd());
+                    _SelectFacturaCmd = new RelayCommand(p => this.AttemptSelectFactura(), p => this.CanAttemptSelectFactura());
                 }
-                return _AddMvtoCmd;
+                return _SelectFacturaCmd;
             }
         }
-        private RelayCommand _AddMvtoCmd;
+        private RelayCommand _SelectFacturaCmd;
 
-        private void AttemptAddMvtoCmd()
+        private void AttemptSelectFactura()
         {
+            this._AgregarItemViewModel.FillWithIFactura = false;
+            this._AgregarItemViewModel.FillWithDestinos = true;
+            this._AgregarItemViewModel.FillWithDestinos2 = true;
+            this._AgregarItemViewModel.Factura = SelectedFactura;
+            this._AgregarItemViewModel.FacturaCollection.Add(SelectedFactura);
         }
 
-        private bool CanAttemptAddMvtoCmd()
+        private bool CanAttemptSelectFactura()
         {
-            bool canAttempt = false;
-
-            if (this.Facturas.Count > 0)
-            {
-
-                var res = (from o in this.Facturas
-                           where !this.Movimientos.Any(f => f.Factura.UnidFactura == o.UnidFactura)
-                           select o).ToList();
-                if (res != null && res.Count > 0)
-                {
-                    canAttempt = true;
-                }
-            }
-
-            return canAttempt;
+            return true;
         }
 
-        //Borrar factura
-        public ICommand DeleteFacturaCmd
-        {
-            get
-            {
-                if (_DeleteFacturaCmd == null)
-                {
-                    _DeleteFacturaCmd = new RelayCommand(p => this.AttemptDeleteFacturaCmd(), p => this.CanAttemptDeleteFacturaCmd());
-                }
-                return _DeleteFacturaCmd;
-            }
-        }
-        private RelayCommand _DeleteFacturaCmd;
-
-        private void AttemptDeleteFacturaCmd()
-        {
-            //eliminar facturas
-
-            var Del = (from o in this.Facturas
-                       where o.IsChecked == true
-                       select o.UnidFactura).ToList();
-
-            FacturaCompraDataMapper FF = new FacturaCompraDataMapper();
-            FF.deleteFacturas(Del);
-            this.Facturas = this.GetFacturas();
-        }
-
-        private bool CanAttemptDeleteFacturaCmd()
-        {
-            bool canAttempt = false;
-
-            if (!ContB)
-                return false;
-
-            //Validar que esté seleccionado un elemento del grid
-            try
-            {
-                var res = (from o in this.Facturas
-                           where o.IsChecked == true
-                           select o).ToList().Count();
-                if (res > 0)
-                {
-                    canAttempt = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                ;
-            }
-
-            return canAttempt;
-        }
-
-        //Borrar movimiento
-        public ICommand DeleteMvtoCmd
-        {
-            get
-            {
-                if (_DeleteMvtoCmd == null)
-                {
-                    _DeleteMvtoCmd = new RelayCommand(p => this.AttemptDeleteMvtoCmd(), p => this.CanAttemptDeleteMvtoCmd());
-                }
-                return _DeleteMvtoCmd;
-            }
-        }
-        private RelayCommand _DeleteMvtoCmd;
-
-        private void AttemptDeleteMvtoCmd()
-        {
-            try
-            {
-                for (int i = 0; i < this.Movimientos.Count; ) {
-                    
-                    if (this.Movimientos[i].IsChecked == true)
-                    {
-                        Model.Recibo.MovimientoModel aux = new Model.Recibo.MovimientoModel();
-                        aux = this.Movimientos[i];
-
-                        (from o in this.Facturas
-                         where o.UnidFactura == this.Movimientos[i].Factura.UnidFactura
-                         select o).ToList().ForEach(o => o.HasNotRecibo = true);
-
-                        this.Movimientos.Remove(aux);
-                        this._DelMovs.Add(aux.UnidMovimiento);
-                    } else {
-                
-                        i++;
-                    }
-                } 
-            }
-            catch (Exception)
-            {
-                ;
-            }
-        }
-
-        private bool CanAttemptDeleteMvtoCmd()
-        {
-            bool canAttempt = false;
-
-            if (!ContB)
-                return false;
-
-            //Validar que esté seleccionado un elemento del grid
-            try
-            {
-                var res = (from o in this.Movimientos
-                           where o.IsChecked == true
-                           select o).ToList().Count();
-                if (res > 0)
-                {
-                    canAttempt = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                ;
-            }
-
-            return canAttempt;
-        } 
         #endregion
 
         protected CatalogReciboViewModel _CatalogReciboViewModel;
@@ -468,6 +338,21 @@ namespace InventoryApp.ViewModel.Recibo
         protected ObservableCollection<FacturaCompraModel> _Facturas;
         public const string FacturasPropertyName = "Facturas";
 
+        public bool CheckCerrar
+        {
+            get { return _CheckCerrar; }
+            set
+            {
+                if (_CheckCerrar != value)
+                {
+                    _CheckCerrar = value;
+                    OnPropertyChanged(CheckCerrarPropertyName);
+                }
+            }
+        }
+        protected bool _CheckCerrar;
+        public const string CheckCerrarPropertyName = "CheckCerrar";
+
         public FacturaCompraModel SelectedFactura
         {
             get { return _SelectedFactura; }
@@ -476,6 +361,13 @@ namespace InventoryApp.ViewModel.Recibo
                 if (_SelectedFactura != value)
                 {
                     _SelectedFactura = value;
+                    this._AgregarItemViewModel.FillWithItemDetalles = false;
+                    this._AgregarItemViewModel.FillWithDestinos2 = true;
+                    this._AgregarItemViewModel.FillWithIFactura = true;                    
+                    this._AgregarItemViewModel.Factura = SelectedFactura;
+                    this._AgregarItemViewModel.FacturaCollection = new ObservableCollection<FacturaCompraModel>();
+                    this._AgregarItemViewModel.FacturaCollection.Add(SelectedFactura);
+                    this.CheckCerrar = true;
                     OnPropertyChanged(SelectedFacturaPropertyName);
                 }
             }
@@ -513,8 +405,15 @@ namespace InventoryApp.ViewModel.Recibo
         protected ObservableCollection<InventoryApp.Model.Recibo.MovimientoModel> _Movimiento;
         public const string MovimientoPropertyName = "MovimientoModel";
 
-        public FacturaCatalogViewModel()
+        public FacturaCatalogAgregarItemViewModel()
         {
+            this.ContB = true;
+            this.init();
+        }
+
+        public FacturaCatalogAgregarItemViewModel(AgregarItemViewModel agregarItemViewModel)
+        {
+            this._AgregarItemViewModel = agregarItemViewModel;
             this.ContB = true;
             this.init();
         }
@@ -622,7 +521,6 @@ namespace InventoryApp.ViewModel.Recibo
 
             return facturas;
         }
-
 
         private ObservableCollection<Model.EmpresaModel> GetEmpresas()
         {
@@ -753,13 +651,7 @@ namespace InventoryApp.ViewModel.Recibo
 
             return clientes;
         }
-
-        public AddFacturaViewModel CreateAddFacturaViewModel()
-        {
-            AddFacturaViewModel addFacturaViewModel = new AddFacturaViewModel(this);
-            return addFacturaViewModel;
-        }
-
+        
         public ModifyFacturaViewModel CraeteModifyFacturaViewModel()
         {
             if (this.SelectedFactura != null)
@@ -796,18 +688,7 @@ namespace InventoryApp.ViewModel.Recibo
                 _catalogItemStatusModel = value;
             }
         }
-        public ReciboModel AddReciboModel
-        {
-            get
-            {
-                return _addReciboModel;
-            }
-            set
-            {
-                _addReciboModel = value;
-            }
-        }
-
+        
         public string PageName
         {
             get

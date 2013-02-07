@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/scroll.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -46,7 +47,7 @@
                 </Style>
                 <Style TargetType="{x:Type ScrollBar}">
                     <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
-                    <Setter Property="Foreground" Value="#BC622E" />
+                    <Setter Property="Foreground" Value="#A4A4A4" />
                     <Setter Property="Background" Value="Transparent" />
                     <Setter Property="Width" Value="8" />
                     <Setter Property="Template">
@@ -104,17 +105,20 @@
                     </Setter>
                 </Style>
             </ScrollViewer.Resources>
-            <Grid  HorizontalAlignment="Stretch" Name="grid1" VerticalAlignment="Stretch">
+            <Grid  Name="grid1">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="170" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="170" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="170" />
                 </Grid.ColumnDefinitions>
-                <Button Content="Reporte Inventario Almacén" Height="30" HorizontalAlignment="Center" Name="button1" VerticalAlignment="Center" Width="170" FontFamily="Arial Rounded MT" FontSize="12" Background="White" BorderBrush="#FFFF7600" Foreground="#FF3535D8" Click="button1_Click" Grid.Column="0" />
-                <Button Background="White" BorderBrush="#FFFF7600" Content="Reporte Inventario Kardex" FontFamily="Arial Rounded MT" FontSize="12" Foreground="#FF3535D8" Height="30" HorizontalAlignment="Center" Name="button2" VerticalAlignment="Center" Width="170" Click="button2_Click" Grid.Column="1" />
-                <Button Background="White" BorderBrush="#FFFF7600" Content="Reporte Inventario Rotación" FontFamily="Arial Rounded MT" FontSize="12" Foreground="#FF3535D8" Height="30" HorizontalAlignment="Center" Name="button3" VerticalAlignment="Center" Width="170" Click="button3_Click" Grid.Column="2" />
-                <Button Background="White" BorderBrush="#FFFF7600" Content="Reporte Recibo" FontFamily="Arial Rounded MT" FontSize="12" Foreground="#FF3535D8" Height="30" HorizontalAlignment="Center" Name="button4" VerticalAlignment="Center" Width="170" Click="button4_Click" Grid.Column="3" />
+                <Button Content="Reporte Inventario Almacén" Height="23" HorizontalAlignment="Center" Name="button1" VerticalAlignment="Center" Width="165"  Click="button1_Click" Style="{StaticResource btnElaraReportes}" />
+                <Button Content="Reporte Inventario Kardex" Height="23" HorizontalAlignment="Center" Name="button2" VerticalAlignment="Center" Width="165" Click="button2_Click" Grid.Column="2" Style="{StaticResource btnElaraReportes}" />
+                <Button Content="Reporte Inventario Rotación" Height="23" HorizontalAlignment="Center" Name="button3" VerticalAlignment="Center" Width="165" Click="button3_Click" Grid.Column="4" Style="{StaticResource btnElaraReportes}" />
+                <Button Content="Reporte Recibo"  Height="23" HorizontalAlignment="Center" Name="button4" VerticalAlignment="Center" Width="165" Click="button4_Click" Grid.Column="6" Style="{StaticResource btnElaraReportes}" />
             </Grid>
         
         </ScrollViewer>

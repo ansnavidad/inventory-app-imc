@@ -299,134 +299,6 @@ namespace InventoryApp.ViewModel.CatalogItem
 
         }
 
-        #region Juan Pablo
-
-        //public ICommand ModifyItemCommand
-        //{
-        //    get
-        //    {
-        //        if (_modifyItemCommand == null)
-        //        {
-        //            _modifyItemCommand = new RelayCommand(p => this.AttempModifyMarca(), p => this.CanAttempModifyItem());
-        //        }
-        //        return _modifyItemCommand;
-        //    }
-        //}
-        //private RelayCommand _modifyItemCommand;
-
-        //public ICommand AddFactura
-        //{
-        //    get
-        //    {
-        //        if (_addFactura == null)
-        //        {
-        //            _addFactura = new RelayCommand(p => this.AttempAddFactura(), p => this.CanAttempAddFactura());
-        //        }
-        //        return _addFactura;
-        //    }
-        //}
-        //private RelayCommand _addFactura;
-        //public bool CanAttempAddFactura()
-        //{
-        //    bool _canAddItem = true;
-        //    if (this._itemModel.Articulo == null)
-        //        _canAddItem = false;
-
-        //    return _canAddItem;
-        //}
-        //public void AttempAddFactura()
-        //{
-
-        //}
-
-        //public ICommand UpdateItemCommand
-        //{
-        //    get
-        //    {
-        //        if (_updateItemCommand == null)
-        //        {
-        //            _updateItemCommand = new RelayCommand(p => this.AttempUpdateMarca(), p => this.CanAttempUpdateItem());
-        //        }
-        //        return _updateItemCommand;
-        //    }
-        //}
-        //private RelayCommand _updateItemCommand;
-
-        //public ICommand DeleteMovimiento
-        //{
-        //    get
-        //    {
-        //        if (_deleteMovimiento == null)
-        //        {
-        //            _deleteMovimiento = new RelayCommand(p => this.AttempDeleteMovimiento(), p => this.CanAttempDeleteMovimiento());
-        //        }
-        //        return _deleteMovimiento;
-        //    }
-        //}
-        //private RelayCommand _deleteMovimiento;
-        //public bool CanAttempDeleteMovimiento()
-        //{
-        //    bool _canAddItem = false;
-        //    foreach (UltimoMovimientoModel um in this.UltimoMovimiento)
-        //    {
-        //        if (um.IsChecked)
-        //            _canAddItem = true;
-        //    }
-
-        //    return _canAddItem;
-        //}
-        //public void AttempDeleteMovimiento()
-        //{
-        //    for (int i = this.UltimoMovimiento.Count() - 1; i >= 0; i--)
-        //    {
-        //        if (this.UltimoMovimiento[i].IsChecked)
-        //            this.UltimoMovimiento.RemoveAt(i);
-        //    }
-        //}
-
-        //public bool CanAttempModifyItem()
-        //{
-        //    bool _canAddItem = true;
-
-
-        //    if (String.IsNullOrEmpty(this._itemModel.Sku) && String.IsNullOrEmpty(this._itemModel.NumeroSerie))
-        //        _canAddItem = false;
-
-        //    return _canAddItem;
-        //}
-        //public void AttempModifyMarca()
-        //{
-        //    this._itemModel.getElement();
-        //}
-        //public bool CanAttempUpdateItem()
-        //{
-        //    bool _canAddItem = true;
-        //    int total = 0;
-        //    foreach (UltimoMovimientoModel um in this.UltimoMovimiento)
-        //    {
-        //        total += um.Cantidad;
-        //    }
-        //    if (String.IsNullOrEmpty(this._itemModel.Sku) || String.IsNullOrEmpty(this._itemModel.NumeroSerie) || this.ItemModel.FacturaDetalle == null
-        //        || this._itemModel.Factura == null || this._itemModel.Articulo == null || this._itemModel.CantidadItem < 1 || total != this.ItemModel.CantidadItem)
-        //        _canAddItem = false;
-
-        //    return _canAddItem;
-        //}
-        //public void AttempUpdateMarca()
-        //{
-        //    this._itemModel.insertItem();
-
-
-        //    foreach (UltimoMovimientoModel um in this.UltimoMovimiento)
-        //    {
-
-        //        um.UnidItem = this._itemModel.UnidItem;
-        //        um.saveArticulo();
-        //    }
-
-        //    this.ItemModel.clear();
-        //}
-        #endregion
         #endregion
         
         #region Props
@@ -529,10 +401,7 @@ namespace InventoryApp.ViewModel.CatalogItem
             }
         }
         private ObservableCollection<FacturaCompraModel> _FacturaCollection;
-
-
-
-
+        
         public CatalogPropiedadModel CatalogPropiedad
         {
             get
@@ -545,20 +414,7 @@ namespace InventoryApp.ViewModel.CatalogItem
             }
         }
         private CatalogPropiedadModel _catalogPropiedad;
-
-        public CatalogUnidadModel CatalogUnidadModel
-        {
-            get
-            {
-                return _catalogUnidadModel;
-            }
-            set
-            {
-                _catalogUnidadModel = value;
-            }
-        }
-        private CatalogUnidadModel _catalogUnidadModel;
-
+        
         public CatalogProveedorModel CatalogProveedor
         {
             get
@@ -572,19 +428,6 @@ namespace InventoryApp.ViewModel.CatalogItem
         }
         private CatalogProveedorModel _catalogProveedor;
         
-        public CatalogMonedaModel CatalogMonedaModel
-        {
-            get
-            {
-                return _catalogMonedaModel;
-            }
-            set
-            {
-                _catalogMonedaModel = value;
-            }
-        }
-        private CatalogMonedaModel _catalogMonedaModel;
-
         public CatalogItemStatusModel CatalogStatus
         {
             get
@@ -598,45 +441,6 @@ namespace InventoryApp.ViewModel.CatalogItem
         }
         private CatalogItemStatusModel _catalogStatus;
         
-        public DeleteArticulo Articulo
-        {
-            get
-            {
-                return _articulo;
-            }
-            set
-            {
-                _articulo = value;
-            }
-        }
-        private DeleteArticulo _articulo;
-        
-        public CatalogArticuloModel ArticuloModel
-        {
-            get
-            {
-                return _articuloModel;
-            }
-            set
-            {
-                _articuloModel = value;
-            }
-        }
-        private CatalogArticuloModel _articuloModel;   
-
-        public CatalogCategoriaModel CategoriaModel
-        {
-            get
-            {
-                return _categoriaModel;
-            }
-            set
-            {
-                _categoriaModel = value;
-            }
-        }
-        private CatalogCategoriaModel _categoriaModel;
-
         public ObservableCollection<UltimoMovimientoModel> UltimoMovimiento
         {
             get
@@ -680,6 +484,7 @@ namespace InventoryApp.ViewModel.CatalogItem
             AddFacturaViewModel addFacturaViewModel = new AddFacturaViewModel(this);
             return addFacturaViewModel;
         }
+
         public FacturaCatalogAgregarItemViewModel CreateModifyFacturaViewModel()
         {
             FacturaCatalogAgregarItemViewModel addFacturaViewModel = new FacturaCatalogAgregarItemViewModel(this);
@@ -700,13 +505,9 @@ namespace InventoryApp.ViewModel.CatalogItem
                 if (this._catalogProveedor != null && this._catalogProveedor.Proveedor.Count > 1)
                     this._itemModel.Proveedor = this._catalogProveedor.Proveedor[1];
                 
-                this._articuloModel = new CatalogArticuloModel(new ArticuloDataMapper());
-                this._categoriaModel = new CatalogCategoriaModel(new CategoriaDataMapper());
                 this._catalogStatus = new CatalogItemStatusModel(new ItemStatusDataMapper());                
                 this._ultimoMovimiento = new ObservableCollection<UltimoMovimientoModel>();
-                this._catalogPropiedad = new CatalogPropiedadModel(new PropiedadDataMapper());
-                this._catalogMonedaModel = new CatalogMonedaModel(new MonedaDataMapper());
-                this._catalogUnidadModel = new CatalogUnidadModel(new UnidadDataMapper());
+                this._catalogPropiedad = new CatalogPropiedadModel(new PropiedadDataMapper());                
             }
             catch (ArgumentException ae)
             {

@@ -31,20 +31,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Agregar" Height="28" Width="90" HorizontalAlignment="Left" Click="Button_Click_1" Command="{Binding AddMovimientoCmd}" Margin="9,7,0,5" Style="{StaticResource btnElara}" />
-            <Button Grid.Column="1" Content="Imprimir" Command="{Binding AddImprimir}"  Height="28" Width="90" Style="{StaticResource btnElara}" />
-            <Button Grid.Column="2" Content="Cancelar" Height="28"  Width="90" HorizontalAlignment="Right" Margin="0,7,10,5" Click="Button_Click" Style="{StaticResource btnElara}" />
+            
+            <Button TabIndex="4"  Content="Imprimir" Command="{Binding AddImprimir}"  Height="28" Width="90" Style="{StaticResource btnElara}" />
+            <Button Grid.Column="1" TabIndex="5" Content="Agregar" Height="28" Width="90" HorizontalAlignment="center" 
+                    Click="Button_Click_1" Command="{Binding AddMovimientoCmd}"  Style="{StaticResource btnElara}" />
+            <Button TabIndex="6" Grid.Column="2" Content="Cancelar" Height="28"  Width="90" HorizontalAlignment="center" Click="Button_Click" Style="{StaticResource btnElara}" />
         </Grid>
     </Grid>
-    <!--<DockPanel>
-        <ContentControl HorizontalAlignment="Stretch" Name="contentControl1" VerticalAlignment="Stretch" DockPanel.Dock="Top" Height="400" >
-            <my:AddMovimientoView />
-        </ContentControl>
-        <DockPanel HorizontalAlignment="Stretch"  Height="40" DockPanel.Dock="Bottom" Margin="0"   >
-            <Button Content="Agregar" Height="23" Width="75" HorizontalAlignment="Left" Click="Button_Click_1" Command="{Binding AddMovimientoCmd}"/>
-            <Button Height="23" Width="30" Visibility="Hidden" />
-            <Button Content="Imprimir" Command="{Binding AddImprimir}"  Height="23" Width="75" />
-            <Button Content="Cancelar" Height="23"  Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Click="Button_Click" />            
-        </DockPanel>
-    </DockPanel>-->
+    
 </Window>

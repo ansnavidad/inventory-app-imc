@@ -161,7 +161,7 @@
                            VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" />
                     <Label Grid.Row="3" Content="Almacén de destino:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
                        Foreground="#848484" HorizontalAlignment="Right" Name="labelx" VerticalAlignment="Center" />
-                    <ComboBox Grid.Column="1" Grid.Row="3" TabIndex="3" Height="23" HorizontalAlignment="Left"
+                    <ComboBox Grid.Column="1" Grid.Row="3" TabIndex="4" Height="23" HorizontalAlignment="Left"
                           Name="comboBoxAlmacenOrigen" VerticalAlignment="Center" Width="180" DisplayMemberPath="ALMACEN_NAME" 
                           ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenModel.Almacen}"
                           SelectedItem="{Binding MovimientoModel.AlmacenDestino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -172,9 +172,9 @@
                           ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=MovimientoModel.Tecnicos}"
                           Name="comboBoxTecnico" SelectedIndex="0" HorizontalAlignment="Left"
                           SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                          SelectedValuePath="UNID_TECNICO" TabIndex="3" VerticalAlignment="Center" Width="180" />
+                          SelectedValuePath="UNID_TECNICO" TabIndex="5" VerticalAlignment="Center" Width="180" />
                     <Label Grid.Row="2" Content="TT:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Name="label5" VerticalAlignment="Center" HorizontalAlignment="Right" />
-                    <TextBox Grid.Column="1" Grid.Row="2" TabIndex="11" Height="23" MaxLength="32" Name="textBoxTT" VerticalAlignment="Center" 
+                    <TextBox Grid.Column="1" Grid.Row="2" TabIndex="3" Height="23" MaxLength="32" Name="textBoxTT" VerticalAlignment="Center" 
                              Text="{Binding MovimientoModel.Tt, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="180" />
                 </Grid>
                 <Label Grid.Row="1" Content="Procedencia:" FontFamily="Arial Rounded MT" FontSize="13" FontStretch="Normal" 
@@ -193,7 +193,7 @@
                     </Grid.ColumnDefinitions>
                     <Label  Grid.Column="1" Content="Infraestructura:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
                        HorizontalAlignment="Right" Name="nomCliente" VerticalAlignment="Center"   />
-                    <ComboBox Grid.Column="2" TabIndex="5" Height="23" HorizontalAlignment="Left"
+                    <ComboBox Grid.Column="2" TabIndex="6" Height="23" HorizontalAlignment="Left"
                           Name="comboBoxInfraestructura" VerticalAlignment="Center" Width="180"
                           DisplayMemberPath="INFRAESTRUCTURA_NAME"
                           ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogInfraestructuraModel.Infraestructuras}"
@@ -213,12 +213,12 @@
                        Foreground="#848484" Name="label7" VerticalAlignment="Center" HorizontalAlignment="Right" />
                     <TextBlock Grid.Column="1" Height="23" Name="textBlockCantidad" VerticalAlignment="Center" HorizontalAlignment="Left"
                            Text="{Binding MovimientoModel.CantidadItems, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Width="97" />
-                    <Button Grid.Column="3" TabIndex="12" Content="Agregar Items" Height="30" VerticalAlignment="Center"
+                    <Button Grid.Column="3" TabIndex="7" Content="Agregar Items" Height="30" VerticalAlignment="Center"
                         Click="button1_Click" HorizontalAlignment="Center" Width="120" Name="button1" Style="{StaticResource btnElara}" />
-                    <Button Grid.Column="4" TabIndex="13" Content="Borrar Items" Command="{Binding DeleteItemCommand, Mode=OneWay}" Height="30"
+                    <Button Grid.Column="4" TabIndex="8" Content="Borrar Items" Command="{Binding DeleteItemCommand, Mode=OneWay}" Height="30"
                         Name="button2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
-                <DataGrid Grid.Row="6" TabIndex="14" AutoGenerateColumns="False" CanUserAddRows="False"
+                <DataGrid Grid.Row="6" TabIndex="9" AutoGenerateColumns="False" CanUserAddRows="False"
                           ItemsSource="{Binding ItemModel.ItemModel}" HorizontalAlignment="Stretch" RowStyle="{StaticResource RowStyle}" 
                           VerticalAlignment="Stretch" Name="dtGridTipoPedimento" Height="251" VerticalScrollBarVisibility="Auto" 
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
@@ -259,10 +259,10 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button Command="{Binding ImprimirCommand, Mode=OneWay}" Content="Imprimir" Height="30" HorizontalAlignment="Center"
-                        Name="button3" TabIndex="15" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}"  />
-                <Button Grid.Column="1" TabIndex="16" Content="Aceptar" Command="{Binding AddItemCommand, Mode=OneWay}" Height="30" Style="{StaticResource btnElara}" 
+                        Name="button3" TabIndex="10" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}"  />
+                <Button Grid.Column="1" TabIndex="11" Content="Aceptar" Command="{Binding AddItemCommand, Mode=OneWay}" Height="30" Style="{StaticResource btnElara}" 
                         Name="btnAgregar" VerticalAlignment="Center" Click="btnAgregar_Click" HorizontalAlignment="Center" Width="120" />
-                <Button Grid.Column="2" TabIndex="17" Content="Cancelar" Height="30" Name="btnCancelar" VerticalAlignment="Center"
+                <Button Grid.Column="2" TabIndex="12" Content="Cancelar" Height="30" Name="btnCancelar" VerticalAlignment="Center"
                         Click="btnCancelar_Click" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}"  />
             </Grid>
         </Border>

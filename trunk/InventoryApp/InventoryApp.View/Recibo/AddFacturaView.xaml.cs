@@ -23,6 +23,7 @@ namespace InventoryApp.View.Recibo
         public AddFacturaView()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtNumFactura);
         }
 
         private void btnFacturaAdd_Click(object sender, RoutedEventArgs e)

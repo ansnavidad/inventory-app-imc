@@ -57,24 +57,24 @@
             </Border>
 
             <TextBlock Grid.Row="1" Height="23" HorizontalAlignment="Right" Text="Categoría :" VerticalAlignment="Center" Margin="0,2,2,2" />
-            <ComboBox Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" ItemsSource="{Binding Categorias}" SelectedItem="{Binding SelectedCategoria, Mode=TwoWay}" DisplayMemberPath="CategoriaName" />
+            <ComboBox TabIndex="1" Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" ItemsSource="{Binding Categorias}" SelectedItem="{Binding SelectedCategoria, Mode=TwoWay}" DisplayMemberPath="CategoriaName" />
 
             <!--<TextBlock Grid.Column="0" Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Equipo" VerticalAlignment="Top" />
             <ComboBox Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Equipos.Equipos}" SelectedItem="{Binding SelectedEquipo}" DisplayMemberPath="EQUIPO_NAME" />-->
 
             <TextBlock Grid.Row="2" Height="23" HorizontalAlignment="Right" Text="Artículo :" VerticalAlignment="Center" Margin="0,2,2,2" />
-            <ComboBox Grid.Column="1" Grid.Row="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" ItemsSource="{Binding Articulos}" SelectedItem="{Binding SelectedArticulo, Mode=TwoWay}" DisplayMemberPath="ArticuloName" />
+            <ComboBox TabIndex="2" Grid.Column="1" Grid.Row="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" ItemsSource="{Binding Articulos}" SelectedItem="{Binding SelectedArticulo, Mode=TwoWay}" DisplayMemberPath="ArticuloName" />
             <TextBlock Grid.Row="3" Height="23" HorizontalAlignment="Right" Text="Unidad :" VerticalAlignment="Center" Margin="0,2,2,2" />
-            <ComboBox Grid.Column="1" Grid.Row="3" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" ItemsSource="{Binding Unidades}" SelectedItem="{Binding SelectedUnidad, Mode=TwoWay}"  DisplayMemberPath="UnidadName"/>
+            <ComboBox TabIndex="3" Grid.Column="1" Grid.Row="3" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" ItemsSource="{Binding Unidades}" SelectedItem="{Binding SelectedUnidad, Mode=TwoWay}"  DisplayMemberPath="UnidadName"/>
             
             <TextBlock Grid.Row="4" Height="23" HorizontalAlignment="Right" Text="Equipo :" VerticalAlignment="Center" Margin="0,2,2,2" />
             <TextBlock Grid.Column="1" Grid.Row="4" Height="23" HorizontalAlignment="Left" Text="{Binding SelectedArticulo.EquipoModel.EquipoName}" VerticalAlignment="Center" />
 
             <TextBlock Grid.Row="5" Height="23" HorizontalAlignment="Right" Text="Cantidad :" VerticalAlignment="Center" Margin="0,2,2,2" />
-            <TextBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Text="{Binding Cantidad,Mode=TwoWay}" />
+            <TextBox TabIndex="4" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Text="{Binding Cantidad,Mode=TwoWay}" />
 
             <TextBlock Grid.Row="6" Height="23" HorizontalAlignment="Right" Text="Costo Unitario :" VerticalAlignment="Center" Margin="0,2,2,2" />
-            <TextBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Text="{Binding CostoUnitario,Mode=TwoWay}" />
+            <TextBox TabIndex="5" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Text="{Binding CostoUnitario,Mode=TwoWay}" />
 
             <TextBlock Grid.Row="7" Height="23" Text="IVA %:" VerticalAlignment="Center" Margin="67,3,198,1" Width="40" Grid.ColumnSpan="2" />
             <TextBlock Grid.Column="1" Grid.Row="7" Height="23" HorizontalAlignment="Left"  VerticalAlignment="Center" Text="{Binding ImpuestoUnitario, Mode=OneWay}" Margin="0,3,0,1" />

@@ -163,21 +163,21 @@
                            VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" />
                     <Label Grid.Row="3" Content="Almacén de destino:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
                        Foreground="#848484" HorizontalAlignment="Right" Name="labelx" VerticalAlignment="Center" />
-                    <ComboBox Grid.Column="1" Grid.Row="3" TabIndex="3" Height="23" HorizontalAlignment="Left"
+                    <ComboBox Grid.Column="1" Grid.Row="3" TabIndex="4" Height="23" HorizontalAlignment="Left"
                       Name="comboBoxAlmacenOrigen" VerticalAlignment="Center" Width="180" DisplayMemberPath="ALMACEN_NAME"
                       ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenModel.Almacen}" 
                       SelectedItem="{Binding MovimientoModel.AlmacenDestino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       SelectedValuePath="UNID_ALMACEN" SelectedIndex="0"/>
                     <Label Grid.Row="4" Content="Técnico que recibe:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
                        Foreground="#848484" HorizontalAlignment="Right" Name="label6" VerticalAlignment="Center"  />
-                    <ComboBox Grid.Column="1" Grid.Row="4" TabIndex="3" Height="23" HorizontalAlignment="Left" Name="comboBoxTecnico"
+                    <ComboBox Grid.Column="1" Grid.Row="4" TabIndex="5" Height="23" HorizontalAlignment="Left" Name="comboBoxTecnico"
                       VerticalAlignment="Center" Width="180" DisplayMemberPath="TECNICO_NAME" 
                       ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=MovimientoModel.Tecnicos}" 
                       SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                       SelectedValuePath="UNID_TECNICO" SelectedIndex="0"/>
                     <Label Grid.Row="2" Content="TT:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" 
                            Foreground="#848484" Name="label5" VerticalAlignment="Center" HorizontalAlignment="Right" />
-                    <TextBox Grid.Column="1" Grid.Row="2" TabIndex="11" Height="23" MaxLength="32" Name="textBoxTT" VerticalAlignment="Center"
+                    <TextBox Grid.Column="1" Grid.Row="2" TabIndex="3" Height="23" MaxLength="32" Name="textBoxTT" VerticalAlignment="Center"
                              Text="{Binding MovimientoModel.Tt, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="180" />
                 </Grid>
                 <Label Grid.Row="1" Content="Procedencia:" FontFamily="Arial Rounded MT" FontSize="13" FontStretch="Normal" 
@@ -195,20 +195,20 @@
 
                         <ColumnDefinition Width="210"/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox Grid.Column="1" Grid.Row="2" TabIndex="6" Height="23" HorizontalAlignment="Left" Margin="15,0" Name="comboBoxProveedorDestino"
+                    <ComboBox Grid.Column="1" Grid.Row="2" TabIndex="7" Height="23" HorizontalAlignment="Left" Margin="15,0" Name="comboBoxProveedorDestino"
                       VerticalAlignment="Top" Width="180" DisplayMemberPath="PROVEEDOR_NAME" 
                       ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogProveedorProcedenciaModel.Proveedor}"
                       SelectedItem="{Binding MovimientoModel.ProveedorProcedencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       SelectedValuePath="UNID_PROVEEDOR" SelectedIndex="0" IsEnabled="{Binding Path=IsEnabledCombo1, Mode=TwoWay}"/>
-                    <RadioButton Grid.Column="1" TabIndex="5" Content="Proveedor" Height="16" HorizontalAlignment="Left" 
+                    <RadioButton Grid.Column="1" TabIndex="6" Content="Proveedor" Height="16" HorizontalAlignment="Left" 
                                  Name="radioButtonProveedor" VerticalAlignment="Top" Checked="radioButtonProveedor_Checked"
                                  IsChecked="{Binding Path=IsCheck1}" IsEnabled="{Binding Path=IsEnabledCheck1, Mode=TwoWay}"
                                  FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Margin="0,24,0,0" />
-                    <RadioButton Grid.Column="4" TabIndex="7" Content="Cliente" Height="16" HorizontalAlignment="Left" 
+                    <RadioButton Grid.Column="4" TabIndex="8" Content="Cliente" Height="16" HorizontalAlignment="Left" 
                                  Name="radioButtonCliente" VerticalAlignment="Bottom" Checked="radioButtonCliente_Checked" 
                                  IsChecked="{Binding Path=IsCheck2}" IsEnabled="{Binding Path=IsEnabledCheck2, Mode=TwoWay}"
                                  FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"/>
-                    <ComboBox Grid.Column="4" Grid.Row="1" TabIndex="8" Height="23" HorizontalAlignment="Left"
+                    <ComboBox Grid.Column="4" Grid.Row="1" TabIndex="9" Height="23" HorizontalAlignment="Left"
                               Name="comboBoxClienteDestino" VerticalAlignment="Top" Width="180" DisplayMemberPath="CLIENTE1" Margin="15,0"
                               ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogClienteProcedenciaModel.Cliente}" 
                               SelectedItem="{Binding MovimientoModel.ClienteProcedencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -227,17 +227,17 @@
                     </Grid.ColumnDefinitions>
                     <Label Content="Medio envió:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
                        HorizontalAlignment="Left" Name="transporte" VerticalAlignment="Bottom"/>
-                    <ComboBox Grid.Column="0" Grid.Row="1" TabIndex="9" DisplayMemberPath="TRANSPORTE_NAME" Height="23" HorizontalAlignment="Left" 
+                    <ComboBox Grid.Column="0" Grid.Row="1" TabIndex="10" DisplayMemberPath="TRANSPORTE_NAME" Height="23" HorizontalAlignment="Left" 
                               ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogTransporteModel.Transporte}"
                               Name="comboBox1" SelectedIndex="0" SelectedItem="{Binding MovimientoModel.Transporte, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               SelectedValuePath="UNID_TRANSPORTE" VerticalAlignment="Top" Width="180" Margin="15,0"/>
                     <Label Grid.Column="1" Grid.Row="0" Content="Guia:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" 
                        HorizontalAlignment="Left" Name="label11" VerticalAlignment="Bottom" Foreground="#848484"/>
-                    <TextBox Grid.Column="1" Grid.Row="1" TabIndex="9" Height="23" HorizontalAlignment="Left" MaxLength="32" Name="textBox2" Margin="15,0"
+                    <TextBox Grid.Column="1" Grid.Row="1" TabIndex="11" Height="23" HorizontalAlignment="Left" MaxLength="32" Name="textBox2" Margin="15,0"
                          Text="{Binding MovimientoModel.Guia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="180" />
                     <Label Grid.Column="2" Content="Contacto:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
                        Foreground="#848484"  Name="label10" VerticalAlignment="Bottom" HorizontalAlignment="Left"  />
-                    <TextBox Grid.Row="2" Grid.Column="2" TabIndex="10" Height="23" MaxLength="254" Name="textBox1" VerticalAlignment="Top" Margin="15,0"
+                    <TextBox Grid.Row="2" Grid.Column="2" TabIndex="12" Height="23" MaxLength="254" Name="textBox1" VerticalAlignment="Top" Margin="15,0"
                          Text="{Binding MovimientoModel.Contacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Width="180"/>
                 </Grid>
                 <Border Grid.Row="6" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border7" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
@@ -253,12 +253,12 @@
                        Foreground="#848484" Name="label7" VerticalAlignment="Center" HorizontalAlignment="Right" />
                     <TextBlock Grid.Column="1" Height="23" Name="textBlockCantidad" VerticalAlignment="Center" HorizontalAlignment="Left"
                            Text="{Binding MovimientoModel.CantidadItems, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Width="97" />
-                    <Button Grid.Column="3" TabIndex="12" Content="Agregar Items" Height="30" VerticalAlignment="Center"
+                    <Button Grid.Column="3" TabIndex="13" Content="Agregar Items" Height="30" VerticalAlignment="Center"
                         Click="button1_Click" HorizontalAlignment="Center" Width="120" Name="button1" Style="{StaticResource btnElara}" />
-                    <Button Grid.Column="4" TabIndex="13" Content="Borrar Items" Command="{Binding DeleteItemCommand, Mode=OneWay}" Height="30"
+                    <Button Grid.Column="4" TabIndex="14" Content="Borrar Items" Command="{Binding DeleteItemCommand, Mode=OneWay}" Height="30"
                         Name="button2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
-                <DataGrid Grid.Row="8" TabIndex="14" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ItemModel.ItemModel}" 
+                <DataGrid Grid.Row="8" TabIndex="15" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ItemModel.ItemModel}" 
                           HorizontalAlignment="Stretch" Name="dtGridTipoPedimento" Height="251" VerticalScrollBarVisibility="Auto" RowStyle="{StaticResource RowStyle}" 
                           VerticalAlignment="Stretch" Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                     <DataGrid.Columns>
@@ -284,10 +284,10 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button Command="{Binding ImprimirCommand, Mode=OneWay}" Content="Imprimir" Height="30" HorizontalAlignment="Center"
-                        Name="button3" TabIndex="15" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}"  />
-                <Button Grid.Column="1" TabIndex="16" Content="Aceptar" Command="{Binding AddItemCommand, Mode=OneWay}" Height="30" Style="{StaticResource btnElara}" 
+                        Name="button3" TabIndex="16" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}"  />
+                <Button Grid.Column="1" TabIndex="17" Content="Aceptar" Command="{Binding AddItemCommand, Mode=OneWay}" Height="30" Style="{StaticResource btnElara}" 
                         Name="btnAgregar" VerticalAlignment="Center" Click="btnAgregar_Click" HorizontalAlignment="Center" Width="120" />
-                <Button Grid.Column="2" TabIndex="17" Content="Cancelar" Height="30" Name="btnCancelar" VerticalAlignment="Center"
+                <Button Grid.Column="2" TabIndex="18" Content="Cancelar" Height="30" Name="btnCancelar" VerticalAlignment="Center"
                         Click="btnCancelar_Click" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}"  />
             </Grid>
         </Border>

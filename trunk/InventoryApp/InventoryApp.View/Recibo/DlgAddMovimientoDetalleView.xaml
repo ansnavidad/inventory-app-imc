@@ -23,7 +23,7 @@
                 <my:AddMovimientoDetalleView />
             </ContentControl>
         </ScrollViewer>
-        <Button Style="{StaticResource btnElara}" VerticalAlignment="Center" Grid.Row="1" Content="Agregar" Height="28" Width="90" HorizontalAlignment="Left" Command="{Binding AddMovimientoDetalleCmd}" Click="Button_Click" Margin="8,7,0,5" />
-        <Button Style="{StaticResource btnElara}" VerticalAlignment="Center" Grid.Row="1" Content="Cancelar" Height="28"  Width="90" HorizontalAlignment="Right" Margin="0,7,10,5" />
+        <Button TabIndex="3" Style="{StaticResource btnElara}" VerticalAlignment="Center" Grid.Row="1" Content="Agregar" Height="28" Width="90" HorizontalAlignment="Left" Command="{Binding AddMovimientoDetalleCmd}" Click="Button_Click" Margin="8,7,0,5" />
+        <Button TabIndex="4" Style="{StaticResource btnElara}" VerticalAlignment="Center" Grid.Row="1" Content="Cancelar" Height="28"  Width="90" HorizontalAlignment="Right" Margin="0,7,10,5" />
     </Grid>
 </Window>

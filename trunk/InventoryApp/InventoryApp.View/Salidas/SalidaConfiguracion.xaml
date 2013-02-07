@@ -198,7 +198,7 @@
                               SelectedValuePath="UNID_PROVEEDOR" SelectedIndex="0"/>
                     <Label Grid.Column="0" Grid.Row="2" Content="Nombre Sitio:" FontFamily="Arial Rounded MT" FontSize="11.5" 
                        Name="label14" VerticalAlignment="Center" HorizontalAlignment="Right" FontStretch="Normal" Foreground="#848484" />
-                    <TextBox Grid.Column="1" Grid.Row="2" TabIndex="7" Height="23" MaxLength="1024" Name="textBox4" VerticalAlignment="Center"
+                    <TextBox Grid.Column="1" Grid.Row="2" TabIndex="9" Height="23" MaxLength="1024" Name="textBox4" VerticalAlignment="Center"
                          Text="{Binding MovimientoModel.NombreSitio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Width="180" />
                     <RadioButton Grid.Column="1" TabIndex="5" Content="Proveedor" HorizontalAlignment="Left" Name="radioButtonProveedor"
                                  VerticalAlignment="Bottom" Checked="radioButtonProveedor_Checked" IsChecked="True" 
@@ -257,12 +257,12 @@
                        Foreground="#848484" Name="label7" VerticalAlignment="Center" HorizontalAlignment="Right" />
                     <TextBlock Grid.Column="1" Height="23" Name="textBlockCantidad" VerticalAlignment="Center" HorizontalAlignment="Left"
                            Text="{Binding MovimientoModel.CantidadItems, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Width="97" />
-                    <Button Grid.Column="3" TabIndex="12" Content="Agregar Items" Height="30" VerticalAlignment="Center"
+                    <Button Grid.Column="3" TabIndex="14" Content="Agregar Items" Height="30" VerticalAlignment="Center"
                         Click="buttonAgregarItems_Click" HorizontalAlignment="Center" Width="120" Name="buttonAgregarItems" Style="{StaticResource btnElara}" />
-                    <Button Grid.Column="4" TabIndex="13" Content="Borrar Items" Command="{Binding DeleteItemCommand, Mode=OneWay}" Height="30"
+                    <Button Grid.Column="4" TabIndex="15" Content="Borrar Items" Command="{Binding DeleteItemCommand, Mode=OneWay}" Height="30"
                             Name="button1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
-                <DataGrid Grid.Row="8" TabIndex="14" AutoGenerateColumns="False" CanUserAddRows="False"
+                <DataGrid Grid.Row="8" TabIndex="16" AutoGenerateColumns="False" CanUserAddRows="False"
                           ItemsSource="{Binding ItemModel.ItemModel}" HorizontalAlignment="Stretch" RowStyle="{StaticResource RowStyle}"  
                           VerticalAlignment="Stretch" Name="dtGridTipoPedimento" Height="251" VerticalScrollBarVisibility="Auto"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
@@ -293,10 +293,10 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button Command="{Binding ImprimirCommand, Mode=OneWay}" Content="Imprimir" Height="30" HorizontalAlignment="Center"
-                        Name="button3" TabIndex="15" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}"  />
-                <Button Grid.Column="1" TabIndex="16" Content="Aceptar" Command="{Binding AddItemCommand, Mode=OneWay}" Height="30" Style="{StaticResource btnElara}" 
+                        Name="button3" TabIndex="17" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}"  />
+                <Button Grid.Column="1" TabIndex="18" Content="Aceptar" Command="{Binding AddItemCommand, Mode=OneWay}" Height="30" Style="{StaticResource btnElara}" 
                         Name="btnAgregar" VerticalAlignment="Center" Click="btnAgregar_Click" HorizontalAlignment="Center" Width="120" />
-                <Button Grid.Column="2" TabIndex="17" Content="Cancelar" Height="30" Name="btnCancelar" VerticalAlignment="Center"
+                <Button Grid.Column="2" TabIndex="19" Content="Cancelar" Height="30" Name="btnCancelar" VerticalAlignment="Center"
                         Click="btnCancelar_Click" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}"  />
             </Grid>
         </Border>

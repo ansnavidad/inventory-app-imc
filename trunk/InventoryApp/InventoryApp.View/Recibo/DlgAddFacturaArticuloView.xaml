@@ -20,8 +20,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Style="{StaticResource btnElara}" Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Center" Command="{Binding AddMonedaCommand}" Click="btnFacturaAdd_Click" />
-            <Button Style="{StaticResource btnElara}" Content="Cerrar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Center" Click="btnFacturaDel_Click" Grid.Column="1" />
+            <Button TabIndex="6" Style="{StaticResource btnElara}" Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Center" Command="{Binding AddMonedaCommand}" Click="btnFacturaAdd_Click" />
+            <Button TabIndex="7" Style="{StaticResource btnElara}" Content="Cerrar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Center" Click="btnFacturaDel_Click" Grid.Column="1" />
         </Grid>
     </StackPanel>
 </Window>

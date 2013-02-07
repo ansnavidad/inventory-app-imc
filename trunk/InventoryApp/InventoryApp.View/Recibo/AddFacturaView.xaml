@@ -64,28 +64,29 @@
             </Border>
 
             <TextBlock Grid.Row="1" Height="23" HorizontalAlignment="Left" Text="Número de Factura" VerticalAlignment="Center" Margin="0,8,0,4" />
-            <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Text="{Binding NumeroFactura, Mode=TwoWay}" Margin="0,8,0,4" IsEnabled="{Binding Path=SelectedFactura.HasNotRecibo}"/>
+            <TextBox TabIndex="1" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Name="txtNumFactura"
+                     Text="{Binding NumeroFactura, Mode=TwoWay}" Margin="0,8,0,4" IsEnabled="{Binding Path=SelectedFactura.HasNotRecibo}"/>
 
             <TextBlock Grid.Column="3" Grid.Row="1" Height="23" HorizontalAlignment="Left" Text="Fecha de Factura" VerticalAlignment="Center" Margin="65,9,0,3" />
-            <DatePicker Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" SelectedDate="{Binding FechaFactura, Mode=TwoWay}" Margin="177,11,0,8" IsEnabled="{Binding Path=SelectedFactura.HasNotRecibo}" />
+            <DatePicker TabIndex="6" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" SelectedDate="{Binding FechaFactura, Mode=TwoWay}" Margin="177,11,0,8" IsEnabled="{Binding Path=SelectedFactura.HasNotRecibo}" />
 
             <TextBlock Grid.Row="2" Height="23" HorizontalAlignment="Left" Text="Proveedor" VerticalAlignment="Top" Margin="48,4,0,0" />
-            <ComboBox Grid.Column="1" Grid.Row="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Proveedores}" SelectedItem="{Binding SelectedProveedor,Mode=TwoWay}" DisplayMemberPath="ProveedorName" Text="{Binding SelectedProveedor.ProveedorName}" IsEnabled="{Binding CanSelecteProveedor}" Margin="0,1,0,0" />
+            <ComboBox TabIndex="2" Grid.Column="1" Grid.Row="2" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Proveedores}" SelectedItem="{Binding SelectedProveedor,Mode=TwoWay}" DisplayMemberPath="ProveedorName" Text="{Binding SelectedProveedor.ProveedorName}" IsEnabled="{Binding CanSelecteProveedor}" Margin="0,1,0,0" />
 
             <TextBlock Grid.Row="3" Height="23" HorizontalAlignment="Left" Text="Moneda" VerticalAlignment="Top" Margin="58,4,0,0" />
-            <ComboBox Grid.Column="1" Grid.Row="3" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Monedas}" SelectedItem="{Binding SelectedMoneda}" DisplayMemberPath="MonedaName" IsEnabled="{Binding Path=SelectedFactura.HasNotRecibo}"/>
+            <ComboBox TabIndex="3" Grid.Column="1" Grid.Row="3" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Monedas}" SelectedItem="{Binding SelectedMoneda}" DisplayMemberPath="MonedaName" IsEnabled="{Binding Path=SelectedFactura.HasNotRecibo}"/>
 
             <TextBlock Grid.Row="4" Height="23" HorizontalAlignment="Left" Text="Número Pedimento" VerticalAlignment="Top" Margin="50,4,0,0" Grid.Column="3" />
-            <TextBox Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding NumeroPedimento, Mode=TwoWay}" Margin="177,3,0,0" IsEnabled="{Binding Path=SelectedFactura.HasNotRecibo}"/>
+            <TextBox TabIndex="8" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding NumeroPedimento, Mode=TwoWay}" Margin="177,3,0,0" IsEnabled="{Binding Path=SelectedFactura.HasNotRecibo}"/>
 
             <TextBlock Grid.Row="3" Height="23" HorizontalAlignment="Left" Text="Tipo Pedimento" VerticalAlignment="Top" Margin="70,4,0,0" Grid.Column="3" />
-            <ComboBox Grid.Column="3" Grid.Row="3" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TipoPedimentos}" SelectedItem="{Binding SelectedTipoPedimento,Mode=TwoWay}" DisplayMemberPath="TipoPedimentoName" Margin="177,0,0,0" IsEnabled="{Binding Path=SelectedFactura.HasNotRecibo}" />
+            <ComboBox TabIndex="7" Grid.Column="3" Grid.Row="3" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TipoPedimentos}" SelectedItem="{Binding SelectedTipoPedimento,Mode=TwoWay}" DisplayMemberPath="TipoPedimentoName" Margin="177,0,0,0" IsEnabled="{Binding Path=SelectedFactura.HasNotRecibo}" />
 
             <TextBlock Grid.Row="5" Height="23" HorizontalAlignment="Left" Text="% Iva" VerticalAlignment="Top" Margin="74,3,0,0" />
-            <TextBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding PorIva, Mode=TwoWay}" IsEnabled="{Binding Path=CanSelecteProveedor}" />
+            <TextBox TabIndex="5" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Text="{Binding PorIva, Mode=TwoWay}" IsEnabled="{Binding Path=CanSelecteProveedor}" />
 
             <TextBlock Grid.Row="6" Height="23" HorizontalAlignment="Left" Text="Items: "  VerticalAlignment="Top" Margin="0,6,0,0" Grid.RowSpan="2" />
-            <ListView Grid.Row="7" Grid.ColumnSpan="5" Grid.RowSpan="5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding FacturaDetalles}" Style="{StaticResource ListViewElara}" Width="auto" Margin="0,0,0,-12" >
+            <ListView TabIndex="11" Grid.Row="7" Grid.ColumnSpan="5" Grid.RowSpan="5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding FacturaDetalles}" Style="{StaticResource ListViewElara}" Width="auto" Margin="0,0,0,-12" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Eliminar" Width="60" >
@@ -106,9 +107,9 @@
                 </ListView.View>
             </ListView>
             <TextBlock Height="23" HorizontalAlignment="Left" Margin="20,3,0,0" Text="Tipo de cambio" VerticalAlignment="Top" Grid.Row="4" />
-            <TextBox HorizontalAlignment="Left" Text="{Binding TC, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="4" IsEnabled="{Binding Path=SelectedFactura.HasNotRecibo}" />
-            <Button Style="{StaticResource btnElara}" Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Click="btnFacturaAdd_Click" Command="{Binding AddFacturaArticuloCommand}" Grid.Column="3" Margin="222,6,0,3" Grid.Row="6"/>
-            <Button Style="{StaticResource btnElara}" Content="Eliminar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,6,22,3" Command="{Binding DeleteFacturaArticuloCommand}" Grid.Column="4" Grid.Row="6"/>
+            <TextBox TabIndex="4" HorizontalAlignment="Left" Text="{Binding TC, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="4" IsEnabled="{Binding Path=SelectedFactura.HasNotRecibo}" />
+            <Button TabIndex="9" Style="{StaticResource btnElara}" Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Click="btnFacturaAdd_Click" Command="{Binding AddFacturaArticuloCommand}" Grid.Column="3" Margin="222,6,0,3" Grid.Row="6"/>
+            <Button TabIndex="10" Style="{StaticResource btnElara}" Content="Eliminar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,6,22,3" Command="{Binding DeleteFacturaArticuloCommand}" Grid.Column="4" Grid.Row="6"/>
         </Grid>
     </Grid>
 </UserControl>

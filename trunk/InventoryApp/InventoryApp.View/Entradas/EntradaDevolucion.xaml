@@ -170,7 +170,7 @@
                       SelectedValuePath="UNID_ALMACEN" SelectedIndex="0"/>
                     <Label Grid.Row="4" Content="Técnico que recibe:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
                        Foreground="#848484" HorizontalAlignment="Right" Name="label6" VerticalAlignment="Center"  />
-                    <ComboBox Grid.Column="1" Grid.Row="4" TabIndex="3" Height="23" HorizontalAlignment="Left" Name="comboBoxTecnico"
+                    <ComboBox Grid.Column="1" Grid.Row="4" TabIndex="4" Height="23" HorizontalAlignment="Left" Name="comboBoxTecnico"
                       VerticalAlignment="Center" Width="180" DisplayMemberPath="TECNICO_NAME" 
                       ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=MovimientoModel.Tecnicos}" 
                       SelectedItem="{Binding MovimientoModel.Tecnico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -233,11 +233,11 @@
                               SelectedValuePath="UNID_TRANSPORTE" VerticalAlignment="Top" Width="180" Margin="15,0"/>
                     <Label Grid.Column="1" Grid.Row="0" Content="Guia:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" 
                        HorizontalAlignment="Left" Name="label11" VerticalAlignment="Bottom" Foreground="#848484"/>
-                    <TextBox Grid.Column="1" Grid.Row="1" TabIndex="9" Height="23" HorizontalAlignment="Left" MaxLength="32" Name="textBox2" Margin="15,0"
+                    <TextBox Grid.Column="1" Grid.Row="1" TabIndex="10" Height="23" HorizontalAlignment="Left" MaxLength="32" Name="textBox2" Margin="15,0"
                          Text="{Binding MovimientoModel.Guia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="180" />
                     <Label Grid.Column="2" Content="Contacto:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
                        Foreground="#848484"  Name="label10" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
-                    <TextBox Grid.Row="2" Grid.Column="2" TabIndex="10" Height="23" MaxLength="254" Name="textBox1" VerticalAlignment="Top" Margin="15,0"
+                    <TextBox Grid.Row="2" Grid.Column="2" TabIndex="11" Height="23" MaxLength="254" Name="textBox1" VerticalAlignment="Top" Margin="15,0"
                          Text="{Binding MovimientoModel.Contacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Width="180"/>
                 </Grid>
                 <Border Grid.Row="6" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border7" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />

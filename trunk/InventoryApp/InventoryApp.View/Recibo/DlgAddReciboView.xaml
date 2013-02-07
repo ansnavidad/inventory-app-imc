@@ -30,9 +30,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button VerticalAlignment="Center" Content="Guardar avance" Command="{Binding AddMovimientoCmd}" Height="25" Width="126" HorizontalAlignment="Left" Click="Button_Click" Margin="25,5,0,9" Style="{StaticResource btnElara}" />
-            <Button VerticalAlignment="Center" Grid.Column="1" Content="Cancelar" Height="25"  Width="90" HorizontalAlignment="Right" Margin="0,7,10,9" Click="Button_Click_1" Style="{StaticResource btnElara}" />
-            <Button VerticalAlignment="Center" Command="{Binding AddMovimientoCmd2}" Content="Guardar y finalizar" Height="25" HorizontalAlignment="Right" Margin="0,6,28,9" Style="{StaticResource btnElara}" Width="126" Click="Button_Click_2" />
+            <Button TabIndex="11" VerticalAlignment="Center" Content="Guardar avance" Command="{Binding AddMovimientoCmd}" Height="25" Width="126" HorizontalAlignment="Left" Click="Button_Click" Margin="25,5,0,9" Style="{StaticResource btnElara}" />
+            <Button TabIndex="13" VerticalAlignment="Center" Grid.Column="1" Content="Cancelar" Height="25"  Width="90" HorizontalAlignment="Right" Margin="15,0" Click="Button_Click_1" Style="{StaticResource btnElara}" />
+            <Button TabIndex="12" VerticalAlignment="Center" Command="{Binding AddMovimientoCmd2}" Content="Guardar y finalizar" Height="25" HorizontalAlignment="Right" Margin="0,6,28,9" Style="{StaticResource btnElara}" Width="126" Click="Button_Click_2" />
         </Grid>
         
     </Grid>

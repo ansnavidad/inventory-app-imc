@@ -250,23 +250,23 @@
                     <Label Grid.Row="2" Content="Importe Factura:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
                            HorizontalAlignment="Right" Name="label15" VerticalAlignment="Center" />
                     <TextBox IsEnabled="False" Grid.Column="1" Grid.Row="2" TabIndex="15" Height="23" HorizontalAlignment="Left" MaxLength="254" Name="textBox5"
-                             Text="{Binding MovimientoModel.FacturaVentaLectura.IMPORTE_FACTURA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
+                             Text="{Binding MovimientoModel.FacturaVentaLectura.IMPORTE_FACTURA,StringFormat=0#.00, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
                     <Label Grid.Row="3" Content="IVA %:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" 
                            HorizontalAlignment="Right" Name="label20" VerticalAlignment="Center" />
                     <TextBox IsEnabled="False" Grid.Column="1" Grid.Row="3" TabIndex="16" Height="23" HorizontalAlignment="Left"  MaxLength="254" Name="textBox7" 
-                             Text="{Binding MovimientoModel.FacturaVentaLectura.POR_IVA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
+                             Text="{Binding MovimientoModel.FacturaVentaLectura.POR_IVA, StringFormat=0#.00, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
                     <Label Grid.Column="3" Content="Tipo de Cambio:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
                            Foreground="#848484" HorizontalAlignment="Right"  Name="label24" VerticalAlignment="Center" />
                     <TextBox IsEnabled="False" Grid.Column="4" TabIndex="17" Height="23" HorizontalAlignment="Left" MaxLength="254" Name="textBox8"
-                             Text="{Binding MovimientoModel.FacturaVentaLectura.TIPO_CAMBIO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
+                             Text="{Binding MovimientoModel.FacturaVentaLectura.TIPO_CAMBIO,StringFormat=0#.00, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
                     <Label Grid.Column="3" Grid.Row="1" Content="Total Factura Venta:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
                            Foreground="#848484" HorizontalAlignment="Right"  Name="label21" VerticalAlignment="Center" />
                     <TextBox IsEnabled="False"  Grid.Column="4" Grid.Row="1" Height="23" HorizontalAlignment="Left"  Name="textBlock1"
-                             Text="{Binding MovimientoModel.TotalLectura, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
+                             Text="{Binding MovimientoModel.TotalLectura, StringFormat= 0#.00, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
                     <Label Grid.Column="3" Grid.Row="2" Content="IVA:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" 
                            Foreground="#848484" Height="28" HorizontalAlignment="Right"  Name="label22" VerticalAlignment="Center" />
                     <TextBox IsEnabled="False" Grid.Column="4" Grid.Row="2" Height="23" HorizontalAlignment="Left"  Name="textBlock3"
-                               Text="{Binding MovimientoModel.FacturaVentaLectura.IVA_PESOS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
+                               Text="{Binding MovimientoModel.FacturaVentaLectura.IVA_PESOS, StringFormat=0#.00, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
                 </Grid>
                 <Grid Grid.Row="8">
                     <Grid.ColumnDefinitions>

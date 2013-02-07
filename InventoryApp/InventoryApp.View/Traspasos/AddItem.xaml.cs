@@ -21,6 +21,7 @@ namespace InventoryApp.View.Traspasos
         public AddItem()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtNumSerie);
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)

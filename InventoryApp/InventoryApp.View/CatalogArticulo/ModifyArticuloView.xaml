@@ -61,7 +61,7 @@
                   DisplayMemberPath="MARCA_NAME" Height="23" HorizontalAlignment="Left" 
                   Margin="0,3,0,0" Name="comboBox2" 
                   SelectedValuePath="UNID_MARCA" 
-                  VerticalAlignment="Top" Width="120" Grid.Row="3" Grid.Column="2" TabIndex="4" />
+                  VerticalAlignment="Top" Width="120" Grid.Row="3" Grid.Column="2" TabIndex="3" />
         <!--Modelo-->
         <Label Content="Modelo :" Grid.Row="4" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="90,0,0,0" Name="label5" VerticalAlignment="Top" />
         <ComboBox SelectedItem="{Binding Articulo.Modelo, Mode=TwoWay}" 
@@ -70,7 +70,7 @@
                   DisplayMemberPath="MODELO_NAME" Height="23" HorizontalAlignment="Left" 
                   Margin="0,3,0,0" Name="comboBox3"  
                   SelectedValuePath="UNID_MODELO"
-                  VerticalAlignment="Top" Width="120" Grid.Row="4" Grid.Column="2" TabIndex="6" />
+                  VerticalAlignment="Top" Width="120" Grid.Row="4" Grid.Column="2" TabIndex="4" />
         <!--Equipo-->
         <Label Content="Equipo :" Grid.Row="5" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="95,0,0,0" Name="label6" VerticalAlignment="Top" />
         <ComboBox SelectedItem="{Binding Articulo.Equipo, Mode=TwoWay}" 
@@ -79,13 +79,18 @@
                   DisplayMemberPath="EQUIPO_NAME" Height="23" HorizontalAlignment="Left" 
                   SelectedValuePath="UNID_EQUIPO"
                   Margin="0,3,0,0" Name="comboBox4"
-                  VerticalAlignment="Top" Width="120" Grid.Row="5" Grid.Column="2" TabIndex="8" />
-        <Button Content="Guardar" Grid.Row="7" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Command="{Binding ModifyItemCommand,Mode=OneWay}" Click="btnAgregar_Click" Grid.Column="1" TabIndex="10" Style="{StaticResource btnElara}"/>
-        <Button Content="Cancelar" Grid.Column="2" Grid.Row="7" Height="23" HorizontalAlignment="Stretch" Margin="27,13,18,14" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" TabIndex="11" Style="{StaticResource btnElara}"/>
-        <Button Content="Añadir Categoría" Height="23" HorizontalAlignment="Stretch" Margin="32,3,25,4" Name="buttonNCat" VerticalAlignment="Stretch" Grid.Column="3" Grid.Row="2" Click="buttonNCat_Click" TabIndex="3" Style="{StaticResource btnElara}"/>
-        <Button Content="Añadir Equipo" Grid.Row="5" Height="23" HorizontalAlignment="Stretch" Margin="32,1,25,6" Name="buttonNEquipo" VerticalAlignment="Stretch" Grid.Column="3" Click="buttonNEquipo_Click" TabIndex="9" Style="{StaticResource btnElara}"/>
-        <Button Content="Añadir Modelo" Grid.Row="4" Height="23" HorizontalAlignment="Stretch" Margin="32,1,25,6" Name="buttonNModelo" VerticalAlignment="Stretch" Grid.Column="3" Click="buttonNModelo_Click" TabIndex="7" Style="{StaticResource btnElara}"/>
-        <Button Content="Añadir Marca" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="32,1,25,6" Name="buttonNMarca" VerticalAlignment="Stretch" Grid.Column="3" Click="buttonNMarca_Click" TabIndex="5" Style="{StaticResource btnElara}"/>
+                  VerticalAlignment="Top" Width="120" Grid.Row="5" Grid.Column="2" TabIndex="5" />
+        <Button Content="Guardar" Grid.Row="7" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Command="{Binding ModifyItemCommand,Mode=OneWay}" Click="btnAgregar_Click" Grid.Column="1" TabIndex="6" Style="{StaticResource btnElara}"/>
+        <Button Content="Cancelar" Grid.Column="2" Grid.Row="7" Height="23" HorizontalAlignment="Stretch" Margin="27,13,18,14" Name="btnCancelar"
+                VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" TabIndex="7" Style="{StaticResource btnElara}"/>
+        <Button Content="Añadir Categoría" Height="23" HorizontalAlignment="Stretch" Margin="32,3,25,4" Name="buttonNCat" VerticalAlignment="Stretch"
+                Grid.Column="3" Grid.Row="2" Click="buttonNCat_Click" TabIndex="8" Style="{StaticResource btnElara}"/>
+        <Button Content="Añadir Equipo" Grid.Row="5" Height="23" HorizontalAlignment="Stretch" Margin="32,1,25,6" Name="buttonNEquipo" 
+                VerticalAlignment="Stretch" Grid.Column="3" Click="buttonNEquipo_Click" TabIndex="11" Style="{StaticResource btnElara}"/>
+        <Button Content="Añadir Modelo" Grid.Row="4" Height="23" HorizontalAlignment="Stretch" Margin="32,1,25,6" Name="buttonNModelo"
+                VerticalAlignment="Stretch" Grid.Column="3" Click="buttonNModelo_Click" TabIndex="10" Style="{StaticResource btnElara}"/>
+        <Button Content="Añadir Marca" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="32,1,25,6" 
+                Name="buttonNMarca" VerticalAlignment="Stretch" Grid.Column="3" Click="buttonNMarca_Click" TabIndex="9" Style="{StaticResource btnElara}"/>
     </Grid>
 </Window>
 

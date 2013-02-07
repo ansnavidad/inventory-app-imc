@@ -36,9 +36,9 @@
         <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="7" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label Style="{StaticResource titleLabel}" Content="ALTA PROVEEDOR" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <Button Content="Guardar" Command="{Binding ModifyProveedorCommand, Mode=OneWay}" Height="23" HorizontalAlignment="Stretch" 
+        <Button TabIndex="14" Content="Guardar" Command="{Binding ModifyProveedorCommand, Mode=OneWay}" Height="23" HorizontalAlignment="Stretch" 
                 Margin="184,271,141,12" Name="btnAgregar" VerticalAlignment="Stretch" Width="75" Click="btnAgregar_Click" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource btnElara}"/>
-        <Button Content="Cancelar" Height="23" HorizontalAlignment="Right" Margin="0,270,195,12" Name="btnCancelar" Width="75" 
+        <Button TabIndex="15" Content="Cancelar" Height="23" HorizontalAlignment="Right" Margin="0,270,195,12" Name="btnCancelar" Width="75" 
                 Click="btnCancelar_Click" Grid.Column="3" Grid.Row="9" Style="{StaticResource btnElara}"/>
         <Label Content="Nombre :" Height="28" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Margin="13,13,0,0" Name="label2" VerticalAlignment="Top" Grid.RowSpan="2" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="73,15,0,0" Name="textBoxNombre" VerticalAlignment="Top" Width="320" 
@@ -76,7 +76,7 @@
                   SelectedItem="{Binding ProveedorModel.Ciudad,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                   ItemsSource="{Binding CatalogCiudadModel.Ciudad, Mode=OneWay}" DisplayMemberPath="CIUDAD1" 
                   SelectedValuePath="UNID_CIUDAD" SelectedIndex="0" Grid.Column="2" Grid.Row="5" />
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+        <DataGrid TabIndex="10" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
                   HorizontalAlignment="Left" Margin="19,13,0,0" Name="dtGridCategoria"
                   VerticalAlignment="Top" ItemsSource="{Binding CatalogCategoriaModel.Categoria}"
                   SelectedItem="{Binding CatalogCategoriaModel.SelectedCategoria, Mode=TwoWay}"
@@ -97,9 +97,11 @@
         <Border BorderThickness="0,0,0,1" Grid.Column="1" Grid.ColumnSpan="3" Margin="16,11,14,268" Style="{StaticResource titleBorder}" Grid.Row="9">
             <Label Content="CUENTAS BANCARIAS DEL PROVEEDOR" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="label1" Style="{StaticResource titleLabel}" Width="AUTO" />
         </Border>
-        <Button Content="Nuevo" Grid.Column="3" Height="23" HorizontalAlignment="Stretch" Margin="170,12,25,271" Name="btnNuevaCuentaProveedor" VerticalAlignment="Stretch" Width="75" Grid.Row="9" Click="btnNuevaCuentaProveedor_Click" Style="{StaticResource btnElara}"/>
-        <Button Command="{Binding DeleteProveedorCuentaCommand, Mode=OneWay}" Content="Eliminar" Grid.Column="3" Height="23" HorizontalAlignment="Stretch" Margin="84,12,110,271" Name="btnEliminar" VerticalAlignment="Stretch" Width="75" Grid.Row="9" Style="{StaticResource btnElara}"/>
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" 
+        <Button TabIndex="11" Content="Nuevo" Grid.Column="3" Height="23" HorizontalAlignment="Stretch" Margin="170,12,25,271" Name="btnNuevaCuentaProveedor"
+                VerticalAlignment="Stretch" Width="75" Grid.Row="9" Click="btnNuevaCuentaProveedor_Click" Style="{StaticResource btnElara}"/>
+        <Button TabIndex="12" Command="{Binding DeleteProveedorCuentaCommand, Mode=OneWay}" Content="Eliminar" Grid.Column="3" Height="23" 
+                HorizontalAlignment="Stretch" Margin="84,12,110,271" Name="btnEliminar" VerticalAlignment="Stretch" Width="75" Grid.Row="9" Style="{StaticResource btnElara}"/>
+        <DataGrid TabIndex="13" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" 
                   ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                   Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="9" HorizontalAlignment="Stretch" 
                   ItemsSource="{Binding CatalogProveedorCuentaModel.ProveedorCuenta, Mode=TwoWay}" 

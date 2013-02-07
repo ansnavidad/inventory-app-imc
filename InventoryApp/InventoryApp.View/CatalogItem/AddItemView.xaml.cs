@@ -25,6 +25,7 @@ namespace InventoryApp.View.CatalogItem
         public AddItemView()
         {
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, this.txtNomreStatus);
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)

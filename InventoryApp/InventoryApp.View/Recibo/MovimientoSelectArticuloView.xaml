@@ -20,7 +20,7 @@
             </Border>
         </DockPanel>
         <DockPanel DockPanel.Dock="Top"  Name="dockPanel3" HorizontalAlignment="Stretch" LastChildFill="False" VerticalAlignment="Stretch" >
-            <DataGrid DockPanel.Dock="Top" CanUserDeleteRows="False"
+            <DataGrid TabIndex="1" DockPanel.Dock="Top" CanUserDeleteRows="False"
                   AutoGenerateColumns="False" CanUserAddRows="False"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridBanco"
                   SelectedItem="{Binding CatalogBancoModel.SelectedBanco, Mode=TwoWay}"

@@ -18,8 +18,8 @@
                 <my:AddFacturaView />
             </ContentControl>
             <DockPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" DockPanel.Dock="Bottom" >
-                <Button Name="btnAgregar" Content="Aceptar" Height="23" Width="75" HorizontalAlignment="Left" Command="{Binding ModifyFacturaCommand}" Click="btnAgregar_Click" Style="{StaticResource btnElara}" />
-                <Button Content="Cancelar" Height="23"  Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Click="Button_Click" Style="{StaticResource btnElara}" />
+                <Button TabIndex="12" Name="btnAgregar" Content="Aceptar" Height="23" Width="75" HorizontalAlignment="Left" Command="{Binding ModifyFacturaCommand}" Click="btnAgregar_Click" Style="{StaticResource btnElara}" />
+                <Button TabIndex="13" Content="Cancelar" Height="23"  Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Click="Button_Click" Style="{StaticResource btnElara}" />
             </DockPanel>
             <TextBlock Height="23" Name="textBlock1" Text="{Binding Path=Msj1}" Width="754" Foreground="#FF2B7EFF" FontFamily="Candara" FontSize="13" FontWeight="Bold" />
         </DockPanel>

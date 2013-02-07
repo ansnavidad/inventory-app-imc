@@ -14,11 +14,23 @@
         <ContentControl HorizontalAlignment="Stretch" Name="contentControl1" VerticalAlignment="Stretch" DockPanel.Dock="Top" >
             <my:AddReciboView />
         </ContentControl>
-        <DockPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" DockPanel.Dock="Bottom" Height="34">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button TabIndex="11" Style="{StaticResource btnElara}" Content="Guardar Avance"  Height="25" Width="126" HorizontalAlignment="left" 
+                    Click="Button_Click" Command="{Binding ModifyReciboCmd}" Margin="15,0" />
+            <Button TabIndex="12" Command="{Binding ModifyReciboCmd2}" Content="Guardar y finalizar" Height="25" Margin="15,0"
+                    Style="{StaticResource btnElara}" Width="126" HorizontalAlignment="Right" Click="Button_Click_2" />
+            <Button TabIndex="13" Grid.Column="1"  Style="{StaticResource btnElara}" Content="Cancelar" Margin="15,0"
+                    Height="23"  Width="75" HorizontalAlignment="Right" Click="Button_Click_1" />
+        </Grid>
+        <!--<DockPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" DockPanel.Dock="Bottom" Height="34">
             <Button Style="{StaticResource btnElara}" Content="Guardar Avance"  Height="25" Width="126" HorizontalAlignment="Center" Click="Button_Click" Command="{Binding ModifyReciboCmd}" />
             <Button Command="{Binding ModifyReciboCmd2}" Content="Guardar y finalizar" Height="25" Style="{StaticResource btnElara}" Width="126" HorizontalAlignment="Center" Click="Button_Click_2" />
             <Button Style="{StaticResource btnElara}" Content="Cancelar" Height="23"  Width="75" HorizontalAlignment="Center" Click="Button_Click_1" />
             
-        </DockPanel>
+        </DockPanel>-->
     </DockPanel>
 </Window>

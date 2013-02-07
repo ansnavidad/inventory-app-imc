@@ -136,17 +136,17 @@
                               Width="180" Text="{Binding ItemModel.NumeroSerie, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     <Label Grid.Row="1" Content="SKU:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" 
                        HorizontalAlignment="Right" Name="label11" VerticalAlignment="Center" Foreground="#848484" />
-                    <TextBox Grid.Column="1" Grid.Row="1" TabIndex="11" Height="23" HorizontalAlignment="Left" MaxLength="32" Name="textBoxGuía"
+                    <TextBox Grid.Column="1" Grid.Row="1" TabIndex="1" Height="23" HorizontalAlignment="Left" MaxLength="32" Name="textBoxGuía"
                              Text="{Binding ItemModel.Sku, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
-                    <CheckBox Grid.Column="3" TabIndex="7" Content="Propiedad :" Height="16" Name="checkBox1" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
+                    <CheckBox Grid.Column="3" TabIndex="2" Content="Propiedad :" Height="16" Name="checkBox1" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
                               Foreground="#848484" VerticalAlignment="Center" Checked="checkBox1_Checked" Unchecked="checkBox1_Unchecked" HorizontalAlignment="Right" />
-                    <ComboBox Grid.Column="4" TabIndex="8" DisplayMemberPath="PROPIEDAD1" Height="23" HorizontalAlignment="Left" 
+                    <ComboBox Grid.Column="4" TabIndex="3" DisplayMemberPath="PROPIEDAD1" Height="23" HorizontalAlignment="Left" 
                               ItemsSource="{Binding CatalogPropiedad.Propiedad, Mode=OneWay}" Name="comboPropiedad" 
                               SelectedItem="{Binding ItemModel.Propiedad, Mode=TwoWay}" SelectedValuePath="UNID_PROPIEDAD"
                               VerticalAlignment="Center" Width="180" IsEnabled="False" />
                     <Label Grid.Row="1" Content="Proveedor:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
                            HorizontalAlignment="Right" Name="categotia" VerticalAlignment="Center" Grid.Column="3" />
-                    <ComboBox  Grid.Column="4" Grid.Row="1"  TabIndex="3" DisplayMemberPath="PROVEEDOR_NAME" Height="23" IsEnabled="{Binding Path=FillWithItemDetallesAnterior}"
+                    <ComboBox  Grid.Column="4" Grid.Row="1"  TabIndex="4" DisplayMemberPath="PROVEEDOR_NAME" Height="23" IsEnabled="{Binding Path=FillWithItemDetallesAnterior}"
                                HorizontalAlignment="Left" ItemsSource="{Binding CatalogProveedor.Proveedor, Mode=OneWay}" 
                                Name="comboBox5" SelectedItem="{Binding ItemModel.Proveedor, Mode=TwoWay}" 
                                SelectedValuePath="UNID_PROVEEDOR" VerticalAlignment="Center" Width="180" SelectedIndex="1"/>
@@ -158,12 +158,12 @@
                         <ColumnDefinition Width="145"/>
                         <ColumnDefinition Width="393"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" TabIndex="14" Content="Agregar Item" Height="23" IsEnabled="{Binding Path=FillWithItemDetallesAnterior}"
+                    <Button Grid.Column="0" TabIndex="5" Content="Agregar Item" Height="23" IsEnabled="{Binding Path=FillWithItemDetallesAnterior}"
                             HorizontalAlignment="Center"  Name="btnAgregarItem" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}" Click="btnAgregarItem_Click" />
                     <Button Grid.Column="1" Command="{Binding DeleteItemDetallesCommand, Mode=OneWay}" Content="Borrar Item" Height="23" 
-                            Name="btnBorrarItem" TabIndex="14" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
+                            Name="btnBorrarItem" TabIndex="6" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
-                <DataGrid Grid.Row="3" CanUserAddRows="False" AutoGenerateColumns="False" Height="120" HorizontalAlignment="Stretch" 
+                <DataGrid TabIndex="7" Grid.Row="3" CanUserAddRows="False" AutoGenerateColumns="False" Height="120" HorizontalAlignment="Stretch" 
                           ItemsSource="{Binding ItemModelCollection}" Name="dataGridItme" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                     <DataGrid.Columns>
@@ -191,11 +191,11 @@
                         <ColumnDefinition Width="145" />
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="1" Command="{Binding DeleteFacturaCommand, Mode=OneWay}" Content="Borrar Factura" Height="23" 
-                            Name="button5" TabIndex="14" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" Margin="13,9,12,8" />
-                    <Button  Content="Crear Factura" Height="23" HorizontalAlignment="Center" Margin="15,9,10,8" Name="button7" Style="{StaticResource btnElara}" TabIndex="14" VerticalAlignment="Center" Width="120" Grid.Column="4" Click="button7_Click" IsEnabled="{Binding Path=FillWithItemDetalles}"/>
-                    <Button Content="Enlazar Factura" Height="23" HorizontalAlignment="Center" Margin="12,9,13,8" Name="button8" Style="{StaticResource btnElara}" TabIndex="14" VerticalAlignment="Center" Width="120" IsEnabled="{Binding Path=FillWithItemDetalles}" Click="button8_Click" />
+                            Name="button5" TabIndex="9" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" Margin="13,9,12,8" />
+                    <Button  Content="Crear Factura" Height="23" HorizontalAlignment="Center" Margin="15,9,10,8" Name="button7" Style="{StaticResource btnElara}" TabIndex="10" VerticalAlignment="Center" Width="120" Grid.Column="4" Click="button7_Click" IsEnabled="{Binding Path=FillWithItemDetalles}"/>
+                    <Button TabIndex="8" Content="Enlazar Factura" Height="23" HorizontalAlignment="Center" Margin="12,9,13,8" Name="button8" Style="{StaticResource btnElara}" VerticalAlignment="Center" Width="120" IsEnabled="{Binding Path=FillWithItemDetalles}" Click="button8_Click" />
                 </Grid>
-                <DataGrid Grid.Row="6" VerticalScrollBarVisibility="Auto"
+                <DataGrid Grid.Row="6" VerticalScrollBarVisibility="Auto" TabIndex="11"
                           AutoGenerateColumns="False" ItemsSource="{Binding FacturaCollection}" CanUserAddRows="False"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                           Height="120" HorizontalAlignment="Stretch" Name="dataGrid1" VerticalAlignment="Stretch">
@@ -221,12 +221,12 @@
                         <ColumnDefinition Width="145"/>
                         <ColumnDefinition Width="393"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" TabIndex="16" Content="Agregar Destinos" Height="23" HorizontalAlignment="Center" IsEnabled="{Binding Path=FillWithDestinos2}"
+                    <Button Grid.Column="0" TabIndex="12" Content="Agregar Destinos" Height="23" HorizontalAlignment="Center" IsEnabled="{Binding Path=FillWithDestinos2}"
                             Name="button1" VerticalAlignment="Center" Click="button1_Click" Width="120" Style="{StaticResource btnElara}"/>
-                    <Button Grid.Column="1" TabIndex="15" Command="{Binding DeleteDestinosCommand, Mode=OneWay}" Content="Borrar Destinos" Height="23"
+                    <Button Grid.Column="1" TabIndex="13" Command="{Binding DeleteDestinosCommand, Mode=OneWay}" Content="Borrar Destinos" Height="23"
                             HorizontalAlignment="Center" Name="button4" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
                 </Grid>
-                <DataGrid Grid.Row="9" CanUserAddRows="False" AutoGenerateColumns="False" Height="120" HorizontalAlignment="Stretch" 
+                <DataGrid TabIndex="13" Grid.Row="9" CanUserAddRows="False" AutoGenerateColumns="False" Height="120" HorizontalAlignment="Stretch" 
                           ItemsSource="{Binding UltimoMovimiento}" Name="dataGrid2" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                     <DataGrid.Columns>
@@ -277,10 +277,10 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="1" TabIndex="17" Style="{StaticResource btnElara}" Command="{Binding Path=GuardarCommand}"
+                <Button Grid.Column="1" TabIndex="14" Style="{StaticResource btnElara}" Command="{Binding Path=GuardarCommand}"
                         Content="Guardar" Height="30" HorizontalAlignment="Center" Name="button2" VerticalAlignment="Center" Width="120" Click="button2_Click" />
                 <Button Grid.Column="2" Command="{Binding UpdateItemCommand, Mode=OneWay}" Content="Cancelar" Height="30" HorizontalAlignment="Center"
-                        Name="button6" TabIndex="17" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
+                        Name="button6" TabIndex="15" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
             </Grid>
         </Border>
     </Grid>

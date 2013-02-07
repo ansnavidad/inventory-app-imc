@@ -202,7 +202,7 @@
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                           Height="120" HorizontalAlignment="Stretch" Name="dataGrid1" VerticalAlignment="Stretch">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Elimiar" Width="*">
+                        <DataGridTemplateColumn Header="Elimiar" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

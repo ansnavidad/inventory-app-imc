@@ -146,7 +146,7 @@
                               VerticalAlignment="Center" Width="180" IsEnabled="False" />
                     <Label Grid.Row="1" Content="Proveedor:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
                            HorizontalAlignment="Right" Name="categotia" VerticalAlignment="Center" Grid.Column="3" />
-                    <ComboBox  Grid.Column="4" Grid.Row="1"  TabIndex="3" DisplayMemberPath="PROVEEDOR_NAME" Height="23"
+                    <ComboBox  Grid.Column="4" Grid.Row="1"  TabIndex="3" DisplayMemberPath="PROVEEDOR_NAME" Height="23" IsEnabled="{Binding Path=FillWithItemDetallesAnterior}"
                                HorizontalAlignment="Left" ItemsSource="{Binding CatalogProveedor.Proveedor, Mode=OneWay}" 
                                Name="comboBox5" SelectedItem="{Binding ItemModel.Proveedor, Mode=TwoWay}" 
                                SelectedValuePath="UNID_PROVEEDOR" VerticalAlignment="Center" Width="180" SelectedIndex="1"/>
@@ -178,7 +178,7 @@
                         <DataGridTextColumn x:Name="articulo" Binding="{Binding Path=Articulo.ARTICULO1}" Header="Artículo" IsReadOnly="True" Width="*" />
                         <DataGridTextColumn x:Name="cantidad" Binding="{Binding Path=CantidadItem}" Header="Cantidad" IsReadOnly="True" Width="*" />
                         <DataGridTextColumn x:Name="equipo" Binding="{Binding Path=Equipo.EQUIPO_NAME}" Header="Equipo" IsReadOnly="True" Width="*" />
-                        <DataGridTextColumn x:Name="costoUnitario" Binding="{Binding Path=CostoUnitario}" Header="Costo Unitario" IsReadOnly="True" Width="*" />                        
+                        <DataGridTextColumn x:Name="costoUnitario" Binding="{Binding Path=CostoUnitario, StringFormat=C2}" Header="Costo Unitario" IsReadOnly="True" Width="*" />                        
                     </DataGrid.Columns>
                 </DataGrid>
                 <Border Grid.Row="4" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
@@ -190,12 +190,12 @@
                         <ColumnDefinition Width="145" />
                         <ColumnDefinition Width="145" />
                     </Grid.ColumnDefinitions>
-                    <Button TabIndex="14" Content="Enlazar Factura" Height="23" IsEnabled="{Binding Path=FillWithItemDetalles}"
-                            HorizontalAlignment="Center"  Name="button3" VerticalAlignment="Center" Click="button3_Click" Width="120" Style="{StaticResource btnElara}" Margin="12,9,13,8" />
+                    <Button TabIndex="14" Content="Modificar Factura" Height="23" IsEnabled="{Binding Path=FillWithItemDetalles}"
+                            HorizontalAlignment="Center"  Name="button3" VerticalAlignment="Center" Click="button3_Click" Width="120" Style="{StaticResource btnElara}" Margin="14,9,11,8" Grid.Column="3" />
                     <Button Grid.Column="1" Command="{Binding DeleteFacturaCommand, Mode=OneWay}" Content="Borrar Factura" Height="23" 
                             Name="button5" TabIndex="14" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" Margin="13,9,12,8" />
                     <Button  Content="Crear Factura" Height="23" HorizontalAlignment="Center" Margin="15,9,10,8" Name="button7" Style="{StaticResource btnElara}" TabIndex="14" VerticalAlignment="Center" Width="120" Grid.Column="4" Click="button7_Click" IsEnabled="{Binding Path=FillWithItemDetalles}"/>
-                    <Button Content="Modificar Factura" Height="23" HorizontalAlignment="Center" Margin="13,9,12,8" Name="button8" Style="{StaticResource btnElara}" TabIndex="14" VerticalAlignment="Center" Width="120" Grid.Column="3" IsEnabled="{Binding Path=FillWithItemDetalles}"/>
+                    <Button Content="Enlazar Factura" Height="23" HorizontalAlignment="Center" Margin="12,9,13,8" Name="button8" Style="{StaticResource btnElara}" TabIndex="14" VerticalAlignment="Center" Width="120" IsEnabled="{Binding Path=FillWithItemDetalles}" Click="button8_Click" />
                 </Grid>
                 <DataGrid Grid.Row="6" VerticalScrollBarVisibility="Auto"
                           AutoGenerateColumns="False" ItemsSource="{Binding FacturaCollection}" CanUserAddRows="False"
@@ -223,7 +223,7 @@
                         <ColumnDefinition Width="145"/>
                         <ColumnDefinition Width="393"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" TabIndex="16" Content="Agregar Destinos" Height="23" HorizontalAlignment="Center" IsEnabled="{Binding Path=FillWithIFactura}"
+                    <Button Grid.Column="0" TabIndex="16" Content="Agregar Destinos" Height="23" HorizontalAlignment="Center" IsEnabled="{Binding Path=FillWithDestinos2}"
                             Name="button1" VerticalAlignment="Center" Click="button1_Click" Width="120" Style="{StaticResource btnElara}"/>
                     <Button Grid.Column="1" TabIndex="15" Command="{Binding DeleteDestinosCommand, Mode=OneWay}" Content="Borrar Destinos" Height="23"
                             HorizontalAlignment="Center" Name="button4" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />

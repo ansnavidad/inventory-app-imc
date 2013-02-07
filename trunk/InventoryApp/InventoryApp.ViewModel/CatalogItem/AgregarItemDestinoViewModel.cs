@@ -107,6 +107,9 @@ namespace InventoryApp.ViewModel.CatalogItem
             if (this.AgregarItemViewModel.ItemModel.CantidadItem >= total )
                 _canAddItem = true;
 
+            if (this.AgregarItemDestinoModel.Cantidad == 0)
+                _canAddItem = false;
+
             return _canAddItem;
         }
 
@@ -115,7 +118,20 @@ namespace InventoryApp.ViewModel.CatalogItem
             UltimoMovimientoModel movimiento = new UltimoMovimientoModel(this._agregarItemDestinoModel.Almacen, this._agregarItemDestinoModel.Cliente, this._agregarItemDestinoModel.Proveedor);
             movimiento.Cantidad = this._agregarItemDestinoModel.Cantidad;
             this.AgregarItemViewModel.UltimoMovimiento.Add(movimiento);
-           
+            this.AgregarItemViewModel.FillWithIFactura = false;
+            this.AgregarItemViewModel.FillWithDestinos = true;
+            this.AgregarItemViewModel.FillWithDestinos2 = true;
+
+            int total = 0;
+            foreach (UltimoMovimientoModel um in this._agregarItemViewModel.UltimoMovimiento)
+            {
+                total += um.Cantidad;
+            }
+            
+            if (this.AgregarItemViewModel.ItemModel.CantidadItem == total)
+                this.AgregarItemViewModel.FillWithDestinos2 = false;
+            else
+                this.AgregarItemViewModel.FillWithDestinos2 = true;                
         }
         #endregion
 

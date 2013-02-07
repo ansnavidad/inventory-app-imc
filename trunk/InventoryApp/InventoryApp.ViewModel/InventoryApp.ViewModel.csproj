@@ -196,6 +196,7 @@
     <Compile Include="Recibo\AddMovimientoViewModel.cs" />
     <Compile Include="Recibo\AddReciboViewModel.cs" />
     <Compile Include="Recibo\CatalogReciboViewModel.cs" />
+    <Compile Include="Recibo\FacturaCatalogAgregarItemViewModel.cs" />
     <Compile Include="Recibo\FacturaCatalogViewModel.cs" />
     <Compile Include="Recibo\FacturaCompraViewModel.cs" />
     <Compile Include="Entradas\EntradaPorValidacionViewModel.cs" />

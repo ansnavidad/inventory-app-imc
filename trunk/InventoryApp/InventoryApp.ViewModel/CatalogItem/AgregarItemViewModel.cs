@@ -149,6 +149,8 @@ namespace InventoryApp.ViewModel.CatalogItem
             {                
                 this.FillWithItemDetalles = true;
                 this.FillWithIFactura = false;
+                this.FillWithDestinos = false;
+                this.FillWithDestinos2 = false;
                 this.FacturaCollection = new ObservableCollection<FacturaCompraModel>();
             }
         }
@@ -214,7 +216,30 @@ namespace InventoryApp.ViewModel.CatalogItem
         }
         public void AttempDeleteDestinos()
         {
+            bool aux = false;
 
+            List<long> borrarUM = new List<long>();
+            for (int i = 0; i < this.UltimoMovimiento.Count;) {
+
+                if (this.UltimoMovimiento[i].IsChecked)
+                {
+                    aux = true;
+                    borrarUM.Add(i);
+                    this.UltimoMovimiento.RemoveAt(i);
+                }
+                else {
+
+                    i++;
+                }
+            }
+
+            if (aux)
+            {                
+                this.FillWithDestinos2 = true;
+            }
+
+            if (this.UltimoMovimiento.Count == 0)
+                FillWithIFactura = true;
         }
 
         public bool FillWithDestinos
@@ -231,6 +256,21 @@ namespace InventoryApp.ViewModel.CatalogItem
         }
         private bool _FillWithDestinos;
         public const string FillWithDestinosPropertyName = "FillWithDestinos";
+        
+        public bool FillWithDestinos2
+        {
+            get { return _FillWithDestinos2; }
+            set
+            {
+                if (_FillWithDestinos2 != value)
+                {
+                    _FillWithDestinos2 = value;
+                    OnPropertyChanged(FillWithDestinos2PropertyName);
+                }
+            }
+        }
+        private bool _FillWithDestinos2;
+        public const string FillWithDestinos2PropertyName = "FillWithDestinos2";
 
         /// <summary>
         /// Relay Command para GUARDAR
@@ -250,7 +290,7 @@ namespace InventoryApp.ViewModel.CatalogItem
 
         public bool CanAttempGuardar()
         {
-            if (FillWithDestinos && !_numeroSerie.Equals("") && !_sku.Equals(""))
+            if (FillWithDestinos && !FillWithDestinos2 && !String.IsNullOrEmpty(ItemModel.NumeroSerie) && !String.IsNullOrEmpty(ItemModel.Sku))
                 return true;
             return false;
         }
@@ -638,6 +678,11 @@ namespace InventoryApp.ViewModel.CatalogItem
         public AddFacturaViewModel CreateAddFacturaViewModel()
         {
             AddFacturaViewModel addFacturaViewModel = new AddFacturaViewModel(this);
+            return addFacturaViewModel;
+        }
+        public FacturaCatalogAgregarItemViewModel CreateModifyFacturaViewModel()
+        {
+            FacturaCatalogAgregarItemViewModel addFacturaViewModel = new FacturaCatalogAgregarItemViewModel(this);
             return addFacturaViewModel;
         }
         

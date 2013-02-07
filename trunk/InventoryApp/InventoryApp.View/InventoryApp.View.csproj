@@ -174,6 +174,9 @@
     <Compile Include="CatalogProgramado\CatalogProgramado.xaml.cs">
       <DependentUpon>CatalogProgramado.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Recibo\FacturaCatalogAgregarItem.xaml.cs">
+      <DependentUpon>FacturaCatalogAgregarItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Recibo\FacturaCatalogView.xaml.cs">
       <DependentUpon>FacturaCatalogView.xaml</DependentUpon>
     </Compile>
@@ -747,6 +750,10 @@
     <Page Include="CatalogProgramado\CatalogProgramado.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Recibo\FacturaCatalogAgregarItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Recibo\FacturaCatalogView.xaml">
       <Generator>MSBuild:Compile</Generator>

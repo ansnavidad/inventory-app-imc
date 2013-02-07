@@ -34,14 +34,12 @@ namespace InventoryApp.View.CatalogItem
             addFactura.DataContext = viewModel.CreateAgregarFacturaViewModel(); ;
             addFactura.ShowDialog();
         }
-
-
-
+        
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             AddDestinoView addFactura = new AddDestinoView();
             AgregarItemViewModel viewModel = this.DataContext as AgregarItemViewModel;
-            addFactura.DataContext = viewModel.CreateAgregarDestinoViewModel(); ;
+            addFactura.DataContext = viewModel.CreateAgregarDestinoViewModel();
             addFactura.Show();
         }
 
@@ -81,6 +79,14 @@ namespace InventoryApp.View.CatalogItem
             DlgAddFacturaView addFactura = new DlgAddFacturaView();
             AgregarItemViewModel viewModel = this.ConvertDataContext(this.DataContext);
             addFactura.DataContext = viewModel.CreateAddFacturaViewModel();
+            addFactura.ShowDialog();
+        }
+
+        private void button8_Click(object sender, RoutedEventArgs e)
+        {
+            FacturaCatalogAgregarItem addFactura = new FacturaCatalogAgregarItem();
+            AgregarItemViewModel viewModel = this.ConvertDataContext(this.DataContext);            
+            addFactura.DataContext = viewModel.CreateModifyFacturaViewModel();
             addFactura.ShowDialog();
         }
     }

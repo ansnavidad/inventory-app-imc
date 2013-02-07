@@ -391,7 +391,9 @@ namespace InventoryApp.ViewModel.Recibo
                     fac.Factura = factura;
                     fac.saveFacturaDetalle();
                 }
-                this._FacturaCatalogViewModel.Facturas = this.GetFacturas();
+
+                if (this._FacturaCatalogViewModel != null)
+                    this._FacturaCatalogViewModel.Facturas = this.GetFacturas();
             }
             else
             {

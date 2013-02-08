@@ -17,7 +17,8 @@ namespace InventoryApp.ViewModel.Recibo
     {
         private CatalogItemStatusModel _catalogItemStatusModel;
         private AgregarItemViewModel _AgregarItemViewModel;
-                
+        private ModifyItemViewModel _ModifyItemViewModel;
+
         #region RelayCommands
         
         public bool ContB
@@ -53,11 +54,19 @@ namespace InventoryApp.ViewModel.Recibo
 
         private void AttemptSelectFactura()
         {
-            this._AgregarItemViewModel.FillWithIFactura = false;
-            this._AgregarItemViewModel.FillWithDestinos = true;
-            this._AgregarItemViewModel.FillWithDestinos2 = true;
-            this._AgregarItemViewModel.Factura = SelectedFactura;
-            this._AgregarItemViewModel.FacturaCollection.Add(SelectedFactura);
+            if (this._AgregarItemViewModel != null)
+            {
+                this._AgregarItemViewModel.FillWithIFactura = false;
+                this._AgregarItemViewModel.FillWithDestinos = true;
+                this._AgregarItemViewModel.FillWithDestinos2 = true;
+                this._AgregarItemViewModel.Factura = SelectedFactura;
+                this._AgregarItemViewModel.FacturaCollection.Add(SelectedFactura);
+            }
+            else {
+
+                this._ModifyItemViewModel.Factura = SelectedFactura;
+                this._ModifyItemViewModel.FacturaCollection.Add(SelectedFactura);
+            }
         }
 
         private bool CanAttemptSelectFactura()
@@ -360,15 +369,27 @@ namespace InventoryApp.ViewModel.Recibo
             {
                 if (_SelectedFactura != value)
                 {
-                    _SelectedFactura = value;
-                    this._AgregarItemViewModel.FillWithItemDetalles = false;
-                    this._AgregarItemViewModel.FillWithDestinos2 = true;
-                    this._AgregarItemViewModel.FillWithIFactura = true;                    
-                    this._AgregarItemViewModel.Factura = SelectedFactura;
-                    this._AgregarItemViewModel.FacturaCollection = new ObservableCollection<FacturaCompraModel>();
-                    this._AgregarItemViewModel.FacturaCollection.Add(SelectedFactura);
-                    this.CheckCerrar = true;
-                    OnPropertyChanged(SelectedFacturaPropertyName);
+                    if (this._AgregarItemViewModel != null)
+                    {
+                        _SelectedFactura = value;
+                        this._AgregarItemViewModel.FillWithItemDetalles = false;
+                        this._AgregarItemViewModel.FillWithDestinos2 = true;
+                        this._AgregarItemViewModel.FillWithIFactura = true;
+                        this._AgregarItemViewModel.Factura = SelectedFactura;
+                        this._AgregarItemViewModel.FacturaCollection = new ObservableCollection<FacturaCompraModel>();
+                        this._AgregarItemViewModel.FacturaCollection.Add(SelectedFactura);
+                        this.CheckCerrar = true;
+                        OnPropertyChanged(SelectedFacturaPropertyName);
+                    }
+                    else {
+
+                        _SelectedFactura = value;
+                        this._ModifyItemViewModel.Factura = SelectedFactura;
+                        this._ModifyItemViewModel.FacturaCollection = new ObservableCollection<FacturaCompraModel>();
+                        this._ModifyItemViewModel.FacturaCollection.Add(SelectedFactura);
+                        this.CheckCerrar = true;
+                        OnPropertyChanged(SelectedFacturaPropertyName);
+                    }
                 }
             }
         }
@@ -418,6 +439,13 @@ namespace InventoryApp.ViewModel.Recibo
             this.init();
         }
 
+        public FacturaCatalogAgregarItemViewModel(ModifyItemViewModel modifyItemViewModel)
+        {
+            this._ModifyItemViewModel = modifyItemViewModel;
+            this.ContB = true;
+            this.init();
+        }
+
         public void init()
         {
             this._DelFacturas = new List<long>();
@@ -439,8 +467,11 @@ namespace InventoryApp.ViewModel.Recibo
         private ObservableCollection<FacturaCompraModel> GetFacturas()
         {
             FacturaCompraDataMapper fcDataMapper = new FacturaCompraDataMapper();
-
-            List<FACTURA> facturaList = fcDataMapper.GetFacturaListCatalog();
+            List<FACTURA> facturaList;
+            if(this._AgregarItemViewModel != null)
+                facturaList = fcDataMapper.GetFacturaListProveedor(this._AgregarItemViewModel.ItemModel.Proveedor.UNID_PROVEEDOR);
+            else
+                facturaList = fcDataMapper.GetFacturaListProveedor(this._ModifyItemViewModel.ItemModel.Proveedor.UNID_PROVEEDOR);
 
             ObservableCollection<FacturaCompraModel> facturas = new ObservableCollection<FacturaCompraModel>();
 

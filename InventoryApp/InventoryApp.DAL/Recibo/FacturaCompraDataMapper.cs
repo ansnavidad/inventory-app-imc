@@ -200,6 +200,27 @@ namespace InventoryApp.DAL.Recibo
             }
         }
 
+        public List<FACTURA> GetFacturaListProveedor(long IdProv)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                List<FACTURA> FacturasDB = (from f in entity.FACTURAs
+                                                .Include("MONEDA")
+                                                .Include("PROVEEDOR")
+                                                .Include("TIPO_PEDIMENTO")
+                                                .Include("FACTURA_DETALLE.ARTICULO")
+                                                .Include("FACTURA_DETALLE.ARTICULO.EQUIPO")
+                                                .Include("FACTURA_DETALLE.ARTICULO.CATEGORIA")
+                                                .Include("FACTURA_DETALLE.ARTICULO.MARCA")
+                                                .Include("FACTURA_DETALLE.ARTICULO.MODELO")
+                                                .Include("FACTURA_DETALLE.UNIDAD")
+                                            where f.IS_ACTIVE == true && f.PROVEEDOR.UNID_PROVEEDOR == IdProv
+                                            select f).ToList();
+
+                return FacturasDB;
+            }
+        }
+
         public object getElements()
         {
             throw new NotImplementedException();

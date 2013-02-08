@@ -579,7 +579,7 @@ namespace InventoryApp.Model
             aux.SKU = this.Sku;
             aux.NUMERO_SERIE = this.NumeroSerie;
             this.Error = "";
-           
+
             ITEM res = (this._dataMapper.getElement(aux)) as ITEM;
             this.init();
             if (res != null)
@@ -595,7 +595,7 @@ namespace InventoryApp.Model
                 this.CantidadItem = res.CANTIDAD;
                 this.Propiedad = res.PROPIEDAD;
 
-                
+
 
                 this.FacturaDetalle = res.FACTURA_DETALLE;
                 FACTURA temp = new FACTURA();
@@ -634,6 +634,62 @@ namespace InventoryApp.Model
                     if (i.UNID_ARTICULO == res.ARTICULO.UNID_ARTICULO)
                         this.Articulo = i;
                 }
+            }
+            else
+            {
+                this.Error = "El número de serie o SKU no existe";
+            }
+        }
+
+        public void getElement2()
+        {
+            ITEM aux = new ITEM();
+            aux.SKU = this.Sku;
+            aux.NUMERO_SERIE = this.NumeroSerie;
+            this.Error = "";
+           
+            ITEM res = (this._dataMapper.getElement(aux)) as ITEM;
+            this.init();
+            if (res != null)
+            {
+                this._unidItem = res.UNID_ITEM;
+                this.NumeroSerie = res.NUMERO_SERIE;
+                this.Sku = res.SKU;
+                this.ItemStatus = res.ITEM_STATUS;
+                this.FacturaDetalle = res.FACTURA_DETALLE;
+                this.CostoUnitario = res.COSTO_UNITARIO;
+                this.PedimentoExpo = res.PEDIMENTO_EXPO;
+                this.PedimentoImpo = res.PEDIMENTO_IMPO;
+                this.CantidadItem = res.CANTIDAD;
+                this.Propiedad = res.PROPIEDAD;
+                this.Proveedor.UNID_PROVEEDOR = res.FACTURA_DETALLE.FACTURA.PROVEEDOR.UNID_PROVEEDOR;
+                this.Proveedor.PROVEEDOR_NAME = res.FACTURA_DETALLE.FACTURA.PROVEEDOR.PROVEEDOR_NAME;
+
+                this.FacturaDetalle = res.FACTURA_DETALLE;
+                
+                foreach (DeleteFacturaDetalleModel d in this.Detalles)
+                {
+                    if (this.FacturaDetalle != null)
+                    {
+                        if (d.UNID_FACTURA_DETALE == this.FacturaDetalle.UNID_FACTURA_DETALE)
+                            this.FacturaDetalle = d;
+                    }
+                    else
+                        this.FacturaDetalle = new FACTURA_DETALLE();
+                }
+
+                CategoriaDataMapper datacat = new CategoriaDataMapper();
+                CATEGORIA auxcat = datacat.getElementByArticulo(res.ARTICULO);
+                
+                this.Categoria = auxcat;
+                this.Articulo = res.ARTICULO;
+
+                List<EQUIPO> auxEquipo = new List<EQUIPO>();
+                auxEquipo.Add(new EQUIPO());
+                auxEquipo[0].UNID_EQUIPO = this.Articulo.UNID_EQUIPO;
+                EquipoDataMapper eq = new EquipoDataMapper();
+                auxEquipo = (List<EQUIPO>)eq.getElement(auxEquipo[0]);
+                this.Equipo = auxEquipo[0];
             }
             else
             {

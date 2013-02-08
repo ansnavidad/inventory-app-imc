@@ -151,7 +151,7 @@ namespace InventoryApp.DAL
                         var query2 = (from cust in entity.ALMACEN_TECNICO
                                      where poco.UNID_ALMACEN == cust.UNID_ALMACEN && poco.UNID_TECNICO == cust.UNID_TECNICO
                                      select cust).ToList().First();
-                        poco.IS_ACTIVE = true;
+                        query2.IS_ACTIVE = true;
                         //Sync
                         query2.IS_MODIFIED = true;
                         query2.LAST_MODIFIED_DATE = UNID.getNewUNID();
@@ -162,7 +162,7 @@ namespace InventoryApp.DAL
                     //Inserción
                     else
                     {
-                        poco.IS_ACTIVE = true;
+                        poco.IS_ACTIVE = true;                        
                         //Sync
                         poco.IS_MODIFIED = true;
                         poco.LAST_MODIFIED_DATE = UNID.getNewUNID();

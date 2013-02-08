@@ -8,6 +8,7 @@ using InventoryApp.DAL;
 using System.ServiceModel.Activation;
 using InventoryApp.Model;
 using InventoryApp.DAL.Recibo;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.Service.Services
 {
@@ -919,5 +920,34 @@ namespace InventoryApp.Service.Services
             return respuesta;
         }
 
+        public bool GetLogin(string dataUser)
+        {
+            #region propiedades
+            bool respuesta = false;
+            USUARIO user;
+            AppUsuario dataMapper = new AppUsuario();
+            #endregion
+
+            #region metodos
+            if (dataUser != null)
+            {
+                user = dataMapper.GetDeserializePocoUsuario(dataUser);
+
+                if (user!=null)
+                    respuesta = dataMapper.GetElementLogin(user);   
+            }
+            return respuesta;
+            #endregion
+        }
+
+        public string GetRecoverPassword(string dataUser)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetRegisterUser(string dataUser)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

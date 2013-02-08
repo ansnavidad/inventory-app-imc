@@ -61,6 +61,7 @@ namespace InventoryApp.DAL
                          UNID_ALMACEN = row.UNID_ALMACEN,
                          UNID_TECNICO = row.UNID_TECNICO,
                          IS_MODIFIED = row.IS_MODIFIED,
+                         IS_ACTIVE = row.IS_ACTIVE,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
                      });
                  });
@@ -109,6 +110,7 @@ namespace InventoryApp.DAL
                          UNID_ALMACEN = row.UNID_ALMACEN,
                          UNID_TECNICO = row.UNID_TECNICO,
                          IS_MODIFIED = row.IS_MODIFIED,
+                         IS_ACTIVE = row.IS_ACTIVE,
                          LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
                      });
                  });

@@ -26,10 +26,12 @@ namespace InventoryApp.Model
         }
         public DeleteItemStatus(ITEM_STATUS itemStatus)
         {
-            this.ITEM_STATUS_NAME = itemStatus.ITEM_STATUS_NAME;
-            this.UNID_ITEM_STATUS = itemStatus.UNID_ITEM_STATUS;
-            this.IS_ACTIVE = itemStatus.IS_ACTIVE;
-            
+            if (itemStatus != null)
+            {
+                this.ITEM_STATUS_NAME = itemStatus.ITEM_STATUS_NAME;
+                this.UNID_ITEM_STATUS = itemStatus.UNID_ITEM_STATUS;
+                this.IS_ACTIVE = itemStatus.IS_ACTIVE;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

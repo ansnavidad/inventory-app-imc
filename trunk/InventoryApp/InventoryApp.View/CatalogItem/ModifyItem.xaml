@@ -21,7 +21,7 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <Border BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Label Style="{StaticResource titleLabel}" Content="AGREGAR ITEM" Height="28" HorizontalAlignment="Left" Name="lblNameConsulta" Width="AUTO" />
+            <Label Style="{StaticResource titleLabel}" Content="MODIFICAR ITEM" Height="28" HorizontalAlignment="Left" Name="lblNameConsulta" Width="AUTO" />
         </Border>
         <ScrollViewer Grid.Row="1"  >
             <ScrollViewer.Resources>
@@ -135,11 +135,11 @@
                     <Label Grid.Row="1" Content="Número de Serie:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
                        HorizontalAlignment="Right" Name="transporte" VerticalAlignment="Center"/>
                     <TextBox Grid.Column="1" Grid.Row="1"  TabIndex="1" MaxLength="512" Height="23" HorizontalAlignment="Left" Name="txtNomreStatus" VerticalAlignment="Center"
-                              Width="180" Text="{Binding ItemModel.NumeroSerie, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                              Width="180" Text="{Binding NumeroSerie, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     <Label Grid.Row="2" Content="SKU:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" 
                        HorizontalAlignment="Right" Name="label11" VerticalAlignment="Center" Foreground="#848484" />
                     <TextBox Grid.Column="1" Grid.Row="2" TabIndex="11" Height="23" HorizontalAlignment="Left" MaxLength="32" Name="textBoxGuía"
-                             Text="{Binding ItemModel.Sku, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
+                             Text="{Binding Sku, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
                     <Label Content="Buscar Item :" Grid.RowSpan="2" Height="28" HorizontalAlignment="Left" FontFamily="Arial Rounded MT" FontSize="15" 
                            Name="label5" VerticalAlignment="Top" FontStretch="Normal" Foreground="#848484" />
                     <Button  Grid.Column="3"  Grid.Row="1" Command="{Binding ModifyItemCommand, Mode=OneWay}" Content="Buscar" HorizontalAlignment="Stretch" 
@@ -185,7 +185,7 @@
                     <Label Content="Editar Item :" FontFamily="Arial Rounded MT" FontSize="15" FontStretch="Normal" Foreground="#848484" Height="28" 
                            HorizontalAlignment="Left" Name="label6" VerticalAlignment="Center" />
                     <TextBox Grid.Column="4" Grid.Row="2" Height="23" HorizontalAlignment="Left" IsEnabled="False"
-                             Name="textBlock4" Text="{Binding ItemModel.Proveedor.PROVEEDOR_NAME, Mode=TwoWay}" VerticalAlignment="Center" Width="180"  />
+                             Name="textBlock4" Text="{Binding ProveedorModel, Mode=TwoWay}" VerticalAlignment="Center" Width="180"  />
                 </Grid>
                 
                 <DataGrid Grid.Row="4" CanUserAddRows="False" AutoGenerateColumns="False" Height="90" HorizontalAlignment="Stretch" 
@@ -213,10 +213,10 @@
                             Style="{StaticResource btnElara}"  />
                     <Button  Content="Crear Factura" Height="23" HorizontalAlignment="Center" 
                              Name="button7" Style="{StaticResource btnElara}" TabIndex="14" VerticalAlignment="Center" Width="120"
-                             Grid.Column="4"  IsEnabled="{Binding Path=FillWithItemDetalles}"/>
+                             Grid.Column="4"  IsEnabled="{Binding Path=FillWithItemDetalles}" Click="button7_Click" />
                     <Button Content="Enlazar Factura" Height="23" HorizontalAlignment="Center" 
                             Name="button8" Style="{StaticResource btnElara}" TabIndex="14" VerticalAlignment="Center" Width="120" 
-                            IsEnabled="{Binding Path=FillWithItemDetalles}" />
+                            IsEnabled="{Binding Path=FillWithItemDetalles}" Click="button8_Click" />
                 </Grid>
                 <DataGrid Grid.Row="7" VerticalScrollBarVisibility="Auto"
                           AutoGenerateColumns="False" ItemsSource="{Binding FacturaCollection}" CanUserAddRows="False"
@@ -245,21 +245,8 @@
                     <DataGrid.Columns>
                         
                         <DataGridTextColumn x:Name="dataGridTextColumn1" Binding="{Binding Path=Lugar}" Header="Destino" IsReadOnly="True" Width="*" />
-                        <DataGridTemplateColumn Header="Status" Width="140">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Path=ItemStatuss.ItemStatusName,Mode= TwoWay,UpdateSourceTrigger=LostFocus}"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                            <DataGridTemplateColumn.CellEditingTemplate >
-                                <DataTemplate>
-                                    <ComboBox  Height="23" SelectedIndex="0" Width="140"
-                                    SelectedItem="{Binding ItemStatuss,Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                    ItemsSource="{Binding DataContext.ItemStatuss, UpdateSourceTrigger=LostFocus,RelativeSource={RelativeSource AncestorType= DataGrid},Mode= TwoWay}"
-                                    DisplayMemberPath="ItemStatusName"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellEditingTemplate>
-                        </DataGridTemplateColumn>
+                        <DataGridTextColumn x:Name="dataGridTextColumn22" Binding="{Binding Path=ItemStatus2.ITEM_STATUS_NAME}" Header="Status" IsReadOnly="True" Width="*" />
+                            
                         <DataGridTextColumn x:Name="dataGridTextColumn2" Binding="{Binding Path=Cantidad}" Header="Cantidad" IsReadOnly="True" Width="80" />
                     </DataGrid.Columns>
                 </DataGrid>

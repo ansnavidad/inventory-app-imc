@@ -6,155 +6,153 @@ using InventoryApp.DAL;
 using InventoryApp.Model;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using InventoryApp.Model.Recibo;
+using InventoryApp.ViewModel.Recibo;
 
 namespace InventoryApp.ViewModel.CatalogItem
 {
-    public class ModifyItemViewModel : IPageViewModel
+    public class ModifyItemViewModel : ViewModelBase, IPageViewModel
     {
-        public AgregarItemModel _itemModel;
-        public string _sku;
-        public string _numeroSerie;
-        private DeleteArticulo _articulo;
-        private RelayCommand _modifyItemCommand;
-        private RelayCommand _addFactura;
-        private RelayCommand _updateItemCommand;
-        private CatalogArticuloModel _articuloModel;
-        private CatalogCategoriaModel _categoriaModel;
-        private CatalogProveedorModel _catalogProveedor;
-        private CatalogItemStatusModel _catalogStatus;
-        private CatalogPropiedadModel _catalogPropiedad;
-        private string _error;
-        private ObservableCollection<UltimoMovimientoModel> _ultimoMovimiento;
-
-
-
-  
-        public ModifyItemViewModel()
-        {
-            try
-            {
-                this._itemModel = new AgregarItemModel();
-                this._articuloModel = new CatalogArticuloModel(new ArticuloDataMapper());
-                this._categoriaModel = new CatalogCategoriaModel(new CategoriaDataMapper());
-                this._catalogStatus = new CatalogItemStatusModel(new ItemStatusDataMapper());
-                this._ultimoMovimiento = new ObservableCollection<UltimoMovimientoModel>();
-                this._catalogProveedor = new CatalogProveedorModel(new ProveedorDataMapper());
-                this._catalogPropiedad = new CatalogPropiedadModel(new PropiedadDataMapper());
-            }
-            catch (ArgumentException ae)
-            {
+        #region Relay Commands        
                 
-                throw;
+        public ICommand ModifyItemCommand
+        {
+            get
+            {
+                if (_modifyItemCommand == null)
+                {
+                    _modifyItemCommand = new RelayCommand(p => this.AttempModifyItem(), p => this.CanAttempModifyItem());
+                }
+                return _modifyItemCommand;
             }
+        }
+        private RelayCommand _modifyItemCommand;
+        public bool CanAttempModifyItem()
+        {
+            bool _canAddItem = true;
+            if (String.IsNullOrEmpty(this.Sku) && String.IsNullOrEmpty(this.NumeroSerie))
+                _canAddItem = false;
+
+            return _canAddItem;
+        }
+        public void AttempModifyItem()
+        {
+            this._itemModel.Sku = this.Sku;
+            this._itemModel.NumeroSerie = this.NumeroSerie;
+            this._itemModel.getElement2();
+            
+            ProveedorModel = this._itemModel.Proveedor.PROVEEDOR_NAME;
+
+            FacturaCompraModel fAux = new FacturaCompraModel();
+            fAux.FechaFactura = (DateTime)this._itemModel.FacturaDetalle.FACTURA.FECHA_FACTURA;
+            fAux.NumeroFactura = this._itemModel.FacturaDetalle.FACTURA.FACTURA_NUMERO;
+            fAux.NumeroPedimento = this._itemModel.FacturaDetalle.FACTURA.NUMERO_PEDIMENTO;
+            fAux.PorIva = (double)this._itemModel.FacturaDetalle.FACTURA.IVA_POR;
+
+            foreach (DAL.POCOS.FACTURA_DETALLE ffdd in this._itemModel.FacturaDetalle.FACTURA.FACTURA_DETALLE)
+            {
+                FacturaCompraDetalleModel auxx = new FacturaCompraDetalleModel();
+                auxx.CostoUnitario = ffdd.PRECIO_UNITARIO;
+                auxx.Cantidad = ffdd.CANTIDAD;
+                fAux.FacturaDetalle.Add(auxx);
+            }
+            
+            this.Factura = fAux;
+            this.FacturaCollection.Add(fAux);
+
+            UltimoMovimientoModel aux = new UltimoMovimientoModel();
+            ObservableCollection<UltimoMovimientoModel> temp = aux.RegresaListaLugares(this._itemModel.UnidItem);
+
+            this.UltimoMovimiento.Clear();
+            this.ItemModelCollection.Clear();
+
+            this.ItemModelCollection.Add(this._itemModel);
+
+            foreach (UltimoMovimientoModel um in temp)
+            {
+                this.UltimoMovimiento.Add(um);
+            }
+        }
+        
+        public ICommand UpdateItemCommand
+        {
+            get
+            {
+                if (_updateItemCommand == null)
+                {
+                    _updateItemCommand = new RelayCommand(p => this.AttempUpdateItem(), p => this.CanAttempUpdateItem());
+                }
+                return _updateItemCommand;
+            }
+        }
+        private RelayCommand _updateItemCommand;                
+        public bool CanAttempUpdateItem()
+        {
+            bool _canAddItem = true;
+            if ((String.IsNullOrEmpty(this._itemModel.Sku) && String.IsNullOrEmpty(this._itemModel.NumeroSerie)) || this.ItemModel.FacturaDetalle == null || this._itemModel.Factura == null || this._itemModel.Articulo == null || this._itemModel.CantidadItem < 1)
+                _canAddItem = false;
+
+            return _canAddItem;
+        }
+        public void AttempUpdateItem()
+        {
+            this._itemModel.updateItem();
+            this.ItemModel.clear();
+            this.UltimoMovimiento.Clear();
+        }        
+
+        //Factura
+        public ICommand AddFacturaCommand
+        {
+            get
+            {
+                if (_AddFacturaCommand == null)
+                {
+                    _AddFacturaCommand = new RelayCommand(p => this.AttempAddFactura(), p => this.CanAttempAddFactura());
+                }
+                return _AddFacturaCommand;
+            }
+        }
+        private RelayCommand _AddFacturaCommand;
+
+        public ICommand DeleteFacturaCommand
+        {
+            get
+            {
+                if (_DeleteFacturaCommand == null)
+                {
+                    _DeleteFacturaCommand = new RelayCommand(p => this.AttempDeleteFactura(), p => this.CanAttempDeleteFactura());
+                }
+                return _DeleteFacturaCommand;
+            }
+        }
+        private RelayCommand _DeleteFacturaCommand;
+
+        public bool CanAttempAddFactura()
+        {
+            return true;
+        }
+        public void AttempAddFactura()
+        {
 
         }
-        #region Props
-        public CatalogProveedorModel CatalogProveedor
+
+        public bool CanAttempDeleteFactura()
         {
-            get
-            {
-                return _catalogProveedor;
-            }
-            set
-            {
-                _catalogProveedor = value;
-            }
+            return true;
         }
-        public ObservableCollection<UltimoMovimientoModel> UltimoMovimiento
+        public void AttempDeleteFactura()
         {
-            get
+            if (this.FacturaCollection[0].IsChecked)
             {
-                return _ultimoMovimiento;
-            }
-            set
-            {
-                _ultimoMovimiento = value;
+                this.FacturaCollection = new ObservableCollection<FacturaCompraModel>();
             }
         }
 
-        public CatalogPropiedadModel CatalogPropiedad
-        {
-            get
-            {
-                return _catalogPropiedad;
-            }
-            set
-            {
-                _catalogPropiedad = value;
-            }
-        }
-        public AgregarItemModel ItemModel
-        {
-            get
-            {
-                return _itemModel;
-            }
-            set
-            {
-                _itemModel = value;
-            }
-        }
+        #endregion
 
-        public string Error
-        {
-            get
-            {
-                return _error;
-            }
-            set
-            {
-                _error = value;
-            }
-        }
-
-        public CatalogItemStatusModel CatalogStatus
-        {
-            get
-            {
-                return _catalogStatus;
-            }
-            set
-            {
-                _catalogStatus = value;
-            }
-        }
-
-        public DeleteArticulo Articulo
-        {
-            get
-            {
-                return _articulo;
-            }
-            set
-            {
-                _articulo = value;
-            }
-        }
-
-        public CatalogArticuloModel ArticuloModel
-        {
-            get
-            {
-                return _articuloModel;
-            }
-            set
-            {
-                _articuloModel = value;
-            }
-        }
-
-        public CatalogCategoriaModel CategoriaModel
-        {
-            get
-            {
-                return _categoriaModel;
-            }
-            set
-            {
-                _categoriaModel = value;
-            }
-        }
-
+        #region Properties
+        
         public string Sku
         {
             get
@@ -166,6 +164,7 @@ namespace InventoryApp.ViewModel.CatalogItem
                 _sku = value;
             }
         }
+        public string _sku;
 
         public string NumeroSerie
         {
@@ -178,110 +177,234 @@ namespace InventoryApp.ViewModel.CatalogItem
                 _numeroSerie = value;
             }
         }
+        public string _numeroSerie;
 
-        public ICommand ModifyItemCommand
+        public string Error
         {
             get
             {
-                if (_modifyItemCommand == null)
-                {
-                    _modifyItemCommand = new RelayCommand(p => this.AttempModifyMarca(), p => this.CanAttempModifyItem());
-                }
-                return _modifyItemCommand;
+                return _error;
+            }
+            set
+            {
+                _error = value;
             }
         }
+        private string _error;
 
-
-        public ICommand AddFactura
+        public AgregarItemModel ItemModel
         {
             get
             {
-                if (_addFactura == null)
-                {
-                    _addFactura = new RelayCommand(p => this.AttempAddFactura(), p => this.CanAttempAddFactura());
-                }
-                return _addFactura;
+                return _itemModel;
+            }
+            set
+            {
+                _itemModel = value;
             }
         }
+        public AgregarItemModel _itemModel;
 
-        public ICommand UpdateItemCommand
+        public ObservableCollection<AgregarItemModel> ItemModelCollection
         {
             get
             {
-                if (_updateItemCommand == null)
+                return _ItemModelCollection;
+            }
+            set
+            {
+                if (_ItemModelCollection != value)
                 {
-                    _updateItemCommand = new RelayCommand(p => this.AttempUpdateMarca(), p => this.CanAttempUpdateItem());
+                    _ItemModelCollection = value;
+                    OnPropertyChanged("ItemModelCollection");
                 }
-                return _updateItemCommand;
             }
         }
+        private ObservableCollection<AgregarItemModel> _ItemModelCollection;
+
+        public FacturaCompraModel Factura
+        {
+            get
+            {
+                return _Factura;
+            }
+            set
+            {
+                _Factura = value;
+            }
+        }
+        public FacturaCompraModel _Factura;
+        
+        public ObservableCollection<FacturaCompraModel> FacturaCollection
+        {
+            get
+            {
+                return _FacturaCollection;
+            }
+            set
+            {
+                if (_FacturaCollection != value)
+                {
+                    _FacturaCollection = value;
+                    OnPropertyChanged("FacturaCollection");
+                }
+            }
+        }
+        private ObservableCollection<FacturaCompraModel> _FacturaCollection;
+
+        public string ProveedorModel
+        {
+            get
+            {
+                return _ProveedorModel;
+            }
+            set
+            {
+                if (_ProveedorModel != value)
+                {
+                    _ProveedorModel = value;
+                    OnPropertyChanged("ProveedorModel");
+                }
+            }
+        }
+        private string _ProveedorModel;
+        
+        public ObservableCollection<UltimoMovimientoModel> UltimoMovimiento
+        {
+            get
+            {
+                return _ultimoMovimiento;
+            }
+            set
+            {
+                _ultimoMovimiento = value;
+            }
+        }
+        private ObservableCollection<UltimoMovimientoModel> _ultimoMovimiento;
+        
+        public CatalogPropiedadModel CatalogPropiedad
+        {
+            get
+            {
+                return _catalogPropiedad;
+            }
+            set
+            {
+                _catalogPropiedad = value;
+            }
+        }
+        private CatalogPropiedadModel _catalogPropiedad;        
+        
+        public CatalogItemStatusModel CatalogStatus
+        {
+            get
+            {
+                return _catalogStatus;
+            }
+            set
+            {
+                _catalogStatus = value;
+            }
+        }
+        private CatalogItemStatusModel _catalogStatus;
+
+        public CatalogProveedorModel CatalogProveedor
+        {
+            get
+            {
+                return _catalogProveedor;
+            }
+            set
+            {
+                _catalogProveedor = value;
+            }
+        }
+        private CatalogProveedorModel _catalogProveedor;
+        
+        public DeleteArticulo Articulo
+        {
+            get
+            {
+                return _articulo;
+            }
+            set
+            {
+                _articulo = value;
+            }
+        }
+        private DeleteArticulo _articulo;
+        
+        public CatalogArticuloModel ArticuloModel
+        {
+            get
+            {
+                return _articuloModel;
+            }
+            set
+            {
+                _articuloModel = value;
+            }
+        }
+        private CatalogArticuloModel _articuloModel;
+        
+        public CatalogCategoriaModel CategoriaModel
+        {
+            get
+            {
+                return _categoriaModel;
+            }
+            set
+            {
+                _categoriaModel = value;
+            }
+        }
+        private CatalogCategoriaModel _categoriaModel;
+        
         #endregion
 
-        #region methods
-        public bool CanAttempModifyItem()
+        #region Constructors
+        
+        public ModifyItemViewModel()
         {
-            bool _canAddItem = true;
-            if (String.IsNullOrEmpty(this._itemModel.Sku) && String.IsNullOrEmpty(this._itemModel.NumeroSerie))
-                _canAddItem = false;
-
-            return _canAddItem;
-        }
-
-        public void AttempModifyMarca()
-        {
-            this._itemModel.getElement();
-            
-            UltimoMovimientoModel aux = new UltimoMovimientoModel();
-            ObservableCollection<UltimoMovimientoModel> temp = aux.RegresaListaLugares(this._itemModel.UnidItem);
-
-            this.UltimoMovimiento.Clear();
-
-            foreach (UltimoMovimientoModel um in temp)
+            try
             {
-                this.UltimoMovimiento.Add(um);
+                this._itemModel = new AgregarItemModel();
+                this._ItemModelCollection = new ObservableCollection<AgregarItemModel>();
+                this._Factura = new FacturaCompraModel();
+                this._FacturaCollection = new ObservableCollection<FacturaCompraModel>();
+                this._articuloModel = new CatalogArticuloModel(new ArticuloDataMapper());
+                this._categoriaModel = new CatalogCategoriaModel(new CategoriaDataMapper());
+                this._catalogStatus = new CatalogItemStatusModel(new ItemStatusDataMapper());
+                this._ultimoMovimiento = new ObservableCollection<UltimoMovimientoModel>();                
+                this._catalogPropiedad = new CatalogPropiedadModel(new PropiedadDataMapper());
             }
+            catch (ArgumentException ae)
+            {
 
+                throw;
+            }
         }
+
+        #endregion
+
+        #region Methods
 
         public void Update()
         {
             this.ItemModel.updateFacturas();
         }
-
-        public bool CanAttempUpdateItem()
-        {
-            bool _canAddItem = true;
-            if ((String.IsNullOrEmpty(this._itemModel.Sku) && String.IsNullOrEmpty(this._itemModel.NumeroSerie)) || this.ItemModel.FacturaDetalle == null || this._itemModel.Factura == null || this._itemModel.Articulo == null || this._itemModel.CantidadItem < 1)
-                _canAddItem = false;
-
-            return _canAddItem;
-        }
-
-        public void AttempUpdateMarca()
-        {
-            this._itemModel.updateItem();
-            this.ItemModel.clear();
-            this.UltimoMovimiento.Clear();
-        }
-
-        public bool CanAttempAddFactura()
-        {
-            bool _canAddItem = true;
-            if (this._itemModel.Articulo == null)
-                _canAddItem = false;
-
-            return _canAddItem;
-        }
-
-        public void AttempAddFactura()
-        {
-            
-        }
-
+        
         public AgregarFacturaViewModel CreateAgregarFacturaViewModel()
         {
             return new AgregarFacturaViewModel(this);
         }
+
+        public FacturaCatalogAgregarItemViewModel CreateModifyFacturaViewModel()
+        {
+            FacturaCatalogAgregarItemViewModel addFacturaViewModel = new FacturaCatalogAgregarItemViewModel(this);
+            return addFacturaViewModel;
+        }
+
         #endregion 
     
         public string PageName

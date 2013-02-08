@@ -444,6 +444,7 @@ namespace InventoryApp.Model
             {
                 UltimoMovimientoModel temp = new UltimoMovimientoModel(um.ALMACEN, um.CLIENTE, um.PROVEEDOR);
                 temp._cantidad = um.CANTIDAD;
+                temp.ItemStatus2 = new DeleteItemStatus(um.ITEM_STATUS);
                 movimientos.Add(temp);
             }
 

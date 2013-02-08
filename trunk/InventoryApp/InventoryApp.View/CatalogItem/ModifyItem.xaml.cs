@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using InventoryApp.ViewModel.CatalogItem;
+using InventoryApp.View.Recibo;
 
 namespace InventoryApp.View.CatalogItem
 {
@@ -53,7 +54,7 @@ namespace InventoryApp.View.CatalogItem
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             txtNomreStatus.IsEnabled = false;
-            textBox1.IsEnabled = false;
+            textBoxGuía.IsEnabled = false;
             button1.IsEnabled = false;
             BotonNueva.IsEnabled = true;
         }
@@ -68,6 +69,28 @@ namespace InventoryApp.View.CatalogItem
             textBlock2.Text = "";
             txtNomreStatus.Text = "";
             textBox1.Text = "";
-        }          
+        }
+
+        private void button7_Click(object sender, RoutedEventArgs e)
+        {
+            DlgAddFacturaView addFactura = new DlgAddFacturaView();
+            AgregarItemViewModel viewModel = new AgregarItemViewModel();
+            addFactura.DataContext = viewModel.CreateAddFacturaViewModel();
+            addFactura.ShowDialog();
+        }
+
+        private void button8_Click(object sender, RoutedEventArgs e)
+        {
+            FacturaCatalogAgregarItem addFactura = new FacturaCatalogAgregarItem();
+            ModifyItemViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addFactura.DataContext = viewModel.CreateModifyFacturaViewModel();
+            addFactura.ShowDialog();
+        }
+
+        private ModifyItemViewModel ConvertDataContext(object dataSource)
+        {
+            ModifyItemViewModel viewModel = dataSource as ModifyItemViewModel;
+            return viewModel;
+        }
     }
 }

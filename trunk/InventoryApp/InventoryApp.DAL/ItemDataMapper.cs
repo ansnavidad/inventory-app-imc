@@ -635,28 +635,32 @@ namespace InventoryApp.DAL
                         if (!String.IsNullOrEmpty(item.SKU))
                         {
                             var res = (from i in entity.ITEMs
+                                       .Include("ARTICULO")
+                                       .Include("ITEM_STATUS")
+                                       .Include("FACTURA_DETALLE")
+                                       .Include("PROPIEDAD")
+                                       .Include("FACTURA_DETALLE.FACTURA")
+                                       .Include("FACTURA_DETALLE.FACTURA.FACTURA_DETALLE")
+                                       .Include("FACTURA_DETALLE.FACTURA.PROVEEDOR")
                                        where i.SKU == item.SKU
                                        select i).First();
-                            res.ARTICULO = res.ARTICULO;
-                            res.ARTICULO.UNID_CATEGORIA = res.ARTICULO.UNID_CATEGORIA;
-                            res.ITEM_STATUS = res.ITEM_STATUS;
-                            res.FACTURA_DETALLE = res.FACTURA_DETALLE;
-                            res.PROPIEDAD = res.PROPIEDAD;
-                            o = res;
+                            
+                            o = res;                            
                         }
                         else
                         {
                             var res = (from i in entity.ITEMs
-                                       where i.NUMERO_SERIE == item.NUMERO_SERIE
-                                       select i).First();
-                            res.ARTICULO = res.ARTICULO;
-                            res.ARTICULO.UNID_CATEGORIA = res.ARTICULO.UNID_CATEGORIA;
-                            res.ITEM_STATUS = res.ITEM_STATUS;
-                            res.FACTURA_DETALLE = res.FACTURA_DETALLE;
-                            res.PROPIEDAD = res.PROPIEDAD;
+                                       .Include("ARTICULO")
+                                       .Include("ITEM_STATUS")
+                                       .Include("FACTURA_DETALLE")
+                                       .Include("PROPIEDAD")
+                                       .Include("FACTURA_DETALLE.FACTURA")
+                                       .Include("FACTURA_DETALLE.FACTURA.FACTURA_DETALLE")
+                                       .Include("FACTURA_DETALLE.FACTURA.PROVEEDOR")
+                                        where i.NUMERO_SERIE == item.NUMERO_SERIE
+                                        select i).First();
                             o = res;
                         }
-
                     }
                 }
             }

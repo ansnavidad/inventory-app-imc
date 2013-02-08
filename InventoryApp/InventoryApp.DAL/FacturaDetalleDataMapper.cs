@@ -92,7 +92,26 @@ namespace InventoryApp.DAL
         {
             throw new NotImplementedException();
         }
-                
+
+        public void updateFacDmodItem(long UnidFactura, double costoU, long UnidFacturaDetalle) {
+
+            using (var entity = new TAE2Entities())
+            {
+                var modifiedFactura = entity.FACTURA_DETALLE.First(p => p.UNID_FACTURA_DETALE == UnidFacturaDetalle);
+                modifiedFactura.PRECIO_UNITARIO = costoU;
+                modifiedFactura.UNID_FACTURA = UnidFactura;
+           
+                //Sync
+                modifiedFactura.IS_MODIFIED = true;
+                modifiedFactura.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                entity.SaveChanges();
+                //
+                entity.SaveChanges();
+            }
+        }
+
         public void udpateElement(object element)
         {
             if (element != null)

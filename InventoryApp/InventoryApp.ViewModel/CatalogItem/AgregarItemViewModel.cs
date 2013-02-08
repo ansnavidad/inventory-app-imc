@@ -335,6 +335,8 @@ namespace InventoryApp.ViewModel.CatalogItem
                 CANTIDAD = ItemModelCollection[0].CantidadItem
                 ,
                 IS_ACTIVE = true
+                ,
+                UNID_PROPIEDAD = ItemModelCollection[0].Propiedad.UNID_PROPIEDAD
             };
             ItemDataMapper itemDataMapper = new ItemDataMapper();
             itemDataMapper.insertElement(pItem);

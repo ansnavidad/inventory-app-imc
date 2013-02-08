@@ -35,20 +35,12 @@ namespace InventoryApp.View.CatalogItem
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("El item ha sido modificado");
-            
+            MessageBox.Show("El item ha sido modificado");            
         }
 
         private void checkBox1_Checked(object sender, RoutedEventArgs e)
         {
-            comboPropiedad.IsEnabled = true;
-           
-        }
-
-        private void checkBox1_Unchecked(object sender, RoutedEventArgs e)
-        {
-            comboPropiedad.IsEnabled = false;
-            comboPropiedad.SelectedIndex = -1;
+                     
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -61,7 +53,10 @@ namespace InventoryApp.View.CatalogItem
 
         private void BotonNueva_Click(object sender, RoutedEventArgs e)
         {
+            checkBox1.IsChecked = false;
+
             txtNomreStatus.IsEnabled = true;
+            textBoxGuía.IsEnabled = true;
             textBox1.IsEnabled = true;
             button1.IsEnabled = true;
             BotonNueva.IsEnabled = false;
@@ -69,6 +64,9 @@ namespace InventoryApp.View.CatalogItem
             textBlock2.Text = "";
             txtNomreStatus.Text = "";
             textBox1.Text = "";
+
+            ModifyItemViewModel m = new ModifyItemViewModel();
+            this.DataContext = m;
         }
 
         private void button7_Click(object sender, RoutedEventArgs e)

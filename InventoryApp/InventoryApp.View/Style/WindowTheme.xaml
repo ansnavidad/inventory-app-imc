@@ -15,7 +15,11 @@
         <GradientStop Color="#F2F2F2" Offset="0"/>
         <GradientStop Color="#BDBDBD" Offset="0.567"/>
     </LinearGradientBrush>
-    
+
+    <LinearGradientBrush x:Key="DegradadoTxtElara" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+        <GradientStop Color="#6B6A6A" Offset="0"/>
+        <GradientStop Color="#ACACAC" Offset="0.567"/>
+    </LinearGradientBrush>
 
     <Style x:Key="titleBorderElaraOrange" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="#ed5d1e" />
@@ -31,6 +35,10 @@
 
     <Style x:Key="titleBorderElaraBlue" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="{StaticResource DegradadoElaraBlue}" />
+    </Style>
+
+    <Style x:Key="GridLogin" TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="{StaticResource DegradadoElaraButton}" />
     </Style>
 
     <Style x:Key="titleLabel" TargetType="{x:Type Label}">
@@ -75,6 +83,73 @@
         <Setter Property="FontWeight" Value="Bold"></Setter>
         <Setter Property="FontSize" Value="15"></Setter>
     </Style>
-</ResourceDictionary>
 
-<!--FontFamily="Arial Rounded MT" FontSize="17" FontStretch="Normal" Foreground="#848484"-->
+    <Style x:Key="lblLogin" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#18346B"></Setter>
+        <Setter Property="FontFamily" Value="Verdana"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+    </Style>
+
+    <Style x:Key="txtLogin" TargetType="{x:Type TextBox}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="{StaticResource DegradadoTxtElara}"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="BorderBrush" Value="White"></Setter>
+        <Setter Property="BorderThickness" Value="1,1,1,1"></Setter>
+    </Style>
+
+    <Style x:Key="PassLogin" TargetType="{x:Type PasswordBox}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="{StaticResource DegradadoTxtElara}"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="BorderBrush" Value="White"></Setter>
+        <Setter Property="BorderThickness" Value="1,1,1,1"></Setter>
+    </Style>
+
+    <Style x:Key="lblRegistroRecuperar" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#0174DF"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="DarkOrange" />
+                
+            </Trigger>
+        </Style.Triggers>
+        <!--<Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Label">
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Cursor" Value="Hand" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>            
+        </Setter>-->
+            
+    </Style>
+
+    <Style x:Key="textBockLogin" TargetType="{x:Type TextBlock}">
+
+        <Setter Property="Foreground" Value="#0174DF"/>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#2E64FE" />
+                <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                <Setter Property="FontSize" Value="12.5"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="Cursor" Value="Hand" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

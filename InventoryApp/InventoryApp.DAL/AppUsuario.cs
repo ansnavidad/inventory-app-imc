@@ -105,7 +105,43 @@ namespace InventoryApp.DAL
 
         public object getElement(object element)
         {
-            throw new NotImplementedException();
+            object o = null;
+            if (element != null)
+            {
+                USUARIO user = (USUARIO)element;
+
+                using (var Entity = new TAE2Entities())
+                {
+                    var res = (from p in Entity.USUARIOs
+                               where p.USUARIO_MAIL == user.USUARIO_MAIL
+                               select p).First();
+
+                    if (res == null)
+                        return null;
+                    o = res;
+                }
+            }
+            return o;
+        }
+
+        public bool GetElementLogin(object element)
+        {
+            bool respuesta = false;
+            if (element != null)
+            {
+                USUARIO user = (USUARIO)element;
+
+                using (var Entity = new TAE2Entities())
+                {
+                    var res = (from p in Entity.USUARIOs
+                               where p.USUARIO_MAIL == user.USUARIO_MAIL && p.USUARIO_PWD ==user.USUARIO_PWD
+                               select p).First();
+
+                    if (res != null)
+                        return true;
+                }
+            }
+            return respuesta;
         }
 
         public void udpateElement(object element)
@@ -238,6 +274,20 @@ namespace InventoryApp.DAL
         }
 
         /// <summary>
+        /// Método que serializa UN POCO USUARIO a Json
+        /// </summary>
+        /// <returns>Regresa un String en formato Json de USUARIO</returns>
+        /// <returns>Si no hay datos regresa null</returns>
+        public string GetJsonUsuario(USUARIO usuario)
+        { 
+            string res = null;
+
+            if (usuario!=null)
+                res = SerializerJson.SerializeParametros(usuario);
+            return res;
+        }
+        
+        /// <summary>
         /// Método que Deserializa JSon a List<USUARIO>
         /// </summary>
         /// <returns>Regresa List<USUARIO></returns>
@@ -249,6 +299,23 @@ namespace InventoryApp.DAL
             if (!String.IsNullOrEmpty(listPocos))
             {
                 res = JsonConvert.DeserializeObject<List<USUARIO>>(listPocos);
+            }
+
+            return res;
+        }
+
+        /// <summary>
+        /// Método que Deserializa JSon a POCO USUARIO
+        /// </summary>
+        /// <returns>Regresa POCO USUARIO</returns>
+        /// <returns>Si no regresa null</returns>
+        public USUARIO GetDeserializePocoUsuario(string listPocos)
+        {
+            USUARIO res = null;
+
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                res = JsonConvert.DeserializeObject<USUARIO>(listPocos);
             }
 
             return res;

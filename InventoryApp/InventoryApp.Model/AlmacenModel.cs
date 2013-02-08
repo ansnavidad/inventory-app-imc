@@ -162,15 +162,8 @@ namespace InventoryApp.Model
         public void saveAlmacen()
         {
             if (_dataMapper != null)
-            {
-                //_dataMapper.insertElement(new ALMACEN() {IS_ACTIVE=true,
-                //                                         ALMACEN_NAME= this._almacenName,
-                //                                         CONTACTO=this._contacto,
-                //                                         MAIL=this._mail,
-                //                                         MAIL_DEFAULT=this._mailDefault,
-                //                                         DIRECCION=this._direccion
-                //                                         });
-                _dataMapper.insertRelacion(new ALMACEN()
+            {               
+              _dataMapper.insertRelacion(new ALMACEN()
                 {
                     IS_ACTIVE = true,
                     ALMACEN_NAME = this._almacenName,
@@ -199,15 +192,6 @@ namespace InventoryApp.Model
 
         public void updateAlmacen()
         {
-            //this._dataMapper.udpateElement(new ALMACEN()
-            //{
-            //    UNID_ALMACEN=this._unidAlmacen,
-            //    ALMACEN_NAME = this._almacenName,
-            //    CONTACTO = this._contacto,
-            //    MAIL = this._mail,
-            //    MAIL_DEFAULT = this._mailDefault,
-            //    DIRECCION = this._direccion
-            //});
             this._dataMapper.updateRelacion(new ALMACEN()
             {
                 UNID_ALMACEN = this._unidAlmacen,

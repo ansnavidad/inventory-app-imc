@@ -31,8 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\..\..\..\..\..\..\DLL inventory\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -132,6 +136,7 @@
     <Compile Include="InsertTransporteModel.cs" />
     <Compile Include="ItemModel.cs" />
     <Compile Include="ItemStatusModel.cs" />
+    <Compile Include="Login\LoginModel.cs" />
     <Compile Include="LoteModel.cs" />
     <Compile Include="MarcaModel.cs" />
     <Compile Include="MaxMinModel.cs" />

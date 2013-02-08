@@ -146,8 +146,8 @@
                              Name="button1" VerticalAlignment="Stretch" Click="button1_Click" Height="23" Width="110" Style="{StaticResource btnElara}" />
                     <Button Grid.Column="4" Grid.Row="1"  IsEnabled="False" Content="Nueva Búsqueda"  Name="BotonNueva"
                             Click="BotonNueva_Click" HorizontalAlignment="Center" Height="23"  Width="110" Style="{StaticResource btnElara}" />
-                    <TextBlock Grid.ColumnSpan="3" Grid.Row="3"  Height="23" HorizontalAlignment="Left" Name="textBlock2" FontWeight="Bold" Foreground="#FFFF4848" 
-                               Text="{Binding ItemModel.Error, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" />
+                    <TextBlock Grid.Row="3"  Height="23" HorizontalAlignment="Left" Name="textBlock2" FontWeight="Bold" Foreground="#FFFF4848" 
+                               Text="{Binding ItemModel.Error, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="4,4,0,4" />
                 </Grid>
                 <Border Grid.Row="1" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                 <Grid Grid.Row="2" >
@@ -166,13 +166,14 @@
                     <Label Grid.Row="2" Content="Proveedor:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" 
                            Foreground="#848484" HorizontalAlignment="Right" Name="categotia" VerticalAlignment="Center" Grid.Column="3" />
                     <CheckBox Grid.Column="3" TabIndex="7" Content="Propiedad :" Height="16" Name="checkBox1" FontFamily="Arial Rounded MT" FontSize="11.5"
-                              FontStretch="Normal" Foreground="#848484" VerticalAlignment="Center" Checked="checkBox1_Checked" 
-                              Unchecked="checkBox1_Unchecked" HorizontalAlignment="Right"  Grid.Row="1" />
-                    <ComboBox Grid.Column="4" TabIndex="8" DisplayMemberPath="PROPIEDAD1" Height="23" 
-                              HorizontalAlignment="Left" ItemsSource="{Binding CatalogPropiedad.Propiedad, Mode=OneWay}" 
-                              Name="comboPropiedad" SelectedItem="{Binding ItemModel.Propiedad, Mode=TwoWay}" 
-                              SelectedValuePath="UNID_PROPIEDAD" VerticalAlignment="Center" Width="180"
-                              IsEnabled="False"  Grid.Row="1" />
+                              FontStretch="Normal" Foreground="#848484" VerticalAlignment="Center" IsChecked="{Binding Path=PropiedadBool, Mode=TwoWay}" Checked="checkBox1_Checked" HorizontalAlignment="Right"  Grid.Row="1" />
+                    <ComboBox SelectedItem="{Binding CatalogPropiedad.SelectedPropiedad, Mode=TwoWay}" 
+                              ItemsSource="{Binding CatalogPropiedad.Propiedad, Mode=OneWay}"                         
+                              Text="{Binding CatalogPropiedad.SelectedPropiedad.PROPIEDAD1,Mode=TwoWay}"
+                              DisplayMemberPath="PROPIEDAD1" SelectedValuePath="UNID_PROPIEDAD"
+                              IsEnabled="{Binding Path=PropiedadBool, Mode=TwoWay}"
+                              Grid.Row="1" Height="23" HorizontalAlignment="Left" Grid.Column="4" TabIndex="8"   
+                              Name="comboPropiedad" VerticalAlignment="Center" Width="180"  />
                     <Label Content="Número de Serie:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" 
                            HorizontalAlignment="Right" Name="label3" VerticalAlignment="Center" Grid.Row="1" />
                     <TextBox Height="23" HorizontalAlignment="Left" MaxLength="512" Name="textBox1" TabIndex="1"  Width="180" Grid.Column="1"
@@ -196,7 +197,7 @@
                         <DataGridTextColumn x:Name="articulo" Binding="{Binding Path=Articulo.ARTICULO1}" Header="Artículo" IsReadOnly="True" Width="*" />
                         <DataGridTextColumn x:Name="cantidad" Binding="{Binding Path=CantidadItem}" Header="Cantidad" IsReadOnly="True" Width="*" />
                         <DataGridTextColumn x:Name="equipo" Binding="{Binding Path=Equipo.EQUIPO_NAME}" Header="Equipo" IsReadOnly="True" Width="*" />
-                        <DataGridTextColumn x:Name="costoUnitario" Binding="{Binding Path=CostoUnitario, StringFormat=C2}" Header="Costo Unitario" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn x:Name="costoUnitario" Binding="{Binding Path=CostoUnitario, StringFormat=C2, Mode=TwoWay}" Header="Costo Unitario" IsReadOnly="False" Width="*" />
                     </DataGrid.Columns>
                 </DataGrid>
                 <Border Grid.Row="5" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
@@ -214,7 +215,7 @@
                     <Button  Content="Crear Factura" Height="23" HorizontalAlignment="Center" 
                              Name="button7" Style="{StaticResource btnElara}" TabIndex="14" VerticalAlignment="Center" Width="120"
                              Grid.Column="4"  IsEnabled="{Binding Path=FillWithItemDetalles}" Click="button7_Click" />
-                    <Button Content="Enlazar Factura" Height="23" HorizontalAlignment="Center" 
+                    <Button Content="Enlazar Factura" Height="23" HorizontalAlignment="Center" Command="{Binding Path=AddFacturaCommand}"
                             Name="button8" Style="{StaticResource btnElara}" TabIndex="14" VerticalAlignment="Center" Width="120" 
                             IsEnabled="{Binding Path=FillWithItemDetalles}" Click="button8_Click" />
                 </Grid>
@@ -250,8 +251,6 @@
                         <DataGridTextColumn x:Name="dataGridTextColumn2" Binding="{Binding Path=Cantidad}" Header="Cantidad" IsReadOnly="True" Width="80" />
                     </DataGrid.Columns>
                 </DataGrid>
-                <Label Content="( Solo Lectura )" Grid.Row="3"  HorizontalAlignment="Left"  Name="label1" VerticalAlignment="Bottom"
-                       FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"/>
                 <Label Content="( Solo Lectura )" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
                        HorizontalAlignment="Left" Name="label2" VerticalAlignment="Bottom" Grid.Row="9" />
             </Grid>

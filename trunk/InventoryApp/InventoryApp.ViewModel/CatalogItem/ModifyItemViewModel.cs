@@ -13,7 +13,7 @@ namespace InventoryApp.ViewModel.CatalogItem
 {
     public class ModifyItemViewModel : ViewModelBase, IPageViewModel
     {
-        #region Relay Commands        
+        #region Relay Commands
                 
         public ICommand ModifyItemCommand
         {
@@ -33,48 +33,67 @@ namespace InventoryApp.ViewModel.CatalogItem
             if (String.IsNullOrEmpty(this.Sku) && String.IsNullOrEmpty(this.NumeroSerie))
                 _canAddItem = false;
 
+            if (!PropiedadBool) {
+
+                this.CatalogPropiedad.SelectedPropiedad = null;
+            }
+            
+            if (PropiedadBool && this.CatalogPropiedad.SelectedPropiedad == null)
+                if (this.CatalogPropiedad.Propiedad != null && this.CatalogPropiedad.Propiedad.Count > 0)
+                    this.CatalogPropiedad.SelectedPropiedad = this.CatalogPropiedad.Propiedad[0];
+
             return _canAddItem;
         }
         public void AttempModifyItem()
         {
+            BorrarBool = true;
             this._itemModel.Sku = this.Sku;
             this._itemModel.NumeroSerie = this.NumeroSerie;
             this._itemModel.getElement2();
-            
-            ProveedorModel = this._itemModel.Proveedor.PROVEEDOR_NAME;
 
-            FacturaCompraModel fAux = new FacturaCompraModel();
-            fAux.FechaFactura = (DateTime)this._itemModel.FacturaDetalle.FACTURA.FECHA_FACTURA;
-            fAux.NumeroFactura = this._itemModel.FacturaDetalle.FACTURA.FACTURA_NUMERO;
-            fAux.NumeroPedimento = this._itemModel.FacturaDetalle.FACTURA.NUMERO_PEDIMENTO;
-            fAux.PorIva = (double)this._itemModel.FacturaDetalle.FACTURA.IVA_POR;
-
-            foreach (DAL.POCOS.FACTURA_DETALLE ffdd in this._itemModel.FacturaDetalle.FACTURA.FACTURA_DETALLE)
+            if (this._itemModel.Error.Equals(""))
             {
-                FacturaCompraDetalleModel auxx = new FacturaCompraDetalleModel();
-                auxx.CostoUnitario = ffdd.PRECIO_UNITARIO;
-                auxx.Cantidad = ffdd.CANTIDAD;
-                fAux.FacturaDetalle.Add(auxx);
-            }
-            
-            this.Factura = fAux;
-            this.FacturaCollection.Add(fAux);
 
-            UltimoMovimientoModel aux = new UltimoMovimientoModel();
-            ObservableCollection<UltimoMovimientoModel> temp = aux.RegresaListaLugares(this._itemModel.UnidItem);
+                this.CatalogPropiedad.SelectedPropiedad = this.ItemModel.Propiedad;
+                if (this.CatalogPropiedad.SelectedPropiedad != null)
+                    PropiedadBool = true;
 
-            this.UltimoMovimiento.Clear();
-            this.ItemModelCollection.Clear();
+                ProveedorModel = this._itemModel.Proveedor.PROVEEDOR_NAME;
 
-            this.ItemModelCollection.Add(this._itemModel);
+                FacturaCompraModel fAux = new FacturaCompraModel();
+                fAux.FechaFactura = (DateTime)this._itemModel.FacturaDetalle.FACTURA.FECHA_FACTURA;
+                fAux.NumeroFactura = this._itemModel.FacturaDetalle.FACTURA.FACTURA_NUMERO;
+                fAux.NumeroPedimento = this._itemModel.FacturaDetalle.FACTURA.NUMERO_PEDIMENTO;
+                fAux.PorIva = (double)this._itemModel.FacturaDetalle.FACTURA.IVA_POR;
+                fAux.UnidFactura = this._itemModel.FacturaDetalle.UNID_FACTURA;
 
-            foreach (UltimoMovimientoModel um in temp)
-            {
-                this.UltimoMovimiento.Add(um);
+                foreach (DAL.POCOS.FACTURA_DETALLE ffdd in this._itemModel.FacturaDetalle.FACTURA.FACTURA_DETALLE)
+                {
+                    FacturaCompraDetalleModel auxx = new FacturaCompraDetalleModel();
+                    auxx.CostoUnitario = ffdd.PRECIO_UNITARIO;
+                    auxx.Cantidad = ffdd.CANTIDAD;
+                    fAux.FacturaDetalle.Add(auxx);
+                }
+
+                this.Factura = fAux;
+                this.FacturaCollection.Add(fAux);
+
+                UltimoMovimientoModel aux = new UltimoMovimientoModel();
+                ObservableCollection<UltimoMovimientoModel> temp = aux.RegresaListaLugares(this._itemModel.UnidItem);
+
+                this.UltimoMovimiento.Clear();
+                this.ItemModelCollection.Clear();
+
+                this.ItemModelCollection.Add(this._itemModel);
+
+                foreach (UltimoMovimientoModel um in temp)
+                {
+                    this.UltimoMovimiento.Add(um);
+                }
             }
         }
-        
-        public ICommand UpdateItemCommand
+
+        public ICommand GuardarCommand
         {
             get
             {
@@ -89,16 +108,28 @@ namespace InventoryApp.ViewModel.CatalogItem
         public bool CanAttempUpdateItem()
         {
             bool _canAddItem = true;
-            if ((String.IsNullOrEmpty(this._itemModel.Sku) && String.IsNullOrEmpty(this._itemModel.NumeroSerie)) || this.ItemModel.FacturaDetalle == null || this._itemModel.Factura == null || this._itemModel.Articulo == null || this._itemModel.CantidadItem < 1)
+            if (String.IsNullOrEmpty(this.ItemModel.Sku) || String.IsNullOrEmpty(this.ItemModel.NumeroSerie) || (EnlazarBool && !BorrarBool))
                 _canAddItem = false;
 
             return _canAddItem;
         }
         public void AttempUpdateItem()
         {
+            this.ItemModel.Propiedad = this.CatalogPropiedad.SelectedPropiedad;
+            this.ItemModel.CostoUnitario = this.ItemModelCollection[0].CostoUnitario;
             this._itemModel.updateItem();
-            this.ItemModel.clear();
-            this.UltimoMovimiento.Clear();
+            this.ItemModel.updateFacturaDet(FacturaCollection[0].UnidFactura, ItemModelCollection[0].CostoUnitario, this.ItemModel.FacturaDetalle.UNID_FACTURA_DETALE);
+            
+            //Reiniciar todo
+            this._itemModel = new AgregarItemModel();
+            this._ItemModelCollection = new ObservableCollection<AgregarItemModel>();
+            this._Factura = new FacturaCompraModel();
+            this._FacturaCollection = new ObservableCollection<FacturaCompraModel>();
+            this._articuloModel = new CatalogArticuloModel(new ArticuloDataMapper());
+            this._categoriaModel = new CatalogCategoriaModel(new CategoriaDataMapper());
+            this._catalogStatus = new CatalogItemStatusModel(new ItemStatusDataMapper());
+            this._ultimoMovimiento = new ObservableCollection<UltimoMovimientoModel>();
+            this._catalogPropiedad = new CatalogPropiedadModel(new PropiedadDataMapper());
         }        
 
         //Factura
@@ -130,24 +161,60 @@ namespace InventoryApp.ViewModel.CatalogItem
 
         public bool CanAttempAddFactura()
         {
-            return true;
+            return EnlazarBool;
         }
         public void AttempAddFactura()
         {
-
+            
         }
 
         public bool CanAttempDeleteFactura()
         {
-            return true;
+            return BorrarBool;
         }
         public void AttempDeleteFactura()
         {
             if (this.FacturaCollection[0].IsChecked)
             {
                 this.FacturaCollection = new ObservableCollection<FacturaCompraModel>();
+                EnlazarBool = true;
+                BorrarBool = false;
             }
         }
+                
+        public bool EnlazarBool
+        {
+            get
+            {
+                return _EnlazarBool;
+            }
+            set
+            {
+                if (_EnlazarBool != value)
+                {
+                    _EnlazarBool = value;
+                    OnPropertyChanged("EnlazarBool");
+                }
+            }
+        }
+        private bool _EnlazarBool;
+
+        public bool BorrarBool
+        {
+            get
+            {
+                return _BorrarBool;
+            }
+            set
+            {
+                if (_BorrarBool != value)
+                {
+                    _BorrarBool = value;
+                    OnPropertyChanged("BorrarBool");
+                }
+            }
+        }
+        private bool _BorrarBool;
 
         #endregion
 
@@ -192,6 +259,23 @@ namespace InventoryApp.ViewModel.CatalogItem
         }
         private string _error;
 
+        public bool PropiedadBool
+        {
+            get
+            {
+                return _PropiedadBool;
+            }
+            set
+            {
+                if (_PropiedadBool != value)
+                {
+                    _PropiedadBool = value;
+                    OnPropertyChanged("PropiedadBool");
+                }
+            }
+        }
+        public bool _PropiedadBool;
+
         public AgregarItemModel ItemModel
         {
             get
@@ -200,7 +284,11 @@ namespace InventoryApp.ViewModel.CatalogItem
             }
             set
             {
-                _itemModel = value;
+                if (_itemModel != value)
+                {
+                    _itemModel = value;
+                    OnPropertyChanged("ItemModel");
+                }
             }
         }
         public AgregarItemModel _itemModel;
@@ -290,7 +378,11 @@ namespace InventoryApp.ViewModel.CatalogItem
             }
             set
             {
-                _catalogPropiedad = value;
+                if (_catalogPropiedad != value)
+                {
+                    _catalogPropiedad = value;
+                    OnPropertyChanged("CatalogPropiedad");
+                }
             }
         }
         private CatalogPropiedadModel _catalogPropiedad;        

@@ -531,7 +531,13 @@ namespace InventoryApp.Model
             {
                 propiedad = this._propiedad.UNID_PROPIEDAD;
             }
-            this._dataMapper.udpateElement(new ITEM() {UNID_ITEM = this._unidItem, UNID_PROPIEDAD= propiedad, UNID_ARTICULO = this._articulo.UNID_ARTICULO, SKU = this._sku, NUMERO_SERIE = this._numeroSerie, ITEM_STATUS = this._itemStatus, COSTO_UNITARIO = this._costoUnitario, UNID_FACTURA_DETALE = this._facturaDetalle.UNID_FACTURA_DETALE, PEDIMENTO_IMPO = this._pedimentoImpo, PEDIMENTO_EXPO = this._pedimentoExpo, CANTIDAD = this._cantidaditem});
+            this._dataMapper.udpateElement(new ITEM() {UNID_ITEM = this._unidItem, UNID_PROPIEDAD= propiedad, UNID_ARTICULO = this._articulo.UNID_ARTICULO, SKU = this._sku, NUMERO_SERIE = this._numeroSerie, UNID_ITEM_STATUS = this._itemStatus.UNID_ITEM_STATUS, COSTO_UNITARIO = this._costoUnitario, UNID_FACTURA_DETALE = this._facturaDetalle.UNID_FACTURA_DETALE, PEDIMENTO_IMPO = this._pedimentoImpo, PEDIMENTO_EXPO = this._pedimentoExpo, CANTIDAD = this._cantidaditem, IS_ACTIVE = true});
+        }
+
+        public void updateFacturaDet(long UnidFactura, double costoU, long UnidFacturaDetalle)
+        {
+            FacturaDetalleDataMapper f = new FacturaDetalleDataMapper();
+            f.updateFacDmodItem(UnidFactura, costoU, UnidFacturaDetalle);
         }
 
         public void updateFacturas()

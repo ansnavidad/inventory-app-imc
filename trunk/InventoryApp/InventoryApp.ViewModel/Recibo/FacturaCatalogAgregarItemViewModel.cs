@@ -384,6 +384,8 @@ namespace InventoryApp.ViewModel.Recibo
                     else {
 
                         _SelectedFactura = value;
+                        this._ModifyItemViewModel.EnlazarBool = false;
+                        this._ModifyItemViewModel.BorrarBool = true;
                         this._ModifyItemViewModel.Factura = SelectedFactura;
                         this._ModifyItemViewModel.FacturaCollection = new ObservableCollection<FacturaCompraModel>();
                         this._ModifyItemViewModel.FacturaCollection.Add(SelectedFactura);

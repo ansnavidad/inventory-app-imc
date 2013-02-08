@@ -46,7 +46,7 @@ namespace InventoryApp.View.CatalogItem
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void checkBox1_Checked(object sender, RoutedEventArgs e)

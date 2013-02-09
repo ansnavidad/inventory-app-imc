@@ -224,23 +224,17 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     TECNICO tecnico = (TECNICO)element;
-
-                    var validacion = (from cust in entity.TECNICOes
-                                      where cust.TECNICO_NAME == tecnico.TECNICO_NAME && cust.IS_ACTIVE == true
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        //Sync
-                        tecnico.IS_MODIFIED = true;
-                        tecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
-                        entity.SaveChanges();
-                        //
-                        entity.TECNICOes.AddObject(tecnico);
-                        entity.SaveChanges();
-                    }
+                                        
+                    //Sync
+                    tecnico.IS_MODIFIED = true;
+                    tecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
+                    entity.TECNICOes.AddObject(tecnico);
+                    entity.SaveChanges();
+                    
                 }
             }
         }

@@ -157,11 +157,32 @@ namespace InventoryApp.ViewModel.CatalogTecnico
             tecAux.IsChecked = false;
 
             if (_almData != null)
-                _almData.CatalogTecnicoModel.Tecnico.Add(tecAux);
+            {
+                bool aaxx = true;
+                foreach (DeleteTecnico dd in _almData.CatalogTecnicoModel.Tecnico) {
+
+                    if (dd.TECNICO_NAME == tecAux.TECNICO_NAME)
+                        aaxx = false;
+                }
+
+                if(aaxx)
+                    _almData.CatalogTecnicoModel.Tecnico.Add(tecAux);
+            }
             else
             {
-                _almDataM.CatalogTecnicoModel.Tecnico.Add(tecAux);
-                _almDataM.ModiAlmacen._unidsTecnicos.Add(tecAux.UNID_TECNICO);
+                bool aaxx = true;
+                foreach (DeleteTecnico dd in _almDataM.CatalogTecnicoModel.Tecnico)
+                {
+
+                    if (dd.TECNICO_NAME == tecAux.TECNICO_NAME)
+                        aaxx = false;
+                }
+
+                if (aaxx)
+                {
+                    _almDataM.CatalogTecnicoModel.Tecnico.Add(tecAux);
+                    _almDataM.ModiAlmacen._unidsTecnicos.Add(tecAux.UNID_TECNICO);
+                }
             }
         }
 

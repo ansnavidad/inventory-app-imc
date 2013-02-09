@@ -386,48 +386,51 @@ namespace InventoryApp.DAL
                             }
                         }
                         //INSERTA LAS NUEVAS RELACIONES ALMACEN TECNICO
-                        if (unidTecnico.Count > 0)
-                        {
-                            foreach (var item in unidTecnico)
-                            {
-                                var query2 = (from cust in entity.ALMACEN_TECNICO
-                                              where cust.UNID_ALMACEN == almacen.UNID_ALMACEN && cust.UNID_TECNICO == item
-                                              select cust).ToList();
+                        //if (unidTecnico.Count > 0)
+                        //{
+                        //    foreach (var item in unidTecnico)
+                        //    {
+                        //        if (item != 0)
+                        //        {
+                        //            var query2 = (from cust in entity.ALMACEN_TECNICO
+                        //                          where cust.UNID_ALMACEN == almacen.UNID_ALMACEN && cust.UNID_TECNICO == item
+                        //                          select cust).ToList();
 
-                                if (query2.Count > 0)
-                                {
-                                    var query3 = query2.First();
+                        //            if (query2.Count > 0)
+                        //            {
+                        //                var query3 = query2.First();
 
-                                    //Sync
-                                    query3.IS_ACTIVE = true;
-                                    query3.IS_MODIFIED = true;
-                                    query3.LAST_MODIFIED_DATE = UNID.getNewUNID();
-                                    modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                                    entity.SaveChanges();
-                                    //
-                                }
-                                else
-                                {
+                        //                //Sync
+                        //                query3.IS_ACTIVE = true;
+                        //                query3.IS_MODIFIED = true;
+                        //                query3.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        //                modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        //                modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        //                entity.SaveChanges();
+                        //                //
+                        //            }
+                        //            else
+                        //            {
 
-                                    ALMACEN_TECNICO almacenTecnico = new ALMACEN_TECNICO();
-                                    almacenTecnico.UNID_ALMACEN = almacen.UNID_ALMACEN;
-                                    almacenTecnico.UNID_TECNICO = item;
+                        //                ALMACEN_TECNICO almacenTecnico = new ALMACEN_TECNICO();
+                        //                almacenTecnico.UNID_ALMACEN = almacen.UNID_ALMACEN;
+                        //                almacenTecnico.UNID_TECNICO = item;
 
-                                    //Sync
-                                    almacenTecnico.IS_MODIFIED = true;
-                                    almacenTecnico.IS_ACTIVE = true;
-                                    almacenTecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
-                                    modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                                    entity.SaveChanges();
-                                    //
+                        //                //Sync
+                        //                almacenTecnico.IS_MODIFIED = true;
+                        //                almacenTecnico.IS_ACTIVE = true;
+                        //                almacenTecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        //                modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        //                modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        //                entity.SaveChanges();
+                        //                //
 
-                                    entity.ALMACEN_TECNICO.AddObject(almacenTecnico);
-                                    entity.SaveChanges();
-                                }
-                            }
-                        }
+                        //                entity.ALMACEN_TECNICO.AddObject(almacenTecnico);
+                        //                entity.SaveChanges();
+                        //            }
+                        //        }
+                        //    }
+                        //}
                     }
                 }
             }

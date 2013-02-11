@@ -7,6 +7,7 @@ using System.Configuration;
 using RestSharp;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
+using System.Text.RegularExpressions;
 
 namespace InventoryApp.Model.Login
 {
@@ -50,12 +51,16 @@ namespace InventoryApp.Model.Login
             }
             set
             {
-                if (_Usuario != value)
+                if (EmailValidador())
                 {
-                    _Usuario = value;
-                    if (PropertyChanged != null)
+                    
+                    if (_Usuario != value)
                     {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("Usuario"));
+                        _Usuario = value;
+                        if (PropertyChanged != null)
+                        {
+                            this.PropertyChanged(this, new PropertyChangedEventArgs("Usuario"));
+                        }
                     }
                 }
             }
@@ -72,6 +77,7 @@ namespace InventoryApp.Model.Login
             {
                 if (_UserRegristro != value)
                 {
+
                     _UserRegristro = value;
                     if (PropertyChanged != null)
                     {
@@ -142,6 +148,26 @@ namespace InventoryApp.Model.Login
         }
         private string _UserRegistroPass2;
 
+        public string MensajeError
+        {
+            get
+            {
+                return _mensajeError;
+            }
+            set
+            {
+                if (_mensajeError != value)
+                {
+                    _mensajeError = value;
+
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("MensajeError"));
+                    }
+                }
+            }
+        }
+        private string _mensajeError;
         #endregion
 
         // consumir servicio
@@ -194,9 +220,16 @@ namespace InventoryApp.Model.Login
 
         public LoginModel() {
 
-            Usuario = new USUARIO();
+            this._Usuario = new USUARIO();
         }
 
+        public bool EmailValidador()
+        {
+            bool validar = true;
+            if (!Regex.IsMatch(this._Usuario.USUARIO_MAIL, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
+                validar = false;
+            return validar;
+        }
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

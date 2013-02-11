@@ -27,9 +27,15 @@ namespace InventoryApp.ViewModel.Login
         }
         public bool CanAttempValidar()
         {
+            bool _validar = false;
           if (String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_MAIL) || String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_PWD))
-                return false;
-            return true;
+              _validar = false;
+
+          if (!_validar)
+              this.LoginModel.MensajeError = "Email no valido";
+          else
+              this.LoginModel.MensajeError = "";
+          return _validar;
         }
         public void AttempValidar()
         {

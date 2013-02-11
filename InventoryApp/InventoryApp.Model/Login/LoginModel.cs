@@ -228,6 +228,7 @@ namespace InventoryApp.Model.Login
             bool validar = true;
             if (!Regex.IsMatch(this._Usuario.USUARIO_MAIL, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
                 validar = false;
+            
             return validar;
         }
         public event PropertyChangedEventHandler PropertyChanged;

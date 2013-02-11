@@ -31,7 +31,7 @@ namespace InventoryApp.ViewModel.Login
           if (String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_MAIL) || String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_PWD))
               _validar = false;
 
-          if (!_validar)
+          if (!_validar && !String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_MAIL))
               this.LoginModel.MensajeError = "Email no valido";
           else
               this.LoginModel.MensajeError = "";
@@ -54,7 +54,12 @@ namespace InventoryApp.ViewModel.Login
             }
             set
             {
-                _loginModel = value;
+
+                if (_loginModel != value)
+                {
+                    _loginModel = value;
+                    OnPropertyChanged("LoginModel");
+                }
             }
         }
         private LoginModel _loginModel;

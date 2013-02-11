@@ -2,6 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:rootViewModel="clr-namespace:InventoryApp.ViewModel;assembly=InventoryApp.ViewModel"
+             xmlns:rootDosViewModel="clr-namespace:InventoryApp.ViewModel.Login;assembly=InventoryApp.ViewModel"
              xmlns:catArticulo="clr-namespace:InventoryApp.ViewModel.CatalogArticulo;assembly=InventoryApp.ViewModel"
              xmlns:catArticuloViews="clr-namespace:InventoryApp.View.CatalogArticulo"
              xmlns:catMarca="clr-namespace:InventoryApp.ViewModel.CatalogMarca;assembly=InventoryApp.ViewModel"
@@ -88,7 +89,7 @@
              xmlns:jobViewModel="clr-namespace:InventoryApp.ViewModel.Job;assembly=InventoryApp.ViewModel"
              xmlns:jobView="clr-namespace:InventoryApp.View.Job"
                   
-             StartupUri="MainWindow.xaml"
+             StartupUri="Login/LoginView.xaml"
              >
     <!--StartupUri="Login/LoginView.xaml"-->
     <!--StartupUri="CatalogFactura/AddReciboView.xaml"-->
@@ -105,6 +106,7 @@
         -->
         <rootViewModel:MenuViewModel x:Key="menuViewModel" />
         <rootViewModel:MainWindowViewModel x:Key="mainWindowViewModel" />
+        <rootDosViewModel:LoginViewModel x:Key="loginViewModel"/>
         <reciboViewModel:CatalogReciboViewModel x:Key="catalogReciboViewModel" />
         <!--Juan-->
             <!--<ReciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />-->

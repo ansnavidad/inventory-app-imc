@@ -78,6 +78,8 @@
                     <TextBlock Style="{StaticResource textBockLogin}" Name="recuperar"  MouseUp="recuperar_MouseUp" Text="Recuperar Contraseña"/>
                 </Label>
                 <TextBox Height="23" HorizontalAlignment="Left" Margin="0,10,0,4" Name="txtPassword" Style="{StaticResource txtLogin}" Text="{Binding Path=LoginModel.Usuario.USUARIO_PWD, Mode=TwoWay}" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="2" />
+                <Label Grid.Row="3" Content="{Binding Path=LoginModel.MensajeError}" Height="30" HorizontalAlignment="Stretch"
+                       Name="lblError" VerticalAlignment="Stretch" Grid.ColumnSpan="3"  Style="{StaticResource titleError}" />
             </Grid>
         </Grid>
     </Border>

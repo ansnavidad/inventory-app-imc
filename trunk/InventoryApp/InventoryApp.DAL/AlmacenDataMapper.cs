@@ -297,6 +297,7 @@ namespace InventoryApp.DAL
                     var modifiedRelation = entity.ALMACEN_TECNICO.First(p => p.UNID_ALMACEN == relation.UNID_ALMACEN && p.UNID_TECNICO == relation.UNID_TECNICO);                    
                     //Sync
                     modifiedRelation.IS_MODIFIED = true;
+                    
                     modifiedRelation.LAST_MODIFIED_DATE = UNID.getNewUNID();
 
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);

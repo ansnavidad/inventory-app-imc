@@ -73,6 +73,7 @@
     <Compile Include="ItemStatusDataMapper.cs" />
     <Compile Include="JobDataMapper.cs" />
     <Compile Include="JSON\SerializerJson.cs" />
+    <Compile Include="Login\LoginDataMapper.cs" />
     <Compile Include="LoteDataMapper.cs" />
     <Compile Include="MarcaDataMapper.cs" />
     <Compile Include="MaxMinDataMapper.cs" />

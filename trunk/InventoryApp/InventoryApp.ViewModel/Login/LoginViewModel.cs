@@ -4,19 +4,16 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model.Login;
 using System.Windows.Input;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace InventoryApp.ViewModel.Login
 {
-    public class LoginViewModel
+    public class LoginViewModel : ViewModelBase 
     {
-        #region Fields
+        #region Relay Commands
+
         private RelayCommand _validarLoginCommand;
-        private LoginModel _loginModel;
-        #endregion
-
-        //Exponer las propiedades
-        #region Props
-
         public ICommand ValidarLoginCommand
         {
             get
@@ -28,6 +25,20 @@ namespace InventoryApp.ViewModel.Login
                 return _validarLoginCommand;
             }
         }
+        public bool CanAttempValidar()
+        {
+          if (String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_MAIL) || String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_PWD))
+                return false;
+            return true;
+        }
+        public void AttempValidar()
+        {
+
+        }
+
+        #endregion
+        
+        #region Properties
 
         public LoginModel LoginModel
         {
@@ -40,22 +51,23 @@ namespace InventoryApp.ViewModel.Login
                 _loginModel = value;
             }
         }
+        private LoginModel _loginModel;
+
         #endregion
 
         #region metodos
-        public bool CanAttempValidar()
-        {
-            bool _canDeleteUnidad = true;
-            
-            
-
-            return _canDeleteUnidad;
-        }
-
-        public void AttempValidar()
-        {
-            
-        }
+        
         #endregion
-    }
+
+        #region Constructors
+
+        public LoginViewModel() {
+
+            _loginModel = new LoginModel();
+        }
+
+        #endregion
+
+
+    }    
 }

@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel;
 
 namespace InventoryApp.View.Login
 {
@@ -33,6 +34,7 @@ namespace InventoryApp.View.Login
         {
             RecoverPassword recuperar = new RecoverPassword();
             recuperar.Owner = this;
+            recuperar.DataContext = this.DataContext;
             this.Hide();
             recuperar.ShowDialog();
         }
@@ -41,6 +43,7 @@ namespace InventoryApp.View.Login
         {
             RegisterUser registro = new RegisterUser();
             registro.Owner = this;
+            registro.DataContext = this.DataContext;
             this.Hide();
             registro.ShowDialog();
         }
@@ -48,6 +51,17 @@ namespace InventoryApp.View.Login
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+        
+        private void checkBoxOpenMain_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (checkBoxOpenMain.IsEnabled)
+            {
+                MainWindow mw = new MainWindow();                
+                mw.DataContext = new MainWindowViewModel();
+                this.Close();
+                mw.ShowDialog();
+            }
         }
     }
     

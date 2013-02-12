@@ -54,6 +54,18 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
+    
+        public virtual bool FLAG
+        {
+            get;
+            set;
+        }
+    
+        public virtual bool FLAG_PASS
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

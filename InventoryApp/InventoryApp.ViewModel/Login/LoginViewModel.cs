@@ -45,9 +45,10 @@ namespace InventoryApp.ViewModel.Login
         {
             this.LoginModel.CallServiceGetLoginUser();
             if (!this.LoginModel.Login)
-                MessageBox.Show("Usuario o contraseña incorrectos");
+                if (!this.LoginModel.GetLoginUser())
+                    MessageBox.Show("Usuario o contraseña incorrectos");
             
-            //this.LoginModel.Login = true;
+            
         }
 
         #endregion

@@ -18,6 +18,8 @@ namespace InventoryApp.Model.Login
         string basicAuthUser = "Administrator";
         string basicAuthPass = "Passw0rd1!";
         string nameService = "GetLogin";
+        string nameServiceRecuver = "GetRecoverPassword";
+        long recuperar;
         AppUsuario dataMapper = new AppUsuario();        
         #endregion
 
@@ -39,6 +41,24 @@ namespace InventoryApp.Model.Login
             }
         }
         private bool _login;
+
+        public bool LoginPass
+        {
+            get
+            {
+                return _loginPass;
+            }
+            set
+            {
+                if (_loginPass != value)
+                {
+                    _loginPass = value;
+                    OnPropertyChanged("LoginPass");
+                }
+            }
+        }
+        private bool _loginPass;
+
 
         public USUARIO Usuario
         {
@@ -152,7 +172,7 @@ namespace InventoryApp.Model.Login
         public const string MensajeErrorPropertyName = "MensajeError";
         #endregion
 
-        // consumir servicio
+        // consumir servicio login
         public void CallServiceGetLoginUser()
         {
             
@@ -197,6 +217,44 @@ namespace InventoryApp.Model.Login
             #endregion
         }
 
+        // consumir servicio recupera contraseña
+        public void CallServiceGetRecoverPass()
+        {
+
+            #region metodos
+
+            if (recuperar !=0)
+            {
+                try
+                {
+                    var client = new RestClient(routeLogin);
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameServiceRecuver;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { dataUser = recuperar });                    
+
+                }
+                catch (Exception)
+                {
+                    
+                }
+            }
+            
+            #endregion
+        }
+
+        public bool GetLoginUser()
+        {
+            bool res = false;
+
+            res = dataMapper.GetElementLoginLocal(this._Usuario);
+            this.Login = res;
+            return res;
+
+        }
+
         //serializa a json
         public string GetJonUser() 
         {
@@ -213,11 +271,27 @@ namespace InventoryApp.Model.Login
 
             this._Usuario = new USUARIO();
             this.Login = false;
+            this.LoginPass = false;
             this.UserRegristro = "";
             this.UserRecuperar = "";
             this.UserRegistroPass1 = "";
             this.UserRegistroPass2 = "";
             this.MensajeError = "";
+            this.recuperar = 0;
+        }
+
+        public void ValidaRecuperarEmail()
+        {
+            
+            recuperar = dataMapper.GetValidarCorreoLocal(this._Usuario);
+            if (recuperar != 0)
+            {
+                CallServiceGetRecoverPass();
+                this.LoginPass = true;
+            }
+            else
+                this.LoginPass = false;
+           
         }
 
         public bool EmailValidador()

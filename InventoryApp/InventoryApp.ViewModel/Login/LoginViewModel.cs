@@ -26,16 +26,20 @@ namespace InventoryApp.ViewModel.Login
             }
         }
         public bool CanAttempValidar()
-        {
-            bool _validar = false;
-          if (String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_MAIL) || String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_PWD))
-              _validar = false;
+        {            
+            if (String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_MAIL) || String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_PWD))
+                return false;
 
-          if (!_validar && !String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_MAIL))
-              this.LoginModel.MensajeError = "Email no valido";
-          else
-              this.LoginModel.MensajeError = "";
-          return _validar;
+            if (!this.LoginModel.EmailValidador())
+            {
+                this.LoginModel.MensajeError = "Email no valido";
+                return false;
+            }
+            else
+            {
+                this.LoginModel.MensajeError = "";
+                return true;
+            }
         }
         public void AttempValidar()
         {
@@ -54,7 +58,6 @@ namespace InventoryApp.ViewModel.Login
             }
             set
             {
-
                 if (_loginModel != value)
                 {
                     _loginModel = value;

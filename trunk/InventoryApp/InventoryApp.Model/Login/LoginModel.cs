@@ -178,7 +178,6 @@ namespace InventoryApp.Model.Login
 
                     bool list;
                     list = dataMapper.GetDeserializeUsuarioBool(resx["GetLoginResult"]);
-
                     if (list != false)
                         this._login = list;
                     else

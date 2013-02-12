@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using InventoryApp.ViewModel;
+using InventoryApp.ViewModel.Login;
 
 namespace InventoryApp.View.Login
 {
@@ -58,7 +59,9 @@ namespace InventoryApp.View.Login
         {
             if (checkBoxOpenMain.IsEnabled)
             {
-                MessageBox.Show("Bienvenido al sistema de inventarios Elara");
+                //MessageBox.Show("Bienvenido al sistema de inventarios Elara");
+                MessageBoxResult result = MessageBox.Show("Bienvenido al sistema de inventarios Elara", "Bienvenido", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                //AutoClosingMessageBox.Show("Bienvenido al sistema de inventarios Elara", "Bienvenido", 10);
                 MainWindow mw = new MainWindow();                
                 mw.DataContext = new MainWindowViewModel();
                 this.Close();

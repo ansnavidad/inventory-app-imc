@@ -1389,6 +1389,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Style\MsgBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Traspasos\TraspasoStockSoloLectura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

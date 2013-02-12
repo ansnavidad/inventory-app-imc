@@ -144,6 +144,63 @@ namespace InventoryApp.DAL
             return respuesta;
         }
 
+        public bool GetElementLoginLocal(object element)
+        {
+            bool respuesta = false;
+            if (element != null)
+            {
+                USUARIO user = (USUARIO)element;
+
+                using (var Entity = new TAE2Entities())
+                {
+                    var res = (from p in Entity.USUARIOs
+                               where p.USUARIO_MAIL == user.USUARIO_MAIL && p.USUARIO_PWD == user.USUARIO_PWD
+                               select p).ToList();
+
+                    if (res.Count != 0)
+                        return true;
+                }
+            }
+            return respuesta;
+        }
+
+        public long GetValidarCorreoLocal(object element)
+        {
+            long respuesta = 0;
+            if (element != null)
+            {
+                USUARIO user = (USUARIO)element;
+
+                using (var Entity = new TAE2Entities())
+                {
+                    try
+                    {
+                        var res = (from p in Entity.USUARIOs
+                                   where p.USUARIO_MAIL == user.USUARIO_MAIL
+                                   select p).First();
+                        respuesta = res.UNID_USUARIO;
+                    }
+                    catch (Exception ex)
+                    {
+                        return respuesta; 
+                        
+                    }
+                    
+                }
+            }
+            return respuesta;
+        }
+
+        public void GetRecoverPassword(long? unidUser)
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var recoverPass = Entity.USUARIOs.First(p => p.UNID_USUARIO == unidUser);
+                recoverPass.FLAG = true;
+                Entity.SaveChanges();
+            }
+        }
+
         public void udpateElement(object element)
         {
             if (element != null)
@@ -316,7 +373,6 @@ namespace InventoryApp.DAL
                 return true;
             else
                 return false;
-
             
         }
 

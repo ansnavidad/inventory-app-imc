@@ -42,7 +42,7 @@ namespace InventoryApp.Model.Login
         }
         private bool _login;
 
-        public bool LoginPass
+        public bool? LoginPass
         {
             get
             {
@@ -57,7 +57,7 @@ namespace InventoryApp.Model.Login
                 }
             }
         }
-        private bool _loginPass;
+        private bool? _loginPass;
 
 
         public USUARIO Usuario
@@ -233,12 +233,12 @@ namespace InventoryApp.Model.Login
                     request.Resource = nameServiceRecuver;
                     request.RequestFormat = RestSharp.DataFormat.Json;
                     request.AddHeader("Content-type", "application/json");
-                    request.AddBody(new { dataUser = recuperar });                    
-
+                    request.AddBody(new { dataUser = recuperar });
+                    
                 }
                 catch (Exception)
                 {
-                    
+
                 }
             }
             
@@ -282,8 +282,8 @@ namespace InventoryApp.Model.Login
 
         public void ValidaRecuperarEmail()
         {
-            
-            recuperar = dataMapper.GetValidarCorreoLocal(this._Usuario);
+
+            recuperar = dataMapper.GetValidarCorreoLocal(this._UserRecuperar);
             if (recuperar != 0)
             {
                 CallServiceGetRecoverPass();

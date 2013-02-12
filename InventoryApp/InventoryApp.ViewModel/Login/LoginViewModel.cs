@@ -51,6 +51,31 @@ namespace InventoryApp.ViewModel.Login
             
         }
 
+        private RelayCommand _enviarCorreoCommand;
+        public ICommand EnviarCorreoCommand
+        {
+            get
+            {
+                if (_enviarCorreoCommand == null)
+                {
+                    _enviarCorreoCommand = new RelayCommand(p => this.AttempEnviarCorreo(), p => this.CanAttempEnviarCorreo());
+                }
+                return _enviarCorreoCommand;
+            }
+        }
+        public bool CanAttempEnviarCorreo()
+        {
+            if (String.IsNullOrEmpty(LoginModel.UserRecuperar))
+                return false;
+            return true;
+        }
+
+        public void AttempEnviarCorreo()
+        {
+            this.LoginModel.ValidaRecuperarEmail();
+            if(LoginModel.LoginPass)
+        }
+
         #endregion
         
         #region Properties

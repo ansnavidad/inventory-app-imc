@@ -179,19 +179,19 @@ namespace InventoryApp.Model.Login
                     bool list;
                     list = dataMapper.GetDeserializeUsuarioBool(resx["GetLoginResult"]);
                     if (list != false)
-                        this._login = list;
+                        this.Login = list;
                     else
-                        this._login = list;
+                        this.Login = list;
 
                 }
                 catch (Exception)
                 {
-                    this._login = false;
+                    this.Login = false;
                 }
             }
             else
             {
-                this._login  = false;
+                this.Login = false;
             }
             
             #endregion

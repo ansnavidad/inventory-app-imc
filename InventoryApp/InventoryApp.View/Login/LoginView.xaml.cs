@@ -58,6 +58,7 @@ namespace InventoryApp.View.Login
         {
             if (checkBoxOpenMain.IsEnabled)
             {
+                MessageBox.Show("Bienvenido al sistema de inventarios Elara");
                 MainWindow mw = new MainWindow();                
                 mw.DataContext = new MainWindowViewModel();
                 this.Close();

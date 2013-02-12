@@ -290,7 +290,7 @@ namespace InventoryApp.Model.Login
                 this.LoginPass = true;
             }
             else
-                this.LoginPass = false;
+                this.LoginPass = null;
            
         }
 

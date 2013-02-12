@@ -43,7 +43,13 @@ namespace InventoryApp.ViewModel.Login
         }
         public void AttempValidar()
         {
-
+            //this.LoginModel.CallServiceGetLoginUser();
+            //if(this.LoginModel.Login)
+            //    MessageBox.Show("Login Exitoso");
+            //else
+            //    MessageBox.Show("Usuario o contraseña incorrectos");
+            
+            this.LoginModel.Login = true;
         }
 
         #endregion
@@ -81,7 +87,5 @@ namespace InventoryApp.ViewModel.Login
         }
 
         #endregion
-
-
     }    
 }

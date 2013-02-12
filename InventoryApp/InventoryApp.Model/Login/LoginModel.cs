@@ -173,7 +173,15 @@ namespace InventoryApp.Model.Login
                     request.AddHeader("Content-type", "application/json");
                     request.AddBody(new { dataUser = dataUser });
                     IRestResponse response = client.Execute(request);
-                    this._login = bool.Parse(response.Content);
+                    
+                    Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                    List<bool> list;
+                    list = dataMapper.GetDeserializeUsuarioBool(resx["GetLoginResult"]);
+
+                    if (list != null)
+                        foreach (bool item in list)
+                            this._login = item;
                 }
                 catch (Exception)
                 {

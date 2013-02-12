@@ -55,7 +55,8 @@
                     
                 
                 <Label Content="Password:" Grid.Column="0" Grid.Row="2"  Height="23" HorizontalAlignment="Right" Name="label1" VerticalAlignment="Center" Style="{StaticResource lblLogin}" />
-                <TextBox Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" Name="txtUsuario" VerticalAlignment="Center" Width="150" Style="{StaticResource txtLogin}" Text="{Binding Path=LoginModel.Usuario.USUARIO_MAIL, Mode=TwoWay}" />
+                <TextBox Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" Name="txtUsuario" VerticalAlignment="Center" Width="150" 
+                         Style="{StaticResource txtLogin}" Text="{Binding Path=LoginModel.Usuario.USUARIO_MAIL, Mode=TwoWay}" />
 
 
 

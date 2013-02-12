@@ -47,10 +47,7 @@ namespace InventoryApp.View
          public MainWindow()
         {
             InitializeComponent();
-            //CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
-            //ci.DateTimeFormat.ShortDatePattern = "dd-MM-yyyy";
-            //Thread.CurrentThread.CurrentCulture = ci;
-            //NOMBRE DE LA MAQUINA
+            
             int SyncTime = Int32.Parse(ConfigurationManager.AppSettings["SyncTime"].ToString());
 
             System.Security.Principal.WindowsIdentity user = System.Security.Principal.WindowsIdentity.GetCurrent();

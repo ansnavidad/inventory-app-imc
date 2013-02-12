@@ -22,6 +22,7 @@ namespace InventoryApp.View.Login
         public LoginView()
         {
             InitializeComponent();
+            
             FocusManager.SetFocusedElement(this, this.txtUsuario);
         }
 

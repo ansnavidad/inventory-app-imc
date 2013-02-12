@@ -485,56 +485,6 @@
             <propiedadViews:PropiedadUserControl />
         </DataTemplate>
 
-        <!--<DataTemplate DataType="{x:Type EntradaViewModel:EntradaPorValidacionViewModel}">
-            <EntradaView:EntradaValidacionRevision />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type EntradaViewModel:EntradaPrestamoViewModel}">
-            <EntradaView:EntradaPrestamo />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type EntradaViewModel:EntradaDevolucionViewModel}">
-            <EntradaView:EntradaDevolucion />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type EntradaViewModel:EntradaDesinstalacionViewModel}">
-            <EntradaView:EntradaDesinstalacion />
-        </DataTemplate>-->
-        
-        
-        <!--<DataTemplate DataType="{x:Type SalidasViewModel:SalidaRentaViewModel}">
-            <SalidasView:SalidaRenta />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaDemoViewModel}">
-            <SalidasView:SalidaDemo />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaPrestamoViewModel}">
-            <SalidasView:SalidaPrestamo />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaVentaViewModel}">
-            <SalidasView:SalidaVenta />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaRMAViewModel}">
-            <SalidasView:SalidaRMA />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaRevisionViewModel}">
-            <SalidasView:SalidaRevision/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaPruebasViewModel}">
-            <SalidasView:SalidaPruebas/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaConfiguracionViewModel}">
-            <SalidasView:SalidaConfiguracion/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaObsequioViewModel}">
-            <SalidasView:SalidaObsequio />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaCorrectivoViewModel}">
-            <SalidasView:SalidaCorrectivo />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type SalidasViewModel:SalidaOfficeViewModel}">
-            <SalidasView:SalidaOffice />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type TraspasosViewModel:TraspasoStockViewModel}">
-            <TraspasosView:TraspasoStock/>
-        </DataTemplate>-->
         <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientosGridViewModel}">
             <GridMovimientosView:GridMovimientos/>
         </DataTemplate>

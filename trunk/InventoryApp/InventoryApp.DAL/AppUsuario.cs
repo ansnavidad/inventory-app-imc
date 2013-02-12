@@ -309,16 +309,15 @@ namespace InventoryApp.DAL
         /// </summary>
         /// <returns>Regresa List<USUARIO></returns>
         /// <returns>Si no regresa null</returns>
-        public List<bool> GetDeserializeUsuarioBool(string listPocos)
+        public bool GetDeserializeUsuarioBool(string listPocos)
         {
-            List<bool> res = null;
+            
+            if (listPocos == "True")
+                return true;
+            else
+                return false;
 
-            if (!String.IsNullOrEmpty(listPocos))
-            {
-                res = JsonConvert.DeserializeObject<List<bool>>(listPocos);
-            }
-
-            return res;
+            
         }
 
         /// <summary>

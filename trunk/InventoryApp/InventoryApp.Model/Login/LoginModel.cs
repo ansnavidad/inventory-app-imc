@@ -176,12 +176,14 @@ namespace InventoryApp.Model.Login
                     
                     Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
 
-                    List<bool> list;
+                    bool list;
                     list = dataMapper.GetDeserializeUsuarioBool(resx["GetLoginResult"]);
 
-                    if (list != null)
-                        foreach (bool item in list)
-                            this._login = item;
+                    if (list != false)
+                        this._login = list;
+                    else
+                        this._login = list;
+
                 }
                 catch (Exception)
                 {

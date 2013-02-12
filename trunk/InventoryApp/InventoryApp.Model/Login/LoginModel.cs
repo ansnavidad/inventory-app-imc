@@ -34,10 +34,7 @@ namespace InventoryApp.Model.Login
                 if (_login != value)
                 {
                     _login = value;
-                    if (PropertyChanged != null)
-                    {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("Login"));
-                    }
+                    OnPropertyChanged("Login");
                 }
             }
         }
@@ -53,14 +50,10 @@ namespace InventoryApp.Model.Login
             {
                 if (EmailValidador())
                 {
-                    
                     if (_Usuario != value)
                     {
                         _Usuario = value;
-                        if (PropertyChanged != null)
-                        {
-                            this.PropertyChanged(this, new PropertyChangedEventArgs("Usuario"));
-                        }
+                        OnPropertyChanged("Usuario");
                     }
                 }
             }
@@ -77,12 +70,8 @@ namespace InventoryApp.Model.Login
             {
                 if (_UserRegristro != value)
                 {
-
                     _UserRegristro = value;
-                    if (PropertyChanged != null)
-                    {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("UserRegristro"));
-                    }
+                    OnPropertyChanged("UserRegristro");
                 }
             }
         }
@@ -99,10 +88,7 @@ namespace InventoryApp.Model.Login
                 if (_UserRecuperar != value)
                 {
                     _UserRecuperar = value;
-                    if (PropertyChanged != null)
-                    {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("UserRecuperar"));
-                    }
+                    OnPropertyChanged("UserRecuperar");
                 }
             }
         }
@@ -119,10 +105,7 @@ namespace InventoryApp.Model.Login
                 if (_UserRegistroPass1 != value)
                 {
                     _UserRegistroPass1 = value;
-                    if (PropertyChanged != null)
-                    {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("UserRegistroPass1"));
-                    }
+                    OnPropertyChanged("UserRegistroPass1");
                 }
             }
         }
@@ -139,10 +122,7 @@ namespace InventoryApp.Model.Login
                 if (_UserRegistroPass2 != value)
                 {
                     _UserRegistroPass2 = value;
-                    if (PropertyChanged != null)
-                    {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("UserRegistroPass2"));
-                    }
+                    OnPropertyChanged("UserRegistroPass2");
                 }
             }
         }
@@ -159,11 +139,7 @@ namespace InventoryApp.Model.Login
                 if (_mensajeError != value)
                 {
                     _mensajeError = value;
-
-                    if (PropertyChanged != null)
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs("MensajeError"));
-                    }
+                    OnPropertyChanged("MensajeError");
                 }
             }
         }

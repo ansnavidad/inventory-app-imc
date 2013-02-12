@@ -598,7 +598,8 @@ namespace InventoryApp.ViewModel.Recibo
 
         public DateTime FechaCreacion
         {
-            get {
+            get 
+            {
                 if (_FechaCreacion == DateTime.MinValue)
                 {
                     _FechaCreacion = DateTime.Now;

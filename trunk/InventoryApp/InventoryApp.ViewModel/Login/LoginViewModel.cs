@@ -6,6 +6,7 @@ using InventoryApp.Model.Login;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.Login
 {
@@ -69,7 +70,6 @@ namespace InventoryApp.ViewModel.Login
                 return false;
             return true;
         }
-
         public void AttempEnviarCorreo()
         {
             this.LoginModel.ValidaRecuperarEmail();
@@ -79,6 +79,55 @@ namespace InventoryApp.ViewModel.Login
                 MessageBox.Show("Se le enviará su contraseña a su correo electrónico");
             else
                 MessageBox.Show("Favor de conectarse a la red del servidor");
+        }
+
+        private RelayCommand _registrarCommand;
+        public ICommand RegistrarCommand
+        {
+            get
+            {
+                if (_registrarCommand == null)
+                {
+                    _registrarCommand = new RelayCommand(p => this.AttempRegistrar(), p => this.CanAttempRegistrar());
+                }
+                return _registrarCommand;
+            }
+        }
+        public bool CanAttempRegistrar()
+        {
+            if (String.IsNullOrEmpty(this.LoginModel.UserRegristro) || String.IsNullOrEmpty(this.LoginModel.UserRegistroPass1) || String.IsNullOrEmpty(this.LoginModel.UserRegistroPass2))
+                return false;
+            return true;
+        }
+        public void AttempRegistrar()
+        {
+            if (!this.LoginModel.EmailValidadorRegistro()) {
+
+                MessageBox.Show("Ingrese como usuario un email válido");
+                return;
+            }
+
+            bool aux = true;
+
+            foreach (USUARIO u in this.LoginModel.UsuariosCollection) {
+
+                if (this.LoginModel.UserRegristro.Equals(u.USUARIO_MAIL)) {
+
+                    MessageBox.Show("Ya existe el usuario que acaba de ingresar en el sistema");
+                    return;
+                }
+            }
+
+            if (!this.LoginModel.UserRegistroPass1.Equals(this.LoginModel.UserRegistroPass2))
+            {
+                MessageBox.Show("Las contraseñas no coinciden");
+                return;
+            }
+            if (this.LoginModel.UserRegistroPass1.Length < 8)
+            {
+                MessageBox.Show("La longitud mínima de la contraseña es de 8 caracteres");
+                return;
+            }
         }
 
         #endregion

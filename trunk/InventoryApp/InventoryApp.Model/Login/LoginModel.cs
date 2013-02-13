@@ -8,6 +8,7 @@ using RestSharp;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.Text.RegularExpressions;
+using System.Collections.ObjectModel;
 
 namespace InventoryApp.Model.Login
 {
@@ -58,8 +59,7 @@ namespace InventoryApp.Model.Login
             }
         }
         private bool? _loginPass;
-
-
+        
         public USUARIO Usuario
         {
             get
@@ -170,8 +170,28 @@ namespace InventoryApp.Model.Login
         }
         private string _mensajeError;
         public const string MensajeErrorPropertyName = "MensajeError";
+
+        public List<USUARIO> UsuariosCollection
+        {
+            get
+            {
+                return _UsuariosCollection;
+            }
+            set
+            {
+                if (_UsuariosCollection != value)
+                {
+                    _UsuariosCollection = value;
+                    OnPropertyChanged(UsuariosCollectionPropertyName);
+                }
+            }
+        }
+        private List<USUARIO> _UsuariosCollection;
+        public const string UsuariosCollectionPropertyName = "UsuariosCollection";
+
         #endregion
 
+        #region Service
         // consumir servicio login
         public void CallServiceGetLoginUser()
         {
@@ -281,7 +301,9 @@ namespace InventoryApp.Model.Login
             return resJson;
 
         }
-
+        #endregion
+        
+        #region Constructors
         public LoginModel() {
 
             this._Usuario = new USUARIO();
@@ -293,8 +315,12 @@ namespace InventoryApp.Model.Login
             this.UserRegistroPass2 = "";
             this.MensajeError = "";
             this.recuperar = 0;
-        }
 
+            this._UsuariosCollection = GetUsuarios();
+        }
+        #endregion
+
+        #region Methods
         public void ValidaRecuperarEmail()
         {
             USUARIO u = new USUARIO();
@@ -320,5 +346,24 @@ namespace InventoryApp.Model.Login
             
             return validar;
         }
+
+        public bool EmailValidadorRegistro()
+        {
+            bool validar = true;
+            if (!Regex.IsMatch(this.UserRegristro, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
+                validar = false;
+
+            return validar;
+        }
+
+        public List<USUARIO> GetUsuarios()
+        {
+            List<USUARIO> aux = new List<USUARIO>();
+            aux = (List<USUARIO>)dataMapper.getElements();
+
+            return aux;
+        }
+
+        #endregion
     }
 }

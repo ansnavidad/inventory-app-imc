@@ -100,7 +100,17 @@ namespace InventoryApp.DAL
 
         public object getElements()
         {
-            throw new NotImplementedException();
+            object o = null;
+
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.USUARIOs
+                           where p.IS_ACTIVE == true
+                           select p).ToList();
+
+                o = res;
+            }            
+            return o;
         }
 
         public object getElement(object element)
@@ -158,7 +168,7 @@ namespace InventoryApp.DAL
                                select p).ToList();
 
                     if (res.Count != 0)
-                        return true;
+                        return true; 
                 }
             }
             return respuesta;
@@ -199,7 +209,27 @@ namespace InventoryApp.DAL
                 try
                 {
                     var recoverPass = Entity.USUARIOs.First(p => p.UNID_USUARIO == unidUser);
-                    recoverPass.FLAG = true;
+                    recoverPass.FLAG = false;
+                    Entity.SaveChanges();
+                    res = true;
+                }
+                catch (Exception ex)
+                {
+                    res = false;
+                }
+            }
+            return res;
+        }
+
+        public bool GetActivationResponse(long? unidUser)
+        {
+            bool res = false;
+            using (var Entity = new TAE2Entities())
+            {
+                try
+                {
+                    var recoverPass = Entity.USUARIOs.First(p => p.UNID_USUARIO == unidUser);
+                    recoverPass.NUEVO_USUARIO = false;
                     Entity.SaveChanges();
                     res = true;
                 }

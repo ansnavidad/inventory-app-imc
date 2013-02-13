@@ -74,7 +74,7 @@
                 <Label Grid.Column="1" Grid.Row="4" Height="28" HorizontalAlignment="Center" Name="lblRegistro" VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource textBockLogin}" Name="registro" MouseUp="registro_MouseUp" Text="Registrar Usuario"/>
                 </Label>
-
+                <PasswordBox Margin="0,0,0,10" Name="pass"></PasswordBox>
                 <Label Grid.Column="2" Grid.Row="4" Height="28" HorizontalAlignment="Center" Name="label2" VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource textBockLogin}" Name="recuperar"  MouseUp="recuperar_MouseUp" Text="Recuperar Contraseña"/>
                 </Label>

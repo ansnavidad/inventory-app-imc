@@ -940,15 +940,16 @@ namespace InventoryApp.Service.Services
             #endregion
         }
 
-        public void GetRecoverPassword(long? dataUser)
+        public bool GetRecoverPassword(long? dataUser)
         {
+            bool respuesta = false;
             if (dataUser != null)
             {
                 AppUsuario dataMapper = new AppUsuario();
 
-                dataMapper.GetRecoverPassword(dataUser);
+                respuesta= dataMapper.GetRecoverPassword(dataUser);
             }
-                
+            return respuesta;
         }
 
         public string GetRegisterUser(string dataUser)

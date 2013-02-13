@@ -191,14 +191,24 @@ namespace InventoryApp.DAL
             return respuesta;
         }
 
-        public void GetRecoverPassword(long? unidUser)
+        public bool GetRecoverPassword(long? unidUser)
         {
+            bool res = false;
             using (var Entity = new TAE2Entities())
             {
-                var recoverPass = Entity.USUARIOs.First(p => p.UNID_USUARIO == unidUser);
-                recoverPass.FLAG = true;
-                Entity.SaveChanges();
+                try
+                {
+                    var recoverPass = Entity.USUARIOs.First(p => p.UNID_USUARIO == unidUser);
+                    recoverPass.FLAG = true;
+                    Entity.SaveChanges();
+                    res = true;
+                }
+                catch (Exception ex)
+                {
+                    res = false;
+                }
             }
+            return res;
         }
 
         public void udpateElement(object element)

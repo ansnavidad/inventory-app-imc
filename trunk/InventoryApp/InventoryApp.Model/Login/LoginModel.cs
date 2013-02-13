@@ -218,11 +218,11 @@ namespace InventoryApp.Model.Login
         }
 
         // consumir servicio recupera contraseña
-        public void CallServiceGetRecoverPass()
+        public bool CallServiceGetRecoverPass()
         {
 
             #region metodos
-
+            bool resService = false;
             if (recuperar !=0)
             {
                 try
@@ -234,13 +234,28 @@ namespace InventoryApp.Model.Login
                     request.RequestFormat = RestSharp.DataFormat.Json;
                     request.AddHeader("Content-type", "application/json");
                     request.AddBody(new { dataUser = recuperar });
+                    IRestResponse response = client.Execute(request);
+
+                    Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                    bool list;
+                    list = dataMapper.GetDeserializeUsuarioBool(resx["GetRecoverPassword"]);
+                    if (list != false)
+                        resService = list;
+                    else
+                        resService = list;
                     
                 }
                 catch (Exception)
                 {
-
+                    resService = false;
                 }
             }
+            else
+            {
+                resService = false;
+            }
+            return resService;
             
             #endregion
         }
@@ -286,8 +301,10 @@ namespace InventoryApp.Model.Login
             recuperar = dataMapper.GetValidarCorreoLocal(this._UserRecuperar);
             if (recuperar != 0)
             {
-                CallServiceGetRecoverPass();
-                this.LoginPass = true;
+                if(CallServiceGetRecoverPass())
+                    this.LoginPass = true;
+                else
+                    this.LoginPass = false;
             }
             else
                 this.LoginPass = null;

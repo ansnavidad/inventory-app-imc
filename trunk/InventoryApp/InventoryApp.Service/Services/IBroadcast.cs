@@ -251,6 +251,6 @@ namespace InventoryApp.Service.Services
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
-        string GetRegisterUser(string dataUser);
+        bool GetRegisterUser(string dataUser);
     }
 }

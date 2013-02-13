@@ -247,10 +247,10 @@ namespace InventoryApp.Service.Services
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
-        void GetRecoverPassword(long? dataUser);
+        bool GetRecoverPassword(long? dataUser);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
-        bool GetRegisterUser(string dataUser);
+        string GetRegisterUser(string dataUser);
     }
 }

@@ -73,7 +73,12 @@ namespace InventoryApp.ViewModel.Login
         public void AttempEnviarCorreo()
         {
             this.LoginModel.ValidaRecuperarEmail();
-            if(LoginModel.LoginPass)
+            if (LoginModel.LoginPass == null)
+                MessageBox.Show("El usuario que ingresó no existe en la base de datos del sistema");
+            else if(LoginModel.LoginPass == true)
+                MessageBox.Show("Se le enviará su contraseña a su correo electrónico");
+            else
+                MessageBox.Show("Favor de conectarse a la red del servidor");
         }
 
         #endregion

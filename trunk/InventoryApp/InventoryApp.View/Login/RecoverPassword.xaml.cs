@@ -29,5 +29,10 @@ namespace InventoryApp.View.Login
             this.Close();
             this.Owner.ShowDialog();
         }
+
+        private void btnAceptar_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

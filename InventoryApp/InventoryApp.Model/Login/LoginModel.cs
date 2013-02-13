@@ -239,7 +239,7 @@ namespace InventoryApp.Model.Login
                     Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
 
                     bool list;
-                    list = dataMapper.GetDeserializeUsuarioBool(resx["GetRecoverPassword"]);
+                    list = dataMapper.GetDeserializeUsuarioBool(resx["GetRecoverPasswordResult"]);
                     if (list != false)
                         resService = list;
                     else
@@ -297,8 +297,9 @@ namespace InventoryApp.Model.Login
 
         public void ValidaRecuperarEmail()
         {
-
-            recuperar = dataMapper.GetValidarCorreoLocal(this._UserRecuperar);
+            USUARIO u = new USUARIO();
+            u.USUARIO_MAIL = this._UserRecuperar;
+            recuperar = dataMapper.GetValidarCorreoLocal(u);
             if (recuperar != 0)
             {
                 if(CallServiceGetRecoverPass())

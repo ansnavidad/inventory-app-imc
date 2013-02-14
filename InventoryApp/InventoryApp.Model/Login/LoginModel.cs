@@ -191,24 +191,6 @@ namespace InventoryApp.Model.Login
         private List<USUARIO> _UsuariosCollection;
         public const string UsuariosCollectionPropertyName = "UsuariosCollection";
 
-        public List<USUARIO> UsuariosCollectionServer
-        {
-            get
-            {
-                return _UsuariosCollectionServer;
-            }
-            set
-            {
-                if (_UsuariosCollectionServer != value)
-                {
-                    _UsuariosCollectionServer = value;
-                    OnPropertyChanged(UsuariosCollectionServerPropertyName);
-                }
-            }
-        }
-        private List<USUARIO> _UsuariosCollectionServer;
-        public const string UsuariosCollectionServerPropertyName = "UsuariosCollectionServer";
-
         #endregion
 
         #region Service
@@ -328,20 +310,20 @@ namespace InventoryApp.Model.Login
                     {
                         //guarda el nuevo registro
                         dataMapper.insertElementSync(list);
-                        resServer = "exito al guardar usuario";
+                        resServer = "Se ha enviado un correo de confirmación a su dirección de correo electrónico. \nConfirme su registro e intente iniciar sesión en la aplicación";
                     }    
                     else
-                        resServer = null;
+                        resServer = "Ha ocurrido un error en el servidor, favor de intentar de nuevo";
 
                 }
                 catch (Exception)
                 {
-                    resServer = null;
+                    resServer = "Actualmente no hay conexión al servidor, favor de verificarla";
                 }
             }
             else
             {
-                resServer = null;
+                resServer = "Ha ocurrido un error en el servidor, favor de intentar de nuevo";
             }
             return resServer;
             #endregion
@@ -406,7 +388,10 @@ namespace InventoryApp.Model.Login
         public string GetJonNewUser()
         {
             string resJson = null;
-            resJson = dataMapper.GetJsonUsuario(this._Usuario);
+            USUARIO u = new USUARIO();
+            u.USUARIO_MAIL = this.UserRegristro;
+            u.USUARIO_PWD = this.UserRegistroPass1;
+            resJson = dataMapper.GetJsonUsuario(u);
             if (resJson == null)
                 return null;
 
@@ -427,8 +412,10 @@ namespace InventoryApp.Model.Login
             this.UserRegistroPass2 = "";
             this.MensajeError = "";
             this.recuperar = 0;
-
-            this._UsuariosCollection = GetUsuarios();
+            
+            this._UsuariosCollection = CallServiceGetListUser();
+            if (this._UsuariosCollection == null)
+                this._UsuariosCollection = GetUsuarios();
         }
         #endregion
 

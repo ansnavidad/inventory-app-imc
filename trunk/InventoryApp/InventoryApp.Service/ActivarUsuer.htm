@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Activacion de Usuario</title>
+    <link rel="stylesheet" type="text/css" href="styles/ActivarUsuario.css" />
+    <script type="text/javascript" src="jquery/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+        function setCookie(c_name, value, exdays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+            document.cookie = c_name + "=" + c_value;
+        }
+    </script>
+</head>
+
+<body>
+<div id="divcentral">
+   <p style="width: 1220px" >Bienvenido a Elara Inventarios...</p>
+</div>
+<div id="divinferior">
+    <p>Tu cuenta  ha sido activada!!!</p>
+    <p>&nbsp;</p>
+</div>
+<script type="text/javascript">
+    var Url = location.href;
+    Url = Url.replace(/.*\?(.*?)/, "$1");
+    Variables = Url.split("&");
+    for (i = 0; i < Variables.length; i++) {
+        Separ = Variables[i].split("=");
+        eval('var ' + Separ[0] + '="' + Separ[1] + '"');
+    }
+    console.log(id);
+    $.ajax({
+        url: "Services/Broadcast.svc/GetActivationUser"
+        , type: "POST"
+        , dataType: "json"
+        , data: '{"idActivation":"' + id + '"}'
+        , contentType: "application/json; charset=utf-8"
+        , success: function (data) {
+            console.log('Usuario Activo');
+        },
+        error: function (result) {
+            alert('Error al activar usuario ' + result.status + ' ' + result.statusText);
+        }
+    });
+    $.ajax({
+        url: "Services/Broadcast.svc/GetActivationUser"
+        , type: "POST"
+        , dataType: "json"
+        , data: '{"idActivation":"' + id + '"}'
+        , contentType: "application/json; charset=utf-8"
+        , success: function (data) {
+            console.log(data.GetOneMailResult);
+            var mail = data.GetOneMailResult;
+            setCookie("username", mail, 30);
+        },
+        error: function (result) {
+            alert('Error al recuperar datos  ' + result.status + ' ' + result.statusText);
+        }
+    });
+</script>                
+</body>
+</html>

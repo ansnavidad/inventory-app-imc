@@ -89,7 +89,7 @@
              xmlns:jobViewModel="clr-namespace:InventoryApp.ViewModel.Job;assembly=InventoryApp.ViewModel"
              xmlns:jobView="clr-namespace:InventoryApp.View.Job"
                   
-             StartupUri="Login/LoginView.xaml"
+             StartupUri="MainWindow.xaml"
              >
     <!--StartupUri="Login/LoginView.xaml"-->
     <!--StartupUri="CatalogFactura/AddReciboView.xaml"-->

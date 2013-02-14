@@ -229,7 +229,7 @@ namespace InventoryApp.DAL
                 try
                 {
                     var recoverPass = Entity.USUARIOs.First(p => p.UNID_USUARIO == unidUser);
-                    recoverPass.NUEVO_USUARIO = false;
+                    recoverPass.ACTIVATION = false;
                     Entity.SaveChanges();
                     res = true;
                 }

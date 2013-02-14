@@ -427,6 +427,38 @@ namespace InventoryApp.DAL
             }
         }
 
+        public string GetJsonUsuarioLogin()
+        {
+            string res = null;
+            List<USUARIO> listUsuario = new List<USUARIO>();
+            using (var Entity = new TAE2Entities())
+            {
+                (from p in Entity.USUARIOs
+                 where p.IS_ACTIVE == true
+                 select p).ToList().ForEach(row =>
+                 {
+                     listUsuario.Add(new USUARIO
+                     {
+                         UNID_USUARIO = row.UNID_USUARIO,
+                         USUARIO_MAIL = row.USUARIO_MAIL,
+                         USUARIO_PWD = row.USUARIO_PWD,
+                         IS_MODIFIED = row.IS_MODIFIED,
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         FLAG = row.FLAG,
+                         ACTIVATION = row.ACTIVATION,
+                         FLAG_PASS = row.FLAG_PASS,
+                         NUEVO_USUARIO = row.NUEVO_USUARIO,
+                         IS_ACTIVE = row.IS_ACTIVE
+                     });
+                 });
+                if (listUsuario.Count > 0)
+                {
+                    res = SerializerJson.SerializeParametros(listUsuario);
+                }
+                return res;
+            }
+        }
+
         /// <summary>
         /// Método que serializa UN POCO USUARIO a Json
         /// </summary>

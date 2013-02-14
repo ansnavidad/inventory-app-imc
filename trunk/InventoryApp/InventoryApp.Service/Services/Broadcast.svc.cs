@@ -996,7 +996,7 @@ namespace InventoryApp.Service.Services
             #region metodos
             try
             {
-                mensaje = dataMapper.GetJsonUsuario();
+                mensaje = dataMapper.GetJsonUsuarioLogin();
 
             }
             catch (Exception ex)

@@ -128,6 +128,11 @@ namespace InventoryApp.ViewModel.Login
                 MessageBox.Show("La longitud mínima de la contraseña es de 8 caracteres");
                 return;
             }
+
+            MessageBox.Show(this.LoginModel.CallServiceGetNewUser());
+            this.LoginModel.UserRegristro = "";
+            this.LoginModel.UserRegistroPass1 = "";
+            this.LoginModel.UserRegistroPass2 = "";
         }
 
         #endregion

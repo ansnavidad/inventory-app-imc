@@ -957,14 +957,15 @@ namespace InventoryApp.Service.Services
             throw new NotImplementedException();
         }
 
-        public bool GetActivationUser(long idActivation)
+        public bool GetActivationUser(string idActivation)
         {
             bool respuesta = false;
             if (idActivation != null)
             {
+                
                 AppUsuario dataMapper = new AppUsuario();
 
-                respuesta = dataMapper.GetRecoverPassword(idActivation);
+                respuesta = dataMapper.GetActivationResponse(long.Parse(idActivation));
             }
             return respuesta;
         }

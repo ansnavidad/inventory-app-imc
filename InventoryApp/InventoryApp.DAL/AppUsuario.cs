@@ -54,7 +54,12 @@ namespace InventoryApp.DAL
                          USUARIO_MAIL = row.USUARIO_MAIL,
                          USUARIO_PWD = row.USUARIO_PWD,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         FLAG = row.FLAG,
+                         ACTIVATION= row.ACTIVATION,
+                         FLAG_PASS = row.FLAG_PASS,
+                         NUEVO_USUARIO = row.NUEVO_USUARIO,
+                         IS_ACTIVE = row.IS_ACTIVE
                      });
                  });
                 if (listUsuario.Count > 0)
@@ -313,6 +318,53 @@ namespace InventoryApp.DAL
             }
         }
 
+        public string insertNewRegistro(object element)
+        {
+            string respuesta = null;
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    USUARIO usuario = (USUARIO)element;
+                   
+                        usuario.UNID_USUARIO = UNID.getNewUNID();
+                        //Sync
+                        usuario.IS_MODIFIED = true;
+                        usuario.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        usuario.IS_ACTIVE = true;
+                        usuario.NUEVO_USUARIO = true;
+                        usuario.ACTIVATION = true;
+                        usuario.FLAG = false;
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.USUARIOs.AddObject(usuario);
+                        entity.SaveChanges();
+                        
+                        try
+                        {
+                            var query = (from p in entity.USUARIOs
+                                         where p.UNID_USUARIO == usuario.UNID_USUARIO
+                                         select p).First();
+                        if (query !=null)
+                        {
+
+                            respuesta = GetJsonUsuario((USUARIO)query);
+
+                        }
+                        }
+                        catch (Exception ex)
+                        {
+
+                            respuesta= null;
+                        }
+                    
+                }
+            }
+            return respuesta;
+        }
+
         public void insertElementSync(object element)
         {
             if (element != null)
@@ -359,7 +411,12 @@ namespace InventoryApp.DAL
                          USUARIO_MAIL = row.USUARIO_MAIL,
                          USUARIO_PWD = row.USUARIO_PWD,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         FLAG = row.FLAG,
+                         ACTIVATION = row.ACTIVATION,
+                         FLAG_PASS = row.FLAG_PASS,
+                         NUEVO_USUARIO = row.NUEVO_USUARIO,
+                         IS_ACTIVE = row.IS_ACTIVE
                      });
                  });
                 if (listUsuario.Count > 0)
@@ -401,6 +458,7 @@ namespace InventoryApp.DAL
             return res;
         }
 
+       
         /// <summary>
         /// Método que regresa True o False<USUARIO>
         /// </summary>
@@ -452,7 +510,12 @@ namespace InventoryApp.DAL
                          USUARIO_MAIL = row.USUARIO_MAIL,
                          USUARIO_PWD = row.USUARIO_PWD,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         FLAG = row.FLAG,
+                         ACTIVATION= row.ACTIVATION,
+                         FLAG_PASS = row.FLAG_PASS,
+                         NUEVO_USUARIO = row.NUEVO_USUARIO,
+                         IS_ACTIVE = row.IS_ACTIVE
                      });
                  });
                 if (reset.Count > 0)

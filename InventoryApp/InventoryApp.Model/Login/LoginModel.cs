@@ -20,6 +20,8 @@ namespace InventoryApp.Model.Login
         string basicAuthPass = "Passw0rd1!";
         string nameService = "GetLogin";
         string nameServiceRecuver = "GetRecoverPassword";
+        string nameServiceNewUser = "GetRegisterUser";
+        string nameServiceListUser = "GetValidateNotExistUser";
         long recuperar;
         AppUsuario dataMapper = new AppUsuario();        
         #endregion
@@ -189,13 +191,30 @@ namespace InventoryApp.Model.Login
         private List<USUARIO> _UsuariosCollection;
         public const string UsuariosCollectionPropertyName = "UsuariosCollection";
 
+        public List<USUARIO> UsuariosCollectionServer
+        {
+            get
+            {
+                return _UsuariosCollectionServer;
+            }
+            set
+            {
+                if (_UsuariosCollectionServer != value)
+                {
+                    _UsuariosCollectionServer = value;
+                    OnPropertyChanged(UsuariosCollectionServerPropertyName);
+                }
+            }
+        }
+        private List<USUARIO> _UsuariosCollectionServer;
+        public const string UsuariosCollectionServerPropertyName = "UsuariosCollectionServer";
+
         #endregion
 
         #region Service
         // consumir servicio login
         public void CallServiceGetLoginUser()
         {
-            
             #region metodos
             
             //madamos a llamar el metodo que serializa list de pocos
@@ -240,7 +259,6 @@ namespace InventoryApp.Model.Login
         // consumir servicio recupera contraseña
         public bool CallServiceGetRecoverPass()
         {
-
             #region metodos
             bool resService = false;
             if (recuperar !=0)
@@ -280,6 +298,88 @@ namespace InventoryApp.Model.Login
             #endregion
         }
 
+        // consumir servicio Nuevo rusurio
+        public string CallServiceGetNewUser()
+        {
+            string resServer = null;
+            #region metodos
+
+            //madamos a llamar el metodo que serializa list de pocos
+            string dataUser = GetJonNewUser();
+
+            if (!String.IsNullOrEmpty(dataUser))
+            {
+                try
+                {
+                    var client = new RestClient(routeLogin);
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameServiceNewUser;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+
+                    Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                    object list;
+                    list = dataMapper.GetDeserializePocoUsuario(resx["GetRegisterUserResult"]);
+                    if (list != null)
+                    {
+                        //guarda el nuevo registro
+                        dataMapper.insertElementSync(list);
+                        resServer = "exito al guardar usuario";
+                    }    
+                    else
+                        resServer = null;
+
+                }
+                catch (Exception)
+                {
+                    resServer = null;
+                }
+            }
+            else
+            {
+                resServer = null;
+            }
+            return resServer;
+            #endregion
+        }
+
+        // consumir servicio para obtener la lista de usurios del servidor
+        public List<USUARIO> CallServiceGetListUser()
+        {
+            List<USUARIO> res = new List<USUARIO>();
+            #region metodos
+            try
+            {
+                var client = new RestClient(routeLogin);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameServiceListUser;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<USUARIO> list;
+                list = dataMapper.GetDeserializeUsuario(resx["GetValidateNotExistUserResult"]);
+                if (list.Count != 0)
+                    res = list;
+                else
+                   res = null;
+
+            }
+            catch (Exception)
+            {
+                res = null;
+            }
+            return res;
+            #endregion
+        }
+
         public bool GetLoginUser()
         {
             bool res = false;
@@ -290,11 +390,23 @@ namespace InventoryApp.Model.Login
 
         }
 
-        //serializa a json
+        //serializa a json login
         public string GetJonUser() 
         {
             string resJson = null;            
             resJson = dataMapper.GetJsonUsuario(_Usuario);
+            if (resJson == null)
+                return null;
+
+            return resJson;
+
+        }
+
+        //serializa a json nuevo usuario
+        public string GetJonNewUser()
+        {
+            string resJson = null;
+            resJson = dataMapper.GetJsonUsuario(this._Usuario);
             if (resJson == null)
                 return null;
 

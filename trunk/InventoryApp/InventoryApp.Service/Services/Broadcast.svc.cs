@@ -954,7 +954,23 @@ namespace InventoryApp.Service.Services
 
         public string GetRegisterUser(string dataUser)
         {
-            throw new NotImplementedException();
+            #region propiedades
+            string respuesta = null;
+            object poco;
+            AppUsuario dataMapper = new AppUsuario();
+            #endregion
+
+            #region metodos
+            if (dataUser != null)
+            {
+                poco = dataMapper.GetDeserializePocoUsuario(dataUser);
+                if (poco!= null)
+                {
+                    respuesta = dataMapper.insertNewRegistro(poco);
+                }
+            }
+            return respuesta;
+            #endregion 
         }
 
         public bool GetActivationUser(string idActivation)
@@ -968,6 +984,27 @@ namespace InventoryApp.Service.Services
                 respuesta = dataMapper.GetActivationResponse(long.Parse(idActivation));
             }
             return respuesta;
+        }
+
+        public string GetValidateNotExistUser()
+        {
+            #region propiedades
+            string mensaje = null;
+            AppUsuario dataMapper = new AppUsuario();   
+            #endregion
+
+            #region metodos
+            try
+            {
+                mensaje = dataMapper.GetJsonUsuario();
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            return mensaje;
+            #endregion   
         }
     }
 }

@@ -4,7 +4,6 @@
         
         Title="Login" Height="300" Width="500" ResizeMode="CanMinimize" 
         DataContext="{StaticResource loginViewModel}"
-        xmlns:custom="clr-namespace:InventoryApp.ViewModel.Login.LoginView;assembly=PasswordHelper"
         WindowStyle="None" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
         <ResourceDictionary>

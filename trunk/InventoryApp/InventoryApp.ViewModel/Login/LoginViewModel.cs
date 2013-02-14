@@ -47,8 +47,9 @@ namespace InventoryApp.ViewModel.Login
             this.LoginModel.CallServiceGetLoginUser();
             if (!this.LoginModel.Login)
                 if (!this.LoginModel.GetLoginUser())
-                    MessageBox.Show("Usuario o contraseña incorrectos");
-            
+                {
+                    MessageBoxResult result = MessageBox.Show("Usuario o contraseña incorrectos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             
         }
 
@@ -74,11 +75,20 @@ namespace InventoryApp.ViewModel.Login
         {
             this.LoginModel.ValidaRecuperarEmail();
             if (LoginModel.LoginPass == null)
-                MessageBox.Show("El usuario que ingresó no existe en la base de datos del sistema");
-            else if(LoginModel.LoginPass == true)
-                MessageBox.Show("Se le enviará su contraseña a su correo electrónico");
+            {
+                MessageBoxResult result = MessageBox.Show("El usuario que ingresó no existe en la base de datos del sistema", "Alerta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
+            else if (LoginModel.LoginPass == true)
+            {
+                MessageBoxResult result = MessageBox.Show("Se le enviará su contraseña a su correo electrónico", "Informe", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
             else
-                MessageBox.Show("Favor de conectarse a la red del servidor");
+            {
+                MessageBoxResult result = MessageBox.Show("Favor de conectarse a la red del servidor", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+                
+
         }
 
         private RelayCommand _registrarCommand;
@@ -101,9 +111,9 @@ namespace InventoryApp.ViewModel.Login
         }
         public void AttempRegistrar()
         {
-            if (!this.LoginModel.EmailValidadorRegistro()) {
-
-                MessageBox.Show("Ingrese como usuario un email válido");
+            if (!this.LoginModel.EmailValidadorRegistro()) 
+            {    
+                MessageBoxResult result = MessageBox.Show("Ingrese como usuario un email válido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -111,21 +121,21 @@ namespace InventoryApp.ViewModel.Login
 
             foreach (USUARIO u in this.LoginModel.UsuariosCollection) {
 
-                if (this.LoginModel.UserRegristro.Equals(u.USUARIO_MAIL)) {
-
-                    MessageBox.Show("Ya existe el usuario que acaba de ingresar en el sistema");
+                if (this.LoginModel.UserRegristro.Equals(u.USUARIO_MAIL)) 
+                {
+                    MessageBoxResult result = MessageBox.Show("Ya existe el usuario que acaba de ingresar en el sistema", "Alerta", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
             }
 
             if (!this.LoginModel.UserRegistroPass1.Equals(this.LoginModel.UserRegistroPass2))
             {
-                MessageBox.Show("Las contraseñas no coinciden");
+                MessageBoxResult result = MessageBox.Show("Las contraseñas no coinciden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (this.LoginModel.UserRegistroPass1.Length < 8)
             {
-                MessageBox.Show("La longitud mínima de la contraseña es de 8 caracteres");
+                MessageBoxResult result = MessageBox.Show("La longitud mínima de la contraseña es de 8 caracteres", "Alerta", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -156,10 +166,6 @@ namespace InventoryApp.ViewModel.Login
         }
         private LoginModel _loginModel;
 
-        #endregion
-
-        #region metodos
-        
         #endregion
 
         #region Constructors

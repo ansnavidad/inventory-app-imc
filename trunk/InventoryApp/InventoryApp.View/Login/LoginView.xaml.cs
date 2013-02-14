@@ -56,8 +56,7 @@ namespace InventoryApp.View.Login
         }
         
         private void checkBoxOpenMain_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            MessageBox.Show(pass.Password);
+        {            
             if (checkBoxOpenMain.IsEnabled)
             {
                 //MessageBox.Show("Bienvenido al sistema de inventarios Elara");
@@ -68,6 +67,11 @@ namespace InventoryApp.View.Login
                 this.Close();
                 mw.ShowDialog();
             }
+        }
+
+        private void pass_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+                        
         }
     }
     

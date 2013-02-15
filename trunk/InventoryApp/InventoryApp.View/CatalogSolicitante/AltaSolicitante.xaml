@@ -18,9 +18,9 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
-            <RowDefinition Height="10" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="31*" />
+            
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
@@ -71,12 +71,14 @@
                  HorizontalAlignment="Left" Margin="0,27,0,0"
                  Name="txtEmail" VerticalAlignment="Stretch" Width="120"
                  Text="{Binding AddSolicitante.Email, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="128" />
-        <Label Content="Validador :" Grid.Row="3" Height="28" HorizontalAlignment="Right" Margin="0,16,0,6" Name="lblValidador" 
+        <Label Content="Validador :" Grid.Row="3" Height="28" HorizontalAlignment="Right" Margin="0,14,0,28" Name="lblValidador" 
                VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="2" />
         <TextBox Grid.Column="2" Grid.Row="3" Height="23"
                  HorizontalAlignment="Left" Margin="0,16,0,0" Name="txtValidador"
                  VerticalAlignment="Stretch" Width="120"
                  Text="{Binding AddSolicitante.Validador, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                  MaxLength="254" />
+        <Label  Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Height="28" HorizontalAlignment="Stretch"  Name="label1" VerticalAlignment="Stretch" 
+                Content="{Binding AddSolicitante.Error, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource titleError}" />
     </Grid>
 </Window>

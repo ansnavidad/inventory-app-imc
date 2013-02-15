@@ -19,10 +19,52 @@ namespace InventoryApp.Model
         private string _solicitanteName;
         private string _email;
         private string _validador;
+        private bool _valideEmpresa;
+        private string _error;
         private SolicitanteDataMapper _dataMapper;
         #endregion
 
         #region Props
+        public string Error
+        {
+            get
+            {
+                return _error;
+            }
+            set
+            {
+
+                if (_error != value)
+                {
+                    _error = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Error"));
+                    }
+                }
+
+            }
+        }
+
+        public bool ValideEmpresa
+        {
+            get
+            {
+                return _valideEmpresa;
+            }
+            set
+            {
+                if (_valideEmpresa != value)
+                {
+                    _valideEmpresa = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("ValideEmpresa"));
+                    }
+                }
+            }
+        }
+
         public long UnidSolicitante
         {
             get
@@ -88,6 +130,7 @@ namespace InventoryApp.Model
             }
             set
             {
+                
                 if (_solicitanteName != value)
                 {
                     _solicitanteName = value;
@@ -96,6 +139,7 @@ namespace InventoryApp.Model
                         this.PropertyChanged(this, new PropertyChangedEventArgs("SolicitanteName"));
                     }
                 }
+                
             }
         }
 
@@ -171,8 +215,27 @@ namespace InventoryApp.Model
             {
                 this._dataMapper = dataMapper as SolicitanteDataMapper;
             }
-            
+            this.ValideEmpresa = false;
         }
+        #endregion
+
+        #region metodos
+
+        public bool ValidateBusiness()
+        {
+            bool validar = false;
+            SOLICITANTE solicitante = new SOLICITANTE();
+            SolicitanteDataMapper dataMapper = new SolicitanteDataMapper();
+            solicitante.SOLICITANTE_NAME = this._solicitanteName;
+            solicitante.UNID_EMPRESA = this._empresa.UNID_EMPRESA;
+            validar = dataMapper.ValideSolicitanteName(solicitante);
+            if (validar)
+                validar = true;
+            else
+                validar = false;
+            return validar;
+        }
+
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;

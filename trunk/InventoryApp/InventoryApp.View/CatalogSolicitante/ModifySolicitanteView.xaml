@@ -51,7 +51,7 @@
                      Name="txtNomreSolicitante" VerticalAlignment="Stretch" Width="120"
                      Text="{Binding ModiSolicitante.SolicitanteName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="254"/>
             <Label Content="Empresa :" Grid.Row="2" Height="25" HorizontalAlignment="Center" Margin="58,12,2,3" Name="lblEmpresa" Grid.Column="1" />
-            <ComboBox SelectedItem="{Binding ModiSolicitante.Empresa,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            <ComboBox IsEnabled="False" SelectedItem="{Binding ModiSolicitante.Empresa,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                       ItemsSource="{Binding CatalogEmpresaModel.Empresa, Mode=OneWay}"
                       Text="{Binding ModiSolicitante.Empresa.EMPRESA_NAME,Mode=TwoWay}" 
                       DisplayMemberPath="EMPRESA_NAME" SelectedValuePath="UNID_EMPRESA" 

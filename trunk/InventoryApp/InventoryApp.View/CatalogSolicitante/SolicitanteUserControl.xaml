@@ -38,7 +38,7 @@
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridSolicitante"
                   VerticalAlignment="Stretch" ItemsSource="{Binding CatalogSolicitanteModel.Solicitante}" 
                   SelectedItem="{Binding CatalogSolicitanteModel.SelectedSolicitante, Mode=TwoWay}"
-                  MouseDoubleClick="dtGridSolicitante_MouseDoubleClick" 
+                  MouseDoubleClick="dtGridSolicitante_MouseDoubleClick"  
                   Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
@@ -50,7 +50,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn IsReadOnly="True"  Width="150" Header="Solicitante" x:Name="nombreSolicitante" Binding="{Binding Path=SOLICITANTE_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="150" Header="Solicitante" x:Name="nombreSolicitante" Binding="{Binding Path=SOLICITANTE_NAME}" ></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Empresa" x:Name="NombreEmpresa" Binding="{Binding Path=Empresa.EMPRESA_NAME}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="100" Header="Departamento" x:Name="NombreDepartamento" Binding="{Binding Path=Departamento.DEPARTAMENTO_NAME}"></DataGridTextColumn>
                 <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Email" x:Name="Email" Binding="{Binding Path=EMAIL}"></DataGridTextColumn>

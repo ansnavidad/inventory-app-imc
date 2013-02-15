@@ -245,26 +245,43 @@ namespace InventoryApp.DAL
                 using (var entity = new TAE2Entities())
                 {
                     SOLICITANTE Sol = (SOLICITANTE)element;
-
-                    var validacion = (from cust in entity.SOLICITANTEs
-                                      where cust.SOLICITANTE_NAME == Sol.SOLICITANTE_NAME
-                                      select cust).ToList();
-
-                    if (validacion.Count == 0)
-                    {
-                        Sol.UNID_SOLICITANTE = UNID.getNewUNID();
-                        //Sync
-                        Sol.IS_MODIFIED = true;
-                        Sol.LAST_MODIFIED_DATE = UNID.getNewUNID();
-                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
-                        entity.SaveChanges();
-                        //
-                        entity.SOLICITANTEs.AddObject(Sol);
-                        entity.SaveChanges();
-                    }
+                    Sol.UNID_SOLICITANTE = UNID.getNewUNID();
+                    //Sync
+                    Sol.IS_MODIFIED = true;
+                    Sol.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    entity.SaveChanges();
+                    //
+                    entity.SOLICITANTEs.AddObject(Sol);
+                    entity.SaveChanges();
                 }
             }
+        }
+
+        public bool ValideSolicitanteName(object element)
+        {
+            bool res = true;
+            if (element != null)
+            {
+                SOLICITANTE Sol = (SOLICITANTE)element;
+                using (var entity = new TAE2Entities())
+                {
+
+                    var validacion = (from cust in entity.SOLICITANTEs
+                                      where cust.SOLICITANTE_NAME == Sol.SOLICITANTE_NAME &&
+                                            cust.UNID_EMPRESA ==Sol.UNID_EMPRESA &&
+                                            cust.IS_ACTIVE == true
+                                      select cust).ToList();
+
+                    
+
+                    if (validacion.Count != 0)
+                        res = false;
+                        
+                }
+            }
+            return res;
         }
 
         public void insertElementSync(object element)

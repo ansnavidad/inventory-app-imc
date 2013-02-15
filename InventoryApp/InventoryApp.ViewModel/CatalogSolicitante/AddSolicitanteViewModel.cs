@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using System.Windows;
 
 namespace InventoryApp.ViewModel.CatalogSolicitante
 {
@@ -122,6 +123,20 @@ namespace InventoryApp.ViewModel.CatalogSolicitante
                 this._addSolicitante.Departamento == null ||
                 this._addSolicitante.Empresa == null)
                 _canAddSolicitante = false;
+
+            if (!String.IsNullOrEmpty(this._addSolicitante.SolicitanteName))
+            {
+                if (!this._addSolicitante.ValidateBusiness())
+                {
+                    this._addSolicitante.Error = "El solicitante que ingreso ya existe en esta empesa ¡cambie la empresa!";
+                    _canAddSolicitante = false;
+                }
+                else
+                {
+                    this._addSolicitante.Error = "";
+                }
+            }
+            
 
             return _canAddSolicitante;
         }

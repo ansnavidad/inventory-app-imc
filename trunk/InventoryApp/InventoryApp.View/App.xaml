@@ -91,6 +91,7 @@
                   
              StartupUri="Login/LoginView.xaml"
              >
+    <!--StartupUri="prueba.xaml"-->
     <!--StartupUri="Login/LoginView.xaml"-->
     <!--StartupUri="CatalogFactura/AddReciboView.xaml"-->
     <!--StartupUri="Recibo/ReciboView.xaml"-->

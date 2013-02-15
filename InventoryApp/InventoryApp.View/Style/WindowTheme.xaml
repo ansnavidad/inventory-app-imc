@@ -16,6 +16,12 @@
         <GradientStop Color="#BDBDBD" Offset="0.567"/>
     </LinearGradientBrush>
 
+    <LinearGradientBrush x:Key="DegradadoGrid" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+        <GradientStop Color="#EEEBE8" Offset="0"/>
+        <GradientStop Color="#92908C" Offset="1"/>
+        <GradientStop Color="#BDBDBD" Offset="0.28" />
+    </LinearGradientBrush>
+
     <LinearGradientBrush x:Key="DegradadoTxtElara" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
         <GradientStop Color="#6B6A6A" Offset="0"/>
         <GradientStop Color="#ACACAC" Offset="0.567"/>
@@ -38,7 +44,7 @@
     </Style>
 
     <Style x:Key="GridLogin" TargetType="{x:Type Grid}">
-        <Setter Property="Background" Value="{StaticResource DegradadoElaraButton}" />
+        <Setter Property="Background" Value="{StaticResource DegradadoGrid}" />
     </Style>
 
     <Style x:Key="titleLabel" TargetType="{x:Type Label}">
@@ -123,18 +129,6 @@
                 
             </Trigger>
         </Style.Triggers>
-        <!--<Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Label">
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Cursor" Value="Hand" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>            
-        </Setter>-->
-            
     </Style>
 
     <Style x:Key="textBockLogin" TargetType="{x:Type TextBlock}">
@@ -145,6 +139,22 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="#2E64FE" />
+                <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                <Setter Property="FontSize" Value="12.5"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="Cursor" Value="Hand" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="textBockLogin2" TargetType="{x:Type TextBlock}">
+
+        <Setter Property="Foreground" Value="#F8E2C7"/>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#906128" />
                 <Setter Property="TextBlock.TextDecorations" Value="Underline" />
                 <Setter Property="FontSize" Value="12.5"></Setter>
                 <Setter Property="FontWeight" Value="Bold"></Setter>

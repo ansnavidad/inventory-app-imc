@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActivarUsuer.htm" />
+    <Content Include="Images\loading_3.gif" />
     <Content Include="jquery\jquery-1.7.2.js" />
     <Content Include="Services\Broadcast.svc" />
     <Content Include="Services\Receiver.svc" />

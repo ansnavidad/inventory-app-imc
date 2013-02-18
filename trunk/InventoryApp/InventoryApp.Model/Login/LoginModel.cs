@@ -280,7 +280,7 @@ namespace InventoryApp.Model.Login
             #endregion
         }
 
-        // consumir servicio Nuevo rusurio
+        // consumir servicio Nuevo usuario
         public string CallServiceGetNewUser()
         {
             string resServer = null;

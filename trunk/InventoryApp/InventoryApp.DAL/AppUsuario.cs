@@ -27,7 +27,7 @@ namespace InventoryApp.DAL
                               select prov.LAST_MODIFIED_DATE).ToList();
 
                 if (resul0.Count == 0)
-                    return resul;
+                    return 0;
 
                 resul = (from appUsuario in entity.USUARIOs
                          where appUsuario.IS_ACTIVE == true
@@ -239,7 +239,7 @@ namespace InventoryApp.DAL
                 try
                 {
                     var recoverPass = Entity.USUARIOs.First(p => p.UNID_USUARIO == unidUser);
-                    recoverPass.FLAG = false;
+                    recoverPass.FLAG = true;
                     Entity.SaveChanges();
                     res = true;
                 }
@@ -514,8 +514,7 @@ namespace InventoryApp.DAL
 
             return res;
         }
-
-       
+   
         /// <summary>
         /// Método que regresa True o False<USUARIO>
         /// </summary>

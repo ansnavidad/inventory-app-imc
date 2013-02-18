@@ -4,20 +4,30 @@
     <title>Activacion de Usuario</title>
     <link rel="stylesheet" type="text/css" href="styles/ActivarUsuario.css" />
     <script type="text/javascript" src="jquery/jquery-1.7.2.js"></script>
-    <script type="text/javascript">
-        function setCookie(c_name, value, exdays) {
-            var exdate = new Date();
-            exdate.setDate(exdate.getDate() + exdays);
-            var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
-            document.cookie = c_name + "=" + c_value;
-        }
-    </script>
+    <style >
+        #loading{
+    position: fixed; 
+    z-index: 100;
+    border: solid 1px silver;
+    width: 105px;
+    height: 105px;
+    </style>
 </head>
+
 
 <body>
 <div id="divcentral">
    <p style="width: 1220px" >Bienvenido a Elara Inventarios...</p>
 </div>
+<div id="loading" 
+        style=" width: 100%; height: 100%; position: absolute; left: 0px; top: 0px;
+         color:#FFFFFF; display: block;">
+        <div id="ld" style="margin-left: 45%; margin-top: 200px;" >
+            <img src="Images/loading_3.gif" 
+                style="margin-left: 20px; margin-top: 10px; width: 100px; height: 100px;">
+            <p style="margin-left: 25px; margin-top: 5px; color:black;">Activando cuenta...</p>
+        </div>
+    </div>
 <div id="divinferior">
     <p>Tu cuenta  ha sido activada!!!</p>
     <p>&nbsp;</p>
@@ -44,20 +54,11 @@
             alert('Error al activar usuario ' + result.status + ' ' + result.statusText);
         }
     });
-    $.ajax({
-        url: "Services/Broadcast.svc/GetActivationUser"
-        , type: "POST"
-        , dataType: "json"
-        , data: '{"idActivation":"' + id + '"}'
-        , contentType: "application/json; charset=utf-8"
-        , success: function (data) {
-            console.log(data.GetOneMailResult);
-            var mail = data.GetOneMailResult;
-            setCookie("username", mail, 30);
-        },
-        error: function (result) {
-            alert('Error al recuperar datos  ' + result.status + ' ' + result.statusText);
-        }
+    jQuery('#loading').ajaxStart(function () {
+        jQuery(this).show();
+    });
+    jQuery('#loading').ajaxStop(function () {
+        jQuery(this).hide();
     });
 </script>                
 </body>

@@ -92,6 +92,9 @@
              xmlns:catSeguridadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogSeguridad;assembly=InventoryApp.ViewModel"
              xmlns:seguridadViews="clr-namespace:InventoryApp.View.CatalogSeguridad"             
              
+             xmlns:catRolSystemViewModel="clr-namespace:InventoryApp.ViewModel.CatalogRolSystem;assembly=InventoryApp.ViewModel"
+             xmlns:rolSystemViews="clr-namespace:InventoryApp.View.CatalogRolSystem"    
+             
              StartupUri="Login/LoginView.xaml"
              >
     <!--StartupUri="prueba.xaml"-->
@@ -389,7 +392,10 @@
         <!-- Seguridad -->
         <ObjectDataProvider x:Key="catalogSeguridadViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
-        
+
+        <ObjectDataProvider x:Key="catalogRolSystemViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
         <!--CONVERTERS-->
         <rootViewModel:BoolToVisibilityValueConverter x:Key="boolVisibilityConverter" />
         
@@ -595,6 +601,10 @@
 
         <DataTemplate DataType="{x:Type catSeguridadViewModel:CatalogSeguridadViewModel}">
             <seguridadViews:SeguridadUserControl />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type catRolSystemViewModel:CatalogRolSystemViewModel}">
+            <rolSystemViews:RolSystemUserControl />
         </DataTemplate>
 
     </Application.Resources>

@@ -15,7 +15,7 @@ using System.Collections.Specialized;
 
 namespace InventoryApp.DAL.POCOS
 {
-    public partial class PROCESS_BATCH
+    public partial class BATCH_LOAD_CARGAMVTOS
     {
         #region Primitive Properties
     
@@ -25,31 +25,13 @@ namespace InventoryApp.DAL.POCOS
             set;
         }
     
-        public virtual Nullable<System.DateTime> PSTART_DATE
+        public virtual Nullable<System.DateTime> START_EXEC_DATE
         {
             get;
             set;
         }
     
-        public virtual Nullable<System.DateTime> PEND_DATE
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<bool> IS_DONE
-        {
-            get;
-            set;
-        }
-    
-        public virtual string PSTATUS
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<int> ID_STATUS
+        public virtual Nullable<System.DateTime> END_EXEC_DATE
         {
             get;
             set;

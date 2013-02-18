@@ -39,6 +39,8 @@ using InventoryApp.ViewModel.GridMovimientos;
 using InventoryApp.ViewModel.CatalogItem;
 using System.Windows;
 using InventoryApp.ViewModel.CatalogInfraestructura;
+using InventoryApp.DAL.POCOS;
+using InventoryApp.DAL;
 
 namespace InventoryApp.ViewModel
 {
@@ -74,6 +76,36 @@ namespace InventoryApp.ViewModel
         }
         private MenuViewModel _MenuViewModel;
         public const string MenuViewModelPropertyName = "MenuViewModel";
+
+        public USUARIO ActualUser
+        {
+            get { return _ActualUser; }
+            set
+            {
+                if (_ActualUser != value)
+                {
+                    _ActualUser = value;
+                    OnPropertyChanged(ActualUserlPropertyName);
+                }
+            }
+        }
+        private USUARIO _ActualUser;
+        public const string ActualUserlPropertyName = "ActualUser";
+
+        public string UserRols
+        {
+            get { return _UserRols; }
+            set
+            {
+                if (_UserRols != value)
+                {
+                    _UserRols = value;
+                    OnPropertyChanged(UserRolsPropertyName);
+                }
+            }
+        }
+        private string _UserRols;
+        public const string UserRolsPropertyName = "UserRols";
 
         /// <summary>
         /// Pila de menus hoja que han sido visitados. Sirve para en un futuro implementar el "back", regresar a la vista anterior
@@ -118,6 +150,35 @@ namespace InventoryApp.ViewModel
             this._CurrentPageViewModel = new GridMovimientos.MovimientosGridViewModel();
         }
 
+        public MainWindowViewModel(string UserName)
+        {
+            this._MenuViewModel = new MenuViewModel(this.ChagePage);
+            this._CurrentPageViewModel = new GridMovimientos.MovimientosGridViewModel();
+            this.ActualUser = GetUser(UserName);
+            this.UserRols = "";
+
+            if (this.ActualUser.USUARIO_ROL.Count > 0)
+                UserRols += "Roles actuales: ";            
+            
+            foreach (USUARIO_ROL s in this.ActualUser.USUARIO_ROL) {
+                
+                UserRols += s.ROL.ROL_NAME;
+                UserRols += ",  ";
+            }            
+
+            if (UserRols.Equals(""))
+                UserRols = "Aún no se le ha asignado ningún rol";
+            else {
+
+                string aux = "";
+                for (int i = 0; i < UserRols.Length-3; i++)
+                    aux += UserRols[i];
+                UserRols = aux;
+            }
+            
+            UserRols += ".";
+        }
+
         #region Methods
         public void ChagePage(object sender,EventArgs e)
         {
@@ -126,6 +187,14 @@ namespace InventoryApp.ViewModel
                 this._SelectedMenu = (MenuModel)sender;
                 this.CurrentPageViewModel = this.PageFactory(this._MenuViewModel.SelectedMenu);
             }
+        }
+
+        public USUARIO GetUser(string UserName)
+        {
+            AppUsuario d = new AppUsuario();
+            USUARIO aux = new USUARIO();
+            aux = (USUARIO)d.getElementName(UserName);
+            return aux;
         }
 
         /// <summary>

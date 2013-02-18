@@ -50,9 +50,9 @@ namespace InventoryApp.View
             
             int SyncTime = Int32.Parse(ConfigurationManager.AppSettings["SyncTime"].ToString());
 
-            System.Security.Principal.WindowsIdentity user = System.Security.Principal.WindowsIdentity.GetCurrent();
-            string nomPC = user.Name;
-            nomUser.Content = nomPC;
+            //System.Security.Principal.WindowsIdentity user = System.Security.Principal.WindowsIdentity.GetCurrent();
+            //string nomPC = user.Name;
+            //nomUser.Content = nomPC;
             
             this._ImgSync = (Storyboard)this.FindResource("rotateImg");
 

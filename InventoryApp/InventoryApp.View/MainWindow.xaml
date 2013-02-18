@@ -44,11 +44,14 @@
             <Grid.Background>
                 <ImageBrush ImageSource="Images/header.png" />
             </Grid.Background>
-            <Label HorizontalContentAlignment="Right" Height="28"
-                   HorizontalAlignment="Stretch" Margin="263,-1,13,0"
+            <TextBlock Height="28"
+                   HorizontalAlignment="Stretch" Margin="573,9,13,33"
                    Name="nomUser" VerticalAlignment="Stretch"
                    FontSize="13" FontStretch="Normal" FontFamily="Arial Rounded MT"
-                   FontWeight="SemiBold" Foreground="#0B2161" OpacityMask="Black"/>
+                   FontWeight="SemiBold" Foreground="#0B2161" OpacityMask="Black"
+                   Text="{Binding Path=ActualUser.USUARIO_MAIL}"
+                   />
+            <TextBlock FontFamily="Arial Rounded MT" FontSize="13" FontStretch="Normal" FontWeight="SemiBold" Foreground="#0B2161" Height="28" HorizontalAlignment="Stretch" Margin="559,32,13,10" Name="textBlockRoles" OpacityMask="Black" Text="{Binding Path=UserRols}" VerticalAlignment="Stretch" />
         </Grid>
 
         <Grid Grid.Row="2"  HorizontalAlignment="Stretch" Margin="0,11,0,0" Name="grid2" Height="AUTO" VerticalAlignment="Stretch">
@@ -89,6 +92,7 @@
         </Border>
         <Label Content="Almacén Elara" Grid.Row="1" Height="30" HorizontalAlignment="Center" Margin="37,8,31,0" Name="expander3" 
                    VerticalAlignment="Top" Foreground="#0B257C" FontWeight="Medium" FontStretch="Normal" FontFamily="Arial" FontSize="18" Width="137" BorderBrush="White" Background="White" >
+        
 
         </Label>
     </Grid>

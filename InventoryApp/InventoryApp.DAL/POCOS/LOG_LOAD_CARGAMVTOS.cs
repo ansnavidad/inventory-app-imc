@@ -15,35 +15,35 @@ using System.Collections.Specialized;
 
 namespace InventoryApp.DAL.POCOS
 {
-    public partial class TIPO_COTIZACION
+    public partial class LOG_LOAD_CARGAMVTOS
     {
         #region Primitive Properties
     
-        public virtual long UNID_TIPO_COTIZACION
+        public virtual int ID
         {
             get;
             set;
         }
     
-        public virtual string TIPO_COTIZACION_NAME
+        public virtual Nullable<int> ID_BATCH
         {
             get;
             set;
         }
     
-        public virtual bool IS_ACTIVE
+        public virtual string GROUP_MSG
         {
             get;
             set;
         }
     
-        public virtual bool IS_MODIFIED
+        public virtual string MSG
         {
             get;
             set;
         }
     
-        public virtual long LAST_MODIFIED_DATE
+        public virtual Nullable<System.DateTime> EXEC_DATE
         {
             get;
             set;

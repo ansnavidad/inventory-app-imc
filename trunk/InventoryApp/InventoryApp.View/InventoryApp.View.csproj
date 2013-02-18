@@ -174,6 +174,15 @@
     <Compile Include="CatalogProgramado\CatalogProgramado.xaml.cs">
       <DependentUpon>CatalogProgramado.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogSeguridad\AltaSeguridad.xaml.cs">
+      <DependentUpon>AltaSeguridad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogSeguridad\ModifySeguridadView.xaml.cs">
+      <DependentUpon>ModifySeguridadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogSeguridad\SeguridadUserControl.xaml.cs">
+      <DependentUpon>SeguridadUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -762,6 +771,18 @@
     <Page Include="CatalogProgramado\CatalogProgramado.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogSeguridad\AltaSeguridad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogSeguridad\ModifySeguridadView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogSeguridad\SeguridadUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Login\LoginView.xaml">
       <SubType>Designer</SubType>

@@ -61,8 +61,8 @@ namespace InventoryApp.View.Login
             {
                 
                 MessageBoxResult result = MessageBox.Show("Bienvenido al sistema de inventarios Elara", "Bienvenido", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                MainWindow mw = new MainWindow();                
-                mw.DataContext = new MainWindowViewModel();
+                MainWindow mw = new MainWindow();
+                mw.DataContext = new MainWindowViewModel(txtUsuario.Text);
                 this.Close();
                 mw.ShowDialog();
             }

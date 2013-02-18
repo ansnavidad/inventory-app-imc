@@ -15,41 +15,65 @@ using System.Collections.Specialized;
 
 namespace InventoryApp.DAL.POCOS
 {
-    public partial class SOLICITANTE1
+    public partial class STG_FACTURA
     {
         #region Primitive Properties
     
-        public virtual long UNID_SOLICITANTE
+        public virtual Nullable<long> UNID_FACTURA
         {
             get;
             set;
         }
     
-        public virtual string AREA
+        public virtual string FACTURA_NUMERO
         {
             get;
             set;
         }
     
-        public virtual string USUARIO
+        public virtual string FECHA_FACTURA
         {
             get;
             set;
         }
     
-        public virtual bool IS_ACTIVE
+        public virtual long UNID_PROVEEDOR
         {
             get;
             set;
         }
     
-        public virtual bool IS_MODIFIED
+        public virtual string PROVEEDOR_NAME
         {
             get;
             set;
         }
     
-        public virtual long LAST_MODIFIED_DATE
+        public virtual long UNID_MONEDA
+        {
+            get;
+            set;
+        }
+    
+        public virtual string MONEDA_NAME
+        {
+            get;
+            set;
+        }
+    
+        public virtual string NUMERO_PEDIMENTO
+        {
+            get;
+            set;
+        }
+    
+        public virtual Nullable<double> IVA_POR
+        {
+            get;
+            set;
+        }
+    
+        public virtual Nullable<double> TC
         {
             get;
             set;

@@ -139,6 +139,31 @@ namespace InventoryApp.DAL
             return o;
         }
 
+        public object getElementName(string userName)
+        {
+            object o = null;
+            if (userName != null)
+            {
+                using (var Entity = new TAE2Entities())
+                {
+                    var res = (from p in Entity.USUARIOs
+                               .Include("USUARIO_ROL")
+                               .Include("USUARIO_ROL.ROL")
+                               .Include("USUARIO_ROL.ROL.ROL_MENU")
+                               .Include("USUARIO_ROL.ROL.ROL_MENU.MENU")
+                               where p.USUARIO_MAIL == userName
+                               select p).First();
+
+                    if (res == null)
+                        return null;
+                    o = res;
+
+                    
+                }
+            }
+            return o;
+        }
+
         public bool GetElementLogin(object element)
         {
             bool respuesta = false;

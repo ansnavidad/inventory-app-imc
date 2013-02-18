@@ -89,7 +89,7 @@
              xmlns:jobViewModel="clr-namespace:InventoryApp.ViewModel.Job;assembly=InventoryApp.ViewModel"
              xmlns:jobView="clr-namespace:InventoryApp.View.Job"
                   
-             StartupUri="MainWindow.xaml"
+             StartupUri="Login/LoginView.xaml"
              >
     <!--StartupUri="prueba.xaml"-->
     <!--StartupUri="Login/LoginView.xaml"-->
@@ -107,7 +107,7 @@
         -->
         <rootViewModel:MenuViewModel x:Key="menuViewModel" />
         <rootViewModel:MainWindowViewModel x:Key="mainWindowViewModel" />
-        <!--<rootDosViewModel:LoginViewModel x:Key="loginViewModel"/>-->
+        <rootDosViewModel:LoginViewModel x:Key="loginViewModel"/>
         <reciboViewModel:CatalogReciboViewModel x:Key="catalogReciboViewModel" />
         <!--Juan-->
             <!--<ReciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />-->

@@ -148,6 +148,23 @@ namespace InventoryApp.DAL
             return res;
         }
 
+        public object getElement(object element, List<long> UnidsMenu)
+        {
+            object res = null;
+            MENU menu = element as MENU;
+            if (menu != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from child in entity.MENUs
+                                 where child.UNID_MENU_PARENT == menu.UNID_MENU && UnidsMenu.Contains(child.UNID_MENU)
+                                 select child).ToList<MENU>();
+                    res = query;
+                }
+            }
+            return res;
+        }
+
         public void udpateElement(object element)
         {
             if (element != null)

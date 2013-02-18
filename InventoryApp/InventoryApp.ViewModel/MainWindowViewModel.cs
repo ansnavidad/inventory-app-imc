@@ -152,9 +152,11 @@ namespace InventoryApp.ViewModel
 
         public MainWindowViewModel(string UserName)
         {
-            this._MenuViewModel = new MenuViewModel(this.ChagePage);
-            this._CurrentPageViewModel = new GridMovimientos.MovimientosGridViewModel();
             this.ActualUser = GetUser(UserName);
+
+            this._CurrentPageViewModel = new GridMovimientos.MovimientosGridViewModel();
+            this._MenuViewModel = new MenuViewModel(this.ChagePage, this.ActualUser);
+
             this.UserRols = "";
 
             if (this.ActualUser.USUARIO_ROL.Count > 0)

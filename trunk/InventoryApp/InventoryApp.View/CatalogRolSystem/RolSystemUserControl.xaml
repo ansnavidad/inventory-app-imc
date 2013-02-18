@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="InventoryApp.View.CatalogRolSystem.RolSystemUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             DataContext="{StaticResource catalogServicioViewModel}"
+             d:DesignHeight="420" d:DesignWidth="700"  >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Style="{StaticResource titleLabel}" Content="CONSULTA ROLES" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                  HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridRolSystem"
+                  VerticalAlignment="Stretch" ItemsSource="{Binding CatalogServicioModel.Servicio}"
+                  SelectedItem="{Binding CatalogServicioModel.SelectedServicio, Mode=TwoWay}"
+                  MouseDoubleClick="dtGridRolSystem_MouseDoubleClick" 
+                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="Rol de Sistema" Width="*" x:Name="rolSystem" Binding="{Binding Path=SERVICIO_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Rol" Width="*" x:Name="recibirMail" Binding="{Binding Path=SERVICIO_NAME}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

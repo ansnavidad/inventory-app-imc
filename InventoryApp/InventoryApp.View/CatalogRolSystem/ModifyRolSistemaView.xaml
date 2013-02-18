@@ -1,4 +1,4 @@
-﻿<Window x:Class="InventoryApp.View.CatalogSeguridad.ModifySeguridadView"
+﻿<Window x:Class="InventoryApp.View.CatalogRolSystem.ModifyRolSistemaView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Nuevo servicio" Height="200" Width="350" 
@@ -46,7 +46,8 @@
                      Name="txtNomreRol" VerticalAlignment="Stretch" Width="140" 
                      Text="{Binding AddServicio.ServicioName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                      MaxLength="254" />
-        <Label Content="¿Es rol de Sistema? :" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right"  Name="label1" VerticalAlignment="Center" />
+        <Label Content="¿Es rol de Sistema?" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right"  Name="label1" VerticalAlignment="Center" />
         <CheckBox Grid.Column="2" Grid.Row="2" Height="16" HorizontalAlignment="Left" Name="checkBox1" VerticalAlignment="Center" />
     </Grid>
 </Window>
+

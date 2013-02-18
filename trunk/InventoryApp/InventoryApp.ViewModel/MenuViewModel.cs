@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections.ObjectModel;
 using InventoryApp.Model;
 using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel
 {
@@ -51,12 +52,36 @@ namespace InventoryApp.ViewModel
             this.init(selectItemChanged);
         }
 
+        public MenuViewModel(InventoryApp.Model.EventHandler<EventArgs> selectItemChanged, USUARIO ActualUser)
+        {
+            this.init(selectItemChanged, ActualUser);
+        }
+
         private void init(InventoryApp.Model.EventHandler<EventArgs> selectItemChanged)
         {
             MenuModel rootMenu = null;
             try
             {
                 rootMenu = new MenuModel(new MenuDataMapper(), selectItemChanged);
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            this._MenuModel = new ObservableCollection<MenuModel>();
+            this._MenuModel.Add(rootMenu);
+        }
+
+        private void init(InventoryApp.Model.EventHandler<EventArgs> selectItemChanged, USUARIO ActualUser)
+        {
+            MenuModel rootMenu = null;
+            try
+            {
+                rootMenu = new MenuModel(new MenuDataMapper(), selectItemChanged, ActualUser);
             }
             catch (ArgumentException ae)
             {

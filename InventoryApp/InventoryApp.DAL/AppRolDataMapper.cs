@@ -27,7 +27,7 @@ namespace InventoryApp.DAL
                               select prov.LAST_MODIFIED_DATE).ToList();
 
                 if (resul0.Count == 0)
-                    return resul;
+                    return 0;
 
                 resul = (from rol in entity.ROLs
                          where rol.IS_ACTIVE == true
@@ -53,7 +53,10 @@ namespace InventoryApp.DAL
                          UNID_ROL = row.UNID_ROL,
                          ROL_NAME = row.ROL_NAME,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_SYSTEM_ROOL = row.IS_SYSTEM_ROOL,
+                         RECIBIR_MAILS = row.RECIBIR_MAILS
                      });
                  });
                 if (listRol.Count > 0)
@@ -261,7 +264,11 @@ namespace InventoryApp.DAL
                          UNID_ROL = row.UNID_ROL,
                          ROL_NAME = row.ROL_NAME,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         IS_ACTIVE= row.IS_ACTIVE,
+                         IS_SYSTEM_ROOL= row.IS_SYSTEM_ROOL,
+                         RECIBIR_MAILS = row.RECIBIR_MAILS
+
                      });
                  });
                 if (listRol.Count > 0)
@@ -307,7 +314,10 @@ namespace InventoryApp.DAL
                          UNID_ROL = row.UNID_ROL,
                          ROL_NAME = row.ROL_NAME,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         IS_ACTIVE = row.IS_ACTIVE,
+                         IS_SYSTEM_ROOL = row.IS_SYSTEM_ROOL,
+                         RECIBIR_MAILS = row.RECIBIR_MAILS
                      });
                  });
                 if (reset.Count > 0)

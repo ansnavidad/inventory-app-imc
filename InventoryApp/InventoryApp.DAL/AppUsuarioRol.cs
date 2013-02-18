@@ -27,7 +27,7 @@ namespace InventoryApp.DAL
                               select prov.LAST_MODIFIED_DATE).ToList();
 
                 if (resul0.Count == 0)
-                    return resul;
+                    return 0;
 
                 resul = (from usuarioRol in entity.USUARIO_ROL
                          where usuarioRol.IS_ACTIVE == true
@@ -53,7 +53,8 @@ namespace InventoryApp.DAL
                          UNID_ROL = row.UNID_ROL,
                          UNID_USUARIO = row.UNID_USUARIO,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         IS_ACTIVE = row.IS_ACTIVE
                      });
                  });
                 if (listUsuarioRol.Count > 0)
@@ -164,7 +165,8 @@ namespace InventoryApp.DAL
                          UNID_ROL = row.UNID_ROL,
                          UNID_USUARIO = row.UNID_USUARIO,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         IS_ACTIVE = row.IS_ACTIVE
                      });
                  });
                 if (listUsuarioRol.Count > 0)
@@ -210,7 +212,8 @@ namespace InventoryApp.DAL
                          UNID_ROL = row.UNID_ROL,
                          UNID_USUARIO = row.UNID_USUARIO,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         IS_ACTIVE = row.IS_ACTIVE
                      });
                  });
                 if (reset.Count > 0)

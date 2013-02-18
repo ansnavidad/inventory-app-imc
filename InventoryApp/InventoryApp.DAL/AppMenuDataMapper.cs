@@ -27,7 +27,7 @@ namespace InventoryApp.DAL
                               select prov.LAST_MODIFIED_DATE).ToList();
 
                 if (resul0.Count == 0)
-                    return resul;
+                    return 0;
 
                 resul = (from menu in entity.MENUs
                          where menu.IS_ACTIVE == true
@@ -55,7 +55,8 @@ namespace InventoryApp.DAL
                          MENU_NAME = row.MENU_NAME,
                          IS_LEAF = row.IS_LEAF,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         IS_ACTIVE = row.IS_ACTIVE
                      });
                  });
                 if (listMenu.Count > 0)
@@ -269,7 +270,8 @@ namespace InventoryApp.DAL
                          MENU_NAME = row.MENU_NAME,
                          IS_LEAF = row.IS_LEAF,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         IS_ACTIVE = row.IS_ACTIVE
                      });
                  });
                 if (listMenu.Count > 0)
@@ -317,7 +319,8 @@ namespace InventoryApp.DAL
                          MENU_NAME = row.MENU_NAME,
                          IS_LEAF = row.IS_LEAF,
                          IS_MODIFIED = row.IS_MODIFIED,
-                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE
+                         LAST_MODIFIED_DATE = row.LAST_MODIFIED_DATE,
+                         IS_ACTIVE = row.IS_ACTIVE
                      });
                  });
                 if (reset.Count > 0)

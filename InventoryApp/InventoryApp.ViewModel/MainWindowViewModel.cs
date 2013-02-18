@@ -383,6 +383,9 @@ namespace InventoryApp.ViewModel
                     case "Programado":
                       page = new CatalogProgramado.CatalogProgramadoViewModel();
                       break;
+                    //Seguridad
+                    //case  "Roles":
+                      
                         
                     default:
                         break;

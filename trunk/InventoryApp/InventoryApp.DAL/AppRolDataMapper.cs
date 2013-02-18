@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL.JSON;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 
 namespace InventoryApp.DAL
 {
@@ -102,18 +103,21 @@ namespace InventoryApp.DAL
 
         public object getElements()
         {
-            FixupCollection<ROL> tp = new FixupCollection<ROL>();
-            object res = null;
+            ObservableCollection<ROL> tp = new ObservableCollection<ROL>();           
 
             using (var entity = new TAE2Entities())
             {
                 var query = (from cust in entity.ROLs
+                             where cust.IS_ACTIVE == true && cust.UNID_ROL != 1
                              select cust).ToList();
                 if (query.Count > 0)
                 {
-                    res = query;
+                    foreach (ROL r in query) {
+
+                        tp.Add(r);
+                    }
                 }
-                return res;
+                return tp;
             }
         }
 
@@ -143,6 +147,8 @@ namespace InventoryApp.DAL
                     ROL rol = (ROL)element;
                     var modifiedRol = entity.ROLs.First(p => p.UNID_ROL == rol.UNID_ROL);
                     modifiedRol.ROL_NAME = rol.ROL_NAME;
+                    modifiedRol.RECIBIR_MAILS = rol.RECIBIR_MAILS;
+                    modifiedRol.IS_SYSTEM_ROOL = rol.IS_SYSTEM_ROOL;                    
                     //Sync
                     modifiedRol.IS_MODIFIED = true;
                     modifiedRol.LAST_MODIFIED_DATE = UNID.getNewUNID();
@@ -164,6 +170,8 @@ namespace InventoryApp.DAL
                     var modifiedRol = entity.ROLs.First(p => p.UNID_ROL == rol.UNID_ROL);
                     modifiedRol.ROL_NAME = rol.ROL_NAME;
                     modifiedRol.IS_ACTIVE = rol.IS_ACTIVE;
+                    modifiedRol.RECIBIR_MAILS = rol.RECIBIR_MAILS;
+                    modifiedRol.IS_SYSTEM_ROOL = rol.IS_SYSTEM_ROOL;  
                     //Sync
                     modifiedRol.IS_MODIFIED = true;
                     modifiedRol.LAST_MODIFIED_DATE = UNID.getNewUNID();

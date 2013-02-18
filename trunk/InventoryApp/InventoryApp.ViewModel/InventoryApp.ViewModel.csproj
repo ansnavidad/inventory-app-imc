@@ -102,6 +102,8 @@
     <Compile Include="CatalogPropiedad\AddPropiedadViewModel.cs" />
     <Compile Include="CatalogPropiedad\CatalogPropiedadViewModel.cs" />
     <Compile Include="CatalogPropiedad\ModifyPropiedadViewModel.cs" />
+    <Compile Include="CatalogRolSystem\CatalogRolSystemViewModel.cs" />
+    <Compile Include="CatalogRolSystem\ModifyRolSystemViewModel.cs" />
     <Compile Include="CatalogSeguridad\AddSeguridadViewModel.cs" />
     <Compile Include="CatalogSeguridad\CatalogSeguridadViewModel.cs" />
     <Compile Include="CatalogSeguridad\ModifySeguridadViewModel.cs" />

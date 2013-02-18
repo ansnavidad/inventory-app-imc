@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             DataContext="{StaticResource catalogServicioViewModel}"
+             
              d:DesignHeight="420" d:DesignWidth="700"  >
     <UserControl.Resources>
         <ResourceDictionary>
@@ -30,14 +30,14 @@
         </Border>
         <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
                   HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridRolSystem"
-                  VerticalAlignment="Stretch" ItemsSource="{Binding CatalogServicioModel.Servicio}"
-                  SelectedItem="{Binding CatalogServicioModel.SelectedServicio, Mode=TwoWay}"
+                  VerticalAlignment="Stretch" ItemsSource="{Binding RolCollection, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedRol, Mode=TwoWay}"
                   MouseDoubleClick="dtGridRolSystem_MouseDoubleClick" 
                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}"
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="Rol de Sistema" Width="*" x:Name="rolSystem" Binding="{Binding Path=SERVICIO_NAME}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Rol" Width="*" x:Name="recibirMail" Binding="{Binding Path=SERVICIO_NAME}" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Header="¿Es rol de Sistema?" Width="*" x:Name="rolSystem" Binding="{Binding Path=IS_SYSTEM_ROOL}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Rol" Width="*" x:Name="recibirMail" Binding="{Binding Path=ROL_NAME}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogRolSystem;
 
 namespace InventoryApp.View.CatalogRolSystem
 {
@@ -26,7 +27,20 @@ namespace InventoryApp.View.CatalogRolSystem
 
         private void dtGridRolSystem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            ModifyRolSistemaView dlgModify = new ModifyRolSistemaView();
+            CatalogRolSystemViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            ModifyRolSystemViewModel mfvm = viewModel.CraeteModifyRolSystemViewModel();
+            if (mfvm != null)
+            {
+                dlgModify.DataContext = mfvm;
+                dlgModify.ShowDialog();
+            }
+        }
 
+        private CatalogRolSystemViewModel ConvertDataContext(object dataSource)
+        {
+            CatalogRolSystemViewModel viewModel = dataSource as CatalogRolSystemViewModel;
+            return viewModel;
         }
     }
 }

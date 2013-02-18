@@ -8,9 +8,9 @@
              xmlns:catMarca="clr-namespace:InventoryApp.ViewModel.CatalogMarca;assembly=InventoryApp.ViewModel"
              xmlns:catMarcaViews="clr-namespace:InventoryApp.View.CatalogMarca"
              xmlns:reciboViewModel="clr-namespace:InventoryApp.ViewModel.Recibo;assembly=InventoryApp.ViewModel"
-             xmlns:reciboViews="clr-namespace:InventoryApp.View.Recibo"
+             xmlns:reciboViews="clr-namespace:InventoryApp.View.Recibo"             
              xmlns:catBancoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogBanco;assembly=InventoryApp.ViewModel"
-             xmlns:bancoViews="clr-namespace:InventoryApp.View.CatalogBanco"
+             xmlns:bancoViews="clr-namespace:InventoryApp.View.CatalogBanco"             
              xmlns:catCategoriaViewModel="clr-namespace:InventoryApp.ViewModel.CatalogCategoria;assembly=InventoryApp.ViewModel"
              xmlns:categoriaViews="clr-namespace:InventoryApp.View.CatalogCategoria"
              xmlns:catCiudadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogCiudad;assembly=InventoryApp.ViewModel"
@@ -89,6 +89,9 @@
              xmlns:jobViewModel="clr-namespace:InventoryApp.ViewModel.Job;assembly=InventoryApp.ViewModel"
              xmlns:jobView="clr-namespace:InventoryApp.View.Job"
                   
+             xmlns:catSeguridadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogSeguridad;assembly=InventoryApp.ViewModel"
+             xmlns:seguridadViews="clr-namespace:InventoryApp.View.CatalogSeguridad"             
+             
              StartupUri="Login/LoginView.xaml"
              >
     <!--StartupUri="prueba.xaml"-->
@@ -383,6 +386,9 @@
         <ObjectDataProvider x:Key="jobViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
+        <!-- Seguridad -->
+        <ObjectDataProvider x:Key="catalogSeguridadViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
         
         <!--CONVERTERS-->
         <rootViewModel:BoolToVisibilityValueConverter x:Key="boolVisibilityConverter" />
@@ -585,6 +591,10 @@
 
         <DataTemplate DataType="{x:Type catalogProgramadoViewModel:CatalogProgramadoViewModel}">
             <catalogProgramadoView:CatalogProgramado/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type catSeguridadViewModel:CatalogSeguridadViewModel}">
+            <seguridadViews:SeguridadUserControl />
         </DataTemplate>
 
     </Application.Resources>

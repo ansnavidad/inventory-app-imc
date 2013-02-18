@@ -102,6 +102,9 @@
     <Compile Include="CatalogPropiedad\AddPropiedadViewModel.cs" />
     <Compile Include="CatalogPropiedad\CatalogPropiedadViewModel.cs" />
     <Compile Include="CatalogPropiedad\ModifyPropiedadViewModel.cs" />
+    <Compile Include="CatalogSeguridad\AddSeguridadViewModel.cs" />
+    <Compile Include="CatalogSeguridad\CatalogSeguridadViewModel.cs" />
+    <Compile Include="CatalogSeguridad\ModifySeguridadViewModel.cs" />
     <Compile Include="CatalogServicio\AddServicioViewModel.cs" />
     <Compile Include="CatalogServicio\CatalogServicioViewModel.cs" />
     <Compile Include="CatalogServicio\ModifyServicioViewModel.cs" />

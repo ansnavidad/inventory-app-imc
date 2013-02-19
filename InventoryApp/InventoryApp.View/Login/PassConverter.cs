@@ -4,12 +4,37 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
-namespace InventoryApp.ViewModel.Login
+namespace InventoryApp.View.Login
 {
+    public class PassConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {            
+            try
+            {
+                string aux = "";
+
+                for (int i = 0; i < ((string)value).Length; i++)
+                    aux += "•";
+
+                return aux;
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return value;
+        }
+    }
+
     public static class PasswordHelper
     {
-
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.RegisterAttached("Password",
             typeof(string), typeof(PasswordHelper),

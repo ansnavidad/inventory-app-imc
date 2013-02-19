@@ -190,7 +190,6 @@
     <Compile Include="IViewModelChangeTrack.cs" />
     <Compile Include="Job\JobViewModel.cs" />
     <Compile Include="Login\LoginViewModel.cs" />
-    <Compile Include="Login\PasswordHelper.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="MaxMin\AddArticulosMaxMin.cs" />
     <Compile Include="MaxMin\AddMaxMinViewModel.cs" />

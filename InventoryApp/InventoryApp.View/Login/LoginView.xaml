@@ -1,6 +1,7 @@
 ﻿<Window x:Class="InventoryApp.View.Login.LoginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+        xmlns:Convertidor="clr-namespace:InventoryApp.View.Login"
         Title="Login" Height="300" Width="500" ResizeMode="NoResize" AllowsTransparency="True"
         DataContext="{StaticResource loginViewModel}" 
         WindowStyle="None" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
@@ -9,6 +10,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+                <ResourceDictionary>
+                    <Convertidor:PassConverter x:Key="formatter"/>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -80,11 +84,11 @@
                 <Label Grid.Column="1" Grid.Row="4" Height="28" HorizontalAlignment="Center" Name="lblRegistro" VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource textBockLogin}" Name="registro" MouseUp="registro_MouseUp" Text="Registrar Usuario"/>
                 </Label>
-                <!--<PasswordBox Margin="0,0,0,10" Name="pass" PasswordChanged="pass_PasswordChanged"></PasswordBox>-->
+                
                 <Label Grid.Column="2" Grid.Row="4" Height="28" HorizontalAlignment="Center" Name="label2" VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource textBockLogin}" Name="recuperar"  MouseUp="recuperar_MouseUp" Text="Recuperar Contraseña"/>
                 </Label>
-                <TextBox Height="23" HorizontalAlignment="Left" Margin="0,10,0,4" Name="txtPassword" Style="{StaticResource txtLogin}" Text="{Binding Path=LoginModel.Usuario.USUARIO_PWD, Mode=TwoWay}" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="2" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="0,10,0,4" Name="txtPassword" Style="{StaticResource txtLogin}" Text="{Binding Path=LoginModel.Usuario.USUARIO_PWD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource formatter}}" VerticalAlignment="Center" Width="150" Grid.Column="1" Grid.Row="2" />
                 <Label Grid.Row="3" Content="{Binding Path=LoginModel.MensajeError}" Height="30" HorizontalAlignment="Stretch"
                        Name="lblError" VerticalAlignment="Stretch" Grid.ColumnSpan="3"  Style="{StaticResource titleError}" />
                 <CheckBox Content="" Grid.Column="2" Grid.Row="1" Height="16" HorizontalAlignment="Left" Margin="41,10,0,0" Name="checkBoxOpenMain" VerticalAlignment="Top" Visibility="Hidden" IsEnabled="{Binding Path=LoginModel.Login}" IsEnabledChanged="checkBoxOpenMain_IsEnabledChanged"/>                

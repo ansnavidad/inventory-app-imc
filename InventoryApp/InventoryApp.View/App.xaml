@@ -95,7 +95,7 @@
              xmlns:catRolSystemViewModel="clr-namespace:InventoryApp.ViewModel.CatalogRolSystem;assembly=InventoryApp.ViewModel"
              xmlns:rolSystemViews="clr-namespace:InventoryApp.View.CatalogRolSystem"    
              
-             StartupUri="CatalogSeguridad/AltaSeguridad.xaml"
+             StartupUri="CatalogSeguridad/ModifySeguridadView.xaml"
              >
     <!--StartupUri="prueba.xaml"-->
     <!--StartupUri="Login/LoginView.xaml"-->

@@ -189,6 +189,12 @@
     <Compile Include="CatalogSeguridad\ModifySeguridadView.xaml.cs">
       <DependentUpon>ModifySeguridadView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogSeguridad\ModifySelectMenuView.xaml.cs">
+      <DependentUpon>ModifySelectMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogSeguridad\ModifyUsuarioView.xaml.cs">
+      <DependentUpon>ModifyUsuarioView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogSeguridad\SeguridadUserControl.xaml.cs">
       <DependentUpon>SeguridadUserControl.xaml</DependentUpon>
     </Compile>
@@ -802,6 +808,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogSeguridad\ModifySeguridadView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogSeguridad\ModifySelectMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogSeguridad\ModifyUsuarioView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,8 +1,10 @@
 ﻿<Window x:Class="InventoryApp.View.CatalogSeguridad.ModifySeguridadView"
+        xmlns:my="clr-namespace:InventoryApp.View.CatalogSeguridad"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Nuevo servicio" Height="200" Width="350" 
-        WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Modificar rol" Height="700" Width="700" 
+        DataContext="{StaticResource mainWindowViewModel}"
+        WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,38 +17,97 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label Style="{StaticResource titleLabel}" Content="MODIFICAR ROL" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <Button Content="Guardar" Grid.Row="3" Height="23"
-                    HorizontalAlignment="Stretch" Margin="5,0"
-                    Name="btnAgregar" VerticalAlignment="Stretch" Width="75"
-                    Command="{Binding AddServicioCommand,Mode=OneWay}"
-                    Click="btnAgregar_Click" Grid.Column="1" 
-                    Style="{StaticResource btnElara}"/>
-        <Button Content="Cancelar" Grid.Column="2" Grid.Row="3"
-                    Height="23" HorizontalAlignment="Stretch" Margin="5,16,5,11"
-                    Name="btnCancelar" VerticalAlignment="Stretch" Width="75"
-                    Click="btnCancelar_Click" 
-                    Style="{StaticResource btnElara}"/>
+
         <Label Content="Nombre rol :" Grid.Row="1" HorizontalAlignment="Right"
-               Name="lblNombreServicio" VerticalAlignment="Center" Grid.Column="1"/>
-        <TextBox IsEnabled="False" Grid.Column="2" Grid.Row="1" Height="23"
+               Name="lblNombreServicio" VerticalAlignment="Center" Style="{StaticResource lblCamposGeneric}" />
+        <TextBox Grid.Column="1" Grid.Row="1" Height="23"
                      HorizontalAlignment="Left" 
                      Name="txtNomreRol" VerticalAlignment="Stretch" Width="140" 
                      Text="{Binding AddServicio.ServicioName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                     MaxLength="254" />
-        <Label Content="¿Es rol de Sistema? :" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right"  Name="label1" VerticalAlignment="Center" />
-        <CheckBox Grid.Column="2" Grid.Row="2" Height="16" HorizontalAlignment="Left" Name="checkBox1" VerticalAlignment="Center" />
+                     MaxLength="254"/>
+        <Label Content="Recibir Mail :" Grid.Row="1" HorizontalAlignment="Right"  Name="label1" VerticalAlignment="Center"  Grid.Column="2" Style="{StaticResource lblCamposGeneric}" />
+        <CheckBox Grid.Column="3" Grid.Row="1" Height="16" HorizontalAlignment="Left" Name="checkBox1" VerticalAlignment="Center"  Grid.ColumnSpan="2" />
+        <Border BorderBrush="Silver" BorderThickness="1,1,1,1" Grid.Row="3" HorizontalAlignment="Stretch" Grid.ColumnSpan="4" Name="border1" VerticalAlignment="Center" />
+        <Label Content="Asignar Menu :" Grid.Row="2"  HorizontalAlignment="Left"  Name="label2" VerticalAlignment="Center" Style="{StaticResource lblCamposGeneric}" />
+        <Grid Grid.Row="4" HorizontalAlignment="Stretch" Name="scrollViewer1" VerticalAlignment="Stretch" Grid.ColumnSpan="4" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer>
+                <ContentControl Background="Transparent">
+                    <my:SelectMenuView DataContext="{Binding MenuViewModel}" />
+                </ContentControl>
+            </ScrollViewer>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Agregar Usuario" Height="23" HorizontalAlignment="Center" 
+                            Name="btnUsuario" VerticalAlignment="Center" Width="120"
+                            Style="{StaticResource btnElara}" />
+                    <Button Content="Eliminar Usuario" Height="23" HorizontalAlignment="Center"
+                            Name="btnElimiarUsuario" VerticalAlignment="Center" Width="120" 
+                            Style="{StaticResource btnElara}" Grid.Column="1" />
+                </Grid>
+                <DataGrid AutoGenerateColumns="False" Grid.Row="1" HorizontalAlignment="Stretch"
+                              Name="dataGridUser" VerticalAlignment="Stretch" CanUserAddRows="False"
+                              RowStyle="{StaticResource RowStyle}" CanUserDeleteRows="False"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+                    <DataGrid.Columns>
+
+                        <DataGridTemplateColumn Header="Eliminar" Width="70">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox HorizontalAlignment="Left" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Usuario" Width="auto" x:Name="nombreProyecto" Binding="{Binding Path=PROYECTO_NAME}" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+        <Border Grid.Row="5" Grid.ColumnSpan="4" Style="{StaticResource titleBorder2}">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Guardar" Height="23"
+                    HorizontalAlignment="Stretch"
+                    Name="btnAgregar" VerticalAlignment="Stretch" Width="75"
+                    Command="{Binding AddServicioCommand,Mode=OneWay}"
+                    Click="btnAgregar_Click" Style="{StaticResource btnElara}" Grid.Column="2" />
+                <Button Content="Cancelar" Grid.Column="3"
+                    Height="23" HorizontalAlignment="Stretch" 
+                    Name="btnCancelar" VerticalAlignment="Stretch" Width="75"
+                    Click="btnCancelar_Click" 
+                    Style="{StaticResource btnElara}"/>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

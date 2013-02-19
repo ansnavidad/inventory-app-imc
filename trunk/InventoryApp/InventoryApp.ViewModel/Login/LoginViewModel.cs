@@ -171,8 +171,9 @@ namespace InventoryApp.ViewModel.Login
         #region Constructors
 
         public LoginViewModel() {
-
+            
             _loginModel = new LoginModel();
+            
         }
 
         #endregion

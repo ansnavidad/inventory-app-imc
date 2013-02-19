@@ -54,6 +54,12 @@
         <Setter Property="FontSize" Value="14"></Setter>
     </Style>
 
+    <Style x:Key="lblCamposGeneric" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#848484"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontStretch" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="11.5"></Setter>
+    </Style>
     <Style x:Key="titleLabel2" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="#F2F2F2"></Setter>
         <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>

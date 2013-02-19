@@ -189,6 +189,9 @@
     <Compile Include="CatalogSeguridad\SeguridadUserControl.xaml.cs">
       <DependentUpon>SeguridadUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogSeguridad\SelectMenuView.xaml.cs">
+      <DependentUpon>SelectMenuView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -796,6 +799,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogSeguridad\SeguridadUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogSeguridad\SelectMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

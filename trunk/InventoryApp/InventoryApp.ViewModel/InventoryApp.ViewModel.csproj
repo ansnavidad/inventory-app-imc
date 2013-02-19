@@ -107,6 +107,7 @@
     <Compile Include="CatalogSeguridad\AddSeguridadViewModel.cs" />
     <Compile Include="CatalogSeguridad\CatalogSeguridadViewModel.cs" />
     <Compile Include="CatalogSeguridad\ModifySeguridadViewModel.cs" />
+    <Compile Include="CatalogSeguridad\SelectMenuViewModel.cs" />
     <Compile Include="CatalogServicio\AddServicioViewModel.cs" />
     <Compile Include="CatalogServicio\CatalogServicioViewModel.cs" />
     <Compile Include="CatalogServicio\ModifyServicioViewModel.cs" />

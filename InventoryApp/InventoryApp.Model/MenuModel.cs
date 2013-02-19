@@ -29,6 +29,26 @@ namespace InventoryApp.Model
         private bool _IsLeaf;
         public const string IsLeafPropertyName = "IsLeaf";
 
+        public bool IsCheck
+        {
+            get { return _IsCheck; }
+            set
+            {
+                if (_IsCheck != value)
+                {
+                    if (value == true)
+                        GetActivo();
+                    else    
+                        GetDesactivo();
+            
+                    _IsCheck = value;
+                    OnPropertyChanged(IsCheckPropertyName);
+                }
+            }
+        }
+        private bool _IsCheck;
+        public const string IsCheckPropertyName = "IsCheck";
+
         public bool IsCollapsed
         {
             get { return _IsCollapsed; }
@@ -187,6 +207,7 @@ namespace InventoryApp.Model
             {
                 this._MenuName = menu.MENU_NAME;
                 this._IsExpanded = this._Parent == null ? true : false;
+                this._IsCheck = false;
                 this._IsSelected = false;
                 this._IsCollapsed = this._Parent==null?false:false;
                 this._IsLeaf = menu.IS_LEAF;
@@ -225,6 +246,60 @@ namespace InventoryApp.Model
                 {
                     (from o in res
                      select o).ToList<MENU>().ForEach(o => this._ChildrenMenu.Add(new MenuModel(o, this, this.dataMapper, UnidsMenu)));
+                }
+            }
+        }
+
+        public void GetActivo()
+        {
+            foreach (var item in this.ChildrenMenu)
+            {
+                string name = item.MenuName;
+                if (item.IsCheck ==false)
+                {
+                    foreach (var item2 in item.ChildrenMenu)
+                    {
+                        string name2 = item.MenuName;
+                        foreach (var item3 in item2.ChildrenMenu)
+                        {
+                            if (item.IsCheck ==false)
+                            {
+                                string name3 = item.MenuName;
+
+                                item.IsCheck = true;
+                            }
+
+                        }
+                        item.IsCheck = true;
+                    }
+                    item.IsCheck = true;
+                }
+            }
+        }
+
+        public void GetDesactivo()
+        {
+            foreach (var item in this.ChildrenMenu)
+            {
+                string name = item.MenuName;
+                if (item.IsCheck == true)
+                {
+                    foreach (var item2 in item.ChildrenMenu)
+                    {
+                        string name2 = item.MenuName;
+                        foreach (var item3 in item2.ChildrenMenu)
+                        {
+                            if (item.IsCheck == true)
+                            {
+                                string name3 = item.MenuName;
+
+                                item.IsCheck = false;
+                            }
+
+                        }
+                        item.IsCheck = false;
+                    }
+                    item.IsCheck = false;
                 }
             }
         }

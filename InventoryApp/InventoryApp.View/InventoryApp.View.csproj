@@ -183,6 +183,9 @@
     <Compile Include="CatalogSeguridad\AltaSeguridad.xaml.cs">
       <DependentUpon>AltaSeguridad.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogSeguridad\AltaUsuarioView.xaml.cs">
+      <DependentUpon>AltaUsuarioView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogSeguridad\ModifySeguridadView.xaml.cs">
       <DependentUpon>ModifySeguridadView.xaml</DependentUpon>
     </Compile>
@@ -791,6 +794,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogSeguridad\AltaSeguridad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogSeguridad\AltaUsuarioView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

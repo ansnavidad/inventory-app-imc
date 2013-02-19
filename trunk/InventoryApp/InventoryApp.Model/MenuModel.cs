@@ -257,22 +257,8 @@ namespace InventoryApp.Model
                 string name = item.MenuName;
                 if (item.IsCheck ==false)
                 {
-                    foreach (var item2 in item.ChildrenMenu)
-                    {
-                        string name2 = item.MenuName;
-                        foreach (var item3 in item2.ChildrenMenu)
-                        {
-                            if (item.IsCheck ==false)
-                            {
-                                string name3 = item.MenuName;
-
-                                item.IsCheck = true;
-                            }
-
-                        }
-                        item.IsCheck = true;
-                    }
                     item.IsCheck = true;
+                    GetActivo();
                 }
             }
         }
@@ -284,22 +270,8 @@ namespace InventoryApp.Model
                 string name = item.MenuName;
                 if (item.IsCheck == true)
                 {
-                    foreach (var item2 in item.ChildrenMenu)
-                    {
-                        string name2 = item.MenuName;
-                        foreach (var item3 in item2.ChildrenMenu)
-                        {
-                            if (item.IsCheck == true)
-                            {
-                                string name3 = item.MenuName;
-
-                                item.IsCheck = false;
-                            }
-
-                        }
-                        item.IsCheck = false;
-                    }
                     item.IsCheck = false;
+                    GetDesactivo();
                 }
             }
         }

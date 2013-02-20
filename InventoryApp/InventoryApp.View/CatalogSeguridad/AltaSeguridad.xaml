@@ -3,9 +3,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Nuevo rol" Height="700" Width="700" 
-        DataContext="{StaticResource mainWindowViewModel}"
         WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
     <Window.Resources>
+
+        
+
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
@@ -38,10 +40,10 @@
         <TextBox Grid.Column="1" Grid.Row="1" Height="23"
                      HorizontalAlignment="Left" 
                      Name="txtNomreRol" VerticalAlignment="Stretch" Width="140" 
-                     Text="{Binding AddServicio.ServicioName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding RolActual.Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                      MaxLength="254"/>
         <Label Content="Recibir Mail :" Grid.Row="1" HorizontalAlignment="Right"  Name="label1" VerticalAlignment="Center"  Grid.Column="2" Style="{StaticResource lblCamposGeneric}" />
-        <CheckBox Grid.Column="3" Grid.Row="1" Height="16" HorizontalAlignment="Left" Name="checkBox1" VerticalAlignment="Center"  Grid.ColumnSpan="2" />
+        <CheckBox Grid.Column="3" Grid.Row="1" Height="16" HorizontalAlignment="Left" Name="checkBox1" VerticalAlignment="Center"  Grid.ColumnSpan="2" IsChecked="{Binding Path=RolActual.RecibirMails}" />
         <Border BorderBrush="Silver" BorderThickness="1,1,1,1" Grid.Row="3" HorizontalAlignment="Stretch" Grid.ColumnSpan="4" Name="border1" VerticalAlignment="Center" />
         <Label Content="Asignar Menu :" Grid.Row="2"  HorizontalAlignment="Left"  Name="label2" VerticalAlignment="Center" Style="{StaticResource lblCamposGeneric}" />
             <Grid Grid.Row="4" HorizontalAlignment="Stretch" Name="scrollViewer1" VerticalAlignment="Stretch" Grid.ColumnSpan="4" >
@@ -51,7 +53,7 @@
                 </Grid.ColumnDefinitions>
             <ScrollViewer>
                 <ContentControl Background="Transparent">
-                    <my:SelectMenuView DataContext="{Binding MenuViewModel}" />
+                    <my:SelectMenuView DataContext="{Binding MenuViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </ContentControl>
             </ScrollViewer>
             <Grid Grid.Column="1">
@@ -69,22 +71,24 @@
                             Style="{StaticResource btnElara}" />
                     <Button Content="Eliminar Usuario" Height="23" HorizontalAlignment="Center"
                             Name="btnElimiarUsuario" VerticalAlignment="Center" Width="120" 
+                            Command="{Binding DeleteUsuario, Mode=OneWay}"
                             Style="{StaticResource btnElara}" Grid.Column="1" />
                 </Grid>
                     <DataGrid AutoGenerateColumns="False" Grid.Row="1" HorizontalAlignment="Stretch"
                               Name="dataGridUser" VerticalAlignment="Stretch" CanUserAddRows="False"
+                              ItemsSource="{Binding RolActual.UsuariosCollection}"
                               RowStyle="{StaticResource RowStyle}" CanUserDeleteRows="False"
-                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+                              Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                         <DataGrid.Columns>
                             
                             <DataGridTemplateColumn Header="Eliminar" Width="70">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox HorizontalAlignment="Left" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <CheckBox HorizontalAlignment="Left" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Usuario" Width="auto" x:Name="nombreProyecto" Binding="{Binding Path=PROYECTO_NAME}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Usuario" Width="auto" x:Name="nombreProyecto" Binding="{Binding Path=Mail}" IsReadOnly="True"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -100,7 +104,7 @@
                 <Button Content="Guardar" Height="23"
                     HorizontalAlignment="Stretch"
                     Name="btnAgregar" VerticalAlignment="Stretch" Width="75"
-                    Command="{Binding AddServicioCommand,Mode=OneWay}"
+                    Command="{Binding GuardarRol,Mode=OneWay}"
                     Click="btnAgregar_Click" Style="{StaticResource btnElara}" Grid.Column="2" />
                 <Button Content="Cancelar" Grid.Column="3"
                     Height="23" HorizontalAlignment="Stretch" 

@@ -110,10 +110,36 @@ namespace InventoryApp.DAL
                 var query = (from cust in entity.ROLs
                              where cust.IS_ACTIVE == true && cust.UNID_ROL != 1
                              select cust).ToList();
+
                 if (query.Count > 0)
                 {
                     foreach (ROL r in query) {
 
+                        tp.Add(r);
+                    }
+                }
+                return tp;
+            }
+        }
+
+        public object getElementsSecurity()
+        {
+            ObservableCollection<ROL> tp = new ObservableCollection<ROL>();
+
+            using (var entity = new TAE2Entities())
+            {
+                var query = (from cust in entity.ROLs
+                             .Include("ROL_MENU")
+                             .Include("USUARIO_ROL")
+                             .Include("ROL_MENU.MENU")
+                             .Include("USUARIO_ROL.USUARIO")                             
+                             where cust.IS_ACTIVE == true && cust.UNID_ROL != 1
+                             select cust).ToList();
+
+                if (query.Count > 0)
+                {
+                    foreach (ROL r in query)
+                    {
                         tp.Add(r);
                     }
                 }
@@ -135,6 +161,26 @@ namespace InventoryApp.DAL
                     res = query;
                 }
                 return res;
+            }
+        }
+
+        public void deleteElement(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ROL rol = (ROL)element;
+                    var modifiedRol = entity.ROLs.First(p => p.UNID_ROL == rol.UNID_ROL);                    
+                    modifiedRol.IS_ACTIVE = false;
+                    //Sync
+                    modifiedRol.IS_MODIFIED = true;
+                    modifiedRol.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    //
+                    entity.SaveChanges();
+                }
             }
         }
 
@@ -231,27 +277,7 @@ namespace InventoryApp.DAL
                 }
             }
         }
-
-        public void deleteElement(object element)
-        {
-            if (element != null)
-            {
-                using (var entity = new TAE2Entities())
-                {
-                    ROL rol = (ROL)element;
-                    var modifiedRol = entity.ROLs.First(p => p.UNID_ROL == rol.UNID_ROL);
-                    //Sync
-                    modifiedRol.IS_MODIFIED = true;
-                    modifiedRol.LAST_MODIFIED_DATE = UNID.getNewUNID();
-                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
-                    entity.SaveChanges();
-                    //
-                    entity.SaveChanges();
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Método que serializa una List<ROL> a Json
         /// </summary>

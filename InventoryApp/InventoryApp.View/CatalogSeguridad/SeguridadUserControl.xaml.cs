@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogSeguridad;
 
 namespace InventoryApp.View.CatalogSeguridad
 {
@@ -24,9 +25,18 @@ namespace InventoryApp.View.CatalogSeguridad
             InitializeComponent();
         }
 
+        private CatalogSeguridadViewModel ConvertDataContext(object dataSource)
+        {
+            CatalogSeguridadViewModel viewModel = dataSource as CatalogSeguridadViewModel;
+            return viewModel;
+        }
+
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-
+            AltaSeguridad View = new AltaSeguridad();
+            CatalogSeguridadViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            View.DataContext = viewModel.CreateAddSeguridadViewModel();
+            View.ShowDialog();
         }
 
         private void dtGridSeguridad_MouseDoubleClick(object sender, MouseButtonEventArgs e)

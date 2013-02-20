@@ -38,9 +38,9 @@ namespace InventoryApp.Model
                 {
                     if (value == true)
                         GetActivo();
-                    else    
+                    else
                         GetDesactivo();
-            
+
                     _IsCheck = value;
                     OnPropertyChanged(IsCheckPropertyName);
                 }
@@ -249,7 +249,7 @@ namespace InventoryApp.Model
                 }
             }
         }
-
+        
         public void GetActivo()
         {
             foreach (var item in this.ChildrenMenu)

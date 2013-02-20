@@ -82,6 +82,9 @@
              xmlns:facturaCatalogViewModel="clr-namespace:InventoryApp.ViewModel.Recibo;assembly=InventoryApp.ViewModel"
              xmlns:facturaCatalogView="clr-namespace:InventoryApp.View.Recibo"         
              
+             xmlns:catSeguridadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogSeguridad;assembly=InventoryApp.ViewModel"
+             xmlns:seguridadView="clr-namespace:InventoryApp.View.CatalogSeguridad"  
+             
              xmlns:maxMinViewModel="clr-namespace:InventoryApp.ViewModel.MaxMin;assembly=InventoryApp.ViewModel"
              xmlns:maxMinView="clr-namespace:InventoryApp.View.MaxMin"
              xmlns:catalogProgramadoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogProgramado;assembly=InventoryApp.ViewModel"
@@ -89,13 +92,12 @@
              xmlns:jobViewModel="clr-namespace:InventoryApp.ViewModel.Job;assembly=InventoryApp.ViewModel"
              xmlns:jobView="clr-namespace:InventoryApp.View.Job"
                   
-             xmlns:catSeguridadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogSeguridad;assembly=InventoryApp.ViewModel"
-             xmlns:seguridadViews="clr-namespace:InventoryApp.View.CatalogSeguridad"             
+                        
              
              xmlns:catRolSystemViewModel="clr-namespace:InventoryApp.ViewModel.CatalogRolSystem;assembly=InventoryApp.ViewModel"
              xmlns:rolSystemViews="clr-namespace:InventoryApp.View.CatalogRolSystem"    
              
-             StartupUri="CatalogSeguridad/ModifySeguridadView.xaml"
+             StartupUri="MainWindow.xaml"
              >
     <!--StartupUri="prueba.xaml"-->
     <!--StartupUri="Login/LoginView.xaml"-->
@@ -530,9 +532,7 @@
             <reportesView:ReportesMain/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type facturaCatalogViewModel:FacturaCatalogViewModel}">
-            <facturaCatalogView:FacturaCatalogView/>
-        </DataTemplate>
+        
         
         <DataTemplate DataType="{x:Type maxMinViewModel:MaxMinViewModel}">
             <maxMinView:MaxMinView/>
@@ -600,12 +600,16 @@
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type catSeguridadViewModel:CatalogSeguridadViewModel}">
-            <seguridadViews:SeguridadUserControl />
+            <seguridadView:SeguridadUserControl />
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type catRolSystemViewModel:CatalogRolSystemViewModel}">
             <rolSystemViews:RolSystemUserControl />
         </DataTemplate>
-
+        
+        <DataTemplate DataType="{x:Type facturaCatalogViewModel:FacturaCatalogViewModel}">
+            <facturaCatalogView:FacturaCatalogView/>
+        </DataTemplate>
+        
     </Application.Resources>
 </Application>

@@ -45,7 +45,7 @@
         <Label Content="Recibir Mail :" Grid.Row="1" HorizontalAlignment="Right"  Name="label1" VerticalAlignment="Center"  Grid.Column="2" Style="{StaticResource lblCamposGeneric}" />
         <CheckBox Grid.Column="3" Grid.Row="1" Height="16" HorizontalAlignment="Left" Name="checkBox1" VerticalAlignment="Center"  Grid.ColumnSpan="2" IsChecked="{Binding Path=RolActual.RecibirMails}" />
         <Border BorderBrush="Silver" BorderThickness="1,1,1,1" Grid.Row="3" HorizontalAlignment="Stretch" Grid.ColumnSpan="4" Name="border1" VerticalAlignment="Center" />
-        <Label Content="Asignar Menu :" Grid.Row="2"  HorizontalAlignment="Left"  Name="label2" VerticalAlignment="Center" Style="{StaticResource lblCamposGeneric}" />
+        <Label Content="Asignar Menú:" Grid.Row="2"  HorizontalAlignment="Left"  Name="label2" VerticalAlignment="Center" Style="{StaticResource lblCamposGeneric}" />
             <Grid Grid.Row="4" HorizontalAlignment="Stretch" Name="scrollViewer1" VerticalAlignment="Stretch" Grid.ColumnSpan="4" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250"/>
@@ -66,17 +66,11 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Agregar Usuario" Height="23" HorizontalAlignment="Center" 
-                            Name="btnUsuario" VerticalAlignment="Center" Width="120"
-                            Style="{StaticResource btnElara}" />
-                    <Button Content="Eliminar Usuario" Height="23" HorizontalAlignment="Center"
-                            Name="btnElimiarUsuario" VerticalAlignment="Center" Width="120" 
-                            Command="{Binding DeleteUsuario, Mode=OneWay}"
-                            Style="{StaticResource btnElara}" Grid.Column="1" />
+                    <Label Content="Asignar Usuarios:" HorizontalAlignment="Left" Margin="0,4,0,3" Name="label3" Style="{StaticResource lblCamposGeneric}" VerticalAlignment="Center" />
                 </Grid>
                     <DataGrid AutoGenerateColumns="False" Grid.Row="1" HorizontalAlignment="Stretch"
                               Name="dataGridUser" VerticalAlignment="Stretch" CanUserAddRows="False"
-                              ItemsSource="{Binding RolActual.UsuariosCollection}"
+                              ItemsSource="{Binding UsuariosCollection}"
                               RowStyle="{StaticResource RowStyle}" CanUserDeleteRows="False"
                               Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                         <DataGrid.Columns>
@@ -88,7 +82,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Usuario" Width="auto" x:Name="nombreProyecto" Binding="{Binding Path=Mail}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Usuario" Width="auto" x:Name="nombreProyecto" Binding="{Binding Path=USUARIO_MAIL}" IsReadOnly="True"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

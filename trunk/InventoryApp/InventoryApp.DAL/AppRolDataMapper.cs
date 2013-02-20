@@ -243,7 +243,7 @@ namespace InventoryApp.DAL
 
                     if (validacion.Count == 0)
                     {
-                        rol.UNID_ROL = UNID.getNewUNID();
+                        //rol.UNID_ROL = UNID.getNewUNID();
                         //Sync
                         rol.IS_MODIFIED = true;
                         rol.LAST_MODIFIED_DATE = UNID.getNewUNID();

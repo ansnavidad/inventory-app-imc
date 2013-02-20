@@ -171,6 +171,7 @@
     <Compile Include="Recibo\ReciboStatusModel.cs" />
     <Compile Include="Recibo\TipoOrigenModel.cs" />
     <Compile Include="Seguridad\Rol.cs" />
+    <Compile Include="Seguridad\Usuario.cs" />
     <Compile Include="ServicioModel.cs" />
     <Compile Include="SolicitanteModel.cs" />
     <Compile Include="TecnicoModel.cs" />

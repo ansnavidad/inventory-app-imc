@@ -133,6 +133,24 @@ namespace InventoryApp.DAL
             }
         }
 
+
+        public object getElementByName(object element)
+        {
+            object res = null;
+            using (var entitie = new TAE2Entities())
+            {
+                MENU m = (MENU)element;
+                var query = (from cust in entitie.MENUs
+                             where cust.MENU_NAME == m.MENU_NAME
+                             select cust).ToList();
+                if (query.Count > 0)
+                {
+                    res = query.First();
+                }
+                return res;
+            }
+        }
+
         public void udpateElement(object element)
         {
             if (element != null)

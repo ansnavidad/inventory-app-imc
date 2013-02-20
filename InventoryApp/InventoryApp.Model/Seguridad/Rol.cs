@@ -333,9 +333,42 @@ namespace InventoryApp.Model.Seguridad
 
         #region Methods
 
-        public void saveRol() { 
-        
-        
+        public void saveRol() {
+
+            AppRolDataMapper rolDM = new AppRolDataMapper();
+            AppUsuarioRol ar = new AppUsuarioRol();
+            AppRolMenuDataMapper am = new AppRolMenuDataMapper();
+            AppMenuDataMapper menu = new AppMenuDataMapper();
+
+            ROL rrr = new ROL();
+            rrr.IS_ACTIVE = true;
+            rrr.IS_MODIFIED = true;
+            rrr.IS_SYSTEM_ROOL = this.IsSystemRol;
+            rrr.RECIBIR_MAILS = this.RecibirMails;
+            rrr.ROL_NAME = this.Name;
+            this.UnidRol = UNID.getNewUNID();
+            rrr.UNID_ROL = UnidRol;
+            rolDM.insertElement(rrr);
+
+            foreach (User u in UsuariosCollection) {
+                                
+                USUARIO_ROL ur = new USUARIO_ROL();
+                ur.UNID_ROL = this.UnidRol;
+                ur.UNID_USUARIO = u.UnidUser;
+                ar.insertElement(ur);
+            }
+
+            foreach (Menu minim in MenuCollection){
+            
+                MENU mm = new MENU();
+                mm.MENU_NAME = minim.MenuName;
+                mm = (MENU)menu.getElementByName(mm);
+                
+                ROL_MENU rm = new ROL_MENU();
+                rm.UNID_MENU = mm.UNID_MENU;
+                rm.UNID_ROL = this.UnidRol;
+                am.insertElement(rm);
+            }
         }
 
         public void DeleteRol() {

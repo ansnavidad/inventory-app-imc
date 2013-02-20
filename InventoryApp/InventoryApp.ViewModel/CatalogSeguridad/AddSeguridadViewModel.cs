@@ -6,6 +6,8 @@ using InventoryApp.Model.Seguridad;
 using InventoryApp.DAL.POCOS;
 using System.Windows.Input;
 using InventoryApp.Model;
+using System.Collections.ObjectModel;
+using InventoryApp.DAL;
 
 namespace InventoryApp.ViewModel.CatalogSeguridad
 {
@@ -27,33 +29,96 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         private RelayCommand _GuardarRol;
         private void AttemptGuardarRol()
         {
+            foreach (Usuario u in UsuariosCollection) {
+
+                if (u.IsChecked)
+                {
+                    Rol.User aux = new Rol.User();
+                    aux.UnidUser = u.UNID_USUARIO;
+
+                    RolActual.UsuariosCollection.Add(aux);
+                }
+            }
+
+            MenuAgregar();
+            RolActual.saveRol();
         }
         private bool CanAttemptGuardarRol()
         {
-            if (RolActual.MenuCollection.Count > 0 && RolActual.UsuariosCollection.Count > 0 && !String.IsNullOrEmpty(RolActual.Name))
+            if (!String.IsNullOrEmpty(RolActual.Name) && MenuSelected() && UsuarioSelected())
                 return true;
             return false;
         }
+        public void MenuAgregar() {
 
-        public ICommand DeleteUsuario
-        {
-            get
+            MenuModel auxMenu = this.MenuViewModel.MenuModel[0];
+            ColaMenuAgregar = new Queue<MenuModel>();
+
+            ColaMenuAgregar.Enqueue(auxMenu);
+
+            while (ColaMenuAgregar.Count > 0)
             {
-                if (_DeleteUsuario == null)
+                MenuModel nodo = ColaMenuAgregar.Dequeue();
+                
+                if (nodo.IsCheck)
                 {
-                    _DeleteUsuario = new RelayCommand(p => this.AttemptDeleteUsuario(), p => this.CanAttemptDeleteUsuario());
+                    AgregarPadre(nodo.Parent);
+                    Rol.Menu auxMenuRol = new Rol.Menu();
+                    auxMenuRol.MenuName = nodo.MenuName;
+
+                    RolActual.MenuCollection.Add(auxMenuRol);
                 }
-                return _DeleteUsuario;
+                foreach (MenuModel mmm in nodo.ChildrenMenu)
+                    ColaMenuAgregar.Enqueue(mmm);                
             }
         }
-        private RelayCommand _DeleteUsuario;
-        private void AttemptDeleteUsuario()
-        {
+        public void AgregarPadre(MenuModel m) {
+
+            if (m == null)
+                return;
+            else
+            {
+                AgregarPadre(m.Parent);
+
+                Rol.Menu auxMenuRol = new Rol.Menu();
+                auxMenuRol.MenuName = m.MenuName;
+
+                if (!RolActual.MenuCollection.Contains(auxMenuRol))
+                    RolActual.MenuCollection.Add(auxMenuRol);
+            }
         }
-        private bool CanAttemptDeleteUsuario()
-        {
-            if (this.RolActual.UsuariosCollection.Count > 0)
+        public bool MenuSelected() {
+
+            MenuModel auxMenu = this.MenuViewModel.MenuModel[0];
+            ColaMenu = new Queue<MenuModel>();
+
+            if (auxMenu.IsCheck)
                 return true;
+            else {
+                foreach (MenuModel mm in auxMenu.ChildrenMenu)
+                    ColaMenu.Enqueue(mm);
+                while (ColaMenu.Count > 0) {
+
+                    MenuModel nodo = ColaMenu.Dequeue();
+                    if (nodo.IsCheck)
+                        return true;
+                    else {
+
+                        foreach (MenuModel mmm in nodo.ChildrenMenu)
+                            ColaMenu.Enqueue(mmm);
+                    }
+                }
+
+                return false;
+            }
+        }
+        public bool UsuarioSelected() {
+            
+            foreach (Usuario u in UsuariosCollection) {
+
+                if (u.IsChecked)
+                    return true;
+            }
             return false;
         }
 
@@ -62,7 +127,8 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         #region Properties
 
         CatalogSeguridadViewModel _catalogSeguridadViewModel;
-        Queue<Rol.Menu> ColaMenu;
+        Queue<MenuModel> ColaMenu;
+        Queue<MenuModel> ColaMenuAgregar;
 
         public Rol RolActual
         {
@@ -92,7 +158,22 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
             }
         }
         private MenuViewModel _MenuViewModel;
-        public const string MenuViewModelPropertyName = "MenuViewModel";        
+        public const string MenuViewModelPropertyName = "MenuViewModel";
+
+        public ObservableCollection<Usuario> UsuariosCollection
+        {
+            get { return _UsuariosCollection; }
+            set
+            {
+                if (_UsuariosCollection != value)
+                {
+                    _UsuariosCollection = value;
+                    OnPropertyChanged(UsuariosCollectionPropertyName);
+                }
+            }
+        }
+        private ObservableCollection<Usuario> _UsuariosCollection;
+        public const string UsuariosCollectionPropertyName = "UsuariosCollection";
 
         #endregion
 
@@ -101,6 +182,7 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         public AddSeguridadViewModel(CatalogSeguridadViewModel catalogSeguridadViewModel)
         {
             this._catalogSeguridadViewModel = catalogSeguridadViewModel;
+            this.UsuariosCollection = GetUsers();
             this._MenuViewModel = new MenuViewModel();
             this._RolActual = new Rol();
         }
@@ -108,6 +190,24 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         #endregion
 
         #region Methods
+
+        public ObservableCollection<Usuario> GetUsers()
+        {
+            AppUsuario dm = new AppUsuario();
+            ObservableCollection<Usuario> res = new ObservableCollection<Usuario>();
+
+            List<USUARIO> lu = (List<USUARIO>)dm.getElementsRolesFiltrado();
+
+            foreach (USUARIO u in lu) {
+
+                Usuario aux = new Usuario(u);
+
+                res.Add(aux);
+            }
+
+            return res;
+        }   
+
         #endregion        
     }
 }

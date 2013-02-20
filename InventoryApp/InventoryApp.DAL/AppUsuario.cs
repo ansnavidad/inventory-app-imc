@@ -139,6 +139,34 @@ namespace InventoryApp.DAL
             return o;
         }
 
+        public object getElementsRolesFiltrado()
+        {
+            List<USUARIO> res2 = new List<USUARIO>();
+
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.USUARIOs
+                           .Include("USUARIO_ROL")
+                           where p.IS_ACTIVE == true
+                           select p).ToList();               
+
+                foreach (USUARIO u in res) {
+
+                    bool aux = true;
+                    foreach (USUARIO_ROL ur in u.USUARIO_ROL) {
+
+                        if (ur.UNID_ROL == 1)
+                            aux = false;
+                    }
+
+                    if (aux)
+                        res2.Add(u);
+                }
+            }
+
+            return res2;
+        }
+
         public object getElementName(string userName)
         {
             object o = null;

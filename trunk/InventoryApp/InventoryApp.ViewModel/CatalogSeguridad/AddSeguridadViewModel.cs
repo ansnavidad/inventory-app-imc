@@ -184,7 +184,7 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         {
             this._catalogSeguridadViewModel = catalogSeguridadViewModel;
             this.UsuariosCollection = GetUsers();
-            this._MenuViewModel = new MenuViewModel();
+            this._MenuViewModel = new MenuViewModel(this._catalogSeguridadViewModel.IsSuperAdmin);
             this._RolActual = new Rol();
         }
 

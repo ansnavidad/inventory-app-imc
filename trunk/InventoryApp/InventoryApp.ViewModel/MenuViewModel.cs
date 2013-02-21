@@ -40,16 +40,28 @@ namespace InventoryApp.ViewModel
             }
         }
         private ObservableCollection<MenuModel> _MenuModel;
-        public const string MenuModelPropertyName = "MenuModel"; 
+        public const string MenuModelPropertyName = "MenuModel";
+
+        bool B;
         #endregion
 
         public MenuViewModel():this(null)
         {      
         }
 
+        public MenuViewModel(bool b) : this(null, b)
+        {
+            
+        }
+
         public MenuViewModel(InventoryApp.Model.EventHandler<EventArgs> selectItemChanged)
         {
             this.init(selectItemChanged);
+        }
+
+        public MenuViewModel(InventoryApp.Model.EventHandler<EventArgs> selectItemChanged, bool b)
+        {
+            this.init(selectItemChanged, b);
         }
 
         public MenuViewModel(InventoryApp.Model.EventHandler<EventArgs> selectItemChanged, USUARIO ActualUser)
@@ -62,7 +74,26 @@ namespace InventoryApp.ViewModel
             MenuModel rootMenu = null;
             try
             {
-                rootMenu = new MenuModel(new MenuDataMapper(), selectItemChanged);
+                rootMenu = new MenuModel(new MenuDataMapper(), selectItemChanged, this.B);
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            this._MenuModel = new ObservableCollection<MenuModel>();
+            this._MenuModel.Add(rootMenu);
+        }
+
+        private void init(InventoryApp.Model.EventHandler<EventArgs> selectItemChanged, bool b)
+        {
+            MenuModel rootMenu = null;
+            try
+            {
+                rootMenu = new MenuModel(new MenuDataMapper(), selectItemChanged, b);
             }
             catch (ArgumentException ae)
             {

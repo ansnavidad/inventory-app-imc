@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         {
             if (!String.IsNullOrEmpty(RolActual.Name) && MenuSelected() && UsuarioSelected())
                 return true;
-            return false;
+            return false;            
         }
         public void MenuAgregar() {
 
@@ -189,7 +189,7 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
             this._catalogSeguridadViewModel = catalogSeguridadViewModel;
             this.RolActual = this._catalogSeguridadViewModel.SelectedRol;
 
-            this.MenuViewModel = new MenuViewModel();
+            this.MenuViewModel = new MenuViewModel(this._catalogSeguridadViewModel.IsSuperAdmin);
             this.CargaMenuInicial();
 
             this.UsuariosCollection = new ObservableCollection<Usuario>();

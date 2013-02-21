@@ -156,6 +156,24 @@ namespace InventoryApp.Model
             }
         }
 
+        public MenuModel(IDataMapper menuDataMapper, EventHandler<EventArgs> e, bool b)
+        {
+            MenuDataMapper mdm = menuDataMapper as MenuDataMapper;
+            if (mdm != null)
+            {
+                //Obtener el root del árbol
+                DAL.POCOS.MENU menu = (DAL.POCOS.MENU)mdm.getElements();
+                this._Parent = null;
+                if (menu != null)
+                {
+                    this.MenuName = menu.MENU_NAME;
+                    this.dataMapper = mdm;
+                    this.SelectedItemChanged += e;
+                    this.GetChildren(menu, null, b);
+                }
+            }
+        }
+
         public MenuModel(IDataMapper menuDataMapper, EventHandler<EventArgs> e, USUARIO ActualUser)
         {
             List<long> UnidsMenu = new List<long>();
@@ -191,6 +209,13 @@ namespace InventoryApp.Model
             this.GetChildren(menu, parent);
         }
 
+        public MenuModel(MENU menu, MenuModel parent, IDataMapper menuDataMapper, bool b)
+        {
+            MenuDataMapper mdm = menuDataMapper as MenuDataMapper;
+            this.dataMapper = mdm;
+            this.GetChildren(menu, parent, b);
+        }
+
         public MenuModel(MENU menu, MenuModel parent, IDataMapper menuDataMapper, List<long> UnidsMenu)
         {
             MenuDataMapper mdm = menuDataMapper as MenuDataMapper;
@@ -221,6 +246,32 @@ namespace InventoryApp.Model
                 {
                     (from o in res
                      select o).ToList<MENU>().ForEach(o => this._ChildrenMenu.Add(new MenuModel(o, this,this.dataMapper)));
+                }
+            }
+        }
+
+        private void GetChildren(MENU menu, MenuModel parent, bool b)
+        {
+            this._ChildrenMenu = new ObservableCollection<MenuModel>();
+            this._Parent = parent;
+            if (menu != null)
+            {
+                this._MenuName = menu.MENU_NAME;
+                this._IsExpanded = this._Parent == null ? true : false;
+                this._IsCheck = false;
+                this._IsSelected = false;
+                this._IsCollapsed = this._Parent == null ? false : false;
+                this._IsLeaf = menu.IS_LEAF;
+                if (this._Parent != null && this._Parent.SelectedItemChanged != null)
+                {
+                    this.SelectedItemChanged += (EventHandler<EventArgs>)this._Parent.SelectedItemChanged;
+                }
+                List<MENU> res = this.dataMapper.getElement(menu, b) as List<MENU>;
+
+                if (res != null)
+                {
+                    (from o in res
+                     select o).ToList<MENU>().ForEach(o => this._ChildrenMenu.Add(new MenuModel(o, this, this.dataMapper, b)));
                 }
             }
         }

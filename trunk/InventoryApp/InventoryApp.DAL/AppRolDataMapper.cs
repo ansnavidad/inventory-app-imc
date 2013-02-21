@@ -122,28 +122,55 @@ namespace InventoryApp.DAL
             }
         }
 
-        public object getElementsSecurity()
+        public object getElementsSecurity(bool b)
         {
-            ObservableCollection<ROL> tp = new ObservableCollection<ROL>();
-
-            using (var entity = new TAE2Entities())
+            if (b)
             {
-                var query = (from cust in entity.ROLs
-                             .Include("ROL_MENU")
-                             .Include("USUARIO_ROL")
-                             .Include("ROL_MENU.MENU")
-                             .Include("USUARIO_ROL.USUARIO")                             
-                             where cust.IS_ACTIVE == true && cust.UNID_ROL != 1
-                             select cust).ToList();
+                ObservableCollection<ROL> tp = new ObservableCollection<ROL>();
 
-                if (query.Count > 0)
+                using (var entity = new TAE2Entities())
                 {
-                    foreach (ROL r in query)
+                    var query = (from cust in entity.ROLs
+                                 .Include("ROL_MENU")
+                                 .Include("USUARIO_ROL")
+                                 .Include("ROL_MENU.MENU")
+                                 .Include("USUARIO_ROL.USUARIO")
+                                 where cust.IS_ACTIVE == true && cust.UNID_ROL != 1
+                                 select cust).ToList();
+
+                    if (query.Count > 0)
                     {
-                        tp.Add(r);
+                        foreach (ROL r in query)
+                        {
+                            tp.Add(r);
+                        }
                     }
+                    return tp;
                 }
-                return tp;
+            }
+            else {
+
+                ObservableCollection<ROL> tp = new ObservableCollection<ROL>();
+
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.ROLs
+                                 .Include("ROL_MENU")
+                                 .Include("USUARIO_ROL")
+                                 .Include("ROL_MENU.MENU")
+                                 .Include("USUARIO_ROL.USUARIO")
+                                 where cust.IS_ACTIVE == true && cust.UNID_ROL != 1 && !cust.IS_SYSTEM_ROOL
+                                 select cust).ToList();
+
+                    if (query.Count > 0)
+                    {
+                        foreach (ROL r in query)
+                        {
+                            tp.Add(r);
+                        }
+                    }
+                    return tp;
+                }
             }
         }
 
@@ -238,7 +265,7 @@ namespace InventoryApp.DAL
                     ROL rol = (ROL)element;
 
                     var validacion = (from cust in entity.ROLs
-                                      where cust.ROL_NAME == rol.ROL_NAME
+                                      where cust.ROL_NAME == rol.ROL_NAME && cust.IS_ACTIVE
                                       select cust).ToList();
 
                     if (validacion.Count == 0)

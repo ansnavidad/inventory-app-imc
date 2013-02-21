@@ -44,5 +44,10 @@ namespace InventoryApp.View.Reportes
         {
             webBrowser1.Navigate(new Uri("http://10.50.0.131/Reports/Pages/Report.aspx?ItemPath=%2fElara%2fRecibo", UriKind.RelativeOrAbsolute));
         }
+
+        private void button5_Click(object sender, RoutedEventArgs e)
+        {
+            webBrowser1.Navigate(new Uri("http://10.50.0.131/Reports/Pages/Report.aspx?ItemPath=%2fElara%2fInventario-Adhoc", UriKind.RelativeOrAbsolute));
+        }
     }
 }

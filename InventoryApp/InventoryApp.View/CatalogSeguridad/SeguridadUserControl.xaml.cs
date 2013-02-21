@@ -41,7 +41,10 @@ namespace InventoryApp.View.CatalogSeguridad
 
         private void dtGridSeguridad_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            AltaSeguridad View = new AltaSeguridad();
+            CatalogSeguridadViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            View.DataContext = viewModel.CreateModifySeguridadViewModel();
+            View.ShowDialog();
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)

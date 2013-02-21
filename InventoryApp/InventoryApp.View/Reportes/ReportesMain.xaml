@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="700">
+             d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -114,11 +114,14 @@
                     <ColumnDefinition Width="170" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="170" />
                 </Grid.ColumnDefinitions>
                 <Button Content="Reporte Inventario Almacén" Height="23" HorizontalAlignment="Center" Name="button1" VerticalAlignment="Center" Width="165"  Click="button1_Click" Style="{StaticResource btnElaraReportes}" />
                 <Button Content="Reporte Inventario Kardex" Height="23" HorizontalAlignment="Center" Name="button2" VerticalAlignment="Center" Width="165" Click="button2_Click" Grid.Column="2" Style="{StaticResource btnElaraReportes}" />
                 <Button Content="Reporte Inventario Rotación" Height="23" HorizontalAlignment="Center" Name="button3" VerticalAlignment="Center" Width="165" Click="button3_Click" Grid.Column="4" Style="{StaticResource btnElaraReportes}" />
                 <Button Content="Reporte Recibo"  Height="23" HorizontalAlignment="Center" Name="button4" VerticalAlignment="Center" Width="165" Click="button4_Click" Grid.Column="6" Style="{StaticResource btnElaraReportes}" />
+                <Button Content="Reporte Adhoc"  Height="23" HorizontalAlignment="Center" Name="button5" VerticalAlignment="Center" Width="165" Click="button5_Click" Grid.Column="8" Style="{StaticResource btnElaraReportes}" />
             </Grid>
         
         </ScrollViewer>

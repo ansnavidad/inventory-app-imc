@@ -115,6 +115,12 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
             return addSeguridadViewModel;
         }
 
+        public ModifySeguridadViewModel CreateModifySeguridadViewModel()
+        {
+            ModifySeguridadViewModel modifySeguridadViewModel = new ModifySeguridadViewModel(this);
+            return modifySeguridadViewModel;
+        }
+
         public string PageName
         {
             get

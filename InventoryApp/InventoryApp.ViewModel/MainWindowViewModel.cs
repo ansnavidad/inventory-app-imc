@@ -385,7 +385,15 @@ namespace InventoryApp.ViewModel
                       break;
                     //Seguridad
                     case "Roles":
-                      page = new CatalogSeguridad.CatalogSeguridadViewModel();
+
+                      bool IsSuperAdmin = false;
+                      foreach (USUARIO_ROL u in this.ActualUser.USUARIO_ROL) {
+
+                          if (u.UNID_ROL == 1)
+                              IsSuperAdmin = true;
+                      }
+
+                      page = new CatalogSeguridad.CatalogSeguridadViewModel(IsSuperAdmin);
                       break;
                     case "¿Es Rol de sistema?":
                       page = new CatalogRolSystem.CatalogRolSystemViewModel();

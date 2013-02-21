@@ -148,6 +148,42 @@ namespace InventoryApp.DAL
             return res;
         }
 
+        public object getElement(object element, bool b)
+        {
+            if (b)
+            {
+                object res = null;
+                MENU menu = element as MENU;
+                if (menu != null)
+                {
+                    using (var entity = new TAE2Entities())
+                    {
+                        var query = (from child in entity.MENUs
+                                     where child.UNID_MENU_PARENT == menu.UNID_MENU
+                                     select child).ToList<MENU>();
+                        res = query;
+                    }
+                }
+                return res;
+            }
+            else {
+
+                object res = null;
+                MENU menu = element as MENU;
+                if (menu != null)
+                {
+                    using (var entity = new TAE2Entities())
+                    {
+                        var query = (from child in entity.MENUs
+                                     where child.UNID_MENU_PARENT == menu.UNID_MENU && !child.MENU_NAME.Equals("¿Es Rol de sistema?")
+                                     select child).ToList<MENU>();
+                        res = query;
+                    }
+                }
+                return res;
+            }
+        }
+
         public object getElement(object element, List<long> UnidsMenu)
         {
             object res = null;

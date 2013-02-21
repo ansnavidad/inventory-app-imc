@@ -78,13 +78,29 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         protected Rol _SelectedRol;
         public const string SelectedRolPropertyName = "SelectedRol";
 
+        public bool IsSuperAdmin
+        {
+            get { return _IsSuperAdmin; }
+            set
+            {
+                if (_IsSuperAdmin != value)
+                {
+                    _IsSuperAdmin = value;
+                    OnPropertyChanged(IsSuperAdminPropertyName);
+                }
+            }
+        }
+        protected bool _IsSuperAdmin;
+        public const string IsSuperAdminPropertyName = "IsSuperAdmin";
+
         #endregion
         
         #region Constructors
 
-        public CatalogSeguridadViewModel() {
+        public CatalogSeguridadViewModel(bool b) {
 
-            this.RolesCollection = this.GetRols();
+            this.IsSuperAdmin = b;
+            this.RolesCollection = this.GetRols();            
         }
 
         #endregion
@@ -98,7 +114,7 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
 
 
             AppRolDataMapper rm = new AppRolDataMapper();
-            res = (ObservableCollection<ROL>)rm.getElementsSecurity();
+            res = (ObservableCollection<ROL>)rm.getElementsSecurity(this.IsSuperAdmin);
 
             foreach (ROL rr in res) {
 

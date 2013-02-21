@@ -370,6 +370,46 @@ namespace InventoryApp.Model.Seguridad
                 am.insertElement(rm);
             }
         }
+        public void modifyRol() {
+
+            AppRolDataMapper RolDM = new AppRolDataMapper();
+            AppUsuarioRol Rol_UsuarioDM = new AppUsuarioRol();
+            AppRolMenuDataMapper Rol_MenuDM = new AppRolMenuDataMapper();
+            AppMenuDataMapper MenuDM = new AppMenuDataMapper();
+
+            Rol_UsuarioDM.deleteElementsByRol(this.UnidRol);
+            Rol_MenuDM.deleteElementsByRol(this.UnidRol);
+
+            ROL rrr = new ROL();
+            rrr.IS_ACTIVE = true;
+            rrr.IS_MODIFIED = true;
+            rrr.IS_SYSTEM_ROOL = this.IsSystemRol;
+            rrr.RECIBIR_MAILS = this.RecibirMails;
+            rrr.ROL_NAME = this.Name;
+            rrr.UNID_ROL = UnidRol;
+            RolDM.udpateElement(rrr);
+
+            foreach (User u in UsuariosCollection)
+            {
+                USUARIO_ROL ur = new USUARIO_ROL();
+                ur.UNID_ROL = this.UnidRol;
+                ur.UNID_USUARIO = u.UnidUser;
+                Rol_UsuarioDM.upsertElement(ur);
+            }
+
+            foreach (Menu minim in MenuCollection)
+            {
+
+                MENU mm = new MENU();
+                mm.MENU_NAME = minim.MenuName;
+                mm = (MENU)MenuDM.getElementByName(mm);
+
+                ROL_MENU rm = new ROL_MENU();
+                rm.UNID_MENU = mm.UNID_MENU;
+                rm.UNID_ROL = this.UnidRol;
+                Rol_MenuDM.upsertElement(rm);
+            }
+        }
 
         public void DeleteRol() {
 

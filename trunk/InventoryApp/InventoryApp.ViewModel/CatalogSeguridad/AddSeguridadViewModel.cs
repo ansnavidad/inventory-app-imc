@@ -42,6 +42,7 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
 
             MenuAgregar();
             RolActual.saveRol();
+            this._catalogSeguridadViewModel.RolesCollection = this._catalogSeguridadViewModel.GetRols();
         }
         private bool CanAttemptGuardarRol()
         {

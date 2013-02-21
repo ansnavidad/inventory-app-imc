@@ -140,9 +140,82 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void upsertElement(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    USUARIO_ROL usuario = (USUARIO_ROL)element;
+
+                    var validacion = (from cust in entity.USUARIO_ROL
+                                      where usuario.UNID_ROL == cust.UNID_ROL && usuario.UNID_USUARIO == cust.UNID_USUARIO
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        //Sync
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                        //
+                        entity.USUARIO_ROL.AddObject(usuario);
+                        entity.SaveChanges();
+                    }
+                    else {
+
+                        var modifiedRol = entity.USUARIO_ROL.First(p => p.UNID_USUARIO == usuario.UNID_USUARIO && p.UNID_ROL == usuario.UNID_ROL);
+                        modifiedRol.IS_ACTIVE = true;
+                        //Sync                        
+                        modifiedRol.IS_MODIFIED = true;
+                        modifiedRol.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                    }
+                }
+            }          
+        }
+
         public void deleteElement(object element)
         {
             throw new NotImplementedException();
+        }
+
+        public void deleteElementsByRol(long l) {
+                        
+            using (var entity = new TAE2Entities())
+            {
+                var lista = (from cust in entity.USUARIO_ROL
+                             where cust.UNID_ROL == l
+                             select cust).ToList();
+
+
+                foreach (USUARIO_ROL ur in lista)
+                {
+                    //Sync
+                    var modifiedRolList = (from union in entity.USUARIO_ROL
+                                           where union.UNID_ROL == ur.UNID_ROL && union.UNID_USUARIO == ur.UNID_USUARIO
+                                           select union).ToList();
+
+                    if(modifiedRolList.Count > 0){
+                    
+                        var modifiedRol = (from union in entity.USUARIO_ROL
+                                           where union.UNID_ROL == ur.UNID_ROL && union.UNID_USUARIO == ur.UNID_USUARIO
+                                           select union).First();
+
+                        modifiedRol.IS_ACTIVE = false;
+                        //Sync                        
+                        modifiedRol.IS_MODIFIED = true;
+                        modifiedRol.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+                    }
+
+                    
+                }        
+            }            
         }
 
         /// <summary>

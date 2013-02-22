@@ -73,7 +73,7 @@ namespace InventoryApp.ViewModel.Login
         {
             PasswordBox box = sender as PasswordBox;
 
-            // set a flag to indicate that we're updating the password
+            // set a flag to indicate that wehre updating the password
             SetUpdatingPassword(box, true);
             // push the new password into the BoundPassword property
             SetBoundPassword(box, box.Password);

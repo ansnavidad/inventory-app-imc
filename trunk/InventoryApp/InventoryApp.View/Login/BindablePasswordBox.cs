@@ -48,6 +48,8 @@ namespace InventoryApp.View.Login
             passwordBox.FontFamily = new FontFamily("Arial Rounded MT");
             passwordBox.FontSize = 14;
             passwordBox.BorderBrush = new SolidColorBrush(Colors.White);
+            passwordBox.TabIndex = 2;
+            passwordBox.Focus();
         }
 
         /// <summary>

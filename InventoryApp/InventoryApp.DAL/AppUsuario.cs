@@ -407,7 +407,7 @@ namespace InventoryApp.DAL
                    
                         usuario.UNID_USUARIO = UNID.getNewUNID();
                         //Sync
-                        usuario.IS_MODIFIED = true;
+                        usuario.IS_MODIFIED = false;
                         usuario.LAST_MODIFIED_DATE = UNID.getNewUNID();
                         usuario.IS_ACTIVE = true;
                         usuario.NUEVO_USUARIO = true;

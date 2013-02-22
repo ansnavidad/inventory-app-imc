@@ -309,7 +309,7 @@ namespace InventoryApp.Model.Login
                     if (list != null)
                     {
                         //guarda el nuevo registro
-                        dataMapper.insertElementSync(list);
+                        dataMapper.insertElementRegistro(list);
                         resServer = "Se ha enviado un correo de confirmación a su dirección de correo electrónico. \nConfirme su registro e intente iniciar sesión en la aplicación";
                     }    
                     else

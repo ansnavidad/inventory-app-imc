@@ -564,8 +564,6 @@
         <DataTemplate DataType="{x:Type reportesViewModel:ReportesViewModel}">
             <reportesView:ReportesMain/>
         </DataTemplate>
-
-        
         
         <DataTemplate DataType="{x:Type maxMinViewModel:MaxMinViewModel}">
             <maxMinView:MaxMinView/>

@@ -129,7 +129,7 @@
         <Setter Property="Foreground" Value="#FFFFFF"/>
         <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
         <Setter Property="FontWeight" Value="Bold"></Setter>
-        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
         <Setter Property="BorderBrush" Value="White"></Setter>
         <Setter Property="BorderThickness" Value="1,1,1,1"></Setter>
     </Style>

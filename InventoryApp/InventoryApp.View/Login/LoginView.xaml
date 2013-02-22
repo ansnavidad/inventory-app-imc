@@ -84,7 +84,6 @@
                                                         Password="{Binding Path=LoginModel.Usuario.USUARIO_PWD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <ValidarBing:PasswordValidator
                     TextMail="{Binding ElementName=txtUsuario}"/>
-                    
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" Name="stackPanel2"  VerticalAlignment="Stretch">
                     <Canvas Name="cnvTmpRot"  Visibility="Collapsed"  Height="28" Width="50"  Opacity="0.5" Panel.ZIndex="60" 
                         Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" >

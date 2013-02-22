@@ -222,7 +222,7 @@ namespace InventoryApp.DAL
                 using (var Entity = new TAE2Entities())
                 {
                     var res = (from p in Entity.USUARIOs
-                               where p.USUARIO_MAIL == user.USUARIO_MAIL && p.USUARIO_PWD == user.USUARIO_PWD
+                               where p.USUARIO_MAIL == user.USUARIO_MAIL && p.USUARIO_PWD == user.USUARIO_PWD && !p.ACTIVATION
                                select p).ToList();
 
                     if (res.Count != 0)

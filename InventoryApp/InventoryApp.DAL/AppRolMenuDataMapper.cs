@@ -110,7 +110,23 @@ namespace InventoryApp.DAL
         
         public void udpateElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ROL_MENU usuario = (ROL_MENU)element;
+                    var modifiedRol = entity.ROL_MENU.First(p => p.UNID_MENU == usuario.UNID_MENU && p.UNID_ROL == usuario.UNID_ROL);
+                    modifiedRol.IS_ACTIVE = usuario.IS_ACTIVE;
+                    //Sync                        
+                    modifiedRol.IS_MODIFIED = true;
+                    modifiedRol.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void insertElement(object element)
@@ -300,7 +316,7 @@ namespace InventoryApp.DAL
                 {
                     foreach (var item in reset)
                     {
-                        var modified = Entity.ROL_MENU.First(p => p.UNID_MENU==item.UNID_MENU);
+                        var modified = Entity.ROL_MENU.First(p => p.UNID_MENU==item.UNID_MENU && p.UNID_ROL==item.UNID_ROL);
                         modified.IS_MODIFIED = false;
                         Entity.SaveChanges();
                     }

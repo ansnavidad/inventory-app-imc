@@ -12,6 +12,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using InventoryApp.ViewModel;
 using InventoryApp.ViewModel.Login;
+using System.Windows.Threading;
+using InventoryApp.DAL;
+using System.Windows.Media.Animation;
 
 
 namespace InventoryApp.View.Login
@@ -21,11 +24,21 @@ namespace InventoryApp.View.Login
     /// </summary>
     public partial class LoginView : Window
     {
+        DispatcherTimer dTimerUploadProcess;
+        Storyboard _ImgSync;
+
+        public DispatcherTimer DTimerUploadProcess
+        {
+            get { return dTimerUploadProcess; }
+            set { dTimerUploadProcess = value; }
+        }
+
         public LoginView()
         {
             InitializeComponent();
             
             FocusManager.SetFocusedElement(this, this.txtUsuario);
+            dTimerUploadProcess = new DispatcherTimer();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -53,20 +66,25 @@ namespace InventoryApp.View.Login
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            
         }
         
         private void checkBoxOpenMain_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {            
+        {
             if (checkBoxOpenMain.IsEnabled)
             {
-                
+
                 MessageBoxResult result = MessageBox.Show("Bienvenido al sistema de inventarios Elara", "Bienvenido", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 MainWindow mw = new MainWindow();
-                mw.DataContext = new MainWindowViewModel(txtUsuario.Text);
+                mw.Show();
+                MainWindowViewModel viewModel = mw.DataContext as MainWindowViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.SetUser(txtUsuario.Text);
+                }
                 this.Close();
-                mw.ShowDialog();
             }
+            
         }
 
         public bool getcredentrials() {
@@ -78,5 +96,50 @@ namespace InventoryApp.View.Login
         {
                         
         }
+        
+        private void Imagen()
+        {
+            this._ImgSync = (Storyboard)this.FindResource("rotateImg");
+
+            DTimerUploadProcess = new DispatcherTimer();
+
+            if (true)
+            {
+                Action a = () => this.ShowImgSync();
+                this.Dispatcher.BeginInvoke(a);
+            }
+            else
+            {
+                Action a = () => this.HideImgSync();
+                this.Dispatcher.BeginInvoke(a);
+            }
+            if (true)
+            {
+                Action a = () => this.SetImgSyncMsg("Comprobando Credenciales...");
+                this.Dispatcher.BeginInvoke(a);
+            }
+
+        }
+
+        public void ShowImgSync()
+        {
+            this.cnvTmpRot.Visibility = Visibility.Visible;
+            this.cnvTmpRot2.Visibility = Visibility.Collapsed;
+            _ImgSync.Begin(this);
+        }
+
+        public void HideImgSync()
+        {
+            this.cnvTmpRot.Visibility = Visibility.Collapsed;
+            this.cnvTmpRot2.Visibility = Visibility.Visible;
+        }
+
+        public void SetImgSyncMsg(string msg)
+        {
+            this.imgSyncLogin.ToolTip = msg;
+            this.imgSyncLogin2.ToolTip = msg;
+        }
+   
     }
+
 }

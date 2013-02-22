@@ -83,7 +83,6 @@ namespace InventoryApp.View
         {
         }
 
-
         public void SetImgSyncMsg(string msg)
         {
             this.imgSyncFiles.ToolTip = msg;

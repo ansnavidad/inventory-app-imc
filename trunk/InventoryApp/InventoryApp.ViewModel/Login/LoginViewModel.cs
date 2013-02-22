@@ -7,14 +7,21 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows;
 using InventoryApp.DAL.POCOS;
+using System.Windows.Media;
+using System.Text.RegularExpressions;
+using System.Runtime.InteropServices;
+using System.ComponentModel;
+using System.Timers;
+using System.Windows.Media.Animation;
 
 namespace InventoryApp.ViewModel.Login
 {
-    public class LoginViewModel : ViewModelBase 
+    public class LoginViewModel : ViewModelBase
     {
-        #region Relay Commands
+        
+       #region Relay Commands
 
-        private RelayCommand _validarLoginCommand;
+       private RelayCommand _validarLoginCommand;
         public ICommand ValidarLoginCommand
         {
             get
@@ -27,7 +34,7 @@ namespace InventoryApp.ViewModel.Login
             }
         }
         public bool CanAttempValidar()
-        {            
+        {
             if (String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_MAIL) || String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_PWD))
                 return false;
 
@@ -105,6 +112,7 @@ namespace InventoryApp.ViewModel.Login
         }
         public bool CanAttempRegistrar()
         {
+            
             if (String.IsNullOrEmpty(this.LoginModel.UserRegristro) || String.IsNullOrEmpty(this.LoginModel.UserRegistroPass1) || String.IsNullOrEmpty(this.LoginModel.UserRegistroPass2))
                 return false;
             return true;
@@ -143,7 +151,7 @@ namespace InventoryApp.ViewModel.Login
             this.LoginModel.UserRegristro = "";
             this.LoginModel.UserRegistroPass1 = "";
             this.LoginModel.UserRegistroPass2 = "";
-        }
+        }        
 
         #endregion
         
@@ -166,16 +174,73 @@ namespace InventoryApp.ViewModel.Login
         }
         private LoginModel _loginModel;
 
+
         #endregion
 
         #region Constructors
 
         public LoginViewModel() {
-            
+
             _loginModel = new LoginModel();
-            
+                       
         }
 
+        #endregion
+
+        #region login imagen
+        public static bool IsRunning = false;
+        System.Timers.Timer t;
+
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                if (value != _message)
+                {
+                    this._message = value;
+                    OnPropertyChanged("Message");
+                }
+            }
+        }
+        private string _message;
+
+        public bool JobDone
+        {
+            get { return _jobDone; }
+            set
+            {
+                if (value != _jobDone)
+                {
+                    this._jobDone = value;
+                    OnPropertyChanged("JobDone");
+                }
+            }
+        }
+        private bool _jobDone;
+
+        public void start()
+        {
+            this.JobDone = false;
+            this.OnPropertyChanged("JobDone");
+            LoginViewModel.IsRunning = true;
+            t.Start();
+        }
+
+        public void LoadLoginData(Object sender, ElapsedEventArgs args)
+        {
+            this.t.Enabled = false;
+            ((System.Timers.Timer)sender).Stop();
+            bool res = true;
+
+            this.Message = "Espere un momento...";
+        }
+
+        #endregion
+        #region metodos de imagen
+        Storyboard _ImgSync;
+
+       
         #endregion
     }    
 }

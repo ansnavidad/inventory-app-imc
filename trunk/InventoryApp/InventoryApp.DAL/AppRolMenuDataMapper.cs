@@ -126,9 +126,11 @@ namespace InventoryApp.DAL
                                       select cust).ToList();
 
                     if (validacion.Count == 0)
-                    {                        
-                        //Sync
-                        
+                    {
+                        rolMenu.IS_ACTIVE = true;
+                        rolMenu.IS_MODIFIED = true;
+                        rolMenu.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        //Sync                        
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
@@ -154,6 +156,9 @@ namespace InventoryApp.DAL
 
                     if (validacion.Count == 0)
                     {
+                        usuario.IS_ACTIVE = true;
+                        usuario.IS_MODIFIED = true;
+                        usuario.LAST_MODIFIED_DATE = UNID.getNewUNID();
                         //Sync
                         var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();

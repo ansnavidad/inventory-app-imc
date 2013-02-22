@@ -59,21 +59,21 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Aceptar" Grid.Column="1" Grid.Row="5" Height="23" HorizontalAlignment="Center" Command="{Binding Path=ValidarLoginCommand}"
+                <Button TabIndex="3" Content="Aceptar" Grid.Column="1" Grid.Row="5" Height="23" HorizontalAlignment="Center" Command="{Binding Path=ValidarLoginCommand}"
                         Name="btnAceptar" VerticalAlignment="Center" Width="75" Style="{StaticResource bntBlue}">
                 </Button>
-                <Button Content="Cancelar" Grid.Column="2" Grid.Row="5" Height="23" HorizontalAlignment="Center" 
+                <Button TabIndex="4" Content="Cancelar" Grid.Column="2" Grid.Row="5" Height="23" HorizontalAlignment="Center" 
                         Name="btnCancelar" VerticalAlignment="Center" Width="75" Style="{StaticResource bntRed}" Click="btnCancelar_Click">
                 </Button>
                 <Label Content="Usuario:" Grid.Column="0" Grid.Row="1" Height="23" HorizontalAlignment="Right"
                         Name="lblUsuario" VerticalAlignment="Center" Style="{StaticResource lblLogin}"/>                    
                 <Label Content="Password:" Grid.Column="0" Grid.Row="2"  Height="23" HorizontalAlignment="Right" Name="label1" VerticalAlignment="Center" Style="{StaticResource lblLogin}" />
-                    <TextBox  Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" x:Name="txtUsuario"  VerticalAlignment="Center" Width="150" 
+                    <TextBox TabIndex="1"  Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" x:Name="txtUsuario"  VerticalAlignment="Center" Width="150" 
                             Style="{StaticResource txtLogin}" Text="{Binding Path=LoginModel.Usuario.USUARIO_MAIL, Mode=TwoWay}"/>             
-                    <Label Grid.Column="1" Grid.Row="4" Height="28" HorizontalAlignment="Center" Name="lblRegistro" VerticalAlignment="Center">
+                    <Label TabIndex="5" Grid.Column="1" Grid.Row="4" Height="28" HorizontalAlignment="Center" Name="lblRegistro" VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource textBockLogin}" Name="registro" MouseUp="registro_MouseUp" Text="Registrar Usuario"/>
                 </Label>               
-                <Label Grid.Column="2" Grid.Row="4" Height="28" HorizontalAlignment="Center" Name="label2" VerticalAlignment="Center">
+                <Label TabIndex="6" Grid.Column="2" Grid.Row="4" Height="28" HorizontalAlignment="Center" Name="label2" VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource textBockLogin}" Name="recuperar"  MouseUp="recuperar_MouseUp" Text="Recuperar Contraseña"/>
                 </Label>                 
                     <Label Grid.Row="3" Content="{Binding Path=LoginModel.MensajeError}" Height="30" HorizontalAlignment="Stretch"
@@ -84,7 +84,8 @@
                                                         Password="{Binding Path=LoginModel.Usuario.USUARIO_PWD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <ValidarBing:PasswordValidator
                     TextMail="{Binding ElementName=txtUsuario}"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" Name="stackPanel2"  VerticalAlignment="Stretch">
+                    
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" Name="stackPanel2"  VerticalAlignment="Stretch">
                     <Canvas Name="cnvTmpRot"  Visibility="Collapsed"  Height="28" Width="50"  Opacity="0.5" Panel.ZIndex="60" 
                         Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" >
                         <Image Width="25" Height="25" HorizontalAlignment="Center" Margin="12,5,10,0" 

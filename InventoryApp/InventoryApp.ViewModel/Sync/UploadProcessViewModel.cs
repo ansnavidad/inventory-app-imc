@@ -10,6 +10,7 @@ using InventoryApp.DAL.Recibo;
 using System.Net;
 using System.Net.Sockets;
 using System.Configuration;
+using System.Windows.Forms;
 
 namespace InventoryApp.ViewModel.Sync
 {
@@ -162,58 +163,58 @@ namespace InventoryApp.ViewModel.Sync
                 //Lógica de consumo de servicios para enviar los datos
 
                 bool res = true;
-                #region todos los catalogos de APP
-                if (res)
-                {
-                    this.Message = "Enviando MENU ...";
-                    res = CallServiceMenu();
-                    if (res)
-                    {
-                        menuDataMapper.ResetMenu();
-                    }
-                }
+                //#region todos los catalogos de APP
+                //if (res)
+                //{
+                //    this.Message = "Enviando MENU ...";
+                //    res = CallServiceMenu();
+                //    if (res)
+                //    {
+                //        menuDataMapper.ResetMenu();
+                //    }
+                //}
 
-                if (res)
-                {
-                    this.Message = "Enviando ROL ...";
-                    res = CallServiceRol();
-                    if (res)
-                    {
-                        rolDataMapper.ResetRol();
-                    }
-                }
+                //if (res)
+                //{
+                //    this.Message = "Enviando ROL ...";
+                //    res = CallServiceRol();
+                //    if (res)
+                //    {
+                //        rolDataMapper.ResetRol();
+                //    }
+                //}
 
-                if (res)
-                {
-                    this.Message = "Enviando ROL_MENU ...";
-                    res = CallServiceRolMenu();
-                    if (res)
-                    {
-                        rolMenuDataMapper.ResetRolMenu();
-                    }
-                }
+                //if (res)
+                //{
+                //    this.Message = "Enviando ROL_MENU ...";
+                //    res = CallServiceRolMenu();
+                //    if (res)
+                //    {
+                //        rolMenuDataMapper.ResetRolMenu();
+                //    }
+                //}
 
-                if (res)
-                {
-                    this.Message = "Enviando USUARIO ...";
-                    res = CallServiceUsuario();
-                    if (res)
-                    {
-                        usuarioDataMapappr.ResetUsuario();
-                    }
-                }
+                //if (res)
+                //{
+                //    this.Message = "Enviando USUARIO ...";
+                //    res = CallServiceUsuario();
+                //    if (res)
+                //    {
+                //        usuarioDataMapappr.ResetUsuario();
+                //    }
+                //}
 
-                if (res)
-                {
-                    this.Message = "Enviando USUARIO_ROL ...";
-                    res = CallServiceUsuarioRol();
-                    if (res)
-                    {
-                        usuarioRolDataMapper.ResetUsuarioRol();
-                    }
-                }
+                //if (res)
+                //{
+                //    this.Message = "Enviando USUARIO_ROL ...";
+                //    res = CallServiceUsuarioRol();
+                //    if (res)
+                //    {
+                //        usuarioRolDataMapper.ResetUsuarioRol();
+                //    }
+                //}
 
-                #endregion
+                //#endregion
 
                 #region todos los catalogos de ARTICULOS
                 if (res)
@@ -772,38 +773,38 @@ namespace InventoryApp.ViewModel.Sync
             if (serverDate != 0 && localDate < serverDate)
             {
             
-                #region todos los catalogos de APP
-                if (res)
-                {
-                    this.Message = "Descargando MENU ...";
-                    res = CallDownloadServiceMenu(serverDate);
-                }
+                //#region todos los catalogos de APP
+                //if (res)
+                //{
+                //    this.Message = "Descargando MENU ...";
+                //    res = CallDownloadServiceMenu(serverDate);
+                //}
 
-                if (res)
-                {
-                    this.Message = "Descargando ROL ...";
-                    res = CallDownloadServiceRol(serverDate);
-                }
+                //if (res)
+                //{
+                //    this.Message = "Descargando ROL ...";
+                //    res = CallDownloadServiceRol(serverDate);
+                //}
 
-                if (res)
-                {
-                    this.Message = "Descargando ROL_MENU ...";
-                    res = CallDownloadServiceRolMenu(serverDate);
-                }
+                //if (res)
+                //{
+                //    this.Message = "Descargando ROL_MENU ...";
+                //    res = CallDownloadServiceRolMenu(serverDate);
+                //}
 
-                if (res)
-                {
-                    this.Message = "Descargando USUARIO ...";
-                    res = CallDownloadServiceUsuario(serverDate);
-                }
+                //if (res)
+                //{
+                //    this.Message = "Descargando USUARIO ...";
+                //    res = CallDownloadServiceUsuario(serverDate);
+                //}
 
-                if (res)
-                {
-                    this.Message = "Descargando USUARIO_ROL ...";
-                    res = CallDownloadServiceUsuarioRol(serverDate);
-                }
+                //if (res)
+                //{
+                //    this.Message = "Descargando USUARIO_ROL ...";
+                //    res = CallDownloadServiceUsuarioRol(serverDate);
+                //}
 
-                #endregion
+                //#endregion
 
                 #region todos los catalogos de ARTICULOS
                 if (res)
@@ -1137,6 +1138,7 @@ namespace InventoryApp.ViewModel.Sync
             else
             {
                 this.Message = "No hay conexión con el server";
+                //MessageBox.Show(serverDate.ToString());
                 this.JobDone = true;
                 UploadProcessViewModel.IsRunning = false;
             }
@@ -1162,12 +1164,13 @@ namespace InventoryApp.ViewModel.Sync
                 request.AddBody(new { });
                 IRestResponse response = client.Execute(request);
 
+                //MessageBox.Show(response.ErrorException.InnerException.Message);
                 Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
 
                 responseSevice = dataMapper.GetDeserializeServerLast(resx["GetServerLastResult"]);
             }
-            catch (Exception)
-            {
+            catch (Exception ex)
+            {                
                 return 0;
             }
 

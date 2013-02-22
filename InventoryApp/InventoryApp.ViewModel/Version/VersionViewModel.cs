@@ -19,7 +19,7 @@ namespace InventoryApp.ViewModel.Version
     {
         public static bool IsRunning = false;
         
-        static string routeService = @"http://10.50.0.131:8080/Services/Broadcast.svc";
+        static string routeService = ConfigurationManager.AppSettings["RutaServicioSubida"].ToString();
         static string basicAuthUser = "Administrator";
         static string basicAuthPass = "Passw0rd1!";
         static string nameService = "GetVersion";

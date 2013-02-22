@@ -236,10 +236,9 @@ namespace InventoryApp.Service.Services
                 poco = user.GetDeserializeUpLoadLog(dataUser);
 
                 if (poco!=null)
-                {
-                   
+                {  
                     
-                        mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ROL_MENU sincronizada" });
+                   mensaje= user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla ROL_MENU sincronizada" });
                     
                 }
 

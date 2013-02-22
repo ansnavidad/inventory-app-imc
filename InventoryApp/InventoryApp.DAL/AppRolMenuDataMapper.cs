@@ -240,7 +240,6 @@ namespace InventoryApp.DAL
             }
         }
 
-
         /// <summary>
         /// Método que serializa una List<ROL_MENU> a Json
         /// </summary>

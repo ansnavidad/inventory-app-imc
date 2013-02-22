@@ -110,7 +110,24 @@ namespace InventoryApp.DAL
 
         public void udpateElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    USUARIO_ROL usuario = (USUARIO_ROL)element;
+
+                    var modifiedRol = entity.USUARIO_ROL.First(p => p.UNID_USUARIO == usuario.UNID_USUARIO && p.UNID_ROL == usuario.UNID_ROL);
+                    modifiedRol.IS_ACTIVE = usuario.IS_ACTIVE;
+                    //Sync                        
+                    modifiedRol.IS_MODIFIED = true;
+                    modifiedRol.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void insertElement(object element)

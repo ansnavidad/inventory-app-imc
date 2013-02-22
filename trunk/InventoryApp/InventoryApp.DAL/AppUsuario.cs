@@ -371,6 +371,31 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void insertElementRegistro(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    USUARIO usuario = (USUARIO)element;
+
+                    var validacion = (from cust in entity.USUARIOs
+                                      where cust.UNID_USUARIO == usuario.UNID_USUARIO
+                                      select cust).ToList();
+
+                    if (validacion.Count == 0)
+                    {
+                        usuario.UNID_USUARIO = UNID.getNewUNID();
+                        
+                        usuario.IS_MODIFIED = false;
+                        usuario.LAST_MODIFIED_DATE = 20120101000000000;                        
+                        entity.USUARIOs.AddObject(usuario);
+                        entity.SaveChanges();
+                    }
+                }
+            }
+        }
+
         public string insertNewRegistro(object element)
         {
             string respuesta = null;

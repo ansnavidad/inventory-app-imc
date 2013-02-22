@@ -18,8 +18,8 @@ namespace InventoryApp.ViewModel.Version
     public static class VersionViewModel
     {
         public static bool IsRunning = false;
-        
-        static string routeService = ConfigurationManager.AppSettings["RutaServicioSubida"].ToString();
+
+        static string routeService = ConfigurationManager.AppSettings["RutaServicioDescarga"].ToString();
         static string basicAuthUser = "Administrator";
         static string basicAuthPass = "Passw0rd1!";
         static string nameService = "GetVersion";

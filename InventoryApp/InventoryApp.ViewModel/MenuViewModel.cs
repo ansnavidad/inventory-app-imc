@@ -122,8 +122,8 @@ namespace InventoryApp.ViewModel
             {
                 throw ex;
             }
-            this._MenuModel = new ObservableCollection<MenuModel>();
-            this._MenuModel.Add(rootMenu);
+            this.MenuModel = new ObservableCollection<MenuModel>();
+            this.MenuModel.Add(rootMenu);
         }
     }
 }

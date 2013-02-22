@@ -201,10 +201,10 @@
     <Compile Include="CatalogSeguridad\SelectMenuView.xaml.cs">
       <DependentUpon>SelectMenuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Login\BindablePasswordBox.cs" />
     <Compile Include="Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Login\PassConverter.cs" />
     <Compile Include="Login\RecoverPassword.xaml.cs">
       <DependentUpon>RecoverPassword.xaml</DependentUpon>
     </Compile>
@@ -1470,6 +1470,12 @@
     </Page>
     <Resource Include="Logo.ico" />
     <Resource Include="Images\Logo.ico" />
+    <Content Include="Images\iSync.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Login.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\sync.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -150,12 +150,10 @@ namespace InventoryApp.ViewModel
             this._CurrentPageViewModel = new GridMovimientos.MovimientosGridViewModel();
         }
 
-        public MainWindowViewModel(string UserName)
+        public void SetUser(string UserName)
         {
             this.ActualUser = GetUser(UserName);
-
-            this._CurrentPageViewModel = new GridMovimientos.MovimientosGridViewModel();
-            this._MenuViewModel = new MenuViewModel(this.ChagePage, this.ActualUser);
+            this.MenuViewModel = new MenuViewModel(this.ChagePage, this.ActualUser);
 
             this.UserRols = "";
 

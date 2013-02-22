@@ -181,8 +181,8 @@ namespace InventoryApp.Model
             foreach (USUARIO_ROL ur in ActualUser.USUARIO_ROL) {
 
                 foreach (ROL_MENU rm in ur.ROL.ROL_MENU) {
-
-                    UnidsMenu.Add(rm.UNID_MENU);
+                    if(rm.IS_ACTIVE)
+                        UnidsMenu.Add(rm.UNID_MENU);
                 }                
             }
 

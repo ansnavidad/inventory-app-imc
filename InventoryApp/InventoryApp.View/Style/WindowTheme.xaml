@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:my="clr-namespace:InventoryApp.View.Login">
     
     <LinearGradientBrush x:Key="DegradadoElaraOrange" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
         <GradientStop Color="#FFFFC934" Offset="0"/>
@@ -60,6 +61,14 @@
         <Setter Property="FontStretch" Value="Normal"></Setter>
         <Setter Property="FontSize" Value="11.5"></Setter>
     </Style>
+
+    <Style x:Key="textBockCamposGeneric" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="#848484"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontStretch" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="11.5"></Setter>
+    </Style>
+
     <Style x:Key="titleLabel2" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="#F2F2F2"></Setter>
         <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
@@ -168,4 +177,5 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
 </ResourceDictionary>

@@ -202,7 +202,6 @@
       <DependentUpon>SelectMenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login\BindablePasswordBox.cs" />
-    <Compile Include="Login\DependecyPasswordBox.cs" />
     <Compile Include="Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>

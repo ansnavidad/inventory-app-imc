@@ -385,8 +385,6 @@ namespace InventoryApp.DAL
 
                     if (validacion.Count == 0)
                     {
-                        usuario.UNID_USUARIO = UNID.getNewUNID();
-                        
                         usuario.IS_MODIFIED = false;
                         usuario.LAST_MODIFIED_DATE = 20120101000000000;                        
                         entity.USUARIOs.AddObject(usuario);

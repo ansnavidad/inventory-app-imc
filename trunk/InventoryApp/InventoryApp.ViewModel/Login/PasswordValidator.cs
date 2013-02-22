@@ -15,12 +15,16 @@ namespace InventoryApp.ViewModel.Login
         static IDictionary<TextBox, Brush> _textBox = new Dictionary<TextBox, Brush>();
 
         public static readonly DependencyProperty Box1Property =
-            DependencyProperty.Register("Box1", typeof(PasswordBox), typeof(PasswordValidator), new PropertyMetadata(Box1Changed));
-        public static readonly DependencyProperty Box2Property = 
-            DependencyProperty.Register("Box2", typeof(PasswordBox), typeof(PasswordValidator), new PropertyMetadata(Box2Changed));
-        public static readonly DependencyProperty TextProperty = 
-            DependencyProperty.Register("TextMail", typeof(TextBox), typeof(PasswordValidator), new PropertyMetadata(TextChanged));
+            DependencyProperty.Register("Box1", typeof(PasswordBox), 
+            typeof(PasswordValidator), new PropertyMetadata(Box1Changed));
 
+        public static readonly DependencyProperty Box2Property = 
+            DependencyProperty.Register("Box2", typeof(PasswordBox), typeof(PasswordValidator), 
+            new PropertyMetadata(Box2Changed));
+
+        public static readonly DependencyProperty TextProperty = 
+            DependencyProperty.Register("TextMail", typeof(TextBox), typeof(PasswordValidator),
+            new PropertyMetadata(TextChanged));
         
         public PasswordBox Box1
         {

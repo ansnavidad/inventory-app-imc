@@ -31,9 +31,9 @@ namespace InventoryApp.View.Login
                     new PropertyChangedCallback(OnPasswordPropertyChanged))
             );
         }
-
+        
         /// <summary>
-        /// Saves the password changed callback and sets the child element to the password box.
+        /// Guarda el callback contraseña cambiada y establece el elemento secundario a la caja de contraseña.
         /// </summary>
         public BindablePasswordBox()
         {
@@ -42,18 +42,19 @@ namespace InventoryApp.View.Login
             PasswordBox passwordBox = new PasswordBox();
             passwordBox.PasswordChanged += savedCallback;
             Child = passwordBox;
-            passwordBox.Foreground = new SolidColorBrush(Colors.White);
-            passwordBox.BorderThickness = new Thickness(1);
-            passwordBox.Background = new SolidColorBrush(Colors.Gray);
-            passwordBox.FontFamily = new FontFamily("Arial Rounded MT");
-            passwordBox.FontSize = 14;
-            passwordBox.BorderBrush = new SolidColorBrush(Colors.White);
-            passwordBox.TabIndex = 2;
+            ResourceDictionary rd = SetDictionaryStyle("InventoryApp.View;component/Style/WindowTheme.xaml");
+            if (rd.Count >0)
+            {
+                Style stPass = rd["PassLogin"] as Style;
+                passwordBox.Style = stPass; 
+                
+            }
             passwordBox.Focus();
+            passwordBox.TabIndex = 2;
         }
 
         /// <summary>
-        /// The password dependency property.
+        /// La propiedad de dependencia contraseña.
         /// </summary>
         public string Password
         {
@@ -62,10 +63,10 @@ namespace InventoryApp.View.Login
         }
 
         /// <summary>
-        /// Handles changes to the password dependency property.
+        /// Maneja los cambios en la propiedad de dependencia contraseña.
         /// </summary>
-        /// <param name="d">the dependency object</param>
-        /// <param name="eventArgs">the event args</param>
+        /// <param name="d">el objeto de dependencia</param>
+        /// <param name="eventArgs">los argumentos del evento</param>
         private static void OnPasswordPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs eventArgs)
         {
             BindablePasswordBox bindablePasswordBox = (BindablePasswordBox)d;
@@ -81,7 +82,7 @@ namespace InventoryApp.View.Login
         }
 
         /// <summary>
-        /// Handles the password changed event.
+        /// Controla el evento contraseña cambiada.
         /// </summary>
         /// <param name="sender">the sender</param>
         /// <param name="eventArgs">the event args</param>
@@ -93,6 +94,25 @@ namespace InventoryApp.View.Login
             Password = passwordBox.Password;
             isPreventCallback = false;
             
+        }
+
+        /// <summary>
+        /// Devuelve un Diccionario de recursos Style
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static ResourceDictionary SetDictionaryStyle(string path)
+        {
+            ResourceDictionary rd = new ResourceDictionary();
+            try
+            {
+                rd.Source = new Uri(path, UriKind.RelativeOrAbsolute);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return rd;
         }
         
     }

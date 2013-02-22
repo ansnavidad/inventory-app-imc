@@ -510,7 +510,7 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 (from p in Entity.USUARIOs
-                 where p.IS_ACTIVE == true
+                 where p.IS_ACTIVE == true && p.ACTIVATION==false
                  select p).ToList().ForEach(row =>
                  {
                      listUsuario.Add(new USUARIO

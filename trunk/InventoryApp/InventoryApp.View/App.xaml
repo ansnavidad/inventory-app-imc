@@ -152,7 +152,7 @@
         -->
         <rootViewModel:MenuViewModel x:Key="menuViewModel" />
         <rootViewModel:MainWindowViewModel x:Key="mainWindowViewModel" />
-        <rootDosViewModel:LoginViewModel x:Key="loginViewModel"/>
+        <!--<rootDosViewModel:LoginViewModel x:Key="loginViewModel"/>-->
         <reciboViewModel:CatalogReciboViewModel x:Key="catalogReciboViewModel" />
         <!--Juan-->
             <!--<ReciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />-->

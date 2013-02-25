@@ -1,7 +1,7 @@
 ﻿<Window x:Class="InventoryApp.View.CatalogMoneda.ModifyMonedaView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Modificar moneda" Height="230" Width="350" 
+        Title="Modificar moneda" Height="210" Width="350" 
         WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
@@ -17,15 +17,14 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="50" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label Style="{StaticResource titleLabel}" Content="MODIFICAR MONEDA" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
@@ -36,15 +35,15 @@
         <Button Content="Cancelar" Grid.Column="2" Grid.Row="4" Height="23" 
                 HorizontalAlignment="Stretch" Margin="5,0" Name="btnCancelar" 
                 VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" Style="{StaticResource btnElara}"/>
-        <Label Content="Nombre Moneda :" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,15,0,37" 
-               Name="lblNombreMoneda" VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="2" />
+        <Label Content="Nombre Moneda :" Grid.Row="1" HorizontalAlignment="Right"
+               Name="lblNombreMoneda" VerticalAlignment="Bottom" Grid.Column="1" Style="{StaticResource lblCamposGeneric}" />
         <TextBox Grid.Column="2" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="0,17,0,0" 
-                 Name="txtNombreMoneda" VerticalAlignment="Stretch" Width="120" TabIndex="0"  MaxLength="254"
+                 Name="txtNombreMoneda" VerticalAlignment="Stretch" Width="140" TabIndex="0"  MaxLength="254"
                  Text="{Binding Moneda.MonedaName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-        <Label Content="Abreviatura Moneda :" Grid.Row="2" Height="28" HorizontalAlignment="Left" Margin="26,14,0,0" Name="label1" 
-               VerticalAlignment="Top" Grid.Column="1" Grid.RowSpan="2" />
+        <Label Content="Abreviatura Moneda :" Grid.Row="2"  HorizontalAlignment="Right" Name="label1" 
+               VerticalAlignment="Bottom" Grid.Column="1" Style="{StaticResource lblCamposGeneric}" />
         <TextBox Grid.Column="2" MaxLength="3" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="0,16,0,0" 
-                 Name="txtMonedaAbr" VerticalAlignment="Top" Width="120" TabIndex="1"
+                 Name="txtMonedaAbr" VerticalAlignment="Top" Width="140" TabIndex="1"
                  Text="{Binding Moneda.MonedaAbr, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </Window>

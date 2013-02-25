@@ -4,7 +4,7 @@
         xmlns:Convertidor="clr-namespace:InventoryApp.View.Login"
         xmlns:ValidarBing="clr-namespace:InventoryApp.ViewModel.Login;assembly=InventoryApp.ViewModel"
         Title="Login" Height="300" Width="500" ResizeMode="NoResize" AllowsTransparency="True"
-        DataContext="{StaticResource loginViewModel}" Name="loginWindows"
+        DataContext="{StaticResource loginViewModel}" Name="loginWindows" Background="Transparent"
         WindowStyle="None" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
         <ResourceDictionary>
@@ -68,7 +68,7 @@
                 <Label Content="Usuario:" Grid.Column="0" Grid.Row="1" Height="23" HorizontalAlignment="Right"
                         Name="lblUsuario" VerticalAlignment="Center" Style="{StaticResource lblLogin}"/>                    
                 <Label Content="Password:" Grid.Column="0" Grid.Row="2"  Height="23" HorizontalAlignment="Right" Name="label1" VerticalAlignment="Center" Style="{StaticResource lblLogin}" />
-                    <TextBox TabIndex="1"  Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" x:Name="txtUsuario"  VerticalAlignment="Center" Width="150" 
+                    <TextBox MaxLength="128" TabIndex="1"  Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" x:Name="txtUsuario"  VerticalAlignment="Center" Width="150" 
                             Style="{StaticResource txtLogin}" Text="{Binding Path=LoginModel.Usuario.USUARIO_MAIL, Mode=TwoWay}"/>             
                     <Label TabIndex="5" Grid.Column="1" Grid.Row="4" Height="28" HorizontalAlignment="Center" Name="lblRegistro" VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource textBockLogin}" Name="registro" MouseUp="registro_MouseUp" Text="Registrar Usuario"/>

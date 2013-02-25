@@ -49,6 +49,7 @@ namespace InventoryApp.View.Login
                 passwordBox.Style = stPass; 
                 
             }
+            passwordBox.MaxLength = 12;
             passwordBox.Focus();
             passwordBox.TabIndex = 2;
         }

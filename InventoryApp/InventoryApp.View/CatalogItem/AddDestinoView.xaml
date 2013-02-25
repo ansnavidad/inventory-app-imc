@@ -1,7 +1,7 @@
 ﻿<Window x:Class="InventoryApp.View.CatalogItem.AddDestinoView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="AddDestinoView" Height="293" Width="500">
+        Title="Agregar Destino" Height="300" Width="500">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -20,16 +20,16 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="36" />
-            <RowDefinition Height="24" />
-            <RowDefinition Height="31*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="272"/>
-            <ColumnDefinition Width="36"/>
-            <ColumnDefinition Width="0*" />
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label Style="{StaticResource titleLabel}" Content="AGREGAR DESTINO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
@@ -37,31 +37,47 @@
         <!--Nombre Artículo-->
         <!--Categoría-->
         <!--Marca-->
-        <Label Content="Almacen :" Grid.Row="3" Grid.Column="1" Height="28" HorizontalAlignment="Left" Name="label4" VerticalAlignment="Top" Margin="84,0,0,0" />
+        <Label Content="Almacen :" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" 
+               Name="label4" VerticalAlignment="Bottom" Style="{StaticResource lblCamposGeneric}" />
         <ComboBox TabIndex="4" SelectedItem="{Binding AgregarItemDestinoModel.Almacen, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                   ItemsSource="{Binding CatalogAlmacenModel.Almacen, Mode=OneWay}"
-                  
                   DisplayMemberPath="ALMACEN_NAME" Height="23" HorizontalAlignment="Left" 
-                  Margin="13,5,0,0" Name="comboAlmacen" 
+                  Name="comboAlmacen" 
                   SelectedValuePath="UNID_ALMACEN" 
-                  VerticalAlignment="Top" Width="120" Grid.Row="3" Grid.Column="2" />
+                  VerticalAlignment="Bottom" Width="140" Grid.Row="3" Grid.Column="2" />
         <!--Categoria-->
         <!--Equipo-->
-        <Label Content="Cliente :" Grid.Row="4" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="93,2,0,0" Name="label6" VerticalAlignment="Top" />
+        <Label Content="Cliente :" Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Right"
+               Name="label6" VerticalAlignment="Bottom" Style="{StaticResource lblCamposGeneric}" />
         <ComboBox TabIndex="5" SelectedItem="{Binding AgregarItemDestinoModel.Cliente, Mode=TwoWay}" 
-                  ItemsSource="{Binding CatalogClienteModel.Cliente, Mode=OneWay}"
-                  
+                  ItemsSource="{Binding CatalogClienteModel.Cliente, Mode=OneWay}"                
                   DisplayMemberPath="CLIENTE1" Height="23" HorizontalAlignment="Left" 
                   SelectedValuePath="UNID_CLIENTE"
-                  Margin="13,7,0,0" Name="comboCliente"
-                  VerticalAlignment="Top" Width="120" Grid.Row="4" Grid.Column="2"  />
-        <Label Content="Cantidad :" Height="28" HorizontalAlignment="Left" Margin="84,8,0,0" Name="label3" VerticalAlignment="Top" Grid.Column="1" Grid.Row="6" />
-        <TextBox TabIndex="7" Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="13,8,0,0" MaxLength="512" Name="textBox2" Text="{Binding AgregarItemDestinoModel.Cantidad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" Grid.Row="6" />
-        <Button TabIndex="8" Command="{Binding AgregarMovimiento, Mode=OneWay}" Content="Guardar" Height="23" HorizontalAlignment="Stretch" Margin="185,34,12,3" Name="button2" VerticalAlignment="Stretch" Width="75" Grid.Column="2" Grid.Row="6" Click="button2_Click" Grid.RowSpan="2" Style="{StaticResource btnElara}" />
-        <Label Content="Proveedor :" Height="28" HorizontalAlignment="Left" Margin="79,2,0,0" Name="label1" VerticalAlignment="Top" Grid.Column="1" Grid.Row="5" />
-        <ComboBox TabIndex="6" DisplayMemberPath="PROVEEDOR_NAME" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding CatalogProveedorModel.Proveedor, Mode=OneWay}" Margin="13,7,0,0" Name="ComboProveedor" SelectedItem="{Binding AgregarItemDestinoModel.Proveedor, Mode=TwoWay}" SelectedValuePath="UNID_PROVEEDOR" VerticalAlignment="Top" Width="120" Grid.Column="2" Grid.Row="5" />
-        <RadioButton TabIndex="1" Content="Almacen" Grid.Column="1" Grid.Row="1" Height="16" HorizontalAlignment="Left" Margin="26,15,0,0" Name="radioButton1" VerticalAlignment="Top" Checked="radioButton1_Checked" IsChecked="True" />
-        <RadioButton TabIndex="2" Content="Cliente" Height="16" HorizontalAlignment="Left" Margin="13,15,0,0" Name="radioButton2" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" Checked="radioButton2_Checked" />
-        <RadioButton TabIndex="3" Content="Proveedor" Height="16" HorizontalAlignment="Left" Margin="157,15,0,0" Name="radioButton3" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" Checked="radioButton3_Checked" />
+                  Name="comboCliente"
+                  VerticalAlignment="Bottom" Width="140" Grid.Row="4" Grid.Column="2"  />
+        <Label Content="Cantidad :" HorizontalAlignment="Right" Style="{StaticResource lblCamposGeneric}"
+               Name="label3" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="6" />
+        <TextBox TabIndex="7" Grid.Column="2" Height="23" HorizontalAlignment="Left"
+                 MaxLength="512" Name="textBox2" Text="{Binding AgregarItemDestinoModel.Cantidad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 VerticalAlignment="Bottom" Width="140" Grid.Row="6" />
+        <Button TabIndex="8" Command="{Binding AgregarMovimiento, Mode=OneWay}" Content="Guardar" Height="23"
+                HorizontalAlignment="Center" Name="button2" VerticalAlignment="Center" Width="75"
+                Grid.Column="3" Grid.Row="8" Click="button2_Click" Style="{StaticResource btnElara}" />
+        <Label Content="Proveedor :" HorizontalAlignment="Right" Style="{StaticResource lblCamposGeneric}"
+               Name="label1" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="5" />
+        <ComboBox TabIndex="6" DisplayMemberPath="PROVEEDOR_NAME" Height="23"
+                  HorizontalAlignment="Left" ItemsSource="{Binding CatalogProveedorModel.Proveedor, Mode=OneWay}" 
+                  Name="ComboProveedor" SelectedItem="{Binding AgregarItemDestinoModel.Proveedor, Mode=TwoWay}"
+                  SelectedValuePath="UNID_PROVEEDOR" VerticalAlignment="Bottom" Width="140"
+                  Grid.Column="2" Grid.Row="5" />
+        <RadioButton TabIndex="1" Content="Almacen" Grid.Column="1" Grid.Row="1" Height="16" 
+                     HorizontalAlignment="Center" Name="radioButton1" Style="{StaticResource radioButtonGeneric}"
+                     VerticalAlignment="Center" Checked="radioButton1_Checked" IsChecked="True" />
+        <RadioButton TabIndex="2" Content="Cliente" Height="16" HorizontalAlignment="Center"
+                     Name="radioButton2" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1"
+                     Checked="radioButton2_Checked" Style="{StaticResource radioButtonGeneric}"/>
+        <RadioButton TabIndex="3" Content="Proveedor" Height="16" HorizontalAlignment="Center"
+                     Name="radioButton3" VerticalAlignment="Center" Grid.Column="3" Grid.Row="1" 
+                     Checked="radioButton3_Checked" Style="{StaticResource radioButtonGeneric}" />
     </Grid>
 </Window>

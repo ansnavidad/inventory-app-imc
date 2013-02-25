@@ -58,25 +58,25 @@
                   SelectedItem="{Binding AddSolicitante.Empresa,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                   ItemsSource="{Binding CatalogEmpresaModel.Empresa, Mode=OneWay}"
                   DisplayMemberPath="EMPRESA_NAME" SelectedValuePath="UNID_EMPRESA" SelectedIndex="0" Grid.Column="2" />
-        <Label Content="Departamento :" Grid.Column="3" Grid.Row="2" Height="25" HorizontalAlignment="Center" 
-               Margin="7,13,145,2" Name="lblDepartamento" Width="98" Grid.ColumnSpan="2" />
-        <ComboBox Grid.Row="2" Height="23" HorizontalAlignment="Stretch"
-                  Margin="0,14,30,2" Name="cbDepartamento"
-                  VerticalAlignment="Stretch" Width="120"
+        <Label Content="Departamento :" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Right" 
+               Name="lblDepartamento" VerticalAlignment="Bottom" Style="{StaticResource lblCamposGeneric}" />
+        <ComboBox Grid.Row="2" Height="23" HorizontalAlignment="Left"
+                  Name="cbDepartamento"
+                  VerticalAlignment="Bottom" Width="140"
                   SelectedItem="{Binding AddSolicitante.Departamento,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                   ItemsSource="{Binding CatalogDepartamentoModel.Departamento, Mode=OneWay}"
                   DisplayMemberPath="DEPARTAMENTO_NAME" SelectedValuePath="UNID_DEPARTAMENTO" SelectedIndex="0" Grid.Column="4" />
-        <Label Content="Email :" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,24,0,38" Name="lblEmail" 
-               VerticalAlignment="Stretch" Grid.Column="3" Grid.RowSpan="2" />
+        <Label Content="Email :" Grid.Row="1" HorizontalAlignment="Right" Name="lblEmail" 
+               VerticalAlignment="Bottom" Grid.Column="3" Style="{StaticResource lblCamposGeneric}"/>
         <TextBox Grid.Column="4" Grid.Row="1" Height="23"
                  HorizontalAlignment="Left" Margin="0,27,0,0"
-                 Name="txtEmail" VerticalAlignment="Stretch" Width="120"
+                 Name="txtEmail" VerticalAlignment="Stretch" Width="140"
                  Text="{Binding AddSolicitante.Email, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="128" />
-        <Label Content="Validador :" Grid.Row="3" Height="28" HorizontalAlignment="Right" Margin="0,14,0,28" Name="lblValidador" 
-               VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="2" />
+        <Label Content="Validador :" Grid.Row="3" HorizontalAlignment="Right" Name="lblValidador" 
+               VerticalAlignment="Bottom" Grid.Column="1" Style="{StaticResource lblCamposGeneric}" />
         <TextBox Grid.Column="2" Grid.Row="3" Height="23"
                  HorizontalAlignment="Left" Margin="0,16,0,0" Name="txtValidador"
-                 VerticalAlignment="Stretch" Width="120"
+                 VerticalAlignment="Stretch" Width="140"
                  Text="{Binding AddSolicitante.Validador, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                  MaxLength="254" />
         <Label  Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Height="28" HorizontalAlignment="Stretch"  Name="label1" VerticalAlignment="Stretch" 

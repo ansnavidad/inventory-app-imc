@@ -396,7 +396,9 @@ namespace InventoryApp.ViewModel
                     case "¿Es Rol de sistema?":
                       page = new CatalogRolSystem.CatalogRolSystemViewModel();
                       break;                    
-                        
+                    case "Administración de Usuarios":
+                      //page = new 
+                     
                     default:
                         break;
                 }

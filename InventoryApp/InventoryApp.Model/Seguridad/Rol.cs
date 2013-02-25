@@ -296,26 +296,31 @@ namespace InventoryApp.Model.Seguridad
             UsuariosCollection = new ObservableCollection<User>();
             MenuCollection = new ObservableCollection<Menu>();
 
-            foreach (USUARIO_ROL ur in r.USUARIO_ROL) { 
-            
-                User u = new User();
+            foreach (USUARIO_ROL ur in r.USUARIO_ROL) {
+                if (ur.IS_ACTIVE)
+                {
+                    User u = new User();
 
-                u.Actived = true;
-                u.Mail = ur.USUARIO.USUARIO_MAIL;
-                u.UnidUser = ur.USUARIO.UNID_USUARIO;
+                    u.Actived = true;
+                    u.Mail = ur.USUARIO.USUARIO_MAIL;
+                    u.UnidUser = ur.USUARIO.UNID_USUARIO;
 
-                UsuariosCollection.Add(u);
+                    UsuariosCollection.Add(u);
+                }
             }
 
             foreach (ROL_MENU rm in r.ROL_MENU)
             {
-                Menu m = new Menu();
+                if (rm.IS_ACTIVE)
+                {
+                    Menu m = new Menu();
 
-                m.Actived = true;
-                m.MenuName = rm.MENU.MENU_NAME;
-                m.UnidMenu = rm.MENU.UNID_MENU;
+                    m.Actived = true;
+                    m.MenuName = rm.MENU.MENU_NAME;
+                    m.UnidMenu = rm.MENU.UNID_MENU;
 
-                MenuCollection.Add(m);
+                    MenuCollection.Add(m);
+                }
             }
         }
 

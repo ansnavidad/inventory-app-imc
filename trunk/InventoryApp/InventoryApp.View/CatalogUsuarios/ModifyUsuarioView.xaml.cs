@@ -11,26 +11,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace InventoryApp.View.CatalogSeguridad
+namespace InventoryApp.View.CatalogUsuarios
 {
     /// <summary>
-    /// Lógica de interacción para AltaUsuarioView.xaml
+    /// Lógica de interacción para ModifyUsuarioView.xaml
     /// </summary>
-    public partial class AltaUsuarioView : Window
+    public partial class ModifyUsuarioView : Window
     {
-        public AltaUsuarioView()
+        public ModifyUsuarioView()
         {
             InitializeComponent();
-        }
-
-        private void btnGuardar_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnEliminar_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

@@ -119,7 +119,7 @@ namespace InventoryApp.DAL
                 try
                 {
                     query = (from child in entity.MENUs
-                             where child.UNID_MENU_PARENT == null
+                             where child.UNID_MENU_PARENT == null && child.IS_ACTIVE
                              select child).First<MENU>();
                 }
                 catch (Exception ex)
@@ -159,7 +159,7 @@ namespace InventoryApp.DAL
                     using (var entity = new TAE2Entities())
                     {
                         var query = (from child in entity.MENUs
-                                     where child.UNID_MENU_PARENT == menu.UNID_MENU
+                                     where child.UNID_MENU_PARENT == menu.UNID_MENU && child.IS_ACTIVE
                                      select child).ToList<MENU>();
                         res = query;
                     }

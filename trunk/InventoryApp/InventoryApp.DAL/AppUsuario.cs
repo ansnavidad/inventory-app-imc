@@ -118,6 +118,21 @@ namespace InventoryApp.DAL
             return o;
         }
 
+        public object getElementsCatalog()
+        {
+            object o = null;
+
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.USUARIOs
+                           where p.IS_ACTIVE == true && p.UNID_USUARIO != 1
+                           select p).ToList();
+
+                o = res;
+            }
+            return o;
+        }
+
         public object getElement(object element)
         {
             object o = null;

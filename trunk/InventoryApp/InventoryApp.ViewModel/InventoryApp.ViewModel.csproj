@@ -117,6 +117,9 @@
     <Compile Include="CatalogUnidad\AddUnidadViewModel.cs" />
     <Compile Include="CatalogUnidad\CatalogUnidadViewModel.cs" />
     <Compile Include="CatalogUnidad\ModifyUnidadViewModel.cs" />
+    <Compile Include="CatalogUsuarios\AddUsuarioViewModel.cs" />
+    <Compile Include="CatalogUsuarios\CatalogUsuarioViewModel.cs" />
+    <Compile Include="CatalogUsuarios\ModifyUsuarioViewModel.cs" />
     <Compile Include="Entradas\CatalogItemViewModel.cs" />
     <Compile Include="CatalogMarca\AddMarcaViewModel.cs" />
     <Compile Include="CatalogMarca\CatalogMarcaViewModel.cs" />

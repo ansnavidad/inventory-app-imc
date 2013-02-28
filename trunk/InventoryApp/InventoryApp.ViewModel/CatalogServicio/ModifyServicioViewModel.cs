@@ -51,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogServicio
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyServicioViewModel(CatalogServicioViewModel catalogServicioViewModel, ServicioModel selectedServicioModel)
         {
-            this._modiServicio = new ServicioModel(new ServicioDataMapper());
+            this._modiServicio = new ServicioModel(new ServicioDataMapper(), catalogServicioViewModel.ActualUser);
             this._catalogServicioViewModel = catalogServicioViewModel;
             this._modiServicio.UnidServicio = selectedServicioModel.UnidServicio;
             this._modiServicio.ServicioName = selectedServicioModel.ServicioName;

@@ -80,13 +80,13 @@ namespace InventoryApp.Model
             }
             this.Proyecto = ic;
         }
-        public void deleteProyecto()
+        public void deleteProyecto(USUARIO u)
         {
             foreach (DeleteProyecto item in this._proyecto)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

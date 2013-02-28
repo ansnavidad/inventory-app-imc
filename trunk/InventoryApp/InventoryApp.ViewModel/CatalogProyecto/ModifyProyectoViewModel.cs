@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogProyecto
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyProyectoViewModel(CatalogProyectoViewModel catalogProyectoViewModel, ProyectoModel selectedItemProyectoModel)
         {
-            this._modiProyecto = new ProyectoModel(new ProyectoDataMapper());
+            this._modiProyecto = new ProyectoModel(new ProyectoDataMapper(), catalogProyectoViewModel.ActualUser);
             this._catalogProyectoViewModel = catalogProyectoViewModel;
             this._modiProyecto.UnidProyecto = selectedItemProyectoModel.UnidProyecto;
             this._modiProyecto.ProyectoName = selectedItemProyectoModel.ProyectoName;

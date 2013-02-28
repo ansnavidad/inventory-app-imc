@@ -103,7 +103,7 @@ namespace InventoryApp.ViewModel.CatalogServicio
         /// <returns></returns>
         public ModifyServicioViewModel CreateModifyServicioViewModel()
         {
-            ServicioModel servicioModel = new ServicioModel(new ServicioDataMapper());
+            ServicioModel servicioModel = new ServicioModel(new ServicioDataMapper(), this.ActualUser);
             if (this._catalogServicioModel != null && this._catalogServicioModel.SelectedServicio != null)
             {
                 servicioModel.ServicioName = this._catalogServicioModel.SelectedServicio.SERVICIO_NAME;
@@ -133,7 +133,7 @@ namespace InventoryApp.ViewModel.CatalogServicio
         }
         public void AttempDeleteServicio()
         {
-            this._catalogServicioModel.deleteServicio();
+            this._catalogServicioModel.deleteServicio(this.ActualUser);
             
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
             if (this._catalogServicioModel != null)

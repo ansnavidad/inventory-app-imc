@@ -458,7 +458,7 @@ namespace InventoryApp.ViewModel.Salidas
             if (this.MovimientoModel.ProveedorDestino != null)
                 seleccion++;
 
-            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoModel.Contacto) && !String.IsNullOrEmpty(this.MovimientoModel.Tt) && seleccion == 1)
+            if (this.ItemModel.ItemModel.Count() != 0 && !String.IsNullOrEmpty(this.MovimientoDetalleModel.Observaciones) && seleccion == 1)
                 _canImprimir = true;
 
             return _canImprimir;
@@ -489,19 +489,9 @@ namespace InventoryApp.ViewModel.Salidas
                 try
                 {
                     //Recibe
-                    excel.Cells[21, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
+                    excel.Cells[19, 12] = _movimientoModel.Tecnico.TECNICO_NAME;
                     //Procedencia                
                     excel.Cells[17, 12] = "Almacén: " + _movimientoModel.AlmacenProcedencia.ALMACEN_NAME;
-                    //Destino
-                    string p = "";
-
-                    if (_movimientoModel.ProveedorDestino != null)
-                        p = "Proveedor : " + _movimientoModel.ProveedorDestino.PROVEEDOR_NAME;
-                    else if (_movimientoModel.AlmacenDestino != null)
-                        p = "Almacén: " + _movimientoModel.AlmacenDestino.ALMACEN_NAME;
-                    else
-                        p = "Cliente: " + _movimientoModel.ClienteDestino.CLIENTE1;
-                    excel.Cells[19, 12] = p;
                 }
                 catch (Exception Ex)
                 {
@@ -509,13 +499,12 @@ namespace InventoryApp.ViewModel.Salidas
                 }
                 //Empresa
                 excel.Cells[11, 12] = _movimientoModel.Empresa.EMPRESA_NAME;
-                int X = 30;
+                int X = 26;
                 Microsoft.Office.Interop.Excel.Borders borders;
 
                 for (int i = 0; i < ItemModel.ItemModel.Count; i++)
                 {
-                    //for (int i = 0; i < 5; i++)  {
-
+                    
                     //No.
                     excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].Merge();
                     excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
@@ -548,12 +537,21 @@ namespace InventoryApp.ViewModel.Salidas
                     borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
                     X++;
                 }
-
                 X += 2;
-                excel.Cells[X, 3] = "OBSERVACIONES:";
-                excel.Range[excel.Cells[X, 9], excel.Cells[X + 2, 33]].Merge();
-                borders = excel.Range[excel.Cells[X, 9], excel.Cells[X + 2, 33]].Borders;
-                borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                try
+                {
+                    excel.Cells[X, 3] = "OBSERVACIONES:";
+                    excel.Range[excel.Cells[X, 9], excel.Cells[X + 2, 33]].Merge();
+                    excel.Cells[X, 9] = _movimientoDetalleModel.Observaciones;
+                    borders = excel.Range[excel.Cells[X, 9], excel.Cells[X + 2, 33]].Borders;
+                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                }
+                catch (Exception ex)
+                {
+                    ; 
+                   
+                }
+                
 
                 X += 4;
                 excel.Range[excel.Cells[X, 2], excel.Cells[X, 17]].Merge();

@@ -49,6 +49,7 @@ namespace InventoryApp.Model
         private INFRAESTRUCTURA _unidInfraestructura;
         private TECNICO _unidTecnicoTrans;
         private DateTime _timeFecha;
+        private string _observaciones;
         public FixupCollection<ItemModel> ArticulosLectura
         {
             get
@@ -406,6 +407,20 @@ namespace InventoryApp.Model
                 }
             }
         }
+        public string Observaciones
+        {
+            get { return this._observaciones; }
+            set
+            {
+                if (value != this._observaciones)
+                {
+                    this._observaciones = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Observaciones"));
+                }
+            }
+        }
+
 
         public int TotalItems
         {
@@ -695,6 +710,8 @@ namespace InventoryApp.Model
                 ITEM_STATUS itemStatus = new ITEM_STATUS();
                 itemStatus.UNID_ITEM_STATUS = (long)detalle.UNID_ITEM_STATUS;
                 ItemModel aux = new ItemModel((ITEM)itemsLectura, detalle.CANTIDAD, itemStatus);
+                if (!String.IsNullOrEmpty(detalle.OBSERVACIONES))
+                    this._observaciones = detalle.OBSERVACIONES;
                 ic.Add(aux);    
                 this.ArticulosLectura = ic;
             }

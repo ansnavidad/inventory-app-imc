@@ -51,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogTipoPedimento
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyTipoPedimentoViewModel(CatalogTipoPedimentoViewModel catalogTipoPedimentoViewModel, TipoPedimentoModel selectedTipoPedimento)
         {
-            this._tipoPedimento = new TipoPedimentoModel(new TipoPedimentoDataMapper());
+            this._tipoPedimento = new TipoPedimentoModel(new TipoPedimentoDataMapper(), catalogTipoPedimentoViewModel.ActualUser);
             this._catalogTipoPedimentoViewModel = catalogTipoPedimentoViewModel;
             this._tipoPedimento.UnidTipoPedimento = selectedTipoPedimento.UnidTipoPedimento;
             this._tipoPedimento.TipoPedimentoName = selectedTipoPedimento.TipoPedimentoName;

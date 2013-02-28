@@ -57,8 +57,7 @@ namespace InventoryApp.Model
         #endregion
 
         #region Props
-        
-
+       
         public ALMACEN AlmacenDestino
         {
             get
@@ -364,8 +363,7 @@ namespace InventoryApp.Model
                     }
                 }
             }
-        }
-        
+        }   
         public string Contacto
         {
             get

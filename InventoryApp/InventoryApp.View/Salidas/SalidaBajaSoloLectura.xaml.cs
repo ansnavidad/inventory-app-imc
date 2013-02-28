@@ -11,17 +11,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace InventoryApp.View.CatalogUsuarios
+namespace InventoryApp.View.Salidas
 {
     /// <summary>
-    /// Lógica de interacción para AltaSeguridad.xaml
+    /// Lógica de interacción para SalidaBajaSoloLectura.xaml
     /// </summary>
-    public partial class UsuariosUserControl : Window
+    public partial class SalidaBajaSoloLectura : Window
     {
-        public UsuariosUserControl()
+        public SalidaBajaSoloLectura()
         {
             InitializeComponent();
-            //FocusManager.SetFocusedElement(this, this.txtNomreRol);
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

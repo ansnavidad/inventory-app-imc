@@ -178,12 +178,16 @@ namespace InventoryApp.Model
         {
             List<long> UnidsMenu = new List<long>();
 
-            foreach (USUARIO_ROL ur in ActualUser.USUARIO_ROL) {
-
-                foreach (ROL_MENU rm in ur.ROL.ROL_MENU) {
-                    if(rm.IS_ACTIVE)
-                        UnidsMenu.Add(rm.UNID_MENU);
-                }                
+            foreach (USUARIO_ROL ur in ActualUser.USUARIO_ROL) 
+            {
+                if (ur.IS_ACTIVE)
+                {
+                    foreach (ROL_MENU rm in ur.ROL.ROL_MENU)
+                    {
+                        if (rm.IS_ACTIVE)
+                            UnidsMenu.Add(rm.UNID_MENU);
+                    }                    
+                }
             }
 
             MenuDataMapper mdm = menuDataMapper as MenuDataMapper;

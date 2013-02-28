@@ -243,6 +243,36 @@ namespace InventoryApp.DAL
             return um;
         }
 
+        public ULTIMO_MOVIMIENTO getCantidadItemsBaja(ITEM item, ALMACEN almacen, string soloBaja)
+        {
+            ULTIMO_MOVIMIENTO um = new ULTIMO_MOVIMIENTO();
+
+            try
+            {
+                if (item != null && almacen != null)
+                {
+                    using (var entity = new TAE2Entities())
+                    {
+                        var r = (from p in entity.ULTIMO_MOVIMIENTO
+                                 where p.UNID_ITEM == item.UNID_ITEM && p.UNID_ALMACEN == almacen.UNID_ALMACEN
+                                 select p).First();
+                        um = r;
+                        if (r == null)
+                            return null;
+                        um.ITEM_STATUS = r.ITEM_STATUS;
+                        um = r;
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new ULTIMO_MOVIMIENTO();
+            }
+
+            return um;
+        }
+
         public List<ULTIMO_MOVIMIENTO> getCantidadItems(ITEM item)
         {
             List<ULTIMO_MOVIMIENTO> um = new List<ULTIMO_MOVIMIENTO>();
@@ -353,6 +383,34 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void udpateElement2Baja(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ULTIMO_MOVIMIENTO ultimoMov = (ULTIMO_MOVIMIENTO)element;
+
+
+                    var modifiedMov = entity.ULTIMO_MOVIMIENTO.First(p => p.UNID_ULTIMO_MOVIMIENTO == ultimoMov.UNID_ULTIMO_MOVIMIENTO);
+
+
+                    modifiedMov.CANTIDAD = ultimoMov.CANTIDAD;
+                    modifiedMov.UNID_ITEM_STATUS = ultimoMov.UNID_ITEM_STATUS;
+                    //Sync
+                    modifiedMov.IS_MODIFIED = true;
+                    modifiedMov.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+
+
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void udpateElementSync(object element)
         {
             if (element != null)
@@ -422,6 +480,30 @@ namespace InventoryApp.DAL
                         entity.ULTIMO_MOVIMIENTO.AddObject(art);
                         entity.SaveChanges();
                     
+                }
+            }
+        }
+
+        public void insertElementBaja(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ULTIMO_MOVIMIENTO art = (ULTIMO_MOVIMIENTO)element;
+
+
+                    art.UNID_ULTIMO_MOVIMIENTO = UNID.getNewUNID();
+                    //Sync
+                    art.IS_MODIFIED = true;
+                    art.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.ULTIMO_MOVIMIENTO.AddObject(art);
+                    entity.SaveChanges();
+
                 }
             }
         }

@@ -93,6 +93,7 @@
     <Compile Include="CatalogTipoPedimentoModel.cs" />
     <Compile Include="CatalogTransporteModel.cs" />
     <Compile Include="CatalogUnidadModel.cs" />
+    <Compile Include="CatalogUsuarioModel.cs" />
     <Compile Include="CategoriaModel.cs" />
     <Compile Include="CiudadModel.cs" />
     <Compile Include="ClienteModel.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="DeleteProveedor.cs" />
     <Compile Include="DeleteProveedorCuenta.cs" />
     <Compile Include="DeleteProyecto.cs" />
+    <Compile Include="DeleteRol.cs" />
     <Compile Include="DeleteServicio.cs" />
     <Compile Include="DeleteSolicitante.cs" />
     <Compile Include="DeleteTecnico.cs" />
@@ -130,6 +132,7 @@
     <Compile Include="DeleteTipoPedimento.cs" />
     <Compile Include="DeleteTransporte.cs" />
     <Compile Include="DeleteUnidad.cs" />
+    <Compile Include="DeleteUsuarios.cs" />
     <Compile Include="DepartamentoESModel.cs" />
     <Compile Include="DepartamentoModel.cs" />
     <Compile Include="EmpresaModel.cs" />
@@ -188,6 +191,8 @@
     <Compile Include="TransporteModel.cs" />
     <Compile Include="UltimoMovimientoModel.cs" />
     <Compile Include="UnidadModel.cs" />
+    <Compile Include="UsuaioModel.cs" />
+    <Compile Include="UsuarioModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InventoryApp.DAL\InventoryApp.DAL.csproj">

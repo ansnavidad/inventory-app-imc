@@ -292,6 +292,21 @@ namespace InventoryApp.Model
                 }
             }
         }
+
+        public void updateArticuloBaja(ALMACEN almacen, string soloBaja)
+        {
+            if (almacen != null)
+            {
+                if (_dataMapper != null)
+                {
+                    ITEM item = new ITEM();
+                    item.UNID_ITEM = this.UnidItem;
+                    ULTIMO_MOVIMIENTO aux = this._dataMapper.getCantidadItemsBaja(item, almacen,"salida baja");
+                    aux.CANTIDAD -= this._cantidad;
+                    this._dataMapper.udpateElement2Baja(aux);
+                }
+            }
+        }
          
         public void saveArticulo()
         {
@@ -342,6 +357,37 @@ namespace InventoryApp.Model
                 //_dataMapper.udpateElement2(new ULTIMO_MOVIMIENTO { UNID_ITEM = this._unidItem, UNID_ALMACEN = this._unidAlmacen, UNID_CLIENTE = this.UnidCliente, UNID_MOVIMIENTO_DETALLE = this._unidMovimientoDetalle, UNID_PROVEEDOR = this._unidProveedor, UNID_INFRAESTRUCTURA = this._unidInfraestructura, IS_ACTIVE = true, CANTIDAD = this._cantidad });
             }
         }
+
+        public void saveArticuloBaja()
+        {
+            if (_dataMapper != null)
+            {
+                ITEM item = new ITEM();
+                item.UNID_ITEM = this.UnidItem;
+                ULTIMO_MOVIMIENTO tmp = new ULTIMO_MOVIMIENTO();
+
+                if (this._unidAlmacen != null)
+                {
+                    ALMACEN almacen = new ALMACEN();
+                    almacen.UNID_ALMACEN = (long)this._unidAlmacen;
+                    tmp = this._dataMapper.getCantidadItemsBaja(item, almacen,"salida baja");
+                }
+                
+                this._cantidad += tmp.CANTIDAD;
+
+                if (tmp.UNID_ULTIMO_MOVIMIENTO == 0)
+                {
+                    _dataMapper.insertElementBaja(new ULTIMO_MOVIMIENTO { UNID_ITEM = this._unidItem, UNID_ALMACEN = this._unidAlmacen, UNID_CLIENTE = this.UnidCliente, UNID_MOVIMIENTO_DETALLE = this._unidMovimientoDetalle, UNID_PROVEEDOR = this._unidProveedor, UNID_INFRAESTRUCTURA = this._unidInfraestructura, IS_ACTIVE = false, CANTIDAD = this._cantidad, UNID_ITEM_STATUS = this._unidItemStatus });
+                }
+                else
+                {
+                    _dataMapper.udpateElement2Baja(new ULTIMO_MOVIMIENTO { UNID_ULTIMO_MOVIMIENTO = tmp.UNID_ULTIMO_MOVIMIENTO, UNID_ITEM = this._unidItem, UNID_ALMACEN = this._unidAlmacen, UNID_CLIENTE = this.UnidCliente, UNID_MOVIMIENTO_DETALLE = this._unidMovimientoDetalle, UNID_PROVEEDOR = this._unidProveedor, UNID_INFRAESTRUCTURA = this._unidInfraestructura, IS_ACTIVE = false, CANTIDAD = this._cantidad, UNID_ITEM_STATUS = this._unidItemStatus });
+                }
+
+                
+            }
+        }
+
         public UltimoMovimientoModel(IDataMapper dataMapper, long item, long? almacen, long? cliente, long? proveedor, long? movDet)
         {
             this._unidItem = item;
@@ -377,6 +423,23 @@ namespace InventoryApp.Model
             {
                 this._unidCliente = cliente.UNID_CLIENTE;
                 this.Lugar = "Cliente: " + cliente.CLIENTE1;
+            }
+        }
+
+        //salida baja
+        public UltimoMovimientoModel(IDataMapper dataMapper, long item, long? almacen, long? cliente, long? proveedor, long? movDet, int cantidad, long? unidItemStatus, string salidaBaja)
+        {
+            this._unidItem = item;
+            this._unidAlmacen = almacen;
+            this._unidCliente = cliente;
+            this._unidProveedor = proveedor;
+            this._unidInfraestructura = null;
+            this._unidMovimientoDetalle = movDet;
+            this._cantidad = cantidad;
+            this._unidItemStatus = unidItemStatus;
+            if ((dataMapper as UltimoMovimientoDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as UltimoMovimientoDataMapper;
             }
         }
 

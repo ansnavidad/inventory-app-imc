@@ -41,6 +41,7 @@ using System.Windows;
 using InventoryApp.ViewModel.CatalogInfraestructura;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.CatalogUsuarios;
 
 namespace InventoryApp.ViewModel
 {
@@ -160,10 +161,14 @@ namespace InventoryApp.ViewModel
             if (this.ActualUser.USUARIO_ROL.Count > 0)
                 UserRols += "Roles actuales: ";            
             
-            foreach (USUARIO_ROL s in this.ActualUser.USUARIO_ROL) {
+            foreach (USUARIO_ROL s in this.ActualUser.USUARIO_ROL) 
+            {
+                if (s.IS_ACTIVE)
+                {
+                    UserRols += s.ROL.ROL_NAME;
+                    UserRols += ",  ";    
+                }    
                 
-                UserRols += s.ROL.ROL_NAME;
-                UserRols += ",  ";
             }            
 
             if (UserRols.Equals(""))
@@ -296,6 +301,9 @@ namespace InventoryApp.ViewModel
                     case "Unidad":
                         page = new CatalogUnidadViewModel();
                         break;
+                    case "Administración de usuarios":
+                        page = new CatalogUsuarioViewModel();
+                        break;
                     case "Infraestructura":
                         page = new CatalogInfraestructuraViewModel();
                         break;
@@ -347,6 +355,9 @@ namespace InventoryApp.ViewModel
                     case "Entregado (Licencia Office)":
                         page = new GridMovimientos.MovimientoGridSalidaOfficeViewModel();
                         break;
+                    case "Salida Baja":
+                        page = new GridMovimientos.MovimientoGridSalidaBajaViewModel();
+                        break;
                     //Traspasos
                     case "Traspaso Entre Almacenes":
                         page = new GridMovimientos.MovimientoGridTraspasoStockViewModel();
@@ -395,10 +406,7 @@ namespace InventoryApp.ViewModel
                       break;
                     case "¿Es Rol de sistema?":
                       page = new CatalogRolSystem.CatalogRolSystemViewModel();
-                      break;                    
-                    case "Administración de Usuarios":
-                      //page = new 
-                     
+                      break;                     
                     default:
                         break;
                 }

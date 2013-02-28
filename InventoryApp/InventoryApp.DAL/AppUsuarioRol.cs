@@ -201,7 +201,24 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    USUARIO_ROL usuarioRol = (USUARIO_ROL)element;
+                    var modifiedUsuarioRol = entity.USUARIO_ROL.First(p => p.UNID_USUARIO == usuarioRol.UNID_USUARIO 
+                                                                        && p.UNID_ROL ==usuarioRol.UNID_ROL);
+                    modifiedUsuarioRol.IS_ACTIVE = false;
+                    //Sync
+                    modifiedUsuarioRol.IS_MODIFIED = true;
+                    modifiedUsuarioRol.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+
+                    entity.SaveChanges();
+                }
+            }
         }
 
         public void deleteElementsByRol(long l) {

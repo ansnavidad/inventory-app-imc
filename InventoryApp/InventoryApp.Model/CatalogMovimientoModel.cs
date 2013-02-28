@@ -441,6 +441,26 @@ namespace InventoryApp.Model
             }
             this.CatalogMovimiento = ic;
         }
+
+        public void loadItemsSalidaBaja()
+        {
+            object element = this._dataMapper.getSalidaBajaElements();
+
+            FixupCollection<CatalogMovimiento> ic = new FixupCollection<CatalogMovimiento>();
+
+            if (element != null)
+            {
+                if (((List<MOVIMENTO>)element).Count > 0)
+                {
+                    foreach (MOVIMENTO item in (List<MOVIMENTO>)element)
+                    {
+                        CatalogMovimiento aux = new CatalogMovimiento(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.CatalogMovimiento = ic;
+        }
         
         public void loadItemsTraspaso()
         {
@@ -471,6 +491,7 @@ namespace InventoryApp.Model
             this._catalogMovimiento = new FixupCollection<CatalogMovimiento>();
             this.loadItems();
         }
+
         public CatalogMovimientoModel(IDataMapper dataMapper, string solo , int lectura)
         {
             this._dataMapper = new MovimientoDataMapper();
@@ -482,7 +503,7 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new MovimientoDataMapper();
             this._catalogMovimiento = new FixupCollection<CatalogMovimiento>();
-            
+
             if (name.Equals("Entrada Validación/Entrada"))
                 this.loadItemsEntradaValidacion();
             else if (name.Equals("Entrada Prestamo"))
@@ -511,6 +532,8 @@ namespace InventoryApp.Model
                 this.loadItemsSalidaObsequio();
             else if (name.Equals("Salida Correctivo"))
                 this.loadItemsSalidaCorrectivo();
+            else if (name.Equals("Salida Baja"))
+                this.loadItemsSalidaBaja();
             else if (name.Equals("Entregado"))
                 this.loadItemsSalidaOffice();
             else if (name.Equals("SALIDAS"))

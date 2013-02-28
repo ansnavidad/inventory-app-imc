@@ -51,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogPais
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyPaisViewModel(CatalogPaisViewModel catalogPaisViewModel, PaisModel selectedPaisModel)
         {
-            this._paisModel = new PaisModel(new PaisDataMapper());
+            this._paisModel = new PaisModel(new PaisDataMapper(), catalogPaisViewModel.ActualUser);
             this._catalogPaisViewModel = catalogPaisViewModel;
             this._paisModel.UnidPais = selectedPaisModel.UnidPais;
             this._paisModel.Pais = selectedPaisModel.Pais;

@@ -71,13 +71,13 @@ namespace InventoryApp.Model
             this.Moneda = ic;
         }
 
-        public void deleteMoneda()
+        public void deleteMoneda(USUARIO u)
         {
             foreach (DeleteMoneda item in this._moneda)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

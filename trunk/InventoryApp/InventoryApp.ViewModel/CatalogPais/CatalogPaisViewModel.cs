@@ -96,7 +96,7 @@ namespace InventoryApp.ViewModel.CatalogPais
         /// <returns></returns>
         public ModifyPaisViewModel CreateModifyPaisViewModel()
         {
-            PaisModel paisModel = new PaisModel(new PaisDataMapper());
+            PaisModel paisModel = new PaisModel(new PaisDataMapper(), this.ActualUser);
             if (this._catalogPaisModel != null && this._catalogPaisModel.SelectedPais != null)
             {
                 paisModel.UnidPais = this._catalogPaisModel.SelectedPais.UNID_PAIS;
@@ -128,7 +128,7 @@ namespace InventoryApp.ViewModel.CatalogPais
 
         public void AttempDeletePais()
         {
-            this._catalogPaisModel.deletePais();
+            this._catalogPaisModel.deletePais(this.ActualUser);
 
             if (this._catalogPaisModel != null)
             {

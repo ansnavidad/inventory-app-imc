@@ -76,23 +76,30 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new MONEDA() { IS_ACTIVE = true, MONEDA_NAME = this._monedaName, MONEDA_ABR = this._monedaAbr });
+                _dataMapper.insertElement(new MONEDA() { IS_ACTIVE = true, MONEDA_NAME = this._monedaName, MONEDA_ABR = this._monedaAbr }, this.ActualUser);
             }
         }
 
         public void updateMoneda()
         {
-            this._dataMapper.udpateElement(new MONEDA() { UNID_MONEDA=this._unidMoneda,MONEDA_NAME=this._monedaName, MONEDA_ABR=this._monedaAbr });
+            this._dataMapper.udpateElement(new MONEDA() { UNID_MONEDA = this._unidMoneda, MONEDA_NAME = this._monedaName, MONEDA_ABR = this._monedaAbr }, this.ActualUser);
         }
 
         #region Constructors
+        public MonedaModel(IDataMapper dataMapper, USUARIO u)
+        {
+            if ((dataMapper as MonedaDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as MonedaDataMapper;
+            }
+            this.ActualUser = u;
+        }
         public MonedaModel(IDataMapper dataMapper)
         {
             if ((dataMapper as MonedaDataMapper) != null)
             {
                 this._dataMapper = dataMapper as MonedaDataMapper;
             }
-            
         }
         #endregion
 

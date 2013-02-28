@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogMoneda
         /// <param name="catalogItemStatusViewModel"></param>
         public AddMonedaViewModel(CatalogMonedaViewModel catalogMonedaViewModel)
         {
-            this._moneda = new MonedaModel(new MonedaDataMapper());
+            this._moneda = new MonedaModel(new MonedaDataMapper(), catalogMonedaViewModel.ActualUser);
             this._catalogMonedaViewModel = catalogMonedaViewModel;
         }
         #endregion

@@ -96,7 +96,7 @@ namespace InventoryApp.ViewModel.CatalogMoneda
         /// <returns></returns>
         public ModifyMonedaViewModel CreateModifyMonedaViewModel()
         {
-            MonedaModel monedaModel = new MonedaModel(new MonedaDataMapper());
+            MonedaModel monedaModel = new MonedaModel(new MonedaDataMapper(), this.ActualUser);
             if (this._catalogMonedaModel != null && this._catalogMonedaModel.SelectedMoneda != null)
             {
                 monedaModel.UnidMoneda = this._catalogMonedaModel.SelectedMoneda.UNID_MONEDA;
@@ -129,7 +129,7 @@ namespace InventoryApp.ViewModel.CatalogMoneda
 
         public void AttempDeleteMoneda()
         {
-            this._catalogMonedaModel.deleteMoneda();
+            this._catalogMonedaModel.deleteMoneda(this.ActualUser);
 
             if (this._catalogMonedaModel != null)
             {

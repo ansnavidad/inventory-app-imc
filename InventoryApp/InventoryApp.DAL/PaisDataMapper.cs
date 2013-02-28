@@ -163,7 +163,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void udpateElement(object element)
+        public void udpateElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -180,12 +180,12 @@ namespace InventoryApp.DAL
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
-                    entity.SaveChanges();
+                    UNID.Master(pais, u, -1, "Modificación");
                 }
             }
         }
 
-        public void insertElement(object element)
+        public void insertElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -209,6 +209,8 @@ namespace InventoryApp.DAL
                         //
                         entity.PAIS.AddObject(pais);
                         entity.SaveChanges();
+
+                        UNID.Master(pais, u, -1, "Inserción");
                     }
                 }
             }
@@ -252,7 +254,7 @@ namespace InventoryApp.DAL
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
-                    entity.SaveChanges();
+                    UNID.Master(pais, u, -1, "Emininación");
                 }
             }
         }
@@ -363,6 +365,17 @@ namespace InventoryApp.DAL
                     }
                 }
             }
+        }
+
+
+        public void udpateElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void insertElement(object element)
+        {
+            throw new NotImplementedException();
         }
     }
 }

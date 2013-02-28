@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogPais
         /// <param name="catalogItemStatusViewModel"></param>
         public AddPaisViewModel(CatalogPaisViewModel catalogPaisViewModel)
         {
-            this._pais = new PaisModel(new PaisDataMapper());
+            this._pais = new PaisModel(new PaisDataMapper(), catalogPaisViewModel.ActualUser);
             this._catalogPaisViewModel = catalogPaisViewModel;
         }
         #endregion

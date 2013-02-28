@@ -72,13 +72,13 @@ namespace InventoryApp.Model
             this.Pais = ic;
         }
 
-        public void deletePais()
+        public void deletePais(USUARIO u)
         {
             foreach (DeletePais item in this._pais)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

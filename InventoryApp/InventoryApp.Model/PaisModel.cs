@@ -82,23 +82,23 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new PAI() {IS_ACTIVE=true, PAIS = this._pais, ISO = this._iso });
+                _dataMapper.insertElement(new PAI() {IS_ACTIVE=true, PAIS = this._pais, ISO = this._iso }, this.ActualUser);
             }
         }
 
         public void updatePais()
         {
-            this._dataMapper.udpateElement(new PAI() { PAIS = this._pais, ISO = this._iso, UNID_PAIS = this._unidPais });
+            this._dataMapper.udpateElement(new PAI() { PAIS = this._pais, ISO = this._iso, UNID_PAIS = this._unidPais }, this.ActualUser);
         }
 
         #region Constructors
-        public PaisModel(IDataMapper dataMapper)
+        public PaisModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as PaisDataMapper) != null)
             {
                 this._dataMapper = dataMapper as PaisDataMapper;
             }
-
+            this.ActualUser = u;
         }
         #endregion
 

@@ -51,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogMoneda
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyMonedaViewModel(CatalogMonedaViewModel catalogMonedaViewModel,MonedaModel selectedMonedaModel)
         {
-            this._moneda = new MonedaModel(new MonedaDataMapper());
+            this._moneda = new MonedaModel(new MonedaDataMapper(), catalogMonedaViewModel.ActualUser);
             this._catalogMonedaViewModel = catalogMonedaViewModel;
             this._moneda.UnidMoneda = selectedMonedaModel.UnidMoneda;
             this._moneda.MonedaName = selectedMonedaModel.MonedaName;

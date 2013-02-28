@@ -189,14 +189,21 @@
     <Compile Include="CatalogSeguridad\ModifySelectMenuView.xaml.cs">
       <DependentUpon>ModifySelectMenuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogUsuarios\GusPasswordBox.cs" />
     <Compile Include="CatalogUsuarios\ModifyUsuarioView.xaml.cs">
       <DependentUpon>ModifyUsuarioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogUsuarios\UsuarioUserControl.xaml.cs">
+      <DependentUpon>UsuarioUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogSeguridad\SeguridadUserControl.xaml.cs">
       <DependentUpon>SeguridadUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CatalogSeguridad\SelectMenuView.xaml.cs">
       <DependentUpon>SelectMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaBaja.xaml.cs">
+      <DependentUpon>GridSalidaBaja.xaml</DependentUpon>
     </Compile>
     <Compile Include="Historial\HistorialView.xaml.cs">
       <DependentUpon>HistorialView.xaml</DependentUpon>
@@ -601,6 +608,12 @@
     <Compile Include="Salidas\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Salidas\SalidaBaja.xaml.cs">
+      <DependentUpon>SalidaBaja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaBajaSoloLectura.xaml.cs">
+      <DependentUpon>SalidaBajaSoloLectura.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Salidas\SalidaConfiguracion.xaml.cs">
       <DependentUpon>SalidaConfiguracion.xaml</DependentUpon>
     </Compile>
@@ -815,6 +828,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CatalogUsuarios\UsuarioUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CatalogSeguridad\SeguridadUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -822,6 +839,10 @@
     <Page Include="CatalogSeguridad\SelectMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaBaja.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Historial\HistorialView.xaml">
       <SubType>Designer</SubType>
@@ -1369,6 +1390,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Salidas\AddItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Salidas\SalidaBaja.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Salidas\SalidaBajaSoloLectura.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -90,6 +90,9 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </ApplicationDefinition>
+    <Compile Include="CargaItems\CargaItemsView.xaml.cs">
+      <DependentUpon>CargaItemsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogAlmacen\AlmacenUserControl.xaml.cs">
       <DependentUpon>AlmacenUserControl.xaml</DependentUpon>
     </Compile>
@@ -692,6 +695,10 @@
     <Compile Include="Traspasos\TraspasoStockSoloLectura.xaml.cs">
       <DependentUpon>TraspasoStockSoloLectura.xaml</DependentUpon>
     </Compile>
+    <Page Include="CargaItems\CargaItemsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CatalogAlmacen\AlmacenUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1488,6 +1495,10 @@
     <Page Include="Salidas\SalidaVentaSoloLectura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Dictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Style\MsgBoxStyle.xaml">
       <SubType>Designer</SubType>

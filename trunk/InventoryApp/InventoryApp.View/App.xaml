@@ -137,7 +137,7 @@
              xmlns:catRolSystemViewModel="clr-namespace:InventoryApp.ViewModel.CatalogRolSystem;assembly=InventoryApp.ViewModel"
              xmlns:rolSystemViews="clr-namespace:InventoryApp.View.CatalogRolSystem"    
              
-             StartupUri="Login/LoginView.xaml"
+             StartupUri="MainWindow.xaml"
              >
     <!--StartupUri="prueba.xaml"-->
     <!--StartupUri="Login/LoginView.xaml"-->
@@ -155,7 +155,7 @@
         -->
         <rootViewModel:MenuViewModel x:Key="menuViewModel" />
         <rootViewModel:MainWindowViewModel x:Key="mainWindowViewModel" />
-        <rootDosViewModel:LoginViewModel x:Key="loginViewModel"/>
+        <!--<rootDosViewModel:LoginViewModel x:Key="loginViewModel"/>-->
         <reciboViewModel:CatalogReciboViewModel x:Key="catalogReciboViewModel" />
         <!--Juan-->
             <!--<ReciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />-->

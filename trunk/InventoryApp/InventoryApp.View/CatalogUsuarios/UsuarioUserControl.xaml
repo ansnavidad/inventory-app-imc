@@ -37,6 +37,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
         </Grid>
+        
         <DataGrid AutoGenerateColumns="False" Name="dataGridUser" CanUserAddRows="False"
                   RowStyle="{StaticResource RowStyle}" CanUserDeleteRows="False"
                   Style="{StaticResource GridStyle}" HorizontalAlignment="Stretch"
@@ -58,6 +59,7 @@
                 <DataGridTextColumn Header="Roles" Width="*" x:Name="nombreRoles" Binding="{Binding Path=UsuariosRoles}" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
+        
         <Button Command="{Binding DeleteUsuarioCommand, Mode=OneWay}" Content="Eliminar" Height="23" 
                 HorizontalAlignment="Stretch" Margin="139,3,12,4" Name="btnEliminar" Style="{StaticResource btnElara}" 
                 VerticalAlignment="Stretch" Width="75" Grid.Column="2" />

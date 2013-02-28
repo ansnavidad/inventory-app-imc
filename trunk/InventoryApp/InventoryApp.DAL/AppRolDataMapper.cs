@@ -191,6 +191,33 @@ namespace InventoryApp.DAL
             }
         }
 
+        public object getElementRoles(long unidUsuario)
+        {
+            object res = null;
+            if (unidUsuario != null)
+            {
+                
+                using (var entitie = new TAE2Entities())
+                {
+
+                    var query = (from cust in entitie.ROLs
+                                 join ur in entitie.USUARIO_ROL
+                                 on  cust.UNID_ROL equals ur.UNID_ROL
+                                 join u in entitie.USUARIOs
+                                 on ur.UNID_USUARIO equals u.UNID_USUARIO
+                                 where cust.IS_ACTIVE == true &&
+                                 u.UNID_USUARIO == unidUsuario &&
+                                 ur.IS_ACTIVE ==true
+                                 select cust).ToList();
+                    if (query.Count != 0)
+                        res = query;
+                    else
+                        return null;
+                }
+            }
+            return res;
+        }
+
         public void deleteElement(object element)
         {
             if (element != null)

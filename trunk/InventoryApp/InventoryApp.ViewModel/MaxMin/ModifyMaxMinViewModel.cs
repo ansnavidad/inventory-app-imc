@@ -123,7 +123,7 @@ namespace InventoryApp.ViewModel.MaxMin
             }
             catch (ArgumentException ae)
             {
-                ;
+                
             }
             catch (Exception ex)
             {

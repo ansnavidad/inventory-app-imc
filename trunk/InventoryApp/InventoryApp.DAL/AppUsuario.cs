@@ -110,6 +110,7 @@ namespace InventoryApp.DAL
             using (var Entity = new TAE2Entities())
             {
                 var res = (from p in Entity.USUARIOs
+                           .Include("USUARIO_ROL")
                            where p.IS_ACTIVE == true
                            select p).ToList();
 
@@ -216,12 +217,24 @@ namespace InventoryApp.DAL
 
                 using (var Entity = new TAE2Entities())
                 {
-                    var res = (from p in Entity.USUARIOs
-                               where p.USUARIO_MAIL == user.USUARIO_MAIL && p.USUARIO_PWD ==user.USUARIO_PWD && p.ACTIVATION ==false
-                               select p).First();
+                    try
+                    {
+                        var res = (from p in Entity.USUARIOs
+                                   where p.USUARIO_MAIL == user.USUARIO_MAIL &&
+                                   p.USUARIO_PWD == user.USUARIO_PWD &&
+                                   p.ACTIVATION == false &&
+                                   p.IS_ACTIVE == true
+                                   select p).First();
 
-                    if (res != null)
-                        return true;
+                        if (res != null)
+                            return true;
+                    }
+                    catch (Exception ex)
+                    {
+
+                        return false;
+                    }
+                    
                 }
             }
             return respuesta;
@@ -237,7 +250,10 @@ namespace InventoryApp.DAL
                 using (var Entity = new TAE2Entities())
                 {
                     var res = (from p in Entity.USUARIOs
-                               where p.USUARIO_MAIL == user.USUARIO_MAIL && p.USUARIO_PWD == user.USUARIO_PWD && !p.ACTIVATION
+                               where p.USUARIO_MAIL == user.USUARIO_MAIL && 
+                               p.USUARIO_PWD == user.USUARIO_PWD &&
+                               !p.ACTIVATION &&
+                               p.IS_ACTIVE==true
                                select p).ToList();
 
                     if (res.Count != 0)
@@ -324,6 +340,27 @@ namespace InventoryApp.DAL
                     var modifiedUsuario = entity.USUARIOs.First(p => p.UNID_USUARIO == usuario.UNID_USUARIO);
                     modifiedUsuario.USUARIO_MAIL = usuario.USUARIO_MAIL;
                     modifiedUsuario.USUARIO_PWD = usuario.USUARIO_PWD;
+                    //Sync
+                    modifiedUsuario.IS_MODIFIED = true;
+                    modifiedUsuario.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void udpateElementContraseña(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    USUARIO usuario = (USUARIO)element;
+                    var modifiedUsuario = entity.USUARIOs.First(p => p.UNID_USUARIO == usuario.UNID_USUARIO);
+                    modifiedUsuario.USUARIO_PWD = usuario.USUARIO_PWD;
+                    modifiedUsuario.FLAG_PASS = usuario.FLAG_PASS;
                     //Sync
                     modifiedUsuario.IS_MODIFIED = true;
                     modifiedUsuario.LAST_MODIFIED_DATE = UNID.getNewUNID();
@@ -478,7 +515,23 @@ namespace InventoryApp.DAL
 
         public void deleteElement(object element)
         {
-            throw new NotImplementedException();
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    USUARIO usuario = (USUARIO)element;
+                    var modifiedUsuario = entity.USUARIOs.First(p => p.UNID_USUARIO == usuario.UNID_USUARIO);
+                    modifiedUsuario.IS_ACTIVE = false;
+                    //Sync
+                    modifiedUsuario.IS_MODIFIED = true;
+                    modifiedUsuario.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+
+                    entity.SaveChanges();
+                }
+            }
         }
 
         /// <summary>

@@ -28,6 +28,7 @@ namespace InventoryApp.ViewModel.Salidas
         private SalidaObsequioViewModel _salidaObsequioViewModel;
         private SalidaCorrectivoViewModel _salidaCorrectivoViewModel;
         private SalidaOfficeViewModel _salidaOfficeViewModel;
+        private SalidaBajaViewModel _salidaBajaViewModel;
 
         public CatalogItemViewModel(SalidaVentaViewModel _salidaVentaViewModel)
         {
@@ -115,6 +116,14 @@ namespace InventoryApp.ViewModel.Salidas
             this._catalogItemModel = new CatalogItemModel(dataMapper);
 
             this._salidaPrestamoViewModel = _salidaPrestamoViewModel;
+
+        }
+        public CatalogItemViewModel(SalidaBajaViewModel _salidaBajaViewModel)
+        {
+            IDataMapper dataMapper = new ItemDataMapper();
+            this._catalogItemModel = new CatalogItemModel(dataMapper);
+
+            this._salidaBajaViewModel = _salidaBajaViewModel;
 
         }
 
@@ -276,6 +285,17 @@ namespace InventoryApp.ViewModel.Salidas
                 _salidaPrestamoViewModel = value;
             }
         }
+        public SalidaBajaViewModel SalidaBajaViewModel
+        {
+            get
+            {
+                return _salidaBajaViewModel;
+            }
+            set
+            {
+                _salidaBajaViewModel = value;
+            }
+        }
 
         public ICommand AddItemCommand
         {
@@ -362,6 +382,10 @@ namespace InventoryApp.ViewModel.Salidas
             {
                 this.CatalogItemModel.loadItems(_salidaOfficeViewModel.MovimientoModel.AlmacenProcedencia, "Rafa estuvo aquí");
             }
+            else if (_salidaBajaViewModel != null)
+            {
+                this.CatalogItemModel.loadItems(_salidaBajaViewModel.MovimientoModel.AlmacenProcedencia, "Rafa estuvo aquí");
+            }
         }
 
         public bool CanAttempItems()
@@ -381,9 +405,11 @@ namespace InventoryApp.ViewModel.Salidas
 
             return _canInsertArticulo;
         }
+
         public void AttempItems()
         {
-            if (_salidaRentaViewModel != null)
+
+            if (_salidaRentaViewModel != null)//salida renta
             {
                 foreach (ItemModel item in this._catalogItemModel.ItemModel)
                 {
@@ -406,7 +432,7 @@ namespace InventoryApp.ViewModel.Salidas
                 }
                 this.SalidaRentaViewModel.MovimientoModel.CantidadItems = this.SalidaRentaViewModel.ItemModel.ItemModel.Count();
             }
-            else if (_salidaRevisionViewModel != null) 
+            else if (_salidaRevisionViewModel != null) //salida revision
             {
                 foreach (ItemModel item in this._catalogItemModel.ItemModel)
                 {
@@ -428,8 +454,8 @@ namespace InventoryApp.ViewModel.Salidas
                     }
                 }
                 this.SalidaRevisionViewModel.MovimientoModel.CantidadItems = this.SalidaRevisionViewModel.ItemModel.ItemModel.Count();
-            } 
-            else if(_salidaDemoViewModel != null)
+            }
+            else if (_salidaDemoViewModel != null) //salida Demo
             {
 			    foreach (ItemModel item in this._catalogItemModel.ItemModel)
                 {
@@ -454,7 +480,7 @@ namespace InventoryApp.ViewModel.Salidas
                 }
                 this.SalidaDemoViewModel.MovimientoModel.CantidadItems = this.SalidaDemoViewModel.ItemModel.ItemModel.Count();
 			}
-            else if (_salidaPrestamoViewModel != null)
+            else if (_salidaPrestamoViewModel != null) //salida prestamo
             {
                 foreach (ItemModel item in this._catalogItemModel.ItemModel)
                 {
@@ -477,7 +503,7 @@ namespace InventoryApp.ViewModel.Salidas
                 }
                 this.SalidaPrestamoViewModel.MovimientoModel.CantidadItems = this.SalidaPrestamoViewModel.ItemModel.ItemModel.Count();
             }
-            else if (_salidaVentaViewModel != null)
+            else if (_salidaVentaViewModel != null) //salida venta
             {
                 foreach (ItemModel item in this._catalogItemModel.ItemModel)
                 {
@@ -500,7 +526,7 @@ namespace InventoryApp.ViewModel.Salidas
                 }
                 this.SalidaVentaViewModel.MovimientoModel.CantidadItems = this.SalidaVentaViewModel.ItemModel.ItemModel.Count();
             }
-            else if (_salidaRMAViewModel != null)
+            else if (_salidaRMAViewModel != null) //salida RMA
             {
                 foreach (ItemModel item in this._catalogItemModel.ItemModel)
                 {
@@ -523,7 +549,7 @@ namespace InventoryApp.ViewModel.Salidas
                 }
                 this.SalidaRMAViewModel.MovimientoModel.CantidadItems = this.SalidaRMAViewModel.ItemModel.ItemModel.Count();
             }
-            else if (_salidaPruebasViewModel != null)
+            else if (_salidaPruebasViewModel != null) //salida pruebas
             {
                 foreach (ItemModel item in this._catalogItemModel.ItemModel)
                 {
@@ -546,7 +572,7 @@ namespace InventoryApp.ViewModel.Salidas
                 }
                 this._salidaPruebasViewModel.MovimientoModel.CantidadItems = this._salidaPruebasViewModel.ItemModel.ItemModel.Count();
             }
-            else if (_salidaConfiguracionViewModel != null)
+            else if (_salidaConfiguracionViewModel != null) //salida configuracion
             {
                 foreach (ItemModel item in this._catalogItemModel.ItemModel)
                 {
@@ -569,7 +595,7 @@ namespace InventoryApp.ViewModel.Salidas
                 }
                 this.SalidaConfiguracionViewModel.MovimientoModel.CantidadItems = this.SalidaConfiguracionViewModel.ItemModel.ItemModel.Count();
             }
-            else if (_salidaObsequioViewModel != null)
+            else if (_salidaObsequioViewModel != null) //salida obsequio
             {
                 foreach (ItemModel item in this._catalogItemModel.ItemModel)
                 {
@@ -592,7 +618,7 @@ namespace InventoryApp.ViewModel.Salidas
                 }
                 this.SalidaObsequioViewModel.MovimientoModel.CantidadItems = this.SalidaObsequioViewModel.ItemModel.ItemModel.Count();
             }
-            else if (_salidaCorrectivoViewModel != null)
+            else if (_salidaCorrectivoViewModel != null) //salida correctivo
             {
                 foreach (ItemModel item in this._catalogItemModel.ItemModel)
                 {
@@ -615,7 +641,7 @@ namespace InventoryApp.ViewModel.Salidas
                 }
                 this.SalidaCorrectivoViewModel.MovimientoModel.CantidadItems = this.SalidaCorrectivoViewModel.ItemModel.ItemModel.Count();
             }
-            else if (_salidaOfficeViewModel != null)
+            else if (_salidaOfficeViewModel != null)//salida office
             {
                 foreach (ItemModel item in this._catalogItemModel.ItemModel)
                 {
@@ -638,7 +664,31 @@ namespace InventoryApp.ViewModel.Salidas
                 }
                 this.SalidaOfficeViewModel.MovimientoModel.CantidadItems = this.SalidaOfficeViewModel.ItemModel.ItemModel.Count();
             }
+            else if (_salidaBajaViewModel != null)//salida baja
+            {
+                foreach (ItemModel item in this._catalogItemModel.ItemModel)
+                {
+                    if (item.IsChecked)
+                    {
+                        bool aux = true;
+
+                        for (int i = 0; i < this._salidaBajaViewModel.ItemModel.ItemModel.Count; i++)
+                        {
+                            if (this._salidaBajaViewModel.ItemModel.ItemModel[i].UnidItem == item.UnidItem)
+                                aux = false;
+                        }
+
+                        if (aux)
+                        {
+                            item.IsChecked = false;
+                            this._salidaBajaViewModel.ItemModel.ItemModel.Add(item);
+                        }
+                    }
+                }
+                this._salidaBajaViewModel.MovimientoModel.CantidadItems = this.SalidaBajaViewModel.ItemModel.ItemModel.Count();
+            }
         }
+
         #endregion
 
         public string PageName

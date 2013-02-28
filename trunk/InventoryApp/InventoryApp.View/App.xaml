@@ -86,6 +86,9 @@
              xmlns:catUnidadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogUnidad;assembly=InventoryApp.ViewModel"
              xmlns:unidadViews="clr-namespace:InventoryApp.View.CatalogUnidad"
              
+             xmlns:catUsuarioViewModel="clr-namespace:InventoryApp.ViewModel.CatalogUsuarios;assembly=InventoryApp.ViewModel"
+             xmlns:usuarioViews="clr-namespace:InventoryApp.View.CatalogUsuarios"
+             
              xmlns:catClienteViewModel="clr-namespace:InventoryApp.ViewModel.CatalogCliente;assembly=InventoryApp.ViewModel"
              xmlns:clienteViews="clr-namespace:InventoryApp.View.CatalogCliente"
              
@@ -124,17 +127,17 @@
              
              xmlns:maxMinViewModel="clr-namespace:InventoryApp.ViewModel.MaxMin;assembly=InventoryApp.ViewModel"
              xmlns:maxMinView="clr-namespace:InventoryApp.View.MaxMin"
+             
              xmlns:catalogProgramadoViewModel="clr-namespace:InventoryApp.ViewModel.CatalogProgramado;assembly=InventoryApp.ViewModel"
              xmlns:catalogProgramadoView="clr-namespace:InventoryApp.View.CatalogProgramado"
+             
              xmlns:jobViewModel="clr-namespace:InventoryApp.ViewModel.Job;assembly=InventoryApp.ViewModel"
              xmlns:jobView="clr-namespace:InventoryApp.View.Job"
-                  
-                        
-             
+                              
              xmlns:catRolSystemViewModel="clr-namespace:InventoryApp.ViewModel.CatalogRolSystem;assembly=InventoryApp.ViewModel"
              xmlns:rolSystemViews="clr-namespace:InventoryApp.View.CatalogRolSystem"    
              
-             StartupUri="Login/LoginView.xaml"
+             StartupUri="MainWindow.xaml"
              >
     <!--StartupUri="prueba.xaml"-->
     <!--StartupUri="Login/LoginView.xaml"-->
@@ -178,6 +181,7 @@
         <SalidasViewModel:SalidaPruebasViewModel x:Key="salidaPruebasViewModel" />
         <SalidasViewModel:SalidaRMAViewModel x:Key="salidaRMAViewModel" />
         <SalidasViewModel:SalidaVentaViewModel x:Key="salidaVentaViewModel" />
+        <SalidasViewModel:SalidaBajaViewModel x:Key="salidaBajaViewModel" />
         <TraspasosViewModel:TraspasoStockViewModel x:Key="traspasoStockViewModel" />
 
         <GridMovimientosViewModel:MovimientosGridViewModel x:Key="movimientosGridViewModel" />
@@ -197,7 +201,8 @@
         <GridMovimientosViewModel:MovimientoGridSalidaRevisionViewModel x:Key="movimientoGridSalidaRevisionViewModel" />
         <GridMovimientosViewModel:MovimientoGridSalidaRMAViewModel x:Key="movimientoGridSalidaRMAViewModel" />        
         <GridMovimientosViewModel:MovimientoGridSalidaVentaViewModel x:Key="movimientoGridSalidaVentaViewModel" />
-
+        <GridMovimientosViewModel:MovimientoGridSalidaBajaViewModel x:Key="movimientoGridSalidaBajaViewModel" />
+        
         <GridMovimientosViewModel:MovimientoGridSalidasViewModel x:Key="movimientosSalidasGridViewModel" />
 
         <GridMovimientosViewModel:MovimientoGridTraspasoStockViewModel x:Key="movimientoGridTraspasoStockViewModel" />
@@ -321,6 +326,10 @@
         <ObjectDataProvider x:Key="catalogUnidadViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
+        <!-- usuario -->
+        <ObjectDataProvider x:Key="catalogUsuarioViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
         <!-- cliente -->
         <ObjectDataProvider x:Key="catalogClienteViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
@@ -353,43 +362,47 @@
         <ObjectDataProvider x:Key="SalidaDEmoViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
-        <!-- Entrada por Desinstalación -->
+        <!-- Salida Prestamo -->
         <ObjectDataProvider x:Key="SalidaPrestamoViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
-        <!-- Entrada por Desinstalación -->
+        <!-- Salida venta -->
         <ObjectDataProvider x:Key="SalidaVentaViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
-        <!-- Entrada por Desinstalación -->
+        <!-- Salida RMA -->
         <ObjectDataProvider x:Key="SalidaRMAViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
-        <!-- Entrada por Desinstalación -->
+        <!-- Salida revision -->
         <ObjectDataProvider x:Key="SalidaRevisionViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
-        <!-- Entrada por Desinstalación -->
+        <!-- Salida pruebas -->
         <ObjectDataProvider x:Key="SalidaPruebasViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
-        <!-- Entrada por Desinstalación -->
+        <!-- Salida configuracion -->
         <ObjectDataProvider x:Key="SalidaConfiguracionViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
-        <!-- Entrada por Desinstalación -->
+        <!-- Salida obsequio -->
         <ObjectDataProvider x:Key="SalidaObsequioViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
-        <!-- Entrada por Desinstalación -->
+        <!-- Salida correctivo -->
         <ObjectDataProvider x:Key="SalidaCorrectivoViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
-        <!-- Entrada por Desinstalación -->
+        <!-- Salida office -->
         <ObjectDataProvider x:Key="SalidaOfficeViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
-        <!-- Entrada por Desinstalación -->
+        <!-- Salida baja -->
+        <ObjectDataProvider x:Key="SalidaBajaViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
+        <!-- transpasos  -->
         <ObjectDataProvider x:Key="TraspasoStockVieModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
@@ -526,6 +539,9 @@
         <DataTemplate DataType="{x:Type catUnidadViewModel:CatalogUnidadViewModel}">
             <unidadViews:UnidadUserControl />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type catUsuarioViewModel:CatalogUsuarioViewModel}">
+            <usuarioViews:UsuarioUserControl />
+        </DataTemplate>
         <DataTemplate DataType="{x:Type catClienteViewModel:CatalogClienteViewModel}">
             <clienteViews:ClienteUserControl />
         </DataTemplate>
@@ -611,6 +627,10 @@
 
         <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaVentaViewModel}">
             <GridMovimientosView:GridSalidaVenta/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridSalidaBajaViewModel}">
+            <GridMovimientosView:GridSalidaBaja/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type GridMovimientosViewModel:MovimientoGridTraspasoStockViewModel}">

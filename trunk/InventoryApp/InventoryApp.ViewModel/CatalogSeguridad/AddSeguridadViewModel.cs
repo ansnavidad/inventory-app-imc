@@ -8,6 +8,7 @@ using System.Windows.Input;
 using InventoryApp.Model;
 using System.Collections.ObjectModel;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.CatalogUsuarios;
 
 namespace InventoryApp.ViewModel.CatalogSeguridad
 {
@@ -43,6 +44,10 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
             MenuAgregar();
             RolActual.saveRol();
             this._catalogSeguridadViewModel.RolesCollection = this._catalogSeguridadViewModel.GetRols();
+            
+            //valida si se iso una intancia de desde usuario
+            if (_addUsuarioViewModel!=null)
+                AddRolUser();
         }
         private bool CanAttemptGuardarRol()
         {
@@ -176,6 +181,9 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         private ObservableCollection<Usuario> _UsuariosCollection;
         public const string UsuariosCollectionPropertyName = "UsuariosCollection";
 
+        //
+        private ModifyUsuarioViewModel _addUsuarioViewModel;
+
         #endregion
 
         #region Constructors 
@@ -186,6 +194,18 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
             this.UsuariosCollection = GetUsers();
             this._MenuViewModel = new MenuViewModel(this._catalogSeguridadViewModel.IsSuperAdmin);
             this._RolActual = new Rol();
+        }
+
+        //sobrecarga para agregar desde  administracion de usuario un nuevo rol
+        public AddSeguridadViewModel(ModifyUsuarioViewModel modifyUsuarioViewModel)
+        {
+            this._catalogSeguridadViewModel = new CatalogSeguridadViewModel(true);
+            this.UsuariosCollection = GetUsers();
+            this._MenuViewModel = new MenuViewModel(this._catalogSeguridadViewModel.IsSuperAdmin);
+            this._RolActual = new Rol();
+            //
+            this._addUsuarioViewModel = new ModifyUsuarioViewModel();
+            this._addUsuarioViewModel = modifyUsuarioViewModel;
         }
 
         #endregion
@@ -209,6 +229,68 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
             return res;
         }   
 
-        #endregion        
+        #endregion
+
+        #region metodos agregar usuario
+
+        public void AddRolUser()
+        {
+            int contador = 0;
+            foreach (var rolesActual in this._catalogSeguridadViewModel.RolesCollection)
+            {
+                foreach (var user in rolesActual.UsuariosCollection)
+                {
+                    if (user.UnidUser == this._addUsuarioViewModel.ModiUsuarioModel.UnidUsuario)
+                    {
+                        if (contador==0)
+                        {
+                            AddRol(user.UnidUser);
+                            contador += 1;
+                        }
+                        break;
+                    }
+                    
+                }
+
+            }
+            
+        }
+        public void AddRol(long unidUser)
+        {
+            AppRolDataMapper dataMapper = new AppRolDataMapper();
+
+            object element = dataMapper.getElementRoles(unidUser);
+
+            FixupCollection<DeleteRol> ic = new FixupCollection<DeleteRol>();
+          
+            if (element != null)
+            {
+                if (((List<ROL>)element).Count > 0)
+                {
+                    foreach (ROL item in (List<ROL>)element)
+                    {
+                        if (item.UNID_ROL != 1)
+                        {
+                          DeleteRol aux = new DeleteRol(item);
+                          ic.Add(aux);
+                        }
+
+                    }
+                }
+            }
+
+            if (ic.Count!=0)
+            {
+                foreach (var item in ic.Reverse())
+                {
+                    this._addUsuarioViewModel.ModiUsuarioModel.Rol.Add(item);
+                    break;
+                    
+                }
+                
+            }
+
+        }
+        #endregion
     }
 }

@@ -1198,6 +1198,66 @@ namespace InventoryApp.DAL
             }
         }
 
+        public object getSalidaBajaElements()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.MOVIMENTOes
+                           .Include("ALMACEN")
+                           .Include("ALMACEN1")
+                           .Include("CLIENTE")
+                           .Include("CLIENTE1")
+                           .Include("CLIENTE2")
+                           .Include("FACTURA_VENTA")
+                           .Include("PROVEEDOR")
+                           .Include("PROVEEDOR1")
+                           .Include("PROVEEDOR2")
+                           .Include("SERVICIO")
+                           .Include("SOLICITANTE")
+                           .Include("TIPO_MOVIMIENTO")
+                           .Include("TRANSPORTE")
+                           .Include("MOVIMIENTO_DETALLE")
+                           .Include("TECNICO")
+                           .Include("INFRAESTRUCTURA")
+                           .Include("TECNICO1")
+                           where p.UNID_TIPO_MOVIMIENTO == 18
+                           orderby p.UNID_MOVIMIENTO descending
+                           select p).Take(50).ToList();
+
+                //List<MOVIMENTO> final = new List<MOVIMENTO>();
+
+                //foreach (MOVIMENTO trans in ((List<MOVIMENTO>)res))
+                //{
+                //    if (trans.UNID_TIPO_MOVIMIENTO == 15)
+                //    {
+
+                //        //Para conservar las prop. de navegación
+                //        trans.ALMACEN = trans.ALMACEN;
+                //        trans.ALMACEN1 = trans.ALMACEN1;
+                //        trans.CLIENTE = trans.CLIENTE;
+                //        trans.CLIENTE1 = trans.CLIENTE1;
+                //        trans.CLIENTE2 = trans.CLIENTE2;
+                //        trans.FACTURA_VENTA = trans.FACTURA_VENTA;
+                //        trans.PROVEEDOR = trans.PROVEEDOR;
+                //        trans.PROVEEDOR1 = trans.PROVEEDOR1;
+                //        trans.PROVEEDOR2 = trans.PROVEEDOR2;
+                //        trans.SERVICIO = trans.SERVICIO;
+                //        trans.SOLICITANTE = trans.SOLICITANTE;
+                //        trans.TIPO_MOVIMIENTO = trans.TIPO_MOVIMIENTO;
+                //        trans.TRANSPORTE = trans.TRANSPORTE;
+                //        trans.MOVIMIENTO_DETALLE = trans.MOVIMIENTO_DETALLE;
+                //        trans.TECNICO = trans.TECNICO;
+                //        trans.INFRAESTRUCTURA = trans.INFRAESTRUCTURA;
+                //        trans.TECNICO1 = trans.TECNICO1;
+                //        final.Add(trans);
+                //    }
+                //}
+
+                //return (object)final;
+                return res;
+            }
+        }
+
         public object getTraspasos()
         {
             using (var Entity = new TAE2Entities())
@@ -1408,6 +1468,27 @@ namespace InventoryApp.DAL
                     movimiento.IS_MODIFIED = true;
                     movimiento.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     movimiento.IS_ACTIVE = true;
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.MOVIMENTOes.AddObject(movimiento);
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void insertElementBaja(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MOVIMENTO movimiento = (MOVIMENTO)element;
+                    //Sync
+                    movimiento.IS_MODIFIED = true;
+                    movimiento.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    movimiento.IS_ACTIVE = false;
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();

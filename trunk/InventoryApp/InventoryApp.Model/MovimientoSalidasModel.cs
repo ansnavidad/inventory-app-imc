@@ -971,6 +971,46 @@ namespace InventoryApp.Model
             }
         }
 
+        public void saveArticuloBaja()
+        {
+            if (_dataMapper != null)
+            {
+                _dataMapper.insertElementBaja(new MOVIMENTO()
+                {
+
+                    UNID_MOVIMIENTO = this._unidMovimiento,
+                    FECHA_MOVIMIENTO = this._fechaMovimiento,
+                    UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,
+                    UNID_ALMACEN_DESTINO = null,
+                    UNID_PROVEEDOR_DESTINO = null,
+                    UNID_CLIENTE_DESTINO = null,
+                    UNID_ALMACEN_PROCEDENCIA = this._unidAlmacenProcedencia,
+                    UNID_CLIENTE_PROCEDENCIA = null,
+                    UNID_PROVEEDOR_PROCEDENCIA = null,
+                    UNID_SERVICIO = null,
+                    TT = null,
+                    CONTACTO = null,
+                    UNID_TRANSPORTE = null,
+                    IS_ACTIVE = this._isActive,
+                    DIRECCION_ENVIO = null,
+                    SITIO_ENLACE = null,
+                    NOMBRE_SITIO = null,
+                    RECIBE = null,
+                    GUIA = null,
+                    UNID_CLIENTE = null,
+                    UNID_PROVEEDOR = null,
+                    UNID_FACTURA_VENTA = this._unidFacturaVenta,
+                    UNID_SOLICITANTE = this._unidSolicitante,
+                    PEDIMIENTO_EXPO = null,
+                    PEDIMIENTO_IMPO = null,
+                    UNID_TECNICO = this._unidTecnico,
+                    UNID_INFRAESTRUCTURA = null,
+                    UNID_TECNICO_TRAS = null
+                });
+                
+            }
+        }
+
         #region Constructors
         public MovimientoSalidasModel(IDataMapper dataMapper)
         {

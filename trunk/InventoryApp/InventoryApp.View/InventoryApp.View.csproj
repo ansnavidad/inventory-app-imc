@@ -189,9 +189,7 @@
     <Compile Include="CatalogSeguridad\ModifySelectMenuView.xaml.cs">
       <DependentUpon>ModifySelectMenuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CatalogUsuarios\UsuariosUserControl.xaml.cs">
-      <DependentUpon>UsuariosUserControl.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="CatalogUsuarios\GusPasswordBox.cs" />
     <Compile Include="CatalogUsuarios\ModifyUsuarioView.xaml.cs">
       <DependentUpon>ModifyUsuarioView.xaml</DependentUpon>
     </Compile>
@@ -200,6 +198,12 @@
     </Compile>
     <Compile Include="CatalogSeguridad\SelectMenuView.xaml.cs">
       <DependentUpon>SelectMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogUsuarios\UsuarioUserControl.xaml.cs">
+      <DependentUpon>UsuarioUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaBaja.xaml.cs">
+      <DependentUpon>GridSalidaBaja.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login\BindablePasswordBox.cs" />
     <Compile Include="Login\LoginView.xaml.cs">
@@ -601,6 +605,12 @@
     <Compile Include="Salidas\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Salidas\SalidaBaja.xaml.cs">
+      <DependentUpon>SalidaBaja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaBajaSoloLectura.xaml.cs">
+      <DependentUpon>SalidaBajaSoloLectura.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Salidas\SalidaConfiguracion.xaml.cs">
       <DependentUpon>SalidaConfiguracion.xaml</DependentUpon>
     </Compile>
@@ -811,10 +821,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CatalogUsuarios\UsuariosUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CatalogUsuarios\ModifyUsuarioView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -824,6 +830,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogSeguridad\SelectMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogUsuarios\UsuarioUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaBaja.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1372,6 +1386,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Salidas\SalidaBaja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaBajaSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Salidas\SalidaConfiguracion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1457,6 +1479,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Salidas\SalidaVentaSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Dictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1547,6 +1573,7 @@
     <None Include="Resources\EntradaPrestamo.xlsx" />
     <None Include="Resources\EntradaValidacion.xlsx" />
     <None Include="Resources\Factura.xlsx" />
+    <None Include="Resources\SalidaBaja.xlsx" />
     <None Include="Resources\SalidaConfiguracion.xlsx" />
     <None Include="Resources\SalidaCorrectivo.xlsx" />
     <None Include="Resources\SalidaDemo.xlsx" />

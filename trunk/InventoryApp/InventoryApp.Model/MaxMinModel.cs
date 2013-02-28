@@ -290,9 +290,7 @@ namespace InventoryApp.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        
-
-        
+               
     }
 
 

@@ -1,283 +1,225 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Windows.Input;
-//using InventoryApp.Model;
-//using InventoryApp.Model.Seguridad;
-//using System.Collections.ObjectModel;
-//using InventoryApp.DAL;
-//using InventoryApp.DAL.POCOS;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows.Input;
+using InventoryApp.Model;
+using InventoryApp.Model.Seguridad;
+using System.Collections.ObjectModel;
+using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
 
-//namespace InventoryApp.ViewModel.CatalogUsuarios
-//{
-//    public class ModifyUsuarioViewModel : ViewModelBase
-//    {
+namespace InventoryApp.ViewModel.CatalogUsuarios
+{
+    public class ModifyUsuarioViewModel : ViewModelBase
+    {
+        #region Fields
+        private UsuarioModel _modiUsuarioModel;
+        private RelayCommand _modifyUsuarioCommand;
+        private RelayCommand _deleteRolCommand;
+        private CatalogUsuarioViewModel _catalogUsuarioViewModel;
+        bool _verificarCambioPass = false;
+        #endregion
 
-//        #region Relay Commands
+        #region Props
 
-//        public ICommand GuardarRol
-//        {
-//            get
-//            {
-//                if (_GuardarRol == null)
-//                {
-//                    _GuardarRol = new RelayCommand(p => this.AttemptGuardarRol(), p => this.CanAttemptGuardarRol());
-//                }
-//                return _GuardarRol;
-//            }
-//        }
-//        private RelayCommand _GuardarRol;
-//        private void AttemptGuardarRol()
-//        {
-//            RolActual.UsuariosCollection = new ObservableCollection<Rol.User>();
+        public UsuarioModel ModiUsuarioModel
+        {
+            get
+            {
+                return _modiUsuarioModel;
+            }
+            set
+            {
+                _modiUsuarioModel = value;
+            }
+        }
 
-//            foreach (Usuario u in UsuariosCollection) {
+        public ICommand ModifyUsuarioCommand
+        {
+            get
+            {
+                if (_modifyUsuarioCommand == null)
+                {
+                    _modifyUsuarioCommand = new RelayCommand(p => this.AttempModifyUsuario(), p => this.CanAttempModifyUsuario());
+                }
+                return _modifyUsuarioCommand;
+            }
+        }
 
-//                if (u.IsChecked)
-//                {
-//                    Rol.User aux = new Rol.User();
-//                    aux.UnidUser = u.UNID_USUARIO;
+        public ICommand DeleteRolCommand
+        {
+            get
+            {
+                if (_deleteRolCommand == null)
+                {
+                    _deleteRolCommand = new RelayCommand(p => this.AttemptDeleteRolCommand(), p => this.CanAttemptDeleteRolCommand());
+                }
+                return _deleteRolCommand;
+            }
+        }
 
-//                    RolActual.UsuariosCollection.Add(aux);
-//                }
-//            }
+        public FixupCollection<DeleteRol> DeleteRol
+        {
+            get { return _DeleteRol; }
+            set
+            {
+                if (_DeleteRol != value)
+                {
+                    _DeleteRol = value;
+                    OnPropertyChanged(DeleteRolPropertyName);
+                }
+            }
+        }
+        private FixupCollection<DeleteRol> _DeleteRol;
+        public const string DeleteRolPropertyName = "DeleteRol";
+        #endregion
 
-//            MenuAgregar();
-//            RolActual.modifyRol();
-//        }
-//        private bool CanAttemptGuardarRol()
-//        {
-//            if (!String.IsNullOrEmpty(RolActual.Name) && MenuSelected() && UsuarioSelected())
-//                return true;
-//            return false;            
-//        }
-//        public void MenuAgregar() {
+        #region Constructors
+        /// <summary>
+        /// Ejecuta la acción del command
+        /// </summary>
+        /// <param name="catalogItemStatusViewModel"></param>
+        public ModifyUsuarioViewModel(CatalogUsuarioViewModel catalogUsuarioViewModel, UsuarioModel selectedUsuarioModel)
+        {
+            this._modiUsuarioModel = new UsuarioModel(new AppUsuario());
+            this._catalogUsuarioViewModel = catalogUsuarioViewModel;
+            this._modiUsuarioModel.UnidUsuario = selectedUsuarioModel.UnidUsuario;
+            this._modiUsuarioModel.UserMail = selectedUsuarioModel.UserMail;
+            this._modiUsuarioModel.Password = selectedUsuarioModel.Password;
+            this._modiUsuarioModel.Rol = selectedUsuarioModel.Rol;
+            this._DeleteRol = new FixupCollection<DeleteRol>();
 
-//            MenuModel auxMenu = this.MenuViewModel.MenuModel[0];
-//            ColaMenuAgregar = new Queue<MenuModel>();
-//            RolActual.MenuCollection = new ObservableCollection<Rol.Menu>();
+        }
+        public ModifyUsuarioViewModel() { }
+        #endregion
 
-//            ColaMenuAgregar.Enqueue(auxMenu);
+        #region metodos
+        /// <summary>
+        /// Hace las validaciones necesarias para habilitar el command
+        /// Si esta función retorna false, el command es deshabilitado
+        /// </summary>
+        /// <returns></returns>
+        public bool CanAttempModifyUsuario()
+        {
+            bool _canAddUsuario = false;
 
-//            while (ColaMenuAgregar.Count > 0)
-//            {
-//                MenuModel nodo = ColaMenuAgregar.Dequeue();
-                
-//                if (nodo.IsCheck)
-//                {
-//                    AgregarPadre(nodo.Parent);
-//                    Rol.Menu auxMenuRol = new Rol.Menu();
-//                    auxMenuRol.MenuName = nodo.MenuName;
+            //valida si se ha echo un cambio en la contraseña
+            if (!String.IsNullOrEmpty(this._modiUsuarioModel.NewPassword) || !String.IsNullOrEmpty(this._modiUsuarioModel.ConfirmeNewpassword))
+            {
+                this._verificarCambioPass = true;
+                //valida que las contraseñas sean igual
+                if (!this._modiUsuarioModel.NewPassword.Equals(this._modiUsuarioModel.ConfirmeNewpassword))
+                {
+                    this._modiUsuarioModel.MensajeError = "Las contraseñas no coinciden";
+                    
+                }
+                else if (this._modiUsuarioModel.NewPassword.Length < 8)
+                {
+                    this._modiUsuarioModel.MensajeError="La longitud mínima de la contraseña es de 8 caracteres";
+                    return _canAddUsuario = false;
+                }
+                else
+                {
+                    this._modiUsuarioModel.MensajeError = "";
+                    return _canAddUsuario = true;
+                }
 
-//                    RolActual.MenuCollection.Add(auxMenuRol);
-//                }
-//                foreach (MenuModel mmm in nodo.ChildrenMenu)
-//                    ColaMenuAgregar.Enqueue(mmm);                
-//            }
-//        }
-//        public void AgregarPadre(MenuModel m) {
+            }
+            else
+            {
+                this._modiUsuarioModel.MensajeError = "";
+                this._verificarCambioPass = false;
+                return _canAddUsuario = true;
+            }
 
-//            if (m == null)
-//                return;
-//            else
-//            {
-//                AgregarPadre(m.Parent);
+            return _canAddUsuario;
+        }
 
-//                Rol.Menu auxMenuRol = new Rol.Menu();
-//                auxMenuRol.MenuName = m.MenuName;
-
-//                if (!RolActual.MenuCollection.Contains(auxMenuRol))
-//                    RolActual.MenuCollection.Add(auxMenuRol);
-//            }
-//        }
-//        public bool MenuSelected() {
-
-//            MenuModel auxMenu = this.MenuViewModel.MenuModel[0];
-//            ColaMenu = new Queue<MenuModel>();
-
-//            if (auxMenu.IsCheck)
-//                return true;
-//            else {
-//                foreach (MenuModel mm in auxMenu.ChildrenMenu)
-//                    ColaMenu.Enqueue(mm);
-//                while (ColaMenu.Count > 0) {
-
-//                    MenuModel nodo = ColaMenu.Dequeue();
-//                    if (nodo.IsCheck)
-//                        return true;
-//                    else {
-
-//                        foreach (MenuModel mmm in nodo.ChildrenMenu)
-//                            ColaMenu.Enqueue(mmm);
-//                    }
-//                }
-
-//                return false;
-//            }
-//        }
-//        public bool UsuarioSelected() {
+        public void AttempModifyUsuario()
+        {
+            //valida si hay un elemento a eliminar
+            if (this.DeleteRol.Count != 0)
+            {
+                foreach (var item in this.DeleteRol)
+                {
+                    if (item.UNID_ROL != 0)
+                    {
+                        //eliminacion logiga
+                        this._modiUsuarioModel.DeleteRelationUsuarioRol(item.UNID_ROL, this._modiUsuarioModel.UnidUsuario);
+                    }
+                }
+            }
             
-//            foreach (Usuario u in UsuariosCollection) {
+            //actualiza si hubo cambios
+            //valida si el passwor a sido cambiado
+            if (this._verificarCambioPass)
+                this._modiUsuarioModel.updateUserNewCotraseña();
+            else
+                this._modiUsuarioModel.updateUserSameCotraseña();
 
-//                if (u.IsChecked)
-//                    return true;
-//            }
-//            return false;
-//        }
 
-//        #endregion
+            //Puede ser que para pruebas unitarias catalogProyectoViewModel sea nulo ya que
+            //es una dependencia inyectada
+            if (this._catalogUsuarioViewModel != null)
+            {
+                this._catalogUsuarioViewModel.loadUser();
+            }
+        }
 
-//        #region Properties
+        public void AttemptDeleteRolCommand()
+        {
+            try
+            {
+                //agrega a un aux los elementos que van a ser eliminados
+                var query = (from o in this.ModiUsuarioModel.Rol
+                             where o.IsCheckedEliminar == true
+                             select o).ToList();
+                //valida que no venga vacia la el aux
+                if (query.Count != 0)
+                {
+                    foreach (var item in query)
+                    {
+                        this.DeleteRol.Add(item);
+                    }
+                }
 
-//        CatalogSeguridadViewModel _catalogSeguridadViewModel;
-//        Queue<MenuModel> ColaMenu;
-//        Queue<MenuModel> ColaMenuAgregar;
-//        Queue<MenuModel> ColaMenuInicial;
+                (from o in this.ModiUsuarioModel.Rol
+                 where o.IsCheckedEliminar == true
+                 select o).ToList().ForEach(o => this.ModiUsuarioModel.Rol.Remove(o));
+            }
+            catch (Exception)
+            {
+                ;
+            }
+        }
 
-//        public Rol RolActual
-//        {
-//            get { return _RolActual; }
-//            set
-//            {
-//                if (_RolActual != value)
-//                {
-//                    _RolActual = value;
-//                    OnPropertyChanged(RolActualPropertyName);
-//                }
-//            }
-//        }
-//        protected Rol _RolActual;
-//        public const string RolActualPropertyName = "RolActual";
+        public bool CanAttemptDeleteRolCommand()
+        {
+            bool canDeleteRol = false;
 
-//        public MenuViewModel MenuViewModel
-//        {
-//            get { return _MenuViewModel; }
-//            set
-//            {
-//                if (_MenuViewModel != value)
-//                {
-//                    _MenuViewModel = value;
-//                    OnPropertyChanged(MenuViewModelPropertyName);
-//                }
-//            }
-//        }
-//        private MenuViewModel _MenuViewModel;
-//        public const string MenuViewModelPropertyName = "MenuViewModel";
+            if (this.ModiUsuarioModel.Rol != null && this.ModiUsuarioModel.Rol.Count > 0)
+            {
+                int res = 0;
+                try
+                {
+                    res = (from o in this.ModiUsuarioModel.Rol
+                           where o.IsCheckedEliminar == true
+                           select o).ToList().Count;
+                }
+                catch (Exception)
+                {
+                    res = 0;
+                }
 
-//        public ObservableCollection<Usuario> UsuariosCollection
-//        {
-//            get { return _UsuariosCollection; }
-//            set
-//            {
-//                if (_UsuariosCollection != value)
-//                {
-//                    _UsuariosCollection = value;
-//                    OnPropertyChanged(UsuariosCollectionPropertyName);
-//                }
-//            }
-//        }
-//        private ObservableCollection<Usuario> _UsuariosCollection;
-//        public const string UsuariosCollectionPropertyName = "UsuariosCollection";
+                if (res > 0)
+                {
+                    canDeleteRol = true;
+                }
+            }
 
-//        #endregion
-
-//        #region Constructors 
-
-//        public ModifySeguridadViewModel(CatalogSeguridadViewModel catalogSeguridadViewModel)
-//        {
-//            this._catalogSeguridadViewModel = catalogSeguridadViewModel;
-//            this.RolActual = this._catalogSeguridadViewModel.SelectedRol;
-
-//            this.MenuViewModel = new MenuViewModel(this._catalogSeguridadViewModel.IsSuperAdmin);
-//            this.CargaMenuInicial();
-
-//            this.UsuariosCollection = new ObservableCollection<Usuario>();
-//            this.UsuariosCollection = this.GetUsers();
-//            this.CargaUsuariosInicial();
-//        }
-
-//        #endregion
-
-//        #region Methods
-
-//        public ObservableCollection<Usuario> GetUsers()
-//        {
-//            AppUsuario dm = new AppUsuario();
-//            ObservableCollection<Usuario> res = new ObservableCollection<Usuario>();
-
-//            List<USUARIO> lu = (List<USUARIO>)dm.getElementsRolesFiltrado();
-
-//            foreach (USUARIO u in lu) {
-
-//                Usuario aux = new Usuario(u);
-
-//                res.Add(aux);
-//            }
-
-//            return res;
-//        }
-
-//        public void CargaMenuInicial() {
-
-//            foreach (Rol.Menu m in this.RolActual.MenuCollection) {
-
-//                BuscaNombre(m.MenuName);        
-//            }
-//        }
-
-//        public void BuscaNombre(string s) {
-
-//            MenuModel auxMenu = this.MenuViewModel.MenuModel[0];
-//            ColaMenuInicial = new Queue<MenuModel>();
-
-//            if (auxMenu.MenuName.Equals(s))
-//            {
-//                auxMenu.IsCheck = true;
-//                foreach (MenuModel Mmodel in auxMenu.ChildrenMenu) {
-
-//                    Mmodel.IsCheck = false;
-//                }
-//                return;
-//            }
-//            else
-//            {
-//                foreach (MenuModel mm in auxMenu.ChildrenMenu)
-//                    ColaMenuInicial.Enqueue(mm);
-//                while (ColaMenuInicial.Count > 0)
-//                {
-//                    MenuModel nodo = ColaMenuInicial.Dequeue();
-//                    if (nodo.MenuName.Equals(s))
-//                    {
-//                        nodo.IsCheck = true;
-//                        foreach (MenuModel Mmodel in nodo.ChildrenMenu)
-//                        {
-
-//                            Mmodel.IsCheck = false;
-//                        }
-//                        return;
-//                    }
-//                    else
-//                    {
-//                        foreach (MenuModel mmm in nodo.ChildrenMenu)
-//                            ColaMenuInicial.Enqueue(mmm);
-//                    }
-//                }
-//            }
-//        }
-
-//        public void CargaUsuariosInicial() {
-
-//            foreach (Rol.User u in this.RolActual.UsuariosCollection) {
-
-//                foreach (Usuario U in this.UsuariosCollection) {
-
-//                    if (U.UNID_USUARIO == u.UnidUser)
-//                        U.IsChecked = true;
-//                }
-//            }
-//        }
-
-//        #endregion        
-//    }
-//}
+            return canDeleteRol;
+        }
+        #endregion
+    }
+}

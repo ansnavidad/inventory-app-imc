@@ -202,6 +202,7 @@
     <Compile Include="MaxMin\MaxMinViewModel.cs" />
     <Compile Include="MaxMin\ModifyMaxMinViewModel.cs" />
     <Compile Include="MenuViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridSalidaBajaViewModel.cs" />
     <Compile Include="Recibo\AddFacturaViewModel.cs" />
     <Compile Include="Recibo\AddFacturaArticuloViewModel.cs" />
     <Compile Include="Recibo\AddMovimientoDetalleViewModel.cs" />
@@ -237,6 +238,7 @@
     <Compile Include="Salidas\ReadOnlySalidaRevisionViewModel.cs" />
     <Compile Include="Salidas\ReadOnlySalidaRMAViewModel.cs" />
     <Compile Include="Salidas\ReadOnlySalidaVentaViewModel.cs" />
+    <Compile Include="Salidas\SalidaBajaViewModel.cs" />
     <Compile Include="Salidas\SalidaConfiguracionViewModel.cs" />
     <Compile Include="Salidas\SalidaCorrectivoViewModel.cs" />
     <Compile Include="Salidas\SalidaDemoViewModel.cs" />

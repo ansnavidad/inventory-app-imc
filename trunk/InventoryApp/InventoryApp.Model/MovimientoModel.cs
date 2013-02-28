@@ -995,6 +995,7 @@ namespace InventoryApp.Model
         }
 
         #endregion 
+
         #region Constructors
         public MovimientoModel()
         {

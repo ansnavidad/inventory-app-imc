@@ -61,23 +61,23 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new SERVICIO() { IS_ACTIVE = true,  SERVICIO_NAME = this._servicioName });
+                _dataMapper.insertElement(new SERVICIO() { IS_ACTIVE = true,  SERVICIO_NAME = this._servicioName }, this.ActualUser);
             }
         }
 
         public void updateServicio()
         {
-            this._dataMapper.udpateElement(new SERVICIO() {   UNID_SERVICIO=this._unidServicio, SERVICIO_NAME =this._servicioName });
+            this._dataMapper.udpateElement(new SERVICIO() { UNID_SERVICIO = this._unidServicio, SERVICIO_NAME = this._servicioName }, this.ActualUser);
         }
 
         #region Constructors
-        public ServicioModel(IDataMapper dataMapper)
+        public ServicioModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as ServicioDataMapper) != null)
             {
                 this._dataMapper = dataMapper as ServicioDataMapper;
             }
-            
+            this.ActualUser = u;
         }
         #endregion
         public event PropertyChangedEventHandler PropertyChanged;

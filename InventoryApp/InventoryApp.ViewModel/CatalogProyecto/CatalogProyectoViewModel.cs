@@ -91,7 +91,7 @@ namespace InventoryApp.ViewModel.CatalogProyecto
         /// <returns></returns>
         public ModifyProyectoViewModel CreateModifyProyectoViewModel()
         {
-            ProyectoModel proyectoModel = new ProyectoModel(new ProyectoDataMapper());
+            ProyectoModel proyectoModel = new ProyectoModel(new ProyectoDataMapper(), this.ActualUser);
             if (this._catalogProyectoModel != null && this._catalogProyectoModel.SelectedProyecto != null)
             {
                 proyectoModel.UnidProyecto = this._catalogProyectoModel.SelectedProyecto.UNID_PROYECTO;
@@ -122,7 +122,7 @@ namespace InventoryApp.ViewModel.CatalogProyecto
 
         public void AttempDeleteProyecto()
         {
-            this._catalogProyectoModel.deleteProyecto();
+            this._catalogProyectoModel.deleteProyecto(this.ActualUser);
 
             if (this._catalogProyectoModel != null)
             {

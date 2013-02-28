@@ -77,13 +77,13 @@ namespace InventoryApp.Model
             }
             this.Servicio = ic;
         }
-        public void deleteServicio()
+        public void deleteServicio(USUARIO u)
         {
             foreach (DeleteServicio item in this._servicio)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogServicio
         /// <param name="catalogItemStatusViewModel"></param>
         public AddServicioViewModel(CatalogServicioViewModel catalogServicioViewModel)
         {
-            this._addServicio = new ServicioModel(new ServicioDataMapper());
+            this._addServicio = new ServicioModel(new ServicioDataMapper(), catalogServicioViewModel.ActualUser);
             this._catalogServicioViewModel = catalogServicioViewModel;
         }
         #endregion

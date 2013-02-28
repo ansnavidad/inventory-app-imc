@@ -60,22 +60,22 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new PROYECTO() {IS_ACTIVE=true, PROYECTO_NAME = this._proyectoName });
+                _dataMapper.insertElement(new PROYECTO() {IS_ACTIVE=true, PROYECTO_NAME = this._proyectoName }, this.ActualUser);
             }
         }
         public void updateProyecto()
         {
-            this._dataMapper.udpateElement(new PROYECTO() { UNID_PROYECTO = this._unidProyecto, PROYECTO_NAME = this._proyectoName });
+            this._dataMapper.udpateElement(new PROYECTO() { UNID_PROYECTO = this._unidProyecto, PROYECTO_NAME = this._proyectoName }, this.ActualUser);
         }
 
         #region Constructors
-        public ProyectoModel(IDataMapper dataMapper)
+        public ProyectoModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as ProyectoDataMapper) != null)
             {
                 this._dataMapper = dataMapper as ProyectoDataMapper;
             }
-            
+            this.ActualUser = u;
         }
         #endregion
         public event PropertyChangedEventHandler PropertyChanged;

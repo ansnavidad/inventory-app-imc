@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogProyecto
         /// <param name="catalogItemStatusViewModel"></param>
         public AddProyectoViewModel(CatalogProyectoViewModel catalogProyectoViewModel)
         {
-            this._addproyecto = new ProyectoModel(new ProyectoDataMapper());
+            this._addproyecto = new ProyectoModel(new ProyectoDataMapper(), catalogProyectoViewModel.ActualUser);
             this._catalogProyectoViewModel = catalogProyectoViewModel;
         }
         #endregion

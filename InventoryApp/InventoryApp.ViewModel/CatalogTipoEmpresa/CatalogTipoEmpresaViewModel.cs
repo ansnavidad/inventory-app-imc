@@ -86,7 +86,7 @@ namespace InventoryApp.ViewModel.CatalogTipoEmpresa
 
         public ModifyTipoEmpresaViewModel CreateModifyTipoEmpresaViewModel()
         {
-            InsertTipoEmpresaModel tipoEmpresaModel = new InsertTipoEmpresaModel(new TipoEmpresaDataMapper());
+            InsertTipoEmpresaModel tipoEmpresaModel = new InsertTipoEmpresaModel(new TipoEmpresaDataMapper(), this.ActualUser);
             if (this._catalogTipoEmpresaModel != null && this._catalogTipoEmpresaModel.SelectedEmpresa != null)
             {
                 tipoEmpresaModel.TipoEmpresaName = this._catalogTipoEmpresaModel.SelectedEmpresa.TIPO_EMPRESA_NAME;
@@ -118,7 +118,7 @@ namespace InventoryApp.ViewModel.CatalogTipoEmpresa
 
         public void AttempDeleteTipoEmpresa()
         {
-            this._catalogTipoEmpresaModel.deleteTipoEmpresa();
+            this._catalogTipoEmpresaModel.deleteTipoEmpresa(this.ActualUser);
 
             if (this._catalogTipoEmpresaModel != null)
             {

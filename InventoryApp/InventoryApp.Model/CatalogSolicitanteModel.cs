@@ -80,13 +80,13 @@ namespace InventoryApp.Model
             }
             this.Solicitante = ic;
         }
-        public void deleteSolicitante()
+        public void deleteSolicitante(USUARIO u)
         {
             foreach (DeleteSolicitante item in this._solicitante)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

@@ -77,7 +77,7 @@ namespace InventoryApp.ViewModel.CatalogSolicitante
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifySolicitanteViewModel(CatalogSolicitanteViewModel catalogSolicitanteViewModel, SolicitanteModel selectedSolicitanteModel)
         {
-            this._modiSolicitante = new SolicitanteModel(new SolicitanteDataMapper());
+            this._modiSolicitante = new SolicitanteModel(new SolicitanteDataMapper(), catalogSolicitanteViewModel.ActualUser);
             this._catalogSolicitanteViewModel = catalogSolicitanteViewModel;
             this._modiSolicitante.UnidSolicitante = selectedSolicitanteModel.UnidSolicitante;
             this._modiSolicitante.SolicitanteName = selectedSolicitanteModel.SolicitanteName;

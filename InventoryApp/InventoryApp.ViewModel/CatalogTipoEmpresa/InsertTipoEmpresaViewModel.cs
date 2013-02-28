@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogTipoEmpresa
         /// <param name="catalogItemStatusViewModel"></param>
         public InsertTipoEmpresaViewModel(CatalogTipoEmpresaViewModel catalogtipoempresaviewmodel)
         {
-            this._tipoEmpresa = new InsertTipoEmpresaModel(new TipoEmpresaDataMapper());
+            this._tipoEmpresa = new InsertTipoEmpresaModel(new TipoEmpresaDataMapper(), catalogtipoempresaviewmodel.ActualUser);
             this._catalogTipoEmpresaViewModel = catalogtipoempresaviewmodel;
         }
         #endregion

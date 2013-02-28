@@ -95,7 +95,7 @@ namespace InventoryApp.ViewModel.CatalogTerminoEnvio
         /// <returns></returns>
         public ModifyTerminoEnvioViewModel CreateModifyTerminoEnvioViewModel()
         {
-            TerminoEnvioModel terminoEnvioModel = new TerminoEnvioModel(new TerminoEnvioDataMapper());
+            TerminoEnvioModel terminoEnvioModel = new TerminoEnvioModel(new TerminoEnvioDataMapper(), this.ActualUser);
             if (this._catalogTerminoEnvioModel != null && this._catalogTerminoEnvioModel.SelectedTerminoEnvio != null)
             {
                 terminoEnvioModel.Clave = this._catalogTerminoEnvioModel.SelectedTerminoEnvio.CLAVE;
@@ -129,7 +129,7 @@ namespace InventoryApp.ViewModel.CatalogTerminoEnvio
 
         public void AttempDeleteTerminoEnvio()
         {
-            this._catalogTerminoEnvioModel.deleteTerminoEnvio();
+            this._catalogTerminoEnvioModel.deleteTerminoEnvio(this.ActualUser);
 
             if (this._catalogTerminoEnvioModel != null)
             {

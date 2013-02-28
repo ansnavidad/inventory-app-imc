@@ -122,23 +122,23 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new TERMINO_ENVIO() {IS_ACTIVE=true, GENERA_LOTES = this._generaLotes, CLAVE = this._clave, SIGNIFICADO = this._significado, TERMINO = this._termino });
+                _dataMapper.insertElement(new TERMINO_ENVIO() {IS_ACTIVE=true, GENERA_LOTES = this._generaLotes, CLAVE = this._clave, SIGNIFICADO = this._significado, TERMINO = this._termino }, this.ActualUser);
             }
         }
 
         public void updateTerminoEnvio()
         {
-            this._dataMapper.udpateElement(new TERMINO_ENVIO() { UNID_TERMINO_ENVIO = this._unidTerminoEnvio, GENERA_LOTES = this._generaLotes, CLAVE = this._clave, SIGNIFICADO = this._significado, TERMINO = this._termino });
+            this._dataMapper.udpateElement(new TERMINO_ENVIO() { UNID_TERMINO_ENVIO = this._unidTerminoEnvio, GENERA_LOTES = this._generaLotes, CLAVE = this._clave, SIGNIFICADO = this._significado, TERMINO = this._termino }, this.ActualUser);
         }
 
         #region Constructors
-        public TerminoEnvioModel(IDataMapper dataMapper)
+        public TerminoEnvioModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as TerminoEnvioDataMapper) != null)
             {
                 this._dataMapper = dataMapper as TerminoEnvioDataMapper;
             }
-            
+            this.ActualUser = u;
         }
         #endregion
 

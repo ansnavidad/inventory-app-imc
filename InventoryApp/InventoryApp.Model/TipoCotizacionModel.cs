@@ -60,22 +60,22 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new TIPO_COTIZACION() {IS_ACTIVE=true, TIPO_COTIZACION_NAME = this._tipoCotizacionName });
+                _dataMapper.insertElement(new TIPO_COTIZACION() {IS_ACTIVE=true, TIPO_COTIZACION_NAME = this._tipoCotizacionName }, this.ActualUser);
             }
         }
 
         public void updateTipoCotizacion()
         {
-            this._dataMapper.udpateElement(new TIPO_COTIZACION() { UNID_TIPO_COTIZACION = this._unidTipoCotizacion, TIPO_COTIZACION_NAME = this._tipoCotizacionName });
+            this._dataMapper.udpateElement(new TIPO_COTIZACION() { UNID_TIPO_COTIZACION = this._unidTipoCotizacion, TIPO_COTIZACION_NAME = this._tipoCotizacionName }, this.ActualUser);
         }
         #region Constructors
-        public TipoCotizacionModel(IDataMapper dataMapper)
+        public TipoCotizacionModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as TipoCotizacionDataMapper) != null)
             {
                 this._dataMapper = dataMapper as TipoCotizacionDataMapper;
             }
-            
+            this.ActualUser = u;
         }
         #endregion
         public event PropertyChangedEventHandler PropertyChanged;

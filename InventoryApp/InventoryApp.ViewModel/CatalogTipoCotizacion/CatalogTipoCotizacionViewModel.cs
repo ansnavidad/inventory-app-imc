@@ -92,7 +92,7 @@ namespace InventoryApp.ViewModel.CatalogTipoCotizacion
         /// <returns></returns>
         public ModifyTipoCotizacionViewModel CreateModifyTipoCotizacionViewModel()
         {
-            TipoCotizacionModel tipoCotizacionModel = new TipoCotizacionModel(new TipoCotizacionDataMapper());
+            TipoCotizacionModel tipoCotizacionModel = new TipoCotizacionModel(new TipoCotizacionDataMapper(), this.ActualUser);
             if (this._catalogTipoCotizacionModel != null && this._catalogTipoCotizacionModel.SelectedTipoCotizacion != null)
             {
                 tipoCotizacionModel.TipoCotizacionName = this._catalogTipoCotizacionModel.SelectedTipoCotizacion.TIPO_COTIZACION_NAME;
@@ -123,7 +123,7 @@ namespace InventoryApp.ViewModel.CatalogTipoCotizacion
 
         public void AttempDeleteTipoCotizacion()
         {
-            this._catalogTipoCotizacionModel.deleteTipoCotizacion();
+            this._catalogTipoCotizacionModel.deleteTipoCotizacion(this.ActualUser);
 
             if (this._catalogTipoCotizacionModel != null)
             {

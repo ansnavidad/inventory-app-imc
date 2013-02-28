@@ -49,7 +49,7 @@ namespace InventoryApp.ViewModel.CatalogTipoCotizacion
         /// <param name="catalogItemStatusViewModel"></param>
         public AddTipoCotizacionViewModel(CatalogTipoCotizacionViewModel catalogTipoCotizacionViewModel)
         {
-            this._addTipoCotizacion = new TipoCotizacionModel(new TipoCotizacionDataMapper());
+            this._addTipoCotizacion = new TipoCotizacionModel(new TipoCotizacionDataMapper(), catalogTipoCotizacionViewModel.ActualUser);
             this._catalogTipoCotizacionViewModel = catalogTipoCotizacionViewModel;
         }
         #endregion

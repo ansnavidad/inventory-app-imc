@@ -51,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogTipoEmpresa
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyTipoEmpresaViewModel(CatalogTipoEmpresaViewModel catalogTipoEmpresaViewModel, InsertTipoEmpresaModel selectedTipoEmpresaModel)
         {
-            this._tipoEmpresa = new InsertTipoEmpresaModel(new TipoEmpresaDataMapper());
+            this._tipoEmpresa = new InsertTipoEmpresaModel(new TipoEmpresaDataMapper(), catalogTipoEmpresaViewModel.ActualUser);
             this._catalogTipoEmpresaViewModel = catalogTipoEmpresaViewModel;
             this._tipoEmpresa.UnidTipoEmpresa = selectedTipoEmpresaModel.UnidTipoEmpresa;
             this._tipoEmpresa.TipoEmpresaName = selectedTipoEmpresaModel.TipoEmpresaName;

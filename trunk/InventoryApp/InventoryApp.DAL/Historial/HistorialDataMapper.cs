@@ -42,6 +42,58 @@ namespace InventoryApp.DAL.Historial
                         return res;
                     }
 
+                case "ARTICULO":
+
+                    using (var Entity = new TAE2Entities())
+                    {
+                        var res = (from p in Entity.MASTER_INVENTARIOS
+                                   .Include("USUARIO")
+                                   .Include("USUARIO1")
+                                   .Include("USUARIO2")
+                                   where p.IS_ACTIVE == true && p.UNID_ARTICULO == unid
+                                   select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
+                        return res;
+                    }
+
+                case "MODELO":
+
+                    using (var Entity = new TAE2Entities())
+                    {
+                        var res = (from p in Entity.MASTER_INVENTARIOS
+                                   .Include("USUARIO")
+                                   .Include("USUARIO1")
+                                   .Include("USUARIO2")
+                                   where p.IS_ACTIVE == true && p.UNID_MODELO == unid
+                                   select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
+                        return res;
+                    }
+
+                case "MARCA":
+
+                    using (var Entity = new TAE2Entities())
+                    {
+                        var res = (from p in Entity.MASTER_INVENTARIOS
+                                   .Include("USUARIO")
+                                   .Include("USUARIO1")
+                                   .Include("USUARIO2")
+                                   where p.IS_ACTIVE == true && p.UNID_MARCA == unid
+                                   select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
+                        return res;
+                    }
+
+                case "EQUIPO":
+
+                    using (var Entity = new TAE2Entities())
+                    {
+                        var res = (from p in Entity.MASTER_INVENTARIOS
+                                   .Include("USUARIO")
+                                   .Include("USUARIO1")
+                                   .Include("USUARIO2")
+                                   where p.IS_ACTIVE == true && p.UNID_EQUIPO == unid
+                                   select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
+                        return res;
+                    }
+
                 case "CIUDAD":
 
                     using (var Entity = new TAE2Entities())

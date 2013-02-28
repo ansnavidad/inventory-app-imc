@@ -53,19 +53,19 @@ namespace InventoryApp.ViewModel.CatalogMarca
         /// <param name="catalogItemStatusViewModel"></param>
         public AddMarcaViewModel(CatalogMarcaViewModel catalogMarcaViewModel)
         {
-            this._marca = new MarcaModel(new MarcaDataMapper());
+            this._marca = new MarcaModel(new MarcaDataMapper(), catalogMarcaViewModel.ActualUser);
             this._catalogMarcaViewModel = catalogMarcaViewModel;
         }
         public AddMarcaViewModel(CatalogMarcaViewModel catalogMarcaViewModel, AddArticuloViewModel artVM)
         {
             _artVM = artVM;
-            this._marca = new MarcaModel(new MarcaDataMapper());
+            this._marca = new MarcaModel(new MarcaDataMapper(), artVM.Articulo.ActualUser);
             this._catalogMarcaViewModel = catalogMarcaViewModel;
         }
         public AddMarcaViewModel(CatalogMarcaViewModel catalogMarcaViewModel, ModifyArticuloViewModel artVM)
         {
             _artMod = artVM;
-            this._marca = new MarcaModel(new MarcaDataMapper());
+            this._marca = new MarcaModel(new MarcaDataMapper(), artVM.Articulo.ActualUser);
             this._catalogMarcaViewModel = catalogMarcaViewModel;
         }
         #endregion

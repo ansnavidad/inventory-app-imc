@@ -72,13 +72,13 @@ namespace InventoryApp.Model
             this.Marcas = ic;
         }
 
-        public void deleteMarca()
+        public void deleteMarca(USUARIO u)
         {
             foreach (DeleteMarca item in this._marcas)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

@@ -218,19 +218,19 @@ namespace InventoryApp.ViewModel
                         page = new CatalogAlmacenViewModel(this.ActualUser);
                         break;
                     case "Artículos":
-                        page = new CatalogArticuloViewModel();
+                        page = new CatalogArticuloViewModel(this.ActualUser);
                         break;
                     case "Técnico":
                         page = new CatalogTecnicoViewModel();
                         break;
                     case "Marca":
-                        page = new CatalogMarcaViewModel();
+                        page = new CatalogMarcaViewModel(this.ActualUser);
                         break;
                     case "Banco":
                         page = new CatalogBancoViewModel(this.ActualUser);
                         break;
                     case "Categoría":
-                        page = new CatalogCategoriaViewModel();
+                        page = new CatalogCategoriaViewModel(this.ActualUser);
                         break;
                     case "Ciudad":
                         page = new CatalogCiudadViewModel(this.ActualUser);
@@ -245,7 +245,7 @@ namespace InventoryApp.ViewModel
                         page = new CatalogEmpresaViewModel(this.ActualUser);
                         break;
                     case "Equipo":
-                        page = new CatalogEquipoViewModel();
+                        page = new CatalogEquipoViewModel(this.ActualUser);
                         break;
                     case "Item Status":
                         page = new CatalogItemStatusViewModel(this.ActualUser);
@@ -254,7 +254,7 @@ namespace InventoryApp.ViewModel
                         page = new CatalogTransporteViewModel(this.ActualUser);
                         break;
                     case "Modelo":
-                        page = new CatalogModeloViewModel();
+                        page = new CatalogModeloViewModel(this.ActualUser);
                         break;
                     case "Moneda":
                         page = new CatalogMonedaViewModel(this.ActualUser);

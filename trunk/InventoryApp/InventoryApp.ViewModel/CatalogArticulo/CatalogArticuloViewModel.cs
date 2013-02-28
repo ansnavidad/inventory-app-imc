@@ -36,15 +36,30 @@ namespace InventoryApp.ViewModel.CatalogArticulo
             }
             catch (ArgumentException ae)
             {
-
                 ;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
 
-
+        public CatalogArticuloViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new ArticuloDataMapper();
+                this._catalogArticuloModel = new CatalogArticuloModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public CatalogArticuloModel CatalogArticuloModel
@@ -80,7 +95,7 @@ namespace InventoryApp.ViewModel.CatalogArticulo
 
         public ModifyArticuloViewModel CreateModifyArticuloViewModel()
         {
-            ArticuloModel articuloModel = new ArticuloModel(new ArticuloDataMapper());
+            ArticuloModel articuloModel = new ArticuloModel(new ArticuloDataMapper(), this.ActualUser);
             if (this._catalogArticuloModel != null && this._catalogArticuloModel.SelectedArticulo != null)
             {
                 articuloModel.ArticuloName = this._catalogArticuloModel.SelectedArticulo.ARTICULO1;
@@ -115,7 +130,7 @@ namespace InventoryApp.ViewModel.CatalogArticulo
         }
         public void AttempDeleteArticulo()
         {
-            this._catalogArticuloModel.deleteArticulos();
+            this._catalogArticuloModel.deleteArticulos(this.ActualUser);
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
             if (this._catalogArticuloModel != null)

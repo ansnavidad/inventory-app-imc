@@ -288,7 +288,7 @@ namespace InventoryApp.DAL
             return articulos;
         }
 
-        public void udpateElement(object element)
+        public void udpateElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -308,7 +308,7 @@ namespace InventoryApp.DAL
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
-                    entity.SaveChanges();
+                    UNID.Master(articulo, u, -1, "Modificación");
                 }
             }
         }
@@ -339,7 +339,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void insertElement(object element)
+        public void insertElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -363,6 +363,7 @@ namespace InventoryApp.DAL
                         //
                         entity.ARTICULOes.AddObject(art);
                         entity.SaveChanges();
+                        UNID.Master(art, u, -1, "Inserción");
                     }
                 }
             }
@@ -404,7 +405,7 @@ namespace InventoryApp.DAL
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
-                    entity.SaveChanges();
+                    UNID.Master(articulo, u, -1, "Emininación");
                 }
             }
         }
@@ -520,6 +521,17 @@ namespace InventoryApp.DAL
                     }
                 }
             }
+        }
+
+
+        public void udpateElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void insertElement(object element)
+        {
+            throw new NotImplementedException();
         }
     }
 }

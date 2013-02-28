@@ -5,13 +5,14 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 
 namespace InventoryApp.ViewModel.CatalogModelo
 {
     public class ModifyModeloViewModel
     {
-         #region Fields
+        #region Fields
         private ModeloModel _modelo;
         private RelayCommand _modifyItemCommand;
         private CatalogModeloViewModel _catalogModeloViewModel;
@@ -51,7 +52,7 @@ namespace InventoryApp.ViewModel.CatalogModelo
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyModeloViewModel(CatalogModeloViewModel catalogModeloViewModel, ModeloModel selectedModeloModel)
         {
-            this._modelo = new ModeloModel(new ModeloDataMapper());
+            this._modelo = new ModeloModel(new ModeloDataMapper(), catalogModeloViewModel.ActualUser);
             this._catalogModeloViewModel = catalogModeloViewModel;
             this._modelo.UnidModelo = selectedModeloModel.UnidModelo;
             this._modelo.ModeloName = selectedModeloModel.ModeloName;
@@ -83,6 +84,12 @@ namespace InventoryApp.ViewModel.CatalogModelo
             {
                 this._catalogModeloViewModel.loadItems();
             }
+        }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.Modelo);
+            return historialViewModel;
         }
         #endregion
     }

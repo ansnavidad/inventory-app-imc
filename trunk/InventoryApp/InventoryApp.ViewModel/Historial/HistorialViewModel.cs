@@ -48,6 +48,34 @@ namespace InventoryApp.ViewModel.Historial
             HistorialCollection = GetHistorial("CATEGORIA");
         }
 
+        public HistorialViewModel(MarcaModel b)
+        {
+
+            unid = b.UnidMarca;
+            HistorialCollection = GetHistorial("MARCA");
+        }
+
+        public HistorialViewModel(ModeloModel b)
+        {
+
+            unid = b.UnidModelo;
+            HistorialCollection = GetHistorial("MODELO");
+        }
+
+        public HistorialViewModel(EquipoModel b)
+        {
+
+            unid = b.UnidEquipo;
+            HistorialCollection = GetHistorial("EQUIPO");
+        }
+
+        public HistorialViewModel(ArticuloModel b)
+        {
+
+            unid = b.UnidArticulo;
+            HistorialCollection = GetHistorial("ARTICULO");
+        }
+
         public HistorialViewModel(CiudadModel b)
         {
 

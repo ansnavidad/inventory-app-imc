@@ -61,23 +61,23 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new MARCA() {IS_ACTIVE=true, MARCA_NAME = this._marcaName });
+                _dataMapper.insertElement(new MARCA() {IS_ACTIVE=true, MARCA_NAME = this._marcaName }, this.ActualUser);
             }
         }
 
         public void updateMarca()
         {
-            this._dataMapper.udpateElement(new MARCA() { UNID_MARCA=this._unidMarca, MARCA_NAME=this._marcaName });
+            this._dataMapper.udpateElement(new MARCA() { UNID_MARCA = this._unidMarca, MARCA_NAME = this._marcaName }, this.ActualUser);
         }
 
         #region Constructors
-        public MarcaModel(IDataMapper dataMapper)
+        public MarcaModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as MarcaDataMapper) != null)
             {
                 this._dataMapper = dataMapper as MarcaDataMapper;
             }
-            
+            this.ActualUser = u;
         }
         #endregion
 

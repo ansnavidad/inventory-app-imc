@@ -103,7 +103,7 @@ namespace InventoryApp.ViewModel.CatalogArticulo
         /// <param name="catalogItemStatusViewModel"></param>
         public AddArticuloViewModel(CatalogArticuloViewModel catalogArticuloViewModel)
         {
-            this._articulo = new ArticuloModel(new ArticuloDataMapper());
+            this._articulo = new ArticuloModel(new ArticuloDataMapper(), catalogArticuloViewModel.ActualUser);
             this._catalogArticuloViewModel = catalogArticuloViewModel;
             try
             {

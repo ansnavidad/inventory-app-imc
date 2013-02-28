@@ -211,7 +211,7 @@ namespace InventoryApp.DAL
                         modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         entity.SaveChanges();
                         //
-                        entity.SaveChanges();
+                        UNID.Master(ETipo, u, -1, "Modificación");
                     }
                 }
             }
@@ -271,6 +271,8 @@ namespace InventoryApp.DAL
                         //
                         entity.CATEGORIAs.AddObject(categoria);
                         entity.SaveChanges();
+                        
+                        UNID.Master(categoria, u, -1, "Inserción");
                     }
                 }
             }
@@ -311,7 +313,7 @@ namespace InventoryApp.DAL
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
-                    entity.SaveChanges();
+                    UNID.Master(categoria, u, -1, "Emininación");
                 }
             }
         }

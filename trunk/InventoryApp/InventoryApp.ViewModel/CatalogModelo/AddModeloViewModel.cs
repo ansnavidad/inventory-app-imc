@@ -53,21 +53,21 @@ namespace InventoryApp.ViewModel.CatalogModelo
         /// <param name="catalogItemStatusViewModel"></param>
         public AddModeloViewModel(CatalogModeloViewModel catalogModeloViewModel)
         {
-            this._modelo = new ModeloModel(new ModeloDataMapper());
+            this._modelo = new ModeloModel(new ModeloDataMapper(), catalogModeloViewModel.ActualUser);
             this._catalogModeloViewModel = catalogModeloViewModel;
         }
 
         public AddModeloViewModel(CatalogModeloViewModel catalogModeloViewModel, AddArticuloViewModel artVM)
         {
             _artVM = artVM;
-            this._modelo = new ModeloModel(new ModeloDataMapper());
+            this._modelo = new ModeloModel(new ModeloDataMapper(), artVM.Articulo.ActualUser);
             this._catalogModeloViewModel = catalogModeloViewModel;
         }
 
         public AddModeloViewModel(CatalogModeloViewModel catalogModeloViewModel, ModifyArticuloViewModel artVM)
         {
             _artMod = artVM;
-            this._modelo = new ModeloModel(new ModeloDataMapper());
+            this._modelo = new ModeloModel(new ModeloDataMapper(), artVM.Articulo.ActualUser);
             this._catalogModeloViewModel = catalogModeloViewModel;
         }
 

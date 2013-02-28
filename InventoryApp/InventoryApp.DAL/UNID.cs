@@ -322,7 +322,15 @@ namespace InventoryApp.DAL
                                                                                             UNIDAD poco = (UNIDAD)o;
                                                                                             Master_UNIDAD(poco, u, num, control);
                                                                                         }
-                                                                                        catch { }
+                                                                                        catch
+                                                                                        {
+                                                                                            try
+                                                                                            {
+                                                                                                PROPIEDAD poco = (PROPIEDAD)o;
+                                                                                                Master_PROPIEDAD(poco, u, num, control);
+                                                                                            }
+                                                                                            catch { }
+                                                                                        }
                                                                                     }
                                                                                 }
                                                                             }
@@ -784,6 +792,47 @@ namespace InventoryApp.DAL
                 if (Master != null && Master.Count > 0)
                 {
                     var CreatorUser = entity.MASTER_INVENTARIOS.OrderByDescending(p => p.UNID_PAIS).Where(p => p.UNID_PAIS == NewMaster.UNID_PAIS).ToList();
+                    NewMaster.UNID_USUARIO_CREADOR = CreatorUser[0].UNID_USUARIO_MOD;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+                else
+                {
+                    NewMaster.UNID_USUARIO_CREADOR = u.UNID_USUARIO;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        private static void Master_PROPIEDAD(PROPIEDAD poco, USUARIO u, int num, string control)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var Master = entity.MASTER_INVENTARIOS.OrderBy(p => p.UNID_MASTER_INVENTARIOS).Where(p => p.UNID_PROPIEDAD != null && p.UNID_PROPIEDAD == poco.UNID_PROPIEDAD).ToList();
+                var NewMaster = new MASTER_INVENTARIOS();
+
+                NewMaster.UNID_MASTER_INVENTARIOS = UNID.getNewUNID();
+                NewMaster.UNID_PROPIEDAD = poco.UNID_PROPIEDAD;
+                NewMaster.UNID_USUARIO_MOD = u.UNID_USUARIO;
+                NewMaster.MODIFICACIONES = control;
+                NewMaster.FECHA = DateTime.Now;
+                NewMaster.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                NewMaster.IS_ACTIVE = true;
+                NewMaster.IS_MODIFIED = true;
+                string aux = "";
+                foreach (USUARIO_ROL r in u.USUARIO_ROL)
+                    aux += r.ROL.ROL_NAME + ", ";
+                if (!String.IsNullOrEmpty(aux))
+                {
+                    aux = aux.Substring(0, aux.Length - 2);
+                    aux += ".";
+                }
+                NewMaster.ROLES = aux;
+
+                if (Master != null && Master.Count > 0)
+                {
+                    var CreatorUser = entity.MASTER_INVENTARIOS.OrderByDescending(p => p.UNID_PROPIEDAD).Where(p => p.UNID_PROPIEDAD == NewMaster.UNID_PROPIEDAD).ToList();
                     NewMaster.UNID_USUARIO_CREADOR = CreatorUser[0].UNID_USUARIO_MOD;
                     entity.MASTER_INVENTARIOS.AddObject(NewMaster);
                     entity.SaveChanges();

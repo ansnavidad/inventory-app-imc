@@ -46,13 +46,14 @@ namespace InventoryApp.ViewModel.CatalogPropiedad
         #endregion
 
         #region Contructor
-        public CatalogPropiedadViewModel()
+        public CatalogPropiedadViewModel(USUARIO u)
         {
             
             try
             {
                 IDataMapper dataMapper = new PropiedadDataMapper();
-                this._catalogPropiedadModel = new CatalogPropiedadModel(dataMapper);   
+                this._catalogPropiedadModel = new CatalogPropiedadModel(dataMapper);
+                this.ActualUser = u;
             }
             catch (ArgumentException a)
             {
@@ -88,7 +89,7 @@ namespace InventoryApp.ViewModel.CatalogPropiedad
         /// <returns></returns>
         public ModifyPropiedadViewModel CreateModifyPropiedadViewModel()
         {
-            PropiedadModel propiedadModel = new PropiedadModel(new PropiedadDataMapper());
+            PropiedadModel propiedadModel = new PropiedadModel(new PropiedadDataMapper(), this.ActualUser);
             if (this._catalogPropiedadModel != null && this._catalogPropiedadModel.SelectedPropiedad != null)
             {
                 propiedadModel.PropiedadName = this._catalogPropiedadModel.SelectedPropiedad.PROPIEDAD1;
@@ -118,7 +119,7 @@ namespace InventoryApp.ViewModel.CatalogPropiedad
         }
         public void AttempDeletePropiedad()
         {
-            this._catalogPropiedadModel.deletePropiedad();
+            this._catalogPropiedadModel.deletePropiedad(this.ActualUser);
             
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
             if (this._catalogPropiedadModel != null)

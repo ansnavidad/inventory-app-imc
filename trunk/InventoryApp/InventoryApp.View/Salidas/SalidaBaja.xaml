@@ -175,7 +175,7 @@
                 <Label Content="Observaciones/Comentarios :" Grid.Row="1"  HorizontalAlignment="Left" Margin="10,0"
                        Name="label1" VerticalAlignment="Bottom" Style="{StaticResource lblCamposGeneric}" />
                 <TextBox Grid.Row="2" Height="80" HorizontalAlignment="Left" Name="textBox1" MaxLength="514"
-                         VerticalAlignment="Top" Width="630" Margin="30,0" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
+                         VerticalAlignment="Top" Width="610" Margin="30,0" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
                          AcceptsReturn="True" Text="{Binding MovimientoDetalleModel.Observaciones, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <Border Grid.Row="3" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                 <Grid Grid.Row="4">

@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.ViewModel.Salidas;
 
 namespace InventoryApp.ViewModel.GridMovimientos
 {
@@ -181,6 +182,20 @@ namespace InventoryApp.ViewModel.GridMovimientos
         #endregion
 
         #region metodos
+
+        /// <summary>
+        /// Crea una nueva instancia de SoloLecturaSalidaBajaViewModel y se pasa asi mismo como parámetro y el item seleccionado
+        /// </summary>
+        /// <returns></returns>
+        public ReadOnlySalidaBajaViewModel CreateReadOnlySalidaBajaViewModel()
+        {
+            MovimientoModel movimientoModel = new MovimientoModel(new MovimientoDataMapper(), "solo lectura");
+            if (this._catalogMovimientoModel != null && this.CatalogMovimientoModel.SelectedMovimiento != null)
+            {
+                movimientoModel.UnidMovimiento = this.CatalogMovimientoModel.SelectedMovimiento.UnidMovimiento;
+            }
+            return new ReadOnlySalidaBajaViewModel(movimientoModel);
+        }
 
         public void loadItems()
         {

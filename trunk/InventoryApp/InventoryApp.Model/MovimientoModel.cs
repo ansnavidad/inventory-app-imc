@@ -65,6 +65,7 @@ namespace InventoryApp.Model
         private DEPARTAMENTO _departamentoLectura;
         private ObservableCollection<TECNICO> _tecnicos;
         public float _totalLectura;
+        private string _observaciones;
         #endregion
 
         #region Props
@@ -912,6 +913,24 @@ namespace InventoryApp.Model
             }
         }
 
+        public string Observaciones
+        {
+            get
+            {
+                return _observaciones;
+            }
+            set
+            {
+                if (_observaciones != value)
+                {
+                    _observaciones = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Observaciones"));
+                    }
+                }
+            }
+        }
         #endregion
 
         public void saveArticulo()

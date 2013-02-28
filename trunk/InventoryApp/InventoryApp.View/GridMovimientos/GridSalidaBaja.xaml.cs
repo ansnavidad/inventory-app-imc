@@ -29,6 +29,25 @@ namespace InventoryApp.View.GridMovimientos
 
         private void dtGridMovimiento_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (sender != null)
+            {
+                DataGrid dg = sender as DataGrid;
+                if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
+                {
+                    SalidaBajaSoloLectura readOnly = new SalidaBajaSoloLectura();
+                    try
+                    {
+                        MovimientoGridSalidaBajaViewModel sololectura = new MovimientoGridSalidaBajaViewModel("solo lectura");
+                        sololectura = this.DataContext as MovimientoGridSalidaBajaViewModel;
+                        readOnly.DataContext = sololectura.CreateReadOnlySalidaBajaViewModel();
+                        readOnly.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
 
         }
 

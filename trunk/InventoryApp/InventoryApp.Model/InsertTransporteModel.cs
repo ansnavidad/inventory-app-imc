@@ -16,6 +16,7 @@ namespace InventoryApp.Model
         private string _transporteName;
         private TIPO_EMPRESA _tipoEmpresa;
         private TransporteDataMapper _dataMapper;
+        private USUARIO ActualUser;
         #endregion
 
         #region Props
@@ -81,23 +82,23 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new TRANSPORTE() {IS_ACTIVE=true, TRANSPORTE_NAME = this._transporteName, UNID_TIPO_EMPRESA = this._tipoEmpresa.UNID_TIPO_EMPRESA });
+                _dataMapper.insertElement(new TRANSPORTE() { IS_ACTIVE = true, TRANSPORTE_NAME = this._transporteName, UNID_TIPO_EMPRESA = this._tipoEmpresa.UNID_TIPO_EMPRESA }, this.ActualUser);
             }
         }
 
         public void updateTransporte()
         {
-            this._dataMapper.udpateElement(new TRANSPORTE() { TRANSPORTE_NAME = this._transporteName, UNID_TRANSPORTE = this._unidTransporte, UNID_TIPO_EMPRESA = this._tipoEmpresa.UNID_TIPO_EMPRESA });
+            this._dataMapper.udpateElement(new TRANSPORTE() { TRANSPORTE_NAME = this._transporteName, UNID_TRANSPORTE = this._unidTransporte, UNID_TIPO_EMPRESA = this._tipoEmpresa.UNID_TIPO_EMPRESA }, this.ActualUser);
         }
 
         #region Constructors
-        public InsertTransporteModel(IDataMapper dataMapper)
+        public InsertTransporteModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as TransporteDataMapper) != null)
             {
                 this._dataMapper = dataMapper as TransporteDataMapper;
             }
-
+            this.ActualUser = u;
         }
         #endregion
 

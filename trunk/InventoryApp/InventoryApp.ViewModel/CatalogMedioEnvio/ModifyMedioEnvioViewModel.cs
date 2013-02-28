@@ -51,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogMedioEnvio
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyMedioEnvioViewModel(CatalogMedioEnvioViewModel catalogMedioEnvioViewModel, MedioEnvioModel selectedMedioEnvioModel)
         {
-            this._medioEnvio = new MedioEnvioModel(new MedioEnvioDataMapper());
+            this._medioEnvio = new MedioEnvioModel(new MedioEnvioDataMapper(), catalogMedioEnvioViewModel.ActualUser);
             this._catalogMedioEnvioViewModel = catalogMedioEnvioViewModel;
             this._medioEnvio.UnidMedioEnvio = selectedMedioEnvioModel.UnidMedioEnvio;
             this._medioEnvio.MedioEnvioName = selectedMedioEnvioModel.MedioEnvioName;

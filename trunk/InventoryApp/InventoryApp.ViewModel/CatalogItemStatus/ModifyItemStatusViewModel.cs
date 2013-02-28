@@ -51,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyItemStatusViewModel(CatalogItemStatusViewModel catalogItemStatusViewModel,ItemStatusModel selectedItemStatusModel)
         {
-            this._modiItemStatus = new ItemStatusModel(new ItemStatusDataMapper());
+            this._modiItemStatus = new ItemStatusModel(new ItemStatusDataMapper(), catalogItemStatusViewModel.ActualUser);
             this._catalogItemStatusViewModel = catalogItemStatusViewModel;
             this._modiItemStatus.UnidItemStatus = selectedItemStatusModel.UnidItemStatus;
             this._modiItemStatus.ItemStatusName = selectedItemStatusModel.ItemStatusName;

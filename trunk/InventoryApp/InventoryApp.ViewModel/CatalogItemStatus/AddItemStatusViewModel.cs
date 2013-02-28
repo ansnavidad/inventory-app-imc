@@ -51,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
         /// <param name="catalogItemStatusViewModel"></param>
         public AddItemStatusViewModel(CatalogItemStatusViewModel catalogItemStatusViewModel)
         {
-            this._addItemStatus = new ItemStatusModel(new ItemStatusDataMapper());
+            this._addItemStatus = new ItemStatusModel(new ItemStatusDataMapper(), catalogItemStatusViewModel.ActualUser);
             this._catalogItemStatusViewModel = catalogItemStatusViewModel;
         }
         #endregion

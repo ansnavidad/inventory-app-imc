@@ -95,7 +95,7 @@ namespace InventoryApp.ViewModel.CatalogTransporte
 
         public ModifyTransporteViewModel CreateModifyTransporteViewModel()
         {
-            InsertTransporteModel transporteModel = new InsertTransporteModel(new TransporteDataMapper());
+            InsertTransporteModel transporteModel = new InsertTransporteModel(new TransporteDataMapper(), this.ActualUser);
             if (this._catalogTransporteModel != null && this._catalogTransporteModel.SelectedTransporte != null)
             {
                 transporteModel.TransporteName = this._catalogTransporteModel.SelectedTransporte.TRANSPORTE_NAME;
@@ -129,7 +129,7 @@ namespace InventoryApp.ViewModel.CatalogTransporte
 
         public void AttempDeleteTransporte()
         {
-            this._catalogTransporteModel.deleteTransporte();
+            this._catalogTransporteModel.deleteTransporte(this.ActualUser);
 
             if (this._catalogTransporteModel != null)
             {

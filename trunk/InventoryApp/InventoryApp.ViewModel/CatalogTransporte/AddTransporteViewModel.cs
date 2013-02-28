@@ -59,7 +59,7 @@ namespace InventoryApp.ViewModel.CatalogTransporte
         /// <param name="catalogItemStatusViewModel"></param>
         public AddTransporteViewModel(CatalogTransporteViewModel catalogTransporteViewModel)
         {
-            this._addTransporte = new InsertTransporteModel(new TransporteDataMapper());
+            this._addTransporte = new InsertTransporteModel(new TransporteDataMapper(), catalogTransporteViewModel.ActualUser);
             this._catalogTransporteViewModel = catalogTransporteViewModel;
             try
             {

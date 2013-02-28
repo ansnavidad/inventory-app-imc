@@ -134,7 +134,7 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
         }
         public void AttempDeleteItemStatus()
         {
-            this._catalogItemStatusModel.deleteItem();
+            this._catalogItemStatusModel.deleteItem(this.ActualUser);
             
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
             if (this._catalogItemStatusModel != null)

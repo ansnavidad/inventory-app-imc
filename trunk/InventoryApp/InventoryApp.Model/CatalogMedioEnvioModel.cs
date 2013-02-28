@@ -82,13 +82,13 @@ namespace InventoryApp.Model
             this.MedioEnvio = ic;
         }
 
-        public void deleteMedioEnvio()
+        public void deleteMedioEnvio(USUARIO u)
         {
             foreach (DeleteMedioEnvio item in this._medioEnvio)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

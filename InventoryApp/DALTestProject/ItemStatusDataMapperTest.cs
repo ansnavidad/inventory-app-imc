@@ -65,18 +65,7 @@ namespace DALTestProject
         #endregion
 
 
-        /// <summary>
-        ///Una prueba de deleteElement
-        ///</summary>
-        [TestMethod()]
-        public void deleteElementTest()
-        {
-            ITEM_STATUS item = new ITEM_STATUS() { UNID_ITEM_STATUS = 20121107173218172, IS_ACTIVE  = false };
-            ItemStatusDataMapper target = new ItemStatusDataMapper(); // TODO: Inicializar en un valor adecuado
-            object element = (object)item; // TODO: Inicializar en un valor adecuado
-            target.deleteElement(element);
-            Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
-        }
+
 
 
 

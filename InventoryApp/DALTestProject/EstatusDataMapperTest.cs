@@ -100,24 +100,6 @@ namespace DALTestProject
         }
 
         /// <summary>
-        ///Una prueba de udpateElement
-        ///</summary>
-        [TestMethod()]
-        public void udpateElementTest()
-        {
-            ITEM_STATUS item = new ITEM_STATUS() { ITEM_STATUS_NAME = "APROVADO PRUEBA", UNID_ITEM_STATUS = 12345665432 };
-            ItemStatusDataMapper target = new ItemStatusDataMapper(); // TODO: Inicializar en un valor adecuado
-            object element = (object)item; // TODO: Inicializar en un valor adecuado
-            target.udpateElement(element);
-            object actual;
-            actual = target.getElement(element);
-
-            Assert.AreEqual(item.UNID_ITEM_STATUS,((List<ITEM_STATUS>)actual)[0].UNID_ITEM_STATUS);
-            Assert.AreEqual(item.ITEM_STATUS_NAME, ((List<ITEM_STATUS>)actual)[0].ITEM_STATUS_NAME);
-            
-        }
-
-        /// <summary>
         ///Una prueba de insertElement
         ///</summary>
         [TestMethod()]

@@ -295,9 +295,9 @@ namespace InventoryApp.ViewModel
                     case "Tipo Pedimento":
                         page = new CatalogTipoPedimentoViewModel(this.ActualUser);
                         break;
-                    case "Transporte":
-                        page = new CatalogMedioEnvioViewModel(this.ActualUser);
-                        break;
+                    //case "Transporte":
+                    //    page = new CatalogMedioEnvioViewModel(this.ActualUser);
+                    //    break;
                     case "Unidad":
                         page = new CatalogUnidadViewModel(this.ActualUser);
                         break;

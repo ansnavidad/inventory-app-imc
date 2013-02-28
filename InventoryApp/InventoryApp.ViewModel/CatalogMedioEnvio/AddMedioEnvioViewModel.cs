@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogMedioEnvio
         /// <param name="catalogItemStatusViewModel"></param>
         public AddMedioEnvioViewModel(CatalogMedioEnvioViewModel catalogMedioEnvioViewModel)
         {
-            this._medioEnvio = new MedioEnvioModel(new MedioEnvioDataMapper());
+            this._medioEnvio = new MedioEnvioModel(new MedioEnvioDataMapper(), catalogMedioEnvioViewModel.ActualUser);
             this._catalogMedioEnvioViewModel = catalogMedioEnvioViewModel;
         }
         #endregion

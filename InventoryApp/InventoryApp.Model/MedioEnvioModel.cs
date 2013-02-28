@@ -61,23 +61,23 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new MEDIO_ENVIO() {IS_ACTIVE=true, MEDIO_ENVIO_NAME = this._medioEnvioName });
+                _dataMapper.insertElement(new MEDIO_ENVIO() {IS_ACTIVE=true, MEDIO_ENVIO_NAME = this._medioEnvioName }, this.ActualUser);
             }
         }
 
         public void updateMedioEnvio()
         {
-            this._dataMapper.udpateElement(new MEDIO_ENVIO() { UNID_MEDIO_ENVIO=this._unidMedioEnvio,MEDIO_ENVIO_NAME=this._medioEnvioName });
+            this._dataMapper.udpateElement(new MEDIO_ENVIO() { UNID_MEDIO_ENVIO = this._unidMedioEnvio, MEDIO_ENVIO_NAME = this._medioEnvioName }, this.ActualUser);
         }
 
         #region Constructors
-        public MedioEnvioModel(IDataMapper dataMapper)
+        public MedioEnvioModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as MedioEnvioDataMapper) != null)
             {
                 this._dataMapper = dataMapper as MedioEnvioDataMapper;
             }
-            
+            this.ActualUser = u;
         }
         #endregion
 

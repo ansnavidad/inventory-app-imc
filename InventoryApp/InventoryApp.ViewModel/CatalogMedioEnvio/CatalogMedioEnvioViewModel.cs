@@ -96,7 +96,7 @@ namespace InventoryApp.ViewModel.CatalogMedioEnvio
         /// <returns></returns>
         public ModifyMedioEnvioViewModel CreateModifyMedioEnvioViewModel()
         {
-            MedioEnvioModel medioEnvioModel = new MedioEnvioModel(new MedioEnvioDataMapper());
+            MedioEnvioModel medioEnvioModel = new MedioEnvioModel(new MedioEnvioDataMapper(), this.ActualUser);
             if (this._medioEnvioModel != null && this._medioEnvioModel.SelectedMedioEnvio != null)
             {
                 medioEnvioModel.MedioEnvioName = this._medioEnvioModel.SelectedMedioEnvio.MEDIO_ENVIO_NAME;
@@ -127,7 +127,7 @@ namespace InventoryApp.ViewModel.CatalogMedioEnvio
 
         public void AttempDeleteMedioEnvio()
         {
-            this._medioEnvioModel.deleteMedioEnvio();
+            this._medioEnvioModel.deleteMedioEnvio(this.ActualUser);
 
             if (this._medioEnvioModel != null)
             {

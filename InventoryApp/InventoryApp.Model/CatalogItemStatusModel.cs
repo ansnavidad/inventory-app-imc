@@ -81,13 +81,13 @@ namespace InventoryApp.Model
             
         }
 
-        public void deleteItem()
+        public void deleteItem(USUARIO u)
         {
             foreach (DeleteItemStatus item in this._itemStatus)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

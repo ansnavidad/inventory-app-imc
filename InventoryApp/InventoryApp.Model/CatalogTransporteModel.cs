@@ -81,13 +81,13 @@ namespace InventoryApp.Model
             this.Transporte = ic;
         }
 
-        public void deleteTransporte()
+        public void deleteTransporte(USUARIO u)
         {
             foreach (DeleteTransporte item in this._transporte)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

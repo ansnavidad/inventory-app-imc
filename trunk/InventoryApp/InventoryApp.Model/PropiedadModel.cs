@@ -61,23 +61,23 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new PROPIEDAD() { IS_ACTIVE = true,  PROPIEDAD1 = this._propiedadName });
+                _dataMapper.insertElement(new PROPIEDAD() { IS_ACTIVE = true,  PROPIEDAD1 = this._propiedadName }, this.ActualUser);
             }
         }
 
         public void updatePropiedad()
         {
-            this._dataMapper.udpateElement(new PROPIEDAD() {  UNID_PROPIEDAD=this._unidPropiedad, PROPIEDAD1=this._propiedadName });
+            this._dataMapper.udpateElement(new PROPIEDAD() { UNID_PROPIEDAD = this._unidPropiedad, PROPIEDAD1 = this._propiedadName }, this.ActualUser);
         }
 
         #region Constructors
-        public PropiedadModel(IDataMapper dataMapper)
+        public PropiedadModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as PropiedadDataMapper) != null)
             {
                 this._dataMapper = dataMapper as PropiedadDataMapper;
             }
-            
+            this.ActualUser = u;
         }
         #endregion
         public event PropertyChangedEventHandler PropertyChanged;

@@ -77,13 +77,13 @@ namespace InventoryApp.Model
             }
             this.Propiedad = ic;
         }
-        public void deletePropiedad()
+        public void deletePropiedad(USUARIO u)
         {
             foreach (DeletePropiedad item in this._propiedad)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

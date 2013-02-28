@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogPropiedad
         /// <param name="catalogItemStatusViewModel"></param>
         public AddPropiedadViewModel(CatalogPropiedadViewModel catalogPropiedadViewModel)
         {
-            this._addPropiedad = new PropiedadModel(new PropiedadDataMapper());
+            this._addPropiedad = new PropiedadModel(new PropiedadDataMapper(), catalogPropiedadViewModel.ActualUser);
             this._catalogPropiedadViewModel = catalogPropiedadViewModel;
         }
         #endregion

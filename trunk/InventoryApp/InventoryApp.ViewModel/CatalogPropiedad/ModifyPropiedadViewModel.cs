@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogPropiedad
 {
@@ -50,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogPropiedad
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyPropiedadViewModel(CatalogPropiedadViewModel catalogPropiedadViewModel, PropiedadModel selectedPropiedadModel)
         {
-            this._modiPropiedad = new PropiedadModel(new PropiedadDataMapper());
+            this._modiPropiedad = new PropiedadModel(new PropiedadDataMapper(), catalogPropiedadViewModel.ActualUser);
             this._catalogPropiedadViewModel = catalogPropiedadViewModel;
             this._modiPropiedad.UnidPropiedad = selectedPropiedadModel.UnidPropiedad;
             this._modiPropiedad.PropiedadName = selectedPropiedadModel.PropiedadName;
@@ -82,6 +83,12 @@ namespace InventoryApp.ViewModel.CatalogPropiedad
             {
                 this._catalogPropiedadViewModel.loadItems();
             }
+        }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.ModiPropiedad);
+            return historialViewModel;
         }
         #endregion
     }

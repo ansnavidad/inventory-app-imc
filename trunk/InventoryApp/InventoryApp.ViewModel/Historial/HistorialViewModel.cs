@@ -171,6 +171,13 @@ namespace InventoryApp.ViewModel.Historial
             HistorialCollection = GetHistorial("UNIDAD");
         }
 
+        public HistorialViewModel(PropiedadModel b)
+        {
+
+            unid = b.UnidPropiedad;
+            HistorialCollection = GetHistorial("PROPIEDAD");
+        }
+
         #endregion
 
         #region Methods

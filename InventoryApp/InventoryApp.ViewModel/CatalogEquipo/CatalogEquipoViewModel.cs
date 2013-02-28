@@ -30,22 +30,37 @@ namespace InventoryApp.ViewModel.CatalogEquipo
 
         public CatalogEquipoViewModel()
         {
-            
             try
             {
                 IDataMapper dataMapper = new EquipoDataMapper();
-                this._catalogEquipoModel = new CatalogEquipoModel(dataMapper);   
+                this._catalogEquipoModel = new CatalogEquipoModel(dataMapper);
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
-            }   
-            
+            }
+        }
+
+        public CatalogEquipoViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new EquipoDataMapper();
+                this._catalogEquipoModel = new CatalogEquipoModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public CatalogEquipoModel CatalogEquipoModel
@@ -81,7 +96,7 @@ namespace InventoryApp.ViewModel.CatalogEquipo
         /// <returns></returns>
         public ModifyEquipoViewModel CreateModifyEquipoViewModel()
         {
-            EquipoModel equipoModel=new EquipoModel(new EquipoDataMapper());
+            EquipoModel equipoModel=new EquipoModel(new EquipoDataMapper(), this.ActualUser);
             if (this._catalogEquipoModel != null && this._catalogEquipoModel.SelectedEquipo != null)
             {
                 equipoModel.EquipoName = this._catalogEquipoModel.SelectedEquipo.EQUIPO_NAME;
@@ -112,7 +127,7 @@ namespace InventoryApp.ViewModel.CatalogEquipo
 
         public void AttempDeleteEquipo()
         {
-            this._catalogEquipoModel.deleteEquipo();
+            this._catalogEquipoModel.deleteEquipo(this.ActualUser);
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
             if (this._catalogEquipoModel != null)

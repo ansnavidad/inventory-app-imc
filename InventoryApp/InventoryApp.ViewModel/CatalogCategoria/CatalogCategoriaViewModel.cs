@@ -30,22 +30,37 @@ namespace InventoryApp.ViewModel.CatalogCategoria
 
         public CatalogCategoriaViewModel()
         {
-            
             try
             {
                 IDataMapper dataMapper = new CategoriaDataMapper();
-                this._catalogCategoriaModel = new CatalogCategoriaModel(dataMapper);   
+                this._catalogCategoriaModel = new CatalogCategoriaModel(dataMapper);
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
-            }   
-            
+            }
+        }
+
+        public CatalogCategoriaViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new CategoriaDataMapper();
+                this._catalogCategoriaModel = new CatalogCategoriaModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public CatalogCategoriaModel CatalogCategoriaModel
@@ -79,7 +94,7 @@ namespace InventoryApp.ViewModel.CatalogCategoria
         /// <returns></returns>
         public ModifyCategoriaViewModel CreateModifyCategoriaViewModel()
         {
-            CategoriaModel categoriaModel = new CategoriaModel(new CategoriaDataMapper());
+            CategoriaModel categoriaModel = new CategoriaModel(new CategoriaDataMapper(), this.ActualUser);
             if (this._catalogCategoriaModel != null && this._catalogCategoriaModel.SelectedCategoria != null)
             {
                 categoriaModel.CategoriaName = this._catalogCategoriaModel.SelectedCategoria.CATEGORIA_NAME;
@@ -110,7 +125,7 @@ namespace InventoryApp.ViewModel.CatalogCategoria
 
         public void AttempDeleteCategoria()
         {
-            this._catalogCategoriaModel.deleteCategoria();
+            this._catalogCategoriaModel.deleteCategoria(this.ActualUser);
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
             if (this._catalogCategoriaModel != null)

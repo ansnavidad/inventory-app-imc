@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogMarca
 {
@@ -50,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogMarca
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyMarcaViewModel(CatalogMarcaViewModel catalogMarcaViewModel, MarcaModel selectedMarcaModel)
         {
-            this._marca = new MarcaModel(new MarcaDataMapper());
+            this._marca = new MarcaModel(new MarcaDataMapper(), catalogMarcaViewModel.ActualUser);
             this._catalogMarcaViewModel = catalogMarcaViewModel;
             this._marca.UnidMarca = selectedMarcaModel.UnidMarca;
             this._marca.MarcaName = selectedMarcaModel.MarcaName;
@@ -82,6 +83,12 @@ namespace InventoryApp.ViewModel.CatalogMarca
             {
                 this._catalogMarcaViewModel.loadItems();
             }
+        }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.Marca);
+            return historialViewModel;
         }
         #endregion
     }

@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogEquipo
 {
@@ -50,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogEquipo
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyEquipoViewModel(CatalogEquipoViewModel catalogEquipoViewModel, EquipoModel selectedEquipoModel)
         {
-            this._equipo = new EquipoModel(new EquipoDataMapper());
+            this._equipo = new EquipoModel(new EquipoDataMapper(), catalogEquipoViewModel.ActualUser);
             this._catalogEquipoViewModel = catalogEquipoViewModel;
             this._equipo.UnidEquipo = selectedEquipoModel.UnidEquipo;
             this._equipo.EquipoName = selectedEquipoModel.EquipoName;
@@ -82,6 +83,12 @@ namespace InventoryApp.ViewModel.CatalogEquipo
             {
                 this._catalogEquipoViewModel.loadItems();
             }
+        }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.Equipo);
+            return historialViewModel;
         }
         #endregion
     }

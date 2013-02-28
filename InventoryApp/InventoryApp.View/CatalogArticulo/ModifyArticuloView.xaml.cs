@@ -19,6 +19,7 @@ using InventoryApp.ViewModel.CatalogModelo;
 using InventoryApp.View.CatalogMarca;
 using InventoryApp.ViewModel.CatalogMarca;
 using InventoryApp.ViewModel.CatalogArticulo;
+using InventoryApp.View.Historial;
 
 namespace InventoryApp.View.CatalogArticulo
 {
@@ -72,6 +73,20 @@ namespace InventoryApp.View.CatalogArticulo
             AddMarcaViewModel viewModel = new AddMarcaViewModel(new CatalogMarcaViewModel(), (ModifyArticuloViewModel)this.DataContext);
             view.DataContext = viewModel;
             view.ShowDialog();
-        }      
+        }
+
+        private void Historal_Click(object sender, RoutedEventArgs e)
+        {
+            HistorialView addFactura = new HistorialView();
+            ModifyArticuloViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addFactura.DataContext = viewModel.CreateHistorialViewModel();
+            addFactura.ShowDialog();
+        }
+
+        private ModifyArticuloViewModel ConvertDataContext(object dataSource)
+        {
+            ModifyArticuloViewModel viewModel = dataSource as ModifyArticuloViewModel;
+            return viewModel;
+        }
     }
 }

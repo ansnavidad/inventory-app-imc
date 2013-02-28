@@ -53,21 +53,21 @@ namespace InventoryApp.ViewModel.CatalogCategoria
         /// <param name="catalogItemStatusViewModel"></param>
         public AddCategoriaViewModel(CatalogCategoriaViewModel catalogCategoriaViewModel)
         {
-            this._addCategoria = new CategoriaModel(new CategoriaDataMapper());
+            this._addCategoria = new CategoriaModel(new CategoriaDataMapper(), catalogCategoriaViewModel.ActualUser);
             this._catalogCategoriaViewModel = catalogCategoriaViewModel;
         }
 
         public AddCategoriaViewModel(CatalogCategoriaViewModel catalogCategoriaViewModel, AddArticuloViewModel artVM)
         {
             _artVM = artVM;
-            this._addCategoria = new CategoriaModel(new CategoriaDataMapper());
+            this._addCategoria = new CategoriaModel(new CategoriaDataMapper(), artVM.Articulo.ActualUser);
             this._catalogCategoriaViewModel = catalogCategoriaViewModel;
         }
 
         public AddCategoriaViewModel(CatalogCategoriaViewModel catalogCategoriaViewModel, ModifyArticuloViewModel artVM)
         {
             _artMod = artVM;
-            this._addCategoria = new CategoriaModel(new CategoriaDataMapper());
+            this._addCategoria = new CategoriaModel(new CategoriaDataMapper(), artVM.Articulo.ActualUser);
             this._catalogCategoriaViewModel = catalogCategoriaViewModel;
         }
 

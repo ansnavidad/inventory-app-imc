@@ -10,6 +10,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using InventoryApp.View.Historial;
+using InventoryApp.ViewModel.CatalogCategoria;
 
 namespace InventoryApp.View.CatalogCategoria
 {
@@ -34,5 +36,20 @@ namespace InventoryApp.View.CatalogCategoria
         {
             this.Close();
         }
+
+        private void Historal_Click(object sender, RoutedEventArgs e)
+        {
+            HistorialView addFactura = new HistorialView();
+            ModifyCategoriaViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addFactura.DataContext = viewModel.CreateHistorialViewModel();
+            addFactura.ShowDialog();
+        }
+
+        private ModifyCategoriaViewModel ConvertDataContext(object dataSource)
+        {
+            ModifyCategoriaViewModel viewModel = dataSource as ModifyCategoriaViewModel;
+            return viewModel;
+        }
+
     }
 }

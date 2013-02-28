@@ -30,22 +30,37 @@ namespace InventoryApp.ViewModel.CatalogMarca
 
         public CatalogMarcaViewModel()
         {
-            
             try
             {
                 IDataMapper dataMapper = new MarcaDataMapper();
-                this._catalogMarcaModel = new CatalogMarcaModel(dataMapper);   
+                this._catalogMarcaModel = new CatalogMarcaModel(dataMapper);
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
-            }   
-            
+            }
+        }
+
+        public CatalogMarcaViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new MarcaDataMapper();
+                this._catalogMarcaModel = new CatalogMarcaModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public CatalogMarcaModel CatalogMarcaModel
@@ -81,7 +96,7 @@ namespace InventoryApp.ViewModel.CatalogMarca
         /// <returns></returns>
         public ModifyMarcaViewModel CreateModifyMarcaViewModel()
         {
-            MarcaModel marcaModel=new MarcaModel(new MarcaDataMapper());
+            MarcaModel marcaModel=new MarcaModel(new MarcaDataMapper(), this.ActualUser);
             if (this._catalogMarcaModel != null && this._catalogMarcaModel.SelectedMarca != null)
             {
                 marcaModel.MarcaName = this._catalogMarcaModel.SelectedMarca.MARCA_NAME;
@@ -112,7 +127,7 @@ namespace InventoryApp.ViewModel.CatalogMarca
 
         public void AttempDeleteMarca()
         {
-            this._catalogMarcaModel.deleteMarca();
+            this._catalogMarcaModel.deleteMarca(this.ActualUser);
 
             if (this._catalogMarcaModel != null)
             {

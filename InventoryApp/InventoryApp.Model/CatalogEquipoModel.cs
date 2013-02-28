@@ -87,15 +87,15 @@ namespace InventoryApp.Model
             this.Equipos = ic;
         }
 
-        public void deleteEquipo()
+        public void deleteEquipo(USUARIO u)
         {
             foreach (DeleteEquipo item in this._equipos)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item,u);
                 }
-            }
+            }            
         }
 
         public CatalogEquipoModel(IDataMapper dataMapper)

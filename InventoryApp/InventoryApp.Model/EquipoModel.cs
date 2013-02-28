@@ -61,23 +61,31 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new EQUIPO() { IS_ACTIVE=true, EQUIPO_NAME = this._equipoName });
+                _dataMapper.insertElement(new EQUIPO() { IS_ACTIVE=true, EQUIPO_NAME = this._equipoName }, this.ActualUser);
             }
         }
 
         public void updateEquipo()
         {
-            this._dataMapper.udpateElement(new EQUIPO() { UNID_EQUIPO=this._unidEquipo, EQUIPO_NAME=this._equipoName });
+            this._dataMapper.udpateElement(new EQUIPO() { UNID_EQUIPO = this._unidEquipo, EQUIPO_NAME = this._equipoName }, this.ActualUser);
         }
 
         #region Constructors
+        public EquipoModel(IDataMapper dataMapper, USUARIO u)
+        {
+            if ((dataMapper as EquipoDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as EquipoDataMapper;
+            }
+            this.ActualUser = u;
+        }
+
         public EquipoModel(IDataMapper dataMapper)
         {
             if ((dataMapper as EquipoDataMapper) != null)
             {
                 this._dataMapper = dataMapper as EquipoDataMapper;
             }
-            
         }
         #endregion
 

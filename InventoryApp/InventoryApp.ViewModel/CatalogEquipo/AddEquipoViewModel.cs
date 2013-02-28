@@ -53,21 +53,21 @@ namespace InventoryApp.ViewModel.CatalogEquipo
         /// <param name="catalogItemStatusViewModel"></param>
         public AddEquipoViewModel(CatalogEquipoViewModel catalogEquipoViewModel)
         {
-            this._equipo = new EquipoModel(new EquipoDataMapper());
+            this._equipo = new EquipoModel(new EquipoDataMapper(), catalogEquipoViewModel.ActualUser);
             this._catalogEquipoViewModel = catalogEquipoViewModel;
         }
 
         public AddEquipoViewModel(CatalogEquipoViewModel catalogEquipoViewModel, AddArticuloViewModel artVM)
         {
             _artVM = artVM;
-            this._equipo = new EquipoModel(new EquipoDataMapper());
+            this._equipo = new EquipoModel(new EquipoDataMapper(), artVM.Articulo.ActualUser);
             this._catalogEquipoViewModel = catalogEquipoViewModel;
         }
 
         public AddEquipoViewModel(CatalogEquipoViewModel catalogEquipoViewModel, ModifyArticuloViewModel artVM)
         {
             _artMod = artVM;
-            this._equipo = new EquipoModel(new EquipoDataMapper());
+            this._equipo = new EquipoModel(new EquipoDataMapper(), artVM.Articulo.ActualUser);
             this._catalogEquipoViewModel = catalogEquipoViewModel;
         }
 

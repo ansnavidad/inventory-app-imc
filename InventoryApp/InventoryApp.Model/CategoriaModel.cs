@@ -59,22 +59,30 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new CATEGORIA() { IS_ACTIVE = true, CATEGORIA_NAME = this._categoriaName });
+                _dataMapper.insertElement(new CATEGORIA() { IS_ACTIVE = true, CATEGORIA_NAME = this._categoriaName }, this.ActualUser);
             }
         }
         public void updateCategoria()
         {
-            this._dataMapper.udpateElement(new CATEGORIA() { UNID_CATEGORIA= this._unidCategoria, CATEGORIA_NAME = this._categoriaName});
+            this._dataMapper.udpateElement(new CATEGORIA() { UNID_CATEGORIA= this._unidCategoria, CATEGORIA_NAME = this._categoriaName}, this.ActualUser);
         }
 
         #region Constructors
+        public CategoriaModel(IDataMapper dataMapper, USUARIO u)
+        {
+            if ((dataMapper as CategoriaDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as CategoriaDataMapper;
+            }
+            this.ActualUser = u;
+        }
+
         public CategoriaModel(IDataMapper dataMapper)
         {
             if ((dataMapper as CategoriaDataMapper) != null)
             {
                 this._dataMapper = dataMapper as CategoriaDataMapper;
             }
-            
         }
         #endregion
 

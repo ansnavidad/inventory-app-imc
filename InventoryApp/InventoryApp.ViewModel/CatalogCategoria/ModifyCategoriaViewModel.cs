@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogCategoria
 {
@@ -50,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogCategoria
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyCategoriaViewModel(CatalogCategoriaViewModel catalogCategoriaViewModel, CategoriaModel selectedCategoriaModel)
         {
-            this._modiCategoria = new CategoriaModel(new CategoriaDataMapper());
+            this._modiCategoria = new CategoriaModel(new CategoriaDataMapper(), catalogCategoriaViewModel.ActualUser);
             this._catalogCategoriaViewModel = catalogCategoriaViewModel;
             this._modiCategoria.UnidCategoria = selectedCategoriaModel.UnidCategoria;
             this._modiCategoria.CategoriaName = selectedCategoriaModel.CategoriaName;
@@ -82,6 +83,12 @@ namespace InventoryApp.ViewModel.CatalogCategoria
             {
                 this._catalogCategoriaViewModel.loadItems();
             }
+        }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.ModiCategoria);
+            return historialViewModel;
         }
         #endregion
     }

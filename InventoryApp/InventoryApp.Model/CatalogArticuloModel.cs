@@ -91,13 +91,13 @@ namespace InventoryApp.Model
         //    this.Articulos = articulos;
         //}
 
-        public void deleteArticulos()
+        public void deleteArticulos(USUARIO u)
         {
             foreach (DeleteArticulo item in _articulos)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

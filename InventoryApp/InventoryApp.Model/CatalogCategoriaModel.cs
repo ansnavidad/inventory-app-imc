@@ -79,13 +79,13 @@ namespace InventoryApp.Model
             this.Categoria = ic;
         }
 
-        public void deleteCategoria()
+        public void deleteCategoria(USUARIO u)
         {
             foreach (DeleteCategoria item in this._itemCategoria)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

@@ -31,22 +31,37 @@ namespace InventoryApp.ViewModel.CatalogModelo
 
         public CatalogModeloViewModel()
         {
-            
             try
             {
                 IDataMapper dataMapper = new ModeloDataMapper();
-                this._catalogModeloModel = new CatalogModeloModel(dataMapper);   
+                this._catalogModeloModel = new CatalogModeloModel(dataMapper);
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
-            }   
-            
+            }
+        }
+
+        public CatalogModeloViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new ModeloDataMapper();
+                this._catalogModeloModel = new CatalogModeloModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public CatalogModeloModel CatalogModeloModel
@@ -82,7 +97,7 @@ namespace InventoryApp.ViewModel.CatalogModelo
         /// <returns></returns>
         public ModifyModeloViewModel CreateModifyModeloViewModel()
         {
-            ModeloModel modeloModel=new ModeloModel(new ModeloDataMapper());
+            ModeloModel modeloModel=new ModeloModel(new ModeloDataMapper(), this.ActualUser);
             if (this._catalogModeloModel != null && this._catalogModeloModel.SelectedModelo != null)
             {
                 modeloModel.ModeloName = this._catalogModeloModel.SelectedModelo.MODELO_NAME;
@@ -113,7 +128,7 @@ namespace InventoryApp.ViewModel.CatalogModelo
 
         public void AttempDeleteModelo()
         {
-            this._catalogModeloModel.deleteModelo();
+            this._catalogModeloModel.deleteModelo(this.ActualUser);
 
             if (this._catalogModeloModel != null)
             {

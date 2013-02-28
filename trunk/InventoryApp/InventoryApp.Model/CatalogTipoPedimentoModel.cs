@@ -79,13 +79,13 @@ namespace InventoryApp.Model
             this.TipoPedimento = ic;
         }
 
-        public void deleteTipoPedimento()
+        public void deleteTipoPedimento(USUARIO u)
         {
             foreach (DeleteTipoPedimento item in this._tipoPedimento)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

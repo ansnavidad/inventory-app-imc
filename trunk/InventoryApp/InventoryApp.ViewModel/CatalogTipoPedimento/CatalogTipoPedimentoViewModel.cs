@@ -96,14 +96,14 @@ namespace InventoryApp.ViewModel.CatalogTipoPedimento
         /// <returns></returns>
         public ModifyTipoPedimentoViewModel CreateModifyTipoPedimentoViewModel()
         {
-            TipoPedimentoModel tipoPedimentoModel = new TipoPedimentoModel(new TipoPedimentoDataMapper());
+            TipoPedimentoModel tipoPedimentoModel = new TipoPedimentoModel(new TipoPedimentoDataMapper(), this.ActualUser);
             if (this._tipoPedimentoModel != null && this._tipoPedimentoModel.SelectedTipoPedimento != null)
             {
                 tipoPedimentoModel.UnidTipoPedimento = this._tipoPedimentoModel.SelectedTipoPedimento.UNID_TIPO_PEDIMENTO;
                 tipoPedimentoModel.TipoPedimentoName = this._tipoPedimentoModel.SelectedTipoPedimento.TIPO_PEDIMENTO_NAME;
                 tipoPedimentoModel.Regimen = this._tipoPedimentoModel.SelectedTipoPedimento.REGIMEN;
                 tipoPedimentoModel.Nota = this._tipoPedimentoModel.SelectedTipoPedimento.NOTA;
-                tipoPedimentoModel.Clave = this._tipoPedimentoModel.SelectedTipoPedimento.NOTA;
+                tipoPedimentoModel.Clave = this._tipoPedimentoModel.SelectedTipoPedimento.CLAVE;
             }
             return new ModifyTipoPedimentoViewModel(this, tipoPedimentoModel);
         }
@@ -130,7 +130,7 @@ namespace InventoryApp.ViewModel.CatalogTipoPedimento
 
         public void AttempDeleteTipoPedimento()
         {
-            this._tipoPedimentoModel.deleteTipoPedimento();
+            this._tipoPedimentoModel.deleteTipoPedimento(this.ActualUser);
 
             if (this._tipoPedimentoModel != null)
             {

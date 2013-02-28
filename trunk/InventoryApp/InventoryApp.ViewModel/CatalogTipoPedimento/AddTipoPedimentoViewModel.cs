@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogTipoPedimento
         /// <param name="catalogItemStatusViewModel"></param>
         public AddTipoPedimentoViewModel(CatalogTipoPedimentoViewModel catalogTipoPedimentoViewModel)
         {
-            this._tipoPedimento = new TipoPedimentoModel(new TipoPedimentoDataMapper());
+            this._tipoPedimento = new TipoPedimentoModel(new TipoPedimentoDataMapper(), catalogTipoPedimentoViewModel.ActualUser);
             this._catalogTipoPedimentoViewModel = catalogTipoPedimentoViewModel;
         }
         #endregion

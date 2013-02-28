@@ -121,23 +121,31 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new TIPO_PEDIMENTO() { IS_ACTIVE = true,TIPO_PEDIMENTO_NAME = this._tipoPedimentoName, CLAVE = this._clave, NOTA = this._nota, REGIMEN = this._regimen });
+                _dataMapper.insertElement(new TIPO_PEDIMENTO() { IS_ACTIVE = true, TIPO_PEDIMENTO_NAME = this._tipoPedimentoName, CLAVE = this._clave, NOTA = this._nota, REGIMEN = this._regimen }, this.ActualUser);
             }
         }
 
         public void updateTipoPedimento()
         {
-            this._dataMapper.udpateElement(new TIPO_PEDIMENTO() { UNID_TIPO_PEDIMENTO=this._unidTipoPedimento, TIPO_PEDIMENTO_NAME = this._tipoPedimentoName, CLAVE = this._clave, NOTA = this._nota, REGIMEN = this._regimen});
+            this._dataMapper.udpateElement(new TIPO_PEDIMENTO() { UNID_TIPO_PEDIMENTO=this._unidTipoPedimento, TIPO_PEDIMENTO_NAME = this._tipoPedimentoName, CLAVE = this._clave, NOTA = this._nota, REGIMEN = this._regimen}, this.ActualUser);
         }
 
         #region Constructors
+        public TipoPedimentoModel(IDataMapper dataMapper, USUARIO u)
+        {
+            if ((dataMapper as TipoPedimentoDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as TipoPedimentoDataMapper;
+            }
+            this.ActualUser = u;
+        }
+
         public TipoPedimentoModel(IDataMapper dataMapper)
         {
             if ((dataMapper as TipoPedimentoDataMapper) != null)
             {
                 this._dataMapper = dataMapper as TipoPedimentoDataMapper;
             }
-            
         }
         #endregion
 

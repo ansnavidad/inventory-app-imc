@@ -72,13 +72,13 @@ namespace InventoryApp.Model
             this.Infraestructuras = ic;
         }
 
-        public void deleteInfraestructura()
+        public void deleteInfraestructura(USUARIO u)
         {
             foreach (DeleteInfraestructura item in this._infraestructuras)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

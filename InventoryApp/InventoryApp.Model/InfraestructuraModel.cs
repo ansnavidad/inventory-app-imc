@@ -62,23 +62,23 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new INFRAESTRUCTURA() { IS_ACTIVE = true, INFRAESTRUCTURA_NAME = this._infraestructuraName });
+                _dataMapper.insertElement(new INFRAESTRUCTURA() { IS_ACTIVE = true, INFRAESTRUCTURA_NAME = this._infraestructuraName }, this.ActualUser);
             }
         }
 
         public void updateInfraestructura()
         {
-            this._dataMapper.udpateElement(new INFRAESTRUCTURA() { UNID_INFRAESTRUCTURA = this._unidInfraestructura, INFRAESTRUCTURA_NAME = this._infraestructuraName });
+            this._dataMapper.udpateElement(new INFRAESTRUCTURA() { UNID_INFRAESTRUCTURA = this._unidInfraestructura, INFRAESTRUCTURA_NAME = this._infraestructuraName }, this.ActualUser);
         }
 
         #region Constructors
-        public InfraestructuraModel(IDataMapper dataMapper)
+        public InfraestructuraModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as InfraestructuraDataMapper) != null)
             {
                 this._dataMapper = dataMapper as InfraestructuraDataMapper;
             }
-
+            this.ActualUser = u;
         }
         #endregion
 

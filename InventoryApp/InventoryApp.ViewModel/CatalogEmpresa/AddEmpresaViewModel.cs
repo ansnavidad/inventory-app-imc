@@ -48,7 +48,7 @@ namespace InventoryApp.ViewModel.CatalogEmpresa
         /// <param name="catalogItemStatusViewModel"></param>
         public AddEmpresaViewModel(CatalogEmpresaViewModel catalogEmpresaViewModel)
         {
-            this._addEmpresa = new EmpresaModel(new EmpresaDataMapper());
+            this._addEmpresa = new EmpresaModel(new EmpresaDataMapper(), catalogEmpresaViewModel.ActualUser);
             this._catalogEmpresaViewModel = catalogEmpresaViewModel;
         }
         #endregion

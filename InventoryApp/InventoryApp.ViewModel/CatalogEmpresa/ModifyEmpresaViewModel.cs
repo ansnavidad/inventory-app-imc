@@ -49,7 +49,7 @@ namespace InventoryApp.ViewModel.CatalogEmpresa
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyEmpresaViewModel(CatalogEmpresaViewModel catalogEmpresaViewModel, EmpresaModel selectedEmpresaModel)
         {
-            this._modiEmpresa = new EmpresaModel(new EmpresaDataMapper());
+            this._modiEmpresa = new EmpresaModel(new EmpresaDataMapper(), catalogEmpresaViewModel.ActualUser);
             this._catalogEmpresaViewModel = catalogEmpresaViewModel;
             this._modiEmpresa.UnidEmpresa = selectedEmpresaModel.UnidEmpresa;
             this._modiEmpresa.EmpresaName = selectedEmpresaModel.EmpresaName;

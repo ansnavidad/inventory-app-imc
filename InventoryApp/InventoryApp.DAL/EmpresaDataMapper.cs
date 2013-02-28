@@ -145,7 +145,7 @@ namespace InventoryApp.Model
             return res;
         }
 
-        public void udpateElement(object element)
+        public void udpateElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -170,8 +170,7 @@ namespace InventoryApp.Model
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
-                    entity.SaveChanges();
-
+                    UNID.Master(EEmp, u, -1, "Modificación");
                 }
             }
         }
@@ -208,7 +207,7 @@ namespace InventoryApp.Model
             }
         }
 
-        public void insertElement(object element)
+        public void insertElement(object element, USUARIO u)
         {
             if (element !=null)
             {
@@ -232,6 +231,8 @@ namespace InventoryApp.Model
                         //
                         entity.EMPRESAs.AddObject(empresa);
                         entity.SaveChanges();
+
+                        UNID.Master(empresa, u, -1, "Inserción");
                     }
                 }            
             }
@@ -273,7 +274,7 @@ namespace InventoryApp.Model
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
-                    entity.SaveChanges();
+                    UNID.Master(empresa, u, -1, "Emininación");
                 }
             }
         }
@@ -386,6 +387,17 @@ namespace InventoryApp.Model
                     }
                 }
             }
+        }
+
+
+        public void udpateElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void insertElement(object element)
+        {
+            throw new NotImplementedException();
         }
     }
 }

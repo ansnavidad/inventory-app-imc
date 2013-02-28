@@ -199,7 +199,7 @@ namespace InventoryApp.Model
 
             if (_dataMapper != null)
             {
-               this._userRolDataMapper.deleteElement(new USUARIO_ROL() { UNID_USUARIO = unidUser, UNID_ROL = unidRol });
+               this._userRolDataMapper.deleteElement(new USUARIO_ROL() { UNID_USUARIO = unidUser, UNID_ROL = unidRol },new USUARIO());
             }
         }
 

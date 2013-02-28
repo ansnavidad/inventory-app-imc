@@ -37,7 +37,6 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
         </Grid>
-
         <DataGrid AutoGenerateColumns="False" Name="dataGridUser" CanUserAddRows="False"
                   RowStyle="{StaticResource RowStyle}" CanUserDeleteRows="False"
                   Style="{StaticResource GridStyle}" HorizontalAlignment="Stretch"

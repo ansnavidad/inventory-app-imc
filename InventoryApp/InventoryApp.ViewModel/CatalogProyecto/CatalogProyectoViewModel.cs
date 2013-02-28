@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogProyecto
 {
@@ -12,6 +13,7 @@ namespace InventoryApp.ViewModel.CatalogProyecto
     {
         private RelayCommand _deleteProyectoCommand;
         private CatalogProyectoModel _catalogProyectoModel;
+        public USUARIO ActualUser;
 
         public ICommand DeleteProyectoCommand
         {
@@ -34,14 +36,30 @@ namespace InventoryApp.ViewModel.CatalogProyecto
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
             catch (Exception ex)
             {
                 throw ex;
-            }  
-            
+            }
+        }
+
+        public CatalogProyectoViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new ProyectoDataMapper();
+                this._catalogProyectoModel = new CatalogProyectoModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public CatalogProyectoModel CatalogProyectoModel
         {

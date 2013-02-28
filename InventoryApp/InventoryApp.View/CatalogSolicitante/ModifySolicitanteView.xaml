@@ -77,5 +77,6 @@
                      HorizontalAlignment="Left" Margin="0,17,0,0" Name="txtValidador"
                      VerticalAlignment="Stretch" Width="120"
                      Text="{Binding ModiSolicitante.Validador, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="254" />
+        <Button Content="Historial" Height="23" HorizontalAlignment="Stretch" Margin="61,3,14,4" Name="button1" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Width="75" Grid.Column="4" Click="Historal_Click" />
         </Grid>
 </Window>

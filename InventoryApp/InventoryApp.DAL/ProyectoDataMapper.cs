@@ -245,6 +245,29 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void deleteElement(object element, USUARIO u)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    PROYECTO proyecto = (PROYECTO)element;
+
+                    var deleteProyecto = entity.PROYECTOes.First(p => p.UNID_PROYECTO == proyecto.UNID_PROYECTO);
+
+                    deleteProyecto.IS_ACTIVE = false;
+                    //Sync
+                    deleteProyecto.IS_MODIFIED = true;
+                    deleteProyecto.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void deleteElement(object element)
         {
             if (element != null)

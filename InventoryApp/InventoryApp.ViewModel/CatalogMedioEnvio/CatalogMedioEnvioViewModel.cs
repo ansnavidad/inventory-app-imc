@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogMedioEnvio
 {
@@ -13,6 +14,7 @@ namespace InventoryApp.ViewModel.CatalogMedioEnvio
         private RelayCommand _deleteMedioEnvioCommand;
 
         private CatalogMedioEnvioModel _medioEnvioModel;
+        public USUARIO ActualUser;
 
         public ICommand DeleteMedioEnvioCommand
         {
@@ -28,22 +30,37 @@ namespace InventoryApp.ViewModel.CatalogMedioEnvio
 
         public CatalogMedioEnvioViewModel()
         {
-            
             try
             {
                 IDataMapper dataMapper = new MedioEnvioDataMapper();
-                this._medioEnvioModel = new CatalogMedioEnvioModel(dataMapper);   
+                this._medioEnvioModel = new CatalogMedioEnvioModel(dataMapper);
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
-            }   
-            
+            }
+        }
+
+        public CatalogMedioEnvioViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new MedioEnvioDataMapper();
+                this._medioEnvioModel = new CatalogMedioEnvioModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public CatalogMedioEnvioModel MedioEnvioModel

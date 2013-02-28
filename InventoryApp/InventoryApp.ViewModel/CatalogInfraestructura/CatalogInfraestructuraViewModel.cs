@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.DAL;
 using InventoryApp.Model;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogInfraestructura
 {
@@ -12,6 +13,7 @@ namespace InventoryApp.ViewModel.CatalogInfraestructura
     {
         private RelayCommand _deleteInfraestructuraCommand;
         private CatalogInfraestructuraModel _catalogInfraestructuraModel;
+        public USUARIO ActualUser;
 
         public ICommand DeleteInfraestructuraCommand
         {
@@ -34,15 +36,30 @@ namespace InventoryApp.ViewModel.CatalogInfraestructura
             }
             catch (ArgumentException ae)
             {
-
                 ;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
 
-
+        public CatalogInfraestructuraViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new InfraestructuraDataMapper();
+                this._catalogInfraestructuraModel = new CatalogInfraestructuraModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public CatalogInfraestructuraModel CatalogInfraestructuraModel

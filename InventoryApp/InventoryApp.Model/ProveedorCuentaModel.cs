@@ -21,6 +21,7 @@ namespace InventoryApp.Model
         private BANCO _banco;
         private PROVEEDOR _proveedor;
         private ProveedorCuentaDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

@@ -14,6 +14,7 @@ namespace InventoryApp.Model
         private long _unidLote;
         private long _unidPOM;
         private LoteDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

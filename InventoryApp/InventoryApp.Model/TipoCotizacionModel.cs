@@ -14,6 +14,7 @@ namespace InventoryApp.Model
         private long _unidTipoCotizacion;
         private string _tipoCotizacionName;
         private TipoCotizacionDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
         #region Props
         public long UnidTipoCotizacion

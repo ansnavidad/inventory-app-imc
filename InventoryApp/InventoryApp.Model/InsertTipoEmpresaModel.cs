@@ -15,6 +15,7 @@ namespace InventoryApp.Model
         private long _unidTipoEmpresa;
         private string _tipoEmpresaName;
         private TipoEmpresaDataMapper _dataMapper;
+        private USUARIO ActualUser;
         #endregion
 
         #region Props

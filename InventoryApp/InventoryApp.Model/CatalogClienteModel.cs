@@ -81,6 +81,17 @@ namespace InventoryApp.Model
             }
         }
 
+        public void deleteCliente(USUARIO u)
+        {
+            foreach (DeleteCliente item in this._cliente)
+            {
+                if (item.IsChecked)
+                {
+                    this._dataMapper.deleteElement(item, u);
+                }
+            }
+        }
+
         public CatalogClienteModel(IDataMapper dataMapper)
         {
             this._dataMapper = new ClienteDataMapper();

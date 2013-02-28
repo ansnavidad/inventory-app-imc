@@ -70,13 +70,13 @@ namespace InventoryApp.Model
             this.Banco = ic;
         }
 
-        public void deleteBancos()
+        public void deleteBancos(USUARIO u)
         {
             foreach (DeleteBanco item in this._banco)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

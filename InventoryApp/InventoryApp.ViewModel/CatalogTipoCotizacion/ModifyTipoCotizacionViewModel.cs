@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogTipoCotizacion
 {
@@ -82,6 +83,12 @@ namespace InventoryApp.ViewModel.CatalogTipoCotizacion
             {
                 this._catalogTipoCotizacionViewModel.loadTipoCotizacion();
             }
+        }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.ModiTipoCotizacion);
+            return historialViewModel;
         }
         #endregion
     }

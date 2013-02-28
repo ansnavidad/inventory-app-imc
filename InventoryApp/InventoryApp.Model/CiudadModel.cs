@@ -16,6 +16,7 @@ namespace InventoryApp.Model
         private string _iso;
         private long _unidPais;
         private CiudadDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props
@@ -101,23 +102,23 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new CIUDAD() { IS_ACTIVE = true, CIUDAD1 = this._ciudad, ISO = this._iso });
+                _dataMapper.insertElement(new CIUDAD() { IS_ACTIVE = true, CIUDAD1 = this._ciudad, ISO = this._iso }, this.ActualUser);
             }
         }
 
         public void updateCiudad()
         {
-            this._dataMapper.udpateElement(new CIUDAD() {  UNID_CIUDAD = this._unidCiudad, CIUDAD1 = this._ciudad, ISO = this._iso });
+            this._dataMapper.udpateElement(new CIUDAD() { UNID_CIUDAD = this._unidCiudad, CIUDAD1 = this._ciudad, ISO = this._iso }, this.ActualUser);
         }
 
         #region Constructors
-        public CiudadModel(IDataMapper dataMapper)
+        public CiudadModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as CiudadDataMapper) != null)
             {
                 this._dataMapper = dataMapper as CiudadDataMapper;
             }
-            
+            this.ActualUser = u;            
         }
         #endregion
 

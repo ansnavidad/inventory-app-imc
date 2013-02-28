@@ -215,7 +215,7 @@ namespace InventoryApp.ViewModel
                 switch (this._SelectedMenu.MenuName)
                 {                                 
                     case "Almacen":
-                        page = new CatalogAlmacenViewModel();
+                        page = new CatalogAlmacenViewModel(this.ActualUser);
                         break;
                     case "Artículos":
                         page = new CatalogArticuloViewModel();
@@ -227,19 +227,19 @@ namespace InventoryApp.ViewModel
                         page = new CatalogMarcaViewModel();
                         break;
                     case "Banco":
-                        page = new CatalogBancoViewModel();
+                        page = new CatalogBancoViewModel(this.ActualUser);
                         break;
                     case "Categoría":
                         page = new CatalogCategoriaViewModel();
                         break;
                     case "Ciudad":
-                        page = new CatalogCiudadViewModel();
+                        page = new CatalogCiudadViewModel(this.ActualUser);
                         break;
                     case "Cliente":
-                        page = new CatalogClienteViewModel();
+                        page = new CatalogClienteViewModel(this.ActualUser);
                         break;
                     case "Departamento":
-                        page = new CatalogDepartamentoViewModel();
+                        page = new CatalogDepartamentoViewModel(this.ActualUser);
                         break;
                     case "Empresa":
                         page = new CatalogEmpresaViewModel();
@@ -248,19 +248,19 @@ namespace InventoryApp.ViewModel
                         page = new CatalogEquipoViewModel();
                         break;
                     case "Item Status":
-                        page = new CatalogItemStatusViewModel();
+                        page = new CatalogItemStatusViewModel(this.ActualUser);
                         break;
                     case "Medio Envio":
-                        page = new CatalogTransporteViewModel();
+                        page = new CatalogTransporteViewModel(this.ActualUser);
                         break;
                     case "Modelo":
                         page = new CatalogModeloViewModel();
                         break;
                     case "Moneda":
-                        page = new CatalogMonedaViewModel();
+                        page = new CatalogMonedaViewModel(this.ActualUser);
                         break;
                     case "País":
-                        page = new CatalogPaisViewModel();
+                        page = new CatalogPaisViewModel(this.ActualUser);
                         break;
                     case "Propiedad":
                         page = new CatalogPropiedadViewModel();
@@ -272,40 +272,40 @@ namespace InventoryApp.ViewModel
                         page = new CatalogProveedorCuentaViewModel();
                         break;
                     case "Proyecto":
-                        page = new CatalogProyectoViewModel();
+                        page = new CatalogProyectoViewModel(this.ActualUser);
                         break;
                     case "Servicio":
-                        page = new CatalogServicioViewModel();
+                        page = new CatalogServicioViewModel(this.ActualUser);
                         break;
                     case "Solicitante":
-                        page = new CatalogSolicitanteViewModel();
+                        page = new CatalogSolicitanteViewModel(this.ActualUser);
                         break;
                     case "Termino Envio":
-                        page = new CatalogTerminoEnvioViewModel();
+                        page = new CatalogTerminoEnvioViewModel(this.ActualUser);
                         break;
                     case "Tipo Cotización":
-                        page = new CatalogTipoCotizacionViewModel();
+                        page = new CatalogTipoCotizacionViewModel(this.ActualUser);
                         break;
                     case "Tipo Empresa":
-                        page = new CatalogTipoEmpresaViewModel();
+                        page = new CatalogTipoEmpresaViewModel(this.ActualUser);
                         break;
                     case "Tipo Movimiento":
                         page = new CatalogTipoMovimientoViewModel();
                         break;
                     case "Tipo Pedimento":
-                        page = new CatalogTipoPedimentoViewModel();
+                        page = new CatalogTipoPedimentoViewModel(this.ActualUser);
                         break;
                     //case "Transporte":
-                    //    page = new CatalogTransporteViewModel();
-                    //    break;
+                        page = new CatalogMedioEnvioViewModel(this.ActualUser);
+                        break;
                     case "Unidad":
-                        page = new CatalogUnidadViewModel();
+                        page = new CatalogUnidadViewModel(this.ActualUser);
                         break;
                     case "Administración de usuarios":
                         page = new CatalogUsuarioViewModel();
                         break;
                     case "Infraestructura":
-                        page = new CatalogInfraestructuraViewModel();
+                        page = new CatalogInfraestructuraViewModel(this.ActualUser);
                         break;
                     //Entradas
                     case "Entrada por Validación":

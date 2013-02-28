@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogCliente
         /// <param name="catalogItemStatusViewModel"></param>
         public AddClienteViewModel(CatalogClienteViewModel catalogClienteViewModel)
         {
-            this._addclienteModel = new ClienteModel(new ClienteDataMapper());
+            this._addclienteModel = new ClienteModel(new ClienteDataMapper(), catalogClienteViewModel.ActualUser);
             this._catalogClienteViewModel = catalogClienteViewModel;
         }
         #endregion

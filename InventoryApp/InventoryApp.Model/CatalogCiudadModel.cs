@@ -72,13 +72,13 @@ namespace InventoryApp.Model
             this.Ciudad = ic;
         }
 
-        public void deleteCiudad()
+        public void deleteCiudad(USUARIO u)
         {
             foreach (DeleteCiudad item in this._ciudad)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.DAL;
 using InventoryApp.Model;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogTipoEmpresa
 {
@@ -12,6 +13,7 @@ namespace InventoryApp.ViewModel.CatalogTipoEmpresa
     {
         private RelayCommand _deleteTipoEmpresaCommand;
         private CatalogTipoEmpresaModel _catalogTipoEmpresaModel;
+        public USUARIO ActualUser;
 
         public ICommand DeleteTipoEmpresaCommand
         {
@@ -34,15 +36,30 @@ namespace InventoryApp.ViewModel.CatalogTipoEmpresa
             }
             catch (ArgumentException ae)
             {
-
                 ;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
 
-
+        public CatalogTipoEmpresaViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new TipoEmpresaDataMapper();
+                this._catalogTipoEmpresaModel = new CatalogTipoEmpresaModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public CatalogTipoEmpresaModel CatalogTipoEmpresaModel

@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogCliente
 {
@@ -13,6 +14,7 @@ namespace InventoryApp.ViewModel.CatalogCliente
         private RelayCommand _deleteClienteCommand;
 
         private CatalogClienteModel _catalogClienteModel;
+        public USUARIO ActualUser;
 
         public ICommand DeleteClienteCommand
         {
@@ -28,22 +30,37 @@ namespace InventoryApp.ViewModel.CatalogCliente
 
         public CatalogClienteViewModel()
         {
-            
             try
             {
                 IDataMapper dataMapper = new ClienteDataMapper();
-                this._catalogClienteModel = new CatalogClienteModel(dataMapper);   
+                this._catalogClienteModel = new CatalogClienteModel(dataMapper);
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
-            }   
-            
+            }
+        }
+
+        public CatalogClienteViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new ClienteDataMapper();
+                this._catalogClienteModel = new CatalogClienteModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public CatalogClienteModel CatalogClienteModel
@@ -78,7 +95,7 @@ namespace InventoryApp.ViewModel.CatalogCliente
         /// <returns></returns>
         public ModifyClienteViewModel CreateModifyClienteViewModel()
         {
-            ClienteModel clienteModel = new ClienteModel(new ClienteDataMapper());
+            ClienteModel clienteModel = new ClienteModel(new ClienteDataMapper(), this.ActualUser);
             if (this._catalogClienteModel != null && this._catalogClienteModel.SelectedCliente != null)
             {
                 clienteModel.ClienteName = this._catalogClienteModel.SelectedCliente.CLIENTE1;
@@ -109,7 +126,7 @@ namespace InventoryApp.ViewModel.CatalogCliente
 
         public void AttempDeleteCliente()
         {
-            this._catalogClienteModel.deleteCliente();
+            this._catalogClienteModel.deleteCliente(this.ActualUser);
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
             if (this._catalogClienteModel != null)

@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogBanco
 {
@@ -12,6 +13,7 @@ namespace InventoryApp.ViewModel.CatalogBanco
     {
         private RelayCommand _deleteBancoCommand;
         private CatalogBancoModel _catalogBancoModel;
+        public USUARIO ActualUser;
 
         public ICommand DeleteBancoCommand
         {
@@ -25,9 +27,27 @@ namespace InventoryApp.ViewModel.CatalogBanco
             }
         }
 
-        public CatalogBancoViewModel()
+        public CatalogBancoViewModel(USUARIO u)
         {
-            
+            try
+            {
+                IDataMapper dataMapper = new BancoDataMapper();
+                this._catalogBancoModel = new CatalogBancoModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public CatalogBancoViewModel()
+        {            
             try
             {
                 IDataMapper dataMapper = new BancoDataMapper();
@@ -41,8 +61,7 @@ namespace InventoryApp.ViewModel.CatalogBanco
             catch(Exception ex)
             {
                 throw ex;
-            }   
-            
+            }            
         }
         public CatalogBancoModel CatalogBancoModel
         {
@@ -77,7 +96,7 @@ namespace InventoryApp.ViewModel.CatalogBanco
         /// <returns></returns>
         public ModifyBancoViewModel CreateBancoViewModel()
         {
-            BancoModel bancoModel=new BancoModel(new BancoDataMapper());
+            BancoModel bancoModel=new BancoModel(new BancoDataMapper(), this.ActualUser);
             if (this._catalogBancoModel != null && this._catalogBancoModel.SelectedBanco != null)
             {
                 bancoModel.BancoName = this._catalogBancoModel.SelectedBanco.BANCO_NAME;
@@ -107,7 +126,7 @@ namespace InventoryApp.ViewModel.CatalogBanco
         }
         public void AttempDeleteBanco()
         {
-            this._catalogBancoModel.deleteBancos();
+            this._catalogBancoModel.deleteBancos(this.ActualUser);
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
             if (this._catalogBancoModel != null)

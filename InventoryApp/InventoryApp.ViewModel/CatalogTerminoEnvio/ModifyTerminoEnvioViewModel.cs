@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogTerminoEnvio
 {
@@ -87,6 +88,13 @@ namespace InventoryApp.ViewModel.CatalogTerminoEnvio
                 this._catalogTerminoEnvioViewModel.loadItems();
             }
         }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.TerminoEnvio);
+            return historialViewModel;
+        }
+
         #endregion
     }
 }

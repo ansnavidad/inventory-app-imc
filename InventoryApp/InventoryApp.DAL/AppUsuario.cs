@@ -513,7 +513,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void deleteElement(object element)
+        public void deleteElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -703,6 +703,12 @@ namespace InventoryApp.DAL
                     }
                 }
             }
+        }
+
+
+        public void deleteElement(object element)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -141,7 +141,7 @@ namespace InventoryApp.DAL
             return res;
         }
 
-        public void udpateElement(object element)
+        public void udpateElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -158,7 +158,7 @@ namespace InventoryApp.DAL
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
-                    entity.SaveChanges();
+                    UNID.Master(ciudad, u, -1, "Modificación");	                    
                 }
             }
         }
@@ -186,7 +186,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void insertElement(object element)
+        public void insertElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -210,6 +210,7 @@ namespace InventoryApp.DAL
                         //
                         entity.CIUDADs.AddObject(ciudad);
                         entity.SaveChanges();
+                        UNID.Master(ciudad, u, -1, "Inserción");                        
                     }
                 }
             }
@@ -231,6 +232,27 @@ namespace InventoryApp.DAL
                     //
                     entity.CIUDADs.AddObject(ciudad);
                     entity.SaveChanges();
+                }
+            }
+        }
+
+        public void deleteElement(object element, USUARIO u)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    CIUDAD cuidad = (CIUDAD)element;
+                    var deleteCuidad = entity.CIUDADs.First(p => p.UNID_CIUDAD == cuidad.UNID_CIUDAD);
+                    deleteCuidad.IS_ACTIVE = false;
+                    //Sync
+                    deleteCuidad.IS_MODIFIED = true;
+                    deleteCuidad.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    UNID.Master(cuidad, u, -1, "Emininación");                    
                 }
             }
         }
@@ -339,6 +361,17 @@ namespace InventoryApp.DAL
                     }
                 }
             }
+        }
+
+
+        public void udpateElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void insertElement(object element)
+        {
+            throw new NotImplementedException();
         }
     }
 }

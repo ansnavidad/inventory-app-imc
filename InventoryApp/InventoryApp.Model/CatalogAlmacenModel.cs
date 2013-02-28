@@ -129,7 +129,7 @@ namespace InventoryApp.Model
             this._almacen = new FixupCollection<DeleteAlmacen>();
             this._tecnico = new FixupCollection<DeleteTecnico>();
             //this._selectedAlmacen = new ALMACEN();
-            this.loadItems();
+            this.loadItems();            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

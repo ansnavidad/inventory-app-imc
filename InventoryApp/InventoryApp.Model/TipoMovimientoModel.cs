@@ -15,6 +15,7 @@ namespace InventoryApp.Model
         private string _tipoMovimientoName;
         private string _signoMovimiento;
         private TipoMovimientoDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogServicio
 {
@@ -13,6 +14,7 @@ namespace InventoryApp.ViewModel.CatalogServicio
         #region Fields
         private RelayCommand _deleteServicioCommand;
         private CatalogServicioModel _catalogServicioModel;
+        public USUARIO ActualUser;
         #endregion
 
         //Exponer la propiedad item status
@@ -45,8 +47,7 @@ namespace InventoryApp.ViewModel.CatalogServicio
 
         #region Contructor
         public CatalogServicioViewModel()
-        {
-            
+        {            
             try
             {
                 IDataMapper dataMapper = new ServicioDataMapper();
@@ -54,14 +55,30 @@ namespace InventoryApp.ViewModel.CatalogServicio
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
             catch(Exception ex)
             {
                 throw ex;
-            }   
-            
+            }
+        }
+
+        public CatalogServicioViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new ServicioDataMapper();
+                this._catalogServicioModel = new CatalogServicioModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         
         #endregion

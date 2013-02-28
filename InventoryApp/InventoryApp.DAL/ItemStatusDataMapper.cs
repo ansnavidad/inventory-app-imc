@@ -240,18 +240,18 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void deleteElement(object element)
+        public void deleteElement(object element, USUARIO u)
         {
             if (element != null)
             {
-               
+
                 using (var entity = new TAE2Entities())
                 {
                     ITEM_STATUS itemStatus = (ITEM_STATUS)element;
 
                     var deleteItemStatus = entity.ITEM_STATUS.First(p => p.UNID_ITEM_STATUS == itemStatus.UNID_ITEM_STATUS);
 
-                    deleteItemStatus.IS_ACTIVE =false;
+                    deleteItemStatus.IS_ACTIVE = false;
                     //Sync
                     deleteItemStatus.IS_MODIFIED = true;
                     deleteItemStatus.LAST_MODIFIED_DATE = UNID.getNewUNID();
@@ -260,7 +260,31 @@ namespace InventoryApp.DAL
                     entity.SaveChanges();
                     //
                     entity.SaveChanges();
-                }        
+                }
+            }
+        }
+
+        public void deleteElement(object element)
+        {
+            if (element != null)
+            {
+
+                using (var entity = new TAE2Entities())
+                {
+                    ITEM_STATUS itemStatus = (ITEM_STATUS)element;
+
+                    var deleteItemStatus = entity.ITEM_STATUS.First(p => p.UNID_ITEM_STATUS == itemStatus.UNID_ITEM_STATUS);
+
+                    deleteItemStatus.IS_ACTIVE = false;
+                    //Sync
+                    deleteItemStatus.IS_MODIFIED = true;
+                    deleteItemStatus.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
             }
         }
 

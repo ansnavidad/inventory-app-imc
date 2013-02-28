@@ -229,6 +229,28 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void deleteElement(object element, USUARIO u)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    MARCA marca = (MARCA)element;
+
+                    var deleteMarca = entity.MARCAs.First(p => p.UNID_MARCA == marca.UNID_MARCA);
+
+                    deleteMarca.IS_ACTIVE = false;
+                    //Sync
+                    deleteMarca.IS_MODIFIED = true;
+                    deleteMarca.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
         public void deleteElement(object element)
         {
             if (element != null)

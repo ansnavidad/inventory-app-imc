@@ -25,6 +25,7 @@ namespace InventoryApp.Model
         private ALMACEN _almacen;
         private bool _isChecked;
         private MaxMinDataMapper _dataMapper;
+        public USUARIO ActualUser;
         private string _mensajeError;
         #endregion
 

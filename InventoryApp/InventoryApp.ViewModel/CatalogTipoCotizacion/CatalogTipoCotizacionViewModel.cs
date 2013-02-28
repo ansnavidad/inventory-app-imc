@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogTipoCotizacion
 {
@@ -12,6 +13,7 @@ namespace InventoryApp.ViewModel.CatalogTipoCotizacion
     {
         private RelayCommand _deleteTipoCotizacionCommand;
         private CatalogTipoCotizacionModel _catalogTipoCotizacionModel;
+        public USUARIO ActualUser;
 
         public ICommand DeleteTipoCotizacionCommand
         {
@@ -34,15 +36,32 @@ namespace InventoryApp.ViewModel.CatalogTipoCotizacion
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
             catch (Exception ex)
             {
                 throw ex;
-            }  
-            
+            }
         }
+
+        public CatalogTipoCotizacionViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new TipoCotizacionDataMapper();
+                this._catalogTipoCotizacionModel = new CatalogTipoCotizacionModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public CatalogTipoCotizacionModel CatalogTipoCotizacionModel
         {
             get

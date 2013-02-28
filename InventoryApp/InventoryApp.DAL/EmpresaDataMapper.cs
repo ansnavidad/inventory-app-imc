@@ -257,6 +257,27 @@ namespace InventoryApp.Model
             }
         }
 
+        public void deleteElement(object element, USUARIO u)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    EMPRESA empresa = (EMPRESA)element;
+                    var deleteEmpresa = entity.EMPRESAs.First(p => p.UNID_EMPRESA == empresa.UNID_EMPRESA);
+                    deleteEmpresa.IS_ACTIVE = false;
+                    //Sync
+                    deleteEmpresa.IS_MODIFIED = true;
+                    deleteEmpresa.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void deleteElement(object element)
         {
             if (element != null)

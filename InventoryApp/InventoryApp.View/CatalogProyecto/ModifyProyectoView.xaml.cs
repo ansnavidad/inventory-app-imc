@@ -10,6 +10,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using InventoryApp.ViewModel.CatalogProyecto;
+using InventoryApp.View.Historial;
 
 namespace InventoryApp.View.CatalogProyecto
 {
@@ -32,6 +34,20 @@ namespace InventoryApp.View.CatalogProyecto
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Historal_Click(object sender, RoutedEventArgs e)
+        {
+            HistorialView addFactura = new HistorialView();
+            ModifyProyectoViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addFactura.DataContext = viewModel.CreateHistorialViewModel();
+            addFactura.ShowDialog();
+        }
+
+        private ModifyProyectoViewModel ConvertDataContext(object dataSource)
+        {
+            ModifyProyectoViewModel viewModel = dataSource as ModifyProyectoViewModel;
+            return viewModel;
         }
     }
 }

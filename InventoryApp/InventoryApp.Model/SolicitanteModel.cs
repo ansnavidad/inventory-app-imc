@@ -22,6 +22,7 @@ namespace InventoryApp.Model
         private bool _valideEmpresa;
         private string _error;
         private SolicitanteDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

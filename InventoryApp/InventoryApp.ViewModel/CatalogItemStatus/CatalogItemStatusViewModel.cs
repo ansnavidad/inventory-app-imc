@@ -14,6 +14,7 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
         #region Fields
         private RelayCommand _deleteItemCommand;
         private CatalogItemStatusModel _catalogItemStatusModel;
+        public USUARIO ActualUser;
         #endregion
 
         //Exponer la propiedad item status
@@ -46,8 +47,7 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
 
         #region Contructor
         public CatalogItemStatusViewModel()
-        {
-            
+        {            
             try
             {
                 IDataMapper dataMapper = new ItemStatusDataMapper();
@@ -55,14 +55,30 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
             catch(Exception ex)
             {
                 throw ex;
-            }   
-            
+            }               
+        }
+
+        public CatalogItemStatusViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new ItemStatusDataMapper();
+                this._catalogItemStatusModel = new CatalogItemStatusModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         
         #endregion

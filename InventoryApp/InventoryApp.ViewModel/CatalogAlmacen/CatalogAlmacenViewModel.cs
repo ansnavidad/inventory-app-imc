@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogAlmacen
 {
@@ -12,6 +13,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
     {
         private RelayCommand _deleteAlmacenCommand;
         private CatalogAlmacenModel _catalogAlmacenModel;
+        public USUARIO ActualUser;
 
         public ICommand DeleteAlmacenCommand
         {
@@ -41,6 +43,25 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                 throw ex;
             }  
             
+        }
+
+        public CatalogAlmacenViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new AlmacenDataMapper();
+                this._catalogAlmacenModel = new CatalogAlmacenModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         public CatalogAlmacenModel CatalogAlmacenModel

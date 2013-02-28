@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogPropiedad
 {
@@ -13,6 +14,7 @@ namespace InventoryApp.ViewModel.CatalogPropiedad
         #region Fields
         private RelayCommand _deletePropiedadCommand;
         private CatalogPropiedadModel _catalogPropiedadModel;
+        public USUARIO ActualUser;
         #endregion
 
         //Exponer la propiedad item status

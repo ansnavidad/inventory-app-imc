@@ -10,6 +10,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using InventoryApp.View.Historial;
+using InventoryApp.ViewModel.CatalogMedioEnvio;
 
 namespace InventoryApp.View.CatalogMedioEnvio
 {
@@ -33,6 +35,20 @@ namespace InventoryApp.View.CatalogMedioEnvio
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Historal_Click(object sender, RoutedEventArgs e)
+        {
+            HistorialView addFactura = new HistorialView();
+            ModifyMedioEnvioViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addFactura.DataContext = viewModel.CreateHistorialViewModel();
+            addFactura.ShowDialog();
+        }
+
+        private ModifyMedioEnvioViewModel ConvertDataContext(object dataSource)
+        {
+            ModifyMedioEnvioViewModel viewModel = dataSource as ModifyMedioEnvioViewModel;
+            return viewModel;
         }
     }
 }

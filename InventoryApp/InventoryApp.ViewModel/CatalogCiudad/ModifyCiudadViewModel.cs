@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogCiudad
 {
@@ -50,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogCiudad
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyCiudadViewModel(CatalogCiudadViewModel catalogCiudadViewModel,CiudadModel selectedCiudadModel)
         {
-            this._ciudadModel = new CiudadModel(new CiudadDataMapper());
+            this._ciudadModel = new CiudadModel(new CiudadDataMapper(), catalogCiudadViewModel.ActualUser);
             this._catalogCiudadViewModel = catalogCiudadViewModel;
             this._ciudadModel.Ciudad = selectedCiudadModel.Ciudad;
             this._ciudadModel.Iso = selectedCiudadModel.Iso;
@@ -84,6 +85,12 @@ namespace InventoryApp.ViewModel.CatalogCiudad
             {
                 this._catalogCiudadViewModel.loadItems();
             }
+        }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.CiudadModel);
+            return historialViewModel;
         }
         #endregion
     }

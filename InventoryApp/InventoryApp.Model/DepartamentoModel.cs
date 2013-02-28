@@ -10,10 +10,11 @@ namespace InventoryApp.Model
 {
     public class DepartamentoModel 
     {
-       #region Fields
+        #region Fields
         private long _unidDepartamento;
         private string _departamentoName;
         private DepartamentoDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props
@@ -60,23 +61,23 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new DEPARTAMENTO() { IS_ACTIVE = true, DEPARTAMENTO_NAME = this._departamentoName });
+                _dataMapper.insertElement(new DEPARTAMENTO() { IS_ACTIVE = true, DEPARTAMENTO_NAME = this._departamentoName }, this.ActualUser);
             }
         }
 
         public void updateDepartamento()
         {
-            this._dataMapper.udpateElement(new DEPARTAMENTO() { UNID_DEPARTAMENTO=this._unidDepartamento,DEPARTAMENTO_NAME=this._departamentoName });
+            this._dataMapper.udpateElement(new DEPARTAMENTO() { UNID_DEPARTAMENTO=this._unidDepartamento,DEPARTAMENTO_NAME=this._departamentoName }, this.ActualUser);
         }
 
         #region Constructors
-        public DepartamentoModel(IDataMapper dataMapper)
+        public DepartamentoModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as DepartamentoDataMapper) != null)
             {
                 this._dataMapper = dataMapper as DepartamentoDataMapper;
             }
-            
+            this.ActualUser = u;
         }
         #endregion
 

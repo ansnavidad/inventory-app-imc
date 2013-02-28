@@ -14,6 +14,7 @@ namespace InventoryApp.Model
         private long _unidMedioEnvio;
         private string _medioEnvioName;
         private MedioEnvioDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

@@ -46,7 +46,7 @@ namespace InventoryApp.ViewModel.CatalogBanco
 
         public AddBancoViewModel(CatalogBancoViewModel catalogBancoViewModel)
         {
-            this._banco = new BancoModel(new BancoDataMapper());
+            this._banco = new BancoModel(new BancoDataMapper(), catalogBancoViewModel.ActualUser);
             this._catalogBancoViewModel = catalogBancoViewModel;
         }
         #endregion

@@ -16,6 +16,7 @@ namespace InventoryApp.Model
         private string _tecnicoName;
         private CIUDAD _ciudad;        
         private TecnicoDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

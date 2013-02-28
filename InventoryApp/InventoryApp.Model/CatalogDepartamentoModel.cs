@@ -61,15 +61,15 @@ namespace InventoryApp.Model
             this.Departamento = ic;
         }
 
-        public void deleteDepartamentos()
+        public void deleteDepartamentos(USUARIO u)
         {
             foreach (DeleteDepartamento item in this._departamento)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
-            }
+            }           
         }
 
         public CatalogDepartamentoModel(IDataMapper dataMapper)

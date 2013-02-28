@@ -10,6 +10,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using InventoryApp.View.Historial;
+using InventoryApp.ViewModel.CatalogTerminoEnvio;
 
 namespace InventoryApp.View.CatalogTerminoEnvio
 {
@@ -37,6 +39,20 @@ namespace InventoryApp.View.CatalogTerminoEnvio
         private void btnCancelar_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Historal_Click(object sender, RoutedEventArgs e)
+        {
+            HistorialView addFactura = new HistorialView();
+            ModifyTerminoEnvioViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addFactura.DataContext = viewModel.CreateHistorialViewModel();
+            addFactura.ShowDialog();
+        }
+
+        private ModifyTerminoEnvioViewModel ConvertDataContext(object dataSource)
+        {
+            ModifyTerminoEnvioViewModel viewModel = dataSource as ModifyTerminoEnvioViewModel;
+            return viewModel;
         }
     }
 }

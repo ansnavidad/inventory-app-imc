@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogMoneda
 {
@@ -84,6 +85,13 @@ namespace InventoryApp.ViewModel.CatalogMoneda
                 this._catalogMonedaViewModel.loadMonedas();
             }
         }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.Moneda);
+            return historialViewModel;
+        }
+
         #endregion
     }
 }

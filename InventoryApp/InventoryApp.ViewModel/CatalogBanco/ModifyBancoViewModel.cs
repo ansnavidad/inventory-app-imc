@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogBanco
 {
@@ -50,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogBanco
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyBancoViewModel(CatalogBancoViewModel catalogBancoViewModel,BancoModel selectedBancoModel)
         {
-            this._banco = new BancoModel(new BancoDataMapper());
+            this._banco = new BancoModel(new BancoDataMapper(), catalogBancoViewModel.ActualUser);
             this._catalogBancoViewModel = catalogBancoViewModel;
             this._banco.UnidBanco = selectedBancoModel.UnidBanco;
             this._banco.BancoName = selectedBancoModel.BancoName;
@@ -83,6 +84,12 @@ namespace InventoryApp.ViewModel.CatalogBanco
                 this._catalogBancoViewModel.loadItems();
             }
         }
+
+         public HistorialViewModel CreateHistorialViewModel()
+         {
+             HistorialViewModel historialViewModel = new HistorialViewModel(this.Banco);
+             return historialViewModel;
+         }
 
         #endregion
     }

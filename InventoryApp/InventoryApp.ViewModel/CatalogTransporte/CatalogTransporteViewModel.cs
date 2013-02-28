@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogTransporte
 {
@@ -12,6 +13,7 @@ namespace InventoryApp.ViewModel.CatalogTransporte
     {
         private RelayCommand _deleteTransporteCommand;
         private CatalogTransporteModel _catalogTransporteModel;
+        public USUARIO ActualUser;
 
         public ICommand DeleteTransporteCommand
         {
@@ -34,15 +36,30 @@ namespace InventoryApp.ViewModel.CatalogTransporte
             }
             catch (ArgumentException ae)
             {
-
                 ;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
 
-
+        public CatalogTransporteViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new TransporteDataMapper();
+                this._catalogTransporteModel = new CatalogTransporteModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException ae)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public CatalogTransporteModel CatalogTransporteModel

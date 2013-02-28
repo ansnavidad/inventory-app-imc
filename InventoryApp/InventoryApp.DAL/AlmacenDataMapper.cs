@@ -173,6 +173,8 @@ namespace InventoryApp.DAL
                         entity.ALMACEN_TECNICO.AddObject(poco);
                         entity.SaveChanges();  
                     }
+
+                    var Master = entity.MASTER_INVENTARIOS.OrderBy(p => p.UNID_MASTER_INVENTARIOS).Where(p => p.UNID_ALMACEN != null).First();
                 }
             }
         }
@@ -634,6 +636,26 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void deleteElement(object element, USUARIO u)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ALMACEN almacen = (ALMACEN)element;
+                    var modifiedAlamacen = entity.ALMACENs.First(p => p.UNID_ALMACEN == almacen.UNID_ALMACEN);
+                    modifiedAlamacen.IS_ACTIVE = false;
+                    //Sync
+                    modifiedAlamacen.IS_MODIFIED = true;
+                    modifiedAlamacen.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+
+                    entity.SaveChanges();
+                }
+            }
+        }
         public void deleteElement(object element)
         {
             if (element != null)

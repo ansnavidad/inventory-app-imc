@@ -15,6 +15,7 @@ namespace InventoryApp.Model
         private string _pais;
         private string _iso;
         private PaisDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

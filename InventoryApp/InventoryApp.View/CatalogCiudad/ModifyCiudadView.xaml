@@ -37,5 +37,6 @@
         <Label Content="ISO :" HorizontalAlignment="Right" Name="label1" VerticalAlignment="Bottom"
                Grid.Row="2" Grid.Column="1" Style="{StaticResource lblCamposGeneric}" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="2,16,0,1" Name="txtIso" Text="{Binding CiudadModel.Iso, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="140" Grid.Row="2" MaxLength="16" Grid.Column="2" />
+        <Button Content="Historial" Height="23" HorizontalAlignment="Stretch" Margin="69,3,6,4" Name="button1" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Width="75" Grid.Column="2" Click="Historal_Click"  />
     </Grid>
 </Window>

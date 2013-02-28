@@ -10,6 +10,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using InventoryApp.View.Historial;
+using InventoryApp.ViewModel.CatalogMoneda;
 
 namespace InventoryApp.View.CatalogMoneda
 {
@@ -34,6 +36,20 @@ namespace InventoryApp.View.CatalogMoneda
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Historal_Click(object sender, RoutedEventArgs e)
+        {
+            HistorialView addFactura = new HistorialView();
+            ModifyMonedaViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addFactura.DataContext = viewModel.CreateHistorialViewModel();
+            addFactura.ShowDialog();
+        }
+
+        private ModifyMonedaViewModel ConvertDataContext(object dataSource)
+        {
+            ModifyMonedaViewModel viewModel = dataSource as ModifyMonedaViewModel;
+            return viewModel;
         }
     }
 }

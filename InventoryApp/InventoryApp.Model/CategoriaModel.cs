@@ -14,6 +14,7 @@ namespace InventoryApp.Model
         private long _unidCategoria;
         private string _categoriaName;
         private CategoriaDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
         #region Props
         public long UnidCategoria

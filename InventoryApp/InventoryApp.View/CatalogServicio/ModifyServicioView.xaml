@@ -46,5 +46,6 @@
                  Name="txtNomreServicio" VerticalAlignment="Bottom" Width="140"
                  Text="{Binding ModiServicio.ServicioName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                  MaxLength="128"/>
+        <Button Content="Historial" Height="23" HorizontalAlignment="Stretch" Margin="69,3,6,4" Name="button1" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Width="75" Grid.Column="2" Click="Historal_Click" />
     </Grid>
 </Window>

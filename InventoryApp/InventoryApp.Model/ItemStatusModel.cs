@@ -16,6 +16,7 @@ namespace InventoryApp.Model
         private ItemStatusModel _itemStatusModel;
         
         private ItemStatusDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

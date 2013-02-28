@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogInfraestructura
         /// <param name="catalogItemStatusViewModel"></param>
         public InsertInfraestructuraViewModel(CatalogInfraestructuraViewModel cataloginfraestructuraviewmodel)
         {
-            this._infraestructura = new InfraestructuraModel(new InfraestructuraDataMapper());
+            this._infraestructura = new InfraestructuraModel(new InfraestructuraDataMapper(),cataloginfraestructuraviewmodel.ActualUser);
             this._catalogInfraestructuraViewModel = cataloginfraestructuraviewmodel;
         }
         #endregion

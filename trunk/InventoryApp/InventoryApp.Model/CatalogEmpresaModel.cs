@@ -81,13 +81,13 @@ namespace InventoryApp.Model
             this.Empresa = ic;
         }
 
-        public void deleteEmpresa()
+        public void deleteEmpresa(USUARIO u)
         {
             foreach (DeleteEmpresa item in this._empresa)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

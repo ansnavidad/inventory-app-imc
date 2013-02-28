@@ -242,7 +242,7 @@ namespace InventoryApp.ViewModel
                         page = new CatalogDepartamentoViewModel(this.ActualUser);
                         break;
                     case "Empresa":
-                        page = new CatalogEmpresaViewModel();
+                        page = new CatalogEmpresaViewModel(this.ActualUser);
                         break;
                     case "Equipo":
                         page = new CatalogEquipoViewModel();
@@ -295,7 +295,7 @@ namespace InventoryApp.ViewModel
                     case "Tipo Pedimento":
                         page = new CatalogTipoPedimentoViewModel(this.ActualUser);
                         break;
-                    //case "Transporte":
+                    case "Transporte":
                         page = new CatalogMedioEnvioViewModel(this.ActualUser);
                         break;
                     case "Unidad":

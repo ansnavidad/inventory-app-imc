@@ -48,6 +48,27 @@ namespace InventoryApp.ViewModel.CatalogEmpresa
             
         }
 
+        public CatalogEmpresaViewModel(USUARIO u)
+        {
+
+            try
+            {
+                IDataMapper dataMapper = new EmpresaDataMapper();
+                this._catalogEmpresaModel = new CatalogEmpresaModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
         public CatalogEmpresaModel CatalogEmpresaModel
         {
             get
@@ -80,7 +101,7 @@ namespace InventoryApp.ViewModel.CatalogEmpresa
         /// <returns></returns>
         public ModifyEmpresaViewModel CreateModifyEmpresaViewModel()
         {
-            EmpresaModel empresaModel = new EmpresaModel(new EmpresaDataMapper());
+            EmpresaModel empresaModel = new EmpresaModel(new EmpresaDataMapper(), this.ActualUser);
             if (this._catalogEmpresaModel != null && this._catalogEmpresaModel.SelectedEmpresa != null)
             {
                 empresaModel.UnidEmpresa = this._catalogEmpresaModel.SelectedEmpresa.UNID_EMPRESA;
@@ -114,7 +135,7 @@ namespace InventoryApp.ViewModel.CatalogEmpresa
 
         public void AttempDeleteEmpresa()
         {
-            this._catalogEmpresaModel.deleteEmpresa();
+            this._catalogEmpresaModel.deleteEmpresa(this.ActualUser);
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
             if (this._catalogEmpresaModel != null)

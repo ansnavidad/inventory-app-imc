@@ -86,7 +86,7 @@ namespace InventoryApp.ViewModel.CatalogInfraestructura
 
         public ModifyInfraestructuraViewModel CreateModifyInfraestructuraViewModel()
         {
-            InfraestructuraModel infraestructuraModel = new InfraestructuraModel(new InfraestructuraDataMapper());
+            InfraestructuraModel infraestructuraModel = new InfraestructuraModel(new InfraestructuraDataMapper(), this.ActualUser);
             if (this._catalogInfraestructuraModel != null && this._catalogInfraestructuraModel.SelectedInfraestructura != null)
             {
                 infraestructuraModel.InfraestructuraName = this._catalogInfraestructuraModel.SelectedInfraestructura.INFRAESTRUCTURA_NAME;
@@ -118,7 +118,7 @@ namespace InventoryApp.ViewModel.CatalogInfraestructura
 
         public void AttempDeleteInfraestructura()
         {
-            this._catalogInfraestructuraModel.deleteInfraestructura();
+            this._catalogInfraestructuraModel.deleteInfraestructura(this.ActualUser);
 
             if (this._catalogInfraestructuraModel != null)
             {

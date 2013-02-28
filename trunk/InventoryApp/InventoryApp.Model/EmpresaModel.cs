@@ -122,23 +122,31 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new EMPRESA() { IS_ACTIVE = true, EMPRESA_NAME = this._empresaName, DIRECCION = this._direccion, RAZON_SOCIAL = this._razonSocial, RFC = this._rfc });
+                _dataMapper.insertElement(new EMPRESA() { IS_ACTIVE = true, EMPRESA_NAME = this._empresaName, DIRECCION = this._direccion, RAZON_SOCIAL = this._razonSocial, RFC = this._rfc }, this.ActualUser);
             }
         }
 
         public void updateEmpresa()
         {
-            this._dataMapper.udpateElement(new EMPRESA() { UNID_EMPRESA=this._unidEmpresa ,EMPRESA_NAME = this._empresaName, DIRECCION = this._direccion, RAZON_SOCIAL = this._razonSocial, RFC = this._rfc });
+            this._dataMapper.udpateElement(new EMPRESA() { UNID_EMPRESA = this._unidEmpresa, EMPRESA_NAME = this._empresaName, DIRECCION = this._direccion, RAZON_SOCIAL = this._razonSocial, RFC = this._rfc }, this.ActualUser);
         }
 
         #region Constructors
-        public EmpresaModel(IDataMapper dataMapper)
+        public EmpresaModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as EmpresaDataMapper) != null)
             {
                 this._dataMapper = dataMapper as EmpresaDataMapper;
             }
-            
+            this.ActualUser = u;
+        }
+
+        public EmpresaModel(IDataMapper dataMapper)
+        {
+            if ((dataMapper as EmpresaDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as EmpresaDataMapper;
+            }            
         }
         #endregion
         public event PropertyChangedEventHandler PropertyChanged;

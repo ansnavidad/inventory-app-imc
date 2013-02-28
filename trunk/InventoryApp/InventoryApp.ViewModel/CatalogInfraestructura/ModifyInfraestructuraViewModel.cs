@@ -51,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogInfraestructura
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyInfraestructuraViewModel(CatalogInfraestructuraViewModel catalogInfraestructuraViewModel, InfraestructuraModel selectedInfraestructuraModel)
         {
-            this._infraestructura = new InfraestructuraModel(new InfraestructuraDataMapper());
+            this._infraestructura = new InfraestructuraModel(new InfraestructuraDataMapper(), catalogInfraestructuraViewModel.ActualUser);
             this._catalogInfraestructuraViewModel = catalogInfraestructuraViewModel;
             this._infraestructura.UnidInfraestructura = selectedInfraestructuraModel.UnidInfraestructura;
             this._infraestructura.InfraestructuraName = selectedInfraestructuraModel.InfraestructuraName;

@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogCiudad
         /// <param name="catalogItemStatusViewModel"></param>
         public AddCiudadViewModel(CatalogCiudadViewModel catalogCiudadViewModel)
         {
-            this._ciudadModel = new CiudadModel(new CiudadDataMapper());
+            this._ciudadModel = new CiudadModel(new CiudadDataMapper(), catalogCiudadViewModel.ActualUser);
             this._catalogCiudadViewModel = catalogCiudadViewModel;
         }
         #endregion

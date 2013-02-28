@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogCiudad 
 {
@@ -13,6 +14,7 @@ namespace InventoryApp.ViewModel.CatalogCiudad
         private RelayCommand _deleteCiudadCommand;
 
         private CatalogCiudadModel _catalogCiudadModel;
+        public USUARIO ActualUser;
 
         public ICommand DeleteCiudadCommand
         {
@@ -23,6 +25,24 @@ namespace InventoryApp.ViewModel.CatalogCiudad
                     _deleteCiudadCommand = new RelayCommand(p => this.AttempDeleteCiudad(), p => this.CanAttempDeleteCiudad());
                 }
                 return _deleteCiudadCommand;
+            }
+        }
+
+        public CatalogCiudadViewModel(USUARIO u)
+        {
+            try
+            {
+                this.ActualUser = u;
+                IDataMapper dataMapper = new CiudadDataMapper();
+                this._catalogCiudadModel = new CatalogCiudadModel(dataMapper);
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -79,7 +99,7 @@ namespace InventoryApp.ViewModel.CatalogCiudad
         /// <returns></returns>
         public ModifyCiudadViewModel CreateModifyCiudadViewModel()
         {
-            CiudadModel ciudadModel = new CiudadModel(new CiudadDataMapper());
+            CiudadModel ciudadModel = new CiudadModel(new CiudadDataMapper(), this.ActualUser);
             if (this._catalogCiudadModel != null && this._catalogCiudadModel.SelectedCiudad != null)
             {
                 ciudadModel.Ciudad = this._catalogCiudadModel.SelectedCiudad.CIUDAD1;
@@ -111,7 +131,7 @@ namespace InventoryApp.ViewModel.CatalogCiudad
 
         public void AttempDeleteCiudad()
         {
-            this._catalogCiudadModel.deleteCiudad();
+            this._catalogCiudadModel.deleteCiudad(this.ActualUser);
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
             if (this._catalogCiudadModel != null)

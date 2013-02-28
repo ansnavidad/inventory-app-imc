@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogSolicitante
 {
@@ -142,6 +143,12 @@ namespace InventoryApp.ViewModel.CatalogSolicitante
             {
                 this._catalogSolicitanteViewModel.loadSolicitante();
             }
+        }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.ModiSolicitante);
+            return historialViewModel;
         }
         #endregion
     }

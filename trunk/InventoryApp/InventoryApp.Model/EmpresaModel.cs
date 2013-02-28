@@ -17,6 +17,7 @@ namespace InventoryApp.Model
         private string _rfc;
         private string _direccion;
         private EmpresaDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

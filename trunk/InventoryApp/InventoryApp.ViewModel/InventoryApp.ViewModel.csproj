@@ -190,6 +190,7 @@
     <Compile Include="GridMovimientos\MovimientoGridSalidaVentaViewModel.cs" />
     <Compile Include="GridMovimientos\MovimientoGridTraspasoStockViewModel.cs" />
     <Compile Include="GridMovimientos\MovimientosGridViewModel.cs" />
+    <Compile Include="Historial\HistorialViewModel.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="IViewModelChangeTrack.cs" />
     <Compile Include="Job\JobViewModel.cs" />

@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using InventoryApp.ViewModel;
+using InventoryApp.View.Historial;
+using InventoryApp.ViewModel.CatalogItemStatus;
 
 namespace InventoryApp.View.CatalogItemStatus
 {
@@ -34,6 +36,20 @@ namespace InventoryApp.View.CatalogItemStatus
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Historal_Click(object sender, RoutedEventArgs e)
+        {
+            HistorialView addFactura = new HistorialView();
+            ModifyItemStatusViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addFactura.DataContext = viewModel.CreateHistorialViewModel();
+            addFactura.ShowDialog();
+        }
+
+        private ModifyItemStatusViewModel ConvertDataContext(object dataSource)
+        {
+            ModifyItemStatusViewModel viewModel = dataSource as ModifyItemStatusViewModel;
+            return viewModel;
         }
     }
 }

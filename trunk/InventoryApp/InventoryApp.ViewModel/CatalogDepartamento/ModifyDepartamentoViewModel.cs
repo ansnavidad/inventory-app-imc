@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogDepartamento
 {
@@ -49,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogDepartamento
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyDepartamentoViewModel(CatalogDepartamentoViewModel catalogDepartamentoViewModel,DepartamentoModel selectedDepartamentoModel)
         {
-            this._departamento = new DepartamentoModel(new DepartamentoDataMapper());
+            this._departamento = new DepartamentoModel(new DepartamentoDataMapper(), catalogDepartamentoViewModel.ActualUser);
             this._catalogDepartamentoViewModel = catalogDepartamentoViewModel;
             this._departamento.UnidDepartamento = selectedDepartamentoModel.UnidDepartamento;
             this._departamento.DepartamentoName = selectedDepartamentoModel.DepartamentoName;
@@ -82,6 +83,12 @@ namespace InventoryApp.ViewModel.CatalogDepartamento
                 this._catalogDepartamentoViewModel.loadItems();
             }
         }
+
+         public HistorialViewModel CreateHistorialViewModel()
+         {
+             HistorialViewModel historialViewModel = new HistorialViewModel(this.Departamento);
+             return historialViewModel;
+         }
 
         #endregion
     }

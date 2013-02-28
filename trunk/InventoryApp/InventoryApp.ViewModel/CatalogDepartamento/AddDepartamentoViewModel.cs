@@ -46,7 +46,7 @@ namespace InventoryApp.ViewModel.CatalogDepartamento
 
         public AddDepartamentoViewModel(CatalogDepartamentoViewModel catalogDepartamentoViewModel)
         {
-            this._departamento = new DepartamentoModel(new DepartamentoDataMapper());
+            this._departamento = new DepartamentoModel(new DepartamentoDataMapper(), catalogDepartamentoViewModel.ActualUser);
             this._catalogDepartamentoViewModel = catalogDepartamentoViewModel;
         }
         #endregion

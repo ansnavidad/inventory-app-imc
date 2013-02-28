@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogTipoPedimento
 {
@@ -85,6 +86,12 @@ namespace InventoryApp.ViewModel.CatalogTipoPedimento
             {
                 this._catalogTipoPedimentoViewModel.loadItems();
             }
+        }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.TipoPedimento);
+            return historialViewModel;
         }
         #endregion
     }

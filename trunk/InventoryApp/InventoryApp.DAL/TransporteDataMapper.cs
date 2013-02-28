@@ -237,6 +237,29 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void deleteElement(object element, USUARIO u)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TRANSPORTE transporte = (TRANSPORTE)element;
+
+                    var deleteTransporte = entity.TRANSPORTEs.First(p => p.UNID_TRANSPORTE == transporte.UNID_TRANSPORTE);
+
+                    deleteTransporte.IS_ACTIVE = false;
+                    //Sync
+                    deleteTransporte.IS_MODIFIED = true;
+                    deleteTransporte.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void deleteElement(object element)
         {
             if (element != null)
@@ -252,7 +275,7 @@ namespace InventoryApp.DAL
                     deleteTransporte.IS_MODIFIED = true;
                     deleteTransporte.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
                     entity.SaveChanges();

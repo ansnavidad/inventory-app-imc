@@ -17,6 +17,7 @@ namespace InventoryApp.Model
         private string _regimen;
         private string _nota;
         private TipoPedimentoDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

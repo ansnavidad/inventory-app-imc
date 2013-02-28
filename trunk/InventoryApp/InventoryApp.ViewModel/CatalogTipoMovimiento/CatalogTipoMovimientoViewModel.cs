@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogTipoMovimiento
 {
@@ -12,6 +13,7 @@ namespace InventoryApp.ViewModel.CatalogTipoMovimiento
     {
         private RelayCommand _deleteTipoMovimientoCommand;
         private CatalogTipoMovimientoModel _catalogTipoMovimientoModel;
+        public USUARIO ActualUser;
 
         public CatalogTipoMovimientoViewModel()
         {

@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 
 namespace InventoryApp.ViewModel.CatalogTipoPedimento
@@ -13,6 +14,7 @@ namespace InventoryApp.ViewModel.CatalogTipoPedimento
     {
         private RelayCommand _deleteTipoPedimentoCommand;
         private CatalogTipoPedimentoModel _tipoPedimentoModel;
+        public USUARIO ActualUser;
 
         public ICommand DeleteTipoPedimentoCommand
         {
@@ -28,23 +30,39 @@ namespace InventoryApp.ViewModel.CatalogTipoPedimento
 
         public CatalogTipoPedimentoViewModel()
         {
-            
             try
             {
                 IDataMapper dataMapper = new TipoPedimentoDataMapper();
-                this._tipoPedimentoModel = new CatalogTipoPedimentoModel(dataMapper);   
+                this._tipoPedimentoModel = new CatalogTipoPedimentoModel(dataMapper);
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
-            }   
-            
+            }
         }
+
+        public CatalogTipoPedimentoViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new TipoPedimentoDataMapper();
+                this._tipoPedimentoModel = new CatalogTipoPedimentoModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public CatalogTipoPedimentoModel TipoPedimentoModel
         {
             get

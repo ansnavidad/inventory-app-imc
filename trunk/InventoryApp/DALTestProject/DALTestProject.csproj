@@ -99,6 +99,7 @@
     <Compile Include="FacturaCompraDataMapperTest.cs" />
     <Compile Include="FacturaCompraDetalleDataMapperTest.cs" />
     <Compile Include="FacturaVentaDataMapperTest.cs" />
+    <Compile Include="HistorialDataMapperTest.cs" />
     <Compile Include="ItemDataMapperTest.cs" />
     <Compile Include="ItemStatusDataMapperTest.cs" />
     <Compile Include="JobDataMapperTest.cs" />

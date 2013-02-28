@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogItemStatus
 {
@@ -82,6 +83,12 @@ namespace InventoryApp.ViewModel.CatalogItemStatus
             {
                 this._catalogItemStatusViewModel.loadItems();
             }
+        }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.ModiItemStatus);
+            return historialViewModel;
         }
         #endregion
     }

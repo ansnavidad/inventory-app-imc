@@ -17,6 +17,7 @@ namespace InventoryApp.Model
         private string _significado;
         private bool _generaLotes;
         private TerminoEnvioDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

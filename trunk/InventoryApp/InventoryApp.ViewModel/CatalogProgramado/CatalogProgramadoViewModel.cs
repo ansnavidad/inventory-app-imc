@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogProgramado
 {
@@ -13,6 +14,7 @@ namespace InventoryApp.ViewModel.CatalogProgramado
         private RelayCommand _deleteMaxMinCommand;
         private CatalogProgramadoModel _catalogProgramadoModel;
         private ProgramadoModel _addGridArticulos = new ProgramadoModel();
+        public USUARIO ActualUser;
 
         public ICommand DeleteProgramadoCommand
         {

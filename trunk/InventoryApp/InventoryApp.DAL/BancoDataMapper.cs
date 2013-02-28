@@ -132,7 +132,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void udpateElement(object element)
+        public void udpateElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -147,8 +147,8 @@ namespace InventoryApp.DAL
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
-                    //
-                    entity.SaveChanges();
+                    //Master
+                    UNID.Master(banco, u, -1, "Modificación");
                 }
             }
         }
@@ -169,13 +169,12 @@ namespace InventoryApp.DAL
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
-                    //
-                    entity.SaveChanges();
+                    //                    
                 }
             }
         }
 
-        public void insertElement(object element)
+        public void insertElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -199,6 +198,8 @@ namespace InventoryApp.DAL
                         //
                         entity.BANCOes.AddObject(banco);
                         entity.SaveChanges();
+                        //Master
+                        UNID.Master(banco, u, -1, "Inserción");
                     }
                 }
             }
@@ -224,7 +225,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void deleteElement(object element)
+        public void deleteElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -239,8 +240,8 @@ namespace InventoryApp.DAL
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
-                    //
-                    entity.SaveChanges();
+                    //Master
+                    UNID.Master(banco, u, -1, "Emininación");
                 }
             }
         }
@@ -321,6 +322,19 @@ namespace InventoryApp.DAL
                     }
                 }
             }
+        }
+
+        public void insertElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+        public void udpateElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+        public void deleteElement(object element)
+        {
+            throw new NotImplementedException();
         }
     }
 }

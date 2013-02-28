@@ -15,6 +15,7 @@ namespace InventoryApp.Model
         private string _monedaName;
         private string _monedaAbr;
         private MonedaDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

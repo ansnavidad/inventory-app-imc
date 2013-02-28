@@ -45,6 +45,7 @@
         <TextBox Grid.Column="2" MaxLength="3" Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="0,16,0,0" 
                  Name="txtMonedaAbr" VerticalAlignment="Top" Width="140" TabIndex="1"
                  Text="{Binding Moneda.MonedaAbr, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        <Button Content="Historial" Height="23" HorizontalAlignment="Stretch" Margin="69,3,6,4" Name="button1" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Width="75" Grid.Column="2" Click="Historal_Click" />
     </Grid>
 </Window>
 

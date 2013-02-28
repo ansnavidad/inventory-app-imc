@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogServicio
 {
@@ -83,6 +84,13 @@ namespace InventoryApp.ViewModel.CatalogServicio
                 this._catalogServicioViewModel.loadItems();
             }
         }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.ModiServicio);
+            return historialViewModel;
+        }
+
         #endregion
     }
 }

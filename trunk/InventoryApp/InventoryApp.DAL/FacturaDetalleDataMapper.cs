@@ -192,6 +192,12 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void deleteElement(object element, USUARIO u)
+        {
+            throw new NotImplementedException();
+        }
+
+
         public void deleteElement(object element)
         {
             throw new NotImplementedException();

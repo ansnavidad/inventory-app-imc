@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogTerminoEnvio
 {
@@ -12,6 +13,7 @@ namespace InventoryApp.ViewModel.CatalogTerminoEnvio
     {
         private RelayCommand _deleteTerminoEnvioCommand;
         private CatalogTerminoEnvioModel _catalogTerminoEnvioModel;
+        public USUARIO ActualUser;
 
         public ICommand DeleteTerminoEnvioCommand
         {
@@ -26,8 +28,7 @@ namespace InventoryApp.ViewModel.CatalogTerminoEnvio
         }
 
         public CatalogTerminoEnvioViewModel()
-        {
-            
+        {            
             try
             {
                 IDataMapper dataMapper = new TerminoEnvioDataMapper();
@@ -35,15 +36,32 @@ namespace InventoryApp.ViewModel.CatalogTerminoEnvio
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
             catch(Exception ex)
             {
                 throw ex;
-            }   
-            
+            }
         }
+
+        public CatalogTerminoEnvioViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new TerminoEnvioDataMapper();
+                this._catalogTerminoEnvioModel = new CatalogTerminoEnvioModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public CatalogTerminoEnvioModel CatalogTerminoEnvioModel
         {
             get

@@ -28,6 +28,7 @@ namespace InventoryApp.Model
         public List<long> _unidsCuenta;
         public List<long> _auxUnidsCuenta;
         private ProveedorDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

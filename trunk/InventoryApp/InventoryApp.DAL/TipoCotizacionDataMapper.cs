@@ -251,6 +251,29 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void deleteElement(object element, USUARIO u)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TIPO_COTIZACION tipoCotizacion = (TIPO_COTIZACION)element;
+
+                    var deleteTipoCotizacion = entity.TIPO_COTIZACION.First(p => p.UNID_TIPO_COTIZACION == tipoCotizacion.UNID_TIPO_COTIZACION);
+
+                    deleteTipoCotizacion.IS_ACTIVE = false;
+                    //Sync
+                    deleteTipoCotizacion.IS_MODIFIED = true;
+                    deleteTipoCotizacion.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void deleteElement(object element)
         {
             if (element != null)
@@ -266,7 +289,7 @@ namespace InventoryApp.DAL
                     deleteTipoCotizacion.IS_MODIFIED = true;
                     deleteTipoCotizacion.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
                     entity.SaveChanges();

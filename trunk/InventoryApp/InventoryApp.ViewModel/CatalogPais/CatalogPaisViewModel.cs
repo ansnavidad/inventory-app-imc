@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogPais
 {
@@ -13,6 +14,7 @@ namespace InventoryApp.ViewModel.CatalogPais
         private RelayCommand _deletePaisCommand;
 
         private CatalogPaisModel _catalogPaisModel;
+        public USUARIO ActualUser;
 
         public ICommand DeletePaisCommand
         {
@@ -27,22 +29,38 @@ namespace InventoryApp.ViewModel.CatalogPais
         }
 
         public CatalogPaisViewModel()
-        {            
+        {
             try
             {
                 IDataMapper dataMapper = new CiudadDataMapper();
-                this._catalogPaisModel = new CatalogPaisModel(dataMapper);   
+                this._catalogPaisModel = new CatalogPaisModel(dataMapper);
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
-            }   
-            
+            }
+        }
+
+        public CatalogPaisViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new CiudadDataMapper();
+                this._catalogPaisModel = new CatalogPaisModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public CatalogPaisModel CatalogPaisModel

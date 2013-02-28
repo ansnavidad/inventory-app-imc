@@ -67,6 +67,7 @@
     <Compile Include="FacturaDataMapper.cs" />
     <Compile Include="FacturaDetalleDataMapper.cs" />
     <Compile Include="FacturaVentaDataMapper.cs" />
+    <Compile Include="Historial\HistorialDataMapper.cs" />
     <Compile Include="IDataMapper.cs" />
     <Compile Include="InfraestructuraDataMapper.cs" />
     <Compile Include="ItemDataMapper.cs" />
@@ -95,9 +96,6 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\BANCO.cs">
-      <DependentUpon>PocosElara.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POCOS\BATCH_LOAD_CARGAMVTOS.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\CATEGORIA.cs">
@@ -144,13 +142,13 @@
     <Compile Include="POCOS\ITEM_STATUS.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
-    <Compile Include="POCOS\LOG_LOAD_CARGAMVTOS.cs">
-      <DependentUpon>PocosElara.tt</DependentUpon>
-    </Compile>
     <Compile Include="POCOS\LOTE.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\MARCA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MASTER_INVENTARIOS.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\MAX_MIN.cs">
@@ -242,18 +240,6 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\SOLICITANTE1.cs">
-      <DependentUpon>PocosElara.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POCOS\STG_FACTURA.cs">
-      <DependentUpon>PocosElara.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POCOS\STG_FACTURA_DETALLE.cs">
-      <DependentUpon>PocosElara.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POCOS\STG_ITEM.cs">
-      <DependentUpon>PocosElara.tt</DependentUpon>
-    </Compile>
-    <Compile Include="POCOS\STG_MOVIMIENTO.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\SYNC.cs">

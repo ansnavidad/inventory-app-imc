@@ -23,6 +23,7 @@ namespace InventoryApp.Model
         private bool _isChecked;
         private ProgramadoDataMapper _dataMapper;
         private string _mensajeError;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

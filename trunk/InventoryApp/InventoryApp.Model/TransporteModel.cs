@@ -15,6 +15,7 @@ namespace InventoryApp.Model
         private string _trasnporteName;
         private TIPO_EMPRESA _tipoEmpresa;
         private TransporteDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         public long UnidTransporte

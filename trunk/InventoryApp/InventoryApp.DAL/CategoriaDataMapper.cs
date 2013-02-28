@@ -188,7 +188,7 @@ namespace InventoryApp.DAL
             return res;
         }
 
-        public void udpateElement(object element)
+        public void udpateElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -247,7 +247,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void insertElement(object element)
+        public void insertElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -290,6 +290,27 @@ namespace InventoryApp.DAL
                     entity.SaveChanges();
                     //
                     entity.CATEGORIAs.AddObject(categoria);
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void deleteElement(object element, USUARIO u)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    CATEGORIA categoria = (CATEGORIA)element;
+                    var deleteCategoria = entity.CATEGORIAs.First(p => p.UNID_CATEGORIA == categoria.UNID_CATEGORIA);
+                    deleteCategoria.IS_ACTIVE = false;
+                    //Sync
+                    deleteCategoria.IS_MODIFIED = true;
+                    deleteCategoria.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
                     entity.SaveChanges();
                 }
             }
@@ -441,6 +462,17 @@ namespace InventoryApp.DAL
                     }
                 }
             }
+        }
+
+
+        public void udpateElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void insertElement(object element)
+        {
+            throw new NotImplementedException();
         }
     }
 }

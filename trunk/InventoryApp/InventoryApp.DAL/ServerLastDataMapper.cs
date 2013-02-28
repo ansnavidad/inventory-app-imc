@@ -145,7 +145,43 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void deleteElement(object element, USUARIO u)
+        {
+            throw new NotImplementedException();
+        }
+
+
         public void deleteElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        object IDataMapper.getElements()
+        {
+            throw new NotImplementedException();
+        }
+
+        object IDataMapper.getElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDataMapper.udpateElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDataMapper.insertElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDataMapper.deleteElement(object element, USUARIO u)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDataMapper.deleteElement(object element)
         {
             throw new NotImplementedException();
         }

@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogMedioEnvio
 {
@@ -82,6 +83,12 @@ namespace InventoryApp.ViewModel.CatalogMedioEnvio
             {
                 this._catalogMedioEnvioViewModel.loadItems();
             }
+        }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.MedioEnvio);
+            return historialViewModel;
         }
         #endregion
     }

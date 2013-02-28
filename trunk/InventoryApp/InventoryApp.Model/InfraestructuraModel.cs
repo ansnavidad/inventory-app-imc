@@ -15,6 +15,7 @@ namespace InventoryApp.Model
         private long _unidInfraestructura;
         private string _infraestructuraName;
         private InfraestructuraDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props

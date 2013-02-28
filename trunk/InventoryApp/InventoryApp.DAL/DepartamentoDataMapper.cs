@@ -141,7 +141,7 @@ namespace InventoryApp.DAL
             return res;
         }
 
-        public void udpateElement(object element)
+        public void udpateElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -157,7 +157,7 @@ namespace InventoryApp.DAL
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
-                    entity.SaveChanges();
+                    UNID.Master(departamento, u, -1, "Modificación");	                    
                 }
             }
         }
@@ -184,7 +184,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void insertElement(object element)
+        public void insertElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -208,6 +208,7 @@ namespace InventoryApp.DAL
                         //
                         entity.DEPARTAMENTOes.AddObject(departamento);
                         entity.SaveChanges();
+                        UNID.Master(departamento, u, -1, "Inserción");
                     }
                 }
             }
@@ -229,6 +230,28 @@ namespace InventoryApp.DAL
                     //
                     entity.DEPARTAMENTOes.AddObject(departamento);
                     entity.SaveChanges();
+                }
+            }
+        }
+
+        public void deleteElement(object element, USUARIO u)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    DEPARTAMENTO departamento = (DEPARTAMENTO)element;
+                    var deleteDepartamento = entity.DEPARTAMENTOes.First(p => p.UNID_DEPARTAMENTO == departamento.UNID_DEPARTAMENTO);
+                    deleteDepartamento.IS_ACTIVE = false;
+                    //Sync
+                    deleteDepartamento.IS_MODIFIED = true;
+                    deleteDepartamento.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+
+                    UNID.Master(departamento, u, -1, "Emininación");
                 }
             }
         }
@@ -335,6 +358,16 @@ namespace InventoryApp.DAL
                     }
                 }
             }
+        }
+        
+        public void udpateElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void insertElement(object element)
+        {
+            throw new NotImplementedException();
         }
     }
 }

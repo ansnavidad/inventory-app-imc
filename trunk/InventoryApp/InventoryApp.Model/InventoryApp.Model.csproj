@@ -138,6 +138,7 @@
     <Compile Include="EmpresaModel.cs" />
     <Compile Include="EquipoModel.cs" />
     <Compile Include="FacturaVentaModel.cs" />
+    <Compile Include="Historial\HistorialModel.cs" />
     <Compile Include="IModelChangeTrack.cs" />
     <Compile Include="InfraestructuraModel.cs" />
     <Compile Include="InsertTipoEmpresaModel.cs" />
@@ -184,7 +185,6 @@
     <Compile Include="SolicitanteModel.cs" />
     <Compile Include="TecnicoModel.cs" />
     <Compile Include="TerminoEnvioModel.cs" />
-    <Compile Include="TestCode\CatalogItemModelDataMapperTEst.cs" />
     <Compile Include="TipoCotizacionModel.cs" />
     <Compile Include="TipoMovimientoModel.cs" />
     <Compile Include="TipoPedimentoModel.cs" />

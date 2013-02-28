@@ -5,12 +5,14 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogDepartamento
 {
     public class CatalogDepartamentoViewModel : IPageViewModel
     {
         private RelayCommand _deleteDepartamentoCommand;
+        public USUARIO ActualUser;
 
         public ICommand DeleteDepartamentoCommand
         {
@@ -27,8 +29,7 @@ namespace InventoryApp.ViewModel.CatalogDepartamento
         private CatalogDepartamentoModel _catalogDepartamentoModel;
 
         public CatalogDepartamentoViewModel()
-        {
-            
+        {            
             try
             {
                 IDataMapper dataMapper = new DepartamentoDataMapper();
@@ -36,15 +37,32 @@ namespace InventoryApp.ViewModel.CatalogDepartamento
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
             catch(Exception ex)
             {
                 throw ex;
-            }   
-            
+            }
         }
+
+        public CatalogDepartamentoViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new DepartamentoDataMapper();
+                this._catalogDepartamentoModel = new CatalogDepartamentoModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public CatalogDepartamentoModel CatalogDepartamentoModel
         {
             get
@@ -78,7 +96,7 @@ namespace InventoryApp.ViewModel.CatalogDepartamento
         /// <returns></returns>
         public ModifyDepartamentoViewModel CreateDepartamentoViewModel()
         {
-            DepartamentoModel departamentoModel=new DepartamentoModel(new DepartamentoDataMapper());
+            DepartamentoModel departamentoModel=new DepartamentoModel(new DepartamentoDataMapper(), this.ActualUser);
             if (this._catalogDepartamentoModel != null && this._catalogDepartamentoModel.SelectedDepartamento != null)
             {
                 departamentoModel.DepartamentoName = this._catalogDepartamentoModel.SelectedDepartamento.DEPARTAMENTO_NAME;
@@ -109,7 +127,7 @@ namespace InventoryApp.ViewModel.CatalogDepartamento
 
         public void AttempDeleteDepartamento()
         {
-            this._catalogDepartamentoModel.deleteDepartamentos();
+            this._catalogDepartamentoModel.deleteDepartamentos(this.ActualUser);
 
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
             if (this._catalogDepartamentoModel != null)

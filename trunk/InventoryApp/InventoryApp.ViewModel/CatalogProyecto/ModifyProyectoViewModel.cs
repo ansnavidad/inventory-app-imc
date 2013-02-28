@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogProyecto
 {
@@ -81,6 +82,13 @@ namespace InventoryApp.ViewModel.CatalogProyecto
                 this._catalogProyectoViewModel.loadProyecto();
             }
         }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.ModiProyecto);
+            return historialViewModel;
+        }
+
         #endregion
     }
 }

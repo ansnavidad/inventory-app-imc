@@ -51,8 +51,8 @@ namespace InventoryApp.ViewModel.Login
         }
         public void AttempValidar()
         {
-            this.LoginModel.CallServiceGetLoginUser();
-            if (!this.LoginModel.Login)
+            //this.LoginModel.CallServiceGetLoginUser();
+            //if (!this.LoginModel.Login)
                 if (!this.LoginModel.GetLoginUser())
                 {
                     MessageBoxResult result = MessageBox.Show("Usuario o contraseña incorrectos \n O usuario no activado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 
 namespace InventoryApp.ViewModel.CatalogModelo
@@ -14,6 +15,7 @@ namespace InventoryApp.ViewModel.CatalogModelo
         private RelayCommand _deleteModeloCommand;
 
         private CatalogModeloModel _catalogModeloModel;
+        public USUARIO ActualUser;
 
         public ICommand DeleteModeloCommand
         {

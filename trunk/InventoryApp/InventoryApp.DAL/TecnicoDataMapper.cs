@@ -259,6 +259,29 @@ namespace InventoryApp.DAL
             }
         }
 
+        public void deleteElement(object element, USUARIO u)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    TECNICO tecnico = (TECNICO)element;
+
+                    var deleteTecnico = entity.TECNICOes.First(p => p.UNID_TECNICO == tecnico.UNID_TECNICO);
+
+                    deleteTecnico.IS_ACTIVE = false;
+                    //Sync
+                    deleteTecnico.IS_MODIFIED = true;
+                    deleteTecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.SaveChanges();
+                }
+            }
+        }
+
         public void deleteElement(object element)
         {
             if (element != null)
@@ -274,7 +297,7 @@ namespace InventoryApp.DAL
                     deleteTecnico.IS_MODIFIED = true;
                     deleteTecnico.LAST_MODIFIED_DATE = UNID.getNewUNID();
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
-                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID(); 
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
                     entity.SaveChanges();

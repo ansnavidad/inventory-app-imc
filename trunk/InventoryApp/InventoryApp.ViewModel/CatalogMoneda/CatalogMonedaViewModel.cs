@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using InventoryApp.DAL;
 using System.Windows.Input;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogMoneda
 {
@@ -13,6 +14,7 @@ namespace InventoryApp.ViewModel.CatalogMoneda
         private RelayCommand _deleteMonedaCommand;
 
         private CatalogMonedaModel _catalogMonedaModel;
+        public USUARIO ActualUser;
 
         public ICommand DeleteMonedaCommand
         {
@@ -28,22 +30,37 @@ namespace InventoryApp.ViewModel.CatalogMoneda
 
         public CatalogMonedaViewModel()
         {
-            
             try
             {
                 IDataMapper dataMapper = new MonedaDataMapper();
-                this._catalogMonedaModel = new CatalogMonedaModel(dataMapper);   
+                this._catalogMonedaModel = new CatalogMonedaModel(dataMapper);
             }
             catch (ArgumentException a)
             {
-
                 ;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
-            }   
-            
+            }
+        }
+
+        public CatalogMonedaViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new MonedaDataMapper();
+                this._catalogMonedaModel = new CatalogMonedaModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public CatalogMonedaModel CatalogMonedaModel

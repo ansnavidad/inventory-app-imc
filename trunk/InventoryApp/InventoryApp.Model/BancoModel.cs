@@ -14,6 +14,7 @@ namespace InventoryApp.Model
         private long _unidBanco;
         private string _bancoName;
         private BancoDataMapper _dataMapper;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props
@@ -60,23 +61,23 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new BANCO() { IS_ACTIVE = true, BANCO_NAME = this._bancoName });
+                _dataMapper.insertElement(new BANCO() { IS_ACTIVE = true, BANCO_NAME = this._bancoName }, this.ActualUser);
             }
         }
 
         public void updateBanco()
         {
-            this._dataMapper.udpateElement(new BANCO() { UNID_BANCO=this._unidBanco,BANCO_NAME=this._bancoName });
+            this._dataMapper.udpateElement(new BANCO() { UNID_BANCO = this._unidBanco, BANCO_NAME = this._bancoName }, this.ActualUser);
         }
 
         #region Constructors
-        public BancoModel(IDataMapper dataMapper)
+        public BancoModel(BancoDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as BancoDataMapper) != null)
             {
                 this._dataMapper = dataMapper as BancoDataMapper;
             }
-            
+            this.ActualUser = u;
         }
         #endregion
 

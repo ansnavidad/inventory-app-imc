@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogEmpresa
 {
@@ -86,6 +87,12 @@ namespace InventoryApp.ViewModel.CatalogEmpresa
             {
                 this._catalogEmpresaViewModel.loadItems();
             }
+        }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.ModiEmpresa);
+            return historialViewModel;
         }
         #endregion
     }

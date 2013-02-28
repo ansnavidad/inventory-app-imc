@@ -94,7 +94,7 @@ namespace InventoryApp.ViewModel.CatalogSolicitante
         /// <returns></returns>
         public ModifySolicitanteViewModel CreateModifySolicitanteViewModel()
         {
-            SolicitanteModel solicitanteModel = new SolicitanteModel(new SolicitanteDataMapper());
+            SolicitanteModel solicitanteModel = new SolicitanteModel(new SolicitanteDataMapper(), this.ActualUser);
             if (this._catalogSolicitanteModel != null && this._catalogSolicitanteModel.SelectedSolicitante != null)
             {
                 solicitanteModel.UnidSolicitante = this._catalogSolicitanteModel.SelectedSolicitante.UNID_SOLICITANTE;
@@ -129,7 +129,7 @@ namespace InventoryApp.ViewModel.CatalogSolicitante
 
         public void AttempDeleteSolicitante()
         {
-            this._catalogSolicitanteModel.deleteSolicitante();
+            this._catalogSolicitanteModel.deleteSolicitante(this.ActualUser);
 
             if (this._catalogSolicitanteModel != null)
             {

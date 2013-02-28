@@ -51,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogTerminoEnvio
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyTerminoEnvioViewModel(CatalogTerminoEnvioViewModel catalogTerminoEnvioViewModel, TerminoEnvioModel selectedTerminoEnvioModel)
         {
-            this._terminoEnvio = new TerminoEnvioModel(new TerminoEnvioDataMapper());
+            this._terminoEnvio = new TerminoEnvioModel(new TerminoEnvioDataMapper(), catalogTerminoEnvioViewModel.ActualUser);
             this._catalogTerminoEnvioViewModel = catalogTerminoEnvioViewModel;
 
             this._terminoEnvio.UnidTerminoEnvio = selectedTerminoEnvioModel.UnidTerminoEnvio;

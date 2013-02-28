@@ -76,7 +76,7 @@ namespace InventoryApp.ViewModel.CatalogSolicitante
         /// <param name="catalogItemStatusViewModel"></param>
         public AddSolicitanteViewModel(CatalogSolicitanteViewModel catalogSolicitanteViewModel)
         {
-            this._addSolicitante = new SolicitanteModel(new SolicitanteDataMapper());
+            this._addSolicitante = new SolicitanteModel(new SolicitanteDataMapper(), catalogSolicitanteViewModel.ActualUser);
             this._catalogSolicitanteViewModel = catalogSolicitanteViewModel;
             try
             {

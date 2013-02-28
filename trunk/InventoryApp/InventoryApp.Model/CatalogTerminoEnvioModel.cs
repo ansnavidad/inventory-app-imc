@@ -72,13 +72,13 @@ namespace InventoryApp.Model
             this.TerminoEnvio = ic;
         }
 
-        public void deleteTerminoEnvio()
+        public void deleteTerminoEnvio(USUARIO u)
         {
             foreach (DeleteTerminoEnvio item in this._terminoEnvio)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

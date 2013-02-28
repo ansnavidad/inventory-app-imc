@@ -192,7 +192,8 @@ namespace InventoryApp.Model
                                                              UNID_DEPARTAMENTO=this._departamento.UNID_DEPARTAMENTO,
                                                              UNID_EMPRESA=this._empresa.UNID_EMPRESA,
                                                              EMAIL=this._email,
-                                                             VALIDADOR=this._validador});
+                                                             VALIDADOR = this._validador
+                }, this.ActualUser);
             }
         }
 
@@ -206,10 +207,20 @@ namespace InventoryApp.Model
                 UNID_EMPRESA = this._empresa.UNID_EMPRESA,
                 EMAIL = this._email,
                 VALIDADOR = this._validador
-            });
+            }, this.ActualUser);
         }
 
         #region Constructors
+        public SolicitanteModel(IDataMapper dataMapper, USUARIO u)
+        {
+            if ((dataMapper as SolicitanteDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as SolicitanteDataMapper;
+            }
+            this.ValideEmpresa = false;
+            this.ActualUser = u;
+        }
+
         public SolicitanteModel(IDataMapper dataMapper)
         {
             if ((dataMapper as SolicitanteDataMapper) != null)

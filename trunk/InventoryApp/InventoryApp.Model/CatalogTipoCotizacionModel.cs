@@ -82,13 +82,13 @@ namespace InventoryApp.Model
             this.TipoCotizacion = ic;
         }
 
-        public void deleteTipoCotizacion()
+        public void deleteTipoCotizacion(USUARIO u)
         {
             foreach (DeleteTipoCotizacion item in this._tipoCotizacion)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

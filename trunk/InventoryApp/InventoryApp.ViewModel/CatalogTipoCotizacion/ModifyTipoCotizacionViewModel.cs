@@ -51,7 +51,7 @@ namespace InventoryApp.ViewModel.CatalogTipoCotizacion
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyTipoCotizacionViewModel(CatalogTipoCotizacionViewModel catalogTipoCotizacionViewModel, TipoCotizacionModel selectedTipoCotizacionModel)
         {
-            this._modiTipoCotizacion = new TipoCotizacionModel(new TipoCotizacionDataMapper());
+            this._modiTipoCotizacion = new TipoCotizacionModel(new TipoCotizacionDataMapper(), catalogTipoCotizacionViewModel.ActualUser);
             this._catalogTipoCotizacionViewModel = catalogTipoCotizacionViewModel;
             this._modiTipoCotizacion.UnidTipoCotizacion = selectedTipoCotizacionModel.UnidTipoCotizacion;
             this._modiTipoCotizacion.TipoCotizacionName = selectedTipoCotizacionModel.TipoCotizacionName;

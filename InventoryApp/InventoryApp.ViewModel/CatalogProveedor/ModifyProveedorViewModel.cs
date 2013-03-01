@@ -6,6 +6,7 @@ using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogProveedor
 {
@@ -115,7 +116,7 @@ namespace InventoryApp.ViewModel.CatalogProveedor
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyProveedorViewModel(CatalogProveedorViewModel catalogProveedorViewModel, ProveedorModel selectedProveedorModel)
         {
-            this._proveedorModel = new ProveedorModel(new ProveedorDataMapper());
+            this._proveedorModel = new ProveedorModel(new ProveedorDataMapper(), catalogProveedorViewModel.ActualUser);
             this._catalogProveedorViewModel = catalogProveedorViewModel;
             this._proveedorModel.UnidProveedor = selectedProveedorModel.UnidProveedor;
             this._proveedorModel.Pais = selectedProveedorModel.Pais;
@@ -146,9 +147,9 @@ namespace InventoryApp.ViewModel.CatalogProveedor
                 }
                 
                 object ret2 = this._proveedorModel.GetProveedorCuenta(selectedProveedorModel.UnidProveedor);
-                this._catalogProveedorCuentaModel = new CatalogProveedorCuentaModel(new ProveedorCuentaDataMapper());
+                this.CatalogProveedorCuentaModel = new CatalogProveedorCuentaModel(new ProveedorCuentaDataMapper());
                 //muestra los valores de las categorias que estan relacionadas
-                
+                this.CatalogProveedorCuentaModel.ProveedorCuenta = new FixupCollection<DeleteProveedorCuenta>();
                 foreach (var ite in ((List<PROVEEDOR_CUENTA>)ret2))
                 {
                     //DeleteProveedorCuenta dpc = new DeleteProveedorCuenta(new PROVEEDOR_CUENTA { UNID_PROVEEDOR_CUENTA = ite.UNID_PROVEEDOR_CUENTA, UNID_PROVEEDOR = ite.UNID_PROVEEDOR, UNID_BANCO = ite.UNID_BANCO, NUMERO_CUENTA = ite.NUMERO_CUENTA, LAST_MODIFIED_DATE = ite.LAST_MODIFIED_DATE, IS_MODIFIED = ite.IS_MODIFIED, IS_ACTIVE = ite.IS_ACTIVE, BENEFICIARIO = ite.BENEFICIARIO, CLABE = ite.CLABE });
@@ -245,6 +246,12 @@ namespace InventoryApp.ViewModel.CatalogProveedor
                 else
                     i++;
             }
+        }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.ProveedorModel);
+            return historialViewModel;
         }
         #endregion
     }

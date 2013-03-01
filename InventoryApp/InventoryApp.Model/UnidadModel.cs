@@ -14,6 +14,7 @@ namespace InventoryApp.Model
         private long _unidUnidad;
         private string _unidadName;
         private UnidadDataMapper _dataMapper;
+        private USUARIO ActualUser;
         #endregion
 
         #region Props
@@ -60,23 +61,31 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new UNIDAD() { IS_ACTIVE = true,  UNIDAD1 = this._unidadName });
+                _dataMapper.insertElement(new UNIDAD() { IS_ACTIVE = true,  UNIDAD1 = this._unidadName }, this.ActualUser);
             }
         }
 
         public void updateUnidad()
         {
-            this._dataMapper.udpateElement(new UNIDAD() {  UNID_UNIDAD=this._unidUnidad, UNIDAD1=this._unidadName });
+            this._dataMapper.udpateElement(new UNIDAD() { UNID_UNIDAD = this._unidUnidad, UNIDAD1 = this._unidadName }, this.ActualUser);
         }
 
         #region Constructors
+        public UnidadModel(IDataMapper dataMapper, USUARIO u)
+        {
+            if ((dataMapper as UnidadDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as UnidadDataMapper;
+            }
+            this.ActualUser = u;
+        }
+
         public UnidadModel(IDataMapper dataMapper)
         {
             if ((dataMapper as UnidadDataMapper) != null)
             {
                 this._dataMapper = dataMapper as UnidadDataMapper;
             }
-            
         }
         #endregion
 

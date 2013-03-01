@@ -8,6 +8,7 @@ using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.ComponentModel;
 using InventoryApp.ViewModel.CatalogTecnico;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogAlmacen
 {
@@ -99,7 +100,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
         #region Constructors
         public ModifyAlmacenViewModel(CatalogAlmacenViewModel catalogAlmacenViewModel, AlmacenModel selectedAlmacenModel)
         {
-            this._modiAlmacen = new AlmacenModel(new AlmacenDataMapper());
+            this._modiAlmacen = new AlmacenModel(new AlmacenDataMapper(), catalogAlmacenViewModel.ActualUser);
             this._catalogAlmacenViewModel = catalogAlmacenViewModel;
             this._modiAlmacen.UnidAlmacen = selectedAlmacenModel.UnidAlmacen;
             this._modiAlmacen.AlmacenName = selectedAlmacenModel.AlmacenName;            
@@ -219,6 +220,12 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
                 else
                     i++;
             }
+        }
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.ModiAlmacen);
+            return historialViewModel;
         }
         #endregion
 

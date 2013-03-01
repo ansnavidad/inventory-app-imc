@@ -88,7 +88,7 @@ namespace InventoryApp.Model
             this._dataMapper = new ProveedorCuentaDataMapper();
             this._proveedorCuenta = new FixupCollection<DeleteProveedorCuenta>();            
         }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

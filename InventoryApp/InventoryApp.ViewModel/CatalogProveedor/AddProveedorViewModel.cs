@@ -117,7 +117,7 @@ namespace InventoryApp.ViewModel.CatalogProveedor
         /// <param name="catalogItemStatusViewModel"></param>        
         public AddProveedorViewModel(CatalogProveedorViewModel catalogProveedorViewModel)
         {
-            this._proveedorEnvio = new ProveedorModel(new ProveedorDataMapper());
+            this._proveedorEnvio = new ProveedorModel(new ProveedorDataMapper(), catalogProveedorViewModel.ActualUser);
             this._catalogProveedorViewModel = catalogProveedorViewModel;
             this.ProveedorEnvio.UnidProveedor = UNID.getNewUNID();
             try

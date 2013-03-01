@@ -364,7 +364,32 @@ namespace InventoryApp.DAL
                                                                                                                     MODELO poco = (MODELO)o;
                                                                                                                     Master_MODELO(poco, u, num, control);
                                                                                                                 }
-                                                                                                                catch { }
+                                                                                                                catch
+                                                                                                                {
+                                                                                                                    try
+                                                                                                                    {
+                                                                                                                        ALMACEN poco = (ALMACEN)o;
+                                                                                                                        Master_ALMACEN(poco, u, num, control);
+                                                                                                                    }
+                                                                                                                    catch
+                                                                                                                    {
+                                                                                                                        try
+                                                                                                                        {
+                                                                                                                            PROVEEDOR poco = (PROVEEDOR)o;
+                                                                                                                            Master_PROVEEDOR(poco, u, num, control);
+                                                                                                                        }
+                                                                                                                        catch
+                                                                                                                        {
+                                                                                                                            try
+                                                                                                                            {
+                                                                                                                                MOVIMENTO poco = (MOVIMENTO)o;
+                                                                                                                                Master_MOVIMENTO(poco, u, num, control);
+                                                                                                                            }
+                                                                                                                            catch
+                                                                                                                            {  }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
                                                                                                             }
                                                                                                         }
                                                                                                     }
@@ -1419,17 +1444,128 @@ namespace InventoryApp.DAL
             }
         }
 
+        private static void Master_ALMACEN(ALMACEN poco, USUARIO u, int num, string control)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var Master = entity.MASTER_INVENTARIOS.OrderBy(p => p.UNID_MASTER_INVENTARIOS).Where(p => p.UNID_ALMACEN != null && p.UNID_ALMACEN == poco.UNID_ALMACEN).ToList();
+                var NewMaster = new MASTER_INVENTARIOS();
 
+                NewMaster.UNID_MASTER_INVENTARIOS = UNID.getNewUNID();
+                NewMaster.UNID_ALMACEN = poco.UNID_ALMACEN;
+                NewMaster.UNID_USUARIO_MOD = u.UNID_USUARIO;
+                NewMaster.MODIFICACIONES = control;
+                NewMaster.FECHA = DateTime.Now;
+                NewMaster.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                NewMaster.IS_ACTIVE = true;
+                NewMaster.IS_MODIFIED = true;
+                string aux = "";
+                foreach (USUARIO_ROL r in u.USUARIO_ROL)
+                    aux += r.ROL.ROL_NAME + ", ";
+                if (!String.IsNullOrEmpty(aux))
+                {
+                    aux = aux.Substring(0, aux.Length - 2);
+                    aux += ".";
+                }
+                NewMaster.ROLES = aux;
 
+                if (Master != null && Master.Count > 0)
+                {
+                    var CreatorUser = entity.MASTER_INVENTARIOS.OrderByDescending(p => p.UNID_ALMACEN).Where(p => p.UNID_ALMACEN == NewMaster.UNID_ALMACEN).ToList();
+                    NewMaster.UNID_USUARIO_CREADOR = CreatorUser[0].UNID_USUARIO_MOD;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+                else
+                {
+                    NewMaster.UNID_USUARIO_CREADOR = u.UNID_USUARIO;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+            }
+        }
 
+        private static void Master_PROVEEDOR(PROVEEDOR poco, USUARIO u, int num, string control)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var Master = entity.MASTER_INVENTARIOS.OrderBy(p => p.UNID_MASTER_INVENTARIOS).Where(p => p.UNID_PROVEEDOR != null && p.UNID_PROVEEDOR == poco.UNID_PROVEEDOR).ToList();
+                var NewMaster = new MASTER_INVENTARIOS();
 
+                NewMaster.UNID_MASTER_INVENTARIOS = UNID.getNewUNID();
+                NewMaster.UNID_PROVEEDOR = poco.UNID_PROVEEDOR;
+                NewMaster.UNID_USUARIO_MOD = u.UNID_USUARIO;
+                NewMaster.MODIFICACIONES = control;
+                NewMaster.FECHA = DateTime.Now;
+                NewMaster.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                NewMaster.IS_ACTIVE = true;
+                NewMaster.IS_MODIFIED = true;
+                string aux = "";
+                foreach (USUARIO_ROL r in u.USUARIO_ROL)
+                    aux += r.ROL.ROL_NAME + ", ";
+                if (!String.IsNullOrEmpty(aux))
+                {
+                    aux = aux.Substring(0, aux.Length - 2);
+                    aux += ".";
+                }
+                NewMaster.ROLES = aux;
 
+                if (Master != null && Master.Count > 0)
+                {
+                    var CreatorUser = entity.MASTER_INVENTARIOS.OrderByDescending(p => p.UNID_PROVEEDOR).Where(p => p.UNID_PROVEEDOR == NewMaster.UNID_PROVEEDOR).ToList();
+                    NewMaster.UNID_USUARIO_CREADOR = CreatorUser[0].UNID_USUARIO_MOD;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+                else
+                {
+                    NewMaster.UNID_USUARIO_CREADOR = u.UNID_USUARIO;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+            }
+        }
 
+        private static void Master_MOVIMENTO(MOVIMENTO poco, USUARIO u, int num, string control)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var Master = entity.MASTER_INVENTARIOS.OrderBy(p => p.UNID_MASTER_INVENTARIOS).Where(p => p.UNID_MOVIMENTO != null && p.UNID_MOVIMENTO == poco.UNID_MOVIMIENTO).ToList();
+                var NewMaster = new MASTER_INVENTARIOS();
 
+                NewMaster.UNID_MASTER_INVENTARIOS = UNID.getNewUNID();
+                NewMaster.UNID_MOVIMENTO = poco.UNID_MOVIMIENTO;
+                NewMaster.UNID_USUARIO_MOD = u.UNID_USUARIO;
+                NewMaster.MODIFICACIONES = control;
+                NewMaster.FECHA = DateTime.Now;
+                NewMaster.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                NewMaster.IS_ACTIVE = true;
+                NewMaster.IS_MODIFIED = true;
+                string aux = "";
+                foreach (USUARIO_ROL r in u.USUARIO_ROL)
+                    aux += r.ROL.ROL_NAME + ", ";
+                if (!String.IsNullOrEmpty(aux))
+                {
+                    aux = aux.Substring(0, aux.Length - 2);
+                    aux += ".";
+                }
+                NewMaster.ROLES = aux;
 
-
-
-
+                if (Master != null && Master.Count > 0)
+                {
+                    var CreatorUser = entity.MASTER_INVENTARIOS.OrderByDescending(p => p.UNID_MOVIMENTO).Where(p => p.UNID_MOVIMENTO == NewMaster.UNID_MOVIMENTO).ToList();
+                    NewMaster.UNID_USUARIO_CREADOR = CreatorUser[0].UNID_USUARIO_MOD;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+                else
+                {
+                    NewMaster.UNID_USUARIO_CREADOR = u.UNID_USUARIO;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+            }
+        }
 
         #endregion
     }

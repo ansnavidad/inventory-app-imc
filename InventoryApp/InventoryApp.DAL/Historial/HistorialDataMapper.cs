@@ -340,6 +340,45 @@ namespace InventoryApp.DAL.Historial
                                    select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
                         return res;
                     }
+
+                case "ALMACEN":
+
+                    using (var Entity = new TAE2Entities())
+                    {
+                        var res = (from p in Entity.MASTER_INVENTARIOS
+                                   .Include("USUARIO")
+                                   .Include("USUARIO1")
+                                   .Include("USUARIO2")
+                                   where p.IS_ACTIVE == true && p.UNID_ALMACEN == unid
+                                   select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
+                        return res;
+                    }
+
+                case "PROVEEDOR":
+
+                    using (var Entity = new TAE2Entities())
+                    {
+                        var res = (from p in Entity.MASTER_INVENTARIOS
+                                   .Include("USUARIO")
+                                   .Include("USUARIO1")
+                                   .Include("USUARIO2")
+                                   where p.IS_ACTIVE == true && p.UNID_PROVEEDOR == unid
+                                   select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
+                        return res;
+                    }
+
+                case "MOVIMENTO":
+
+                    using (var Entity = new TAE2Entities())
+                    {
+                        var res = (from p in Entity.MASTER_INVENTARIOS
+                                   .Include("USUARIO")
+                                   .Include("USUARIO1")
+                                   .Include("USUARIO2")
+                                   where p.IS_ACTIVE == true && p.UNID_MOVIMENTO == unid
+                                   select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
+                        return res;
+                    }
             }
             return null;
         }

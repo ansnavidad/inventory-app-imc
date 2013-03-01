@@ -280,7 +280,7 @@ namespace InventoryApp.Model
                     TEL2 = this._tel2,
                     UNID_CIUDAD = this._ciudad.UNID_CIUDAD,
                     UNID_PAIS = this._pais.UNID_PAIS
-                }, this._unidsCategorias);
+                }, this._unidsCategorias, this.ActualUser);
             }
         }
 
@@ -309,7 +309,7 @@ namespace InventoryApp.Model
             this._auxUnidsCategorias,
             this._unidsCuenta,
             this._auxUnidsCuenta,
-            listF
+            listF, this.ActualUser
             );
         }
 
@@ -324,6 +324,20 @@ namespace InventoryApp.Model
         }
 
         #region Constructors
+        public ProveedorModel(IDataMapper dataMapper, USUARIO u)
+        {
+            if ((dataMapper as ProveedorDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as ProveedorDataMapper;
+            }
+            //varibles que guardan los ids de categorias
+            this._unidsCategorias = new List<long>();
+            this._auxUnidsCategorias = new List<long>();
+            this._auxUnidsCuenta = new List<long>();
+            this._unidsCuenta = new List<long>();
+            this.ActualUser = u;
+        }
+
         public ProveedorModel(IDataMapper dataMapper)
         {
             if ((dataMapper as ProveedorDataMapper) != null)

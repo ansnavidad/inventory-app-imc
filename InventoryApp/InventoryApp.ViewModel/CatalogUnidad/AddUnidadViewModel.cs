@@ -50,7 +50,7 @@ namespace InventoryApp.ViewModel.CatalogUnidad
         /// <param name="catalogItemStatusViewModel"></param>
         public AddUnidadViewModel(CatalogUnidadViewModel catalogUnidadViewModel)
         {
-            this._addUnidad = new UnidadModel(new UnidadDataMapper());
+            this._addUnidad = new UnidadModel(new UnidadDataMapper(), catalogUnidadViewModel.ActualUser);
             this._catalogUnidadViewModel = catalogUnidadViewModel;
         }
         #endregion

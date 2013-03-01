@@ -77,13 +77,13 @@ namespace InventoryApp.Model
             }
             this.Unidad = ic;
         }
-        public void deleteUnidad()
+        public void deleteUnidad(USUARIO u)
         {
             foreach (DeleteUnidad item in this._unidad)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

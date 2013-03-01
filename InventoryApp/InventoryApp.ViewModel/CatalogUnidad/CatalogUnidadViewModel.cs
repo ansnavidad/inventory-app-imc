@@ -103,7 +103,7 @@ namespace InventoryApp.ViewModel.CatalogUnidad
         /// <returns></returns>
         public ModifyUnidadViewModel CreateModifyUnidadViewModel()
         {
-            UnidadModel unidadModel = new UnidadModel(new UnidadDataMapper());
+            UnidadModel unidadModel = new UnidadModel(new UnidadDataMapper(), this.ActualUser);
             if (this._catalogUnidadModel != null && this._catalogUnidadModel.SelectedUnidad != null)
             {
                 unidadModel.UnidadName = this._catalogUnidadModel.SelectedUnidad.UNIDAD1;
@@ -133,7 +133,7 @@ namespace InventoryApp.ViewModel.CatalogUnidad
         }
         public void AttempDeleteUnidad()
         {
-            this._catalogUnidadModel.deleteUnidad();
+            this._catalogUnidadModel.deleteUnidad(this.ActualUser);
             
             //Puede ser que para pruebas unitarias catalogItemStatusViewModel sea nulo ya quef
             if (this._catalogUnidadModel != null)

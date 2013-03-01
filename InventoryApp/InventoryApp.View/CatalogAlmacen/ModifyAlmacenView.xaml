@@ -93,5 +93,6 @@
         <TextBox TabIndex="4" Height="23" HorizontalAlignment="Left" Margin="4,4,0,3" MaxLength="512" Name="textBox1" Text="{Binding ModiAlmacen.MailDefault, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Width="140" Grid.Column="2" Grid.Row="5" />
         <Button TabIndex="7" Command="{Binding ModifyAlmacenCommand, Mode=OneWay}" Content="Agregar Técnico" Height="23" HorizontalAlignment="Center" Width="120" Name="button1" VerticalAlignment="Center" Grid.Column="4" Grid.Row="6" Click="button1_Click" Style="{StaticResource btnElara}"/>
         <Button TabIndex="8" Command="{Binding BorrarTecCommand, Mode=OneWay}" Content="Borrar Técnicos" Height="23" HorizontalAlignment="Stretch" Margin="160,11,12,6" Name="button2" VerticalAlignment="Stretch" Grid.Column="4" Grid.Row="1" Style="{StaticResource btnElara}" />
+        <Button Content="Historial" Height="23" HorizontalAlignment="Stretch" Margin="204,3,9,4" Name="buttonTrololo" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Width="75" Grid.Column="4" Click="Historal_Click" />
     </Grid>
 </Window>

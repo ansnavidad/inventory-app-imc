@@ -266,7 +266,7 @@ namespace InventoryApp.ViewModel
                         page = new CatalogPropiedadViewModel(this.ActualUser);
                         break;
                     case "Proveedor":
-                        page = new CatalogProveedorViewModel();
+                        page = new CatalogProveedorViewModel(this.ActualUser);
                         break;
                     case "Proveedor Cuenta":
                         page = new CatalogProveedorCuentaViewModel();

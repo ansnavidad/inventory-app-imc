@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using InventoryApp.View.CatalogTecnico;
 using InventoryApp.ViewModel.CatalogTecnico;
 using InventoryApp.ViewModel.CatalogAlmacen;
+using InventoryApp.View.Historial;
 
 namespace InventoryApp.View.CatalogAlmacen
 {
@@ -47,6 +48,20 @@ namespace InventoryApp.View.CatalogAlmacen
             AddTecnicoViewModel viewModel = new AddTecnicoViewModel(new CatalogTecnicoViewModel(), (ModifyAlmacenViewModel)this.DataContext);
             view.DataContext = viewModel;
             view.ShowDialog();
+        }
+
+        private void Historal_Click(object sender, RoutedEventArgs e)
+        {
+            HistorialView addFactura = new HistorialView();
+            ModifyAlmacenViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addFactura.DataContext = viewModel.CreateHistorialViewModel();
+            addFactura.ShowDialog();
+        }
+
+        private ModifyAlmacenViewModel ConvertDataContext(object dataSource)
+        {
+            ModifyAlmacenViewModel viewModel = dataSource as ModifyAlmacenViewModel;
+            return viewModel;
         }
     }
 }

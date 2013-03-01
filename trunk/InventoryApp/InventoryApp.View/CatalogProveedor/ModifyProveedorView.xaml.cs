@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using InventoryApp.View.CatalogProveedorCuenta;
 using InventoryApp.ViewModel.CatalogProveedorCuenta;
 using InventoryApp.ViewModel.CatalogProveedor;
+using InventoryApp.View.Historial;
 
 namespace InventoryApp.View.CatalogProveedor
 {
@@ -43,6 +44,19 @@ namespace InventoryApp.View.CatalogProveedor
             AddProveedorCuentaViewModel viewModel = new AddProveedorCuentaViewModel(new CatalogProveedorCuentaViewModel(), (ModifyProveedorViewModel)this.DataContext);
             view.DataContext = viewModel;
             view.ShowDialog();
-        }  
+        }
+
+        private void Historal_Click(object sender, RoutedEventArgs e)
+        {
+            HistorialView addFactura = new HistorialView();
+            ModifyProveedorViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addFactura.DataContext = viewModel.CreateHistorialViewModel();
+            addFactura.ShowDialog();
+        }
+        private ModifyProveedorViewModel ConvertDataContext(object dataSource)
+        {
+            ModifyProveedorViewModel viewModel = dataSource as ModifyProveedorViewModel;
+            return viewModel;
+        }
     }
 }

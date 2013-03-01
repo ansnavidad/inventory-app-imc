@@ -96,7 +96,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
         /// <returns></returns>
         public ModifyAlmacenViewModel CreateModifyAlmacenViewModel()
         {
-            AlmacenModel almacenModel = new AlmacenModel(new AlmacenDataMapper());
+            AlmacenModel almacenModel = new AlmacenModel(new AlmacenDataMapper(), this.ActualUser);
             if (this._catalogAlmacenModel != null && this._catalogAlmacenModel.SelectedAlmacen != null)
             {
                 almacenModel.UnidAlmacen = this._catalogAlmacenModel.SelectedAlmacen.UNID_ALMACEN;
@@ -131,7 +131,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
 
         public void AttempDeleteAlmacen()
         {
-            this._catalogAlmacenModel.deleteAlamacen();
+            this._catalogAlmacenModel.deleteAlamacen(this.ActualUser);
 
             if (this._catalogAlmacenModel != null)
             {

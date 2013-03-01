@@ -112,13 +112,13 @@ namespace InventoryApp.Model
             this.Tecnico= ic;
         }
 
-        public void deleteAlamacen()
+        public void deleteAlamacen(USUARIO u)
         {
             foreach (DeleteAlmacen item in this._almacen)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

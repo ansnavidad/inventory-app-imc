@@ -260,7 +260,7 @@ namespace InventoryApp.DAL
             return res;
         }//
 
-        public void udpateElement(object element)
+        public void udpateElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -288,7 +288,7 @@ namespace InventoryApp.DAL
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
-                    entity.SaveChanges();
+                    UNID.Master(proveedor, u, -1, "Modificación");
                 }
             }
         }
@@ -327,7 +327,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void updateRelacion(object element, List<long> unidCategoria, List<long> auxUnidCategoria, List<long> unidCuenta, List<long> auxUnidCuenta, List<PROVEEDOR_CUENTA> listF)
+        public void updateRelacion(object element, List<long> unidCategoria, List<long> auxUnidCategoria, List<long> unidCuenta, List<long> auxUnidCuenta, List<PROVEEDOR_CUENTA> listF, USUARIO u)
         {
             if (element != null)
             {
@@ -355,6 +355,7 @@ namespace InventoryApp.DAL
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
+                    UNID.Master(proveedor, u, -1, "Modificación");
                     
                     //ELIMINA TODAS LAS RELACIONES QUE EXISTEN
                     if (auxUnidCategoria.Count > 0)
@@ -535,7 +536,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void insertElement(object element)
+        public void insertElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -559,6 +560,8 @@ namespace InventoryApp.DAL
                         //
                         entity.PROVEEDORs.AddObject(proveedor);
                         entity.SaveChanges();
+
+                        UNID.Master(proveedor, u, -1, "Inserción");
                     }
                 }
             }
@@ -584,7 +587,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void insertRelacion(object element, List<long> unidCategoria)
+        public void insertRelacion(object element, List<long> unidCategoria, USUARIO u)
         {
             if (element != null)
             {
@@ -607,6 +610,8 @@ namespace InventoryApp.DAL
                         //
                         entity.PROVEEDORs.AddObject(proveedor);
                         entity.SaveChanges();
+                        
+                        UNID.Master(proveedor, u, -1, "Inserción");                        
                     }
 
                     if (unidCategoria.Count > 0)
@@ -669,6 +674,8 @@ namespace InventoryApp.DAL
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     //
                     entity.SaveChanges();
+
+                    UNID.Master(proveedor, u, -1, "Emininación");
                 }
             }
         }
@@ -794,6 +801,17 @@ namespace InventoryApp.DAL
                     }
                 }
             }
+        }
+
+
+        public void udpateElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void insertElement(object element)
+        {
+            throw new NotImplementedException();
         }
     }
 }

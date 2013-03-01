@@ -21,6 +21,7 @@ namespace InventoryApp.Model
         public List<long> _unidsTecnicos;
         public List<long> _auxUnidsTecnicos;
         private AlmacenDataMapper _dataMapper;
+        private USUARIO ActualUser;
         #endregion
 
         #region Props
@@ -173,7 +174,7 @@ namespace InventoryApp.Model
                     DIRECCION = this._direccion,
                     UNID_ALMACEN = this.UnidAlmacen
 
-                },this._unidsTecnicos);
+                },this._unidsTecnicos, this.ActualUser);
             }
         }
 
@@ -200,14 +201,14 @@ namespace InventoryApp.Model
                 MAIL = this._mail,
                 MAIL_DEFAULT = this._mailDefault,
                 DIRECCION = this._direccion
-            },this._unidsTecnicos,this._auxUnidsTecnicos);
+            },this._unidsTecnicos,this._auxUnidsTecnicos, this.ActualUser);
         }
         public object GetAlmacenCategoria(long obj)
         {
             return this._dataMapper.getElementAlmacenTecnico(obj);
         }
         #region Constructors
-        public AlmacenModel(IDataMapper dataMapper)
+        public AlmacenModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as AlmacenDataMapper) != null)
             {
@@ -216,7 +217,7 @@ namespace InventoryApp.Model
             //varibles que guardan los ids de tecnicos
             this._unidsTecnicos = new List<long>();
             this._auxUnidsTecnicos = new List<long>();
-            
+            this.ActualUser = u;
         }
         #endregion
         public event PropertyChangedEventHandler PropertyChanged;

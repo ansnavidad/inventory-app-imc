@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogProveedor
 {
@@ -13,7 +14,7 @@ namespace InventoryApp.ViewModel.CatalogProveedor
         private RelayCommand _deleteProveedorCommand;
 
         private CatalogProveedorModel _proveedorModel;
-
+        public USUARIO ActualUser;
         public ICommand DeleteProveedorCommand
         {
             get
@@ -26,13 +27,14 @@ namespace InventoryApp.ViewModel.CatalogProveedor
             }
         }
 
-        public CatalogProveedorViewModel()
+        public CatalogProveedorViewModel(USUARIO u)
         {
             
             try
             {
                 IDataMapper dataMapper = new ProveedorDataMapper();
-                this._proveedorModel = new CatalogProveedorModel(dataMapper);   
+                this._proveedorModel = new CatalogProveedorModel(dataMapper);
+                this.ActualUser = u;
             }
             catch (ArgumentException a)
             {
@@ -78,7 +80,7 @@ namespace InventoryApp.ViewModel.CatalogProveedor
         /// <returns></returns>
         public ModifyProveedorViewModel CreateModifyProveedorViewModel()
         {
-            ProveedorModel proveedorModel = new ProveedorModel(new ProveedorDataMapper());
+            ProveedorModel proveedorModel = new ProveedorModel(new ProveedorDataMapper(), this.ActualUser);
             if (this._proveedorModel != null && this._proveedorModel.SelectedProveedor != null)
             {
                 
@@ -95,7 +97,14 @@ namespace InventoryApp.ViewModel.CatalogProveedor
                 proveedorModel.UnidProveedor = this._proveedorModel.SelectedProveedor.UNID_PROVEEDOR;
                 
             }
-            return new ModifyProveedorViewModel(this, proveedorModel);
+            try
+            {
+                return new ModifyProveedorViewModel(this, proveedorModel);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }            
         }
 
         #region Methods
@@ -120,7 +129,7 @@ namespace InventoryApp.ViewModel.CatalogProveedor
 
         public void AttempDeleteProveedor()
         {
-            this._proveedorModel.deleteProveedor();
+            this._proveedorModel.deleteProveedor(this.ActualUser);
 
             if (this._proveedorModel != null)
             {

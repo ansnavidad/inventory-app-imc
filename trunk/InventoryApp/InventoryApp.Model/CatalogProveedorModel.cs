@@ -111,13 +111,13 @@ namespace InventoryApp.Model
             this.Categoria = ic;
         }
 
-        public void deleteProveedor()
+        public void deleteProveedor(USUARIO u)
         {
             foreach (DeleteProveedor item in this._proveedor)
             {
                 if (item.IsChecked)
                 {
-                    this._dataMapper.deleteElement(item);
+                    this._dataMapper.deleteElement(item, u);
                 }
             }
         }

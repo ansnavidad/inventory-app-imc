@@ -107,7 +107,7 @@ namespace InventoryApp.ViewModel.CatalogAlmacen
 
         public AddAlmacenViewModel(CatalogAlmacenViewModel catalogAlmacenViewModel)
         {               
-            this._addAlmacen = new AlmacenModel(new AlmacenDataMapper());
+            this._addAlmacen = new AlmacenModel(new AlmacenDataMapper(), catalogAlmacenViewModel.ActualUser);
             this.AddAlmacen.UnidAlmacen = DAL.UNID.getNewUNID();            
             this._catalogAlmacenViewModel = catalogAlmacenViewModel;
             try

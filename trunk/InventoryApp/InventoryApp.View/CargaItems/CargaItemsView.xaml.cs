@@ -26,14 +26,5 @@ namespace InventoryApp.View.CargaItems
             InitializeComponent();
         }
 
-        private void btnRuta_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start(ConfigurationManager.AppSettings["RutaArchivos"].ToString());
-        }
-
-        private void btnCarga_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

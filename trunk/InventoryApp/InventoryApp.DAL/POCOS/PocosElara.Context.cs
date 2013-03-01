@@ -318,6 +318,18 @@ namespace InventoryApp.DAL.POCOS
         }
         private ObjectSet<COTIZACION> _cOTIZACIONs;
     
+        public ObjectSet<BATCH_LOAD_CARGAMOV> BATCH_LOAD_CARGAMOV
+        {
+            get { return _bATCH_LOAD_CARGAMOV  ?? (_bATCH_LOAD_CARGAMOV = CreateObjectSet<BATCH_LOAD_CARGAMOV>("BATCH_LOAD_CARGAMOV")); }
+        }
+        private ObjectSet<BATCH_LOAD_CARGAMOV> _bATCH_LOAD_CARGAMOV;
+    
+        public ObjectSet<LOG_LOAD_CARGAMOV> LOG_LOAD_CARGAMOV
+        {
+            get { return _lOG_LOAD_CARGAMOV  ?? (_lOG_LOAD_CARGAMOV = CreateObjectSet<LOG_LOAD_CARGAMOV>("LOG_LOAD_CARGAMOV")); }
+        }
+        private ObjectSet<LOG_LOAD_CARGAMOV> _lOG_LOAD_CARGAMOV;
+    
         public ObjectSet<CIUDAD> CIUDADs
         {
             get { return _cIUDADs  ?? (_cIUDADs = CreateObjectSet<CIUDAD>("CIUDADs")); }
@@ -415,13 +427,15 @@ namespace InventoryApp.DAL.POCOS
         private ObjectSet<POM_ARTICULO> _pOM_ARTICULO;
 
         #endregion
+
         #region Function Imports
         public ObjectResult<TEST> SP_TAE2_JOB()
         {
             return base.ExecuteFunction<TEST>("SP_TAE2_JOB");
         }
 
-        public void GetJob() {
+        public void GetJob()
+        {
 
             base.ExecuteFunction("SP_TAE2_JOB");
         }

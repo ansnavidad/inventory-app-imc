@@ -387,7 +387,8 @@ namespace InventoryApp.ViewModel
                       page = new CatalogItem.AgregarItemViewModel();
                       break;
                     case "Carga de ítems":
-                      page = new Job.JobViewModel();
+                      //page = new Job.JobViewModel();
+                      page = new CargaItems.CargaItemsViewModel();
                       break;
                     case "Programado":
                       page = new CatalogProgramado.CatalogProgramadoViewModel();

@@ -57,6 +57,7 @@
     <Compile Include="AppUsuarioRol.cs" />
     <Compile Include="ArticuloDataMapper.cs" />
     <Compile Include="BancoDataMapper.cs" />
+    <Compile Include="BatchLoadDataMapper.cs" />
     <Compile Include="CiudadDataMapper.cs" />
     <Compile Include="CategoriaDataMapper.cs" />
     <Compile Include="ClienteDataMapper.cs" />
@@ -96,6 +97,9 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\BANCO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\BATCH_LOAD_CARGAMOV.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\CATEGORIA.cs">
@@ -140,6 +144,9 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\ITEM_STATUS.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\LOG_LOAD_CARGAMOV.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\LOTE.cs">

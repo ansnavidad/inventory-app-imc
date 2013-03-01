@@ -28,6 +28,20 @@ namespace InventoryApp.Service.Services
             return mensaje;
         }
 
+        public string GetVersion()
+        {
+            string respuesta = null;
+
+            UpDateVersionDataMapper dataMapper = new UpDateVersionDataMapper();
+
+            respuesta = dataMapper.GetJsonVersion();
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
+            return respuesta;
+        }
+
         public string downloadCategoria(long? lastModifiedDate)
         {
             string respuesta = null;
@@ -892,34 +906,6 @@ namespace InventoryApp.Service.Services
             return respuesta;
         }
 
-        public string GetVersion()
-        {
-            string respuesta = null;
-
-            UpDateVersionDataMapper dataMapper = new UpDateVersionDataMapper();
-
-            respuesta = dataMapper.GetJsonVersion();
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
-            return respuesta;
-        }
-
-        public string GetProcessBach()
-        {
-            string respuesta = null;
-
-            ProcessBachDataMapper dataMapper = new ProcessBachDataMapper();
-
-            respuesta = dataMapper.GetJsonProcessBach();
-
-            if (String.IsNullOrEmpty(respuesta))
-                respuesta = null;
-
-            return respuesta;
-        }
-
         public bool GetLogin(string dataUser)
         {
             #region propiedades
@@ -1006,5 +992,69 @@ namespace InventoryApp.Service.Services
             return mensaje;
             #endregion   
         }
+
+        public string GetProcessBach()
+        {
+            string respuesta = null;
+
+            ProcessBachDataMapper dataMapper = new ProcessBachDataMapper();
+
+            respuesta = dataMapper.GetJsonProcessBach();
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
+            return respuesta;
+        }
+
+        public bool GetValidateNotExitProcessRunning()
+        {
+            bool respuesta = false;
+            BatchLoadDataMapper dataMapper = new BatchLoadDataMapper();
+
+            respuesta = dataMapper.GetBatchProcessRunning();
+
+            if (respuesta)
+                return true;
+
+            return respuesta;
+        }
+
+        public string GetListBatchProcess()
+        {
+            string respuesta = null;
+
+            BatchLoadDataMapper dataMapper = new BatchLoadDataMapper();
+
+            respuesta = dataMapper.GetJsonBachLoad();
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
+            return respuesta;
+        }
+
+        public string GetListLogLoad(int idBatch)
+        {
+            string respuesta = null;
+
+            BatchLoadDataMapper dataMapper = new BatchLoadDataMapper();
+
+            respuesta = dataMapper.GetJsonLogLoad(idBatch);
+
+            if (String.IsNullOrEmpty(respuesta))
+                respuesta = null;
+
+            return respuesta;
+            
+        }
+
+        public void GetLoadingItems()
+        {
+            BatchLoadDataMapper dataMapper = new BatchLoadDataMapper();
+
+            dataMapper.GetExecuteJob();
+        }
+
     }
 }

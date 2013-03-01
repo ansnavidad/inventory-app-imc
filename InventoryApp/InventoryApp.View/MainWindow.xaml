@@ -4,7 +4,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         DataContext="{StaticResource mainWindowViewModel}" WindowStartupLocation="CenterScreen"
         Title="Sistema de almacén" Height="600"  Width="900" MinHeight="500" MinWidth="700">
-    <!--DataContext="{StaticResource mainWindowViewModel}"-->
     <!--Icon="file:///C:/Programs/ElaraInventario/Images/Logo.ico"-->
     <Window.Resources>
         <Storyboard x:Key="rotateImg" >

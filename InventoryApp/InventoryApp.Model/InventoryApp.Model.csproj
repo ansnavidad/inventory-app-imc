@@ -100,6 +100,7 @@
     <Compile Include="DeleteAlmacen.cs" />
     <Compile Include="DeleteArticulo.cs" />
     <Compile Include="DeleteBanco.cs" />
+    <Compile Include="DeleteCargaItems.cs" />
     <Compile Include="DeleteCategoria.cs" />
     <Compile Include="DeleteCiudad.cs" />
     <Compile Include="DeleteCliente.cs" />

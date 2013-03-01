@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoolToVisibilityValueConverter.cs" />
+    <Compile Include="CargaItems\CargaItemsViewModel.cs" />
     <Compile Include="CatalogAlmacen\AddAlmacenViewModel.cs" />
     <Compile Include="CatalogAlmacen\CatalogAlmacenViewModel.cs" />
     <Compile Include="CatalogAlmacen\ModifyAlmacenViewModel.cs" />

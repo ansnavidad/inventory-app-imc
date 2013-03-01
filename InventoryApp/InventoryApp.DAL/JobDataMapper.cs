@@ -18,7 +18,6 @@ namespace InventoryApp.DAL
             }
         }
 
-
         public object getElements()
         {
             throw new NotImplementedException();
@@ -43,7 +42,6 @@ namespace InventoryApp.DAL
         {
             throw new NotImplementedException();
         }
-
 
         public void deleteElement(object element)
         {

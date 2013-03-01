@@ -15,6 +15,7 @@ namespace InventoryApp.DAL
             Dictionary<string, string> resx = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
             return resx;
         }
+
         /// <summary>
         /// Método que serializa una List<PROCESS_BATCH> a Json
         /// </summary>
@@ -89,7 +90,6 @@ namespace InventoryApp.DAL
         {
             throw new NotImplementedException();
         }
-
 
         public void deleteElement(object element)
         {

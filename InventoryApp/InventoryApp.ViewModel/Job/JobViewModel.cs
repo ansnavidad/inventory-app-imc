@@ -7,21 +7,24 @@ using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.ComponentModel;
 using System.Windows.Input;
+using System.Configuration;
 
 namespace InventoryApp.ViewModel.Job
 {
     public class JobViewModel : IPageViewModel, INotifyPropertyChanged
     {
         #region propiedades
-        string routeService = @"http://10.50.0.131:8080/Services/Receiver.svc";
-        string routeBach = @"http://10.50.0.131:8080/Services/Broadcast.svc";
+
+        //string routeService = @"http://10.50.0.131:8080/Services/Receiver.svc";
+        //string routeBach = @"http://10.50.0.131:8080/Services/Broadcast.svc";
+        string routeService = ConfigurationManager.AppSettings["RutaServicioSubida"].ToString();
+        string routeBach = ConfigurationManager.AppSettings["RutaServicioDescarga"].ToString();
         string basicAuthUser = "Administrator";
         string basicAuthPass = "Passw0rd1!";
         string nameService = "ExecuteJob";
         string nameService2 = "GetProcessBach";
         private RelayCommand _actualizarCommand;
         private RelayCommand _jobCommand;
-
         FixupCollection<PROCESS_BATCH> _proccesBatch;
         #endregion
 

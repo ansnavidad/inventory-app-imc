@@ -27,5 +27,10 @@ namespace InventoryApp.View.Salidas
         {
             this.Close();
         }
+
+        private void Historal_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

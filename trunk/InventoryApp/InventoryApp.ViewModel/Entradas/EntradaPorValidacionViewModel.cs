@@ -27,47 +27,6 @@ namespace InventoryApp.ViewModel.Entradas
         private CatalogEmpresaModel _catalogEmpresaModel;
         private CatalogInfraestructuraModel _catalogInfraestructuraModel;
 
-        public EntradaPorValidacionViewModel()
-        {
-            try
-            {
-                IDataMapper dataMapper = new SolicitanteDataMapper();
-                IDataMapper dataMapper2 = new AlmacenDataMapper();
-                IDataMapper dataMapper3 = new ProveedorDataMapper();
-                IDataMapper dataMapper4 = new ClienteDataMapper();
-                IDataMapper datamapper5 = new EmpresaDataMapper();
-                IDataMapper datamapper9 = new InfraestructuraDataMapper();
-
-                this._catalogInfraestructuraModel = new CatalogInfraestructuraModel(datamapper9);
-                this._catalogEmpresaModel = new CatalogEmpresaModel(datamapper5);
-
-                this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
-                this._movimientoModel = new MovimientoModel(new MovimientoDataMapper());
-                TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
-                mov.UNID_TIPO_MOVIMIENTO = 1;
-                this._movimientoModel.TipoMovimiento = mov;
-                this._itemModel = new CatalogItemModel(new ItemDataMapper());
-                this._catalogAlmacenModel = new CatalogAlmacenModel(dataMapper2);
-
-                //Asignaciones especiales para los combos 
-                this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
-                this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
-                this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
-                this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
-                this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
-                this._IsEnabled = true;
-            }
-            catch (ArgumentException a)
-            {
-
-                ;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }   
-            
-        }
         public EntradaPorValidacionViewModel( InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasViewModel grid)
         {
             try
@@ -99,6 +58,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
+                this._movimientoModel.ActualUser = grid.ActualUser;
                 this._IsEnabled = true;
             }
             catch (ArgumentException a)

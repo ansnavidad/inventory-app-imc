@@ -28,6 +28,25 @@ namespace InventoryApp.ViewModel.CatalogProgramado
             }
         }
 
+        public CatalogProgramadoViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new ProgramadoDataMapper();
+                this._catalogProgramadoModel = new CatalogProgramadoModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }  
+        }
+
         public CatalogProgramadoViewModel()
         {
             try
@@ -43,7 +62,7 @@ namespace InventoryApp.ViewModel.CatalogProgramado
             catch (Exception ex)
             {
                 throw ex;
-            }  
+            }
         }
 
         public CatalogProgramadoModel CatalogProgramadoModel
@@ -74,7 +93,7 @@ namespace InventoryApp.ViewModel.CatalogProgramado
         /// <returns></returns>
         public ModifyProgramadoViewModel CreateModifyProgramadoViewModel()
         {
-            ProgramadoModel programadoModel = new ProgramadoModel(new ProgramadoDataMapper());
+            ProgramadoModel programadoModel = new ProgramadoModel(new ProgramadoDataMapper(), this.ActualUser);
             if (this._catalogProgramadoModel != null && this._catalogProgramadoModel.SelectedProgramado != null)
             {
                 programadoModel.UnidProgramado = this._catalogProgramadoModel.SelectedProgramado.UNID_PROGRAMADO;

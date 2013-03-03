@@ -220,9 +220,9 @@ namespace InventoryApp.ViewModel
                     case "Artículos":
                         page = new CatalogArticuloViewModel(this.ActualUser);
                         break;
-                    case "Técnico":
-                        page = new CatalogTecnicoViewModel();
-                        break;
+                    //case "Técnico":
+                    //    page = new CatalogTecnicoViewModel();
+                    //    break;
                     case "Marca":
                         page = new CatalogMarcaViewModel(this.ActualUser);
                         break;
@@ -268,9 +268,9 @@ namespace InventoryApp.ViewModel
                     case "Proveedor":
                         page = new CatalogProveedorViewModel(this.ActualUser);
                         break;
-                    case "Proveedor Cuenta":
-                        page = new CatalogProveedorCuentaViewModel();
-                        break;
+                    //case "Proveedor Cuenta":
+                    //    page = new CatalogProveedorCuentaViewModel();
+                    //    break;
                     case "Proyecto":
                         page = new CatalogProyectoViewModel(this.ActualUser);
                         break;
@@ -289,9 +289,9 @@ namespace InventoryApp.ViewModel
                     case "Tipo Empresa":
                         page = new CatalogTipoEmpresaViewModel(this.ActualUser);
                         break;
-                    case "Tipo Movimiento":
-                        page = new CatalogTipoMovimientoViewModel();
-                        break;
+                    //case "Tipo Movimiento":
+                    //    page = new CatalogTipoMovimientoViewModel();
+                    //    break;
                     case "Tipo Pedimento":
                         page = new CatalogTipoPedimentoViewModel(this.ActualUser);
                         break;
@@ -309,58 +309,58 @@ namespace InventoryApp.ViewModel
                         break;
                     //Entradas
                     case "Entrada por Validación":
-                        page = new GridMovimientos.MovimientoGridEntradasViewModel();  
+                        page = new GridMovimientos.MovimientoGridEntradasViewModel(this.ActualUser);  
                         break;
                     case "Entrada por Prestamo":
-                        page = new GridMovimientos.MovimientoGridEntradasPrestamoViewModel(); 
+                        page = new GridMovimientos.MovimientoGridEntradasPrestamoViewModel(this.ActualUser); 
                         break;
                     case "Entrada por Devolución":
-                        page = new GridMovimientos.MovimientoGridEntradasDevolucionViewModel(); 
+                        page = new GridMovimientos.MovimientoGridEntradasDevolucionViewModel(this.ActualUser); 
                         break;
                     case "Entrada por Desinstalación":
-                        page = new GridMovimientos.MovimientoGridEntradasDesinstalacionViewModel(); 
+                        page = new GridMovimientos.MovimientoGridEntradasDesinstalacionViewModel(this.ActualUser); 
                         break;
                     //Salidad
                     case "Salida Renta":
                         //page = new Salidas.SalidaRentaViewModel();
-                        page = new GridMovimientos.MovimientoGridSalidaRentaViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaRentaViewModel(this.ActualUser);
                         break;
                     case "Salida Demo":
-                        page = new GridMovimientos.MovimientoGridSalidaDemoViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaDemoViewModel(this.ActualUser);
                         break;
                     case "Salida Prestamo":
-                        page = new GridMovimientos.MovimientoGridSalidaPrestamoViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaPrestamoViewModel(this.ActualUser);
                         break;
                     case "Salida Venta":
-                        page = new GridMovimientos.MovimientoGridSalidaVentaViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaVentaViewModel(this.ActualUser);
                         break;
                     case "Salida RMA":
-                        page = new GridMovimientos.MovimientoGridSalidaRMAViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaRMAViewModel(this.ActualUser);
                         break;
                     case "Salida Revisión":
-                        page = new GridMovimientos.MovimientoGridSalidaRevisionViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaRevisionViewModel(this.ActualUser);
                         break;
                     case "Salida Pruebas":
-                        page = new GridMovimientos.MovimientoGridSalidaPruebasViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaPruebasViewModel(this.ActualUser);
                         break;
                     case "Salida Configuración":
-                        page = new GridMovimientos.MovimientoGridSalidaConfiguracionViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaConfiguracionViewModel(this.ActualUser);
                         break;
                     case "Salida Obsequio":
-                        page = new GridMovimientos.MovimientoGridSalidaObsequioViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaObsequioViewModel(this.ActualUser);
                         break;
                     case "Salida Correctivo":
-                        page = new GridMovimientos.MovimientoGridSalidaCorrectivoViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaCorrectivoViewModel(this.ActualUser);
                         break;
                     case "Entregado (Licencia Office)":
-                        page = new GridMovimientos.MovimientoGridSalidaOfficeViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaOfficeViewModel(this.ActualUser);
                         break;
                     case "Salida Baja":
-                        page = new GridMovimientos.MovimientoGridSalidaBajaViewModel();
+                        page = new GridMovimientos.MovimientoGridSalidaBajaViewModel(this.ActualUser);
                         break;
                     //Traspasos
                     case "Traspaso Entre Almacenes":
-                        page = new GridMovimientos.MovimientoGridTraspasoStockViewModel();
+                        page = new GridMovimientos.MovimientoGridTraspasoStockViewModel(this.ActualUser);
                         break;
                     //Juan
                    case "Nuevo Recibo":
@@ -381,7 +381,7 @@ namespace InventoryApp.ViewModel
                       page = new Reportes.ReportesViewModel();
                       break;
                    case "Máximos y Mínimos":
-                      page = new MaxMin.MaxMinViewModel();
+                      page = new MaxMin.MaxMinViewModel(this.ActualUser);
                       break;
                     case "Agregar Item":
                       page = new CatalogItem.AgregarItemViewModel();
@@ -391,7 +391,7 @@ namespace InventoryApp.ViewModel
                       page = new CargaItems.CargaItemsViewModel();
                       break;
                     case "Programado":
-                      page = new CatalogProgramado.CatalogProgramadoViewModel();
+                      page = new CatalogProgramado.CatalogProgramadoViewModel(this.ActualUser);
                       break;
                     //Seguridad
                     case "Roles":

@@ -254,13 +254,13 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new MAX_MIN() { IS_ACTIVE = true, MAX=this._max, MIN=this._min, UNID_ALMACEN=this._almacen.UNID_ALMACEN, UNID_ARTICULO=this._articulo.UNID_ARTICULO});
+                _dataMapper.insertElement(new MAX_MIN() { IS_ACTIVE = true, MAX=this._max, MIN=this._min, UNID_ALMACEN=this._almacen.UNID_ALMACEN, UNID_ARTICULO=this._articulo.UNID_ARTICULO}, this.ActualUser);
             }
         }
 
         public void updateMaxMin()
         {
-            _dataMapper.udpateElement(new MAX_MIN() { IS_ACTIVE = true, UNID_MAX_MIN=this._unidMaxMin, MAX = this._max, MIN = this._min, UNID_ALMACEN = this._almacen.UNID_ALMACEN, UNID_ARTICULO = this._articulo.UNID_ARTICULO });
+            _dataMapper.udpateElement(new MAX_MIN() { IS_ACTIVE = true, UNID_MAX_MIN = this._unidMaxMin, MAX = this._max, MIN = this._min, UNID_ALMACEN = this._almacen.UNID_ALMACEN, UNID_ARTICULO = this._articulo.UNID_ARTICULO }, this.ActualUser);
         }
 
         public void DeleteMaxMin()
@@ -272,13 +272,13 @@ namespace InventoryApp.Model
         }
 
         #region Constructors
-        public MaxMinModel(IDataMapper dataMapper)
+        public MaxMinModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as MaxMinDataMapper) != null)
             {
                 this._dataMapper = dataMapper as MaxMinDataMapper;
             }
-
+            this.ActualUser = u;
         }
 
         public MaxMinModel()

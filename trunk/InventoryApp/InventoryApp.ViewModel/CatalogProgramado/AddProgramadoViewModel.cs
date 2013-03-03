@@ -98,7 +98,7 @@ namespace InventoryApp.ViewModel.CatalogProgramado
         /// <param name="catalogItemStatusViewModel"></param>
         public AddProgramadoViewModel(CatalogProgramadoViewModel ProgramadoViewModel)
         {
-            this._addProgramado = new ProgramadoModel(new ProgramadoDataMapper());
+            this._addProgramado = new ProgramadoModel(new ProgramadoDataMapper(), ProgramadoViewModel.ActualUser);
             this._programadoViewModel = ProgramadoViewModel;
             try
             {

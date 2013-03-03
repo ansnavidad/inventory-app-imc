@@ -63,15 +63,5 @@ namespace DALTestProject
         //
         #endregion
 
-
-        /// <summary>
-        ///Una prueba de Constructor EntradaPorValidacionViewModel
-        ///</summary>
-        [TestMethod()]
-        public void EntradaPorValidacionViewModelConstructorTest()
-        {
-            EntradaPorValidacionViewModel target = new EntradaPorValidacionViewModel();
-            Assert.Inconclusive("TODO: Implementar código para comprobar el destino");
-        }
     }
 }

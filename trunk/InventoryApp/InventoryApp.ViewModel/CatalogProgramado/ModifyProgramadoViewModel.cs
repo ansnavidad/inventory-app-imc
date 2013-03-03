@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogProgramado
 {
@@ -109,7 +110,7 @@ namespace InventoryApp.ViewModel.CatalogProgramado
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyProgramadoViewModel(CatalogProgramadoViewModel catalogProgramadoViewModel, ProgramadoModel selectedProgramadoModel)
         {
-            this._modiProgramado = new ProgramadoModel(new ProgramadoDataMapper());
+            this._modiProgramado = new ProgramadoModel(new ProgramadoDataMapper(), catalogProgramadoViewModel.ActualUser);
             this._catalogProgramadoViewModel = catalogProgramadoViewModel;
             this._modiProgramado.UnidProgramado = selectedProgramadoModel.UnidProgramado;
             this._modiProgramado.Programado = selectedProgramadoModel.Programado;
@@ -137,6 +138,11 @@ namespace InventoryApp.ViewModel.CatalogProgramado
         #endregion
 
         #region Methods
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.ModiProgramado);
+            return historialViewModel;
+        }
         public void init()
         {
             this._ModiArticulos = new ObservableCollection<ProgramadoModel>();

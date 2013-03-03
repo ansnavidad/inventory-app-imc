@@ -95,7 +95,7 @@ namespace InventoryApp.ViewModel.MaxMin
         /// <param name="catalogItemStatusViewModel"></param>
         public AddMaxMinViewModel(MaxMinViewModel maxMinViewModel)
         {
-            this._addMaxMin = new MaxMinModel(new MaxMinDataMapper());
+            this._addMaxMin = new MaxMinModel(new MaxMinDataMapper(), maxMinViewModel.ActualUser);
             this._maxMinViewModel = maxMinViewModel;
             try
             {

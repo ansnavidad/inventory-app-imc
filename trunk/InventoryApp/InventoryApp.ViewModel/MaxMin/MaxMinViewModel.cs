@@ -5,6 +5,7 @@ using System.Text;
 using InventoryApp.Model;
 using System.Windows.Input;
 using InventoryApp.DAL;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.MaxMin
 {
@@ -12,7 +13,7 @@ namespace InventoryApp.ViewModel.MaxMin
     {
         private RelayCommand _deleteMaxMinCommand;
         private CatalogMaxMinModel _catalogMaxMinModel;
-
+        public USUARIO ActualUser;
         private MaxMinModel _addGridArticulos = new MaxMinModel();
 
         public ICommand DeleteMaxMinCommand
@@ -25,6 +26,26 @@ namespace InventoryApp.ViewModel.MaxMin
                 }
                 return _deleteMaxMinCommand;
             }
+        }
+
+        public MaxMinViewModel(USUARIO u)
+        {
+            try
+            {
+                IDataMapper dataMapper = new MaxMinDataMapper();
+                this._catalogMaxMinModel = new CatalogMaxMinModel(dataMapper);
+                this.ActualUser = u;
+            }
+            catch (ArgumentException a)
+            {
+
+                ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }  
+            
         }
 
         public MaxMinViewModel()
@@ -42,8 +63,8 @@ namespace InventoryApp.ViewModel.MaxMin
             catch (Exception ex)
             {
                 throw ex;
-            }  
-            
+            }
+
         }
 
         public CatalogMaxMinModel CatalogMaxMinModel
@@ -78,7 +99,7 @@ namespace InventoryApp.ViewModel.MaxMin
         /// <returns></returns>
         public ModifyMaxMinViewModel CreateModifyMaxMinViewModel()
         {
-            MaxMinModel maxMinModel = new MaxMinModel(new MaxMinDataMapper());
+            MaxMinModel maxMinModel = new MaxMinModel(new MaxMinDataMapper(), this.ActualUser);
             if (this._catalogMaxMinModel != null && this._catalogMaxMinModel.SelectedMaxMin != null)
             {
                 maxMinModel.UnidMaxMin = this._catalogMaxMinModel.SelectedMaxMin.UNID_MAX_MIN;

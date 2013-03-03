@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using InventoryApp.ViewModel.MaxMin;
+using InventoryApp.View.Historial;
 
 namespace InventoryApp.View.MaxMin
 {
@@ -45,6 +46,20 @@ namespace InventoryApp.View.MaxMin
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Historal_Click(object sender, RoutedEventArgs e)
+        {
+            HistorialView addFactura = new HistorialView();
+            ModifyMaxMinViewModel viewModel = this.ConvertDataContext(this.DataContext);
+            addFactura.DataContext = viewModel.CreateHistorialViewModel();
+            addFactura.ShowDialog();
+        }
+
+        private ModifyMaxMinViewModel ConvertDataContext(object dataSource)
+        {
+            ModifyMaxMinViewModel viewModel = dataSource as ModifyMaxMinViewModel;
+            return viewModel;
         }
     }
 }

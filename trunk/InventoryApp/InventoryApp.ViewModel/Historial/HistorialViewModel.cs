@@ -48,6 +48,20 @@ namespace InventoryApp.ViewModel.Historial
             HistorialCollection = GetHistorial("CATEGORIA");
         }
 
+        public HistorialViewModel(ProgramadoModel b)
+        {
+
+            unid = b.UnidProgramado;
+            HistorialCollection = GetHistorial("PROGRAMADO");
+        }
+
+        public HistorialViewModel(MaxMinModel b)
+        {
+
+            unid = b.UnidMaxMin;
+            HistorialCollection = GetHistorial("MAXMIN");
+        }
+
         public HistorialViewModel(MarcaModel b)
         {
 
@@ -217,6 +231,20 @@ namespace InventoryApp.ViewModel.Historial
 
             unid = b.UnidProveedor;
             HistorialCollection = GetHistorial("PROVEEDOR");
+        }
+
+        public HistorialViewModel(MovimientoGridModel b)
+        {
+
+            unid = (long)b.UnidMovimiento;
+            HistorialCollection = GetHistorial("MOVIMENTO");
+        }
+
+        public HistorialViewModel(MovimientoModel b)
+        {
+
+            unid = b.UnidMovimiento;
+            HistorialCollection = GetHistorial("MOVIMENTO");
         }
 
         #endregion

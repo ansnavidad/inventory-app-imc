@@ -65,7 +65,7 @@ namespace InventoryApp.Model
         private ObservableCollection<TECNICO> _tecnicos2;
         private INFRAESTRUCTURA _infraestructura;
         private long? _unidInfraestructura;
-
+        public USUARIO ActualUser;
         #endregion
 
         #region Props
@@ -966,7 +966,7 @@ namespace InventoryApp.Model
                     UNID_TECNICO = this._unidTecnico,
                     UNID_INFRAESTRUCTURA = this._unidInfraestructura,
                     UNID_TECNICO_TRAS = this.UnidTecnico2
-                    });
+                    }, this.ActualUser);
                 //_dataMapper.insertElement(new MOVIMENTO() {UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe, UNID_ALMACEN_DESTINO = this._unidSolicitante});          
             }
         }
@@ -985,13 +985,12 @@ namespace InventoryApp.Model
                     IS_ACTIVE = this._isActive,
                     UNID_SOLICITANTE = this._unidSolicitante,
                     UNID_TECNICO = this._unidTecnico,
-                });
-                
+                }, this.ActualUser);                
             }
         }
 
         #region Constructors
-        public MovimientoSalidasModel(IDataMapper dataMapper)
+        public MovimientoSalidasModel(IDataMapper dataMapper, USUARIO u)
         {
             this._unidMovimiento = UNID.getNewUNID();
             this._fechaMovimiento = DateTime.Now;
@@ -1011,6 +1010,7 @@ namespace InventoryApp.Model
             this._facturaVenta = new FACTURA_VENTA();
             this._solicitante = null;
             this._tipoPedimento = new TIPO_PEDIMENTO();
+            this.ActualUser = u;
         }
         #endregion
 

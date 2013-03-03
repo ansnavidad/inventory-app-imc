@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Microsoft.Office.Interop.Excel;
 using System.Reflection;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.Salidas
 {
@@ -39,6 +40,7 @@ namespace InventoryApp.ViewModel.Salidas
         private IDataMapper _dataMapperTecnico;
         private IDataMapper _dataMapperTecnicoDestino;
         private IDataMapper _dataMapperSolicitante;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props
@@ -83,9 +85,9 @@ namespace InventoryApp.ViewModel.Salidas
         /// Ejecuta la acción del command
         /// </summary>
         /// <param name="catalogItemStatusViewModel"></param>
-        public ReadOnlySalidaDemoViewModel(MovimientoModel selectedMovimientoModel)
+        public ReadOnlySalidaDemoViewModel(MovimientoModel selectedMovimientoModel, USUARIO u)
         {
-            this._movimientoModel = new MovimientoModel(new MovimientoDataMapper(), 1);
+            this._movimientoModel = new MovimientoModel(new MovimientoDataMapper(), 1, u);
             this._itemModel = new CatalogItemModel(new ItemDataMapper());
             DeleteMovimiento movLectura = new DeleteMovimiento();
 
@@ -193,14 +195,20 @@ namespace InventoryApp.ViewModel.Salidas
                 this._itemModel.ItemModel = movLectura.ArticulosLectura;
                 this._movimientoModel.CantidadItems = movLectura.ArticulosLectura.Count;  
             }
-                
-            
 
+
+            this.ActualUser = u;
         }
         public ReadOnlySalidaDemoViewModel() { }
         #endregion
 
         #region Metodos
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.MovimientoModel);
+            return historialViewModel;
+        }
+
         public bool CanAttempImprimir()
         {
             bool _canImprimir = true;

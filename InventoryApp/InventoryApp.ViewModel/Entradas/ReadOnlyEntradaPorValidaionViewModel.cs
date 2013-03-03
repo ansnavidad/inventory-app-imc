@@ -10,6 +10,7 @@ using System.Windows.Input;
 using InventoryApp.ViewModel.GridMovimientos;
 using Microsoft.Office.Interop.Excel;
 using System.Reflection;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.Entradas
 {
@@ -42,6 +43,7 @@ namespace InventoryApp.ViewModel.Entradas
         private IDataMapper _dataMapperTecnicoDestino;
         private IDataMapper _dataMapperSolicitante;
         private MovimientoGridEntradasViewModel _entradaPorValidacionViewModel;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props
@@ -87,9 +89,9 @@ namespace InventoryApp.ViewModel.Entradas
         /// Ejecuta la acción del command
         /// </summary>
         /// <param name="catalogItemStatusViewModel"></param>
-        public ReadOnlyEntradaPorValidaionViewModel(MovimientoGridEntradasViewModel movimientoModel, MovimientoModel selectedMovimientoModel)
+        public ReadOnlyEntradaPorValidaionViewModel(MovimientoGridEntradasViewModel movimientoModel, MovimientoModel selectedMovimientoModel, USUARIO u)
         {
-            this._movimientoModel = new MovimientoModel(new MovimientoDataMapper(), 1);
+            this._movimientoModel = new MovimientoModel(new MovimientoDataMapper(), 1, this.ActualUser);
             this._entradaPorValidacionViewModel = movimientoModel;
             this._itemModel = new CatalogItemModel(new ItemDataMapper());
             DeleteMovimiento movLectura = new DeleteMovimiento();
@@ -185,12 +187,18 @@ namespace InventoryApp.ViewModel.Entradas
                 this._itemModel.ItemModel = movLectura.ArticulosLectura;
                 this._movimientoModel.CantidadItems = movLectura.ArticulosLectura.Count;
             }
-
+            this.ActualUser = u;
         }
         public ReadOnlyEntradaPorValidaionViewModel() { }
         #endregion
 
         #region Metodos
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.MovimientoModel);
+            return historialViewModel;
+        }
 
         public bool CanAttempImprimir()
         {

@@ -231,31 +231,31 @@ namespace InventoryApp.Model
         {
             if (_dataMapper != null)
             {
-                _dataMapper.insertElement(new PROGRAMADO() { IS_ACTIVE = true, PROGRAMADO1=this._programado,UNID_ALMACEN=this._almacen.UNID_ALMACEN, UNID_ARTICULO=this._articulo.UNID_ARTICULO});
+                _dataMapper.insertElement(new PROGRAMADO() { IS_ACTIVE = true, PROGRAMADO1=this._programado,UNID_ALMACEN=this._almacen.UNID_ALMACEN, UNID_ARTICULO=this._articulo.UNID_ARTICULO}, this.ActualUser);
             }
         }
 
         public void updateProgramado()
         {
-            _dataMapper.udpateElement(new PROGRAMADO() { IS_ACTIVE = true, UNID_PROGRAMADO=this._unidProgramado, PROGRAMADO1 = this._programado, UNID_ALMACEN = this._almacen.UNID_ALMACEN, UNID_ARTICULO = this._articulo.UNID_ARTICULO });
+            _dataMapper.udpateElement(new PROGRAMADO() { IS_ACTIVE = true, UNID_PROGRAMADO = this._unidProgramado, PROGRAMADO1 = this._programado, UNID_ALMACEN = this._almacen.UNID_ALMACEN, UNID_ARTICULO = this._articulo.UNID_ARTICULO }, this.ActualUser);
         }
 
         public void DeleteProgramado()
         {
             if (_dataMapper != null)
             {
-                _dataMapper.deleteElement(new PROGRAMADO() { UNID_PROGRAMADO = this._unidProgramado});
+                _dataMapper.deleteElement(new PROGRAMADO() { UNID_PROGRAMADO = this._unidProgramado }, this.ActualUser);
             }
         }
 
         #region Constructors
-        public ProgramadoModel(IDataMapper dataMapper)
+        public ProgramadoModel(IDataMapper dataMapper, USUARIO u)
         {
             if ((dataMapper as ProgramadoDataMapper) != null)
             {
                 this._dataMapper = dataMapper as ProgramadoDataMapper;
             }
-
+            this.ActualUser = u;
         }
 
         public ProgramadoModel()

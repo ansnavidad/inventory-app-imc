@@ -21,9 +21,10 @@ namespace InventoryApp.ViewModel.GridMovimientos
         private CatalogClienteModel _catalogClienteProcedenciaModel;
         private CatalogTipoPedimentoModel _catalogTipoPedimentoModel;
         private CatalogItemModel _itemModel;
+        public USUARIO ActualUser;
         #endregion
 
-        public MovimientoGridSalidaBajaViewModel()
+        public MovimientoGridSalidaBajaViewModel(USUARIO u)
         {
             try
             {
@@ -42,7 +43,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 this._catalogProveedorProcedenciaModel = new CatalogProveedorModel(dataMapper3);
                 this._catalogClienteProcedenciaModel = new CatalogClienteModel(dataMapper4);
                 this._catalogTipoPedimentoModel = new CatalogTipoPedimentoModel(dataMapper5);
-
+                this.ActualUser = u;
             }
             catch (ArgumentException a)
             {

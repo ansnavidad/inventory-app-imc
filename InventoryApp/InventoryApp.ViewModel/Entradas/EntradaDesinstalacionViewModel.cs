@@ -36,57 +36,6 @@ namespace InventoryApp.ViewModel.Entradas
 
         private CatalogEmpresaModel _catalogEmpresaModel;
 
-        public EntradaDesinstalacionViewModel()
-        {            
-            try
-            {
-                IDataMapper dataMapper = new SolicitanteDataMapper();
-                IDataMapper dataMapper2 = new AlmacenDataMapper();
-                IDataMapper dataMapper3 = new ProveedorDataMapper();
-                IDataMapper dataMapper4 = new ClienteDataMapper();
-                IDataMapper dataMapper5 = new TransporteDataMapper();
-                IDataMapper dataMapper6 = new TecnicoDataMapper();
-                IDataMapper dataMapper7 = new MovimientoDataMapper();
-
-                this._catalogMovimientoModel = new CatalogMovimientoModel(dataMapper7);
-
-                this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
-                this._movimientoModel = new MovimientoModel(new MovimientoDataMapper());
-                this._movimientoModel.PropertyChanged += OnPropertyChanged2;
-                TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
-                mov.UNID_TIPO_MOVIMIENTO = 4;
-                this._movimientoModel.TipoMovimiento = mov;
-                this._itemModel = new CatalogItemModel(new ItemDataMapper());
-                this._catalogAlmacenModel = new CatalogAlmacenModel(dataMapper2);
-                this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
-                this._catalogProveedorProcedenciaModel = new CatalogProveedorModel(dataMapper3);
-                this._catalogClienteProcedenciaModel = new CatalogClienteModel(dataMapper4);
-                this._catalogTransporteModel = new CatalogTransporteModel(dataMapper5);
-                this._catalogTecnicoModel = new CatalogTecnicoModel(dataMapper6);
-
-                //Asignaciones especiales para los combos 
-                this._movimientoModel.Transporte = _catalogTransporteModel.Transporte[0];
-                this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
-                this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
-                //this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
-                this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
-                this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
-                this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
-                this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
-                //this._movimientoModel.Cliente = _catalogClienteProcedenciaModel.Cliente[0];
-                this._IsEnabled = true;
-            }
-            catch (ArgumentException a)
-            {
-                ;
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }   
-            
-        }
-
         public EntradaDesinstalacionViewModel(InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasDesinstalacionViewModel entradas)
         {
             try
@@ -128,6 +77,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
                 this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
                 this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
+                this._movimientoModel.ActualUser = entradas.ActualUser;
                 //this._movimientoModel.Cliente = _catalogClienteProcedenciaModel.Cliente[0];
                 this._IsEnabled = true;
             }

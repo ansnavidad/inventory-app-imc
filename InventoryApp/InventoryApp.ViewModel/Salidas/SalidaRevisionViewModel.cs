@@ -39,55 +39,6 @@ namespace InventoryApp.ViewModel.Salidas
         private RelayCommand _deleteItemCommand;
         private RelayCommand _imprimirCommand;
 
-        public SalidaRevisionViewModel()
-        {            
-            try
-            {
-                IDataMapper dataMapper = new SolicitanteDataMapper();
-                IDataMapper dataMapper2 = new AlmacenDataMapper();
-                IDataMapper dataMapper3 = new ProveedorDataMapper();
-                IDataMapper dataMapper4 = new ClienteDataMapper();
-                IDataMapper dataMapper5 = new ServicioDataMapper();
-                IDataMapper dataMapper6 = new TipoPedimentoDataMapper();
-                IDataMapper dataMapper7 = new TransporteDataMapper();
-                IDataMapper dataMapper8 = new TecnicoDataMapper();
-
-                this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
-                this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
-                TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
-                mov.UNID_TIPO_MOVIMIENTO = 10;
-                this._movimientoModel.TipoMovimiento = mov;
-                this._movimientoModel.PropertyChanged += OnPropertyChanged2;
-                this._itemModel = new CatalogItemModel(new ItemDataMapper());
-                this._catalogAlmacenDestinoModel = new CatalogAlmacenModel(dataMapper2);
-                this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
-                this._catalogProveedorDestinoModel = new CatalogProveedorModel(dataMapper3);
-                this._catalogClienteDestinoModel = new CatalogClienteModel(dataMapper4);
-                this._catalogServicioModel = new CatalogServicioModel(dataMapper5);
-                this._catalogTipoPedimentoModel = new CatalogTipoPedimentoModel(dataMapper6);
-                this._catalogTransporteModel = new CatalogTransporteModel(dataMapper7);
-                this._catalogClienteModel = new CatalogClienteModel(dataMapper4);
-                this._catalogTecnicoModel = new CatalogTecnicoModel(dataMapper8);
-
-                //Asignaciones especiales para los combos 
-                this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
-                this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];                                
-                this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
-                this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
-                this._movimientoModel.Infraestructura = _catalogInfraestructuraModel.Infraestructuras[0];
-                this._IsEnabled = true;
-            }
-            catch (ArgumentException a)
-            {
-                ;
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }   
-            
-        }
-
         public SalidaRevisionViewModel(MovimientoGridSalidaRevisionViewModel salida)
         {
             try
@@ -106,7 +57,7 @@ namespace InventoryApp.ViewModel.Salidas
                 this._catalogInfraestructuraModel = new CatalogInfraestructuraModel(dataMapper9);
                 this._catalogEmpresaModel = new CatalogEmpresaModel(datamapper11);
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
-                this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
+                this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper(), salida.ActualUser);
                 TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
                 mov.UNID_TIPO_MOVIMIENTO = 10;
                 this._movimientoModel.TipoMovimiento = mov;

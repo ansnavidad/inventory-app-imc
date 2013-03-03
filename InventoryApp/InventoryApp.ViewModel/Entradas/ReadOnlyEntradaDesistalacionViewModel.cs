@@ -10,6 +10,7 @@ using System.Reflection;
 using InventoryApp.ViewModel.GridMovimientos;
 using System.ComponentModel;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.Entradas
 {
@@ -42,6 +43,7 @@ namespace InventoryApp.ViewModel.Entradas
         private IDataMapper _dataMapperTecnicoDestino;
         private IDataMapper _dataMapperSolicitante;
         private MovimientoGridEntradasDesinstalacionViewModel _entradaDesinstalacionViewModel;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props
@@ -87,9 +89,9 @@ namespace InventoryApp.ViewModel.Entradas
         /// Ejecuta la acción del command
         /// </summary>
         /// <param name="catalogItemStatusViewModel"></param>
-        public ReadOnlyEntradaDesistalacionViewModel(/*MovimientoGridEntradasDesinstalacionViewModel movimientoModel,*/ MovimientoModel selectedMovimientoModel)
+        public ReadOnlyEntradaDesistalacionViewModel(/*MovimientoGridEntradasDesinstalacionViewModel movimientoModel,*/ MovimientoModel selectedMovimientoModel, USUARIO u)
         {
-            this._movimientoModel = new MovimientoModel(new MovimientoDataMapper(), 1);
+            this._movimientoModel = new MovimientoModel(new MovimientoDataMapper(), 1, u);
             //this._entradaDesinstalacionViewModel = movimientoModel;
             this._itemModel = new CatalogItemModel(new ItemDataMapper());
             DeleteMovimiento movLectura = new DeleteMovimiento();
@@ -185,11 +187,19 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.CantidadItems = movLectura.ArticulosLectura.Count;
             }
 
+            this.ActualUser = u;
         }
         public ReadOnlyEntradaDesistalacionViewModel() { }
         #endregion
 
         #region Metodos
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.MovimientoModel);
+            return historialViewModel;
+        }
+
         public bool CanAttempImprimir()
         {
             bool _canImprimir = false;

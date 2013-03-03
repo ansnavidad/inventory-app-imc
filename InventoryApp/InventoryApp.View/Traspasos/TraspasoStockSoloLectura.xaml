@@ -273,6 +273,7 @@
             </Grid>
         </Border>
         <ComboBox TabIndex="3" Height="23" HorizontalAlignment="Right"  Name="comboBoxProveedorDestino" VerticalAlignment="Top" Width="159" DisplayMemberPath="PROVEEDOR_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogProveedorDestinoModel.Proveedor}"  SelectedItem="{Binding MovimientoModel.ProveedorDestino, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_PROVEEDOR" SelectedIndex="0" Visibility="Hidden" />
+        <Button Content="Historial" Height="23" HorizontalAlignment="Stretch" Margin="611,12,12,15" Name="buttonTrololoo" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Width="75" Click="Historal_Click" />
     </Grid>
 
 </Window>

@@ -21,8 +21,9 @@ namespace InventoryApp.ViewModel.GridMovimientos
         private CatalogClienteModel _catalogClienteProcedenciaModel;
         private CatalogTipoPedimentoModel _catalogTipoPedimentoModel;
         private CatalogItemModel _itemModel;
+        public USUARIO ActualUser;
 
-        public MovimientoGridSalidaObsequioViewModel()
+        public MovimientoGridSalidaObsequioViewModel(USUARIO u)
         {
             try
             {
@@ -43,7 +44,7 @@ namespace InventoryApp.ViewModel.GridMovimientos
                 this._catalogProveedorProcedenciaModel = new CatalogProveedorModel(dataMapper3);
                 this._catalogClienteProcedenciaModel = new CatalogClienteModel(dataMapper4);
                 this._catalogTipoPedimentoModel = new CatalogTipoPedimentoModel(dataMapper5);
-
+                this.ActualUser = u;
             }
             catch (ArgumentException a)
             {
@@ -186,12 +187,12 @@ namespace InventoryApp.ViewModel.GridMovimientos
         /// <returns></returns>
         public ReadOnlySalidaObsequioViewModel CreateReadOnlySalidaObsequioViewModel()
         {
-            MovimientoModel movimientoModel = new MovimientoModel(new MovimientoDataMapper(), "solo lectura");
+            MovimientoModel movimientoModel = new MovimientoModel(new MovimientoDataMapper(), "solo lectura", this.ActualUser);
             if (this._catalogMovimientoModel != null && this.CatalogMovimientoModel.SelectedMovimiento != null)
             {
                 movimientoModel.UnidMovimiento = this.CatalogMovimientoModel.SelectedMovimiento.UnidMovimiento;
             }
-            return new ReadOnlySalidaObsequioViewModel(movimientoModel);
+            return new ReadOnlySalidaObsequioViewModel(movimientoModel, this.ActualUser);
         }
 
         public void loadItems()

@@ -66,6 +66,7 @@ namespace InventoryApp.Model
         private ObservableCollection<TECNICO> _tecnicos;
         public float _totalLectura;
         private string _observaciones;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props
@@ -963,7 +964,7 @@ namespace InventoryApp.Model
                     UNID_SOLICITANTE = this._unidSolicitante,
                     UNID_TECNICO = this._unidTecnico,
                     UNID_INFRAESTRUCTURA = this._unidInfraestructura,
-                });
+                }, this.ActualUser);
                 //_dataMapper.insertElement(new MOVIMENTO() {UNID_MOVIMIENTO = this._unidMovimiento, FECHA_MOVIMIENTO = this._fechaMovimiento, UNID_TIPO_MOVIMIENTO = this._tipoMovimiento.UNID_TIPO_MOVIMIENTO,  TT = this._tt,IS_ACTIVE = this._isActive, RECIBE = this._recibe, UNID_ALMACEN_DESTINO = this._unidSolicitante});
             }
         }
@@ -1020,6 +1021,29 @@ namespace InventoryApp.Model
         {
             this._dataMapper = new MovimientoDataMapper();
         }
+        public MovimientoModel(IDataMapper dataMapper, USUARIO u)
+        {
+            this._unidMovimiento = UNID.getNewUNID();
+            this._fechaMovimiento = DateTime.Now;
+            this._isActive = true;
+            if ((dataMapper as MovimientoDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as MovimientoDataMapper;
+            }
+            this._tipoMovimiento = new TIPO_MOVIMIENTO();
+            this._almacenDestino = new ALMACEN();
+            this._proveedorProcedencia = new PROVEEDOR();
+            this._clienteProcedencia = null;
+            this._almacenProcedencia = null;
+            this._servicio = new SERVICIO();
+            this._transporte = new TRANSPORTE();
+            this._cliente = new CLIENTE();
+            this._proveedor = new PROVEEDOR();
+            this._facturaVenta = new FACTURA_VENTA();
+            this._solicitante = null;
+            this._tecnico = new TECNICO();
+            this.ActualUser = u;
+        }
         public MovimientoModel(IDataMapper dataMapper)
         {
             this._unidMovimiento = UNID.getNewUNID();
@@ -1041,10 +1065,32 @@ namespace InventoryApp.Model
             this._facturaVenta = new FACTURA_VENTA();
             this._solicitante = null;
             this._tecnico = new TECNICO();
-            
+        }
+        public MovimientoModel(IDataMapper dataMapper, int mov)
+        {
+
+            if ((dataMapper as MovimientoDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as MovimientoDataMapper;
+            }
+            this._tipoMovimiento = new TIPO_MOVIMIENTO();
+            this._almacenDestino = new ALMACEN();
+            this._proveedorProcedencia = new PROVEEDOR();
+            this._clienteProcedencia = new CLIENTE();
+            this._almacenProcedencia = new ALMACEN();
+            this._servicio = new SERVICIO();
+            this._transporte = new TRANSPORTE();
+            this._cliente = new CLIENTE();
+            this._proveedor = new PROVEEDOR();
+            this._facturaVenta = new FACTURA_VENTA();
+            this._solicitante = null;
+            this._tecnico = new TECNICO();
+            this._solicitanteLectura = new SOLICITANTE();
+            this._empresaLectura = new EMPRESA();
+            this._departamentoLectura = new DEPARTAMENTO();
         }
 
-        public MovimientoModel(IDataMapper dataMapper, int mov)
+        public MovimientoModel(IDataMapper dataMapper, int mov, USUARIO u)
         {
             
             if ((dataMapper as MovimientoDataMapper) != null)
@@ -1066,7 +1112,16 @@ namespace InventoryApp.Model
             this._solicitanteLectura = new SOLICITANTE();
             this._empresaLectura = new EMPRESA();
             this._departamentoLectura = new DEPARTAMENTO();
+            this.ActualUser = u;
+        }
 
+        public MovimientoModel(IDataMapper dataMapper, string readOnly, USUARIO u)
+        {
+            if ((dataMapper as MovimientoDataMapper) != null)
+            {
+                this._dataMapper = dataMapper as MovimientoDataMapper;
+            }
+            this.ActualUser = u;
         }
 
         public MovimientoModel(IDataMapper dataMapper, string readOnly)
@@ -1075,7 +1130,6 @@ namespace InventoryApp.Model
             {
                 this._dataMapper = dataMapper as MovimientoDataMapper;
             }
-
         }
         #endregion
 

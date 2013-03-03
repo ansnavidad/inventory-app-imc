@@ -33,53 +33,6 @@ namespace InventoryApp.ViewModel.Traspasos
         private RelayCommand _deleteItemCommand;
         private RelayCommand _imprimirCommand;
 
-        public TraspasoStockViewModel()
-        {            
-            try
-            {
-                IDataMapper dataMapper = new SolicitanteDataMapper();
-                IDataMapper dataMapper2 = new AlmacenDataMapper();
-                IDataMapper dataMapper3 = new ProveedorDataMapper();
-                IDataMapper dataMapper4 = new ClienteDataMapper();
-                IDataMapper dataMapper5 = new TransporteDataMapper();
-                IDataMapper dataMapper6 = new ServicioDataMapper();
-                IDataMapper dataMapper7 = new MovimientoDataMapper();
-
-                this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
-                this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
-                TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
-                mov.UNID_TIPO_MOVIMIENTO = 17;
-                this._movimientoModel.TipoMovimiento = mov;                
-                this._itemModel = new CatalogItemModel(new ItemDataMapper());
-                this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
-                this._catalogAlmacenDestinoModel = new CatalogAlmacenModel(dataMapper2);
-                this._catalogProveedorDestinoModel = new CatalogProveedorModel(dataMapper3);
-                this._catalogClienteDestinoModel = new CatalogClienteModel(dataMapper4);
-                this._catalogTransporteModel = new CatalogTransporteModel(dataMapper5);
-                this._catalogServicioModel = new CatalogServicioModel(dataMapper6);
-                this._catalogMovimientoModel = new CatalogMovimientoModel(dataMapper7);
-
-                //Asignaciones especiales para los combos 
-                this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
-                this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
-                this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
-                this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
-                this._movimientoModel.AlmacenDestino = _catalogAlmacenProcedenciaModel.Almacen[0];
-                this._movimientoModel.Transporte = _catalogTransporteModel.Transporte[0];
-                this._IsEnabled = true;
-            }
-            catch (ArgumentException a)
-            {
-
-                ;
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }   
-            
-        }
-
         public TraspasoStockViewModel(MovimientoGridTraspasoStockViewModel traspaso)
         {
             try
@@ -96,7 +49,7 @@ namespace InventoryApp.ViewModel.Traspasos
                 this._catalogEmpresaModel = new CatalogEmpresaModel(datamapper11);
 
                 this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
-                this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper());
+                this._movimientoModel = new MovimientoSalidasModel(new MovimientoDataMapper(), traspaso.ActualUser);
                 TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
                 mov.UNID_TIPO_MOVIMIENTO = 17;
                 this._movimientoModel.TipoMovimiento = mov;

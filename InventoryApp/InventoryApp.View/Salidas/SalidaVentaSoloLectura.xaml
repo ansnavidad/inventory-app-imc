@@ -321,7 +321,7 @@
                         Click="btnCancelar_Click" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}"  />
             </Grid>
         </Border>
-
+        <Button Content="Historial" Height="23" HorizontalAlignment="Stretch" Margin="611,11,12,16" Name="buttontrololo" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Width="75" Click="Historal_Click" />
     </Grid>
 
 </Window>

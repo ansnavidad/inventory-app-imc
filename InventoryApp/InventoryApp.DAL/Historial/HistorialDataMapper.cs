@@ -29,6 +29,32 @@ namespace InventoryApp.DAL.Historial
                                    select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
                         return res;
                     }
+
+                case "MAXMIN":
+
+                    using (var Entity = new TAE2Entities())
+                    {
+                        var res = (from p in Entity.MASTER_INVENTARIOS
+                                   .Include("USUARIO")
+                                   .Include("USUARIO1")
+                                   .Include("USUARIO2")
+                                   where p.IS_ACTIVE == true && p.UNID_MAX_MIN == unid
+                                   select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
+                        return res;
+                    }
+
+                case "PROGRAMADO":
+
+                    using (var Entity = new TAE2Entities())
+                    {
+                        var res = (from p in Entity.MASTER_INVENTARIOS
+                                   .Include("USUARIO")
+                                   .Include("USUARIO1")
+                                   .Include("USUARIO2")
+                                   where p.IS_ACTIVE == true && p.UNID_PROGRAMADO == unid
+                                   select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
+                        return res;
+                    }
                 case "CATEGORIA":
 
                     using (var Entity = new TAE2Entities())

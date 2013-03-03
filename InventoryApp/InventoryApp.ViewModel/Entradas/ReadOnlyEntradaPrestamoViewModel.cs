@@ -10,6 +10,7 @@ using InventoryApp.DAL.POCOS;
 using System.ComponentModel;
 using Microsoft.Office.Interop.Excel;
 using System.Reflection;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.Entradas
 {
@@ -42,6 +43,7 @@ namespace InventoryApp.ViewModel.Entradas
         private IDataMapper _dataMapperTecnicoDestino;
         private IDataMapper _dataMapperSolicitante;
         private MovimientoGridEntradasPrestamoViewModel _entradaPrestamoViewModel;
+        public USUARIO ActualUser;
         #endregion
 
         #region Props
@@ -86,9 +88,9 @@ namespace InventoryApp.ViewModel.Entradas
         /// Ejecuta la acción del command
         /// </summary>
         /// <param name="catalogItemStatusViewModel"></param>
-        public ReadOnlyEntradaPrestamoViewModel(MovimientoGridEntradasPrestamoViewModel movimientoModel, MovimientoModel selectedMovimientoModel)
+        public ReadOnlyEntradaPrestamoViewModel(MovimientoGridEntradasPrestamoViewModel movimientoModel, MovimientoModel selectedMovimientoModel, USUARIO u)
         {
-            this._movimientoModel = new MovimientoModel(new MovimientoDataMapper(), 1);
+            this._movimientoModel = new MovimientoModel(new MovimientoDataMapper(), 1, u);
             this._entradaPrestamoViewModel = movimientoModel;
             this._itemModel = new CatalogItemModel(new ItemDataMapper());
             DeleteMovimiento movLectura = new DeleteMovimiento();
@@ -184,11 +186,17 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.CantidadItems = movLectura.ArticulosLectura.Count;
             }
 
+            this.ActualUser = u;
         }
         public ReadOnlyEntradaPrestamoViewModel() { }
         #endregion
 
         #region Metodos
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.MovimientoModel);
+            return historialViewModel;
+        }
 
         public bool CanAttempImprimir()
         {

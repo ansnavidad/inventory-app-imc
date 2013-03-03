@@ -52,10 +52,8 @@ namespace InventoryApp.View.GridMovimientos
                     {
                         throw ex;
                     }
-
                 }
             }
-
         }
     }
 }

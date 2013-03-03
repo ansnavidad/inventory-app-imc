@@ -7,6 +7,7 @@ using System.Windows.Input;
 using InventoryApp.DAL;
 using System.Collections.ObjectModel;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.MaxMin
 {
@@ -109,7 +110,7 @@ namespace InventoryApp.ViewModel.MaxMin
         /// <param name="catalogItemStatusViewModel"></param>
         public ModifyMaxMinViewModel(MaxMinViewModel maxMinViewModel, MaxMinModel selectedMaxMinModel)
         {
-            this._modiMaxMin = new MaxMinModel(new MaxMinDataMapper());
+            this._modiMaxMin = new MaxMinModel(new MaxMinDataMapper(), maxMinViewModel.ActualUser);
             this._maxMinViewModel = maxMinViewModel;
             this._modiMaxMin.UnidMaxMin = selectedMaxMinModel.UnidMaxMin;
             this._modiMaxMin.Max = selectedMaxMinModel.Max;
@@ -137,6 +138,13 @@ namespace InventoryApp.ViewModel.MaxMin
         #endregion
 
         #region Methods
+
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.ModiMaxMin);
+            return historialViewModel;
+        }
+
         public void init()
         {
             this._ModiArticulos = new ObservableCollection<MaxMinModel>();

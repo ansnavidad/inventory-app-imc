@@ -31,57 +31,6 @@ namespace InventoryApp.ViewModel.Entradas
 
         private CatalogEmpresaModel _catalogEmpresaModel;
 
-        public EntradaDevolucionViewModel()
-        {            
-            try
-            {
-                IDataMapper dataMapper = new SolicitanteDataMapper();
-                IDataMapper dataMapper2 = new AlmacenDataMapper();
-                IDataMapper dataMapper3 = new ProveedorDataMapper();
-                IDataMapper dataMapper4 = new ClienteDataMapper();
-                IDataMapper dataMapper5 = new TransporteDataMapper();
-
-                this._catalogSolicitanteModel = new CatalogSolicitanteModel(dataMapper);
-                this._movimientoModel = new MovimientoModel(new MovimientoDataMapper());
-                TIPO_MOVIMIENTO mov = new TIPO_MOVIMIENTO();
-                mov.UNID_TIPO_MOVIMIENTO = 3;
-                this._movimientoModel.TipoMovimiento = mov;
-                this._itemModel = new CatalogItemModel(new ItemDataMapper());
-                this._catalogAlmacenModel = new CatalogAlmacenModel(dataMapper2);
-                this._catalogAlmacenProcedenciaModel = new CatalogAlmacenModel(dataMapper2);
-                this._catalogProveedorProcedenciaModel = new CatalogProveedorModel(dataMapper3);
-                this._catalogClienteProcedenciaModel = new CatalogClienteModel(dataMapper4);
-                this._catalogTransporteModel = new CatalogTransporteModel(dataMapper5);
-
-                //Asignaciones especiales para los combos 
-                this._movimientoModel.Empresa = _catalogEmpresaModel.Empresa[0];
-                this._movimientoModel.Solicitante = _catalogSolicitanteModel.Solicitante[0];
-                //this._movimientoModel.Cliente = _catalogClienteProcedenciaModel.Cliente[0];
-                this._movimientoModel.AlmacenDestino = _catalogAlmacenModel.Almacen[0];
-                this._movimientoModel.Tecnico = _movimientoModel.Tecnicos[0];
-                this._movimientoModel.AlmacenProcedencia = _catalogAlmacenProcedenciaModel.Almacen[0];
-                this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
-                this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
-                this._movimientoModel.Transporte = _catalogTransporteModel.Transporte[0];                
-                this.IsEnabledCheck1 = true;
-                this.IsEnabledCheck2 = true;
-                this.IsEnabledCombo1 = true;
-                this.IsEnabledCombo2 = false;
-                this.IsCheck1 = true;
-                this.IsCheck2 = false;
-            }
-            catch (ArgumentException a)
-            {
-
-                ;
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }   
-            
-        }
-
         public EntradaDevolucionViewModel(InventoryApp.ViewModel.GridMovimientos.MovimientoGridEntradasDevolucionViewModel entrada)
         {
             try
@@ -118,6 +67,7 @@ namespace InventoryApp.ViewModel.Entradas
                 this._movimientoModel.ClienteProcedencia = _catalogClienteProcedenciaModel.Cliente[0];
                 this._movimientoModel.ProveedorProcedencia = _catalogProveedorProcedenciaModel.Proveedor[0];
                 this._movimientoModel.Transporte = _catalogTransporteModel.Transporte[0];
+                this._movimientoModel.ActualUser = entrada.ActualUser;
                 this.IsEnabledCheck1 = true;
                 this.IsEnabledCheck2 = true;
                 this.IsEnabledCombo1 = true;

@@ -9,12 +9,14 @@ using InventoryApp.Model.Recibo;
 using System.Collections.ObjectModel;
 using InventoryApp.DAL;
 using System.Windows.Input;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.Recibo
 {
     public class ModifyReciboViewModel :  AddReciboViewModel
     {
         private const int MovimientoRecibo = 16;
+        public USUARIO ActualUser;
 
         #region Commands
         //ModifyRecibo
@@ -131,7 +133,7 @@ namespace InventoryApp.ViewModel.Recibo
         #endregion
 
         public ModifyReciboViewModel(CatalogReciboViewModel catalogReciboViewModel)
-            : base(catalogReciboViewModel)
+            : base(catalogReciboViewModel, catalogReciboViewModel.ActualUser)
         {
             this.InitModifyReciboViewModel();
         }
@@ -472,7 +474,7 @@ namespace InventoryApp.ViewModel.Recibo
                 UNID_SOLICITANTE=this.SelectedSolicitante.UnidSolicitante,
                 PO=this.PO,
                 UNID_RECIBO=this.UnidRecibo
-            });
+            }, this.ActualUser);
 
             rdm.LimpiarRecibo(this._DelMovs, this.UnidRecibo);
 
@@ -581,6 +583,12 @@ namespace InventoryApp.ViewModel.Recibo
                 rmDataMaper.udpateElementRecibo(rm);
             }
         }
+        
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(new RECIBO() { UNID_RECIBO = this.UnidRecibo });
+            return historialViewModel;
+        }
 
         private void SaveRecibo2()
         {
@@ -590,7 +598,7 @@ namespace InventoryApp.ViewModel.Recibo
                 UNID_SOLICITANTE = this.SelectedSolicitante.UnidSolicitante,
                 PO = this.PO,
                 UNID_RECIBO = this.UnidRecibo
-            });
+            }, this.ActualUser);
 
             rdm.LimpiarRecibo(this._DelMovs, this.UnidRecibo);
 

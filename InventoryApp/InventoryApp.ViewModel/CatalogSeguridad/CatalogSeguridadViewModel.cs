@@ -47,7 +47,7 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         #endregion
 
         #region Properties
-
+        public USUARIO ActualUser;
         public ObservableCollection<Rol> RolesCollection
         {
             get { return _RolesCollection; }
@@ -97,10 +97,11 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         
         #region Constructors
 
-        public CatalogSeguridadViewModel(bool b) {
+        public CatalogSeguridadViewModel(bool b, USUARIO u) {
 
             this.IsSuperAdmin = b;
-            this.RolesCollection = this.GetRols();            
+            this.RolesCollection = this.GetRols();
+            this.ActualUser = u;
         }
 
         #endregion
@@ -118,7 +119,7 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
 
             foreach (ROL rr in res) {
 
-                Rol r = new Rol(rr);
+                Rol r = new Rol(rr, this.ActualUser);
                 res2.Add(r);
             }
 

@@ -16,6 +16,7 @@ namespace InventoryApp.ViewModel.Recibo
         private CatalogItemStatusModel _catalogItemStatusModel;
         private ReciboModel _addReciboModel;
         private const int MovimientoRecibo = 16;
+        public USUARIO ActualUser;
         #region RelayCommands
         public ICommand AddMovimientoCmd
         {
@@ -74,7 +75,7 @@ namespace InventoryApp.ViewModel.Recibo
                 UNID_SOLICITANTE = (this.SelectedSolicitante.UnidSolicitante == 0) ? (long?)null : this.SelectedSolicitante.UnidSolicitante
             };
             ReciboDataMapper reciboDataMapper = new ReciboDataMapper();
-            reciboDataMapper.insertElement(recibo);
+            reciboDataMapper.insertElement(recibo, this.ActualUser);
 
 
             foreach (InventoryApp.Model.Recibo.MovimientoModel mov in this.Movimientos)
@@ -240,7 +241,7 @@ namespace InventoryApp.ViewModel.Recibo
                     UNID_SOLICITANTE = (this.SelectedSolicitante.UnidSolicitante == 0) ? (long?)null : this.SelectedSolicitante.UnidSolicitante
                 };
                 ReciboDataMapper reciboDataMapper = new ReciboDataMapper();
-                reciboDataMapper.insertElement(recibo);
+                reciboDataMapper.insertElement(recibo, this.ActualUser);
 
 
                 foreach (InventoryApp.Model.Recibo.MovimientoModel mov in this.Movimientos)
@@ -911,13 +912,14 @@ namespace InventoryApp.ViewModel.Recibo
         protected ObservableCollection<InventoryApp.Model.Recibo.MovimientoModel> _Movimiento;
         public const string MovimientoPropertyName = "MovimientoModel";
 
-        public AddReciboViewModel()
+        public AddReciboViewModel(USUARIO u)
         {
             this.ContB = true;
+            this.ActualUser = u;
             this.init();
         }
 
-        public AddReciboViewModel(CatalogReciboViewModel catalogReciboViewModel)
+        public AddReciboViewModel(CatalogReciboViewModel catalogReciboViewModel, USUARIO u)
         {
             this.ContB = true;
              this._CatalogReciboViewModel = catalogReciboViewModel;
@@ -925,6 +927,7 @@ namespace InventoryApp.ViewModel.Recibo
             {
 
                 this._catalogItemStatusModel = new CatalogItemStatusModel(new ItemStatusDataMapper());
+                this.ActualUser = u;
             }
             catch (ArgumentException ae)
             {

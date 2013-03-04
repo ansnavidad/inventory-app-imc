@@ -9,13 +9,13 @@ using InventoryApp.Model;
 using System.Collections.ObjectModel;
 using InventoryApp.DAL;
 using InventoryApp.ViewModel.CatalogUsuarios;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogSeguridad
 {
     public class AddSeguridadViewModel : ViewModelBase
     {
         #region Relay Commands
-
         public ICommand GuardarRol
         {
             get
@@ -132,6 +132,7 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
 
         #region Properties
 
+        private USUARIO ActualUser;
         CatalogSeguridadViewModel _catalogSeguridadViewModel;
         Queue<MenuModel> ColaMenu;
         Queue<MenuModel> ColaMenuAgregar;
@@ -193,24 +194,31 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
             this._catalogSeguridadViewModel = catalogSeguridadViewModel;
             this.UsuariosCollection = GetUsers();
             this._MenuViewModel = new MenuViewModel(this._catalogSeguridadViewModel.IsSuperAdmin);
-            this._RolActual = new Rol();
+            this._RolActual = new Rol(catalogSeguridadViewModel.ActualUser);
+            this.ActualUser = catalogSeguridadViewModel.ActualUser;
         }
 
         //sobrecarga para agregar desde  administracion de usuario un nuevo rol
         public AddSeguridadViewModel(ModifyUsuarioViewModel modifyUsuarioViewModel)
         {
-            this._catalogSeguridadViewModel = new CatalogSeguridadViewModel(true);
+            this._catalogSeguridadViewModel = new CatalogSeguridadViewModel(true, modifyUsuarioViewModel.ActualUser);
             this.UsuariosCollection = GetUsers();
             this._MenuViewModel = new MenuViewModel(this._catalogSeguridadViewModel.IsSuperAdmin);
-            this._RolActual = new Rol();
+            this._RolActual = new Rol(this.ActualUser);
             //
             this._addUsuarioViewModel = new ModifyUsuarioViewModel();
             this._addUsuarioViewModel = modifyUsuarioViewModel;
+            this.ActualUser = modifyUsuarioViewModel.ActualUser;
         }
 
         #endregion
 
         #region Methods
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(new AlmacenModel(new AlmacenTecnicoDataMapper(), new USUARIO()));
+            return historialViewModel;
+        }
 
         public ObservableCollection<Usuario> GetUsers()
         {

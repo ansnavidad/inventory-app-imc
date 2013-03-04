@@ -183,8 +183,10 @@
                     Name="btnCancelar" VerticalAlignment="Stretch" Width="75"
                     Click="btnCancelar_Click" 
                     Style="{StaticResource btnElara}"/>
+                
             </Grid>
+            
         </Border>
-        
+        <Button Content="Historial" Height="23" HorizontalAlignment="Stretch" Margin="83,3,12,4" Name="button1" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Width="75" Grid.Column="3" Click="Historal_Click" />
     </Grid>
 </Window>

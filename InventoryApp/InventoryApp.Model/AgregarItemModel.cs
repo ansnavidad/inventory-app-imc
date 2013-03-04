@@ -63,7 +63,7 @@ namespace InventoryApp.Model
         private List<PROVEEDOR> _Proveedores;
         private ObservableCollection<FACTURA> _Facturas;
         //Articulos
-        private ObservableCollection<CATEGORIA> _categorias;
+        public ObservableCollection<CATEGORIA> _categorias;
 
         public ObservableCollection<CATEGORIA> Categorias
         {
@@ -72,7 +72,7 @@ namespace InventoryApp.Model
             {
                 if (value != this._categorias)
                 {
-                    this._categorias = value;
+                    this._categorias = value;                    
                     if (this.PropertyChanged != null)
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Categorias"));
                 }
@@ -323,7 +323,8 @@ namespace InventoryApp.Model
                 {
                     this._categoria = value;
                     this.Articulos = GetArticulosByCategoria(this._categoria);
-
+                    if(this.Articulos.Count >0 )
+                        this.Articulo = this.Articulos[0];
                     if (this.PropertyChanged != null)
                         this.PropertyChanged(this, new PropertyChangedEventArgs("Categoria"));
                 }
@@ -538,6 +539,12 @@ namespace InventoryApp.Model
         {
             FacturaDetalleDataMapper f = new FacturaDetalleDataMapper();
             f.updateFacDmodItem(UnidFactura, costoU, UnidFacturaDetalle);
+        }
+
+        public void updateFacturaDet2(long UnidFactura, double costoU, long UnidFacturaDetalle, CATEGORIA cc, ARTICULO aa)
+        {
+            FacturaDetalleDataMapper f = new FacturaDetalleDataMapper();
+            f.updateFacDmodItem(UnidFactura, costoU, UnidFacturaDetalle, cc, aa);
         }
 
         public void updateFacturas()

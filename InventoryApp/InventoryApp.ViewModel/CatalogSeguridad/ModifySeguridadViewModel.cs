@@ -8,6 +8,7 @@ using InventoryApp.Model.Seguridad;
 using System.Collections.ObjectModel;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.CatalogSeguridad
 {
@@ -129,7 +130,7 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         #endregion
 
         #region Properties
-
+        public USUARIO ActualUser;
         CatalogSeguridadViewModel _catalogSeguridadViewModel;
         Queue<MenuModel> ColaMenu;
         Queue<MenuModel> ColaMenuAgregar;
@@ -188,19 +189,24 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         {
             this._catalogSeguridadViewModel = catalogSeguridadViewModel;
             this.RolActual = this._catalogSeguridadViewModel.SelectedRol;
-
+            this.RolActual.ActualUser = catalogSeguridadViewModel.ActualUser;
             this.MenuViewModel = new MenuViewModel(this._catalogSeguridadViewModel.IsSuperAdmin);
             this.CargaMenuInicial();
 
             this.UsuariosCollection = new ObservableCollection<Usuario>();
             this.UsuariosCollection = this.GetUsers();
             this.CargaUsuariosInicial();
+            this.ActualUser = catalogSeguridadViewModel.ActualUser;
         }
 
         #endregion
 
         #region Methods
-
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.RolActual);
+            return historialViewModel;
+        }
         public ObservableCollection<Usuario> GetUsers()
         {
             AppUsuario dm = new AppUsuario();

@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using InventoryApp.ViewModel.Recibo;
+using InventoryApp.View.Historial;
 
 namespace InventoryApp.View.Recibo
 {
@@ -78,6 +79,21 @@ namespace InventoryApp.View.Recibo
                 dlgModifyMovimientoView.DataContext = mfvm;
                 dlgModifyMovimientoView.ShowDialog();
             }
+        }
+
+        private void Historal_Click(object sender, RoutedEventArgs e)
+        {
+            HistorialView addFactura = new HistorialView();
+            ModifyReciboViewModel viewModel = this.ConvertDataContext2(this.DataContext);
+            addFactura.DataContext = viewModel.CreateHistorialViewModel();
+            addFactura.ShowDialog();
+
+        }
+
+        private ModifyReciboViewModel ConvertDataContext2(object dataSource)
+        {
+            ModifyReciboViewModel viewModel = dataSource as ModifyReciboViewModel;
+            return viewModel;
         }
     }
 }

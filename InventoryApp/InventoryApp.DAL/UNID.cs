@@ -400,7 +400,39 @@ namespace InventoryApp.DAL
                                                                                                                                         Master_PROGRAMADO(poco, u, num, control);
                                                                                                                                     }
                                                                                                                                     catch
-                                                                                                                                    { }
+                                                                                                                                    {
+                                                                                                                                        try
+                                                                                                                                        {
+                                                                                                                                            ROL poco = (ROL)o;
+                                                                                                                                            Master_ROL(poco, u, num, control);
+                                                                                                                                        }
+                                                                                                                                        catch
+                                                                                                                                        {
+                                                                                                                                            try
+                                                                                                                                            {
+                                                                                                                                                FACTURA poco = (FACTURA)o;
+                                                                                                                                                Master_FACTURA(poco, u, num, control);
+                                                                                                                                            }
+                                                                                                                                            catch
+                                                                                                                                            {
+                                                                                                                                                try
+                                                                                                                                                {
+                                                                                                                                                    ITEM poco = (ITEM)o;
+                                                                                                                                                    Master_ITEM(poco, u, num, control);
+                                                                                                                                                }
+                                                                                                                                                catch
+                                                                                                                                                {
+                                                                                                                                                    try
+                                                                                                                                                    {
+                                                                                                                                                        RECIBO poco = (RECIBO)o;
+                                                                                                                                                        Master_RECIBO(poco, u, num, control);
+                                                                                                                                                    }
+                                                                                                                                                    catch
+                                                                                                                                                    { }
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
                                                                                                                                 }
                                                                                                                             }
                                                                                                                         }
@@ -1665,6 +1697,168 @@ namespace InventoryApp.DAL
             }
         }
 
+        private static void Master_ROL(ROL poco, USUARIO u, int num, string control)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var Master = entity.MASTER_INVENTARIOS.OrderBy(p => p.UNID_MASTER_INVENTARIOS).Where(p => p.UNID_ROL != null && p.UNID_ROL == poco.UNID_ROL).ToList();
+                var NewMaster = new MASTER_INVENTARIOS();
+
+                NewMaster.UNID_MASTER_INVENTARIOS = UNID.getNewUNID();
+                NewMaster.UNID_ROL = poco.UNID_ROL;
+                NewMaster.UNID_USUARIO_MOD = u.UNID_USUARIO;
+                NewMaster.MODIFICACIONES = control;
+                NewMaster.FECHA = DateTime.Now;
+                NewMaster.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                NewMaster.IS_ACTIVE = true;
+                NewMaster.IS_MODIFIED = true;
+                string aux = "";
+                foreach (USUARIO_ROL r in u.USUARIO_ROL)
+                    aux += r.ROL.ROL_NAME + ", ";
+                if (!String.IsNullOrEmpty(aux))
+                {
+                    aux = aux.Substring(0, aux.Length - 2);
+                    aux += ".";
+                }
+                NewMaster.ROLES = aux;
+
+                if (Master != null && Master.Count > 0)
+                {
+                    var CreatorUser = entity.MASTER_INVENTARIOS.OrderByDescending(p => p.UNID_ROL).Where(p => p.UNID_ROL == NewMaster.UNID_ROL).ToList();
+                    NewMaster.UNID_USUARIO_CREADOR = CreatorUser[0].UNID_USUARIO_MOD;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+                else
+                {
+                    NewMaster.UNID_USUARIO_CREADOR = u.UNID_USUARIO;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        private static void Master_FACTURA(FACTURA poco, USUARIO u, int num, string control)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var Master = entity.MASTER_INVENTARIOS.OrderBy(p => p.UNID_MASTER_INVENTARIOS).Where(p => p.UNID_FACTURA != null && p.UNID_FACTURA == poco.UNID_FACTURA).ToList();
+                var NewMaster = new MASTER_INVENTARIOS();
+
+                NewMaster.UNID_MASTER_INVENTARIOS = UNID.getNewUNID();
+                NewMaster.UNID_FACTURA = poco.UNID_FACTURA;
+                NewMaster.UNID_USUARIO_MOD = u.UNID_USUARIO;
+                NewMaster.MODIFICACIONES = control;
+                NewMaster.FECHA = DateTime.Now;
+                NewMaster.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                NewMaster.IS_ACTIVE = true;
+                NewMaster.IS_MODIFIED = true;
+                string aux = "";
+                foreach (USUARIO_ROL r in u.USUARIO_ROL)
+                    aux += r.ROL.ROL_NAME + ", ";
+                if (!String.IsNullOrEmpty(aux))
+                {
+                    aux = aux.Substring(0, aux.Length - 2);
+                    aux += ".";
+                }
+                NewMaster.ROLES = aux;
+
+                if (Master != null && Master.Count > 0)
+                {
+                    var CreatorUser = entity.MASTER_INVENTARIOS.OrderByDescending(p => p.UNID_FACTURA).Where(p => p.UNID_FACTURA == NewMaster.UNID_FACTURA).ToList();
+                    NewMaster.UNID_USUARIO_CREADOR = CreatorUser[0].UNID_USUARIO_MOD;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+                else
+                {
+                    NewMaster.UNID_USUARIO_CREADOR = u.UNID_USUARIO;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+            }
+        }
+        private static void Master_ITEM(ITEM poco, USUARIO u, int num, string control)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var Master = entity.MASTER_INVENTARIOS.OrderBy(p => p.UNID_MASTER_INVENTARIOS).Where(p => p.UNID_ITEM != null && p.UNID_ITEM == poco.UNID_ITEM).ToList();
+                var NewMaster = new MASTER_INVENTARIOS();
+
+                NewMaster.UNID_MASTER_INVENTARIOS = UNID.getNewUNID();
+                NewMaster.UNID_ITEM = poco.UNID_ITEM;
+                NewMaster.UNID_USUARIO_MOD = u.UNID_USUARIO;
+                NewMaster.MODIFICACIONES = control;
+                NewMaster.FECHA = DateTime.Now;
+                NewMaster.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                NewMaster.IS_ACTIVE = true;
+                NewMaster.IS_MODIFIED = true;
+                string aux = "";
+                foreach (USUARIO_ROL r in u.USUARIO_ROL)
+                    aux += r.ROL.ROL_NAME + ", ";
+                if (!String.IsNullOrEmpty(aux))
+                {
+                    aux = aux.Substring(0, aux.Length - 2);
+                    aux += ".";
+                }
+                NewMaster.ROLES = aux;
+
+                if (Master != null && Master.Count > 0)
+                {
+                    var CreatorUser = entity.MASTER_INVENTARIOS.OrderByDescending(p => p.UNID_ITEM).Where(p => p.UNID_ITEM == NewMaster.UNID_ITEM).ToList();
+                    NewMaster.UNID_USUARIO_CREADOR = CreatorUser[0].UNID_USUARIO_MOD;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+                else
+                {
+                    NewMaster.UNID_USUARIO_CREADOR = u.UNID_USUARIO;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        private static void Master_RECIBO(RECIBO poco, USUARIO u, int num, string control)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var Master = entity.MASTER_INVENTARIOS.OrderBy(p => p.UNID_MASTER_INVENTARIOS).Where(p => p.UNID_RECIBO != null && p.UNID_RECIBO == poco.UNID_RECIBO).ToList();
+                var NewMaster = new MASTER_INVENTARIOS();
+
+                NewMaster.UNID_MASTER_INVENTARIOS = UNID.getNewUNID();
+                NewMaster.UNID_RECIBO = poco.UNID_RECIBO;
+                NewMaster.UNID_USUARIO_MOD = u.UNID_USUARIO;
+                NewMaster.MODIFICACIONES = control;
+                NewMaster.FECHA = DateTime.Now;
+                NewMaster.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                NewMaster.IS_ACTIVE = true;
+                NewMaster.IS_MODIFIED = true;
+                string aux = "";
+                foreach (USUARIO_ROL r in u.USUARIO_ROL)
+                    aux += r.ROL.ROL_NAME + ", ";
+                if (!String.IsNullOrEmpty(aux))
+                {
+                    aux = aux.Substring(0, aux.Length - 2);
+                    aux += ".";
+                }
+                NewMaster.ROLES = aux;
+
+                if (Master != null && Master.Count > 0)
+                {
+                    var CreatorUser = entity.MASTER_INVENTARIOS.OrderByDescending(p => p.UNID_RECIBO).Where(p => p.UNID_RECIBO == NewMaster.UNID_RECIBO).ToList();
+                    NewMaster.UNID_USUARIO_CREADOR = CreatorUser[0].UNID_USUARIO_MOD;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+                else
+                {
+                    NewMaster.UNID_USUARIO_CREADOR = u.UNID_USUARIO;
+                    entity.MASTER_INVENTARIOS.AddObject(NewMaster);
+                    entity.SaveChanges();
+                }
+            }
+        }
         #endregion
     }
 }

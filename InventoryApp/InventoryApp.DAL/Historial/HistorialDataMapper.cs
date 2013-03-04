@@ -43,6 +43,55 @@ namespace InventoryApp.DAL.Historial
                         return res;
                     }
 
+                case "ROL":
+
+                    using (var Entity = new TAE2Entities())
+                    {
+                        var res = (from p in Entity.MASTER_INVENTARIOS
+                                   .Include("USUARIO")
+                                   .Include("USUARIO1")
+                                   .Include("USUARIO2")
+                                   where p.IS_ACTIVE == true && p.UNID_ROL == unid
+                                   select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
+                        return res;
+                    }
+                case "FACTURA":
+
+                    using (var Entity = new TAE2Entities())
+                    {
+                        var res = (from p in Entity.MASTER_INVENTARIOS
+                                   .Include("USUARIO")
+                                   .Include("USUARIO1")
+                                   .Include("USUARIO2")
+                                   where p.IS_ACTIVE == true && p.UNID_FACTURA == unid
+                                   select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
+                        return res;
+                    }
+                case "RECIBO":
+
+                    using (var Entity = new TAE2Entities())
+                    {
+                        var res = (from p in Entity.MASTER_INVENTARIOS
+                                   .Include("USUARIO")
+                                   .Include("USUARIO1")
+                                   .Include("USUARIO2")
+                                   where p.IS_ACTIVE == true && p.UNID_RECIBO == unid
+                                   select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
+                        return res;
+                    }
+                case "ITEM":
+
+                    using (var Entity = new TAE2Entities())
+                    {
+                        var res = (from p in Entity.MASTER_INVENTARIOS
+                                   .Include("USUARIO")
+                                   .Include("USUARIO1")
+                                   .Include("USUARIO2")
+                                   where p.IS_ACTIVE == true && p.UNID_ITEM == unid
+                                   select p).OrderBy(p => p.UNID_MASTER_INVENTARIOS).ToList();
+                        return res;
+                    }
+
                 case "PROGRAMADO":
 
                     using (var Entity = new TAE2Entities())

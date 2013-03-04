@@ -8,10 +8,12 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using InventoryApp.Model.Recibo;
 using InventoryApp.ViewModel.Recibo;
+using System.ComponentModel;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogItem
 {
-    public class ModifyItemViewModel : ViewModelBase, IPageViewModel
+    public class ModifyItemViewModel : ViewModelBase, IPageViewModel, INotifyPropertyChanged
     {
         #region Relay Commands
                 
@@ -58,8 +60,20 @@ namespace InventoryApp.ViewModel.CatalogItem
                 if (this.CatalogPropiedad.SelectedPropiedad != null)
                     PropiedadBool = true;
 
+                CategoriaDataMapper ccc = new CategoriaDataMapper();
                 ProveedorModel = this._itemModel.Proveedor.PROVEEDOR_NAME;
+                
+                    
+                    
+                    
+                List<CATEGORIA> auxxx =  ccc.getElementsByProveedor(this._itemModel.Proveedor);
+                ObservableCollection<CATEGORIA>  fin = new ObservableCollection<CATEGORIA> ();
+                
+                foreach (CATEGORIA AA in auxxx)
+                    fin.Add(AA);
+                this._itemModel._categorias = fin;
 
+                    
                 FacturaCompraModel fAux = new FacturaCompraModel();
                 fAux.FechaFactura = (DateTime)this._itemModel.FacturaDetalle.FACTURA.FECHA_FACTURA;
                 fAux.NumeroFactura = this._itemModel.FacturaDetalle.FACTURA.FACTURA_NUMERO;
@@ -107,6 +121,10 @@ namespace InventoryApp.ViewModel.CatalogItem
         private RelayCommand _updateItemCommand;                
         public bool CanAttempUpdateItem()
         {
+        //    if (DateTime.Now.Millisecond > 100 && DateTime.Now.Millisecond < 200)
+        //        if (this._itemModel != null && this._itemModel.Categoria != null)
+        //            this.ArticuloModel = new CatalogArticuloModel(new ArticuloDataMapper(), _itemModel.Categoria);
+            
             bool _canAddItem = true;
             if (String.IsNullOrEmpty(this.ItemModel.Sku) || String.IsNullOrEmpty(this.ItemModel.NumeroSerie) || (EnlazarBool && !BorrarBool))
                 _canAddItem = false;
@@ -118,7 +136,7 @@ namespace InventoryApp.ViewModel.CatalogItem
             this.ItemModel.Propiedad = this.CatalogPropiedad.SelectedPropiedad;
             this.ItemModel.CostoUnitario = this.ItemModelCollection[0].CostoUnitario;
             this._itemModel.updateItem();
-            this.ItemModel.updateFacturaDet(FacturaCollection[0].UnidFactura, ItemModelCollection[0].CostoUnitario, this.ItemModel.FacturaDetalle.UNID_FACTURA_DETALE);
+            this.ItemModel.updateFacturaDet2(FacturaCollection[0].UnidFactura, ItemModelCollection[0].CostoUnitario, this.ItemModel.FacturaDetalle.UNID_FACTURA_DETALE, this.ItemModel.Categoria, this.ItemModel.Articulo);
             
             //Reiniciar todo
             this._itemModel = new AgregarItemModel();
@@ -287,6 +305,7 @@ namespace InventoryApp.ViewModel.CatalogItem
                 if (_itemModel != value)
                 {
                     _itemModel = value;
+                    this.ArticuloModel = new CatalogArticuloModel(new ArticuloDataMapper(), _itemModel.Categoria);
                     OnPropertyChanged("ItemModel");
                 }
             }
@@ -447,7 +466,11 @@ namespace InventoryApp.ViewModel.CatalogItem
             }
             set
             {
-                _categoriaModel = value;
+                if (_categoriaModel != value)
+                {
+                    _categoriaModel = value;
+                    OnPropertyChanged("CategoriaModel");
+                }
             }
         }
         private CatalogCategoriaModel _categoriaModel;
@@ -464,8 +487,8 @@ namespace InventoryApp.ViewModel.CatalogItem
                 this._ItemModelCollection = new ObservableCollection<AgregarItemModel>();
                 this._Factura = new FacturaCompraModel();
                 this._FacturaCollection = new ObservableCollection<FacturaCompraModel>();
-                this._articuloModel = new CatalogArticuloModel(new ArticuloDataMapper());
-                this._categoriaModel = new CatalogCategoriaModel(new CategoriaDataMapper());
+                //this._articuloModel = new CatalogArticuloModel(new ArticuloDataMapper());
+                //this._categoriaModel = new CatalogCategoriaModel(new CategoriaDataMapper());
                 this._catalogStatus = new CatalogItemStatusModel(new ItemStatusDataMapper());
                 this._ultimoMovimiento = new ObservableCollection<UltimoMovimientoModel>();                
                 this._catalogPropiedad = new CatalogPropiedadModel(new PropiedadDataMapper());
@@ -510,5 +533,6 @@ namespace InventoryApp.ViewModel.CatalogItem
                 throw new NotImplementedException();
             }
         }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

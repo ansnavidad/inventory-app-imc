@@ -364,8 +364,7 @@ namespace InventoryApp.ViewModel
                         break;
                     //Juan
                    case "Nuevo Recibo":
-                        page = new Recibo.CatalogReciboViewModel();
-                        //page = new Recibo.FacturaCatalogViewModel();
+                        page = new Recibo.CatalogReciboViewModel(this.ActualUser);                        
                       break;
                    case "Modificar Facturas":
                        page = new Recibo.FacturaCatalogViewModel();
@@ -403,7 +402,7 @@ namespace InventoryApp.ViewModel
                               IsSuperAdmin = true;
                       }
 
-                      page = new CatalogSeguridad.CatalogSeguridadViewModel(IsSuperAdmin);
+                      page = new CatalogSeguridad.CatalogSeguridadViewModel(IsSuperAdmin, this.ActualUser);
                       break;
                     case "¿Es Rol de sistema?":
                       page = new CatalogRolSystem.CatalogRolSystemViewModel();

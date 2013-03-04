@@ -83,13 +83,28 @@ namespace InventoryApp.Model
             //}
         }
 
-        //public void loadItems(CategoriaModel categoria)
-        //{
-        //    List<ARTICULO> art=(List<ARTICULO>) (this._dataMapper as ArticuloDataMapper).getElements_EntradasSalidas(new CATEGORIA() { UNID_CATEGORIA=categoria.UnidCategoria });
-        //    FixupCollection<DeleteArticulo> articulos = new FixupCollection<DeleteArticulo>();
-        //    art.ForEach(o=>  articulos.Add(o) );
-        //    this.Articulos = articulos;
-        //}
+        public void loadItems(CATEGORIA cc)
+        {
+            ArticuloDataMapper aa = new ArticuloDataMapper();
+            object element = aa.getElementsByCategoria(cc);
+
+            FixupCollection<DeleteArticulo> ic = new FixupCollection<DeleteArticulo>();
+
+            if (element != null)
+            {
+                if (((List<ARTICULO>)element).Count > 0)
+                {
+                    foreach (ARTICULO item in (List<ARTICULO>)element)
+                    {
+                        DeleteArticulo aux = new DeleteArticulo(item);
+                        //item.IsChecked = false;
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.Articulos = ic;
+        }
+
 
         public void deleteArticulos(USUARIO u)
         {
@@ -108,6 +123,15 @@ namespace InventoryApp.Model
             this._articulos = new FixupCollection<DeleteArticulo>();
             //this._selectedarticulo = new DeleteArticulo();
             this.loadItems();
+            //this.loadItems(new ItemDataMapper());
+        }
+
+        public CatalogArticuloModel(IDataMapper dataMapper, CATEGORIA c)
+        {
+            this._dataMapper = new ArticuloDataMapper();
+            this._articulos = new FixupCollection<DeleteArticulo>();
+            //this._selectedarticulo = new DeleteArticulo();
+            this.loadItems(c);
             //this.loadItems(new ItemDataMapper());
         }
 

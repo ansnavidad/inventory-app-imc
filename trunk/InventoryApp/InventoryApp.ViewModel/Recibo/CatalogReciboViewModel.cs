@@ -13,7 +13,8 @@ namespace InventoryApp.ViewModel.Recibo
 {
     public class CatalogReciboViewModel : ViewModelBase, IPageViewModel
     {
-        
+        public USUARIO ActualUser;
+
         public ICommand AddReciboCmd
         {
             get
@@ -57,9 +58,10 @@ namespace InventoryApp.ViewModel.Recibo
         private ReciboModel _SelectedRecibo;
         public const string SelectedReciboPropertyName = "SelectedRecibo";
 
-        public CatalogReciboViewModel()
+        public CatalogReciboViewModel(USUARIO u)
         {
             this.init();
+            this.ActualUser = u;
         }
 
         private void init()
@@ -109,7 +111,7 @@ namespace InventoryApp.ViewModel.Recibo
 
         public AddReciboViewModel CraeteAddReciboViewModel()
         {
-            AddReciboViewModel addReciboViewModel = new AddReciboViewModel(this);
+            AddReciboViewModel addReciboViewModel = new AddReciboViewModel(this, this.ActualUser);
 
             return addReciboViewModel;
         }

@@ -193,8 +193,61 @@
                           ItemsSource="{Binding ItemModelCollection}" Name="dataGridItme" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="categoria" Binding="{Binding Path=Categoria.CATEGORIA_NAME}" Header="Categoría" IsReadOnly="True" Width="*" />
-                        <DataGridTextColumn x:Name="articulo" Binding="{Binding Path=Articulo.ARTICULO1}" Header="Artículo" IsReadOnly="True" Width="*" />
+                        
+                        
+                        <!--<DataGridTextColumn x:Name="categoria" Binding="{Binding Path=Categoria.CATEGORIA_NAME}" Header="Categoría" IsReadOnly="True" Width="*" />
+                        <DataGridTextColumn x:Name="articulo" Binding="{Binding Path=Articulo.ARTICULO1}" Header="Artículo" IsReadOnly="True" Width="*" />-->
+
+                        <DataGridTemplateColumn Header="Categoría" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Categoria.CATEGORIA_NAME, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                            <DataGridTemplateColumn.CellEditingTemplate >
+                                <DataTemplate>
+                                    <ComboBox Height="22" 
+                                      ItemsSource="{Binding Path=DataContext.ItemModel.Categorias, UpdateSourceTrigger=LostFocus, RelativeSource={RelativeSource AncestorType=DataGrid},Mode=Default}"
+                                      SelectedItem="{Binding Path=Categoria, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                      DisplayMemberPath="CATEGORIA_NAME"
+                                      />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+
+                        </DataGridTemplateColumn>
+
+
+
+
+
+
+                        <DataGridTemplateColumn Header="Artículo" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Articulo.ARTICULO1, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                            <DataGridTemplateColumn.CellEditingTemplate >
+                                <DataTemplate>
+                                    <ComboBox Height="22" 
+                                      ItemsSource="{Binding Path=DataContext.ItemModel.Articulos, UpdateSourceTrigger=LostFocus, RelativeSource={RelativeSource AncestorType=DataGrid},Mode=Default}"
+                                      SelectedItem="{Binding Path=Articulo, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                      DisplayMemberPath="ARTICULO1"
+                                      />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+
+                        </DataGridTemplateColumn>
+
+
+
+
+
+
+
+
                         <DataGridTextColumn x:Name="cantidad" Binding="{Binding Path=CantidadItem}" Header="Cantidad" IsReadOnly="True" Width="*" />
                         <DataGridTextColumn x:Name="equipo" Binding="{Binding Path=Equipo.EQUIPO_NAME}" Header="Equipo" IsReadOnly="True" Width="*" />
                         <DataGridTextColumn x:Name="costoUnitario" Binding="{Binding Path=CostoUnitario, StringFormat=C2, Mode=TwoWay}" Header="Costo Unitario" IsReadOnly="False" Width="*" />

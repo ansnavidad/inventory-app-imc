@@ -22,7 +22,8 @@ namespace InventoryApp.View.Recibo
     {
         public CatalogReciboView()
         {
-            InitializeComponent();
+            try { InitializeComponent(); }
+            catch (Exception ex) { }
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)

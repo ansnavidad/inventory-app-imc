@@ -14,6 +14,7 @@ namespace InventoryApp.ViewModel.CatalogUsuarios
     public class ModifyUsuarioViewModel : ViewModelBase
     {
         #region Fields
+        public USUARIO ActualUser;
         private UsuarioModel _modiUsuarioModel;
         private RelayCommand _modifyUsuarioCommand;
         private RelayCommand _deleteRolCommand;

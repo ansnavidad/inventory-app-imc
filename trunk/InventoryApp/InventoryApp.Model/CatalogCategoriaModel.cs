@@ -58,10 +58,40 @@ namespace InventoryApp.Model
             this._selectedCategoria = new CATEGORIA();
             this.loadItems();    
         }
+
+        public CatalogCategoriaModel(IDataMapper dataMapper, long unidProv)
+        {
+            this._dataMapper = new CategoriaDataMapper();
+            this._itemCategoria = new FixupCollection<DeleteCategoria>();
+            this._selectedCategoria = new CATEGORIA();
+            this.loadItems(unidProv);
+        }
+
         public void loadItems()
         {
 
             object element = this._dataMapper.getElements();
+
+            FixupCollection<DeleteCategoria> ic = new FixupCollection<DeleteCategoria>();
+
+            if (element != null)
+            {
+                if (((List<CATEGORIA>)element).Count > 0)
+                {
+                    foreach (CATEGORIA item in (List<CATEGORIA>)element)
+                    {
+                        DeleteCategoria aux = new DeleteCategoria(item);
+                        ic.Add(aux);
+                    }
+                }
+            }
+            this.Categoria = ic;
+        }
+
+        public void loadItems(long unidProv)
+        {
+            CategoriaDataMapper cat = new CategoriaDataMapper();
+            object element = cat.getElementsByProveedor(new PROVEEDOR() { UNID_PROVEEDOR = unidProv });
 
             FixupCollection<DeleteCategoria> ic = new FixupCollection<DeleteCategoria>();
 

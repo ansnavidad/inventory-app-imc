@@ -365,7 +365,7 @@ namespace InventoryApp.DAL
             throw new NotImplementedException();
         }
 
-        public void udpateElement(object element)
+        public void udpateElement(object element, USUARIO u)
         {
             if (element != null && (element as RECIBO) != null)
             {
@@ -389,6 +389,7 @@ namespace InventoryApp.DAL
                         
                         //
                         Entity.SaveChanges();
+                        UNID.Master(recibo, u, -1, "Modificación");
                     }
                 }
             }
@@ -424,7 +425,7 @@ namespace InventoryApp.DAL
             }
         }
 
-        public void insertElement(object element)
+        public void insertElement(object element, USUARIO u)
         {
             if (element != null && (element as RECIBO) != null)
             {
@@ -441,6 +442,8 @@ namespace InventoryApp.DAL
                     //
                     entity.RECIBOes.AddObject(item);
                     entity.SaveChanges();
+
+                    UNID.Master(item, u, -1, "Inserción");
                 }
             }
         }
@@ -565,6 +568,17 @@ namespace InventoryApp.DAL
 
 
         public void deleteElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void udpateElement(object element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void insertElement(object element)
         {
             throw new NotImplementedException();
         }

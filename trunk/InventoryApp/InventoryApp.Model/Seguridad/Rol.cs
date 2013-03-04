@@ -14,6 +14,8 @@ namespace InventoryApp.Model.Seguridad
     {
         #region Properties
 
+        public USUARIO ActualUser;
+
         public struct User
         {
             public long UnidUser
@@ -284,7 +286,7 @@ namespace InventoryApp.Model.Seguridad
 
         #region Constructors
         
-        public Rol(ROL r) {
+        public Rol(ROL r, USUARIO uu) {
 
             this.UnidRol = r.UNID_ROL;
             this.Name = r.ROL_NAME;
@@ -322,9 +324,11 @@ namespace InventoryApp.Model.Seguridad
                     MenuCollection.Add(m);
                 }
             }
+
+            this.ActualUser = uu;
         }
 
-        public Rol()
+        public Rol(USUARIO u)
         {            
             this.Name = "";
             this.IsActive = true;
@@ -332,6 +336,7 @@ namespace InventoryApp.Model.Seguridad
 
             UsuariosCollection = new ObservableCollection<User>();
             MenuCollection = new ObservableCollection<Menu>();
+            this.ActualUser = u;
         }
 
         #endregion
@@ -353,7 +358,7 @@ namespace InventoryApp.Model.Seguridad
             rrr.ROL_NAME = this.Name;
             this.UnidRol = UNID.getNewUNID();
             rrr.UNID_ROL = UnidRol;
-            rolDM.insertElement(rrr);
+            rolDM.insertElement(rrr, this.ActualUser);
 
             foreach (User u in UsuariosCollection) {
                                 
@@ -392,7 +397,7 @@ namespace InventoryApp.Model.Seguridad
             rrr.RECIBIR_MAILS = this.RecibirMails;
             rrr.ROL_NAME = this.Name;
             rrr.UNID_ROL = UnidRol;
-            RolDM.udpateElement(rrr);
+            RolDM.udpateElement(rrr, this.ActualUser);
 
             foreach (User u in UsuariosCollection)
             {

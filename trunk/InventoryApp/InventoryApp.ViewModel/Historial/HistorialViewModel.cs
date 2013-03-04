@@ -7,6 +7,7 @@ using InventoryApp.Model.Historial;
 using System.Collections.ObjectModel;
 using InventoryApp.DAL.Historial;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.Model.Seguridad;
 
 namespace InventoryApp.ViewModel.Historial
 {
@@ -60,6 +61,13 @@ namespace InventoryApp.ViewModel.Historial
 
             unid = b.UnidMaxMin;
             HistorialCollection = GetHistorial("MAXMIN");
+        }
+
+        public HistorialViewModel(Rol b)
+        {
+
+            unid = b.UnidRol;
+            HistorialCollection = GetHistorial("ROL");
         }
 
         public HistorialViewModel(MarcaModel b)
@@ -247,6 +255,26 @@ namespace InventoryApp.ViewModel.Historial
             HistorialCollection = GetHistorial("MOVIMENTO");
         }
 
+        public HistorialViewModel(FacturaVentaModel b)
+        {
+
+            unid = b.UnidFacturaVenta;
+            HistorialCollection = GetHistorial("FACTURA");
+        }
+
+        public HistorialViewModel(RECIBO b)
+        {
+
+            unid = b.UNID_RECIBO;
+            HistorialCollection = GetHistorial("RECIBO");
+        }
+
+        public HistorialViewModel(ItemModel b)
+        {
+
+            unid = b.UnidItem;
+            HistorialCollection = GetHistorial("ITEM");
+        }
         #endregion
 
         #region Methods

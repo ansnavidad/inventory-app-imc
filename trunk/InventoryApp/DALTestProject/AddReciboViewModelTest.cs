@@ -65,19 +65,5 @@ namespace DALTestProject
         //
         #endregion
 
-
-        /// <summary>
-        ///Una prueba de GetSolicitantes
-        ///</summary>
-        [TestMethod()]
-        public void GetSolicitantesTest()
-        {
-            AddReciboViewModel target = new AddReciboViewModel(); // TODO: Inicializar en un valor adecuado
-            ObservableCollection<SolicitanteModel> expected = null; // TODO: Inicializar en un valor adecuado
-            ObservableCollection<SolicitanteModel> actual;
-            actual = target.GetSolicitantes();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Compruebe la exactitud de este método de prueba.");
-        }
     }
 }

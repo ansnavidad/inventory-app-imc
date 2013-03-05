@@ -26,6 +26,14 @@ namespace InventoryApp.View.Salidas
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
+            // Estas dos lineas son para que ejecute el Relay Command
+            SalidaBajaViewModel salida = this.DataContext as SalidaBajaViewModel;
+            salida.AttempArticulo();
+            MessageBox.Show("La Salida con el folio " + this.textBlockFolio.Text + "\n se ha registrado exitosamente.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            this.Content = null;
+            this.Content = new GridMovimientos.GridMovimientos();
+            this.DataContext = new ViewModel.GridMovimientos.MovimientosGridViewModel();
             this.Close();
         }
 

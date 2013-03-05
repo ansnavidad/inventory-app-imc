@@ -58,7 +58,9 @@
                           Name="cbProceso" VerticalAlignment="Center" Width="130" 
                           SelectedItem="{Binding BatchLoad, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                           ItemsSource="{Binding ListBatchLoad,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                          DisplayMemberPath="ID_BATCH"/>
+                          DisplayMemberPath="ID_BATCH" SelectionChanged="cbProceso_SelectionChanged" />
+                <Label  Grid.Column="3" Height="28" HorizontalAlignment="Left" 
+                        Name="label1" VerticalAlignment="Center" Content="{Binding Path=CargandoGRid,Mode=TwoWay}" />
             </Grid>
             <!--datagrid-->
             <Grid Grid.Row="1">

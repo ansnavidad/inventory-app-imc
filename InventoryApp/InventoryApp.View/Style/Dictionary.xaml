@@ -111,7 +111,6 @@
         </Setter>
     </Style>
 
-
     <Style x:Key="HorizontalGroupBoxExpanderToggleButtonStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="Template">
             <Setter.Value>

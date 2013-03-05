@@ -13,6 +13,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using System.Configuration;
+using InventoryApp.ViewModel.CargaItems;
+using InventoryApp.View.Sync;
+using System.Threading;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.View.CargaItems
 {
@@ -25,6 +29,34 @@ namespace InventoryApp.View.CargaItems
         {
             InitializeComponent();
         }
+
+        private void cbProceso_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender != null)
+            {
+
+                if (cbProceso.SelectedItem != null)
+                {
+                    if (!CargaItemsViewModel.IsRunning)
+                    {
+                        DlgUpload ds = new DlgUpload();
+                        CargaItemsViewModel viewModel = (this.DataContext as ObjectDataProvider).Data as CargaItemsViewModel;
+                        if (viewModel != null)
+                        {
+                            viewModel.SetCargaItemsViewModel();
+                            ds.DataContext = viewModel;
+                            ds.Owner = Application.Current.Windows[0];
+                            viewModel.start();
+                            ds.ShowDialog();   
+                        }
+                                                
+                    }
+
+                }
+            }
+            
+        }
+
 
     }
 }

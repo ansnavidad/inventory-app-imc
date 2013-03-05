@@ -686,6 +686,9 @@
     <Compile Include="Sync\DlgUpload.xaml.cs">
       <DependentUpon>DlgUpload.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sync\LoadDates.xaml.cs">
+      <DependentUpon>LoadDates.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Traspasos\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
@@ -1501,6 +1504,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Style\MsgBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sync\LoadDates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

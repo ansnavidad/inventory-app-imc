@@ -17,6 +17,10 @@ namespace InventoryApp.ViewModel.CargaItems
     {
         
         #region campos
+        public static bool IsRunning = false;
+        string _message;
+        bool _jobDone;
+        System.Timers.Timer t;
         BatchLoadDataMapper dataMapper = new BatchLoadDataMapper();
         string routeBach = ConfigurationManager.AppSettings["RutaServicioDescarga"].ToString();
         string basicAuthUser = "Administrator";
@@ -31,9 +35,48 @@ namespace InventoryApp.ViewModel.CargaItems
         private FixupCollection<BATCH_LOAD_CARGAMOV> _listBatchLoad;
         private FixupCollection<LOG_LOAD_CARGAMOV> _listLogLoad;
         private BATCH_LOAD_CARGAMOV _batchLoad;
+        private string _cargandoGrid;
         #endregion
 
         #region propiedades
+
+        public string Message
+        {
+            get
+            {
+                return _message;
+            }
+            set
+            {
+                if (_message != value)
+                {
+                    _message = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("Message"));
+                    }
+                }
+            }
+        }
+
+        public bool JobDone
+        {
+            get
+            {
+                return _jobDone;
+            }
+            set
+            {
+                if (_jobDone != value)
+                {
+                    _jobDone = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("JobDone"));
+                    }
+                }
+            }
+        }
 
         public bool? ValideProcess
         {
@@ -49,6 +92,25 @@ namespace InventoryApp.ViewModel.CargaItems
                     if (PropertyChanged != null)
                     {
                         this.PropertyChanged(this, new PropertyChangedEventArgs("ValideProcess"));
+                    }
+                }
+            }
+        }
+
+        public string CargandoGrid
+        {
+            get
+            {
+                return _cargandoGrid;
+            }
+            set
+            {
+                if (_cargandoGrid != value)
+                {
+                    _cargandoGrid = value;
+                    if (PropertyChanged != null)
+                    {
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("CargandoGrid"));
                     }
                 }
             }
@@ -89,8 +151,10 @@ namespace InventoryApp.ViewModel.CargaItems
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("BatchLoad"));
                     }
+
                     //Cambia cuando a seleccionado el combo
-                    this.ListLogLoad = this.CallServiceGetListLogLoad(this._batchLoad.ID_BATCH);
+                   
+                    //this.ListLogLoad = this.CallServiceGetListLogLoad(this._batchLoad.ID_BATCH);
                 }
             }
         }
@@ -183,6 +247,38 @@ namespace InventoryApp.ViewModel.CargaItems
             Process.Start(ConfigurationManager.AppSettings["RutaArchivos"].ToString());   
         }
 
+        public void DownloadData(Object sender, System.Timers.ElapsedEventArgs args)
+        {
+            this.t.Enabled = false;
+            ((System.Timers.Timer)sender).Stop();
+
+            this.ListLogLoad = CallServiceGetListLogLoad(this.BatchLoad.ID_BATCH);    
+            CargaItemsViewModel.IsRunning = false;
+            this.JobDone = true;
+            
+        }
+
+        public void start()
+        {
+            this.JobDone = false;
+            CargaItemsViewModel.IsRunning = true;
+            t.Enabled = true;
+            t.Start();
+        }
+
+        // combobox
+        public void SetCargaItemsViewModel()
+        {
+            
+            this.Message = "Cargando datos...";
+            this._jobDone = false;
+            t = new System.Timers.Timer(100);
+            t.Enabled = false;
+
+            t.Elapsed += new System.Timers.ElapsedEventHandler(DownloadData);
+
+        }
+
         #endregion
 
         #region servicios
@@ -203,6 +299,7 @@ namespace InventoryApp.ViewModel.CargaItems
                 request.RequestFormat = RestSharp.DataFormat.Json;
                 request.AddHeader("Content-type", "application/json");
                 request.AddBody(new { });
+                request.Timeout = 60000;
                 IRestResponse response = client.Execute(request);
 
             }
@@ -230,6 +327,7 @@ namespace InventoryApp.ViewModel.CargaItems
                 request.RequestFormat = RestSharp.DataFormat.Json;
                 request.AddHeader("Content-type", "application/json");
                 request.AddBody(new { });
+                request.Timeout = 60000;
                 IRestResponse response = client.Execute(request);
 
                 Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
@@ -256,7 +354,7 @@ namespace InventoryApp.ViewModel.CargaItems
         /// <summary>
         ///  ejecuta un servicio web y retorna una lista de pocos de la tabla LOG_LOAD_CARGAMOV
         /// </summary>
-        public FixupCollection<LOG_LOAD_CARGAMOV> CallServiceGetListLogLoad( int idBatch)
+        public FixupCollection<LOG_LOAD_CARGAMOV> CallServiceGetListLogLoad(int idBatch)
         {
             #region metodos
 
@@ -269,13 +367,15 @@ namespace InventoryApp.ViewModel.CargaItems
                 request.RequestFormat = RestSharp.DataFormat.Json;
                 request.AddHeader("Content-type", "application/json");
                 request.AddBody(new { idBatch = idBatch});
+                request.Timeout = 60000;
                 IRestResponse response = client.Execute(request);
+                this.CargandoGrid = "";
                 if (response.ErrorException!=null)
                 {
-                    MessageBoxResult result = MessageBox.Show(response.ErrorMessage, "Alerta", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                    MessageBoxResult result = MessageBox.Show("No hay conexión con el servidor.", "Alerta", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return null;
                 }
-
                 Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
 
                 FixupCollection<LOG_LOAD_CARGAMOV> list = new FixupCollection<LOG_LOAD_CARGAMOV>();
@@ -284,8 +384,8 @@ namespace InventoryApp.ViewModel.CargaItems
                 {
                     list = dataMapper.GetDeserializeLogLoad(resx["GetListLogLoadResult"]);
                 }
-                return list;
                 
+                return list;      
 
             }
             catch (Exception)
@@ -311,6 +411,7 @@ namespace InventoryApp.ViewModel.CargaItems
                 request.RequestFormat = RestSharp.DataFormat.Json;
                 request.AddHeader("Content-type", "application/json");
                 request.AddBody(new {});
+                request.Timeout = 60000;
                 IRestResponse response = client.Execute(request);
 
                 Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
@@ -339,7 +440,6 @@ namespace InventoryApp.ViewModel.CargaItems
         public CargaItemsViewModel()
         {
             this._listBatchLoad = new FixupCollection<BATCH_LOAD_CARGAMOV>();
-            //this._batchLoad = new BATCH_LOAD_CARGAMOV();
             try
             {
                 CallServiceGetValidateNotExitProcessRunning();
@@ -355,7 +455,8 @@ namespace InventoryApp.ViewModel.CargaItems
             
 
         }
-        #endregion
+        
+        #endregion       
 
         public string PageName
         {

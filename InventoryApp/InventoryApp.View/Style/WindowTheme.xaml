@@ -144,6 +144,7 @@
         <Setter Property="BorderThickness" Value="1,1,1,1"></Setter>
     </Style>
 
+
     <Style x:Key="PassLogin" TargetType="{x:Type PasswordBox}">
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Background" Value="{StaticResource DegradadoTxtElara}"/>
@@ -199,8 +200,21 @@
         </Style.Triggers>
     </Style>
 
-    
-    
+    <Style x:Key="textBockActividad" TargetType="{x:Type TextBlock}">
 
+        <Setter Property="Foreground" Value="#034C8D"/>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+    </Style>
+
+    <Style x:Key="lblActividad" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#034C8D"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontStretch" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+    </Style>
 
 </ResourceDictionary>
+
+    

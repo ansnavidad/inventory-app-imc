@@ -162,8 +162,8 @@ namespace InventoryApp.ViewModel.Login
         public void AttempRegistrar()
         {
             if (!this.LoginModel.EmailValidadorRegistro()) 
-            {    
-                MessageBoxResult result = MessageBox.Show("Ingrese como usuario un email válido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            {
+                MessageBoxResult result = MessageBox.Show("El correo electrónico introducido no es un correo válido..", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -189,7 +189,7 @@ namespace InventoryApp.ViewModel.Login
                 return;
             }
 
-            MessageBox.Show(this.LoginModel.CallServiceGetNewUser());
+            MessageBox.Show(this.LoginModel.CallServiceGetNewUser(), "Mensaje de Sistema", MessageBoxButton.OK, MessageBoxImage.Information);
             this.LoginModel.Usuario.USUARIO_MAIL = "";
             this.LoginModel.Usuario.USUARIO_PWD = "";
             this.LoginModel.UserRecuperar = "";
@@ -253,7 +253,7 @@ namespace InventoryApp.ViewModel.Login
                 {
                     if (!this.LoginModel.EmailValidador() && (String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_MAIL) || String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_PWD)))
                     {
-                        MessageBoxResult result = MessageBox.Show("Usuario o contraseña incorrectos \n O usuario no activado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);    
+                        MessageBoxResult result = MessageBox.Show("Usuario y/o contraseña incorrectos. \n Si ya se ha registrado, valide que su cuenta ya esté activa.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }                    
                 }
             }

@@ -121,6 +121,7 @@
     <Compile Include="CatalogUnidad\AddUnidadViewModel.cs" />
     <Compile Include="CatalogUnidad\CatalogUnidadViewModel.cs" />
     <Compile Include="CatalogUnidad\ModifyUnidadViewModel.cs" />
+    <Compile Include="CatalogUsuarios\AddRolesCurrentViewModel.cs" />
     <Compile Include="CatalogUsuarios\AddUsuarioViewModel.cs" />
     <Compile Include="CatalogUsuarios\CatalogUsuarioViewModel.cs" />
     <Compile Include="CatalogUsuarios\ModifyUsuarioViewModel.cs" />

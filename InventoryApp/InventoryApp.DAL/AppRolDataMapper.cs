@@ -122,6 +122,19 @@ namespace InventoryApp.DAL
             }
         }
 
+        public object getElementsRol()
+        {
+            
+            using (var entity = new TAE2Entities())
+            {
+                var query = (from cust in entity.ROLs
+                             where cust.IS_ACTIVE == true
+                             select cust).ToList();
+
+                return query;
+            }
+        }
+
         public object getElementsSecurity(bool b)
         {
             if (b)

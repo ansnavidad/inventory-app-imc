@@ -172,7 +172,7 @@ namespace InventoryApp.ViewModel
             }            
 
             if (UserRols.Equals(""))
-                UserRols = "Aún no se le ha asignado ningún rol";
+                UserRols = "No tienes roles asignados";
             else {
 
                 string aux = "";

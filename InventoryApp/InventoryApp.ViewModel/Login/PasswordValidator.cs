@@ -86,7 +86,7 @@ namespace InventoryApp.ViewModel.Login
                 if (!Regex.IsMatch(pv.TextMail.Text, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
                 {
                     pv.TextMail.BorderBrush = new SolidColorBrush(Colors.Red);
-                    pv.TextMail.ToolTip = "Email  incorrecto..";
+                    pv.TextMail.ToolTip = " El correo electrónico introducido no es un correo válido..";
                     
                 }
                 else

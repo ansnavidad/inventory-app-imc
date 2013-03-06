@@ -41,8 +41,7 @@
             </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="600*"/>
-         
+                <ColumnDefinition Width="600*"/>        
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -56,7 +55,7 @@
                    Text="{Binding Path=ActualUser.USUARIO_MAIL}"
                    />
             <TextBlock FontFamily="Arial Rounded MT" FontSize="13" FontStretch="Normal" FontWeight="SemiBold"
-                       Foreground="#0B2161" Height="25" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="1"
+                       Foreground="#FE2E2E" Height="25" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="1"
                        Name="textBlockRoles" OpacityMask="Black" Text="{Binding Path=UserRols}" 
                        VerticalAlignment="Center" Margin="10,0" />
         </Grid>
@@ -66,6 +65,7 @@
                 <!--<my:MenuView DataContext="{Binding MenuViewModel,Mode=TwoWay}" />-->
             </ContentControl>
         </Grid>
+        
         <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5,0,0,0" Name="grid3" VerticalAlignment="Stretch">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="1,6,0,-2" Name="stackPanel2" VerticalAlignment="Stretch">
                 <Canvas Name="cnvTmpRot"  Visibility="Collapsed"  Height="28" Width="50"  Opacity="0.5" Panel.ZIndex="60" 
@@ -95,13 +95,14 @@
             </StackPanel>
             <Button Content="Cerrar Sesión" Height="23" HorizontalAlignment="Left" Margin="6,8,0,0" Name="CerrarSesión" VerticalAlignment="Top" Width="115" Click="CerrarSesión_Click" />
         </Grid>
+        
         <Border BorderBrush="#1039BF" BorderThickness="1" Grid.Row="2" Height="3" HorizontalAlignment="Stretch" Margin="0,9,0,0" 
                 Name="border1" VerticalAlignment="Top" Width="auto" Grid.ColumnSpan="2">
         </Border>
-        <Label Content="Almacén Elara" Grid.Row="1" Height="30" HorizontalAlignment="Center" Margin="37,8,31,0" Name="expander3" 
-                   VerticalAlignment="Top" Foreground="#0B257C" FontWeight="Medium" FontStretch="Normal" FontFamily="Arial" FontSize="18" Width="137" BorderBrush="White" Background="White" >
         
-
+        <Label Content="Almacén Elara" Grid.Row="1" Height="30" HorizontalAlignment="Center" Margin="37,8,31,0" Name="expander3" 
+                   VerticalAlignment="Top" Foreground="#0B257C" FontWeight="Medium" FontStretch="Normal" FontFamily="Arial" 
+               FontSize="18" Width="137" BorderBrush="White" Background="White" >
         </Label>
     </Grid>
 </Window>

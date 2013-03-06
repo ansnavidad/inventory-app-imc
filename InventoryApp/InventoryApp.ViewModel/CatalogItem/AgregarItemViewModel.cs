@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using InventoryApp.ViewModel.Recibo;
 using InventoryApp.Model.Recibo;
 using System.Windows.Forms;
+using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.ViewModel.CatalogItem
 {
@@ -422,7 +423,7 @@ namespace InventoryApp.ViewModel.CatalogItem
         #endregion
         
         #region Props
-
+        
         public string Sku
         {
             get
@@ -573,7 +574,7 @@ namespace InventoryApp.ViewModel.CatalogItem
             }
         }
         private ObservableCollection<UltimoMovimientoModel> _ultimoMovimiento;
-
+        public USUARIO ActualUser;
         #endregion
 
         #region Methods
@@ -615,7 +616,7 @@ namespace InventoryApp.ViewModel.CatalogItem
     
         #region Constructors
 
-        public AgregarItemViewModel()
+        public AgregarItemViewModel(USUARIO u)
         {
             try
             {
@@ -627,7 +628,8 @@ namespace InventoryApp.ViewModel.CatalogItem
                 
                 this._catalogStatus = new CatalogItemStatusModel(new ItemStatusDataMapper());                
                 this._ultimoMovimiento = new ObservableCollection<UltimoMovimientoModel>();
-                this._catalogPropiedad = new CatalogPropiedadModel(new PropiedadDataMapper());                
+                this._catalogPropiedad = new CatalogPropiedadModel(new PropiedadDataMapper());
+                this.ActualUser = u;
             }
             catch (ArgumentException ae)
             {

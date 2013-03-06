@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using InventoryApp.ViewModel.Recibo;
+using InventoryApp.View.Historial;
 
 namespace InventoryApp.View.Recibo
 {
@@ -45,6 +46,27 @@ namespace InventoryApp.View.Recibo
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("test");
+        }
+
+        private void Historal_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                HistorialView addFactura = new HistorialView();
+                ModifyFacturaViewModel viewModel = this.ConvertDataContext(this.DataContext);
+                addFactura.DataContext = viewModel.CreateHistorialViewModel();
+                addFactura.ShowDialog();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show("Este es un registro nuevo que no cuenta con Historial.");
+            }
+        }
+
+        private ModifyFacturaViewModel ConvertDataContext(object dataSource)
+        {
+            ModifyFacturaViewModel viewModel = dataSource as ModifyFacturaViewModel;
+            return viewModel;
         }
     }
 }

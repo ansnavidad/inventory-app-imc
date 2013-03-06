@@ -25,7 +25,8 @@
     <Grid Height="397">
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
-            <RowDefinition Height="319" />      
+            <RowDefinition Height="319" />
+            <RowDefinition Height="68*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
@@ -110,6 +111,7 @@
             <TextBox TabIndex="4" HorizontalAlignment="Left" Text="{Binding TC, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="4" IsEnabled="{Binding Path=SelectedFactura.HasNotRecibo}" />
             <Button TabIndex="9" Style="{StaticResource btnElara}" Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Click="btnFacturaAdd_Click" Command="{Binding AddFacturaArticuloCommand}" Grid.Column="3" Margin="222,6,0,3" Grid.Row="6"/>
             <Button TabIndex="10" Style="{StaticResource btnElara}" Content="Eliminar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,6,22,3" Command="{Binding DeleteFacturaArticuloCommand}" Grid.Column="4" Grid.Row="6"/>
+            <Button Content="Historial" Height="23" HorizontalAlignment="Stretch" Margin="33,2,5,2" Name="button1" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Width="75" Grid.Column="4" Click="Historal_Click" />
         </Grid>
     </Grid>
 </UserControl>

@@ -58,6 +58,7 @@
     <Compile Include="ArticuloDataMapper.cs" />
     <Compile Include="BancoDataMapper.cs" />
     <Compile Include="BatchLoadDataMapper.cs" />
+    <Compile Include="CatalogInventario\InventarioDataMapper.cs" />
     <Compile Include="CiudadDataMapper.cs" />
     <Compile Include="CategoriaDataMapper.cs" />
     <Compile Include="ClienteDataMapper.cs" />
@@ -138,6 +139,9 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\INFRAESTRUCTURA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\INVENTARIO.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\ITEM.cs">
@@ -347,9 +351,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CatalogInventario\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

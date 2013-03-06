@@ -72,7 +72,7 @@ namespace InventoryApp.View.CatalogItem
         private void button7_Click(object sender, RoutedEventArgs e)
         {
             DlgAddFacturaView addFactura = new DlgAddFacturaView();
-            AgregarItemViewModel viewModel = new AgregarItemViewModel();
+            AgregarItemViewModel viewModel = new AgregarItemViewModel(null);
             addFactura.DataContext = viewModel.CreateAddFacturaViewModel();
             addFactura.ShowDialog();
         }

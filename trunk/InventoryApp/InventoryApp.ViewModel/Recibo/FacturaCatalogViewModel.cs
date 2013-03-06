@@ -17,6 +17,7 @@ namespace InventoryApp.ViewModel.Recibo
         private CatalogItemStatusModel _catalogItemStatusModel;
         private ReciboModel _addReciboModel;
         private const int MovimientoRecibo = 16;
+        public USUARIO ActualUser;
         #region RelayCommands
 
         public bool ContB
@@ -97,7 +98,7 @@ namespace InventoryApp.ViewModel.Recibo
                        select o.UnidFactura).ToList();
 
             FacturaCompraDataMapper FF = new FacturaCompraDataMapper();
-            FF.deleteFacturas(Del);
+            FF.deleteFacturas(Del, this.ActualUser);
             this.Facturas = this.GetFacturas();
         }
 
@@ -513,9 +514,10 @@ namespace InventoryApp.ViewModel.Recibo
         protected ObservableCollection<InventoryApp.Model.Recibo.MovimientoModel> _Movimiento;
         public const string MovimientoPropertyName = "MovimientoModel";
 
-        public FacturaCatalogViewModel()
+        public FacturaCatalogViewModel(USUARIO u)
         {
             this.ContB = true;
+            this.ActualUser = u;
             this.init();
         }
 
@@ -763,7 +765,7 @@ namespace InventoryApp.ViewModel.Recibo
         public ModifyFacturaViewModel CraeteModifyFacturaViewModel()
         {
             if (this.SelectedFactura != null)
-                return new ModifyFacturaViewModel(this.SelectedFactura, this.ContB);
+                return new ModifyFacturaViewModel(this.SelectedFactura, this.ContB, this.ActualUser);
             else
                 return null;
         }
@@ -771,7 +773,7 @@ namespace InventoryApp.ViewModel.Recibo
         public ModifyFacturaViewModel CraeteModifyFacturaViewModel2()
         {
             if (this.SelectedFactura != null)
-                return new ModifyFacturaViewModel(this.SelectedFactura, this.ContB, true);
+                return new ModifyFacturaViewModel(this.SelectedFactura, this.ContB, true, this.ActualUser);
             else
                 return null;
         }

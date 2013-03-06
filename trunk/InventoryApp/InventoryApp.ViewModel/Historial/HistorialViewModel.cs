@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using InventoryApp.DAL.Historial;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.Model.Seguridad;
+using InventoryApp.Model.Recibo;
 
 namespace InventoryApp.ViewModel.Historial
 {
@@ -227,7 +228,7 @@ namespace InventoryApp.ViewModel.Historial
             unid = b.UnidPropiedad;
             HistorialCollection = GetHistorial("PROPIEDAD");
         }
-        public HistorialViewModel(AlmacenModel b)
+        public HistorialViewModel(InventoryApp.Model.AlmacenModel b)
         {
 
             unid = b.UnidAlmacen;
@@ -248,7 +249,7 @@ namespace InventoryApp.ViewModel.Historial
             HistorialCollection = GetHistorial("MOVIMENTO");
         }
 
-        public HistorialViewModel(MovimientoModel b)
+        public HistorialViewModel(InventoryApp.Model.MovimientoModel b)
         {
 
             unid = b.UnidMovimiento;
@@ -274,6 +275,13 @@ namespace InventoryApp.ViewModel.Historial
 
             unid = b.UnidItem;
             HistorialCollection = GetHistorial("ITEM");
+        }
+
+        public HistorialViewModel(FacturaCompraModel b)
+        {
+
+            unid = b.UnidFactura;
+            HistorialCollection = GetHistorial("FACTURA");
         }
         #endregion
 

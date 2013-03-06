@@ -368,7 +368,7 @@ namespace InventoryApp.ViewModel
                         page = new Recibo.CatalogReciboViewModel(this.ActualUser);                        
                       break;
                    case "Modificar Facturas":
-                       page = new Recibo.FacturaCatalogViewModel();
+                       page = new Recibo.FacturaCatalogViewModel(this.ActualUser);
                        break;
                    case "Modificar Item":
                       page = new CatalogItem.ModifyItemViewModel();
@@ -384,7 +384,7 @@ namespace InventoryApp.ViewModel
                       page = new MaxMin.MaxMinViewModel(this.ActualUser);
                       break;
                     case "Agregar Item":
-                      page = new CatalogItem.AgregarItemViewModel();
+                      page = new CatalogItem.AgregarItemViewModel(this.ActualUser);
                       break;
                     case "Carga de ítems":
                       //page = new Job.JobViewModel();
@@ -393,6 +393,9 @@ namespace InventoryApp.ViewModel
                       break;
                     case "Programado":
                       page = new CatalogProgramado.CatalogProgramadoViewModel(this.ActualUser);
+                      break;
+                    case "Inventarios Físicos ":
+                      page = new CatalogInventario.CatalogInvViewModel(this.ActualUser);
                       break;
                     //Seguridad
                     case "Roles":

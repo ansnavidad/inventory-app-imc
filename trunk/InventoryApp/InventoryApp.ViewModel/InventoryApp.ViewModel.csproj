@@ -90,6 +90,9 @@
     <Compile Include="CatalogInfraestructura\CatalogInfraestructuraViewModel.cs" />
     <Compile Include="CatalogInfraestructura\InsertInfraestructuraViewModel.cs" />
     <Compile Include="CatalogInfraestructura\ModifyInfraestructuraViewModel.cs" />
+    <Compile Include="CatalogInventario\AddInventarioViewModel.cs" />
+    <Compile Include="CatalogInventario\CatalogInvViewModel.cs" />
+    <Compile Include="CatalogInventario\ModifyInventarioViewModel.cs" />
     <Compile Include="CatalogItemStatus\AddItemStatusViewModel.cs" />
     <Compile Include="CatalogItemStatus\CatalogItemStatusViewModel.cs" />
     <Compile Include="CatalogItem\AgregarFacturaViewModel.cs" />
@@ -286,9 +289,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CatalogInventario\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -448,7 +448,7 @@ namespace InventoryApp.ViewModel.Recibo
                         NUMERO_PEDIMENTO=item.NumeroPedimento, 
                         UNID_TIPO_PEDIMENTO = item.TipoPedimento.UnidTipoPedimento,
                         TC = item.TC
-                    });
+                    }, this.ActualUser);
 
                     //Generar Array para insertar/actualizar/eliminar las factura detalle
                     List<FACTURA_DETALLE> fds = new List<FACTURA_DETALLE>();
@@ -462,7 +462,7 @@ namespace InventoryApp.ViewModel.Recibo
                         fcdDm.udpateElements(fds);
                 }
                 //Borrar facturas
-                fcdmp.deleteFacturas(this._DelFacturas);
+                fcdmp.deleteFacturas(this._DelFacturas, this.ActualUser);
             }//end foreach
         }//end func
 

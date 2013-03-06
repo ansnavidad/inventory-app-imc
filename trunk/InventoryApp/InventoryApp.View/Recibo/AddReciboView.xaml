@@ -108,7 +108,7 @@
                 <Button TabIndex="5" Style="{StaticResource btnElara}" Content="Agregar" Height="23" Name="btnFacturaAdd" Width="75" HorizontalAlignment="Left" Click="btnFacturaAdd_Click" IsEnabled="{Binding Path=ContB}"/>
                 <Button TabIndex="6" Style="{StaticResource btnElara}" Content="Eliminar" Height="23" Name="btnFacturaDel" Width="75" HorizontalAlignment="Right" Margin="0,0,0,0" Command="{Binding DeleteFacturaCmd}"  />
             </DockPanel>
-            <ListView TabIndex="7" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.RowSpan="4"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding Facturas}" SelectedItem="{Binding SelectedFactura}" MouseDoubleClick="ListView_MouseDoubleClick">
+            <ListView  TabIndex="7" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="{StaticResource allCapColumnSpan}" Grid.RowSpan="4"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding Facturas}" SelectedItem="{Binding SelectedFactura}" MouseDoubleClick="ListView_MouseDoubleClick">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Eliminar" Width="60">

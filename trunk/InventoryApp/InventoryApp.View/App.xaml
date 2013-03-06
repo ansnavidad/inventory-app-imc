@@ -122,6 +122,9 @@
              xmlns:facturaCatalogViewModel="clr-namespace:InventoryApp.ViewModel.Recibo;assembly=InventoryApp.ViewModel"
              xmlns:facturaCatalogView="clr-namespace:InventoryApp.View.Recibo"         
              
+             xmlns:inventarioCatalogViewModel="clr-namespace:InventoryApp.ViewModel.CatalogInventario;assembly=InventoryApp.ViewModel"
+             xmlns:inventarioCatalogView="clr-namespace:InventoryApp.View.CatalogInventario"     
+             
              xmlns:catSeguridadViewModel="clr-namespace:InventoryApp.ViewModel.CatalogSeguridad;assembly=InventoryApp.ViewModel"
              xmlns:seguridadView="clr-namespace:InventoryApp.View.CatalogSeguridad"  
              
@@ -159,11 +162,11 @@
         <rootViewModel:MenuViewModel x:Key="menuViewModel" />
         <rootViewModel:MainWindowViewModel x:Key="mainWindowViewModel" />
         <rootDosViewModel:LoginViewModel x:Key="loginViewModel"/>
-        <reciboViewModel:CatalogReciboViewModel x:Key="catalogReciboViewModel" />
+        <!--<reciboViewModel:CatalogReciboViewModel x:Key="catalogReciboViewModel" />-->
         <!--Juan-->
             <!--<ReciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />-->
         <reciboViewModel:AddFacturaViewModel x:Key="addFacturaViewModel" />
-        <reciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />
+        <!--<reciboViewModel:AddReciboViewModel x:Key="addReciboViewModel" />-->
         <reciboViewModel:AddMovimientoViewModel x:Key="addMovimientoViewModel" />
         
         <!--Movimientos-->
@@ -671,6 +674,10 @@
         
         <DataTemplate DataType="{x:Type facturaCatalogViewModel:FacturaCatalogViewModel}">
             <facturaCatalogView:FacturaCatalogView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type inventarioCatalogViewModel:CatalogInvViewModel}">
+            <inventarioCatalogView:CatalogInv/>
         </DataTemplate>
         
     </Application.Resources>

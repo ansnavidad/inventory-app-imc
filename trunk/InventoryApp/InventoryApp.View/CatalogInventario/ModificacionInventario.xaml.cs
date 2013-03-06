@@ -13,18 +13,16 @@ using System.Windows.Shapes;
 using InventoryApp.ViewModel.CatalogSeguridad;
 using InventoryApp.View.Historial;
 
-namespace InventoryApp.View.CatalogSeguridad
+namespace InventoryApp.View.CatalogInventario
 {
     /// <summary>
     /// Lógica de interacción para AltaSeguridad.xaml
     /// </summary>
-    public partial class AltaSeguridad : Window
+    public partial class ModificacionInventario : Window
     {
-        public AltaSeguridad()
+        public ModificacionInventario()
         {
             InitializeComponent();
-            FocusManager.SetFocusedElement(this, this.txtNomreRol);           
-           
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)

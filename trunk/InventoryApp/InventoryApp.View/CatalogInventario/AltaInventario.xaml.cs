@@ -13,23 +13,22 @@ using System.Windows.Shapes;
 using InventoryApp.ViewModel.CatalogSeguridad;
 using InventoryApp.View.Historial;
 
-namespace InventoryApp.View.CatalogSeguridad
+namespace InventoryApp.View.CatalogInventario
 {
     /// <summary>
     /// Lógica de interacción para AltaSeguridad.xaml
     /// </summary>
-    public partial class AltaSeguridad : Window
+    public partial class AltaInventario : Window
     {
-        public AltaSeguridad()
+        public AltaInventario()
         {
-            InitializeComponent();
-            FocusManager.SetFocusedElement(this, this.txtNomreRol);           
-           
+            InitializeComponent();            
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            MessageBox.Show("Se han guardado los cambios correctamente.");
+            this.Close();            
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -56,6 +55,11 @@ namespace InventoryApp.View.CatalogSeguridad
         {
             ModifySeguridadViewModel viewModel = dataSource as ModifySeguridadViewModel;
             return viewModel;
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Ha finalizado la edición de este inventario, ya no se pueden hacer cambios.");
         }
     }
 }

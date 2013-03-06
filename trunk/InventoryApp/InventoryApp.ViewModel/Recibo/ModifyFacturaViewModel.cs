@@ -11,12 +11,15 @@ using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using System.ComponentModel;
 using InventoryApp.DAL.Recibo;
+using InventoryApp.ViewModel.CatalogBanco;
+using InventoryApp.ViewModel.Historial;
 
 namespace InventoryApp.ViewModel.Recibo
 {
     public class ModifyFacturaViewModel : ViewModelBase, IFacturaViewModel, IViewModelChangeTrack
     {
         bool Catalog;
+        USUARIO ActualUser;
         public FacturaCompraModel SelectedFactura
         {
             get
@@ -348,10 +351,28 @@ namespace InventoryApp.ViewModel.Recibo
             this.init();
         }
 
+        public ModifyFacturaViewModel(FacturaCompraModel SelectedFactura, bool finished, USUARIO u)
+        {
+            this._SelectedFactura = SelectedFactura;
+            this.ContB = finished;
+            this.ActualUser = u;
+            this.init();
+        }
+
         public ModifyFacturaViewModel(FacturaCompraModel SelectedFactura, bool finished)
         {
             this._SelectedFactura = SelectedFactura;
             this.ContB = finished;
+            
+            this.init();
+        }
+
+        public ModifyFacturaViewModel(FacturaCompraModel SelectedFactura, bool finished, bool catalog, USUARIO u)
+        {
+            this._SelectedFactura = SelectedFactura;
+            this.ContB = finished;
+            this.Catalog = catalog;
+            this.ActualUser = u;
             this.init();
         }
 
@@ -360,6 +381,7 @@ namespace InventoryApp.ViewModel.Recibo
             this._SelectedFactura = SelectedFactura;
             this.ContB = finished;
             this.Catalog = catalog;
+            
             this.init();
         }
 
@@ -454,7 +476,7 @@ namespace InventoryApp.ViewModel.Recibo
                     NUMERO_PEDIMENTO = this.NumeroPedimento,
                     UNID_TIPO_PEDIMENTO = this.SelectedTipoPedimento.UnidTipoPedimento,
                     TC = this.TC
-                });
+                }, this.ActualUser);
 
                 //Generar Array para insertar/actualizar/eliminar las factura detalle
                 List<FACTURA_DETALLE> fds = new List<FACTURA_DETALLE>();
@@ -682,6 +704,11 @@ namespace InventoryApp.ViewModel.Recibo
         }
         private bool _IsNew;
 
+        public HistorialViewModel CreateHistorialViewModel()
+        {
+            HistorialViewModel historialViewModel = new HistorialViewModel(this.SelectedFactura);
+            return historialViewModel;
+        }
 
         public IFacturaArticuloViewModel CreateFacturaArticuloViewModel()
         {

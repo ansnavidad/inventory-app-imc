@@ -69,6 +69,7 @@
     <Compile Include="CatalogEmpresaModel.cs" />
     <Compile Include="CatalogEquipoModel.cs" />
     <Compile Include="CatalogInfraestructuraModel.cs" />
+    <Compile Include="CatalogInventario\InventarioModel.cs" />
     <Compile Include="CatalogItemStatusModel.cs" />
     <Compile Include="CatalogMarcaModel.cs" />
     <Compile Include="CatalogMaxMinModel.cs" />
@@ -206,9 +207,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CatalogInventario\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -678,6 +678,79 @@ namespace InventoryApp.DAL
             throw new NotImplementedException();
         }
 
+        public List<ITEM> getElementsByAlmacen(ALMACEN alm)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                List<ITEM> result = new List<ITEM>();
+
+                var query = (from items in entity.ULTIMO_MOVIMIENTO
+                             .Include("ITEM")
+                             .Include("ITEM.ARTICULO")
+                             where items.IS_ACTIVE == true && items.UNID_ALMACEN == alm.UNID_ALMACEN
+                             select items).ToList();
+                
+                foreach (ULTIMO_MOVIMIENTO uu in query) {
+
+                    result.Add(new ITEM() { CANTIDAD = uu.CANTIDAD, NUMERO_SERIE = uu.ITEM.NUMERO_SERIE, SKU = uu.ITEM.SKU, ARTICULO = new ARTICULO() { ARTICULO1= uu.ITEM.ARTICULO.ARTICULO1 } });
+                }
+
+                return result;
+            }
+        }
+
+        public bool ExistSKU(string s)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var query = (from items in entity.ITEMs
+                             where items.SKU.Equals(s)
+                             select items).ToList();
+
+                if (query.Count > 0)
+                    return true;
+                return false;
+            }
+        }
+
+        public bool ExistNumSerie(string s)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var query = (from items in entity.ITEMs
+                             where items.NUMERO_SERIE.Equals(s)
+                             select items).ToList();
+
+                if (query.Count > 0)
+                    return true;
+                return false;
+            }
+        }
+
+        public string GetNumSerie(string s)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var query = (from items in entity.ITEMs
+                             where items.NUMERO_SERIE.Equals(s)
+                             select items.ARTICULO.ARTICULO1).ToList().First();
+
+                return query;
+            }
+        }
+
+        public string GetSKU(string s)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var query = (from items in entity.ITEMs
+                             where items.SKU.Equals(s)
+                             select items.ARTICULO.ARTICULO1).ToList().First();
+
+                return query;
+            }
+        }
+
         public object getElementLectura(object element)
         {
              object res = null;

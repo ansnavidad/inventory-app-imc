@@ -297,11 +297,10 @@ namespace InventoryApp.Model.Recibo
             }
         }
 
-        public void saveFactura2()
+        public void saveFactura2(USUARIO u)
         {
-            if (_DataMapper != null)
-            {
-                _DataMapper.insertElement(new FACTURA()
+                FacturaCompraDataMapper fff = new FacturaCompraDataMapper();
+                fff.insertElement(new FACTURA()
                 {
                     IS_ACTIVE = true,
                     UNID_FACTURA = this._UnidFactura,
@@ -314,8 +313,7 @@ namespace InventoryApp.Model.Recibo
                     IVA_POR=this._PorIva,
                     TC = this._tc, 
                     UNID_TIPO_PEDIMENTO = this._TipoPedimento.UnidTipoPedimento 
-                });
-            }
+                }, u);            
         }
         #region Constructors
         public FacturaCompraModel()

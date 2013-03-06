@@ -10,6 +10,8 @@ namespace InventoryApp.DAL.Recibo
 {
     public class FacturaCompraDataMapper:IDataMapper
     {
+        public USUARIO ActualUser;
+
         public void loadSync(object element)
         {
 
@@ -28,7 +30,7 @@ namespace InventoryApp.DAL.Recibo
                         var aux = query.First();
 
                         if (aux.LAST_MODIFIED_DATE < poco.LAST_MODIFIED_DATE)
-                            udpateElement((object)poco);
+                            udpateElement((object)poco, this.ActualUser);
                     }
                     //Inserción
                     else
@@ -231,7 +233,7 @@ namespace InventoryApp.DAL.Recibo
             throw new NotImplementedException();
         }
 
-        public void udpateElement(object element)
+        public void udpateElement(object element, USUARIO u)
         {
             if (element != null && (element as FACTURA) != null)
             {
@@ -256,12 +258,12 @@ namespace InventoryApp.DAL.Recibo
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
                     //
-                    entity.SaveChanges();
+                    UNID.Master(factura, u, -1, "Modificación");
                 }
             }
         }
 
-        public void deleteFacturas(List<long> FacturasEliminadas) {
+        public void deleteFacturas(List<long> FacturasEliminadas, USUARIO u) {
 
             using (var entity = new TAE2Entities())
             {
@@ -294,6 +296,7 @@ namespace InventoryApp.DAL.Recibo
                     var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
                     modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                     entity.SaveChanges();
+                    UNID.Master(del, u, -1, "Emininación");
 
                     var delF_D = (from f in entity.FACTURA_DETALLE
                                   where f.UNID_FACTURA == l
@@ -367,7 +370,7 @@ namespace InventoryApp.DAL.Recibo
             return respuesta;
         }
 
-        public void insertElement(object element)
+        public void insertElement(object element, USUARIO u)
         {
             if (element != null)
             {
@@ -383,6 +386,8 @@ namespace InventoryApp.DAL.Recibo
                     entity.SaveChanges();
                     entity.FACTURAs.AddObject(factura);
                     entity.SaveChanges();
+
+                    UNID.Master(factura, u, -1, "Inserción");
                 }
             }
         }
@@ -521,6 +526,55 @@ namespace InventoryApp.DAL.Recibo
         public void deleteElement(object element)
         {
             throw new NotImplementedException();
+        }
+
+
+        public void udpateElement(object element)
+        {
+            if (element != null && (element as FACTURA) != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    FACTURA factura = (FACTURA)element;
+                    var modifiedFactura = entity.FACTURAs.First(p => p.UNID_FACTURA == factura.UNID_FACTURA);
+                    modifiedFactura.FACTURA_NUMERO = factura.FACTURA_NUMERO;
+                    modifiedFactura.FECHA_FACTURA = factura.FECHA_FACTURA;
+                    modifiedFactura.IS_ACTIVE = factura.IS_ACTIVE;
+                    modifiedFactura.IVA_POR = factura.IVA_POR;
+                    modifiedFactura.NUMERO_PEDIMENTO = factura.NUMERO_PEDIMENTO;
+                    modifiedFactura.UNID_LOTE = factura.UNID_LOTE;
+                    modifiedFactura.UNID_MONEDA = factura.UNID_MONEDA;
+                    modifiedFactura.UNID_PROVEEDOR = factura.UNID_PROVEEDOR;
+                    modifiedFactura.TC = factura.TC;
+                    //Sync
+                    modifiedFactura.IS_MODIFIED = true;
+                    modifiedFactura.IS_ACTIVE = true;
+                    modifiedFactura.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                }
+            }
+        }
+
+        public void insertElement(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    FACTURA factura = (FACTURA)element;
+                    //Sync
+                    factura.IS_MODIFIED = true;
+                    factura.IS_ACTIVE = true;
+                    factura.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    entity.FACTURAs.AddObject(factura);
+                    entity.SaveChanges();
+                }
+            }
         }
     }
 }

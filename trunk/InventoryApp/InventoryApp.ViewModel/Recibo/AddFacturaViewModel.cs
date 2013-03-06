@@ -19,6 +19,7 @@ namespace InventoryApp.ViewModel.Recibo
         private AgregarItemViewModel _AgregarItemViewModel;
         private AddReciboViewModel _AddReciboViewModel;
         private FacturaCatalogViewModel _FacturaCatalogViewModel;
+        private USUARIO ActualUser;
         private bool CatalogFactura;
 
         public ICommand AddFacturaCommand
@@ -333,6 +334,7 @@ namespace InventoryApp.ViewModel.Recibo
         public AddFacturaViewModel(AddReciboViewModel addReciboViewModel)
         {
             this._AddReciboViewModel = addReciboViewModel;
+            this.ActualUser = addReciboViewModel.ActualUser;
             this.init();
         }
 
@@ -340,6 +342,7 @@ namespace InventoryApp.ViewModel.Recibo
         {
             this._FacturaCatalogViewModel = facturaCatalogViewModel;
             this.CatalogFactura = true;
+            this.ActualUser = facturaCatalogViewModel.ActualUser;
             this.init();
         }
 
@@ -347,6 +350,7 @@ namespace InventoryApp.ViewModel.Recibo
         {
             this._AgregarItemViewModel = agregarItemViewModel;
             this.CatalogFactura = true;
+            this.ActualUser = agregarItemViewModel.ActualUser;
             this.init();
         }
         #endregion
@@ -384,7 +388,7 @@ namespace InventoryApp.ViewModel.Recibo
             if (this.CatalogFactura)
             {                               
                 factura.UnidFactura = UNID.getNewUNID();
-                factura.saveFactura2();
+                factura.saveFactura2(this.ActualUser);
                 //factura detalle
                 foreach (FacturaCompraDetalleModel fac in factura.FacturaDetalle)
                 {

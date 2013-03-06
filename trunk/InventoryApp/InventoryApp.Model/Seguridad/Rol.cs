@@ -426,7 +426,7 @@ namespace InventoryApp.Model.Seguridad
             AppRolDataMapper rm = new AppRolDataMapper();
             ROL r = new ROL();
             r.UNID_ROL = UnidRol;
-            rm.deleteElement(r);
+            rm.deleteElement(r, ActualUser);
         }
 
         #endregion

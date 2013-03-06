@@ -23,7 +23,7 @@
         <TreeView Grid.Column="0" Grid.Row="0" 
                   HorizontalAlignment="Stretch" Margin="2,2"
                   Name="treeView1" VerticalAlignment="Stretch" 
-                  ItemsSource="{Binding MenuModel,Mode= TwoWay,UpdateSourceTrigger=PropertyChanged}" Cursor="Hand">
+                  ItemsSource="{Binding MenuModel,Mode= TwoWay,UpdateSourceTrigger=PropertyChanged}" Cursor="Hand" SelectedItemChanged="treeView1_SelectedItemChanged">
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}">
                     
@@ -45,7 +45,9 @@
 
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding ChildrenMenu}" >
-                    <TextBlock Text="{Binding MenuName}" TextWrapping="Wrap" FontSize="12" FontStretch="Normal" FontFamily="Arial Rounded MT" FontWeight="SemiBold" Foreground="#585858" OpacityMask="Black" />
+                    <TextBlock Text="{Binding MenuName}" TextWrapping="Wrap" FontSize="12" FontStretch="Normal" 
+                               FontFamily="Arial Rounded MT" FontWeight="SemiBold" 
+                               Foreground="#585858" OpacityMask="Black" Name="nameTre" />
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
             

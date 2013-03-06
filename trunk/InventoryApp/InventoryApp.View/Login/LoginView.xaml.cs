@@ -15,6 +15,7 @@ using InventoryApp.ViewModel.Login;
 using System.Windows.Threading;
 using InventoryApp.DAL;
 using System.Windows.Media.Animation;
+using InventoryApp.View.Sync;
 
 
 namespace InventoryApp.View.Login
@@ -24,21 +25,12 @@ namespace InventoryApp.View.Login
     /// </summary>
     public partial class LoginView : Window
     {
-        DispatcherTimer dTimerUploadProcess;
-        Storyboard _ImgSync;
-
-        public DispatcherTimer DTimerUploadProcess
-        {
-            get { return dTimerUploadProcess; }
-            set { dTimerUploadProcess = value; }
-        }
 
         public LoginView()
         {
             InitializeComponent();
             
             FocusManager.SetFocusedElement(this, this.txtUsuario);
-            dTimerUploadProcess = new DispatcherTimer();
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -96,49 +88,21 @@ namespace InventoryApp.View.Login
         {
                         
         }
+
+        private void btnAceptar_Click(object sender, RoutedEventArgs e)
+        {
+            DlgLogin ds = new  DlgLogin();
+            LoginViewModel viewModel = this.DataContext  as LoginViewModel;
+            if (viewModel != null)
+            {
+                viewModel.SetLoginViewModel();
+                ds.DataContext = viewModel;
+                ds.Owner = Application.Current.Windows[0];
+                viewModel.start();
+                ds.ShowDialog();
+            }
+        }
         
-        private void Imagen()
-        {
-            this._ImgSync = (Storyboard)this.FindResource("rotateImg");
-
-            DTimerUploadProcess = new DispatcherTimer();
-
-            if (true)
-            {
-                Action a = () => this.ShowImgSync();
-                this.Dispatcher.BeginInvoke(a);
-            }
-            else
-            {
-                Action a = () => this.HideImgSync();
-                this.Dispatcher.BeginInvoke(a);
-            }
-            if (true)
-            {
-                Action a = () => this.SetImgSyncMsg("Comprobando Credenciales...");
-                this.Dispatcher.BeginInvoke(a);
-            }
-
-        }
-
-        public void ShowImgSync()
-        {
-            this.cnvTmpRot.Visibility = Visibility.Visible;
-            this.cnvTmpRot2.Visibility = Visibility.Collapsed;
-            _ImgSync.Begin(this);
-        }
-
-        public void HideImgSync()
-        {
-            this.cnvTmpRot.Visibility = Visibility.Collapsed;
-            this.cnvTmpRot2.Visibility = Visibility.Visible;
-        }
-
-        public void SetImgSyncMsg(string msg)
-        {
-            this.imgSyncLogin.ToolTip = msg;
-            this.imgSyncLogin2.ToolTip = msg;
-        }
    
     }
 

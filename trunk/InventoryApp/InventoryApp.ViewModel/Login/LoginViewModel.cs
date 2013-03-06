@@ -18,10 +18,48 @@ namespace InventoryApp.ViewModel.Login
 {
     public class LoginViewModel : ViewModelBase
     {
-        
-       #region Relay Commands
+        #region propiedades
+        public static bool IsRunning = false;
+        string _message;
+        bool _jobDone;
+        System.Timers.Timer t;
 
-       private RelayCommand _validarLoginCommand;
+        public string Message
+        {
+            get
+            {
+                return _message;
+            }
+            set
+            {
+                if (_message != value)
+                {
+                    _message = value;
+                    OnPropertyChanged("Message");
+                }
+            }
+        }
+
+        public bool JobDone
+        {
+            get
+            {
+                return _jobDone;
+            }
+            set
+            {
+                if (_jobDone != value)
+                {
+                    _jobDone = value;
+                    OnPropertyChanged("JobDone");
+                }
+            }
+        }
+        #endregion
+
+        #region Relay Commands
+
+        private RelayCommand _validarLoginCommand;
         public ICommand ValidarLoginCommand
         {
             get
@@ -53,10 +91,10 @@ namespace InventoryApp.ViewModel.Login
         {
             //this.LoginModel.CallServiceGetLoginUser();
             //if (!this.LoginModel.Login)
-                if (!this.LoginModel.GetLoginUser())
-                {
-                    MessageBoxResult result = MessageBox.Show("Usuario o contraseña incorrectos \n O usuario no activado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                //if (!this.LoginModel.GetLoginUser())
+                //{
+                //    MessageBoxResult result = MessageBox.Show("Usuario o contraseña incorrectos \n O usuario no activado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                //}
             
         }
 
@@ -187,60 +225,50 @@ namespace InventoryApp.ViewModel.Login
 
         #endregion
 
-        #region login imagen
-        public static bool IsRunning = false;
-        System.Timers.Timer t;
 
-        public string Message
+        #region metodos para ejecutar un evento
+        public void DownloadData(Object sender, System.Timers.ElapsedEventArgs args)
         {
-            get { return _message; }
-            set
+            this.t.Enabled = false;
+            ((System.Timers.Timer)sender).Stop();
+            Validar();
+            LoginViewModel.IsRunning = false;
+            this.JobDone = true;
+
+        }
+
+        public void Validar()
+        {
+            this.LoginModel.CallServiceGetLoginUser();
+            if (!this.LoginModel.Login)
+                this.Message = "Comprobando credenciales locales...";
+            if (!this.LoginModel.GetLoginUser())
             {
-                if (value != _message)
-                {
-                    this._message = value;
-                    OnPropertyChanged("Message");
-                }
+                MessageBoxResult result = MessageBox.Show("Usuario o contraseña incorrectos \n O usuario no activado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        private string _message;
 
-        public bool JobDone
+        // combobox
+        public void SetLoginViewModel()
         {
-            get { return _jobDone; }
-            set
-            {
-                if (value != _jobDone)
-                {
-                    this._jobDone = value;
-                    OnPropertyChanged("JobDone");
-                }
-            }
+
+            this.Message = "Comprobando credenciales...";
+            this._jobDone = false;
+            t = new System.Timers.Timer(100);
+            t.Enabled = false;
+
+            t.Elapsed += new System.Timers.ElapsedEventHandler(DownloadData);
+
         }
-        private bool _jobDone;
 
         public void start()
         {
             this.JobDone = false;
-            this.OnPropertyChanged("JobDone");
             LoginViewModel.IsRunning = true;
+            t.Enabled = true;
             t.Start();
+
         }
-
-        public void LoadLoginData(Object sender, ElapsedEventArgs args)
-        {
-            this.t.Enabled = false;
-            ((System.Timers.Timer)sender).Stop();
-            bool res = true;
-
-            this.Message = "Espere un momento...";
-        }
-
-        #endregion
-        #region metodos de imagen
-        Storyboard _ImgSync;
-
-       
         #endregion
     }    
 }

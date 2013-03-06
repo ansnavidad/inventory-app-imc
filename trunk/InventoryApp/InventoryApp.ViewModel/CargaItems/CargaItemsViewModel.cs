@@ -13,7 +13,7 @@ using System.Diagnostics;
 
 namespace InventoryApp.ViewModel.CargaItems
 {
-    public class CargaItemsViewModel : IPageViewModel, INotifyPropertyChanged
+    public class CargaItemsViewModel : IPageViewModel, INotifyPropertyChanged,ILoadDatesViewModel
     {
         
         #region campos
@@ -258,6 +258,18 @@ namespace InventoryApp.ViewModel.CargaItems
             
         }
 
+        public void MenuDownloadData(Object sender, System.Timers.ElapsedEventArgs args)
+        {
+            this.t.Enabled = false;
+            ((System.Timers.Timer)sender).Stop();
+
+            SetValidetProcess();
+
+            CargaItemsViewModel.IsRunning = false;
+            this.JobDone = true;
+
+        }
+
         public void start()
         {
             this.JobDone = false;
@@ -277,6 +289,37 @@ namespace InventoryApp.ViewModel.CargaItems
 
             t.Elapsed += new System.Timers.ElapsedEventHandler(DownloadData);
 
+        }
+
+        // evento desde el treeview
+        public void SetCargaItemsMenuViewModel()
+        {
+
+            this.Message = "Cargando datos...";
+            this._jobDone = false;
+            t = new System.Timers.Timer(600);
+            t.Enabled = false;
+
+            t.Elapsed += new System.Timers.ElapsedEventHandler(MenuDownloadData);
+
+        }
+
+        public void SetValidetProcess()
+        {
+            
+           try
+            {
+                CallServiceGetValidateNotExitProcessRunning();
+
+                CallServiceGetListBatchProcess();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBoxResult result = MessageBox.Show("No hay conexión con el servidor. \n Verifique que está conectado a la red correcta", "Alerta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                this.ValideProcess = null;
+            }
+            
         }
 
         #endregion
@@ -440,20 +483,8 @@ namespace InventoryApp.ViewModel.CargaItems
         public CargaItemsViewModel()
         {
             this._listBatchLoad = new FixupCollection<BATCH_LOAD_CARGAMOV>();
-            try
-            {
-                CallServiceGetValidateNotExitProcessRunning();
-                
-                CallServiceGetListBatchProcess();
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBoxResult result = MessageBox.Show("No hay conexión con el servidor. \n Verifique que está conectado a la red correcta", "Alerta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                this.ValideProcess = null;
-            }
             
-
+            
         }
         
         #endregion       
@@ -471,5 +502,17 @@ namespace InventoryApp.ViewModel.CargaItems
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public string LoadDateName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

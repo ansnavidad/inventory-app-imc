@@ -16,12 +16,18 @@
         <GradientStop Color="#BDBDBD" Offset="0.567"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="DegradadoGrid" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
-        <GradientStop Color="#EEEBE8" Offset="0"/>
-        <GradientStop Color="#92908C" Offset="1"/>
-        <GradientStop Color="#BDBDBD" Offset="0.28" />
+    <LinearGradientBrush x:Key="DegradadoGrid" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#D8D8D8" Offset="0" />
+        <GradientStop Color="#6E6E6E" Offset="1" />
+        <GradientStop Color="#FAFAFA" Offset="0.28" />
     </LinearGradientBrush>
 
+<LinearGradientBrush x:Key="DegradadoGridDlg" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FE9A2E" Offset="0" />
+        <GradientStop Color="#F7BE81" Offset="1" />
+        <GradientStop Color="#B45F04" Offset="0.28" />
+    </LinearGradientBrush>
+    
     <LinearGradientBrush x:Key="DegradadoTxtElara" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
         <GradientStop Color="#6B6A6A" Offset="0"/>
         <GradientStop Color="#ACACAC" Offset="0.567"/>
@@ -45,6 +51,10 @@
 
     <Style x:Key="GridLogin" TargetType="{x:Type Grid}">
         <Setter Property="Background" Value="{StaticResource DegradadoGrid}" />
+    </Style>
+
+    <Style x:Key="GridLoginDlg" TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="{StaticResource DegradadoGridDlg}" />
     </Style>
 
     <Style x:Key="titleLabel" TargetType="{x:Type Label}">

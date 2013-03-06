@@ -683,11 +683,11 @@
     <Compile Include="Salidas\SalidaVentaSoloLectura.xaml.cs">
       <DependentUpon>SalidaVentaSoloLectura.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sync\DlgLogin.xaml.cs">
+      <DependentUpon>DlgLogin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sync\DlgUpload.xaml.cs">
       <DependentUpon>DlgUpload.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Sync\LoadDates.xaml.cs">
-      <DependentUpon>LoadDates.xaml</DependentUpon>
     </Compile>
     <Compile Include="Traspasos\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
@@ -1507,7 +1507,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sync\LoadDates.xaml">
+    <Page Include="Sync\DlgLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

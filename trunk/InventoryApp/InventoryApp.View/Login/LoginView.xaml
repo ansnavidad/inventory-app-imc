@@ -12,13 +12,6 @@
                 <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            <Storyboard x:Key="rotateImg" >
-                <DoubleAnimation
-                                    Storyboard.TargetName="imgSyncLogin" 
-                                    Storyboard.TargetProperty="(RenderTransform).(RotateTransform.Angle)"
-                                    From="0" To="360" Duration="0:0:1" 
-                                    AutoReverse="False" RepeatBehavior="Forever" />
-            </Storyboard>
         </ResourceDictionary>
     </Window.Resources>
     <Border BorderThickness="2,2,2,2" CornerRadius="4" BorderBrush="#41689B">
@@ -60,7 +53,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button TabIndex="3" Content="Aceptar" Grid.Column="1" Grid.Row="5" Height="23" HorizontalAlignment="Center" Command="{Binding Path=ValidarLoginCommand}"
-                        Name="btnAceptar" VerticalAlignment="Center" Width="75" Style="{StaticResource bntBlue}">
+                        Name="btnAceptar" VerticalAlignment="Center" Width="75" Style="{StaticResource bntBlue}" Click="btnAceptar_Click">
                 </Button>
                 <Button TabIndex="4" Content="Cancelar" Grid.Column="2" Grid.Row="5" Height="23" HorizontalAlignment="Center" 
                         Name="btnCancelar" VerticalAlignment="Center" Width="75" Style="{StaticResource bntRed}" Click="btnCancelar_Click">
@@ -84,30 +77,6 @@
                                                         Password="{Binding Path=LoginModel.Usuario.USUARIO_PWD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <ValidarBing:PasswordValidator
                     TextMail="{Binding ElementName=txtUsuario}"/>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" Name="stackPanel2"  VerticalAlignment="Stretch">
-                    <Canvas Name="cnvTmpRot"  Visibility="Collapsed"  Height="28" Width="50"  Opacity="0.5" Panel.ZIndex="60" 
-                        Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                        <Image Width="25" Height="25" HorizontalAlignment="Center" Margin="12,5,10,0" 
-                           Name="imgSyncLogin" Stretch="Fill" VerticalAlignment="Center" 
-                           Grid.Column="1" Grid.Row="0" Source="../Images/Login.png" Visibility="Visible" 
-                           ToolTip="Listo">
-                            <Image.RenderTransform>
-                                <RotateTransform Angle="0" CenterX="9" CenterY="9" />
-                            </Image.RenderTransform>
-                        </Image>
-                    </Canvas>
-                    <Canvas Name="cnvTmpRot2"    Height="28" Width="50"  Opacity="0.5" Panel.ZIndex="60" 
-                        Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                        <Image Width="25" Height="25" HorizontalAlignment="Center" Margin="12,0,10,0" 
-                           Name="imgSyncLogin2" Stretch="Fill" VerticalAlignment="Center" 
-                           Grid.Column="1" Grid.Row="0" Source="../Images/Login.png" Visibility="Collapsed" 
-                           ToolTip="Listo">
-                            <Image.RenderTransform>
-                                <RotateTransform Angle="0" CenterX="9" CenterY="9" />
-                            </Image.RenderTransform>
-                        </Image>
-                    </Canvas>
-                    </StackPanel>
                 </Grid>
             </Border>
             </Grid>

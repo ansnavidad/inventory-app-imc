@@ -143,6 +143,13 @@
         <Setter Property="FontSize" Value="12"></Setter>
     </Style>
 
+    <Style x:Key="lblIntrucciones" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#FE2E2E"></Setter>
+        <Setter Property="FontFamily" Value="Verdana"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+    </Style>
+
     <Style x:Key="txtLogin" TargetType="{x:Type TextBox}">
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Background" Value="{StaticResource DegradadoTxtElara}"/>

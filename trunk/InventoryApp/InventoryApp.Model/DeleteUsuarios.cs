@@ -98,7 +98,7 @@ namespace InventoryApp.Model
                 }
             }
             this.Roles = ic;
-            this.UsuariosRoles ="Roles actuales : "+ ru;
+            this.UsuariosRoles = ru;
             
         }
     }

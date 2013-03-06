@@ -52,5 +52,10 @@ namespace InventoryApp.View.CatalogUsuarios
         {
             this.Close();
         }
+
+        private void btnRoles_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

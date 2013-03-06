@@ -201,6 +201,9 @@
     <Compile Include="CatalogSeguridad\ModifySelectMenuView.xaml.cs">
       <DependentUpon>ModifySelectMenuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CatalogUsuarios\AddRolesCurrentView.xaml.cs">
+      <DependentUpon>AddRolesCurrentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CatalogUsuarios\GusPasswordBox.cs" />
     <Compile Include="CatalogUsuarios\ModifyUsuarioView.xaml.cs">
       <DependentUpon>ModifyUsuarioView.xaml</DependentUpon>
@@ -852,6 +855,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CatalogSeguridad\ModifySelectMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogUsuarios\AddRolesCurrentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

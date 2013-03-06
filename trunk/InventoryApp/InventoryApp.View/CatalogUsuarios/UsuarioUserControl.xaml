@@ -55,7 +55,6 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Usuario" Width="*" x:Name="nombreUsuario" Binding="{Binding Path=USUARIO_MAIL}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Password" Width="*" x:Name="password" Binding="{Binding Path=USUARIO_PWD}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Roles" Width="*" x:Name="nombreRoles" Binding="{Binding Path=UsuariosRoles}" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>

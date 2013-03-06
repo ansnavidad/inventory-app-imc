@@ -52,18 +52,32 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button TabIndex="3" Content="Aceptar" Grid.Column="1" Grid.Row="5" Height="23" HorizontalAlignment="Center" Command="{Binding Path=ValidarLoginCommand}"
-                        Name="btnAceptar" VerticalAlignment="Center" Width="75" Style="{StaticResource bntBlue}" Click="btnAceptar_Click">
+                <Button TabIndex="3" Content="Iniciar Sesión" Grid.Column="1" Grid.Row="5" Height="23" HorizontalAlignment="Center" Command="{Binding Path=ValidarLoginCommand}"
+                        Name="btnAceptar" VerticalAlignment="Center" Width="85" Style="{StaticResource bntBlue}" Click="btnAceptar_Click">
                 </Button>
                 <Button TabIndex="4" Content="Cancelar" Grid.Column="2" Grid.Row="5" Height="23" HorizontalAlignment="Center" 
                         Name="btnCancelar" VerticalAlignment="Center" Width="75" Style="{StaticResource bntRed}" Click="btnCancelar_Click">
                 </Button>
-                <Label Content="Usuario:" Grid.Column="0" Grid.Row="1" Height="23" HorizontalAlignment="Right"
-                        Name="lblUsuario" VerticalAlignment="Center" Style="{StaticResource lblLogin}"/>                    
-                <Label Content="Password:" Grid.Column="0" Grid.Row="2"  Height="23" HorizontalAlignment="Right" Name="label1" VerticalAlignment="Center" Style="{StaticResource lblLogin}" />
-                    <TextBox MaxLength="128" TabIndex="1"  Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" x:Name="txtUsuario"  VerticalAlignment="Center" Width="150" 
-                            Style="{StaticResource txtLogin}" Text="{Binding Path=LoginModel.Usuario.USUARIO_MAIL, Mode=TwoWay}"/>             
-                    <Label TabIndex="5" Grid.Column="1" Grid.Row="4" Height="28" HorizontalAlignment="Center" Name="lblRegistro" VerticalAlignment="Center">
+                    <Grid Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Usuario/Correo Electrónico:"  Height="23" HorizontalAlignment="Right"
+                        Name="lblUsuario" VerticalAlignment="Center" Style="{StaticResource lblLogin}"/>
+                        <TextBox MaxLength="128" TabIndex="1"  Grid.Column="1" Height="23" HorizontalAlignment="Left" x:Name="txtUsuario"  VerticalAlignment="Center" Width="190" 
+                            Style="{StaticResource txtLogin}" Text="{Binding Path=LoginModel.Usuario.USUARIO_MAIL, Mode=TwoWay}"/>
+                        <Label Content="Contraseña:" Grid.Row="1"  Height="23" HorizontalAlignment="Right" 
+                               Name="label1" VerticalAlignment="Center" Style="{StaticResource lblLogin}" />
+                        <Convertidor:BindablePasswordBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Focusable="True"
+                                                        x:Name="bindablePasswordBox1" VerticalAlignment="Center" Width="190"
+                                                        Password="{Binding Path=LoginModel.Usuario.USUARIO_PWD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+                        <Label TabIndex="5" Grid.Column="1" Grid.Row="4" Height="28" HorizontalAlignment="Center" Name="lblRegistro" VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource textBockLogin}" Name="registro" MouseUp="registro_MouseUp" Text="Registrar Usuario"/>
                 </Label>               
                 <Label TabIndex="6" Grid.Column="2" Grid.Row="4" Height="28" HorizontalAlignment="Center" Name="label2" VerticalAlignment="Center">
@@ -72,9 +86,7 @@
                     <Label Grid.Row="3" Content="{Binding Path=LoginModel.MensajeError}" Height="30" HorizontalAlignment="Stretch"
                         Name="lblError" VerticalAlignment="Stretch" Grid.ColumnSpan="3"  Style="{StaticResource titleError}" />
                 <CheckBox Content="" Grid.Column="2" Grid.Row="1" Height="16" HorizontalAlignment="Left" Margin="41,10,0,0" Name="checkBoxOpenMain" VerticalAlignment="Top" Visibility="Hidden" IsEnabled="{Binding Path=LoginModel.Login}" IsEnabledChanged="checkBoxOpenMain_IsEnabledChanged"/>
-                    <Convertidor:BindablePasswordBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Focusable="True"
-                                                        x:Name="bindablePasswordBox1" VerticalAlignment="Center" Width="150"
-                                                        Password="{Binding Path=LoginModel.Usuario.USUARIO_PWD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    
                 <ValidarBing:PasswordValidator
                     TextMail="{Binding ElementName=txtUsuario}"/>
                 </Grid>

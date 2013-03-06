@@ -25,6 +25,8 @@ using System.Configuration;
 using InventoryApp.ViewModel.Version;
 using InventoryApp.ViewModel;
 using System.Diagnostics;
+using InventoryApp.ViewModel.Login;
+using InventoryApp.View.Login;
 
 namespace InventoryApp.View
 {
@@ -160,6 +162,17 @@ namespace InventoryApp.View
         private void imgSyncFiles_MouseUp(object sender, MouseButtonEventArgs e)
         {
             this.DTimerUploadProcess_Tick(null, new EventArgs());
+        }
+
+        private void CerrarSesión_Click(object sender, RoutedEventArgs e)
+        {
+            LoginView ds = new LoginView();
+            LoginViewModel viewModel = new LoginViewModel();
+            viewModel.SetLoginViewModel();
+            viewModel.start();
+            ds.DataContext = viewModel;            
+            ds.Show();
+            this.Close();
         }
     }
 }

@@ -14,28 +14,27 @@ using System.Windows.Shapes;
 namespace InventoryApp.View.Sync
 {
     /// <summary>
-    /// Lógica de interacción para LoadDates.xaml
+    /// Lógica de interacción para DlgLogin.xaml
     /// </summary>
-    public partial class LoadDates : Window
+    public partial class DlgLogin : Window
     {
-        public LoadDates()
+        public DlgLogin()
         {
             InitializeComponent();
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
-
-        public LoadDates(string name)
+        private void chkClose_SourceUpdated(object sender, DataTransferEventArgs e)
         {
-            InitializeComponent();
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            label1.Content = name;
-        }
-
-        private void checkBox1_TargetUpdated(object sender, DataTransferEventArgs e)
-        {
-            if (this.checkBox1.IsChecked == true)
+            if ((bool)this.chkClose.IsChecked && !(bool)this.chkManualClose.IsChecked)
             {
                 this.Close();
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!(bool)this.chkClose.IsChecked)
+            {
+                e.Cancel = true;
             }
         }
     }

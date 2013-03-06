@@ -185,6 +185,7 @@ namespace InventoryApp.ViewModel
         }
 
         #region Methods
+        //dispara un evento
         public void ChagePage(object sender,EventArgs e)
         {
             if (sender!=null)
@@ -301,7 +302,7 @@ namespace InventoryApp.ViewModel
                     case "Unidad":
                         page = new CatalogUnidadViewModel(this.ActualUser);
                         break;
-                    case "Administración de usuarios":
+                    case "Administración de Usuarios":
                         page = new CatalogUsuarioViewModel();
                         break;
                     case "Infraestructura":
@@ -388,6 +389,7 @@ namespace InventoryApp.ViewModel
                     case "Carga de ítems":
                       //page = new Job.JobViewModel();
                       page = new CargaItems.CargaItemsViewModel();
+                      
                       break;
                     case "Programado":
                       page = new CatalogProgramado.CatalogProgramadoViewModel(this.ActualUser);

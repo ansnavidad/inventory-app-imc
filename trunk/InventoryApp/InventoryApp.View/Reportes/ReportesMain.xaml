@@ -17,9 +17,9 @@
     </UserControl.Resources>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
+                <RowDefinition Height="60" />
                 <RowDefinition Height="6" />
-                <RowDefinition Height="544*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -107,21 +107,49 @@
             </ScrollViewer.Resources>
             <Grid  Name="grid1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="120" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="120" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="120" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="120" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="120" />
                 </Grid.ColumnDefinitions>
-                <Button Content="Reporte Inventario Almacén" Height="23" HorizontalAlignment="Center" Name="button1" VerticalAlignment="Center" Width="165"  Click="button1_Click" Style="{StaticResource btnElaraReportes}" />
-                <Button Content="Reporte Inventario Kardex" Height="23" HorizontalAlignment="Center" Name="button2" VerticalAlignment="Center" Width="165" Click="button2_Click" Grid.Column="2" Style="{StaticResource btnElaraReportes}" />
-                <Button Content="Reporte Inventario Rotación" Height="23" HorizontalAlignment="Center" Name="button3" VerticalAlignment="Center" Width="165" Click="button3_Click" Grid.Column="4" Style="{StaticResource btnElaraReportes}" />
-                <Button Content="Reporte Recibo"  Height="23" HorizontalAlignment="Center" Name="button4" VerticalAlignment="Center" Width="165" Click="button4_Click" Grid.Column="6" Style="{StaticResource btnElaraReportes}" />
-                <Button Content="Reporte Adhoc"  Height="23" HorizontalAlignment="Center" Name="button5" VerticalAlignment="Center" Width="165" Click="button5_Click" Grid.Column="8" Style="{StaticResource btnElaraReportes}" />
+                <Button Height="40" HorizontalAlignment="Center" Name="button1" VerticalAlignment="Center" 
+                        Width="110"  Click="button1_Click" Style="{StaticResource btnElaraReportes}">
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap">Reporte Inventario Almacén</TextBlock>
+                </Button>
+                <Button Height="40" HorizontalAlignment="Center" Name="button2" VerticalAlignment="Center"
+                        Width="110" Click="button2_Click" Grid.Column="2" Style="{StaticResource btnElaraReportes}">
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap">Reporte Inventario Kardex</TextBlock>
+                </Button>
+                <Button  Height="40" HorizontalAlignment="Center" Name="button3" VerticalAlignment="Center"
+                         Width="110" Click="button3_Click" Grid.Column="4" Style="{StaticResource btnElaraReportes}">
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap">Reporte Inventario Rotación</TextBlock>
+                </Button>
+                <Button  Height="40" HorizontalAlignment="Center" Name="button4" VerticalAlignment="Center"
+                         Width="110" Click="button4_Click" Grid.Column="6" Style="{StaticResource btnElaraReportes}">
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap">Reporte Recibo</TextBlock>
+                </Button>
+                <Button Height="40" HorizontalAlignment="Center" Name="button5" VerticalAlignment="Center" 
+                        Width="110" Click="button5_Click" Grid.Column="8" Style="{StaticResource btnElaraReportes}">
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap">Reporte Adhoc</TextBlock>
+                </Button>
+                <Button Height="40" HorizontalAlignment="Center" Name="button6" VerticalAlignment="Center" 
+                        Width="110" Click="button6_Click" Grid.Column="10" Style="{StaticResource btnElaraReportes}">
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap">Reporte Maximos y Minimos</TextBlock>
+                </Button>
+                <Button Height="40" HorizontalAlignment="Center" Name="button7" VerticalAlignment="Center" 
+                        Width="110" Click="button6_Click" Grid.Column="12" Style="{StaticResource btnElaraReportes}">
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap">Reporte Programado</TextBlock>
+                </Button>
+                
             </Grid>
         
         </ScrollViewer>

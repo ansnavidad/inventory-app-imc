@@ -74,28 +74,27 @@ namespace InventoryApp.ViewModel.Login
         public bool CanAttempValidar()
         {
             if (String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_MAIL) || String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_PWD))
+            {
                 return false;
+            }
 
             if (!this.LoginModel.EmailValidador())
             {
-                this.LoginModel.MensajeError = "Email no valido";
                 return false;
             }
             else
             {
-                this.LoginModel.MensajeError = "";
                 return true;
             }
         }
         public void AttempValidar()
         {
-            //this.LoginModel.CallServiceGetLoginUser();
-            //if (!this.LoginModel.Login)
-                //if (!this.LoginModel.GetLoginUser())
-                //{
-                //    MessageBoxResult result = MessageBox.Show("Usuario o contraseña incorrectos \n O usuario no activado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                //}
-            
+            this.LoginModel.Usuario.USUARIO_MAIL = "";
+            this.LoginModel.Usuario.USUARIO_PWD = "";
+            this.LoginModel.UserRecuperar = "";
+            this.LoginModel.UserRegristro = "";
+            this.LoginModel.UserRegistroPass1 = "";
+            this.LoginModel.UserRegistroPass2 = ""; 
         }
 
         private RelayCommand _enviarCorreoCommand;
@@ -133,7 +132,12 @@ namespace InventoryApp.ViewModel.Login
                 MessageBoxResult result = MessageBox.Show("Favor de conectarse a la red del servidor", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
                 
-
+            this.LoginModel.Usuario.USUARIO_MAIL = "";
+            this.LoginModel.Usuario.USUARIO_PWD = "";
+            this.LoginModel.UserRecuperar = "";
+            this.LoginModel.UserRegristro = "";
+            this.LoginModel.UserRegistroPass1 = "";
+            this.LoginModel.UserRegistroPass2 = "";
         }
 
         private RelayCommand _registrarCommand;
@@ -186,6 +190,9 @@ namespace InventoryApp.ViewModel.Login
             }
 
             MessageBox.Show(this.LoginModel.CallServiceGetNewUser());
+            this.LoginModel.Usuario.USUARIO_MAIL = "";
+            this.LoginModel.Usuario.USUARIO_PWD = "";
+            this.LoginModel.UserRecuperar = "";
             this.LoginModel.UserRegristro = "";
             this.LoginModel.UserRegistroPass1 = "";
             this.LoginModel.UserRegistroPass2 = "";
@@ -219,8 +226,7 @@ namespace InventoryApp.ViewModel.Login
 
         public LoginViewModel() {
 
-            _loginModel = new LoginModel();
-                       
+            _loginModel = new LoginModel();        
         }
 
         #endregion
@@ -241,10 +247,15 @@ namespace InventoryApp.ViewModel.Login
         {
             this.LoginModel.CallServiceGetLoginUser();
             if (!this.LoginModel.Login)
-                this.Message = "Comprobando credenciales locales...";
-            if (!this.LoginModel.GetLoginUser())
             {
-                MessageBoxResult result = MessageBox.Show("Usuario o contraseña incorrectos \n O usuario no activado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                this.Message = "Comprobando credenciales locales...";
+                if (!this.LoginModel.GetLoginUser())
+                {
+                    if (!this.LoginModel.EmailValidador() && (String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_MAIL) || String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_PWD)))
+                    {
+                        MessageBoxResult result = MessageBox.Show("Usuario o contraseña incorrectos \n O usuario no activado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);    
+                    }                    
+                }
             }
         }
 

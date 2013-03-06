@@ -220,7 +220,14 @@ namespace InventoryApp.Model.Login
                     bool list;
                     list = dataMapper.GetDeserializeUsuarioBool(resx["GetLoginResult"]);
                     if (list != false)
+                    {
                         this.Login = list;
+                        if (this.Login)
+                        {
+                            AppUsuario app = new AppUsuario();
+                            app.ChangeUser(this.Usuario.USUARIO_MAIL);
+                        }
+                    }
                     else
                         this.Login = list;
 
@@ -368,6 +375,14 @@ namespace InventoryApp.Model.Login
 
             res = dataMapper.GetElementLoginLocal(this._Usuario);
             this.Login = res;
+
+            if (this.Login) {
+
+                AppUsuario app = new AppUsuario();
+                app.ChangeUser(this.Usuario.USUARIO_MAIL);                
+            }
+
+
             return res;
 
         }
@@ -404,6 +419,19 @@ namespace InventoryApp.Model.Login
         public LoginModel() {
 
             this._Usuario = new USUARIO();
+
+            AppUsuario aa = new AppUsuario();
+
+            try
+            {
+                this.Usuario.USUARIO_MAIL = aa.GetLastMail();
+            }
+            catch (Exception ex)
+            {
+                this.Usuario.USUARIO_MAIL = "";
+            }
+
+
             this.Login = false;
             this.LoginPass = false;
             this.UserRegristro = "";

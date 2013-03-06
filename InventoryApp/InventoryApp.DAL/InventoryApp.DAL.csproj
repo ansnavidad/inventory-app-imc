@@ -150,6 +150,9 @@
     <Compile Include="POCOS\ITEM_STATUS.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
+    <Compile Include="POCOS\LOGIN_LAST_USER.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
     <Compile Include="POCOS\LOG_LOAD_CARGAMOV.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>

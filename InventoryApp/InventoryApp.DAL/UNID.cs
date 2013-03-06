@@ -184,6 +184,9 @@ namespace InventoryApp.DAL
         //Función para almanecar usuarios con las modificaciones
         public static void Master(object o, USUARIO u, int num, string control)
         {
+            if (control.Equals("Inserción"))
+                control = "Creación";
+
             try
             {
                 BANCO poco = (BANCO)o;

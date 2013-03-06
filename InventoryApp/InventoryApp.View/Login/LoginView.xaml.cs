@@ -30,7 +30,7 @@ namespace InventoryApp.View.Login
         {
             InitializeComponent();
             
-            FocusManager.SetFocusedElement(this, this.txtUsuario);
+            FocusManager.SetFocusedElement(this, this.bindablePasswordBox1);
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -98,12 +98,9 @@ namespace InventoryApp.View.Login
                 viewModel.SetLoginViewModel();
                 ds.DataContext = viewModel;
                 ds.Owner = Application.Current.Windows[0];
-                viewModel.start();
+                viewModel.start();                
                 ds.ShowDialog();
             }
         }
-        
-   
     }
-
 }

@@ -10,6 +10,30 @@ namespace InventoryApp.DAL
 {
     public class AppUsuario : IDataMapper
     {
+        public string GetLastMail() {
+
+            using (var entity = new TAE2Entities())
+            {
+                var resul0 = (from prov in entity.LOGIN_LAST_USER
+                              where prov.ID == 1
+                              select prov.USUARIO).ToList().First();
+
+                return resul0;
+            }
+        }
+
+        public void ChangeUser(string s)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var resul0 = (from prov in entity.LOGIN_LAST_USER
+                              where prov.ID == 1
+                              select prov).First();
+                resul0.USUARIO = s;
+                entity.SaveChanges();
+            }
+        }
+
         public Dictionary<string, string> GetResponseDictionary(string response)
         {
             Dictionary<string, string> resx = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);

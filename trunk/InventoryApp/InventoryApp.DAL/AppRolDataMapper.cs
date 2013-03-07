@@ -122,6 +122,28 @@ namespace InventoryApp.DAL
             }
         }
 
+        public object getElementsDif(long l)
+        {
+            ObservableCollection<ROL> tp = new ObservableCollection<ROL>();
+
+            using (var entity = new TAE2Entities())
+            {
+                var query = (from cust in entity.ROLs
+                             where cust.IS_ACTIVE == true && cust.UNID_ROL != 1 && cust.UNID_ROL != l
+                             select cust).ToList();
+
+                if (query.Count > 0)
+                {
+                    foreach (ROL r in query)
+                    {
+
+                        tp.Add(r);
+                    }
+                }
+                return tp;
+            }
+        }
+
         public object getElementsRol()
         {
             

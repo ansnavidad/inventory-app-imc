@@ -61,12 +61,12 @@ namespace InventoryApp.ViewModel.CatalogItem
                     PropiedadBool = true;
 
                 CategoriaDataMapper ccc = new CategoriaDataMapper();
-                ProveedorModel = this._itemModel.Proveedor.PROVEEDOR_NAME;
-                
-                    
-                    
-                    
-                List<CATEGORIA> auxxx =  ccc.getElementsByProveedor(this._itemModel.Proveedor);
+                ProveedorModel = this._itemModel.FacturaDetalle.FACTURA.PROVEEDOR.PROVEEDOR_NAME;
+
+
+
+
+                List<CATEGORIA> auxxx = ccc.getElementsByProveedor(this._itemModel.FacturaDetalle.FACTURA.PROVEEDOR);
                 ObservableCollection<CATEGORIA>  fin = new ObservableCollection<CATEGORIA> ();
                 
                 foreach (CATEGORIA AA in auxxx)
@@ -139,13 +139,25 @@ namespace InventoryApp.ViewModel.CatalogItem
             this.ItemModel.updateFacturaDet2(FacturaCollection[0].UnidFactura, ItemModelCollection[0].CostoUnitario, this.ItemModel.FacturaDetalle.UNID_FACTURA_DETALE, this.ItemModel.Categoria, this.ItemModel.Articulo);
             
             //Reiniciar todo
+            this.ItemModel.NumeroSerie = "";
+            this.ItemModel.Sku = "";
+
+            this.NumeroSerie = "";
+            this.Sku = "";
+            this.CatalogPropiedad.SelectedPropiedad.PROPIEDAD1 = "";
+
             this._itemModel = new AgregarItemModel();
-            this._ItemModelCollection = new ObservableCollection<AgregarItemModel>();
+            this._ItemModelCollection.Clear();
+            this.CatalogPropiedad.Propiedad.Clear();
+
+            this._ItemModelCollection = new ObservableCollection<AgregarItemModel>();            
             this._Factura = new FacturaCompraModel();
+            this._FacturaCollection.Clear();
             this._FacturaCollection = new ObservableCollection<FacturaCompraModel>();
             this._articuloModel = new CatalogArticuloModel(new ArticuloDataMapper());
             this._categoriaModel = new CatalogCategoriaModel(new CategoriaDataMapper());
             this._catalogStatus = new CatalogItemStatusModel(new ItemStatusDataMapper());
+            this._ultimoMovimiento.Clear();
             this._ultimoMovimiento = new ObservableCollection<UltimoMovimientoModel>();
             this._catalogPropiedad = new CatalogPropiedadModel(new PropiedadDataMapper());
         }        
@@ -194,7 +206,8 @@ namespace InventoryApp.ViewModel.CatalogItem
         {
             if (this.FacturaCollection[0].IsChecked)
             {
-                this.FacturaCollection = new ObservableCollection<FacturaCompraModel>();
+                //this.FacturaCollection = new ObservableCollection<FacturaCompraModel>();
+                this.FacturaCollection.RemoveAt(0);
                 EnlazarBool = true;
                 BorrarBool = false;
             }

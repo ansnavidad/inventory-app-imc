@@ -57,6 +57,8 @@ namespace InventoryApp.ViewModel.CatalogInventario
         private RelayCommand _GuardarCommand;
         public bool CanAttempGuardar()
         {
+            //if(!String.IsNullOrEmpty(this.DescriptorCollection[this.DescriptorCollection.Count-1].DescriptorName))
+
             return true;
         }
         public void AttempGuardar()
@@ -90,12 +92,12 @@ namespace InventoryApp.ViewModel.CatalogInventario
             List<ITEM> Existentes = iDT.getElementsByAlmacen(this.SelectedAlmacen);
             List<ITEM> Capturados = new List<ITEM>();
             
-            foreach (InventarioModel.Descriptor ii in DescriptorCollection) { 
+            foreach (Descriptor ii in DescriptorCollection) { 
                 
                 if(IsSKU)
-                    Capturados.Add(new ITEM(){ SKU = ii.Desc, CANTIDAD = 1 });
+                    Capturados.Add(new ITEM(){ SKU = ii.DescriptorName, CANTIDAD = 1 });
                 else
-                    Capturados.Add(new ITEM() { NUMERO_SERIE = ii.Desc, CANTIDAD = 1 });
+                    Capturados.Add(new ITEM() { NUMERO_SERIE = ii.DescriptorName, CANTIDAD = 1 });
             }
 
 
@@ -399,12 +401,12 @@ namespace InventoryApp.ViewModel.CatalogInventario
 
         #endregion
 
-        #region Properties
-        
+        #region Properties       
+
         bool BotonFinalizar;
         bool BotonImprimir;
 
-        public ObservableCollection<InventarioModel.Descriptor> DescriptorCollection
+        public ObservableCollection<Descriptor> DescriptorCollection
         {
             get { return _DescriptorCollection; }
             set
@@ -416,7 +418,7 @@ namespace InventoryApp.ViewModel.CatalogInventario
                 }
             }
         }
-        protected ObservableCollection<InventarioModel.Descriptor> _DescriptorCollection;
+        protected ObservableCollection<Descriptor> _DescriptorCollection;
         public const string DescriptorPropertyName = "DescriptorCollection";
 
         public ObservableCollection<ALMACEN> AlmacenCollection
@@ -490,11 +492,7 @@ namespace InventoryApp.ViewModel.CatalogInventario
 
             this.catalogInvViewModel = c;
             this.ActualUser = c.ActualUser;
-            this.DescriptorCollection = new ObservableCollection<InventarioModel.Descriptor>();
-            this.DescriptorCollection.Add(new InventarioModel.Descriptor() { Desc = "A", IsChecked = false });
-            this.DescriptorCollection.Add(new InventarioModel.Descriptor() { Desc = "B", IsChecked = false });
-            this.DescriptorCollection.Add(new InventarioModel.Descriptor() { Desc = "B", IsChecked = false });
-            this.DescriptorCollection.Add(new InventarioModel.Descriptor() { Desc = "E", IsChecked = false });            
+            this.DescriptorCollection = new ObservableCollection<Descriptor>();      
             this.AlmacenCollection = GetAlmacenes();
             if (this.AlmacenCollection.Count > 0)
                 this.SelectedAlmacen = this.AlmacenCollection[0];

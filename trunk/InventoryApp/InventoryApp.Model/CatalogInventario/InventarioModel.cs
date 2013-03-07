@@ -14,49 +14,6 @@ namespace InventoryApp.Model.CatalogInventario
     {
         #region Properties
         
-        public struct Descriptor
-        {
-            public string Desc
-            {
-                get { return _Desc; }
-                set
-                {
-                    if (_Desc != value)
-                    {
-                        _Desc = value;
-                        OnPropertyChanged(DescPropertyName);
-                    }
-                }
-            }
-            private string _Desc;
-            public const string DescPropertyName = "Desc";
-
-            public bool IsChecked
-            {
-                get { return _IsChecked; }
-                set
-                {
-                    if (_IsChecked != value)
-                    {
-                        _IsChecked = value;
-                        OnPropertyChanged(IsCheckedPropertyName);
-                    }
-                }
-            }
-            private bool _IsChecked;
-            public const string IsCheckedPropertyName = "IsChecked";
-
-            public event PropertyChangedEventHandler PropertyChanged;
-            public void OnPropertyChanged(string propertyName)
-            {
-                var eh = this.PropertyChanged;
-                if (eh != null)
-                {
-                    eh(this, new PropertyChangedEventArgs(propertyName));
-                }
-            }
-        }
-
         public bool IsChecked
         {
             get { return _IsChecked; }

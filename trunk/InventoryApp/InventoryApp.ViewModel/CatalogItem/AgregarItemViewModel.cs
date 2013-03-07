@@ -397,6 +397,13 @@ namespace InventoryApp.ViewModel.CatalogItem
 
             MessageBox.Show("Se ha agregado el Item correctamente");
 
+            this.ItemModel.NumeroSerie = "";
+            this.ItemModel.Sku = "";
+            this.CatalogPropiedad.Propiedad.Clear();
+            
+            this.CatalogProveedor.Proveedor.Clear();
+            this.UltimoMovimiento.Clear();
+
             this.FillWithItemDetallesAnterior = true;
             this.FillWithDestinos = false;
             this.FillWithDestinos2 = false;

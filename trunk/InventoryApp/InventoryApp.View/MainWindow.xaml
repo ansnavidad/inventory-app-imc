@@ -62,7 +62,7 @@
 
         <Grid Grid.Row="2"  HorizontalAlignment="Stretch" Margin="0,11,0,0" Name="grid2" Height="AUTO" VerticalAlignment="Stretch">
             <ContentControl>
-                <!--<my:MenuView DataContext="{Binding MenuViewModel,Mode=TwoWay}" />-->
+                <my:MenuView DataContext="{Binding MenuViewModel,Mode=TwoWay}" />
             </ContentControl>
         </Grid>
         

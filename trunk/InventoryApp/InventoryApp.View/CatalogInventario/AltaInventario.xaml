@@ -69,7 +69,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Descriptor - (SKU o Número de serie)" Width="auto" x:Name="nombreProyecto2" Binding="{Binding Path=Desc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Descriptor - (SKU o Número de serie)" Width="auto" x:Name="nombreProyecto2" Binding="{Binding Path=DescriptorName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False"/>
                 </DataGrid.Columns>
             </DataGrid>
 

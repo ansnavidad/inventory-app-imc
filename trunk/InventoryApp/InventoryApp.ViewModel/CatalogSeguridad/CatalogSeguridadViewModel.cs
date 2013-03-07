@@ -151,5 +151,31 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         }
 
         #endregion      
+    
+        public CatalogSeguridadViewModel Clone()
+        {
+            CatalogSeguridadViewModel res = new CatalogSeguridadViewModel(this.IsSuperAdmin, this.ActualUser);
+            Rol r = new Rol(this.ActualUser);
+            r.UnidRol = this.SelectedRol.UnidRol;
+            r.RecibirMails = this.SelectedRol.RecibirMails;
+            r.Name = this.SelectedRol.Name;
+            r.IsSystemRol = this.SelectedRol.IsSystemRol;
+            r.IsModified = this.SelectedRol.IsModified;
+            r.IsChecked = this.SelectedRol.IsChecked;
+            r.IsActive = this.SelectedRol.IsActive;
+            r.MenuCollection = new ObservableCollection<Rol.Menu>();
+            r.UsuariosCollection = new ObservableCollection<Rol.User>();
+            foreach (Rol.Menu mm in this.SelectedRol.MenuCollection) {
+
+                r.MenuCollection.Add(mm);
+            }
+
+            foreach (Rol.User uu in this.SelectedRol.UsuariosCollection) {
+
+                r.UsuariosCollection.Add(uu);
+            }
+            res.SelectedRol = r;
+            return res;
+        }
     }
 }

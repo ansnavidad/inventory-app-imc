@@ -11,6 +11,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Configuration;
 using System.Windows.Forms;
+using InventoryApp.DAL.CatalogInventario;
+using InventoryApp.DAL.Historial;
 
 namespace InventoryApp.ViewModel.Sync
 {
@@ -86,6 +88,8 @@ namespace InventoryApp.ViewModel.Sync
         UnidadDataMapper unidadDataMapper = new UnidadDataMapper();
         MaxMinDataMapper maxMinDataMapper = new MaxMinDataMapper();
         ProgramadoDataMapper programadoDataMapper = new ProgramadoDataMapper();
+        InventarioDataMapper inventarioDataMapper = new InventarioDataMapper();
+        HistorialDataMapper historialDataMapper = new HistorialDataMapper();
         UploadLogDataMapper uploadLogDataMapper = new UploadLogDataMapper();
         System.Timers.Timer t;
         string _message;
@@ -737,6 +741,28 @@ namespace InventoryApp.ViewModel.Sync
                 }
                 #endregion
 
+                #region todos los catalogos de CAT.INVENTARIO
+                if (res)
+                {
+                    this.Message = "Enviando INVENTARIO ...";
+                    res = CallServiceInventario();
+                    if (res)
+                    {
+                        inventarioDataMapper.ResetInventarios();
+                    }
+                }
+
+                if (res)
+                {
+                    this.Message = "Enviando MASTER_INVENTARIO ...";
+                    res = CallServiceMasterInventario();
+                    if (res)
+                    {
+                        historialDataMapper.ResetMasterInventarios();
+                    }
+                }
+                #endregion
+
                 if (res)
                 {
                     syn.ResetDummy();
@@ -1120,6 +1146,20 @@ namespace InventoryApp.ViewModel.Sync
                 {
                     this.Message = "Descargando RECIBO_MOVIMIENTO ...";
                     res = CallDownloadServiceReciboMovimiento(serverDate);
+                }
+                #endregion
+
+                #region todos los catalogos de CAT.INVENTARIO
+                if (res)
+                {
+                    this.Message = "Descargando INVENTARIO ...";
+                    res = CallDownloadServiceInventario(serverDate);
+                }
+
+                if (res)
+                {
+                    this.Message = "Descargando MASTER_INVENTARIO ...";
+                    res = CallDownloadServiceMasterInventario(serverDate);
                 }
                 #endregion
 
@@ -3446,6 +3486,90 @@ namespace InventoryApp.ViewModel.Sync
         }
         #endregion
 
+        #region Métodos de descarga de CAT.INVENTARIO
+        public bool CallDownloadServiceInventario(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadInventario";
+            InventarioDataMapper dataMapper = new InventarioDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+                
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<INVENTARIO> list;
+                list = dataMapper.GetDeserializeInventaios(resx["downloadInventarioResult"]);
+
+                if (list != null)
+                    foreach (INVENTARIO item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallDownloadServiceMasterInventario(long serverDate)
+        {
+            #region propiedades
+            bool responseSevice = true;
+            string nameService = "downloadMasterInventario";
+            HistorialDataMapper dataMapper = new HistorialDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+            #region metodos
+
+            try
+            {
+
+                var client = new RestClient(routeDownload);
+                client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                var request = new RestRequest(Method.POST);
+                request.Resource = nameService;
+                request.RequestFormat = RestSharp.DataFormat.Json;
+                request.AddHeader("Content-type", "application/json");
+                request.AddBody(new { lastModifiedDate = dataMapper.LastModifiedDate() });
+                IRestResponse response = client.Execute(request);
+
+                Dictionary<string, string> resx = dataMapper.GetResponseDictionary(response.Content);
+
+                List<MASTER_INVENTARIOS> list;
+                list = dataMapper.GetDeserializeMasterInventarios(resx["downloadMasterInventarioResult"]);
+
+                if (list != null)
+                    foreach (MASTER_INVENTARIOS item in list)
+                        dataMapper.loadSync(item);
+
+            }
+            catch (Exception)
+            {
+                responseSevice = false;
+            }
+
+            return responseSevice;
+            #endregion
+        }
+        #endregion
+
         #endregion
 
         #region TODOS LOS METODOS DE SUBIDA
@@ -5557,6 +5681,86 @@ namespace InventoryApp.ViewModel.Sync
             #region metodos
             //madamos a llamar el metodo que serializa list de pocos
             string listPocos = dataMapper.GetJsonPomArticulo();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+        #endregion
+
+        #region todos los metodos de CAT.INVENTARIO
+        public bool CallServiceInventario()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadInventarios";
+            InventarioDataMapper dataMapper = new InventarioDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonInventarios();
+            if (!String.IsNullOrEmpty(listPocos))
+            {
+                try
+                {
+                    var client = new RestClient(routeService);
+                    client.Authenticator = new HttpBasicAuthenticator(basicAuthUser, basicAuthPass);
+                    var request = new RestRequest(Method.POST);
+                    request.Resource = nameService;
+                    request.RequestFormat = RestSharp.DataFormat.Json;
+                    request.AddHeader("Content-type", "application/json");
+                    request.AddBody(new { listPocos = listPocos, dataUser = dataUser });
+                    IRestResponse response = client.Execute(request);
+                    responseSevice = user.GetDeserializeUpLoad(response.Content);
+                }
+                catch (Exception)
+                {
+                    responseSevice = false;
+                }
+            }
+            else
+            {
+                responseSevice = true;
+            }
+            return responseSevice;
+            #endregion
+        }
+
+        public bool CallServiceMasterInventario()
+        {
+            #region propiedades
+            bool responseSevice;
+            string nameService = "LoadMasterInventarios";
+            HistorialDataMapper dataMapper = new HistorialDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            //madamos a llamar el metodo que serializa list de pocos
+            string listPocos = dataMapper.GetJsonMasterInventarios();
             if (!String.IsNullOrEmpty(listPocos))
             {
                 try

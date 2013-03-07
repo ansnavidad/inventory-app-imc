@@ -27,12 +27,14 @@
                   Name="dataGrid1" VerticalAlignment="Stretch" CanUserAddRows="False"
                   RowStyle="{StaticResource RowStyle}" CanUserDeleteRows="False"
                   Style="{StaticResource GridStyle}"
+                  ItemsSource="{Binding Path=Addrol.Rol,Mode=TwoWay}"
+                  SelectedItem="{Binding Addrol.SelectedRol, Mode=TwoWay}"
                   ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Asignar" Width="65">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox HorizontalAlignment="Left" x:Name="RowCheckBox" IsChecked="{Binding Path=IsCheckedEliminar,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <CheckBox HorizontalAlignment="Left" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -47,7 +49,7 @@
                 </Grid.ColumnDefinitions>
                 <Button Content="Agregar Rol" Height="23" HorizontalAlignment="Center"
                 Name="btnGuardar" VerticalAlignment="Center" Width="90" Style="{StaticResource btnElara}" Click="btnGuardar_Click"
-                Command="{Binding ModifyUsuarioCommand,Mode=OneWay}"/>
+                Command="{Binding AddRolCommand,Mode=OneWay}"/>
                 <Button Content="Cancelar" Grid.Column="2" Height="23" HorizontalAlignment="Center"
                 Name="btnEliminar" VerticalAlignment="Center" Width="90" Style="{StaticResource btnElara}" Click="btnEliminar_Click" />
             </Grid>

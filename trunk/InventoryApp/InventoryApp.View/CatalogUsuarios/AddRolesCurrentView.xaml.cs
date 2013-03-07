@@ -25,12 +25,12 @@ namespace InventoryApp.View.CatalogUsuarios
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

@@ -108,6 +108,193 @@ namespace InventoryApp.DAL
             throw new NotImplementedException();
         }
 
+        public object getElementByUserRol(long? unidUser)
+        {
+            object res = null;
+            if (unidUser != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    var validacion = (from r in entity.ROLs
+                                      join ur in entity.USUARIO_ROL
+                                      on r.UNID_ROL equals ur.UNID_ROL
+                                      join u in entity.USUARIOs
+                                      on  ur.UNID_USUARIO equals u.UNID_USUARIO
+                                      where u.UNID_USUARIO == unidUser &&
+                                            r.IS_ACTIVE ==true &&
+                                            ur.IS_ACTIVE ==true &&
+                                            u.IS_ACTIVE ==true
+                                      select r).ToList();
+                    res = validacion;
+                }
+            }
+            return res;
+        }
+
+        public object getElementByRolMenu(long? unidRol)
+        {
+            object res = null;
+            if (unidRol != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    var validacion = (from rm in entity.ROL_MENU
+                                      join m in entity.MENUs
+                                      on rm.UNID_MENU equals m.UNID_MENU
+                                      where rm.UNID_ROL == unidRol &&
+                                            m.IS_ACTIVE == true &&
+                                            rm.IS_ACTIVE == true
+                                      select rm).ToList();
+                    res = validacion;
+                }
+            }
+            return res;
+        }
+
+        public void udpateRolMenu(object element)
+        {
+            if (element != null)
+            {
+                ROL_MENU poco = (ROL_MENU)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.ROL_MENU
+                                 where poco.UNID_ROL == cust.UNID_ROL && 
+                                 poco.UNID_MENU == cust.UNID_MENU
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateRM((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertRM((object)poco);
+                    }
+                }
+            }
+        }
+
+        public void udpateUsuarioRol(object element)
+        {
+            if (element != null)
+            {
+                USUARIO_ROL poco = (USUARIO_ROL)element;
+                using (var entity = new TAE2Entities())
+                {
+                    var query = (from cust in entity.USUARIO_ROL
+                                 where poco.UNID_ROL == cust.UNID_ROL &&
+                                 poco.UNID_USUARIO == cust.UNID_USUARIO
+                                 select cust).ToList();
+
+                    //Actualización
+                    if (query.Count > 0)
+                    {
+                        udpateUR((object)poco);
+                    }
+                    //Inserción
+                    else
+                    {
+                        insertUR((object)poco);
+                    }
+                }
+            }
+        }
+
+        public void udpateRM(object element)
+        {
+                if (element != null)
+                {
+                    using (var entity = new TAE2Entities())
+                    {
+                        ROL_MENU rolUsuario = (ROL_MENU)element;
+                        var modifiedRolMenu = entity.ROL_MENU.First(p => p.UNID_MENU == rolUsuario.UNID_MENU
+                                                                            && p.UNID_ROL == rolUsuario.UNID_ROL);
+                        //Sync
+                        modifiedRolMenu.IS_ACTIVE = true;
+                        modifiedRolMenu.IS_MODIFIED = true;
+                        modifiedRolMenu.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        entity.SaveChanges();
+
+                        entity.SaveChanges();
+                    }
+                }
+            
+        }
+
+        public void udpateUR(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    USUARIO_ROL UsuarioRol = (USUARIO_ROL)element;
+                    var modifiedUsuarioRol = entity.USUARIO_ROL.First(p => p.UNID_USUARIO == UsuarioRol.UNID_USUARIO
+                                                                        && p.UNID_ROL == UsuarioRol.UNID_ROL);
+                    //Sync
+                    modifiedUsuarioRol.IS_ACTIVE = true;
+                    modifiedUsuarioRol.IS_MODIFIED = true;
+                    modifiedUsuarioRol.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+
+                    entity.SaveChanges();
+                }
+            }
+
+        }
+
+        public void insertRM(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    ROL_MENU rolMenu = (ROL_MENU)element;
+                    
+                    //Sync
+                    rolMenu.IS_ACTIVE = true;
+                    rolMenu.IS_MODIFIED = true;
+                    rolMenu.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.ROL_MENU.AddObject(rolMenu);
+                    entity.SaveChanges();
+                }
+            }
+
+        }
+
+        public void insertUR(object element)
+        {
+            if (element != null)
+            {
+                using (var entity = new TAE2Entities())
+                {
+                    USUARIO_ROL UsuarioRol = (USUARIO_ROL)element;
+
+                    //Sync
+                    UsuarioRol.IS_ACTIVE = true;
+                    UsuarioRol.IS_MODIFIED = true;
+                    UsuarioRol.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                    var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                    modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                    entity.SaveChanges();
+                    //
+                    entity.USUARIO_ROL.AddObject(UsuarioRol);
+                    entity.SaveChanges();
+                }
+            }
+
+        }
+
         public void udpateElement(object element)
         {
             if (element != null)

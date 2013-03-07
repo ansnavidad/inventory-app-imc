@@ -229,6 +229,14 @@ namespace InventoryApp.Service.Services
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
         string LoadProgramado(string listPocos, string dataUser);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
+        string LoadInventarios(string listPocos, string dataUser);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
+        string LoadMasterInventarios(string listPocos, string dataUser);
         //------------------------- FIN DE SERVICIOS DE SUBIDA DE ARCHIVOS
 
         //------------------------- EJECUCION DE JOB

@@ -150,9 +150,10 @@ namespace InventoryApp.DAL
             using (var entity = new TAE2Entities())
             {
                 var query = (from cust in entity.ROLs
-                             where cust.IS_ACTIVE == true
+                             where cust.IS_ACTIVE == true && cust.UNID_ROL != 1
                              select cust).ToList();
 
+                
                 return query;
             }
         }

@@ -9,6 +9,8 @@ using InventoryApp.DAL;
 using InventoryApp.Model;
 using InventoryApp.DAL.Recibo;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.DAL.CatalogInventario;
+using InventoryApp.DAL.Historial;
 
 namespace InventoryApp.Service.Services
 {
@@ -2588,6 +2590,100 @@ namespace InventoryApp.Service.Services
             #endregion
         }
 
+        public string LoadInventarios(string listPocos, string dataUser)
+        {
+            #region propiedades
+            string mensaje = null;
+            List<INVENTARIO> list;
+            UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA" };
+            InventarioDataMapper dataMapper = new InventarioDataMapper();
+            ServerLastDataMapper server = new ServerLastDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            try
+            {
+                list = dataMapper.GetDeserializeInventaios(listPocos);
+
+                foreach (INVENTARIO item in list)
+                {
+                    //actualiza o pocoa a la tabla INVENTARIO
+                    dataMapper.loadSync(item);
+                }
+                //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
+                server.updateDumy();
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
+
+                if (poco != null)
+                {
+
+                    mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla INVENTARIO sincronizada" });
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                bitacora.MSG = ex.Message + "INVENTARIO" + ex.InnerException;
+                mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
+            }
+            return mensaje;
+            #endregion
+        }
+
+        public string LoadMasterInventarios(string listPocos, string dataUser)
+        {
+            #region propiedades
+            string mensaje = null;
+            List<MASTER_INVENTARIOS> list;
+            UPLOAD_LOG poco = null;
+            UPLOAD_LOG bitacora = new UPLOAD_LOG() { UNID_UPLOAD_LOG = UNID.getNewUNID(), UNID_USUARIO = 1, IP_DIR = "USUARIO DE PRUEBA" };
+            HistorialDataMapper dataMapper = new HistorialDataMapper();
+            ServerLastDataMapper server = new ServerLastDataMapper();
+            UploadLogDataMapper user = new UploadLogDataMapper();
+            #endregion
+
+            #region metodos
+            try
+            {
+                list = dataMapper.GetDeserializeMasterInventarios(listPocos);
+
+                foreach (MASTER_INVENTARIOS item in list)
+                {
+                    //actualiza o pocoa a la tabla MASTER_INVENTARIOS
+                    dataMapper.loadSync(item);
+                }
+                //actualiza a la tabla SERVER_LASTDATA LA FECHA ACTUAL
+                server.updateDumy();
+                // pocoa a la tabla UPLOAD_LOG 
+                poco = user.GetDeserializeUpLoadLog(dataUser);
+
+                if (poco != null)
+                {
+
+                    mensaje = user.InsertUploadLog(new UPLOAD_LOG() { UNID_USUARIO = poco.UNID_USUARIO, PC_NAME = poco.PC_NAME, IP_DIR = poco.IP_DIR, MSG = "Tabla MASTER_INVENTARIOS sincronizada" });
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                bitacora.MSG = ex.Message + "MASTER_INVENTARIOS" + ex.InnerException;
+                mensaje = null;
+                bitacora.PC_NAME = poco.PC_NAME;
+                user.InsertUploadLog(bitacora);
+            }
+            return mensaje;
+            #endregion
+        }
+
         //------------------------- FIN DE SERVICIOS DE SUBIDA DE ARCHIVOS
         //------------------------- EJECUCION DE JOB
         public void ExecuteJob()
@@ -2598,5 +2694,8 @@ namespace InventoryApp.Service.Services
             dataMapper.executeJob();
         }
         //------------------------- FIN DE EJECUCION DE JOB
+
+
+        
     }
 }

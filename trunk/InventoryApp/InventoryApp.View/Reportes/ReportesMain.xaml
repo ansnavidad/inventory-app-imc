@@ -146,7 +146,7 @@
                     <TextBlock TextAlignment="Center" TextWrapping="Wrap">Reporte Maximos y Minimos</TextBlock>
                 </Button>
                 <Button Height="40" HorizontalAlignment="Center" Name="button7" VerticalAlignment="Center" 
-                        Width="110" Click="button6_Click" Grid.Column="12" Style="{StaticResource btnElaraReportes}">
+                        Width="110" Click="button7_Click" Grid.Column="12" Style="{StaticResource btnElaraReportes}">
                     <TextBlock TextAlignment="Center" TextWrapping="Wrap">Reporte Programado</TextBlock>
                 </Button>
                 

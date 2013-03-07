@@ -151,6 +151,9 @@ namespace InventoryApp.ViewModel.CatalogUsuarios
                     }
                 }
             }
+            //guarda si hay nuevo rol
+
+            insertMenuRol();
             
             //actualiza si hubo cambios
             //valida si el passwor a sido cambiado
@@ -220,6 +223,41 @@ namespace InventoryApp.ViewModel.CatalogUsuarios
             }
 
             return canDeleteRol;
+        }
+
+        public void insertMenuRol()
+        {
+            List<long> unidrols = new List<long>();
+            object res = this._modiUsuarioModel.GetUsuarioRol(this._modiUsuarioModel.UnidUsuario);
+            if (res != null)
+            {
+                foreach (ROL item in ((List<ROL>)res))
+                {
+                    unidrols.Add(item.UNID_ROL);
+                }
+                foreach (DeleteRol item in this._modiUsuarioModel.Rol)
+                {
+
+                    if (!unidrols.Contains(item.UNID_ROL))
+                    {
+                        //menu
+                        object resRolMenu = this._modiUsuarioModel.GetRolMenu(item.UNID_ROL);
+                        // inserta a la relacion rol menu
+                        if (resRolMenu != null)
+                        {
+                            foreach (ROL_MENU rm in ((List<ROL_MENU>)resRolMenu))
+                            {
+                                this._modiUsuarioModel.insertRolMenu(rm.UNID_ROL, rm.UNID_MENU);
+                            }    
+                        }
+                        
+                        // inserta  la relacion usuario rol
+                        this._modiUsuarioModel.insertUsuarioRol(item.UNID_ROL, this._modiUsuarioModel.UnidUsuario);
+
+                    }
+
+                }
+            }
         }
         #endregion
     }

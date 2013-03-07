@@ -33,14 +33,24 @@ namespace InventoryApp.View
             {
                 DlgUpload ds = new DlgUpload();
                 ds.Owner = Application.Current.Windows[0];
-                CargaItemsViewModel viewModel = (ds.Owner.DataContext as MainWindowViewModel).CurrentPageViewModel as CargaItemsViewModel;
-                if (viewModel !=null)
+
+                try
                 {
-                    viewModel.SetCargaItemsMenuViewModel();
-                    ds.DataContext = viewModel;
-                    viewModel.start();
-                    ds.ShowDialog();      
+                    CargaItemsViewModel viewModel = (ds.Owner.DataContext as MainWindowViewModel).CurrentPageViewModel as CargaItemsViewModel;
+                    if (viewModel != null)
+                    {
+                        viewModel.SetCargaItemsMenuViewModel();
+                        ds.DataContext = viewModel;
+                        viewModel.start();
+                        ds.ShowDialog();
+                    }
                 }
+                catch (Exception ex)
+                {
+                    
+                    
+                }
+                
                 
             }
         }

@@ -85,6 +85,7 @@
     <Compile Include="CatalogProveedorCuentaModel.cs" />
     <Compile Include="CatalogProveedorModel.cs" />
     <Compile Include="CatalogProyectoModel.cs" />
+    <Compile Include="CatalogRolModel.cs" />
     <Compile Include="CatalogServicioModel.cs" />
     <Compile Include="CatalogSolicitanteModel.cs" />
     <Compile Include="CatalogTecnicoModel.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Recibo\ReciboModel.cs" />
     <Compile Include="Recibo\ReciboStatusModel.cs" />
     <Compile Include="Recibo\TipoOrigenModel.cs" />
+    <Compile Include="RolModel.cs" />
     <Compile Include="Seguridad\Rol.cs" />
     <Compile Include="Seguridad\Usuario.cs" />
     <Compile Include="ServicioModel.cs" />

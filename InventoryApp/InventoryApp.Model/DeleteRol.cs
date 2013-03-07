@@ -12,6 +12,7 @@ namespace InventoryApp.Model
     public class DeleteRol:ROL, INotifyPropertyChanged
     {
         private bool _isCheckedEliminar;
+        private bool _isChecked;
                 
         public bool IsCheckedEliminar
         {
@@ -26,10 +27,24 @@ namespace InventoryApp.Model
                 }
             }
         }
+        public bool IsChecked
+        {
+            get { return this._isChecked; }
+            set
+            {
+                if (value != this._isChecked)
+                {
+                    this._isChecked = value;
+                    if (this.PropertyChanged != null)
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("IsChecked"));
+                }
+            }
+        }
 
         public DeleteRol(ROL rol)
         {
             this._isCheckedEliminar = false;
+            this._isChecked = false;
             this.IS_ACTIVE = rol.IS_ACTIVE;
             this.IS_SYSTEM_ROOL = rol.IS_SYSTEM_ROOL;
             this.RECIBIR_MAILS = rol.RECIBIR_MAILS;

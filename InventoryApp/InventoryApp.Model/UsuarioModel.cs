@@ -203,6 +203,42 @@ namespace InventoryApp.Model
             }
         }
 
+        public object GetUsuarioRol(long unidUser)
+        {
+            this._userRolDataMapper = new AppUsuarioRol();
+            object element = this._userRolDataMapper.getElementByUserRol(unidUser);
+            return element;
+        }
+
+        public object GetRolMenu(long unidRol)
+        {
+            this._userRolDataMapper = new AppUsuarioRol();
+
+            object element = this._userRolDataMapper.getElementByRolMenu(unidRol);
+            return element;
+        }
+
+        public void insertRolMenu(long unidRol, long unidMenu)
+        {
+            this._userRolDataMapper = new AppUsuarioRol();
+
+            if (_dataMapper != null)
+            {
+                this._userRolDataMapper.udpateRolMenu(new ROL_MENU() { UNID_MENU = unidMenu, UNID_ROL = unidRol });
+            }
+            
+        }
+
+        public void insertUsuarioRol(long unidRol, long unidUser)
+        {
+            this._userRolDataMapper = new AppUsuarioRol();
+
+            if (_dataMapper != null)
+            {
+                this._userRolDataMapper.udpateUsuarioRol(new USUARIO_ROL() { UNID_USUARIO = unidUser, UNID_ROL = unidRol });
+            }
+        }
+
         #region Constructors
         public UsuarioModel(IDataMapper dataMapper)
         {

@@ -55,7 +55,10 @@ namespace InventoryApp.View.CatalogUsuarios
 
         private void btnRoles_Click(object sender, RoutedEventArgs e)
         {
-
+            AddRolesCurrentView altaView = new AddRolesCurrentView();
+            AddRolesCurrentViewModel addrolViewModel = new AddRolesCurrentViewModel((ModifyUsuarioViewModel)this.DataContext);
+            altaView.DataContext = addrolViewModel;
+            altaView.ShowDialog();
         }
     }
 }

@@ -165,8 +165,11 @@ namespace InventoryApp.ViewModel
             {
                 if (s.IS_ACTIVE)
                 {
-                    UserRols += s.ROL.ROL_NAME;
-                    UserRols += ",  ";    
+                    if (s.ROL.IS_ACTIVE)
+                    {
+                        UserRols += s.ROL.ROL_NAME;
+                        UserRols += ",  ";    
+                    }
                 }    
                 
             }            

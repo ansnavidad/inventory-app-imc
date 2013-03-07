@@ -9,6 +9,8 @@ using System.ServiceModel.Activation;
 using InventoryApp.Model;
 using InventoryApp.DAL.Recibo;
 using InventoryApp.DAL.POCOS;
+using InventoryApp.DAL.CatalogInventario;
+using InventoryApp.DAL.Historial;
 
 namespace InventoryApp.Service.Services
 {
@@ -906,6 +908,38 @@ namespace InventoryApp.Service.Services
             return respuesta;
         }
 
+        public string downloadInventario(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                InventarioDataMapper dataMapper = new InventarioDataMapper();
+
+                respuesta = dataMapper.GetJsonInventarios(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+            }
+
+            return respuesta;
+        }
+
+        public string downloadMasterInventario(long? lastModifiedDate)
+        {
+            string respuesta = null;
+            if (lastModifiedDate != null)
+            {
+                HistorialDataMapper dataMapper = new HistorialDataMapper();
+
+                respuesta = dataMapper.GetJsonMasterInventarios(lastModifiedDate);
+
+                if (String.IsNullOrEmpty(respuesta))
+                    respuesta = null;
+            }
+
+            return respuesta;
+        }
+
         public bool GetLogin(string dataUser)
         {
             #region propiedades
@@ -919,8 +953,8 @@ namespace InventoryApp.Service.Services
             {
                 user = dataMapper.GetDeserializePocoUsuario(dataUser);
 
-                if (user!=null)
-                    respuesta = dataMapper.GetElementLogin(user);   
+                if (user != null)
+                    respuesta = dataMapper.GetElementLogin(user);
             }
             return respuesta;
             #endregion

@@ -14,6 +14,7 @@ using InventoryApp.DAL;
 using InventoryApp.Model.CatalogInventario;
 using Microsoft.Office.Interop.Excel;
 using System.Reflection;
+using InventoryApp.DAL.CatalogInventario;
 
 namespace InventoryApp.ViewModel.CatalogInventario
 {
@@ -41,6 +42,19 @@ namespace InventoryApp.ViewModel.CatalogInventario
         {
             this.IsEnabled = false;            
             this.BotonImprimir = true;
+
+            long UnidSegmento;
+            UnidSegmento = UNID.getNewUNID();
+            DateTime d = DateTime.Now;
+
+            foreach (Descriptor ii in DescriptorCollection)
+            {
+                if (!String.IsNullOrEmpty(ii.DescriptorName))
+                {
+                    InventarioDataMapper iDM = new InventarioDataMapper();
+                    iDM.insert(new INVENTARIO() { DESCRIPTOR = ii.DescriptorName, UNID_SEGMENTO = UnidSegmento, UNID_ALMACEN = this.SelectedAlmacen.UNID_ALMACEN, FECHA = d, FINISHED = true }, this.ActualUser);
+                }
+            }
         }
 
         public ICommand GuardarCommand
@@ -57,13 +71,60 @@ namespace InventoryApp.ViewModel.CatalogInventario
         private RelayCommand _GuardarCommand;
         public bool CanAttempGuardar()
         {
-            //if(!String.IsNullOrEmpty(this.DescriptorCollection[this.DescriptorCollection.Count-1].DescriptorName))
+            if (this.DescriptorCollection != null && this.DescriptorCollection.Count > 0)
+            {
+                if (!String.IsNullOrEmpty(this.DescriptorCollection[this.DescriptorCollection.Count - 1].DescriptorName))
+                {
+                    this.DescriptorCollection.Add(new Model.CatalogInventario.Descriptor() { DescriptorName = "", IsChecked = false });
+                }
+            }
+            else if (this.DescriptorCollection.Count == 0)
+                this.DescriptorCollection.Add(new Model.CatalogInventario.Descriptor() { DescriptorName = "", IsChecked = false });  
 
             return true;
         }
         public void AttempGuardar()
         {
-            
+            long UnidSegmento;
+            UnidSegmento = UNID.getNewUNID();
+            DateTime d = DateTime.Now;
+
+            foreach (Descriptor ii in DescriptorCollection)
+            {
+                if (!String.IsNullOrEmpty(ii.DescriptorName))
+                {
+                    InventarioDataMapper iDM = new InventarioDataMapper();
+                    iDM.insert(new INVENTARIO(){ DESCRIPTOR = ii.DescriptorName, UNID_SEGMENTO = UnidSegmento, UNID_ALMACEN = this.SelectedAlmacen.UNID_ALMACEN, FECHA = d, FINISHED = false  }, this.ActualUser);
+                }
+            }
+        }
+
+        public ICommand EliminarCommand
+        {
+            get
+            {
+                if (_EliminarCommand == null)
+                {
+                    _EliminarCommand = new RelayCommand(p => this.AttempEliminarCommand(), p => this.CanAttempEliminarCommand());
+                }
+                return _EliminarCommand;
+            }
+        }
+        private RelayCommand _EliminarCommand;
+        public bool CanAttempEliminarCommand()
+        {
+            return true;
+        }
+        public void AttempEliminarCommand()
+        {
+            for (int i = 0; i < DescriptorCollection.Count; )
+            {
+
+                if (DescriptorCollection[i].IsChecked)
+                    this.DescriptorCollection.RemoveAt(i);
+                else
+                    i++;
+            }
         }
 
         public ICommand ImprimirCommand
@@ -92,12 +153,15 @@ namespace InventoryApp.ViewModel.CatalogInventario
             List<ITEM> Existentes = iDT.getElementsByAlmacen(this.SelectedAlmacen);
             List<ITEM> Capturados = new List<ITEM>();
             
-            foreach (Descriptor ii in DescriptorCollection) { 
-                
-                if(IsSKU)
-                    Capturados.Add(new ITEM(){ SKU = ii.DescriptorName, CANTIDAD = 1 });
-                else
-                    Capturados.Add(new ITEM() { NUMERO_SERIE = ii.DescriptorName, CANTIDAD = 1 });
+            foreach (Descriptor ii in DescriptorCollection) {
+
+                if (!String.IsNullOrEmpty(ii.DescriptorName))
+                {
+                    if (IsSKU)
+                        Capturados.Add(new ITEM() { SKU = ii.DescriptorName, CANTIDAD = 1 });
+                    else
+                        Capturados.Add(new ITEM() { NUMERO_SERIE = ii.DescriptorName, CANTIDAD = 1 });
+                }
             }
 
 
@@ -126,21 +190,8 @@ namespace InventoryApp.ViewModel.CatalogInventario
                             }
                             else {
 
-                                if (AuxArticulosFaltantes.Contains(Existentes[i].ARTICULO.ARTICULO1))
-                                {
-                                    for (int k = 0; k < ArticulosFaltantes.Count; k++)
-                                    {
-                                        if (ArticulosFaltantes[k].ARTICULO1.Equals(Existentes[i].ARTICULO.ARTICULO1))
-                                        {
-                                            ArticulosFaltantes[k].EQUIPO.EQUIPO_NAME = (Int32.Parse(ArticulosFaltantes[k].EQUIPO.EQUIPO_NAME) + 1).ToString();
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    AuxArticulosFaltantes.Add(Existentes[i].ARTICULO.ARTICULO1);
-                                    ArticulosFaltantes.Add(new ARTICULO() { ARTICULO1 = Existentes[i].ARTICULO.ARTICULO1, EQUIPO = new EQUIPO() { EQUIPO_NAME = "1" } });
-                                }
+                                AuxArticulosFaltantes.Add(Existentes[i].ARTICULO.ARTICULO1);
+                                ArticulosFaltantes.Add(new ARTICULO() { ARTICULO1 = Existentes[i].ARTICULO.ARTICULO1, EQUIPO = new EQUIPO() { EQUIPO_NAME = "1" }, CATEGORIA = new CATEGORIA() { CATEGORIA_NAME = Existentes[i].SKU }, MODELO = new MODELO() { MODELO_NAME = Existentes[i].NUMERO_SERIE } });                   
                             }
                         }
                     }
@@ -172,21 +223,8 @@ namespace InventoryApp.ViewModel.CatalogInventario
                             }
                             else
                             {
-                                if (AuxArticulosFaltantes.Contains(Existentes[i].ARTICULO.ARTICULO1))
-                                {
-                                    for (int k = 0; k < ArticulosFaltantes.Count; k++)
-                                    {
-                                        if (ArticulosFaltantes[k].ARTICULO1.Equals(Existentes[i].ARTICULO.ARTICULO1))
-                                        {
-                                            ArticulosFaltantes[k].EQUIPO.EQUIPO_NAME = (Int32.Parse(ArticulosFaltantes[k].EQUIPO.EQUIPO_NAME) + 1).ToString();
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    AuxArticulosFaltantes.Add(Existentes[i].ARTICULO.ARTICULO1);
-                                    ArticulosFaltantes.Add(new ARTICULO() { ARTICULO1 = Existentes[i].ARTICULO.ARTICULO1, EQUIPO = new EQUIPO() { EQUIPO_NAME = "1" } });
-                                }
+                                AuxArticulosFaltantes.Add(Existentes[i].ARTICULO.ARTICULO1);
+                                ArticulosFaltantes.Add(new ARTICULO() { ARTICULO1 = Existentes[i].ARTICULO.ARTICULO1, EQUIPO = new EQUIPO() { EQUIPO_NAME = "1" } , CATEGORIA = new CATEGORIA() { CATEGORIA_NAME = Existentes[i].SKU }, MODELO = new MODELO() { MODELO_NAME = Existentes[i].NUMERO_SERIE } });                   
                             }
                         }
                     }
@@ -197,21 +235,8 @@ namespace InventoryApp.ViewModel.CatalogInventario
 
                 while (ii.CANTIDAD > 0) {
 
-                    if (AuxArticulosFaltantes.Contains(ii.ARTICULO.ARTICULO1))
-                    {
-                        for (int i = 0; i < ArticulosFaltantes.Count; i++)
-                        {
-                            if (ArticulosFaltantes[i].ARTICULO1.Equals(ii.ARTICULO.ARTICULO1))
-                            {
-                                ArticulosFaltantes[i].EQUIPO.EQUIPO_NAME = (Int32.Parse(ArticulosFaltantes[i].EQUIPO.EQUIPO_NAME) - 1).ToString();                                    
-                            }
-                        }
-                    }
-                    else {
-
-                        AuxArticulosFaltantes.Add(ii.ARTICULO.ARTICULO1);
-                        ArticulosFaltantes.Add(new ARTICULO() { ARTICULO1 = ii.ARTICULO.ARTICULO1, EQUIPO = new EQUIPO() { EQUIPO_NAME = "-1" } });
-                    }
+                    AuxArticulosFaltantes.Add(ii.ARTICULO.ARTICULO1);
+                    ArticulosFaltantes.Add(new ARTICULO() { ARTICULO1 = ii.ARTICULO.ARTICULO1, EQUIPO = new EQUIPO() { EQUIPO_NAME = "-1" }, CATEGORIA = new CATEGORIA() { CATEGORIA_NAME = ii.SKU }, MODELO = new MODELO() { MODELO_NAME = ii.NUMERO_SERIE } });                   
 
                     ii.CANTIDAD--;
                 }    
@@ -226,42 +251,15 @@ namespace InventoryApp.ViewModel.CatalogInventario
                         if (ExisteRegistro(ii.SKU))
                         {
                             string aux = GetNameArticulo(ii.SKU);
-                            if (AuxArticulosFaltantes.Contains(aux))
-                            {
-                                for (int i = 0; i < ArticulosFaltantes.Count; i++)
-                                {
-                                    if (ArticulosFaltantes[i].ARTICULO1.Equals(aux))
-                                    {
-                                        ArticulosFaltantes[i].EQUIPO.EQUIPO_NAME = (Int32.Parse(ArticulosFaltantes[i].EQUIPO.EQUIPO_NAME) + 1).ToString();
-                                    }
-                                }
-                            }
-                            else
-                            {
-
-                                AuxArticulosFaltantes.Add(aux);
-                                ArticulosFaltantes.Add(new ARTICULO() { ARTICULO1 = aux, EQUIPO = new EQUIPO() { EQUIPO_NAME = "1" } });
-                            }
+                            AuxArticulosFaltantes.Add(aux);
+                            ArticulosFaltantes.Add(new ARTICULO() { ARTICULO1 = aux, EQUIPO = new EQUIPO() { EQUIPO_NAME = "1" }, CATEGORIA = new CATEGORIA() { CATEGORIA_NAME = ii.SKU }, MODELO = new MODELO() { MODELO_NAME = ii.NUMERO_SERIE } });                   
 
                             ii.CANTIDAD--;
                         }
                         else {
 
-                            if (AuxArticulosFaltantes.Contains("El SKU '" + ii.SKU + "' no existe en el sistema."))
-                            {
-                                for (int i = 0; i < ArticulosFaltantes.Count; i++)
-                                {
-                                    if (ArticulosFaltantes[i].ARTICULO1.Equals("El SKU '" + ii.SKU + "' no existe en el sistema."))
-                                    {
-                                        ArticulosFaltantes[i].EQUIPO.EQUIPO_NAME = (Int32.Parse(ArticulosFaltantes[i].EQUIPO.EQUIPO_NAME) + 1).ToString();
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                AuxArticulosFaltantes.Add("El SKU '" + ii.SKU + "' no existe en el sistema.");
-                                ArticulosFaltantes.Add(new ARTICULO() { ARTICULO1 = "El SKU '" + ii.SKU + "' no existe en el sistema.", EQUIPO = new EQUIPO() { EQUIPO_NAME = "1" } });
-                            }
+                            AuxArticulosFaltantes.Add("El SKU '" + ii.SKU + "' no existe en el sistema.");
+                            ArticulosFaltantes.Add(new ARTICULO() { ARTICULO1 = "El SKU '" + ii.SKU + "' no existe en el sistema.", EQUIPO = new EQUIPO() { EQUIPO_NAME = "1" } });
 
                             ii.CANTIDAD--;
                         } 
@@ -277,43 +275,15 @@ namespace InventoryApp.ViewModel.CatalogInventario
                         if (ExisteRegistro(ii.NUMERO_SERIE))
                         {
                             string aux = GetNameArticulo(ii.NUMERO_SERIE);
-                            if (AuxArticulosFaltantes.Contains(aux))
-                            {
-                                for (int i = 0; i < ArticulosFaltantes.Count; i++)
-                                {
-                                    if (ArticulosFaltantes[i].ARTICULO1.Equals(aux))
-                                    {
-                                        ArticulosFaltantes[i].EQUIPO.EQUIPO_NAME = (Int32.Parse(ArticulosFaltantes[i].EQUIPO.EQUIPO_NAME) + 1).ToString();
-                                    }
-                                }
-                            }
-                            else
-                            {
-
-                                AuxArticulosFaltantes.Add(aux);
-                                ArticulosFaltantes.Add(new ARTICULO() { ARTICULO1 = aux, EQUIPO = new EQUIPO() { EQUIPO_NAME = "1" } });
-                            }
+                            AuxArticulosFaltantes.Add(aux);
+                            ArticulosFaltantes.Add(new ARTICULO() { ARTICULO1 = aux, EQUIPO = new EQUIPO() { EQUIPO_NAME = "1" }, CATEGORIA = new CATEGORIA() { CATEGORIA_NAME = ii.SKU }, MODELO = new MODELO() { MODELO_NAME = ii.NUMERO_SERIE},  });                   
 
                             ii.CANTIDAD--;
                         }
                         else
                         {
-
-                            if (AuxArticulosFaltantes.Contains("El número dde serie '" + ii.NUMERO_SERIE + "' no existe en el sistema."))
-                            {
-                                for (int i = 0; i < ArticulosFaltantes.Count; i++)
-                                {
-                                    if (ArticulosFaltantes[i].ARTICULO1.Equals("El número dde serie '" + ii.NUMERO_SERIE + "' no existe en el sistema."))
-                                    {
-                                        ArticulosFaltantes[i].EQUIPO.EQUIPO_NAME = (Int32.Parse(ArticulosFaltantes[i].EQUIPO.EQUIPO_NAME) + 1).ToString();
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                AuxArticulosFaltantes.Add("El número dde serie '" + ii.NUMERO_SERIE + "' no existe en el sistema.");
-                                ArticulosFaltantes.Add(new ARTICULO() { ARTICULO1 = "El número dde serie '" + ii.NUMERO_SERIE + "' no existe en el sistema.", EQUIPO = new EQUIPO() { EQUIPO_NAME = "1" } });
-                            }
+                            AuxArticulosFaltantes.Add("El número dde serie '" + ii.NUMERO_SERIE + "' no existe en el sistema.");
+                            ArticulosFaltantes.Add(new ARTICULO() { ARTICULO1 = "El número dde serie '" + ii.NUMERO_SERIE + "' no existe en el sistema.", EQUIPO = new EQUIPO() { EQUIPO_NAME = "1" }, CATEGORIA = new CATEGORIA() { CATEGORIA_NAME = ii.SKU }, MODELO = new MODELO() { MODELO_NAME = ii.NUMERO_SERIE } });                   
 
                             ii.CANTIDAD--;
                         }
@@ -355,27 +325,98 @@ namespace InventoryApp.ViewModel.CatalogInventario
                     borders = excel.Range[excel.Cells[X, 2], excel.Cells[X, 3]].Borders;
                     borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
                     //ARTÍCULO																															
-                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 35]].Merge();
-                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 35]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 22]].Merge();
+                    excel.Range[excel.Cells[X, 4], excel.Cells[X, 22]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                     excel.Cells[X, 4] = ArtExcel[i].ARTICULO1;
-                    borders = excel.Range[excel.Cells[X, 4], excel.Cells[X, 35]].Borders;
+                    borders = excel.Range[excel.Cells[X, 4], excel.Cells[X, 22]].Borders;
                     borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                    //CANTIDAD					
+                    //SKU					
+                    excel.Range[excel.Cells[X, 23], excel.Cells[X, 28]].Merge();
+                    excel.Range[excel.Cells[X, 23], excel.Cells[X, 28]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    if (ArtExcel[i].CATEGORIA != null && ArtExcel[i].CATEGORIA.CATEGORIA_NAME != null)
+                        excel.Cells[X, 23] = ArtExcel[i].CATEGORIA.CATEGORIA_NAME;
+                    borders = excel.Range[excel.Cells[X, 23], excel.Cells[X, 28]].Borders;
+                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    //No. de Serie					
+                    excel.Range[excel.Cells[X, 29], excel.Cells[X, 35]].Merge();
+                    excel.Range[excel.Cells[X, 29], excel.Cells[X, 35]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    if (ArtExcel[i].MODELO != null && ArtExcel[i].MODELO.MODELO_NAME != null)
+                        excel.Cells[X, 29] = ArtExcel[i].MODELO.MODELO_NAME;
+                    borders = excel.Range[excel.Cells[X, 29], excel.Cells[X, 35]].Borders;
+                    borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    //cantidad				
                     excel.Range[excel.Cells[X, 36], excel.Cells[X, 41]].Merge();
                     excel.Range[excel.Cells[X, 36], excel.Cells[X, 41]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                     excel.Cells[X, 36] = ArtExcel[i].EQUIPO.EQUIPO_NAME;
                     borders = excel.Range[excel.Cells[X, 36], excel.Cells[X, 41]].Borders;
                     borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    
+                    ItemDataMapper iaux = new ItemDataMapper();
+
+                    if (IsSKU)
+                    {
+                        //Moneda				
+                        excel.Range[excel.Cells[X, 42], excel.Cells[X, 47]].Merge();
+                        excel.Range[excel.Cells[X, 42], excel.Cells[X, 47]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        if (ArtExcel[i].CATEGORIA != null && ArtExcel[i].CATEGORIA.CATEGORIA_NAME != null)
+                            excel.Cells[X, 42] = iaux.ExcelGetMonedaSKU(ArtExcel[i].CATEGORIA.CATEGORIA_NAME);
+                        borders = excel.Range[excel.Cells[X, 42], excel.Cells[X, 47]].Borders;
+                        borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+
+                        //Tipo de Cambio				
+                        excel.Range[excel.Cells[X, 48], excel.Cells[X, 53]].Merge();
+                        excel.Range[excel.Cells[X, 48], excel.Cells[X, 53]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        if (ArtExcel[i].CATEGORIA != null && ArtExcel[i].CATEGORIA.CATEGORIA_NAME != null)    
+                            excel.Cells[X, 48] = iaux.ExcelGetTcSKU(ArtExcel[i].CATEGORIA.CATEGORIA_NAME);
+                        borders = excel.Range[excel.Cells[X, 48], excel.Cells[X, 53]].Borders;
+                        borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+
+                        //Costo Unitario				
+                        excel.Range[excel.Cells[X, 54], excel.Cells[X, 59]].Merge();
+                        excel.Range[excel.Cells[X, 54], excel.Cells[X, 59]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        if (ArtExcel[i].CATEGORIA != null && ArtExcel[i].CATEGORIA.CATEGORIA_NAME != null)
+                            excel.Cells[X, 54] = iaux.ExcelGetCostoUnitarioSKU(ArtExcel[i].CATEGORIA.CATEGORIA_NAME).ToString();
+                        borders = excel.Range[excel.Cells[X, 54], excel.Cells[X, 59]].Borders;
+                        borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    }
+                    else
+                    {
+
+                        //Moneda				
+                        excel.Range[excel.Cells[X, 42], excel.Cells[X, 47]].Merge();
+                        excel.Range[excel.Cells[X, 42], excel.Cells[X, 47]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        if (ArtExcel[i].MODELO != null && ArtExcel[i].MODELO.MODELO_NAME != null)
+                            excel.Cells[X, 42] = iaux.ExcelGetMonedaNUMEROSERIE(ArtExcel[i].MODELO.MODELO_NAME);
+                        borders = excel.Range[excel.Cells[X, 42], excel.Cells[X, 47]].Borders;
+                        borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+
+                        //Tipo de Cambio				
+                        excel.Range[excel.Cells[X, 48], excel.Cells[X, 53]].Merge();
+                        excel.Range[excel.Cells[X, 48], excel.Cells[X, 53]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        if (ArtExcel[i].MODELO != null && ArtExcel[i].MODELO.MODELO_NAME != null)
+                            excel.Cells[X, 48] = iaux.ExcelGetTcNUMEROSERIE(ArtExcel[i].MODELO.MODELO_NAME);
+                        borders = excel.Range[excel.Cells[X, 48], excel.Cells[X, 53]].Borders;
+                        borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+
+                        //Costo Unitario				
+                        excel.Range[excel.Cells[X, 54], excel.Cells[X, 59]].Merge();
+                        excel.Range[excel.Cells[X, 54], excel.Cells[X, 59]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                        if (ArtExcel[i].MODELO != null && ArtExcel[i].MODELO.MODELO_NAME != null)
+                            excel.Cells[X, 54] = iaux.ExcelGetCostoUnitarioNUMEROSERIE(ArtExcel[i].MODELO.MODELO_NAME).ToString();
+                        borders = excel.Range[excel.Cells[X, 54], excel.Cells[X, 59]].Borders;
+                        borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    }
+                    
                     //ESTATUS					
-                    excel.Range[excel.Cells[X, 42], excel.Cells[X, 48]].Merge();
-                    excel.Range[excel.Cells[X, 42], excel.Cells[X, 48]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                    excel.Range[excel.Cells[X, 60], excel.Cells[X, 66]].Merge();
+                    excel.Range[excel.Cells[X, 60], excel.Cells[X, 66]].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
 
                     if (Int32.Parse(ArtExcel[i].EQUIPO.EQUIPO_NAME) > 0)
-                        excel.Cells[X, 42] = "Artículo en existencia";
+                        excel.Cells[X, 60] = "Artículo en existencia";
                     else
-                        excel.Cells[X, 42] = "Artículo extraviado";
+                        excel.Cells[X, 60] = "Artículo extraviado";
 
-                    borders = excel.Range[excel.Cells[X, 42], excel.Cells[X, 48]].Borders;
+                    borders = excel.Range[excel.Cells[X, 60], excel.Cells[X, 66]].Borders;
                     borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
                     X++;
                 }

@@ -31,5 +31,24 @@ namespace InventoryApp.DAL.CatalogInventario
             }
         }
 
+        public void insert(INVENTARIO inventario, USUARIO u)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                inventario.UNID_INVENTARIO = UNID.getNewUNID();
+                //Sync
+                inventario.IS_MODIFIED = true;
+                inventario.IS_ACTIVE = true;
+                inventario.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                var modifiedSync = entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                entity.SaveChanges();
+                //
+                entity.INVENTARIOs.AddObject(inventario);
+                entity.SaveChanges();
+                //Master
+                UNID.Master(inventario, u, -1, "Inserción");
+            }
+        }
     }
 }

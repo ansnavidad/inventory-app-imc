@@ -692,12 +692,134 @@ namespace InventoryApp.DAL
                 
                 foreach (ULTIMO_MOVIMIENTO uu in query) {
 
+                    if (uu.ITEM.SKU == null)
+                        uu.ITEM.SKU = "";
+                    if (uu.ITEM.NUMERO_SERIE == null)
+                        uu.ITEM.NUMERO_SERIE = "";
+
                     result.Add(new ITEM() { CANTIDAD = uu.CANTIDAD, NUMERO_SERIE = uu.ITEM.NUMERO_SERIE, SKU = uu.ITEM.SKU, ARTICULO = new ARTICULO() { ARTICULO1= uu.ITEM.ARTICULO.ARTICULO1 } });
                 }
 
                 return result;
             }
         }
+
+
+
+
+
+
+        public string ExcelGetCostoUnitarioSKU(string s)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var query = (from items in entity.ITEMs
+                             where items.SKU.Equals(s)
+                             select items).ToList();
+
+                if (query.Count > 0)
+                    return query[0].COSTO_UNITARIO.ToString();
+                return "";
+            }
+        }
+
+        public string ExcelGetCostoUnitarioNUMEROSERIE(string s)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var query = (from items in entity.ITEMs
+                             where items.NUMERO_SERIE.Equals(s)
+                             select items).ToList();
+
+                if (query.Count > 0)
+                    return query[0].COSTO_UNITARIO.ToString();
+                return "";
+            }
+        }
+
+
+
+
+
+
+
+
+        public string ExcelGetMonedaSKU(string s)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var query = (from items in entity.ITEMs
+                             .Include("FACTURA_DETALLE.FACTURA.MONEDA.MONEDA_ABR")
+                             .Include("FACTURA.MONEDA.MONEDA_ABR")
+                             .Include("MONEDA.MONEDA_ABR")
+                             .Include("MONEDA_ABR")
+                             where items.SKU.Equals(s)
+                             select items.FACTURA_DETALLE.FACTURA.MONEDA.MONEDA_ABR).ToList();
+
+                if (query.Count > 0)
+                    return query[0].ToString();
+                return "";
+            }
+        }
+
+        public string ExcelGetMonedaNUMEROSERIE(string s)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var query = (from items in entity.ITEMs
+                             .Include("FACTURA_DETALLE.FACTURA.MONEDA.MONEDA_ABR")
+                             .Include("FACTURA.MONEDA.MONEDA_ABR")
+                             .Include("MONEDA.MONEDA_ABR")
+                             .Include("MONEDA_ABR")
+                             where items.NUMERO_SERIE.Equals(s)
+                             select items.FACTURA_DETALLE.FACTURA.MONEDA.MONEDA_ABR).ToList();
+
+                if (query.Count > 0)
+                    return query[0].ToString();
+                return "";
+            }
+        }
+
+        public string ExcelGetTcNUMEROSERIE(string s)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var query = (from items in entity.ITEMs
+                             .Include("FACTURA_DETALLE.FACTURA.MONEDA.MONEDA_ABR")
+                             .Include("FACTURA.MONEDA.MONEDA_ABR")
+                             .Include("MONEDA.MONEDA_ABR")
+                             .Include("MONEDA_ABR")
+                             where items.NUMERO_SERIE.Equals(s)
+                             select items.FACTURA_DETALLE.FACTURA.TC).ToList();
+
+                if (query.Count > 0)
+                    return query[0].ToString();
+                return "";
+            }
+        }
+
+
+        public string ExcelGetTcSKU(string s)
+        {
+            using (var entity = new TAE2Entities())
+            {
+                var query = (from items in entity.ITEMs
+                             .Include("FACTURA_DETALLE.FACTURA.MONEDA.MONEDA_ABR")
+                             .Include("FACTURA.MONEDA.MONEDA_ABR")
+                             .Include("MONEDA.MONEDA_ABR")
+                             .Include("MONEDA_ABR")
+                             where items.SKU.Equals(s)
+                             select items.FACTURA_DETALLE.FACTURA.TC).ToList();
+
+                if (query.Count > 0)
+                    return query[0].ToString();
+                return "";
+            }
+        }
+
+
+
+
 
         public bool ExistSKU(string s)
         {

@@ -168,8 +168,8 @@ namespace InventoryApp.View
         {
             LoginView ds = new LoginView();
             LoginViewModel viewModel = new LoginViewModel();
-            viewModel.SetLoginViewModel();
-            viewModel.start();
+            //viewModel.SetLoginViewModel();
+            //viewModel.start();
             ds.DataContext = viewModel;            
             ds.Show();
             this.Close();

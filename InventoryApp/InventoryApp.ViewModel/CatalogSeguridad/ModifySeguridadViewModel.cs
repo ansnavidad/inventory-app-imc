@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using InventoryApp.DAL;
 using InventoryApp.DAL.POCOS;
 using InventoryApp.ViewModel.Historial;
+using System.Windows.Forms;
 
 namespace InventoryApp.ViewModel.CatalogSeguridad
 {
@@ -31,6 +32,8 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         private RelayCommand _GuardarRol;
         private void AttemptGuardarRol()
         {
+            
+            
             RolActual.UsuariosCollection = new ObservableCollection<Rol.User>();
 
             foreach (Usuario u in UsuariosCollection) {
@@ -46,9 +49,24 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
 
             MenuAgregar();
             RolActual.modifyRol();
+
+            _catalogSeguridadViewModel2.RolesCollection = _catalogSeguridadViewModel2.GetRols();
         }
         private bool CanAttemptGuardarRol()
         {
+            foreach (ROL rrr in _ExistingRols)
+            {
+
+                if (rrr.ROL_NAME.Equals(this.RolActual.Name))
+                {
+                    if (cccc)
+                    {
+                        cccc = false;
+                        MessageBox.Show("El nombre del Rol ya existe en el sistema, favor de cambiarlo.");                        
+                    }
+                    return false;
+                }
+            }
             if (!String.IsNullOrEmpty(RolActual.Name) && MenuSelected() && UsuarioSelected())
                 return true;
             return false;            
@@ -127,11 +145,44 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
             return false;
         }
 
+        public ICommand Cerrar
+        {
+            get
+            {
+                if (_Cerrar == null)
+                {
+                    _Cerrar = new RelayCommand(p => this.AttemptCerrar(), p => this.CanAttemptCerrar());
+                }
+                return _Cerrar;
+            }
+        }
+        private RelayCommand _Cerrar;
+        private void AttemptCerrar()
+        {
+            this.RolActual.RecibirMails = IsMail;
+            this.RolActual.Name = NombreRol;
+
+            this._catalogSeguridadViewModel.SelectedRol.Name = NombreRol;
+            this._catalogSeguridadViewModel.SelectedRol.RecibirMails = IsMail;
+        }
+        private bool CanAttemptCerrar()
+        {
+            return true;
+        }
+
         #endregion
 
         #region Properties
+
+        private bool cccc;
+        private bool IsMail;
+        private string NombreRol;
+
         public USUARIO ActualUser;
+        private ObservableCollection<ROL> _ExistingRols;
+
         CatalogSeguridadViewModel _catalogSeguridadViewModel;
+        CatalogSeguridadViewModel _catalogSeguridadViewModel2;
         Queue<MenuModel> ColaMenu;
         Queue<MenuModel> ColaMenuAgregar;
         Queue<MenuModel> ColaMenuInicial;
@@ -144,6 +195,7 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
                 if (_RolActual != value)
                 {
                     _RolActual = value;
+                    cccc = true;
                     OnPropertyChanged(RolActualPropertyName);
                 }
             }
@@ -187,9 +239,9 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
 
         public ModifySeguridadViewModel(CatalogSeguridadViewModel catalogSeguridadViewModel)
         {
-            this._catalogSeguridadViewModel = catalogSeguridadViewModel;
+            this._catalogSeguridadViewModel = catalogSeguridadViewModel.Clone();
+            this._catalogSeguridadViewModel2 = catalogSeguridadViewModel;
             this.RolActual = this._catalogSeguridadViewModel.SelectedRol;
-            this.RolActual.ActualUser = catalogSeguridadViewModel.ActualUser;
             this.MenuViewModel = new MenuViewModel(this._catalogSeguridadViewModel.IsSuperAdmin);
             this.CargaMenuInicial();
 
@@ -197,6 +249,10 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
             this.UsuariosCollection = this.GetUsers();
             this.CargaUsuariosInicial();
             this.ActualUser = catalogSeguridadViewModel.ActualUser;
+
+            this.IsMail = catalogSeguridadViewModel.SelectedRol.RecibirMails;
+            this.NombreRol = catalogSeguridadViewModel.SelectedRol.Name;
+            this._ExistingRols = GetExistingRols();
         }
 
         #endregion
@@ -225,11 +281,19 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
         }
 
         public void CargaMenuInicial() {
+            foreach (Rol.Menu m in this.RolActual.MenuCollection)
+                {
 
-            foreach (Rol.Menu m in this.RolActual.MenuCollection) {
+                    BuscaNombre(m.MenuName);
+                }
+            
+        }
 
-                BuscaNombre(m.MenuName);        
-            }
+        public ObservableCollection<ROL> GetExistingRols()
+        {
+
+            AppRolDataMapper app = new AppRolDataMapper();
+            return (ObservableCollection<ROL>)app.getElementsDif(this.RolActual.UnidRol);
         }
 
         public void BuscaNombre(string s) {

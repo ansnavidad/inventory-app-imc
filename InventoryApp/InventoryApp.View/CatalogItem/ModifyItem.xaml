@@ -139,7 +139,7 @@
                     <Label Grid.Row="2" Content="SKU:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" 
                        HorizontalAlignment="Right" Name="label11" VerticalAlignment="Center" Foreground="#848484" />
                     <TextBox Grid.Column="1" Grid.Row="2" TabIndex="11" Height="23" HorizontalAlignment="Left" MaxLength="32" Name="textBoxGuía"
-                             Text="{Binding Sku, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
+                             Text="{Binding Sku, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" Margin="0,5,0,3" />
                     <Label Content="Buscar Item :" Grid.RowSpan="2" Height="28" HorizontalAlignment="Left" FontFamily="Arial Rounded MT" FontSize="15" 
                            Name="label5" VerticalAlignment="Top" FontStretch="Normal" Foreground="#848484" />
                     <Button  Grid.Column="3"  Grid.Row="1" Command="{Binding ModifyItemCommand, Mode=OneWay}" Content="Buscar" HorizontalAlignment="Stretch" 
@@ -163,7 +163,7 @@
                         <ColumnDefinition Width="120"/>
                         <ColumnDefinition Width="190"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="2" Content="Proveedor:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" 
+                    <Label Grid.Row="2" Content="Proveedor:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Visibility="Hidden"
                            Foreground="#848484" HorizontalAlignment="Right" Name="categotia" VerticalAlignment="Center" Grid.Column="3" />
                     <CheckBox Grid.Column="3" TabIndex="7" Content="Propiedad :" Height="16" Name="checkBox1" FontFamily="Arial Rounded MT" FontSize="11.5"
                               FontStretch="Normal" Foreground="#848484" VerticalAlignment="Center" IsChecked="{Binding Path=PropiedadBool, Mode=TwoWay}" Checked="checkBox1_Checked" HorizontalAlignment="Right"  Grid.Row="1" />
@@ -173,7 +173,7 @@
                               DisplayMemberPath="PROPIEDAD1" SelectedValuePath="UNID_PROPIEDAD"
                               IsEnabled="{Binding Path=PropiedadBool, Mode=TwoWay}"
                               Grid.Row="1" Height="23" HorizontalAlignment="Left" Grid.Column="4" TabIndex="8"   
-                              Name="comboPropiedad" VerticalAlignment="Center" Width="180"  />
+                              Name="comboPropiedad" VerticalAlignment="Center" Width="180" Margin="0,7,0,29" Grid.RowSpan="2" />
                     <Label Content="Número de Serie:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" 
                            HorizontalAlignment="Right" Name="label3" VerticalAlignment="Center" Grid.Row="1" />
                     <TextBox Height="23" HorizontalAlignment="Left" MaxLength="512" Name="textBox1" TabIndex="1"  Width="180" Grid.Column="1"
@@ -186,12 +186,12 @@
                     <Label Content="Editar Item :" FontFamily="Arial Rounded MT" FontSize="15" FontStretch="Normal" Foreground="#848484" Height="28" 
                            HorizontalAlignment="Left" Name="label6" VerticalAlignment="Center" />
                     <TextBox Grid.Column="4" Grid.Row="2" Height="23" HorizontalAlignment="Left" IsEnabled="False"
-                             Name="textBlock4" Text="{Binding ProveedorModel, Mode=TwoWay}" VerticalAlignment="Center" Width="180"  />
+                             Name="textBlock4" Text="{Binding ProveedorModel, Mode=TwoWay}" VerticalAlignment="Center" Width="180" Visibility="Hidden" />
                 </Grid>
                 
-                <DataGrid Grid.Row="4" CanUserAddRows="False" AutoGenerateColumns="False" Height="90" HorizontalAlignment="Stretch" 
-                          ItemsSource="{Binding ItemModelCollection}" Name="dataGridItme" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
-                          Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+                <DataGrid Grid.Row="4" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Stretch" 
+                          ItemsSource="{Binding ItemModelCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="dataGridItme" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
+                          Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" Margin="0,0,0,2" Grid.RowSpan="4">
                     <DataGrid.Columns>
                         
                         
@@ -253,7 +253,6 @@
                         <DataGridTextColumn x:Name="costoUnitario" Binding="{Binding Path=CostoUnitario, StringFormat=C2, Mode=TwoWay}" Header="Costo Unitario" IsReadOnly="False" Width="*" />
                     </DataGrid.Columns>
                 </DataGrid>
-                <Border Grid.Row="5" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                 <Grid Grid.Row="6">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="145"/>
@@ -264,16 +263,16 @@
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="1" Command="{Binding DeleteFacturaCommand, Mode=OneWay}" Content="Borrar Factura" Height="23" 
                             Name="button5" TabIndex="14" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" 
-                            Style="{StaticResource btnElara}"  />
-                    <Button  Content="Crear Factura" Height="23" HorizontalAlignment="Center" 
+                            Style="{StaticResource btnElara}" Visibility="Hidden" />
+                    <Button  Content="Crear Factura" Height="23" HorizontalAlignment="Center" Visibility="Hidden"
                              Name="button7" Style="{StaticResource btnElara}" TabIndex="14" VerticalAlignment="Center" Width="120"
                              Grid.Column="4"  IsEnabled="{Binding Path=FillWithItemDetalles}" Click="button7_Click" />
-                    <Button Content="Enlazar Factura" Height="23" HorizontalAlignment="Center" Command="{Binding Path=AddFacturaCommand}"
+                    <Button Content="Enlazar Factura" Height="23" HorizontalAlignment="Center" Command="{Binding Path=AddFacturaCommand}" Visibility="Hidden"
                             Name="button8" Style="{StaticResource btnElara}" TabIndex="14" VerticalAlignment="Center" Width="120" 
                             IsEnabled="{Binding Path=FillWithItemDetalles}" Click="button8_Click" />
                 </Grid>
                 <DataGrid Grid.Row="7" VerticalScrollBarVisibility="Auto"
-                          AutoGenerateColumns="False" ItemsSource="{Binding FacturaCollection}" CanUserAddRows="False"
+                          AutoGenerateColumns="False" ItemsSource="{Binding FacturaCollection}" CanUserAddRows="False" Visibility="Hidden"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
                           Height="90" HorizontalAlignment="Stretch" Name="dataGrid1" VerticalAlignment="Stretch">
                     <DataGrid.Columns>
@@ -294,7 +293,7 @@
                 <Border Grid.Row="8" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                 
                 <DataGrid Grid.Row="10" CanUserAddRows="False" AutoGenerateColumns="False" Height="120" HorizontalAlignment="Stretch" 
-                          ItemsSource="{Binding UltimoMovimiento}" Name="dataGrid2" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
+                          ItemsSource="{Binding UltimoMovimiento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="dataGrid2" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto"
                           Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
                     <DataGrid.Columns>
                         

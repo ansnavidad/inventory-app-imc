@@ -69,6 +69,7 @@
     <Compile Include="CatalogEmpresaModel.cs" />
     <Compile Include="CatalogEquipoModel.cs" />
     <Compile Include="CatalogInfraestructuraModel.cs" />
+    <Compile Include="CatalogInventario\Descriptor.cs" />
     <Compile Include="CatalogInventario\InventarioModel.cs" />
     <Compile Include="CatalogItemStatusModel.cs" />
     <Compile Include="CatalogMarcaModel.cs" />

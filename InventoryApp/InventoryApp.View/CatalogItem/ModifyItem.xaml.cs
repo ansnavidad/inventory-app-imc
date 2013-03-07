@@ -35,12 +35,17 @@ namespace InventoryApp.View.CatalogItem
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("El item ha sido modificado");            
+            MessageBox.Show("El item ha sido modificado");
+            this.comboPropiedad.IsEnabled = false;
+            this.checkBox1.IsChecked = false;
         }
 
         private void checkBox1_Checked(object sender, RoutedEventArgs e)
         {
-                     
+            if (checkBox1.IsChecked == true)
+                comboPropiedad.IsEnabled = true;
+            else
+                comboPropiedad.IsEnabled = false;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

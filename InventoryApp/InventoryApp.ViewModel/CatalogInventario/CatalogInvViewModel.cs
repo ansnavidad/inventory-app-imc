@@ -84,7 +84,7 @@ namespace InventoryApp.ViewModel.CatalogInventario
 
             long segmentoAux = 0;
             InventarioModel fin = new InventarioModel();
-            fin.Descriptores = new ObservableCollection<InventarioModel.Descriptor>();
+            fin.Descriptores = new ObservableCollection<Descriptor>();
 
             if(aux != null && aux.Count > 0)
                 segmentoAux = aux[0].UNID_SEGMENTO;
@@ -96,7 +96,7 @@ namespace InventoryApp.ViewModel.CatalogInventario
                     res.Add(fin);
                     segmentoAux = ii.UNID_SEGMENTO;
                     fin = new InventarioModel();
-                    fin.Descriptores = new ObservableCollection<InventarioModel.Descriptor>();
+                    fin.Descriptores = new ObservableCollection<Descriptor>();
                 }
 
                 fin.UnidSegmento = ii.UNID_SEGMENTO;
@@ -104,8 +104,8 @@ namespace InventoryApp.ViewModel.CatalogInventario
                 fin.IsChecked = false;
                 fin.Finished = ii.FINISHED;
                 fin.Fecha = ii.FECHA;
-                InventoryApp.Model.CatalogInventario.InventarioModel.Descriptor dd = new InventarioModel.Descriptor();
-                dd.Desc = ii.DESCRIPTOR;
+                Descriptor dd = new Descriptor();
+                dd.DescriptorName = ii.DESCRIPTOR;
                 dd.IsChecked = false;
                 fin.Descriptores.Add(dd);
                 fin.Cantidad = fin.Descriptores.Count;

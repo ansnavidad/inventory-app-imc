@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using InventoryApp.DAL;
 using InventoryApp.ViewModel.CatalogUsuarios;
 using InventoryApp.ViewModel.Historial;
+using System.Windows.Forms;
 
 namespace InventoryApp.ViewModel.CatalogSeguridad
 {
@@ -48,9 +49,24 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
             //valida si se iso una intancia de desde usuario
             if (_addUsuarioViewModel!=null)
                 AddRolUser();
+            
         }
         private bool CanAttemptGuardarRol()
         {
+            foreach (ROL rrr in _ExistingRols)
+            {
+
+                if (rrr.ROL_NAME.Equals(this.RolActual.Name))
+                {
+                    if (cccc)
+                    {
+                        cccc = false;
+                        MessageBox.Show("El nombre del Rol ya existe en el sistema, favor de cambiarlo.");
+                    }
+                    return false;
+                }
+            }
+
             if (!String.IsNullOrEmpty(RolActual.Name) && MenuSelected() && UsuarioSelected())
                 return true;
             return false;
@@ -132,7 +148,10 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
 
         #region Properties
 
+        private bool cccc;
         private USUARIO ActualUser;
+        private ObservableCollection<ROL> _ExistingRols;
+
         CatalogSeguridadViewModel _catalogSeguridadViewModel;
         Queue<MenuModel> ColaMenu;
         Queue<MenuModel> ColaMenuAgregar;
@@ -145,6 +164,7 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
                 if (_RolActual != value)
                 {
                     _RolActual = value;
+                    cccc = true;
                     OnPropertyChanged(RolActualPropertyName);
                 }
             }
@@ -196,6 +216,7 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
             this._MenuViewModel = new MenuViewModel(this._catalogSeguridadViewModel.IsSuperAdmin);
             this._RolActual = new Rol(catalogSeguridadViewModel.ActualUser);
             this.ActualUser = catalogSeguridadViewModel.ActualUser;
+            this._ExistingRols = GetExistingRols();
         }
 
         //sobrecarga para agregar desde  administracion de usuario un nuevo rol
@@ -209,6 +230,7 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
             this._addUsuarioViewModel = new ModifyUsuarioViewModel();
             this._addUsuarioViewModel = modifyUsuarioViewModel;
             this.ActualUser = modifyUsuarioViewModel.ActualUser;
+            this._ExistingRols = GetExistingRols();
         }
 
         #endregion
@@ -235,7 +257,14 @@ namespace InventoryApp.ViewModel.CatalogSeguridad
             }
 
             return res;
-        }   
+        }
+
+        public ObservableCollection<ROL> GetExistingRols()
+        {
+
+            AppRolDataMapper app = new AppRolDataMapper();
+            return (ObservableCollection<ROL>)app.getElements();
+        }
 
         #endregion
 

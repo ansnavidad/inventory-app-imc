@@ -40,10 +40,10 @@
                 <DataGridTextColumn Header="Almacén" Width="1*" x:Name="totalItems2" Binding="{Binding Path=SelectedAlmacen.ALMACEN_NAME}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Fecha de la última modificación" Width="*" x:Name="totalItems2trololo" Binding="{Binding Path=Fecha}" IsReadOnly="True"/>
 
-                <DataGridTemplateColumn Header="Finalizado" Width="*">
+                <DataGridTemplateColumn Header="Finalizado" Width="*" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=Finished,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=Finished,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

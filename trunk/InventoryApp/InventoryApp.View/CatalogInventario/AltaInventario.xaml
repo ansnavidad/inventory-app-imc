@@ -72,9 +72,7 @@
                     <DataGridTextColumn Header="Descriptor - (SKU o Número de serie)" Width="auto" x:Name="nombreProyecto2" Binding="{Binding Path=DescriptorName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False"/>
                 </DataGrid.Columns>
             </DataGrid>
-
-
-
+            <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Margin="591,0,6,513" Name="button4" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Width="75" Grid.Column="1" Command="{Binding EliminarCommand}" />
         </Grid>
         <Border Grid.Row="5" Grid.ColumnSpan="4" Style="{StaticResource titleBorder2}">
             <Grid >

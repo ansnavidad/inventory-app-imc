@@ -50,6 +50,7 @@ namespace InventoryApp.ViewModel.CatalogUsuarios
             this._addrol = new CatalogRolModel(new AppRolDataMapper());
             this._modifyUsuarioViewModel = modifyUsuarioViewModel;
         }
+
         #endregion
 
         public bool CanAttempAddRol()

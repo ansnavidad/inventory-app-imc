@@ -188,15 +188,15 @@ namespace InventoryApp.ViewModel.Sync
                     }
                 }
 
-                if (res)
-                {
-                    this.Message = "Enviando ROL_MENU ...";
-                    res = CallServiceRolMenu();
-                    if (res)
-                    {
-                        rolMenuDataMapper.ResetRolMenu();
-                    }
-                }
+                //if (res)
+                //{
+                //    this.Message = "Enviando ROL_MENU ...";
+                //    res = CallServiceRolMenu();
+                //    if (res)
+                //    {
+                //        rolMenuDataMapper.ResetRolMenu();
+                //    }
+                //}
 
                 if (res)
                 {
@@ -208,15 +208,15 @@ namespace InventoryApp.ViewModel.Sync
                     }
                 }
 
-                if (res)
-                {
-                    this.Message = "Enviando USUARIO_ROL ...";
-                    res = CallServiceUsuarioRol();
-                    if (res)
-                    {
-                        usuarioRolDataMapper.ResetUsuarioRol();
-                    }
-                }
+                //if (res)
+                //{
+                //    this.Message = "Enviando USUARIO_ROL ...";
+                //    res = CallServiceUsuarioRol();
+                //    if (res)
+                //    {
+                //        usuarioRolDataMapper.ResetUsuarioRol();
+                //    }
+                //}
 
                 #endregion
 

@@ -38,5 +38,24 @@ namespace InventoryApp.View.CatalogInventario
             CatalogInvViewModel viewModel = dataSource as CatalogInvViewModel;
             return viewModel;
         }
+
+        private void dtGridMovimiento_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender != null)
+            {
+                DataGrid dg = sender as DataGrid;
+                if (dg != null && dg.SelectedItems != null && dg.SelectedItems.Count == 1)
+                {
+                    ModificacionInventario dlgModifyFacturaView = new ModificacionInventario();
+                    CatalogInvViewModel viewModel = this.ConvertDataContext(this.DataContext);
+                    ModifyInventarioViewModel mfvm = viewModel.CreateModifyInventarioViewModel();
+                    if (mfvm != null)
+                    {
+                        dlgModifyFacturaView.DataContext = mfvm;
+                        dlgModifyFacturaView.ShowDialog();
+                    }
+                }
+            }
+        }
     }
 }

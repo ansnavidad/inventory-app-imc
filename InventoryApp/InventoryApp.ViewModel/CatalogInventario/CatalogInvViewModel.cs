@@ -99,16 +99,31 @@ namespace InventoryApp.ViewModel.CatalogInventario
                     fin.Descriptores = new ObservableCollection<Descriptor>();
                 }
 
-                fin.UnidSegmento = ii.UNID_SEGMENTO;
-                fin.SelectedAlmacen = ii.ALMACEN;
-                fin.IsChecked = false;
-                fin.Finished = ii.FINISHED;
-                fin.Fecha = ii.FECHA;
-                Descriptor dd = new Descriptor();
-                dd.DescriptorName = ii.DESCRIPTOR;
-                dd.IsChecked = false;
-                fin.Descriptores.Add(dd);
-                fin.Cantidad = fin.Descriptores.Count;
+                bool auxbool = true;
+                for (int i = 0; i < fin.Descriptores.Count; i++) {
+
+                    if (fin.Descriptores[i].DescriptorName.Equals(ii.DESCRIPTOR))
+                    {
+                        fin.Descriptores[i].Cantidad++;
+                        fin.Cantidad = fin.Descriptores.Sum(p => p.Cantidad);
+                        auxbool = false;
+                    }
+                }
+                
+                if (auxbool)
+                {
+                    fin.UnidSegmento = ii.UNID_SEGMENTO;
+                    fin.SelectedAlmacen = ii.ALMACEN;
+                    fin.IsChecked = false;
+                    fin.Finished = ii.FINISHED;
+                    fin.Fecha = ii.FECHA;
+                    Descriptor dd = new Descriptor();
+                    dd.DescriptorName = ii.DESCRIPTOR;
+                    dd.IsChecked = false;
+                    dd.Cantidad = 1;
+                    fin.Descriptores.Add(dd);
+                    fin.Cantidad = fin.Descriptores.Sum(p => p.Cantidad);
+                }
             }
 
             res.Add(fin);
@@ -126,6 +141,13 @@ namespace InventoryApp.ViewModel.CatalogInventario
             {
                 throw new NotImplementedException();
             }
+        }
+        public ModifyInventarioViewModel CreateModifyInventarioViewModel()
+        {
+            if (this.SelectedInventario != null)
+                return new ModifyInventarioViewModel(this);
+            else
+                return null;
         }
 
         #endregion

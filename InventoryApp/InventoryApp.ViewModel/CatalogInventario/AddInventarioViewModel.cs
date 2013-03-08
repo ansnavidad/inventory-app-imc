@@ -52,9 +52,11 @@ namespace InventoryApp.ViewModel.CatalogInventario
                 if (!String.IsNullOrEmpty(ii.DescriptorName))
                 {
                     InventarioDataMapper iDM = new InventarioDataMapper();
-                    iDM.insert(new INVENTARIO() { DESCRIPTOR = ii.DescriptorName, UNID_SEGMENTO = UnidSegmento, UNID_ALMACEN = this.SelectedAlmacen.UNID_ALMACEN, FECHA = d, FINISHED = true }, this.ActualUser);
+                    for (int i = 0; i < ii.Cantidad; i++)
+                        iDM.insert(new INVENTARIO() { DESCRIPTOR = ii.DescriptorName, UNID_SEGMENTO = UnidSegmento, UNID_ALMACEN = this.SelectedAlmacen.UNID_ALMACEN, FECHA = d, FINISHED = true }, this.ActualUser);
                 }
             }
+            this.catalogInvViewModel.InventarioCollection = this.catalogInvViewModel.GetInventarios();
         }
 
         public ICommand GuardarCommand
@@ -75,11 +77,11 @@ namespace InventoryApp.ViewModel.CatalogInventario
             {
                 if (!String.IsNullOrEmpty(this.DescriptorCollection[this.DescriptorCollection.Count - 1].DescriptorName))
                 {
-                    this.DescriptorCollection.Add(new Model.CatalogInventario.Descriptor() { DescriptorName = "", IsChecked = false });
+                    this.DescriptorCollection.Add(new Model.CatalogInventario.Descriptor() { DescriptorName = "", IsChecked = false, Cantidad = 1 });
                 }
             }
             else if (this.DescriptorCollection.Count == 0)
-                this.DescriptorCollection.Add(new Model.CatalogInventario.Descriptor() { DescriptorName = "", IsChecked = false });  
+                this.DescriptorCollection.Add(new Model.CatalogInventario.Descriptor() { DescriptorName = "", IsChecked = false, Cantidad = 1 });  
 
             return true;
         }
@@ -94,9 +96,12 @@ namespace InventoryApp.ViewModel.CatalogInventario
                 if (!String.IsNullOrEmpty(ii.DescriptorName))
                 {
                     InventarioDataMapper iDM = new InventarioDataMapper();
-                    iDM.insert(new INVENTARIO(){ DESCRIPTOR = ii.DescriptorName, UNID_SEGMENTO = UnidSegmento, UNID_ALMACEN = this.SelectedAlmacen.UNID_ALMACEN, FECHA = d, FINISHED = false  }, this.ActualUser);
+                    for (int i = 0; i < ii.Cantidad; i++ )
+                        iDM.insert(new INVENTARIO() { DESCRIPTOR = ii.DescriptorName, UNID_SEGMENTO = UnidSegmento, UNID_ALMACEN = this.SelectedAlmacen.UNID_ALMACEN, FECHA = d, FINISHED = false }, this.ActualUser);
                 }
             }
+
+            this.catalogInvViewModel.InventarioCollection = this.catalogInvViewModel.GetInventarios();
         }
 
         public ICommand EliminarCommand
@@ -158,9 +163,13 @@ namespace InventoryApp.ViewModel.CatalogInventario
                 if (!String.IsNullOrEmpty(ii.DescriptorName))
                 {
                     if (IsSKU)
-                        Capturados.Add(new ITEM() { SKU = ii.DescriptorName, CANTIDAD = 1 });
+                    {
+                        Capturados.Add(new ITEM() { SKU = ii.DescriptorName, CANTIDAD = ii.Cantidad });
+                    }
                     else
-                        Capturados.Add(new ITEM() { NUMERO_SERIE = ii.DescriptorName, CANTIDAD = 1 });
+                    {
+                        Capturados.Add(new ITEM() { NUMERO_SERIE = ii.DescriptorName, CANTIDAD = ii.Cantidad });
+                    }
                 }
             }
 
@@ -178,11 +187,11 @@ namespace InventoryApp.ViewModel.CatalogInventario
                                 Existentes[i].CANTIDAD--;
                                 Capturados[j].CANTIDAD--;
 
-                                if (Existentes[i].CANTIDAD == 0)
+                                if (Existentes[i].CANTIDAD <= 0)
                                 {
                                     Existentes.RemoveAt(i);                                    
                                 }
-                                if (Capturados[j].CANTIDAD == 0)
+                                if (Capturados[j].CANTIDAD <= 0)
                                 {
                                     Capturados.RemoveAt(j);
                                     j--;
@@ -211,11 +220,11 @@ namespace InventoryApp.ViewModel.CatalogInventario
                                 Existentes[i].CANTIDAD--;
                                 Capturados[j].CANTIDAD--;
 
-                                if (Existentes[i].CANTIDAD == 0)
+                                if (Existentes[i].CANTIDAD <= 0)
                                 {
                                     Existentes.RemoveAt(i);                                    
                                 }
-                                if (Capturados[j].CANTIDAD == 0)
+                                if (Capturados[j].CANTIDAD <= 0)
                                 {
                                     Capturados.RemoveAt(j);
                                     j--;
@@ -442,7 +451,7 @@ namespace InventoryApp.ViewModel.CatalogInventario
 
         #endregion
 
-        #region Properties       
+        #region Properties
 
         bool BotonFinalizar;
         bool BotonImprimir;

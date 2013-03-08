@@ -55,5 +55,10 @@ namespace InventoryApp.View.CatalogInventario
             ModifySeguridadViewModel viewModel = dataSource as ModifySeguridadViewModel;
             return viewModel;
         }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

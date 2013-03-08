@@ -33,7 +33,7 @@
                   ItemsSource="{Binding InventarioCollection}"
                   SelectedItem="{Binding SelectedInventario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}" 
-                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}" SelectionChanged="dtGridMovimiento_SelectionChanged">
             <DataGrid.Columns>
                 
                 <DataGridTextColumn Header="Total Items Capturados" Width="*" x:Name="totalItems" Binding="{Binding Path=Cantidad}" IsReadOnly="True"/>

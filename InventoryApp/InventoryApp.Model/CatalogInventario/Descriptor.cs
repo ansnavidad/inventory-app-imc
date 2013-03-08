@@ -44,6 +44,21 @@ namespace InventoryApp.Model.CatalogInventario
         private bool _IsChecked;
         public const string IsCheckedPropertyName = "IsChecked";
 
+        public int Cantidad
+        {
+            get { return _Cantidad; }
+            set
+            {
+                if (_Cantidad != value)
+                {
+                    _Cantidad = value;
+                    OnPropertyChanged(CantidadPropertyName);
+                }
+            }
+        }
+        private int _Cantidad;
+        public const string CantidadPropertyName = "Cantidad";
+
         #endregion
 
         #region Constructors

@@ -449,6 +449,12 @@ namespace InventoryApp.DAL.POCOS
             get { return _iNVENTARIO_FISICO_DET  ?? (_iNVENTARIO_FISICO_DET = CreateObjectSet<INVENTARIO_FISICO_DET>("INVENTARIO_FISICO_DET")); }
         }
         private ObjectSet<INVENTARIO_FISICO_DET> _iNVENTARIO_FISICO_DET;
+    
+        public ObjectSet<VW_GET_INVENTARIO_FISICO> VW_GET_INVENTARIO_FISICO
+        {
+            get { return _vW_GET_INVENTARIO_FISICO  ?? (_vW_GET_INVENTARIO_FISICO = CreateObjectSet<VW_GET_INVENTARIO_FISICO>("VW_GET_INVENTARIO_FISICO")); }
+        }
+        private ObjectSet<VW_GET_INVENTARIO_FISICO> _vW_GET_INVENTARIO_FISICO;
 
         #endregion
         #region Function Imports

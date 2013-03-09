@@ -309,6 +309,9 @@
     <Compile Include="POCOS\USUARIO_ROL.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
+    <Compile Include="POCOS\VW_GET_INVENTARIO_FISICO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
     <Compile Include="PomArticuloDataMapper.cs" />
     <Compile Include="PomDataMapper.cs" />
     <Compile Include="ProgramadoDataMapper.cs" />
@@ -330,6 +333,7 @@
     <Compile Include="SyncDataMapper.cs" />
     <Compile Include="TecnicoDataMapper.cs" />
     <Compile Include="TerminoEnvioDataMapper.cs" />
+    <Compile Include="TestInvFisDataMapper.cs" />
     <Compile Include="TipoCotizacionDataMapper.cs" />
     <Compile Include="TipoEmpresaDataMapper.cs" />
     <Compile Include="TipoMovimientoDataMapper.cs" />

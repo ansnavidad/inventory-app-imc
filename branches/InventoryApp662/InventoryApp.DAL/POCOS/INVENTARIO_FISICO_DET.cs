@@ -104,6 +104,12 @@ namespace InventoryApp.DAL.POCOS
             get;
             set;
         }
+    
+        public virtual Nullable<bool> IS_ACTIVE
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

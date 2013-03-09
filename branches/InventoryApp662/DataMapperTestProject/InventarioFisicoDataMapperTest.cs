@@ -103,7 +103,7 @@ namespace DataMapperTestProject
 
 
 
-            target.Insert(inventarioFisico);
+            //target.Insert(inventarioFisico);
             Assert.Inconclusive("Un método que no devuelve ningún valor no se puede comprobar.");
         }
     }

@@ -223,6 +223,12 @@
     <Compile Include="Historial\HistorialView.xaml.cs">
       <DependentUpon>HistorialView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InventarioFisico\AddInventarioFisicoView.xaml.cs">
+      <DependentUpon>AddInventarioFisicoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InventarioFisico\InventarioFisicoView.xaml.cs">
+      <DependentUpon>InventarioFisicoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login\BindablePasswordBox.cs" />
     <Compile Include="Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -883,6 +889,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Historial\HistorialView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InventarioFisico\AddInventarioFisicoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InventarioFisico\InventarioFisicoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

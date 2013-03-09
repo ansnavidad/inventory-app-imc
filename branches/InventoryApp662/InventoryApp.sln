@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryApp.Service", "Inv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElaraUpdater", "eVentasUpdater\ElaraUpdater.csproj", "{9871E84B-1F47-4899-BB7D-1C33BFF92DB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataMapperTestProject", "DataMapperTestProject\DataMapperTestProject.csproj", "{C35EB18C-0075-4C6A-8E55-4EC40D050A1A}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -105,6 +107,16 @@ Global
 		{9871E84B-1F47-4899-BB7D-1C33BFF92DB6}.Release|Mixed Platforms.Build.0 = Release|x86
 		{9871E84B-1F47-4899-BB7D-1C33BFF92DB6}.Release|x86.ActiveCfg = Release|x86
 		{9871E84B-1F47-4899-BB7D-1C33BFF92DB6}.Release|x86.Build.0 = Release|x86
+		{C35EB18C-0075-4C6A-8E55-4EC40D050A1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C35EB18C-0075-4C6A-8E55-4EC40D050A1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C35EB18C-0075-4C6A-8E55-4EC40D050A1A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C35EB18C-0075-4C6A-8E55-4EC40D050A1A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C35EB18C-0075-4C6A-8E55-4EC40D050A1A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C35EB18C-0075-4C6A-8E55-4EC40D050A1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C35EB18C-0075-4C6A-8E55-4EC40D050A1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C35EB18C-0075-4C6A-8E55-4EC40D050A1A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C35EB18C-0075-4C6A-8E55-4EC40D050A1A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C35EB18C-0075-4C6A-8E55-4EC40D050A1A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

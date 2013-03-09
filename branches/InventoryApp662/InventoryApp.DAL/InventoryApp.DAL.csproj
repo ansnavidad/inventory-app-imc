@@ -72,6 +72,8 @@
     <Compile Include="Historial\HistorialDataMapper.cs" />
     <Compile Include="IDataMapper.cs" />
     <Compile Include="InfraestructuraDataMapper.cs" />
+    <Compile Include="InventarioFisicoDataMapper.cs" />
+    <Compile Include="InventarioFisicoDetalleDataMapper.cs" />
     <Compile Include="ItemDataMapper.cs" />
     <Compile Include="ItemStatusDataMapper.cs" />
     <Compile Include="JobDataMapper.cs" />
@@ -142,6 +144,12 @@
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\INVENTARIO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\INVENTARIO_FISICO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\INVENTARIO_FISICO_DET.cs">
       <DependentUpon>PocosElara.tt</DependentUpon>
     </Compile>
     <Compile Include="POCOS\ITEM.cs">

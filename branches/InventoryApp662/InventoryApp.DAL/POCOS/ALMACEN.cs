@@ -299,6 +299,38 @@ namespace InventoryApp.DAL.POCOS
             }
         }
         private ICollection<PROGRAMADO> _pROGRAMADOes;
+    
+        public virtual ICollection<INVENTARIO_FISICO> INVENTARIO_FISICO
+        {
+            get
+            {
+                if (_iNVENTARIO_FISICO == null)
+                {
+                    var newCollection = new FixupCollection<INVENTARIO_FISICO>();
+                    newCollection.CollectionChanged += FixupINVENTARIO_FISICO;
+                    _iNVENTARIO_FISICO = newCollection;
+                }
+                return _iNVENTARIO_FISICO;
+            }
+            set
+            {
+                if (!ReferenceEquals(_iNVENTARIO_FISICO, value))
+                {
+                    var previousValue = _iNVENTARIO_FISICO as FixupCollection<INVENTARIO_FISICO>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupINVENTARIO_FISICO;
+                    }
+                    _iNVENTARIO_FISICO = value;
+                    var newValue = value as FixupCollection<INVENTARIO_FISICO>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupINVENTARIO_FISICO;
+                    }
+                }
+            }
+        }
+        private ICollection<INVENTARIO_FISICO> _iNVENTARIO_FISICO;
 
         #endregion
         #region Association Fixup
@@ -448,6 +480,28 @@ namespace InventoryApp.DAL.POCOS
             if (e.OldItems != null)
             {
                 foreach (PROGRAMADO item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.ALMACEN, this))
+                    {
+                        item.ALMACEN = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupINVENTARIO_FISICO(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (INVENTARIO_FISICO item in e.NewItems)
+                {
+                    item.ALMACEN = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (INVENTARIO_FISICO item in e.OldItems)
                 {
                     if (ReferenceEquals(item.ALMACEN, this))
                     {

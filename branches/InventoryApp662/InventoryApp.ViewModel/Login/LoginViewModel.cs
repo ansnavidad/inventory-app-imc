@@ -89,12 +89,7 @@ namespace InventoryApp.ViewModel.Login
         }
         public void AttempValidar()
         {
-            this.LoginModel.Usuario.USUARIO_MAIL = "";
-            this.LoginModel.Usuario.USUARIO_PWD = "";
-            this.LoginModel.UserRecuperar = "";
-            this.LoginModel.UserRegristro = "";
-            this.LoginModel.UserRegistroPass1 = "";
-            this.LoginModel.UserRegistroPass2 = ""; 
+            
         }
 
         private RelayCommand _enviarCorreoCommand;
@@ -224,9 +219,10 @@ namespace InventoryApp.ViewModel.Login
 
         #region Constructors
 
-        public LoginViewModel() {
-
-            _loginModel = new LoginModel();        
+        public LoginViewModel() 
+        {
+            _loginModel = new LoginModel();
+            
         }
 
         #endregion
@@ -245,18 +241,16 @@ namespace InventoryApp.ViewModel.Login
 
         public void Validar()
         {
-            //this.LoginModel.CallServiceGetLoginUser();
-            //if (!this.LoginModel.Login)
-            //{
+            this.LoginModel.CallServiceGetLoginUser();
+            if (!this.LoginModel.Login)
+            {
                 this.Message = "Comprobando credenciales locales...";
                 if (!this.LoginModel.GetLoginUser())
-                {
-                    //if (!this.LoginModel.EmailValidador() && (String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_MAIL) || String.IsNullOrEmpty(LoginModel.Usuario.USUARIO_PWD)))
-                    //{
+                {                    
                         MessageBoxResult result = MessageBox.Show("Usuario y/o contraseña incorrectos. \n Si ya se ha registrado, valide que su cuenta ya esté activa.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    //}                    
+                   
                 }
-            //}
+            }
         }
 
         // combobox

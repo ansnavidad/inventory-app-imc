@@ -6,13 +6,52 @@
         Title="Sistema de almacén" Height="600"  Width="900" MinHeight="500" MinWidth="700">
     <!--Icon="file:///C:/Programs/ElaraInventario/Images/Logo.ico"-->
     <Window.Resources>
-        <Storyboard x:Key="rotateImg" >
+        
+                <Storyboard x:Key="rotateImg" >
             <DoubleAnimation
                                     Storyboard.TargetName="imgSyncFiles" 
                                     Storyboard.TargetProperty="(RenderTransform).(RotateTransform.Angle)"
                                     From="0" To="360" Duration="0:0:1" 
                                     AutoReverse="False" RepeatBehavior="Forever" />
         </Storyboard>
+        <LinearGradientBrush x:Key="MouseOver_GradientEffect3" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+            <GradientStop Color="#255E9B"  Offset="0" />
+            <GradientStop Color="#05284E"  Offset="0.567" />
+        </LinearGradientBrush>
+        <Style x:Key="bntBlue" TargetType="{x:Type Button}">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="ButtonBorder" CornerRadius="9" BorderBrush="#11295A" BorderThickness="1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#11295A"  Offset="0" />
+                                    <GradientStop Color="#1C7AAD" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource MouseOver_GradientEffect3}" />
+                                <Setter Property="Foreground" Value="#D8D8D8"/>
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="#D8D8D8" />
+                                <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="#ABB1B2" />
+                                <Setter Property="Foreground" Value="#A4A4A4"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid Name="mainGrid" >
         <Grid.ColumnDefinitions>
@@ -23,6 +62,7 @@
             <RowDefinition Height="70" />
             <RowDefinition Height="40" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <DockPanel Name="contentDockPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,13,0,0" Grid.Row="2" Grid.Column="1">
             <ContentControl  Name="contentControl1" Height="{Binding ElementName=svContainer, Path=ActualHeight}" Width="{Binding ElementName=svContainer, Path=ActualWidth}"  Content="{Binding CurrentPageViewModel}"/>
@@ -93,7 +133,6 @@
                     </Image>
                 </Canvas>
             </StackPanel>
-            <Button Content="Cerrar Sesión" Height="23" HorizontalAlignment="Left" Margin="6,8,0,0" Name="CerrarSesión" VerticalAlignment="Top" Width="115" Click="CerrarSesión_Click" />
         </Grid>
         
         <Border BorderBrush="#1039BF" BorderThickness="1" Grid.Row="2" Height="3" HorizontalAlignment="Stretch" Margin="0,9,0,0" 
@@ -104,5 +143,17 @@
                    VerticalAlignment="Top" Foreground="#0B257C" FontWeight="Medium" FontStretch="Normal" FontFamily="Arial" 
                FontSize="18" Width="137" BorderBrush="White" Background="White" >
         </Label>
+        <Grid Grid.Row="3" Grid.ColumnSpan="2" Height="30" HorizontalAlignment="Stretch" Name="grid1" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Cerrar Sesión" Height="23" Name="CerrarSesión" Width="100" Click="CerrarSesión_Click"
+                    Style="{StaticResource bntBlue}" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        </Grid>
     </Grid>
 </Window>

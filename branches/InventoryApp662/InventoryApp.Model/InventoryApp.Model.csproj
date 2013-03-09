@@ -148,6 +148,8 @@
     <Compile Include="InfraestructuraModel.cs" />
     <Compile Include="InsertTipoEmpresaModel.cs" />
     <Compile Include="InsertTransporteModel.cs" />
+    <Compile Include="InventarioFisico\InventarioFisicoModel.cs" />
+    <Compile Include="InventarioFisico\InventarioFisicoDetalleModel.cs" />
     <Compile Include="ItemModel.cs" />
     <Compile Include="ItemStatusModel.cs" />
     <Compile Include="Login\LoginModel.cs" />

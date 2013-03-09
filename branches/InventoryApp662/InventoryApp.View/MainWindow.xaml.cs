@@ -166,13 +166,18 @@ namespace InventoryApp.View
 
         private void CerrarSesión_Click(object sender, RoutedEventArgs e)
         {
-            LoginView ds = new LoginView();
-            LoginViewModel viewModel = new LoginViewModel();
-            //viewModel.SetLoginViewModel();
-            //viewModel.start();
-            ds.DataContext = viewModel;            
-            ds.Show();
-            this.Close();
+            MessageBoxResult result = MessageBox.Show("Seguro que dese salir", "Salir", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                LoginView ds = new LoginView();
+                LoginViewModel viewModel = new LoginViewModel();
+                ds.DataContext = viewModel;
+                ds.Show();
+                this.Close();
+            }
+            
+            
+            
         }
     }
 }

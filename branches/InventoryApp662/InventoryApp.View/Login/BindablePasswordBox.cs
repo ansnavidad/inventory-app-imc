@@ -51,7 +51,7 @@ namespace InventoryApp.View.Login
             }
             passwordBox.MaxLength = 12;
             passwordBox.Focus();
-            passwordBox.TabIndex = 1;
+            passwordBox.TabIndex = 2;
         }
 
         /// <summary>

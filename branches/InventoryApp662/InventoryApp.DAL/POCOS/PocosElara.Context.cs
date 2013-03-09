@@ -437,6 +437,18 @@ namespace InventoryApp.DAL.POCOS
             get { return _pOM_ARTICULO  ?? (_pOM_ARTICULO = CreateObjectSet<POM_ARTICULO>("POM_ARTICULO")); }
         }
         private ObjectSet<POM_ARTICULO> _pOM_ARTICULO;
+    
+        public ObjectSet<INVENTARIO_FISICO> INVENTARIO_FISICO
+        {
+            get { return _iNVENTARIO_FISICO  ?? (_iNVENTARIO_FISICO = CreateObjectSet<INVENTARIO_FISICO>("INVENTARIO_FISICO")); }
+        }
+        private ObjectSet<INVENTARIO_FISICO> _iNVENTARIO_FISICO;
+    
+        public ObjectSet<INVENTARIO_FISICO_DET> INVENTARIO_FISICO_DET
+        {
+            get { return _iNVENTARIO_FISICO_DET  ?? (_iNVENTARIO_FISICO_DET = CreateObjectSet<INVENTARIO_FISICO_DET>("INVENTARIO_FISICO_DET")); }
+        }
+        private ObjectSet<INVENTARIO_FISICO_DET> _iNVENTARIO_FISICO_DET;
 
         #endregion
         #region Function Imports

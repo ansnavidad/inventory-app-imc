@@ -37,7 +37,7 @@
         <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
             <Label Style="{StaticResource titleLabel}" Content=" INVENTARIOS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
         </Border>
-        <Button Content="Historial" Height="23" HorizontalAlignment="Stretch" Margin="83,3,12,4" Name="button1" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Width="75" Grid.Column="3" Click="Historal_Click" />
+        <Button Content="Historial" Height="23" HorizontalAlignment="Stretch" Margin="83,3,12,4" Name="button1" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Width="75" Grid.Column="3" />
         <!--Row 2-->
         <Label Content="Almacén: " Grid.Row="1" HorizontalAlignment="Right"
                Name="lblNombreServicio" VerticalAlignment="Bottom" Style="{StaticResource lblCamposGeneric}" />
@@ -97,9 +97,9 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Command="{Binding GuardarFinalizarCommand, Mode=OneWay}" Content="Finalizar" Height="23" HorizontalAlignment="Stretch" Margin="16,3,14,2" Name="button2" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Grid.Column="1" Click="button2_Click" IsEnabled="{Binding IsEnabled}"/>
-                <Button Content="Guardar" Height="23" HorizontalAlignment="Stretch" Name="btnAgregar" VerticalAlignment="Stretch" Command="{Binding GuardarCommand, Mode=OneWay}" Click="btnAgregar_Click" Style="{StaticResource btnElara}" Margin="15,2" IsEnabled="{Binding IsEnabled}" />
-                <Button Content="Cancelar"  Grid.Column="3" Height="23" HorizontalAlignment="Stretch" Name="btnCancelar" VerticalAlignment="Stretch" Click="btnCancelar_Click" Style="{StaticResource btnElara}" Margin="19,3,11,2" />
+                <Button Command="{Binding GuardarFinalizarCommand, Mode=OneWay}" Content="Finalizar" Height="23" HorizontalAlignment="Stretch" Margin="16,3,14,2" Name="button2" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Grid.Column="1"  IsEnabled="{Binding IsEnabled}"/>
+                <Button Content="Guardar" Height="23" HorizontalAlignment="Stretch" Name="btnAgregar" VerticalAlignment="Stretch" Command="{Binding GuardarCommand, Mode=OneWay}"  Style="{StaticResource btnElara}" Margin="15,2" IsEnabled="{Binding IsEnabled}" />
+                <Button Content="Cancelar"  Grid.Column="3" Height="23" HorizontalAlignment="Stretch" Name="btnCancelar" VerticalAlignment="Stretch" Style="{StaticResource btnElara}" Margin="19,3,11,2" />
                 <Button Command="{Binding ImprimirCommand, Mode=OneWay}" Content="Imprimir" Height="23" HorizontalAlignment="Stretch" Margin="14,3,16,2" Name="button3" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Grid.Column="2" />
             </Grid>
 

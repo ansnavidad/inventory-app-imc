@@ -17,7 +17,7 @@
 
 <body>
 <div id="divcentral">
-   <p style="width: 1220px" >Bienvenido a Elara Inventarios...</p>
+   <p style="width: 1220px" >Elara Inventarios activacion...</p>
 </div>
 <div id="loading" 
         style=" width: 100%; height: 100%; position: absolute; left: 0px; top: 0px;
@@ -27,11 +27,12 @@
                 style="margin-left: 20px; margin-top: 10px; width: 100px; height: 100px;">
             <p style="margin-left: 25px; margin-top: 5px; color:black;">Activando cuenta...</p>
         </div>
-    </div>
-<div id="divinferior">
+</div>
+<!--<div id="divinferior">
     <p>Tu cuenta  ha sido activada!!!</p>
     <p>&nbsp;</p>
-</div>
+</div>       -->
+<div class="mensajeActivacion" style="display: none;">Tu cuenta  ha sido activada!!!</div>         
 <script type="text/javascript">
     var Url = location.href;
     Url = Url.replace(/.*\?(.*?)/, "$1");
@@ -49,9 +50,10 @@
         , contentType: "application/json; charset=utf-8"
         , success: function (data) {
             console.log('Usuario Activo');
+            $(".mensajeActivacion").css("display", "block");
         },
         error: function (result) {
-            alert('Error al activar usuario ' + result.status + ' ' + result.statusText);
+            alert('Error al activar usuario intente mas tarde..' + result.status + ' ' + result.statusText);
         }
     });
     jQuery('#loading').ajaxStart(function () {
@@ -60,6 +62,6 @@
     jQuery('#loading').ajaxStop(function () {
         jQuery(this).hide();
     });
-</script>                
+</script> 
 </body>
 </html>

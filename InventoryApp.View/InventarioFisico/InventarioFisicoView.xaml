@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="InventoryApp.View.InventarioFisico.InventarioFisicoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Style="{StaticResource titleLabel}" Content="Captura de Inventario Físico" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <Button  Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="161,4,14,3" Name="btnNuevo" VerticalAlignment="Stretch" 
+                 Width="75" Grid.Column="2" Command="{Binding AddReciboCmd}" Click="btnNuevo_Click" Style="{StaticResource btnElara}" />
+        <DataGrid AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" Margin="0" Name="dtGridMovimiento"
+                  ItemsSource="{Binding InventarioCollection}"
+                  SelectedItem="{Binding SelectedInventario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}" 
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Fecha de Captura" Width="*" x:Name="FechaCaptura" Binding="{Binding Path=Cantidad}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Almacén" Width="1*" x:Name="Almacen" Binding="{Binding Path=SelectedAlmacen.ALMACEN_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Status" Width="*" x:Name="Status" Binding="{Binding Path=Fecha}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Fecha de Cierre" Width="*" x:Name="FechaCierre" Binding="{Binding Path=Fecha}" IsReadOnly="True"/>
+                
+                <!--<DataGridTemplateColumn Header="Finalizado" Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=Finished,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

@@ -244,7 +244,9 @@ namespace InventoryApp.ViewModel.CargaItems
 
         public void AttempAbrirRuta()
         {
-            Process.Start(ConfigurationManager.AppSettings["RutaArchivos"].ToString());   
+            //Process.Start(ConfigurationManager.AppSettings["RutaArchivos"].ToString());   
+            Process.Start(@"C:\Users\ISAAC\Desktop\Resources");
+
         }
 
         public void DownloadData(Object sender, System.Timers.ElapsedEventArgs args)

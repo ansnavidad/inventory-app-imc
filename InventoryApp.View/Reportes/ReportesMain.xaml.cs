@@ -28,43 +28,43 @@ namespace InventoryApp.View.Reportes
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             //webBrowser1.Navigate(new Uri("http://10.50.0.131/Reports/Pages/Report.aspx?ItemPath=%2fElara%2fInventario-Almacen2", UriKind.RelativeOrAbsolute));
-            webBrowser1.Navigate(new Uri("http://192.168.0.104/ReportServer/Pages/ReportViewer.aspx?%2fElara%2fInventario-Almacen2", UriKind.RelativeOrAbsolute));
+            webBrowser1.Navigate(new Uri("http://192.168.0.220/ReportServer/Pages/ReportViewer.aspx?%2fElara%2fInventario-Almacen2", UriKind.RelativeOrAbsolute));
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             //webBrowser1.Navigate(new Uri("http://10.50.0.131/Reports/Pages/Report.aspx?ItemPath=%2fElara%2fInventario-Kardex", UriKind.RelativeOrAbsolute));
-            webBrowser1.Navigate(new Uri("http://192.168.0.104/ReportServer/Pages/ReportViewer.aspx?%2fElara%2fInventario-Kardex", UriKind.RelativeOrAbsolute));
+            webBrowser1.Navigate(new Uri("http://192.168.0.220/ReportServer/Pages/ReportViewer.aspx?%2fElara%2fInventario-Kardex", UriKind.RelativeOrAbsolute));
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)
         {
             //webBrowser1.Navigate(new Uri("http://10.50.0.131/Reports/Pages/Report.aspx?ItemPath=%2fElara%2fInventario-Rotacion", UriKind.RelativeOrAbsolute));
-            webBrowser1.Navigate(new Uri("http://192.168.0.104/ReportServer/Pages/ReportViewer.aspx?%2fElara%2fInventario-Rotacion", UriKind.RelativeOrAbsolute));
+            webBrowser1.Navigate(new Uri("http://192.168.0.220/ReportServer/Pages/ReportViewer.aspx?%2fElara%2fInventario-Rotacion", UriKind.RelativeOrAbsolute));
         }
 
         private void button4_Click(object sender, RoutedEventArgs e)
         {
-            webBrowser1.Navigate(new Uri("http://10.50.0.131/Reports/Pages/Report.aspx?ItemPath=%2fElara%2fRecibo", UriKind.RelativeOrAbsolute));
+            //webBrowser1.Navigate(new Uri("http://10.50.0.131/Reports/Pages/Report.aspx?ItemPath=%2fElara%2fRecibo", UriKind.RelativeOrAbsolute));
         }
 
         private void button5_Click(object sender, RoutedEventArgs e)
         {
             //webBrowser1.Navigate(new Uri("http://10.50.0.131/Reports/Pages/Report.aspx?ItemPath=%2fElara%2fInventario-Adhoc", UriKind.RelativeOrAbsolute));
-            webBrowser1.Navigate(new Uri("http://192.168.0.104/ReportServer/Pages/ReportViewer.aspx?%2fElara%2fInventario-Adhoc", UriKind.RelativeOrAbsolute));
+            webBrowser1.Navigate(new Uri("http://192.168.0.220/ReportServer/Pages/ReportViewer.aspx?%2fElara%2fInventario-Adhoc", UriKind.RelativeOrAbsolute));
         }
 
         private void button6_Click(object sender, RoutedEventArgs e)
         {
             //webBrowser1.Navigate(new Uri("http://10.50.0.131/Reports/Pages/Report.aspx?ItemPath=%2fElara%2fInventario-Max-Min", UriKind.RelativeOrAbsolute));
-            webBrowser1.Navigate(new Uri("http://192.168.0.104/ReportServer/Pages/ReportViewer.aspx?%2fElara%2fInventario-Max-Min", UriKind.RelativeOrAbsolute));
+            webBrowser1.Navigate(new Uri("http://192.168.0.220/ReportServer/Pages/ReportViewer.aspx?%2fElara%2fInventario-Max-Min", UriKind.RelativeOrAbsolute));
 
         }
 
         private void button7_Click(object sender, RoutedEventArgs e)
         {
             //webBrowser1.Navigate(new Uri("http://10.50.0.131/Reports/Pages/Report.aspx?ItemPath=%2fElara%2fInventario-Programado", UriKind.RelativeOrAbsolute));
-            webBrowser1.Navigate(new Uri("http://192.168.0.104/ReportServer/Pages/ReportViewer.aspx?%2fElara%2fInventario-Programado", UriKind.RelativeOrAbsolute));
+            webBrowser1.Navigate(new Uri("http://192.168.0.220/ReportServer/Pages/ReportViewer.aspx?%2fElara%2fInventario-Programado", UriKind.RelativeOrAbsolute));
         }
     }
 }

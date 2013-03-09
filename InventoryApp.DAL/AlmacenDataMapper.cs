@@ -773,8 +773,6 @@ namespace InventoryApp.DAL
             }
         }
 
-
-
         public void udpateElement(object element)
         {
             throw new NotImplementedException();

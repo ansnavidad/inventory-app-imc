@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="InventoryApp.View.CatalogDepartamento.DepartamentoUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="420" d:DesignWidth="700"
+             DataContext="{StaticResource catalogDepartamentoViewModel}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Style="{StaticResource titleLabel}" Content="CONSULTA DEPARTAMENTO " Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <Button  Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="158,4,17,3" Name="btnNuevo" 
+                 VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" Grid.Column="2" Style="{StaticResource btnElara}"/>
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Column="2"
+                    Margin="66,0,109,0" Name="btnEliminar" VerticalAlignment="Stretch" Command="{Binding DeleteDepartamentoCommand,Mode=OneWay}"
+                    Width="75" Click="btnEliminar_Click" Style="{StaticResource btnElara}" />
+        <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                  HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridDepartamento"
+                  SelectedItem="{Binding CatalogDepartamentoModel.SelectedDepartamento, Mode=TwoWay}"
+                  VerticalAlignment="Stretch" ItemsSource="{Binding CatalogDepartamentoModel.Departamento}" 
+                  MouseDoubleClick="dtGridDepartamento_MouseDoubleClick"
+                  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+            <DataGrid.Columns>
+                <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />-->
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Departamento" Width="*" x:Name="nombre" Binding="{Binding Path=DEPARTAMENTO_NAME}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

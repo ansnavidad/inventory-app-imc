@@ -1,0 +1,1684 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0D2F4C11-7723-4C65-AF5A-6D0D8FF96F80}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InventoryApp.View</RootNamespace>
+    <AssemblyName>InventoryApp.View</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </ApplicationDefinition>
+    <Compile Include="CargaItems\CargaItemsView.xaml.cs">
+      <DependentUpon>CargaItemsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogAlmacen\AlmacenUserControl.xaml.cs">
+      <DependentUpon>AlmacenUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogAlmacen\AltaAlmacen.xaml.cs">
+      <DependentUpon>AltaAlmacen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogAlmacen\ModifyAlmacenView.xaml.cs">
+      <DependentUpon>ModifyAlmacenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogArticulo\AddArticuloView.xaml.cs">
+      <DependentUpon>AddArticuloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogArticulo\ArticuloUserControl.xaml.cs">
+      <DependentUpon>ArticuloUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogArticulo\ModifyArticuloView.xaml.cs">
+      <DependentUpon>ModifyArticuloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogBanco\AddBancoView.xaml.cs">
+      <DependentUpon>AddBancoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogBanco\BancoUserControl.xaml.cs">
+      <DependentUpon>BancoUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogBanco\ModifyBancoView.xaml.cs">
+      <DependentUpon>ModifyBancoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogCategoria\AltaCategoria.xaml.cs">
+      <DependentUpon>AltaCategoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogCategoria\CategoriaUserControl.xaml.cs">
+      <DependentUpon>CategoriaUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogCategoria\ModifyCategoriaView.xaml.cs">
+      <DependentUpon>ModifyCategoriaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogCiudad\AltaModificarCiudad.xaml.cs">
+      <DependentUpon>AltaModificarCiudad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogCiudad\CiudadUserControl.xaml.cs">
+      <DependentUpon>CiudadUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogCiudad\ModifyCiudadView.xaml.cs">
+      <DependentUpon>ModifyCiudadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogCliente\AltaCliente.xaml.cs">
+      <DependentUpon>AltaCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogCliente\ClienteUserControl.xaml.cs">
+      <DependentUpon>ClienteUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogCliente\ModifyClienteView.xaml.cs">
+      <DependentUpon>ModifyClienteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogDepartamento\AddDepartamentoView.xaml.cs">
+      <DependentUpon>AddDepartamentoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogDepartamento\DepartamentoUserControl.xaml.cs">
+      <DependentUpon>DepartamentoUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogDepartamento\ModifyDepartamentoView.xaml.cs">
+      <DependentUpon>ModifyDepartamentoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogEmpresa\AltaEmpresa.xaml.cs">
+      <DependentUpon>AltaEmpresa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogEmpresa\EmpresaUserControl.xaml.cs">
+      <DependentUpon>EmpresaUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogEmpresa\ModifyEmpresaView.xaml.cs">
+      <DependentUpon>ModifyEmpresaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogEquipo\AddEquipoView.xaml.cs">
+      <DependentUpon>AddEquipoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogEquipo\EquipoUserControl.xaml.cs">
+      <DependentUpon>EquipoUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogEquipo\ModifyEquipoView.xaml.cs">
+      <DependentUpon>ModifyEquipoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogInventario\AltaInventario.xaml.cs">
+      <DependentUpon>AltaInventario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogInventario\CatalogInv.xaml.cs">
+      <DependentUpon>CatalogInv.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogInventario\ModificacionInventario.xaml.cs">
+      <DependentUpon>ModificacionInventario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProgramado\CatalogProgramado.xaml.cs">
+      <DependentUpon>CatalogProgramado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogRolSystem\ModifyRolSistemaView.xaml.cs">
+      <DependentUpon>ModifyRolSistemaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogRolSystem\RolSystemUserControl.xaml.cs">
+      <DependentUpon>RolSystemUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogSeguridad\AltaSeguridad.xaml.cs">
+      <DependentUpon>AltaSeguridad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogSeguridad\ModifySeguridadView.xaml.cs">
+      <DependentUpon>ModifySeguridadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogSeguridad\ModifySelectMenuView.xaml.cs">
+      <DependentUpon>ModifySelectMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogUsuarios\AddRolesCurrentView.xaml.cs">
+      <DependentUpon>AddRolesCurrentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogUsuarios\GusPasswordBox.cs" />
+    <Compile Include="CatalogUsuarios\ModifyUsuarioView.xaml.cs">
+      <DependentUpon>ModifyUsuarioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogUsuarios\UsuarioUserControl.xaml.cs">
+      <DependentUpon>UsuarioUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogSeguridad\SeguridadUserControl.xaml.cs">
+      <DependentUpon>SeguridadUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogSeguridad\SelectMenuView.xaml.cs">
+      <DependentUpon>SelectMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaBaja.xaml.cs">
+      <DependentUpon>GridSalidaBaja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Historial\HistorialView.xaml.cs">
+      <DependentUpon>HistorialView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login\BindablePasswordBox.cs" />
+    <Compile Include="Login\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login\RecoverPassword.xaml.cs">
+      <DependentUpon>RecoverPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login\RegisterUser.xaml.cs">
+      <DependentUpon>RegisterUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="prueba.xaml.cs">
+      <DependentUpon>prueba.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\FacturaCatalogAgregarItem.xaml.cs">
+      <DependentUpon>FacturaCatalogAgregarItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\FacturaCatalogView.xaml.cs">
+      <DependentUpon>FacturaCatalogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogInfraestructura\InfraestructuraUserControl.xaml.cs">
+      <DependentUpon>InfraestructuraUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogInfraestructura\InsertInfraestructuraView.xaml.cs">
+      <DependentUpon>InsertInfraestructuraView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogInfraestructura\ModifyInfraestructuraView.xaml.cs">
+      <DependentUpon>ModifyInfraestructuraView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogItemStatus\AltaItemStatus.xaml.cs">
+      <DependentUpon>AltaItemStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogItemStatus\ItemStatusUserControl.xaml.cs">
+      <DependentUpon>ItemStatusUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogItemStatus\ModifyItemStatusView.xaml.cs">
+      <DependentUpon>ModifyItemStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogItemView.xaml.cs">
+      <DependentUpon>CatalogItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogItem\AddDestinoView.xaml.cs">
+      <DependentUpon>AddDestinoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogItem\AddFactura.xaml.cs">
+      <DependentUpon>AddFactura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogItem\AddItemView.xaml.cs">
+      <DependentUpon>AddItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogItem\AgregarFactura.xaml.cs">
+      <DependentUpon>AgregarFactura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogItem\ModifyItem.xaml.cs">
+      <DependentUpon>ModifyItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogMarca\AddMarca.xaml.cs">
+      <DependentUpon>AddMarca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogMarca\MarcaUserControl.xaml.cs">
+      <DependentUpon>MarcaUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogMarca\ModifyMarcaView.xaml.cs">
+      <DependentUpon>ModifyMarcaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogMedioEnvio\AltaModificarMedioEnvio.xaml.cs">
+      <DependentUpon>AltaModificarMedioEnvio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogMedioEnvio\MedioEnvioUserControl.xaml.cs">
+      <DependentUpon>MedioEnvioUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogMedioEnvio\ModifyMedioEnvioView.xaml.cs">
+      <DependentUpon>ModifyMedioEnvioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogModelo\AddModeloView.xaml.cs">
+      <DependentUpon>AddModeloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogModelo\ModeloUserControl.xaml.cs">
+      <DependentUpon>ModeloUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogModelo\ModifyModeloView.xaml.cs">
+      <DependentUpon>ModifyModeloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogMoneda\AddMonedaView.xaml.cs">
+      <DependentUpon>AddMonedaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogMoneda\ModifyMonedaView.xaml.cs">
+      <DependentUpon>ModifyMonedaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogMoneda\MonedaUserControl.xaml.cs">
+      <DependentUpon>MonedaUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogPais\AltaModificarPais.xaml.cs">
+      <DependentUpon>AltaModificarPais.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogPais\ModifyPaisView.xaml.cs">
+      <DependentUpon>ModifyPaisView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogPais\PaisUserControl.xaml.cs">
+      <DependentUpon>PaisUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProgramado\AddArticuloView.xaml.cs">
+      <DependentUpon>AddArticuloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProgramado\AddProgramadoView.xaml.cs">
+      <DependentUpon>AddProgramadoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProgramado\ModifyProgramadoView.xaml.cs">
+      <DependentUpon>ModifyProgramadoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogPropiedad\AltaPropiedad.xaml.cs">
+      <DependentUpon>AltaPropiedad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogPropiedad\ModifyPropiedadView.xaml.cs">
+      <DependentUpon>ModifyPropiedadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogPropiedad\PropiedadUserControl.xaml.cs">
+      <DependentUpon>PropiedadUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProveedorCuenta\AltaModificarProveedorCuenta.xaml.cs">
+      <DependentUpon>AltaModificarProveedorCuenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProveedorCuenta\ModifyProveedorCuentaView.xaml.cs">
+      <DependentUpon>ModifyProveedorCuentaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProveedorCuenta\ProveedorCuentaUserControl.xaml.cs">
+      <DependentUpon>ProveedorCuentaUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProveedor\AltaModificarProveedor.xaml.cs">
+      <DependentUpon>AltaModificarProveedor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProveedor\ModifyProveedorView.xaml.cs">
+      <DependentUpon>ModifyProveedorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProveedor\ProveedorUserControl.xaml.cs">
+      <DependentUpon>ProveedorUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProyecto\AltaProyecto.xaml.cs">
+      <DependentUpon>AltaProyecto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProyecto\ModifyProyectoView.xaml.cs">
+      <DependentUpon>ModifyProyectoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogProyecto\ProyectoUserControl.xaml.cs">
+      <DependentUpon>ProyectoUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogServicio\AltaServicio.xaml.cs">
+      <DependentUpon>AltaServicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogServicio\ModifyServicioView.xaml.cs">
+      <DependentUpon>ModifyServicioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogServicio\ServicioUserControl.xaml.cs">
+      <DependentUpon>ServicioUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogSolicitante\AltaSolicitante.xaml.cs">
+      <DependentUpon>AltaSolicitante.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogSolicitante\ModifySolicitanteView.xaml.cs">
+      <DependentUpon>ModifySolicitanteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogSolicitante\SolicitanteUserControl.xaml.cs">
+      <DependentUpon>SolicitanteUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTecnico\AltaTecnico.xaml.cs">
+      <DependentUpon>AltaTecnico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTecnico\ModifyTecnicoView.xaml.cs">
+      <DependentUpon>ModifyTecnicoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTecnico\TecnicoUserControl.xaml.cs">
+      <DependentUpon>TecnicoUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTerminoEnvio\AltaModificarTerminoEnvio.xaml.cs">
+      <DependentUpon>AltaModificarTerminoEnvio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTerminoEnvio\ModifyTerminoEnvioView.xaml.cs">
+      <DependentUpon>ModifyTerminoEnvioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTerminoEnvio\TerminoEnvioUserControl.xaml.cs">
+      <DependentUpon>TerminoEnvioUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoCotizacion\AltaTipoCotizacion.xaml.cs">
+      <DependentUpon>AltaTipoCotizacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoCotizacion\ModifyTipoCotizacionView.xaml.cs">
+      <DependentUpon>ModifyTipoCotizacionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoCotizacion\TipoCotizacionUserControl.xaml.cs">
+      <DependentUpon>TipoCotizacionUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoEmpresa\InsertTipoEmpresaView.xaml.cs">
+      <DependentUpon>InsertTipoEmpresaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoEmpresa\ModifyTipoEmpresaView.xaml.cs">
+      <DependentUpon>ModifyTipoEmpresaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoEmpresa\TipoEmpresaUserControl.xaml.cs">
+      <DependentUpon>TipoEmpresaUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoMovimiento\AltaTipoMovimiento.xaml.cs">
+      <DependentUpon>AltaTipoMovimiento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoMovimiento\ModifyTipoMovimientoView.xaml.cs">
+      <DependentUpon>ModifyTipoMovimientoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoMovimiento\TipoMovimientoUserControl.xaml.cs">
+      <DependentUpon>TipoMovimientoUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoPedimento\AltaModificarTipoPedimento.xaml.cs">
+      <DependentUpon>AltaModificarTipoPedimento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoPedimento\ModifyTipoPedimentoView.xaml.cs">
+      <DependentUpon>ModifyTipoPedimentoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTipoPedimento\TipoPedimentoUserControl.xaml.cs">
+      <DependentUpon>TipoPedimentoUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTransporte\InsertTransporteView.xaml.cs">
+      <DependentUpon>InsertTransporteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTransporte\ModifyTransporteView.xaml.cs">
+      <DependentUpon>ModifyTransporteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogUnidad\AltaUnidad.xaml.cs">
+      <DependentUpon>AltaUnidad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogUnidad\ModifyUnidadView.xaml.cs">
+      <DependentUpon>ModifyUnidadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogUnidad\UnidadUserControl.xaml.cs">
+      <DependentUpon>UnidadUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\AddItem.xaml.cs">
+      <DependentUpon>AddItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\EntradaDesinstalacion.xaml.cs">
+      <DependentUpon>EntradaDesinstalacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\EntradaDesinstalacionSoloLectura.xaml.cs">
+      <DependentUpon>EntradaDesinstalacionSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\EntradaDevolucion.xaml.cs">
+      <DependentUpon>EntradaDevolucion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\EntradaDevolucionSoloLectura.xaml.cs">
+      <DependentUpon>EntradaDevolucionSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\EntradaPrestamo.xaml.cs">
+      <DependentUpon>EntradaPrestamo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\EntradaPrestamoSoloLectura.xaml.cs">
+      <DependentUpon>EntradaPrestamoSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\EntradaValidacionRevision.xaml.cs">
+      <DependentUpon>EntradaValidacionRevision.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogTransporte\TransporteUserControl.xaml.cs">
+      <DependentUpon>TransporteUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entradas\EntradaValidacionRevisionSoloLectura.xaml.cs">
+      <DependentUpon>EntradaValidacionRevisionSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\EntradasDesinstalacion.xaml.cs">
+      <DependentUpon>EntradasDesinstalacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\EntradasDevolucion.xaml.cs">
+      <DependentUpon>EntradasDevolucion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridEntradas.xaml.cs">
+      <DependentUpon>GridEntradas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridEntradasPrestamo.xaml.cs">
+      <DependentUpon>GridEntradasPrestamo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridMovimientos.xaml.cs">
+      <DependentUpon>GridMovimientos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaConfiguracion.xaml.cs">
+      <DependentUpon>GridSalidaConfiguracion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaCorrectivo.xaml.cs">
+      <DependentUpon>GridSalidaCorrectivo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaDemo.xaml.cs">
+      <DependentUpon>GridSalidaDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaObsequio.xaml.cs">
+      <DependentUpon>GridSalidaObsequio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaOffice.xaml.cs">
+      <DependentUpon>GridSalidaOffice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaPrestamo.xaml.cs">
+      <DependentUpon>GridSalidaPrestamo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaPruebas.xaml.cs">
+      <DependentUpon>GridSalidaPruebas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaRenta.xaml.cs">
+      <DependentUpon>GridSalidaRenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaRevision.xaml.cs">
+      <DependentUpon>GridSalidaRevision.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaRMA.xaml.cs">
+      <DependentUpon>GridSalidaRMA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidas.xaml.cs">
+      <DependentUpon>GridSalidas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridSalidaVenta.xaml.cs">
+      <DependentUpon>GridSalidaVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GridMovimientos\GridTraspasoStock.xaml.cs">
+      <DependentUpon>GridTraspasoStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemACView.xaml.cs">
+      <DependentUpon>ItemACView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Job\JobView.xaml.cs">
+      <DependentUpon>JobView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MaxMin\AddArticuloView.xaml.cs">
+      <DependentUpon>AddArticuloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MaxMin\AddMaxMinView.xaml.cs">
+      <DependentUpon>AddMaxMinView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MaxMin\MaxMinView.xaml.cs">
+      <DependentUpon>MaxMinView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MaxMin\ModifyMaxMinView.xaml.cs">
+      <DependentUpon>ModifyMaxMinView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\AddMovimientoDetalleView.xaml.cs">
+      <DependentUpon>AddMovimientoDetalleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\AddMovimientoView.xaml.cs">
+      <DependentUpon>AddMovimientoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\CatalogReciboView.xaml.cs">
+      <DependentUpon>CatalogReciboView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\ChooseFacturaArticuloView.xaml.cs">
+      <DependentUpon>ChooseFacturaArticuloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\DlgAddFacturaArticuloView.xaml.cs">
+      <DependentUpon>DlgAddFacturaArticuloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\AddReciboView.xaml.cs">
+      <DependentUpon>AddReciboView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\AddFacturaArticulo.xaml.cs">
+      <DependentUpon>AddFacturaArticulo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\AddFacturaView.xaml.cs">
+      <DependentUpon>AddFacturaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\AddPedimientoView.xaml.cs">
+      <DependentUpon>AddPedimientoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\DlgAddFacturaView.xaml.cs">
+      <DependentUpon>DlgAddFacturaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\DlgAddMovimientoDetalleView.xaml.cs">
+      <DependentUpon>DlgAddMovimientoDetalleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\DlgAddMovimientoView.xaml.cs">
+      <DependentUpon>DlgAddMovimientoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\DlgAddReciboView.xaml.cs">
+      <DependentUpon>DlgAddReciboView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\DlgModifyFacturaView.xaml.cs">
+      <DependentUpon>DlgModifyFacturaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\DlgModifyMovimientoView.xaml.cs">
+      <DependentUpon>DlgModifyMovimientoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\DlgModifyReciboView.xaml.cs">
+      <DependentUpon>DlgModifyReciboView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\DlgMovimientoSelectAritucloView.xaml.cs">
+      <DependentUpon>DlgMovimientoSelectAritucloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\MovimientoSelectArticuloView.xaml.cs">
+      <DependentUpon>MovimientoSelectArticuloView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recibo\ReciboView.xaml.cs">
+      <DependentUpon>ReciboView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReportesMain.xaml.cs">
+      <DependentUpon>ReportesMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\AddItem.xaml.cs">
+      <DependentUpon>AddItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaBaja.xaml.cs">
+      <DependentUpon>SalidaBaja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaBajaSoloLectura.xaml.cs">
+      <DependentUpon>SalidaBajaSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaConfiguracion.xaml.cs">
+      <DependentUpon>SalidaConfiguracion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaConfiguracionSoloLectura.xaml.cs">
+      <DependentUpon>SalidaConfiguracionSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaCorrectivo.xaml.cs">
+      <DependentUpon>SalidaCorrectivo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaCorrectivoSoloLectura.xaml.cs">
+      <DependentUpon>SalidaCorrectivoSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaDemo.xaml.cs">
+      <DependentUpon>SalidaDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaDemoSoloLectura.xaml.cs">
+      <DependentUpon>SalidaDemoSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaObsequio.xaml.cs">
+      <DependentUpon>SalidaObsequio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaObsequioSoloLectura.xaml.cs">
+      <DependentUpon>SalidaObsequioSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaOffice.xaml.cs">
+      <DependentUpon>SalidaOffice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaOfficeSoloLectura.xaml.cs">
+      <DependentUpon>SalidaOfficeSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaPrestamo.xaml.cs">
+      <DependentUpon>SalidaPrestamo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaPrestamoSoloLectura.xaml.cs">
+      <DependentUpon>SalidaPrestamoSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaPruebas.xaml.cs">
+      <DependentUpon>SalidaPruebas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaPruebasSoloLectura.xaml.cs">
+      <DependentUpon>SalidaPruebasSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaRenta.xaml.cs">
+      <DependentUpon>SalidaRenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaRentaSoloLectura.xaml.cs">
+      <DependentUpon>SalidaRentaSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaRevision.xaml.cs">
+      <DependentUpon>SalidaRevision.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaRevisionSoloLectura.xaml.cs">
+      <DependentUpon>SalidaRevisionSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaRMA.xaml.cs">
+      <DependentUpon>SalidaRMA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaRMASoloLectura.xaml.cs">
+      <DependentUpon>SalidaRMASoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaVenta.xaml.cs">
+      <DependentUpon>SalidaVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Salidas\SalidaVentaSoloLectura.xaml.cs">
+      <DependentUpon>SalidaVentaSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sync\DlgLogin.xaml.cs">
+      <DependentUpon>DlgLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sync\DlgUpload.xaml.cs">
+      <DependentUpon>DlgUpload.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Traspasos\AddItem.xaml.cs">
+      <DependentUpon>AddItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Traspasos\TraspasoStock.xaml.cs">
+      <DependentUpon>TraspasoStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Traspasos\TraspasoStockSoloLectura.xaml.cs">
+      <DependentUpon>TraspasoStockSoloLectura.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CargaItems\CargaItemsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogAlmacen\AlmacenUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogAlmacen\AltaAlmacen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogAlmacen\ModifyAlmacenView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogArticulo\AddArticuloView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogArticulo\ArticuloUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogArticulo\ModifyArticuloView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogBanco\AddBancoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogBanco\BancoUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogBanco\ModifyBancoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogCategoria\AltaCategoria.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogCategoria\CategoriaUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogCategoria\ModifyCategoriaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogCiudad\AltaModificarCiudad.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogCiudad\CiudadUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogCiudad\ModifyCiudadView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogCliente\AltaCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogCliente\ClienteUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogCliente\ModifyClienteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogDepartamento\AddDepartamentoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogDepartamento\DepartamentoUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogDepartamento\ModifyDepartamentoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogEmpresa\AltaEmpresa.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogEmpresa\EmpresaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogEmpresa\ModifyEmpresaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogEquipo\AddEquipoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogEquipo\EquipoUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogEquipo\ModifyEquipoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogInventario\AltaInventario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogInventario\CatalogInv.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogInventario\ModificacionInventario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogProgramado\CatalogProgramado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogRolSystem\ModifyRolSistemaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogRolSystem\RolSystemUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogSeguridad\AltaSeguridad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogSeguridad\ModifySeguridadView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogSeguridad\ModifySelectMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogUsuarios\AddRolesCurrentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogUsuarios\ModifyUsuarioView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogUsuarios\UsuarioUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogSeguridad\SeguridadUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogSeguridad\SelectMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaBaja.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Historial\HistorialView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login\RecoverPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login\RegisterUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="prueba.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\FacturaCatalogAgregarItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\FacturaCatalogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogInfraestructura\InfraestructuraUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogInfraestructura\InsertInfraestructuraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogInfraestructura\ModifyInfraestructuraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogItemStatus\AltaItemStatus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogItemStatus\ItemStatusUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogItemStatus\ModifyItemStatusView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogItem\AddDestinoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogItem\AddFactura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogItem\AddItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogItem\AgregarFactura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogItem\ModifyItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogMarca\AddMarca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogMarca\MarcaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogMarca\ModifyMarcaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogMedioEnvio\AltaModificarMedioEnvio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogMedioEnvio\MedioEnvioUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogMedioEnvio\ModifyMedioEnvioView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogModelo\AddModeloView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogModelo\ModeloUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogModelo\ModifyModeloView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogMoneda\AddMonedaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogMoneda\ModifyMonedaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogMoneda\MonedaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogPais\AltaModificarPais.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogPais\ModifyPaisView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogPais\PaisUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProgramado\AddArticuloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProgramado\AddProgramadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProgramado\ModifyProgramadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogPropiedad\AltaPropiedad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogPropiedad\ModifyPropiedadView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogPropiedad\PropiedadUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProveedorCuenta\AltaModificarProveedorCuenta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogProveedorCuenta\ModifyProveedorCuentaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogProveedorCuenta\ProveedorCuentaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProveedor\AltaModificarProveedor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogProveedor\ModifyProveedorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogProveedor\ProveedorUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogProyecto\AltaProyecto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogProyecto\ModifyProyectoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogProyecto\ProyectoUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogServicio\AltaServicio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogServicio\ModifyServicioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogServicio\ServicioUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogSolicitante\AltaSolicitante.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogSolicitante\ModifySolicitanteView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogSolicitante\SolicitanteUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTecnico\AltaTecnico.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTecnico\ModifyTecnicoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTecnico\TecnicoUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTerminoEnvio\AltaModificarTerminoEnvio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTerminoEnvio\ModifyTerminoEnvioView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTerminoEnvio\TerminoEnvioUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTipoCotizacion\AltaTipoCotizacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTipoCotizacion\ModifyTipoCotizacionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTipoCotizacion\TipoCotizacionUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTipoEmpresa\InsertTipoEmpresaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTipoEmpresa\ModifyTipoEmpresaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTipoEmpresa\TipoEmpresaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTipoMovimiento\AltaTipoMovimiento.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTipoMovimiento\ModifyTipoMovimientoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTipoMovimiento\TipoMovimientoUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTipoPedimento\AltaModificarTipoPedimento.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTipoPedimento\ModifyTipoPedimentoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTipoPedimento\TipoPedimentoUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTransporte\InsertTransporteView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogTransporte\ModifyTransporteView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CatalogUnidad\AltaUnidad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogUnidad\ModifyUnidadView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogUnidad\UnidadUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\AddItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\EntradaDesinstalacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\EntradaDesinstalacionSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\EntradaDevolucion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\EntradaDevolucionSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\EntradaPrestamo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\EntradaPrestamoSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\EntradaValidacionRevision.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CatalogTransporte\TransporteUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Entradas\EntradaValidacionRevisionSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\EntradasDesinstalacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\EntradasDevolucion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridEntradas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridEntradasPrestamo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridMovimientos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaConfiguracion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaCorrectivo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaObsequio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaOffice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaPrestamo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaPruebas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaRenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaRevision.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaRMA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridSalidaVenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GridMovimientos\GridTraspasoStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Job\JobView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="ItemACView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MaxMin\AddArticuloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MaxMin\AddMaxMinView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MaxMin\MaxMinView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MaxMin\ModifyMaxMinView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\AddMovimientoDetalleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\AddMovimientoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\CatalogReciboView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\ChooseFacturaArticuloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgAddFacturaArticuloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\AddReciboView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\AddFacturaArticulo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\AddFacturaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\AddPedimientoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgAddFacturaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgAddMovimientoDetalleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgAddMovimientoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgAddReciboView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgModifyFacturaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgModifyMovimientoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgModifyReciboView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\DlgMovimientoSelectAritucloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\MovimientoSelectArticuloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recibo\ReciboView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reportes\ReportesMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Salidas\AddItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Salidas\SalidaBaja.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Salidas\SalidaBajaSoloLectura.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Salidas\SalidaConfiguracion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaConfiguracionSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaCorrectivo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaCorrectivoSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaDemoSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaObsequio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaObsequioSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaOffice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaOfficeSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaPrestamo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaPrestamoSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaPruebas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaPruebasSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaRenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaRentaSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaRevision.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaRevisionSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaRMA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaRMASoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaVenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Salidas\SalidaVentaSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Dictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\MsgBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sync\DlgLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Traspasos\TraspasoStockSoloLectura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Resource Include="Logo.ico" />
+    <Resource Include="Images\Logo.ico" />
+    <Content Include="Images\iSync.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Login.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\sync.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Newtonsoft.Json.dll" />
+    <Content Include="Resources\RestSharp.dll" />
+    <Content Include="Style\DataGridStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="Style\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\scroll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\TextStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\WindowTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sync\DlgUpload.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Traspasos\AddItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Traspasos\TraspasoStock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Resources\EntradaDesinstalacion.xlsx" />
+    <None Include="Resources\EntradaDevolucion.xlsx" />
+    <None Include="Resources\EntradaPrestamo.xlsx" />
+    <None Include="Resources\EntradaValidacion.xlsx" />
+    <None Include="Resources\ExcelInventarioFisico.xlsx" />
+    <None Include="Resources\Factura.xlsx" />
+    <None Include="Resources\SalidaConfiguracion.xlsx" />
+    <None Include="Resources\SalidaCorrectivo.xlsx" />
+    <None Include="Resources\SalidaDemo.xlsx" />
+    <None Include="Resources\SalidaObsequio.xlsx" />
+    <None Include="Resources\SalidaOffice.xlsx" />
+    <None Include="Resources\SalidaPrestamo.xlsx" />
+    <None Include="Resources\SalidaPruebas.xlsx" />
+    <None Include="Resources\SalidaRenta.xlsx" />
+    <None Include="Resources\SalidaRevision.xlsx" />
+    <None Include="Resources\SalidaRMA.xlsx" />
+    <None Include="Resources\SalidaVenta.xlsx" />
+    <None Include="Resources\TraspasoStock.xlsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InventoryApp.DAL\InventoryApp.DAL.csproj">
+      <Project>{85AA51E1-F7B7-488C-A286-1E4015501512}</Project>
+      <Name>InventoryApp.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InventoryApp.ViewModel\InventoryApp.ViewModel.csproj">
+      <Project>{41C7008F-8CEC-4E41-867F-FD558F84F4BA}</Project>
+      <Name>InventoryApp.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Header.png" />
+    <Resource Include="Images\Logo.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

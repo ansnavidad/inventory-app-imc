@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{85AA51E1-F7B7-488C-A286-1E4015501512}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InventoryApp.DAL</RootNamespace>
+    <AssemblyName>InventoryApp.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\InventoryApp.View\Resources\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlmacenDataMapper.cs" />
+    <Compile Include="AlmacenTecnicoDataMapper.cs" />
+    <Compile Include="AppMenuDataMapper.cs" />
+    <Compile Include="AppRolDataMapper.cs" />
+    <Compile Include="AppRolMenuDataMapper.cs" />
+    <Compile Include="AppUsuario.cs" />
+    <Compile Include="AppUsuarioRol.cs" />
+    <Compile Include="ArticuloDataMapper.cs" />
+    <Compile Include="BancoDataMapper.cs" />
+    <Compile Include="BatchLoadDataMapper.cs" />
+    <Compile Include="CatalogInventario\InventarioDataMapper.cs" />
+    <Compile Include="CiudadDataMapper.cs" />
+    <Compile Include="CategoriaDataMapper.cs" />
+    <Compile Include="ClienteDataMapper.cs" />
+    <Compile Include="CotizacionDataMapper.cs" />
+    <Compile Include="DepartamentoDataMapper.cs" />
+    <Compile Include="EmpresaDataMapper.cs" />
+    <Compile Include="EquipoDataMapper.cs" />
+    <Compile Include="FacturaDataMapper.cs" />
+    <Compile Include="FacturaDetalleDataMapper.cs" />
+    <Compile Include="FacturaVentaDataMapper.cs" />
+    <Compile Include="Historial\HistorialDataMapper.cs" />
+    <Compile Include="IDataMapper.cs" />
+    <Compile Include="InfraestructuraDataMapper.cs" />
+    <Compile Include="ItemDataMapper.cs" />
+    <Compile Include="ItemStatusDataMapper.cs" />
+    <Compile Include="JobDataMapper.cs" />
+    <Compile Include="JSON\SerializerJson.cs" />
+    <Compile Include="Login\LoginDataMapper.cs" />
+    <Compile Include="LoteDataMapper.cs" />
+    <Compile Include="MarcaDataMapper.cs" />
+    <Compile Include="MaxMinDataMapper.cs" />
+    <Compile Include="MedioEnvioDataMapper.cs" />
+    <Compile Include="MenuDataMapper.cs" />
+    <Compile Include="ModeloDataMapper.cs" />
+    <Compile Include="MonedaDataMapper.cs" />
+    <Compile Include="MovimientoDataMapper.cs" />
+    <Compile Include="MovimientoDetalleDataMapper.cs" />
+    <Compile Include="PaisDataMapper.cs" />
+    <Compile Include="PedimentoDataMapper.cs" />
+    <Compile Include="POCOS\ALMACEN.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\ALMACEN_TECNICO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\ARTICULO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\BANCO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\BATCH_LOAD_CARGAMOV.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\CATEGORIA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\CIUDAD.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\CLIENTE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\COTIZACION.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\DEPARTAMENTO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\EMPRESA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\EntityElara.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityElara.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\EQUIPO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\FACTURA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\FACTURA_DETALLE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\FACTURA_VENTA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\INFRAESTRUCTURA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\INVENTARIO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\ITEM.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\ITEM_STATUS.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\LOGIN_LAST_USER.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\LOG_LOAD_CARGAMOV.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\LOTE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MARCA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MASTER_INVENTARIOS.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MAX_MIN.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MEDIO_ENVIO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MENU.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MODELO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MONEDA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MOVIMENTO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\MOVIMIENTO_DETALLE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PAI.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PEDIMENTO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PocosElara.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PocosElara.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PocosElara.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\POM.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\POM_ARTICULO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PROCESS_BATCH.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PROGRAMADO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PROPIEDAD.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PROVEEDOR.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PROVEEDOR_CATEGORIA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PROVEEDOR_CUENTA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\PROYECTO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\RECIBO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\RECIBO_MOVIMIENTO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\RECIBO_STATUS.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\ROL.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\ROL_MENU.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\SERVER_LASTDATA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\SERVICIO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\SOLICITANTE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\SOLICITANTE1.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\SYNC.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TECNICO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TERMINO_ENVIO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TEST.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TIPO_COTIZACION.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TIPO_EMPRESA.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TIPO_MOVIMIENTO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TIPO_PEDIMENTO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\TRANSPORTE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\ULTIMO_MOVIMIENTO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\UNIDAD.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\UPDATE.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\UPLOAD_LOG.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\USUARIO.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POCOS\USUARIO_ROL.cs">
+      <DependentUpon>PocosElara.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PomArticuloDataMapper.cs" />
+    <Compile Include="PomDataMapper.cs" />
+    <Compile Include="ProgramadoDataMapper.cs" />
+    <Compile Include="ProcessBachDataMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropiedadDataMapper.cs" />
+    <Compile Include="ProveedorCategoriaDataMapper.cs" />
+    <Compile Include="ProveedorCuentaDataMapper.cs" />
+    <Compile Include="ProveedorDataMapper.cs" />
+    <Compile Include="ProyectoDataMapper.cs" />
+    <Compile Include="ReciboDataMapper.cs" />
+    <Compile Include="ReciboMovimientoDataMapper.cs" />
+    <Compile Include="ReciboStatusDataMapper.cs" />
+    <Compile Include="Recibo\FacturaCompraDataMapper.cs" />
+    <Compile Include="Recibo\FacturaCompraDetalleDataMapper.cs" />
+    <Compile Include="ServerLastDataMapper.cs" />
+    <Compile Include="ServicioDataMapper.cs" />
+    <Compile Include="SolicitanteDataMapper.cs" />
+    <Compile Include="SyncDataMapper.cs" />
+    <Compile Include="TecnicoDataMapper.cs" />
+    <Compile Include="TerminoEnvioDataMapper.cs" />
+    <Compile Include="TipoCotizacionDataMapper.cs" />
+    <Compile Include="TipoEmpresaDataMapper.cs" />
+    <Compile Include="TipoMovimientoDataMapper.cs" />
+    <Compile Include="TipoPedimentoDataMapper.cs" />
+    <Compile Include="TransporteDataMapper.cs" />
+    <Compile Include="UltimoMovimientoDataMapper.cs" />
+    <Compile Include="UNID.cs" />
+    <Compile Include="UnidadDataMapper.cs" />
+    <Compile Include="UpDateVersionDataMapper.cs" />
+    <Compile Include="UploadLogDataMapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="POCOS\EntityElara.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EntityElara.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="POCOS\PocosElara.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PocosElara.Context.cs</LastGenOutput>
+    </None>
+    <None Include="POCOS\PocosElara.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PocosElara.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

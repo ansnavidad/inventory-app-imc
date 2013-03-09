@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{41C7008F-8CEC-4E41-867F-FD558F84F4BA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InventoryApp.ViewModel</RootNamespace>
+    <AssemblyName>InventoryApp.ViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RestSharp, Version=102.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\InventoryApp.View\Resources\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VIBlend.WPF.DataGrid, Version=5.0.0.0, Culture=neutral, PublicKeyToken=764eb89ad377fa4c" />
+    <Reference Include="VIBlend.WPF.Editors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5f568d4f9cd901f1" />
+    <Reference Include="VIBlend.WPF.Utilities, Version=5.0.0.0, Culture=neutral, PublicKeyToken=d5be5ade8eba591d" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BoolToVisibilityValueConverter.cs" />
+    <Compile Include="CargaItems\CargaItemsViewModel.cs" />
+    <Compile Include="CatalogAlmacen\AddAlmacenViewModel.cs" />
+    <Compile Include="CatalogAlmacen\CatalogAlmacenViewModel.cs" />
+    <Compile Include="CatalogAlmacen\ModifyAlmacenViewModel.cs" />
+    <Compile Include="CatalogBanco\AddBancoViewModel.cs" />
+    <Compile Include="CatalogBanco\CatalogBancoViewModel.cs" />
+    <Compile Include="CatalogBanco\ModifyBancoViewModel.cs" />
+    <Compile Include="CatalogCiudad\AddCiudadViewModel.cs" />
+    <Compile Include="CatalogCiudad\CatalogCiudadViewModel.cs" />
+    <Compile Include="CatalogCiudad\ModifyCiudadViewModel.cs" />
+    <Compile Include="CatalogArticulo\AddArticuloViewModel.cs" />
+    <Compile Include="CatalogArticulo\CatalogArticuloViewModel.cs" />
+    <Compile Include="CatalogArticulo\ModifyArticuloViewModel.cs" />
+    <Compile Include="CatalogCliente\AddClienteViewModel.cs" />
+    <Compile Include="CatalogCliente\CatalogClienteViewModel.cs" />
+    <Compile Include="CatalogCliente\ModifyClienteViewModel.cs" />
+    <Compile Include="CatalogDepartamento\AddDepartamentoViewModel.cs" />
+    <Compile Include="CatalogDepartamento\CatalogDepartamentoViewModel.cs" />
+    <Compile Include="CatalogDepartamento\ModifyDepartamentoViewModel.cs" />
+    <Compile Include="CatalogEquipo\AddEquipoViewModel.cs" />
+    <Compile Include="CatalogEquipo\CatalogEquipoViewModel.cs" />
+    <Compile Include="CatalogEquipo\ModifyEquipoViewModel.cs" />
+    <Compile Include="CatalogCategoria\AddCategoriaViewModel.cs" />
+    <Compile Include="CatalogCategoria\CatalogCategoriaViewModel.cs" />
+    <Compile Include="CatalogCategoria\ModifyCategoriaViewModel.cs" />
+    <Compile Include="CatalogEmpresa\AddEmpresaViewModel.cs" />
+    <Compile Include="CatalogEmpresa\CatalogEmpresaViewModel.cs" />
+    <Compile Include="CatalogEmpresa\ModifyEmpresaViewModel.cs" />
+    <Compile Include="CatalogInfraestructura\CatalogInfraestructuraViewModel.cs" />
+    <Compile Include="CatalogInfraestructura\InsertInfraestructuraViewModel.cs" />
+    <Compile Include="CatalogInfraestructura\ModifyInfraestructuraViewModel.cs" />
+    <Compile Include="CatalogInventario\AddInventarioViewModel.cs" />
+    <Compile Include="CatalogInventario\CatalogInvViewModel.cs" />
+    <Compile Include="CatalogInventario\ModifyInventarioViewModel.cs" />
+    <Compile Include="CatalogItemStatus\AddItemStatusViewModel.cs" />
+    <Compile Include="CatalogItemStatus\CatalogItemStatusViewModel.cs" />
+    <Compile Include="CatalogItem\AgregarFacturaViewModel.cs" />
+    <Compile Include="CatalogItem\AgregarItemDestinoViewModel.cs" />
+    <Compile Include="CatalogItem\AgregarItemViewModel.cs" />
+    <Compile Include="CatalogItem\ModifyItemViewModel.cs" />
+    <Compile Include="CatalogProgramado\AddArticulosProgramado.cs" />
+    <Compile Include="CatalogProgramado\AddProgramadoViewModel.cs" />
+    <Compile Include="CatalogProgramado\CatalogProgramadoViewModel.cs" />
+    <Compile Include="CatalogProgramado\ModifyProgramadoViewModel.cs" />
+    <Compile Include="CatalogPropiedad\AddPropiedadViewModel.cs" />
+    <Compile Include="CatalogPropiedad\CatalogPropiedadViewModel.cs" />
+    <Compile Include="CatalogPropiedad\ModifyPropiedadViewModel.cs" />
+    <Compile Include="CatalogRolSystem\CatalogRolSystemViewModel.cs" />
+    <Compile Include="CatalogRolSystem\ModifyRolSystemViewModel.cs" />
+    <Compile Include="CatalogSeguridad\AddSeguridadViewModel.cs" />
+    <Compile Include="CatalogSeguridad\CatalogSeguridadViewModel.cs" />
+    <Compile Include="CatalogSeguridad\ModifySeguridadViewModel.cs" />
+    <Compile Include="CatalogSeguridad\SelectMenuViewModel.cs" />
+    <Compile Include="CatalogServicio\AddServicioViewModel.cs" />
+    <Compile Include="CatalogServicio\CatalogServicioViewModel.cs" />
+    <Compile Include="CatalogServicio\ModifyServicioViewModel.cs" />
+    <Compile Include="CatalogTecnico\AddTecnicoViewModel.cs" />
+    <Compile Include="CatalogTecnico\CatalogTecnicoViewModel.cs" />
+    <Compile Include="CatalogTecnico\ModifyTecnicoViewModel.cs" />
+    <Compile Include="CatalogUnidad\AddUnidadViewModel.cs" />
+    <Compile Include="CatalogUnidad\CatalogUnidadViewModel.cs" />
+    <Compile Include="CatalogUnidad\ModifyUnidadViewModel.cs" />
+    <Compile Include="CatalogUsuarios\AddRolesCurrentViewModel.cs" />
+    <Compile Include="CatalogUsuarios\AddUsuarioViewModel.cs" />
+    <Compile Include="CatalogUsuarios\CatalogUsuarioViewModel.cs" />
+    <Compile Include="CatalogUsuarios\ModifyUsuarioViewModel.cs" />
+    <Compile Include="Entradas\CatalogItemViewModel.cs" />
+    <Compile Include="CatalogMarca\AddMarcaViewModel.cs" />
+    <Compile Include="CatalogMarca\CatalogMarcaViewModel.cs" />
+    <Compile Include="CatalogMarca\ModifyMarcaViewModel.cs" />
+    <Compile Include="CatalogMedioEnvio\AddMedioEnvioViewModel.cs" />
+    <Compile Include="CatalogMedioEnvio\CatalogMedioEnvioViewModel.cs" />
+    <Compile Include="CatalogMedioEnvio\ModifyMedioEnvioViewModel.cs" />
+    <Compile Include="CatalogMoneda\AddMonedaViewModel.cs" />
+    <Compile Include="CatalogMoneda\CatalogMonedaViewModel.cs" />
+    <Compile Include="CatalogMoneda\ModifyMonedaViewModel.cs" />
+    <Compile Include="CatalogPais\AddPaisViewModel.cs" />
+    <Compile Include="CatalogPais\CatalogPaisViewModel.cs" />
+    <Compile Include="CatalogPais\ModifyPaisViewModel.cs" />
+    <Compile Include="CatalogProveedorCuenta\AddProveedorCuentaViewModel.cs" />
+    <Compile Include="CatalogProveedorCuenta\CatalogProveedorCuentaViewModel.cs" />
+    <Compile Include="CatalogProveedorCuenta\ModifyProveedorCuentaViewModel.cs" />
+    <Compile Include="CatalogProveedor\AddProveedorViewModel.cs" />
+    <Compile Include="CatalogProveedor\CatalogProveedorViewModel.cs" />
+    <Compile Include="CatalogProveedor\ModifyProveedorViewModel.cs" />
+    <Compile Include="CatalogTerminoEnvio\AddTerminoEnvioViewModel.cs" />
+    <Compile Include="CatalogTerminoEnvio\CatalogTerminoEnvioViewModel.cs" />
+    <Compile Include="CatalogTerminoEnvio\ModifyTerminoEnvioViewModel.cs" />
+    <Compile Include="CatalogTipoPedimento\AddTipoPedimentoViewModel.cs" />
+    <Compile Include="CatalogTipoPedimento\CatalogTipoPedimentoViewModel.cs" />
+    <Compile Include="CatalogTipoPedimento\ModifyTipoPedimentoViewModel.cs" />
+    <Compile Include="CatalogModelo\AddModeloViewModel.cs" />
+    <Compile Include="CatalogModelo\CatalogModeloViewModel.cs" />
+    <Compile Include="CatalogModelo\ModifyModeloViewModel.cs" />
+    <Compile Include="CatalogTipoEmpresa\CatalogTipoEmpresaViewModel.cs" />
+    <Compile Include="CatalogTransporte\AddTransporteViewModel.cs" />
+    <Compile Include="CatalogTransporte\CatalogTransporteViewModel.cs" />
+    <Compile Include="CatalogTipoEmpresa\InsertTipoEmpresaViewModel.cs" />
+    <Compile Include="CatalogTransporte\InsertTransporteViewModel.cs" />
+    <Compile Include="CatalogProyecto\AddProyectoViewModel.cs" />
+    <Compile Include="CatalogProyecto\CatalogProyectoViewModel.cs" />
+    <Compile Include="CatalogProyecto\ModifyProyectoViewModel.cs" />
+    <Compile Include="CatalogSolicitante\AddSolicitanteViewModel.cs" />
+    <Compile Include="CatalogSolicitante\CatalogSolicitanteViewModel.cs" />
+    <Compile Include="CatalogSolicitante\ModifySolicitanteViewModel.cs" />
+    <Compile Include="CatalogTipoCotizacion\AddTipoCotizacionViewModel.cs" />
+    <Compile Include="CatalogTipoCotizacion\CatalogTipoCotizacionViewModel.cs" />
+    <Compile Include="CatalogTipoCotizacion\ModifyTipoCotizacionViewModel.cs" />
+    <Compile Include="CatalogTipoMovimiento\AddTipoMovimientoViewModel.cs" />
+    <Compile Include="CatalogTipoMovimiento\CatalogTipoMovimientoViewModel.cs" />
+    <Compile Include="CatalogTipoMovimiento\ModifyTipoMovimientoViewModel.cs" />
+    <Compile Include="CatalogItemStatus\ModifyItemStatusViewModel.cs" />
+    <Compile Include="CatalogTipoEmpresa\ModifyTipoEmpresaViewModel.cs" />
+    <Compile Include="CatalogTransporte\ModifyTransporteViewModel.cs" />
+    <Compile Include="Entradas\ReadOnlyEntradaDesistalacionViewModel.cs" />
+    <Compile Include="Entradas\ReadOnlyEntradaDevolucionViewModel.cs" />
+    <Compile Include="Entradas\ReadOnlyEntradaPorValidaionViewModel.cs" />
+    <Compile Include="Entradas\ReadOnlyEntradaPrestamoViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridEntradasDesinstalacionViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridEntradasDevolucionViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridEntradasPrestamoViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridEntradasViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridSalidaConfiguracionViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridSalidaCorrectivoViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridSalidaDemoViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridSalidaObsequioViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridSalidaOfficeViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridSalidaPrestamoViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridSalidaPruebasViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridSalidaRentaViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridSalidaRevisionViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridSalidaRMAViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridSalidasViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridSalidaVentaViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridTraspasoStockViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientosGridViewModel.cs" />
+    <Compile Include="Historial\HistorialViewModel.cs" />
+    <Compile Include="ILoadDatesViewModel.cs" />
+    <Compile Include="IPageViewModel.cs" />
+    <Compile Include="IViewModelChangeTrack.cs" />
+    <Compile Include="Job\JobViewModel.cs" />
+    <Compile Include="Login\LoginViewModel.cs" />
+    <Compile Include="Login\PasswordBoxAssistant.cs" />
+    <Compile Include="Login\PasswordValidator.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="MaxMin\AddArticulosMaxMin.cs" />
+    <Compile Include="MaxMin\AddMaxMinViewModel.cs" />
+    <Compile Include="MaxMin\MaxMinViewModel.cs" />
+    <Compile Include="MaxMin\ModifyMaxMinViewModel.cs" />
+    <Compile Include="MenuViewModel.cs" />
+    <Compile Include="GridMovimientos\MovimientoGridSalidaBajaViewModel.cs" />
+    <Compile Include="Recibo\AddFacturaViewModel.cs" />
+    <Compile Include="Recibo\AddFacturaArticuloViewModel.cs" />
+    <Compile Include="Recibo\AddMovimientoDetalleViewModel.cs" />
+    <Compile Include="Recibo\AddMovimientoViewModel.cs" />
+    <Compile Include="Recibo\AddReciboViewModel.cs" />
+    <Compile Include="Recibo\CatalogReciboViewModel.cs" />
+    <Compile Include="Recibo\FacturaCatalogAgregarItemViewModel.cs" />
+    <Compile Include="Recibo\FacturaCatalogViewModel.cs" />
+    <Compile Include="Recibo\FacturaCompraViewModel.cs" />
+    <Compile Include="Entradas\EntradaPorValidacionViewModel.cs" />
+    <Compile Include="Entradas\EntradaDesinstalacionViewModel.cs" />
+    <Compile Include="Entradas\EntradaDevolucionViewModel.cs" />
+    <Compile Include="Entradas\EntradaPrestamoViewModel.cs" />
+    <Compile Include="Recibo\IFacturaArticuloViewModel.cs" />
+    <Compile Include="Recibo\IFacturaViewModel.cs" />
+    <Compile Include="Recibo\ModifyFacturaViewModel.cs" />
+    <Compile Include="Recibo\ModifyMovimientoViewModel.cs" />
+    <Compile Include="Recibo\ModifyReciboViewModel.cs" />
+    <Compile Include="Recibo\MovimientoSelectArticuloViewModel.cs" />
+    <Compile Include="Recibo\ReciboViewModel.cs" />
+    <Compile Include="RelayCommand.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\ReportesViewModel.cs" />
+    <Compile Include="Salidas\CatalogItemViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaBajaViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaConfiguracionViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaCorrectivoViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaDemoViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaObsequioViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaOfficeViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaPrestamoViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaPruebasViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaRentaViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaRevisionViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaRMAViewModel.cs" />
+    <Compile Include="Salidas\ReadOnlySalidaVentaViewModel.cs" />
+    <Compile Include="Salidas\SalidaBajaViewModel.cs" />
+    <Compile Include="Salidas\SalidaConfiguracionViewModel.cs" />
+    <Compile Include="Salidas\SalidaCorrectivoViewModel.cs" />
+    <Compile Include="Salidas\SalidaDemoViewModel.cs" />
+    <Compile Include="Salidas\SalidaObsequioViewModel.cs" />
+    <Compile Include="Salidas\SalidaOfficeViewModel.cs" />
+    <Compile Include="Salidas\SalidaPrestamoViewModel.cs" />
+    <Compile Include="Salidas\SalidaPruebasViewModel.cs" />
+    <Compile Include="Salidas\SalidaRentaViewModel.cs" />
+    <Compile Include="Salidas\SalidaRevisionViewModel.cs" />
+    <Compile Include="Salidas\SalidaRMAViewModel.cs" />
+    <Compile Include="Salidas\SalidaVentaViewModel.cs" />
+    <Compile Include="Sync\UploadProcessViewModel.cs" />
+    <Compile Include="Test\TestDataGridCellBgkView.xaml.cs">
+      <DependentUpon>TestDataGridCellBgkView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Traspasos\CatalogItemViewModel.cs" />
+    <Compile Include="Traspasos\ReadOnlyTraspasoStockViewModel.cs" />
+    <Compile Include="Traspasos\TraspasoStockViewModel.cs" />
+    <Compile Include="Version\VersionViewModel.cs" />
+    <Compile Include="ViewModelBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InventoryApp.DAL\InventoryApp.DAL.csproj">
+      <Project>{85AA51E1-F7B7-488C-A286-1E4015501512}</Project>
+      <Name>InventoryApp.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InventoryApp.Model\InventoryApp.Model.csproj">
+      <Project>{974C8517-2493-4647-B5B2-F03F58103D35}</Project>
+      <Name>InventoryApp.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Test\TestDataGridCellBgkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

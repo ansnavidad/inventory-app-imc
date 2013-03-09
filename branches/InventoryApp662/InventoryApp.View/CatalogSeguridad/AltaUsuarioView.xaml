@@ -1,0 +1,39 @@
+﻿<Window x:Class="InventoryApp.View.CatalogSeguridad.AltaUsuarioView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Alta Usuario" Height="200" Width="400"
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>            
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Style="{StaticResource titleLabel}" Content="ALTA USUARIO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <Button Content="Guardar" Grid.Row="3" Height="23" HorizontalAlignment="Center"
+                Name="btnGuardar" VerticalAlignment="Center" Width="75" Click="btnGuardar_Click" Style="{StaticResource btnElara}" />
+        <Button Content="Cancelar" Grid.Column="1" Grid.Row="3" Height="23" HorizontalAlignment="Center"
+                Name="btnEliminar" VerticalAlignment="Center" Width="75" Click="btnEliminar_Click" Style="{StaticResource btnElara}" />
+        <Label Content="Nombre usuario :" Grid.Row="1" HorizontalAlignment="Right"
+               Name="lblNombre" VerticalAlignment="Center" Style="{StaticResource lblCamposGeneric}" />
+        <TextBox Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" 
+                 Name="txtUsuario" VerticalAlignment="Center" Width="140" />
+    </Grid>
+    
+</Window>

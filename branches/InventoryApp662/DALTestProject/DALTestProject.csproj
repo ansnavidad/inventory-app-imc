@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C09C94F8-AE02-4703-8CC1-79984D2EA099}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DALTestProject</RootNamespace>
+    <AssemblyName>DALTestProject</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\InventoryApp.View\Resources\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RestSharp, Version=102.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\InventoryApp.View\Resources\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddMaxMinViewTest.cs" />
+    <Compile Include="AddReciboViewModelTest.cs" />
+    <Compile Include="AlmacenDataMapperTest.cs" />
+    <Compile Include="AlmacenTecnicoDataMapperTest.cs" />
+    <Compile Include="ArticuloDataMapperTest.cs" />
+    <Compile Include="BancoDataMapperTest.cs" />
+    <Compile Include="BatchLoadDataMapperTest.cs" />
+    <Compile Include="BroadcastTest.cs" />
+    <Compile Include="CatalogItemStatusModelTest.cs" />
+    <Compile Include="CatalogItemStatusViewModelTest.cs" />
+    <Compile Include="CatalogProyectoModelTest.cs" />
+    <Compile Include="CatalogProyectoViewModelTest.cs" />
+    <Compile Include="CatalogTipoCotizacionModelTest.cs" />
+    <Compile Include="CatalogTipoMovimientoModelTest.cs" />
+    <Compile Include="CategoriaDataMapperTest.cs" />
+    <Compile Include="CiudadDataMapperTest.cs" />
+    <Compile Include="ClienteDataMapperTest.cs" />
+    <Compile Include="DepartamentoDataMapperTest.cs" />
+    <Compile Include="EntradaPorValidacionViewModelTest.cs" />
+    <Compile Include="EquipoDataMapperTest.cs" />
+    <Compile Include="EstatusDataMapperTest.cs" />
+    <Compile Include="EmpresaDataMapperTest.cs" />
+    <Compile Include="FacturaCompraDataMapperTest.cs" />
+    <Compile Include="FacturaCompraDetalleDataMapperTest.cs" />
+    <Compile Include="FacturaVentaDataMapperTest.cs" />
+    <Compile Include="HistorialDataMapperTest.cs" />
+    <Compile Include="ItemDataMapperTest.cs" />
+    <Compile Include="ItemStatusDataMapperTest.cs" />
+    <Compile Include="JobDataMapperTest.cs" />
+    <Compile Include="LoteDataMapperTest.cs" />
+    <Compile Include="MarcaDataMapperTest.cs" />
+    <Compile Include="MaxMinDataMapperTest.cs" />
+    <Compile Include="MedioEnvioDataMapperTest.cs" />
+    <Compile Include="MenuDataMapperTest.cs" />
+    <Compile Include="MenuModelTest.cs" />
+    <Compile Include="ModeloDataMapperTest.cs" />
+    <Compile Include="MonedaDataMapperTest.cs" />
+    <Compile Include="MovimientoDataMapperTest.cs" />
+    <Compile Include="MovimientoDetalleDataMapperTest.cs" />
+    <Compile Include="PaisDataMapperTest.cs" />
+    <Compile Include="ProgramadoDataMapperTest.cs" />
+    <Compile Include="ProcessBachDataMapperTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropiedadDataMapperTest.cs" />
+    <Compile Include="ProveedorCategoriaDataMapperTest.cs" />
+    <Compile Include="ProveedorCuentaDataMapperTest.cs" />
+    <Compile Include="ProveedorDataMapperTest.cs" />
+    <Compile Include="ProyectoDataMapperTest.cs" />
+    <Compile Include="ReciboDataMapperTest.cs" />
+    <Compile Include="ReciboMovimientoDataMapperTest.cs" />
+    <Compile Include="ReciboStatusDataMapperTest.cs" />
+    <Compile Include="SerializerJsonTest.cs" />
+    <Compile Include="ServerLastDataMapperTest.cs" />
+    <Compile Include="ServicioDataMapperTest.cs" />
+    <Compile Include="SolicitanteDataMapperTest.cs" />
+    <Compile Include="SyncDataMapperTest.cs" />
+    <Compile Include="TecnicoDataMapperTest.cs" />
+    <Compile Include="TerminoEnvioDataMapperTest.cs" />
+    <Compile Include="TipoCotizacionDataMapperTest.cs" />
+    <Compile Include="TipoEmpresaDataMapperTest.cs" />
+    <Compile Include="TipoMovimientoDataMapperTest.cs" />
+    <Compile Include="TipoPedimentoDataMapperTest.cs" />
+    <Compile Include="TransporteDataMapperTest.cs" />
+    <Compile Include="UltimoMovimientoDataMapperTest.cs" />
+    <Compile Include="UnidadDataMapperTest.cs" />
+    <Compile Include="UNIDTest.cs" />
+    <Compile Include="UploadLogDataMapperTest.cs" />
+    <Compile Include="UploadProcessViewModelTest.cs" />
+    <Compile Include="VersionViewModelTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InventoryApp.DAL\InventoryApp.DAL.csproj">
+      <Project>{85AA51E1-F7B7-488C-A286-1E4015501512}</Project>
+      <Name>InventoryApp.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InventoryApp.Model\InventoryApp.Model.csproj">
+      <Project>{974C8517-2493-4647-B5B2-F03F58103D35}</Project>
+      <Name>InventoryApp.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InventoryApp.Service\InventoryApp.Service.csproj">
+      <Project>{86DAC374-7D61-4161-BA33-6AC405AF8E7F}</Project>
+      <Name>InventoryApp.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InventoryApp.ViewModel\InventoryApp.ViewModel.csproj">
+      <Project>{41C7008F-8CEC-4E41-867F-FD558F84F4BA}</Project>
+      <Name>InventoryApp.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InventoryApp.View\InventoryApp.View.csproj">
+      <Project>{0D2F4C11-7723-4C65-AF5A-6D0D8FF96F80}</Project>
+      <Name>InventoryApp.View</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Shadow Include="Referencias de prueba\InventoryApp.View.accessor" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

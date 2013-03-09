@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="InventoryApp.View.CatalogTerminoEnvio.TerminoEnvioUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="420" d:DesignWidth="700" 
+             DataContext="{StaticResource catalogTerminoEnvioViewModel}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Style="{StaticResource titleLabel}" Content="CONSULTA TÉRMINO ENVIO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <Button Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="163,3,12,4" Name="btnNuevo" Grid.Column="2" 
+                VerticalAlignment="Stretch" Width="75" Click="btnNuevo_Click" Style="{StaticResource btnElara}" />
+        <Button Content="Eliminar" Height="23" HorizontalAlignment="Stretch" Grid.Column="2" 
+                    Margin="75,3,100,4" Name="btnEliminar" VerticalAlignment="Stretch"
+                    Width="75" Click="btnEliminar_Click" Command="{Binding DeleteTerminoEnvioCommand,Mode=OneWay}" Style="{StaticResource btnElara}" />
+        <DataGrid Height="auto" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" CanUserDeleteRows="False"
+                  Name="dtGridTerminoEnvio" VerticalAlignment="Stretch" ItemsSource="{Binding Path=CatalogTerminoEnvioModel.TerminoEnvio}" 
+                  SelectedItem="{Binding CatalogTerminoEnvioModel.SelectedTerminoEnvio, Mode=TwoWay}" 
+                  MouseDoubleClick="dtGridItemStatus_MouseDoubleClick"  Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}"
+                  Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+            <DataGrid.Columns>
+                <!--<DataGridCheckBoxColumn Header="" IsReadOnly="False" Width="25" x:Name="ISCHECK" Binding="{Binding Path=Is_Check}"></DataGridCheckBoxColumn>-->
+                <DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Clave" x:Name="CLAVE" Binding="{Binding Path=CLAVE}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="1.1*" Header="Término" x:Name="TERMINO" Binding="{Binding Path=TERMINO}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True"  Width="1.1*" Header="Significado" x:Name="SIGNIFICADO" Binding="{Binding Path=SIGNIFICADO}"></DataGridTextColumn>
+                <DataGridCheckBoxColumn Header="Genera Lotes" IsReadOnly="True" Width="100" x:Name="GENERA_LOTES" Binding="{Binding Path=GENERA_LOTES}"></DataGridCheckBoxColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

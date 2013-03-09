@@ -1,0 +1,29 @@
+﻿<Window x:Class="InventoryApp.View.Recibo.DlgAddMovimientoDetalleView"
+        xmlns:my="clr-namespace:InventoryApp.View.Recibo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Detalle del Movimiento" Height="327" Width="635">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" Height="AUTO" HorizontalAlignment="Stretch" Name="scrollViewer1" VerticalAlignment="Stretch" Width="AUTO" DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto">
+            <ContentControl HorizontalAlignment="Stretch" Name="contentControl1" VerticalAlignment="Stretch">
+                <my:AddMovimientoDetalleView />
+            </ContentControl>
+        </ScrollViewer>
+        <Button TabIndex="3" Style="{StaticResource btnElara}" VerticalAlignment="Center" Grid.Row="1" Content="Agregar" Height="28" Width="90" HorizontalAlignment="Left" Command="{Binding AddMovimientoDetalleCmd}" Click="Button_Click" Margin="8,7,0,5" />
+        <Button TabIndex="4" Style="{StaticResource btnElara}" VerticalAlignment="Center" Grid.Row="1" Content="Cancelar" Height="28"  Width="90" HorizontalAlignment="Right" Margin="0,7,10,5" />
+    </Grid>
+</Window>

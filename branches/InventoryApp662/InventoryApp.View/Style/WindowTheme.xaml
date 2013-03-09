@@ -1,0 +1,237 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <LinearGradientBrush x:Key="DegradadoElaraOrange" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+        <GradientStop Color="#FFFFC934" Offset="0"/>
+        <GradientStop Color="#ed5d1e" Offset="0.567"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DegradadoElaraBlue" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+        <GradientStop Color="#90C6F2" Offset="0"/>
+        <GradientStop Color="#153376" Offset="0.567"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DegradadoElaraButton" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+        <GradientStop Color="#F2F2F2" Offset="0"/>
+        <GradientStop Color="#BDBDBD" Offset="0.567"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DegradadoGrid" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#D8D8D8" Offset="0" />
+        <GradientStop Color="#6E6E6E" Offset="1" />
+        <GradientStop Color="#FAFAFA" Offset="0.28" />
+    </LinearGradientBrush>
+
+<LinearGradientBrush x:Key="DegradadoGridDlg" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FE9A2E" Offset="0" />
+        <GradientStop Color="#F7BE81" Offset="1" />
+        <GradientStop Color="#B45F04" Offset="0.28" />
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="DegradadoTxtElara" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+        <GradientStop Color="#6B6A6A" Offset="0"/>
+        <GradientStop Color="#ACACAC" Offset="0.567"/>
+    </LinearGradientBrush>
+
+    <Style x:Key="titleBorderElaraOrange" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="#ed5d1e" />
+    </Style>
+
+    <Style x:Key="titleBorder" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="{StaticResource DegradadoElaraOrange}" />
+    </Style>
+
+    <Style x:Key="titleBorder2" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="{StaticResource DegradadoElaraButton}" />
+    </Style>
+
+    <Style x:Key="titleBorderElaraBlue" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="{StaticResource DegradadoElaraBlue}" />
+    </Style>
+
+    <Style x:Key="GridLogin" TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="{StaticResource DegradadoGrid}" />
+    </Style>
+
+    <Style x:Key="GridLoginDlg" TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="{StaticResource DegradadoGridDlg}" />
+    </Style>
+
+    <Style x:Key="titleLabel" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#F2F2F2"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontStretch" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+    </Style>
+
+    <Style x:Key="lblCamposGeneric" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#848484"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontStretch" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="11.5"></Setter>
+    </Style>
+
+    <Style x:Key="checkBoxGeneric" TargetType="{x:Type CheckBox}">
+        <Setter Property="Foreground" Value="#848484"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontStretch" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="11.5"></Setter>
+    </Style>
+
+    <Style x:Key="textBockCamposGeneric" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="#848484"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontStretch" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="11.5"></Setter>
+    </Style>
+
+    <Style x:Key="radioButtonGeneric" TargetType="{x:Type  RadioButton}">
+        <Setter Property="Foreground" Value="#848484"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontStretch" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="11.5"></Setter>
+    </Style>
+
+    <Style x:Key="titleLabel2" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#F2F2F2"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontStretch" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+    </Style>
+
+    <Style x:Key="titleLabelElara" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#FEFEFF"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontStretch" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+    </Style>
+    
+    <Style x:Key="titleCamposElara" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#5E4603"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+    </Style>
+
+    <Style x:Key="titleError" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#FC6070"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="13"></Setter>
+        <Setter Property="FontWeight" Value="bold"></Setter>
+    </Style>
+
+    <Style x:Key="lblError" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#FC6070"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="11.5"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+    </Style>
+
+    <Style x:Key="titleElaraJob" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#5E4603"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+    </Style>
+
+    <Style x:Key="lblLogin" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#18346B"></Setter>
+        <Setter Property="FontFamily" Value="Verdana"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+    </Style>
+
+    <Style x:Key="lblIntrucciones" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#FE2E2E"></Setter>
+        <Setter Property="FontFamily" Value="Verdana"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+    </Style>
+
+    <Style x:Key="txtLogin" TargetType="{x:Type TextBox}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="{StaticResource DegradadoTxtElara}"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="BorderBrush" Value="White"></Setter>
+        <Setter Property="BorderThickness" Value="1,1,1,1"></Setter>
+    </Style>
+
+
+    <Style x:Key="PassLogin" TargetType="{x:Type PasswordBox}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="{StaticResource DegradadoTxtElara}"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="BorderBrush" Value="White"></Setter>
+        <Setter Property="BorderThickness" Value="1,1,1,1"></Setter>
+    </Style>
+
+    <Style x:Key="lblRegistroRecuperar" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#0174DF"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="DarkOrange" />
+                
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="textBockLogin" TargetType="{x:Type TextBlock}">
+
+        <Setter Property="Foreground" Value="#0174DF"/>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#2E64FE" />
+                <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                <Setter Property="FontSize" Value="12.5"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="Cursor" Value="Hand" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="textBockLogin2" TargetType="{x:Type TextBlock}">
+
+        <Setter Property="Foreground" Value="#F8E2C7"/>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#906128" />
+                <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                <Setter Property="FontSize" Value="12.5"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="Cursor" Value="Hand" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="textBockActividad" TargetType="{x:Type TextBlock}">
+
+        <Setter Property="Foreground" Value="#034C8D"/>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+    </Style>
+
+    <Style x:Key="lblActividad" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#034C8D"></Setter>
+        <Setter Property="FontFamily" Value="Arial Rounded MT"></Setter>
+        <Setter Property="FontStretch" Value="Normal"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+    </Style>
+
+</ResourceDictionary>
+
+    

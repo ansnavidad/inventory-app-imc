@@ -1,0 +1,42 @@
+﻿<Window x:Class="InventoryApp.View.CatalogBanco.AddBancoView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Nuevo banco" Height="200" Width="350" 
+        WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Style="{StaticResource titleLabelElara}" Content="ALTA BANCO" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <Button Content="Guardar" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="5,0" 
+                    Name="btnAgregar" VerticalAlignment="Stretch" Width="75" 
+                    Command="{Binding AddBancoCommand,Mode=OneWay}" Click="btnAgregar_Click" 
+                    Grid.Column="1" Style="{StaticResource btnElara}" />
+        <Button Content="Cancelar" Grid.Column="2" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="5,0" Name="btnCancelar" VerticalAlignment="Stretch" Width="75" Click="btnCancelar_Click" Style="{StaticResource btnElara}" />
+        <Label Style="{StaticResource lblCamposGeneric}" Content="Nombre Banco :" Grid.Row="1"
+               HorizontalAlignment="Right"  Name="lblNombreBanco" VerticalAlignment="Bottom" Grid.Column="1"  />
+        <TextBox Grid.Column="2" Grid.Row="1" Height="23" HorizontalAlignment="Left" Name="txtNomreBanco" VerticalAlignment="Bottom" Width="140" Text="{Binding Banco.BancoName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="512"/>
+        <Label Content="Agregar Banco" Height="28" HorizontalAlignment="Stretch" Margin="6,6,110,16" Name="lblTitulo" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Width="184" />
+        
+    </Grid>
+</Window>

@@ -1,0 +1,59 @@
+﻿<Window x:Class="InventoryApp.View.CatalogUsuarios.AddRolesCurrentView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Roles Actules" Height="350" Width="350"
+        ResizeMode="NoResize" WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Dictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Border  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Style="{StaticResource titleLabel}" Content="ROLES ACTUALES" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" />
+        </Border>
+        <DataGrid AutoGenerateColumns="False" Grid.Row="1" HorizontalAlignment="Stretch"
+                  Name="dataGrid1" VerticalAlignment="Stretch" CanUserAddRows="False"
+                  RowStyle="{StaticResource RowStyle}" CanUserDeleteRows="False"
+                  Style="{StaticResource GridStyle}"
+                  ItemsSource="{Binding Path=Addrol.Rol,Mode=TwoWay}"
+                  SelectedItem="{Binding Addrol.SelectedRol, Mode=TwoWay}"
+                  ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Asignar" Width="65">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Left" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Rol" Width="auto" x:Name="nombreRol" Binding="{Binding Path=ROL_NAME}" IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Border Grid.Row="2" Style="{StaticResource titleBorder2}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Agregar Rol" Height="23" HorizontalAlignment="Center"
+                Name="btnGuardar" VerticalAlignment="Center" Width="90" Style="{StaticResource btnElara}" Click="btnGuardar_Click"
+                Command="{Binding AddRolCommand,Mode=OneWay}"/>
+                <Button Content="Cancelar" Grid.Column="2" Height="23" HorizontalAlignment="Center"
+                Name="btnEliminar" VerticalAlignment="Center" Width="90" Style="{StaticResource btnElara}" Click="btnEliminar_Click" />
+            </Grid>
+        </Border>
+    </Grid>
+    
+</Window>

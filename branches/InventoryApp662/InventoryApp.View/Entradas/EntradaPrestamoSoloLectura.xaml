@@ -1,0 +1,273 @@
+﻿<Window x:Class="InventoryApp.View.Entradas.EntradaPrestamoSoloLectura"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            Title="Entrada Prestamo (Solo Lectura)" Width="720"
+            mc:Ignorable="d" MinHeight="550" MinWidth="600"
+            d:DesignHeight="800" d:DesignWidth="720" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/scroll.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource titleBorder}" >
+            <Label Style="{StaticResource titleLabel}" Content="Entrada Prestamo (Solo Lectura)" Height="28" HorizontalAlignment="Center" Name="lblNameConsulta" Width="AUTO" FontSize="17" />
+        </Border>
+        <ScrollViewer Grid.Row="1">
+            <ScrollViewer.Resources>
+                <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Thumb}">
+                                <Grid x:Name="Grid">
+                                    <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Fill="Transparent" />
+                                    <Border x:Name="Rectangle1" CornerRadius="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto"  Background="{TemplateBinding Background}" />
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="Tag" Value="Horizontal">
+                                        <Setter TargetName="Rectangle1" Property="Width" Value="Auto" />
+                                        <Setter TargetName="Rectangle1" Property="Height" Value="7" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style TargetType="{x:Type ScrollBar}">
+                    <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
+                    <Setter Property="Foreground" Value="#A4A4A4" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Width" Value="8" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                <Grid x:Name="GridRoot" Width="8" Background="{TemplateBinding Background}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.00001*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="true" Focusable="false">
+                                        <Track.Thumb>
+                                            <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" Style="{DynamicResource ScrollThumbs}" />
+                                        </Track.Thumb>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton x:Name="PageUp" Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="false" />
+                                        </Track.IncreaseRepeatButton>
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton x:Name="PageDown" Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="false" />
+                                        </Track.DecreaseRepeatButton>
+                                    </Track>
+                                </Grid>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger SourceName="Thumb" Property="IsMouseOver" Value="true">
+                                        <Setter Value="{DynamicResource ButtonSelectBrush}" TargetName="Thumb" Property="Background" />
+                                    </Trigger>
+                                    <Trigger SourceName="Thumb" Property="IsDragging" Value="true">
+                                        <Setter Value="{DynamicResource DarkBrush}" TargetName="Thumb" Property="Background" />
+                                    </Trigger>
+
+                                    <Trigger Property="IsEnabled" Value="false">
+                                        <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed" />
+                                    </Trigger>
+                                    <Trigger Property="Orientation" Value="Horizontal">
+                                        <Setter TargetName="GridRoot" Property="LayoutTransform">
+                                            <Setter.Value>
+                                                <RotateTransform Angle="-90" />
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter TargetName="PART_Track" Property="LayoutTransform">
+                                            <Setter.Value>
+                                                <RotateTransform Angle="-90" />
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="Width" Value="Auto" />
+                                        <Setter Property="Height" Value="8" />
+                                        <Setter TargetName="Thumb" Property="Tag" Value="Horizontal" />
+                                        <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand" />
+                                        <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ScrollViewer.Resources>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="160"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="251"/>
+
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="190"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="190"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Folio:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
+                       HorizontalAlignment="Right" Name="lblNombreStatus" VerticalAlignment="Center" />
+                    <TextBlock Height="23" HorizontalAlignment="Left" Name="textBlockFolio"
+                           Text="{Binding MovimientoModel.UnidMovimiento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" Grid.Column="1" />
+
+                    <Label Content="Fecha:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
+                       HorizontalAlignment="Right"  Name="label2" VerticalAlignment="Center" Grid.Row="1" />
+                    <TextBlock Height="23" HorizontalAlignment="Left" Name="textBlock2" 
+                           Text="{Binding MovimientoModel.FechaMovimiento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" Grid.Row="1" Grid.Column="1" />
+                    <Label Grid.Column="3" Content="Empresa:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
+                       Foreground="#848484" HorizontalAlignment="Right" Name="labelEmpresa" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="4" Height="23" HorizontalAlignment="Left" IsEnabled="False" MaxLength="32" Name="textBox10" TabIndex="1"
+                         Text="{Binding MovimientoModel.EmpresaLectura.EMPRESA_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
+                    <Label Grid.Column="3" Grid.Row="1" Content="Solicitante:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
+                       HorizontalAlignment="Right" Name="label8" VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="4" Grid.Row="1"  Height="23" HorizontalAlignment="Left" IsEnabled="False" MaxLength="32" Name="textBox11" TabIndex="1" 
+                         Text="{Binding MovimientoModel.SolicitanteLectura.SOLICITANTE_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
+                    <Label Grid.Column="3" Grid.Row="2" Content="Área del solicitante:" FontFamily="Arial Rounded MT" FontSize="11.5" 
+                       FontStretch="Normal" Foreground="#848484" Name="label9" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                    <TextBox Grid.Column="4" Grid.Row="2"  Height="23" HorizontalAlignment="Left" IsEnabled="False" MaxLength="1024" Name="textBox13" TabIndex="6"
+                         Text="{Binding MovimientoModel.DepartamentoLectura.DEPARTAMENTO_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
+                    <Label Grid.Row="3" Content="Almacén de destino:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
+                       Foreground="#848484" HorizontalAlignment="Right" Name="labelx" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="3"  IsEnabled="False" Height="23" HorizontalAlignment="Left" MaxLength="32" Name="textBox14" TabIndex="1"
+                         Text="{Binding MovimientoModel.AlmacenDestino.ALMACEN_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
+                    <Label Grid.Row="4" Content="Técnico que recibe:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
+                       Foreground="#848484" HorizontalAlignment="Right" Name="label6" VerticalAlignment="Center"  />
+                    <TextBox Grid.Column="1" Grid.Row="4"  Height="23" HorizontalAlignment="Left" IsEnabled="False" MaxLength="32" Name="textBox15" TabIndex="1"
+                         Text="{Binding MovimientoModel.Tecnico.TECNICO_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="180" />
+                    <Label Grid.Row="2" Content="TT:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" 
+                           Foreground="#848484" Name="label5" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                    <TextBox Grid.Column="1" Grid.Row="2" IsEnabled="False" TabIndex="11" Height="23" Name="textBoxTT" VerticalAlignment="Center" 
+                             Text="{Binding MovimientoModel.Tt, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Width="180" />
+                </Grid>
+                <Label Grid.Row="1" Content="Procedencia:" FontFamily="Arial Rounded MT" FontSize="13" FontStretch="Normal" 
+                   Foreground="#848484"  Name="label1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,15,0" />
+                <Border Grid.Row="2" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                <Grid Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="*"/>
+
+                        <ColumnDefinition Width="210"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="1" Grid.Row="2" Height="23" HorizontalAlignment="Left" IsEnabled="False" MaxLength="1024" Name="textBox12" VerticalAlignment="Top"
+                     TabIndex="6" Text="{Binding MovimientoModel.ProveedorProcedenciaLectura.PROVEEDOR_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="180" Margin="15,0" />
+
+
+                    <TextBox Grid.Column="4" Grid.Row="1"  Height="23" HorizontalAlignment="Left" IsEnabled="False" MaxLength="1024" Name="textBox7" VerticalAlignment="Top"
+                     TabIndex="6" Text="{Binding MovimientoModel.ClienteProcedenciaLectura.CLIENTE1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="180" Margin="15,0" />
+                    <Label Grid.Column="1" Content="Proveedor:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
+                       HorizontalAlignment="Left" Name="proveedor" VerticalAlignment="Bottom"/>
+                    <Label  Grid.Column="3" Content="Cliente:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
+                       Foreground="#848484"  Name="cliente" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+                </Grid>
+                <Border Grid.Row="4" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                <Grid Grid.Row="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Medio envió:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484"
+                       HorizontalAlignment="Left" Name="transporte" VerticalAlignment="Bottom"/>
+                    <TextBox Grid.Column="0" Grid.Row="1" IsEnabled="False" TabIndex="6" Height="23" MaxLength="1024" Name="txtTransporte" VerticalAlignment="Top" Margin="15,0"
+                     Text="{Binding MovimientoModel.Transporte.TRANSPORTE_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="180" />
+                    <Label Grid.Column="1" Grid.Row="0" Content="Guia:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" 
+                       HorizontalAlignment="Left" Name="label11" VerticalAlignment="Bottom" Foreground="#848484"/>
+                    <TextBox IsEnabled="False" Grid.Column="1" Grid.Row="1" TabIndex="9" Height="23" HorizontalAlignment="Left" MaxLength="32" Name="textBox2" Margin="15,0"
+                         Text="{Binding MovimientoModel.Guia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="180" />
+                    <Label Grid.Column="2" Content="Contacto:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal"
+                       Foreground="#848484"  Name="label10" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+                    <TextBox IsEnabled="False" Grid.Row="2" Grid.Column="2" TabIndex="10" Height="23" MaxLength="254" Name="textBox1" VerticalAlignment="Top" Margin="15,0"
+                         Text="{Binding MovimientoModel.Contacto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Width="180"/>
+                </Grid>
+                <Border Grid.Row="6" BorderBrush="Silver" Height="3" BorderThickness="3" Name="border7" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                <Grid Grid.Row="7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="190"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="170"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Items Seleccionados:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" 
+                       Foreground="#848484" Name="label7" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                    <TextBlock Grid.Column="1" Height="23" Name="textBlockCantidad" VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Text="{Binding MovimientoModel.CantidadItems, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Width="97" />
+                    <Button IsEnabled="False" Grid.Column="3"  Content="Agregar Items" Height="30" VerticalAlignment="Center"
+                           HorizontalAlignment="Center" Width="120" Name="button1" Style="{StaticResource btnElara}" />
+                    <Button IsEnabled="False" Grid.Column="4"  Content="Borrar Items" Height="30"
+                        Name="button2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}" />
+                </Grid>
+                <DataGrid IsEnabled="True" Grid.Row="8" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ItemModel.ItemModel}" 
+                          HorizontalAlignment="Stretch" Name="dtGridTipoPedimento" Height="251" VerticalScrollBarVisibility="Auto"
+                          VerticalAlignment="Stretch" Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn x:Name="ISCHECK" Binding="{Binding Path=IsChecked}" Header="" IsReadOnly="True" Width="30" />
+                        <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Serie" x:Name="SERIE" Binding="{Binding Path=NUMERO_SERIE}" />
+                        <DataGridTextColumn IsReadOnly="True"  Width="*" Header="SKU" x:Name="SKU" Binding="{Binding Path=SKU}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Equipo" x:Name="EQUIPO" Binding="{Binding Path=Equipo.EQUIPO_NAME}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Modelo" x:Name="MODELO" Binding="{Binding Path=Modelo.MODELO_NAME}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Marca" x:Name="MARCA" Binding="{Binding Path=Marca.MARCA_NAME}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Status" x:Name="STATUS" Binding="{Binding Path=ItemStatus.ITEM_STATUS_NAME}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True"  Width="*" Header="Cantidad" x:Name="Cant" Binding="{Binding Path=CantidadMovimiento}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,284,222,0" Name="comboBoxAlmacenDestino" VerticalAlignment="Top" Width="159" DisplayMemberPath="ALMACEN_NAME" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogAlmacenModel.Almacen}"  SelectedItem="{Binding MovimientoModel.AlmacenProcedencia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_ALMACEN" IsEnabled="False" Visibility="Hidden" SelectedIndex="0" />
+                <ComboBox TabIndex="2" DisplayMemberPath="CLIENTE1" Height="23" HorizontalAlignment="Right" ItemsSource="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Path=CatalogClienteProcedenciaModel.Cliente}"  Margin="0,75,24,0" Name="comboCliente"  SelectedItem="{Binding MovimientoModel.Cliente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="UNID_CLIENTE" VerticalAlignment="Top" Width="131" SelectedIndex="0" Visibility="Hidden" />
+            </Grid>
+        </ScrollViewer>
+        <Border Grid.Row="2" Style="{StaticResource titleBorder2}">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Command="{Binding ImprimirCommand, Mode=OneWay}" Content="Imprimir" Height="30" HorizontalAlignment="Center"
+                        Name="button3" TabIndex="1" VerticalAlignment="Center" Width="120" Style="{StaticResource btnElara}"  />
+                <Button Grid.Column="2" TabIndex="2" Content="Cancelar" Height="30" Name="btnCancelar" VerticalAlignment="Center"
+                        Click="btnCancelar_Click" HorizontalAlignment="Center" Width="120" Style="{StaticResource btnElara}"  />
+            </Grid>
+        </Border>
+        <Button Content="Historial" Height="23" HorizontalAlignment="Stretch" Margin="611,11,12,16" Name="buttonTrololoo" Style="{StaticResource btnElara}" VerticalAlignment="Stretch" Width="75" Click="Historal_Click" />
+    </Grid>
+
+</Window>
+

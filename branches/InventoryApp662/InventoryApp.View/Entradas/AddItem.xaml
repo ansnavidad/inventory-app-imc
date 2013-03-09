@@ -1,0 +1,66 @@
+﻿<Window x:Class="InventoryApp.View.Entradas.AddItem"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+Title="Agregar ítems" Height="568" Width="764"
+WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="84" />
+            <RowDefinition Height="286" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="31*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Content="AGREGAR ÍTEMS" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" Style="{StaticResource titleLabel}" />
+        </Border>
+        <DataGrid AutoGenerateColumns="False" Height="254" HorizontalAlignment="Left"
+                  Margin="0,72,0,0" Name="dataGrid1" VerticalAlignment="Top" 
+                  Width="742" ItemsSource="{Binding CatalogItemModel.ItemModel}"
+                  Grid.ColumnSpan="3" Grid.Row="2" Style="{StaticResource GridStyle}"
+                  ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}"
+                  Grid.RowSpan="2"  CanUserAddRows="False" RowStyle="{StaticResource RowStyle}">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn x:Name="check" MinWidth="25" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn Header="Artículo" Width="95" x:Name="articuloNombre" Binding="{Binding Path=Articulo.ARTICULO1}" IsReadOnly="True"/>
+                <DataGridTextColumn IsReadOnly="True" Width="95" Header="SKU" x:Name="SKU" Binding="{Binding Path=SKU}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Width="95" Header="N° Serie" x:Name="Serie" Binding="{Binding Path=NUMERO_SERIE}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Width="80" Header="Equipo" x:Name="EQUIPO" Binding="{Binding Path=Equipo.EQUIPO_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Width="80" Header="Modelo" x:Name="MODELO" Binding="{Binding Path=Modelo.MODELO_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Width="70" Header="Marca" x:Name="MARCA" Binding="{Binding Path=Marca.MARCA_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Width="70" Header="Status" x:Name="STATUS" Binding="{Binding Path=ItemStatus.ITEM_STATUS_NAME}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Width="150" Header="Cantidad Disponible" x:Name="CantidadDisponible" Binding="{Binding Path=CantidadDisponible}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="False" Width="150" Header="Cantidad a Mover" x:Name="CantidadMovimiento" Binding="{Binding Path=CantidadMovimiento}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button TabIndex="4" Command="{Binding AddItemsCommand, Mode=OneWay}" Content="Agregar Items" Height="23" HorizontalAlignment="Left" 
+Margin="199,53,0,13" Name="btnAgregar" Width="96" Click="btnAgregar_Click" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource btnElara}"/>
+        <Button TabIndex="5" Content="Cancelar" Height="23" HorizontalAlignment="Left" Margin="9,54,0,12" Name="button1" Width="96" Click="button1_Click" Grid.Column="2" Grid.Row="4" Style="{StaticResource btnElara}"/>
+        <TextBox TabIndex="1" Text="{Binding CatalogItemModel.Serie, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="23" HorizontalAlignment="Left" 
+                 Margin="49,15,0,0" Name="txtNumSerie" VerticalAlignment="Top" Width="159" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1" />
+        <Button TabIndex="2" Command="{Binding AddItemCommand, Mode=OneWay}" Content="Buscar Item" Height="28" HorizontalAlignment="Right" 
+Margin="0,28,44,0" Name="button2" VerticalAlignment="Top" Width="98" Grid.Column="2" Grid.Row="1" Style="{StaticResource btnElara}"/>
+        <TextBox TabIndex="3" Height="23" HorizontalAlignment="Left" Margin="49,48,0,0" Name="txtSKU" Text="{Binding CatalogItemModel.SKU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="159" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1" IsEnabled="False"/>
+        <Label Content="Seleccionar Items por:" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#848484" Height="28" HorizontalAlignment="Right" Margin="0,31,85,0" Name="label2" VerticalAlignment="Top" Width="139" Grid.Row="1" />
+        <RadioButton Content="Número de Serie:" Grid.ColumnSpan="2" Grid.Row="1" Height="16" HorizontalAlignment="Left" Margin="187,22,0,0" Name="radioButton1" VerticalAlignment="Top" IsChecked="True" Checked="radioButton1_Checked" />
+        <RadioButton TabIndex="2"  Content="SKU:" Height="16" HorizontalAlignment="Left" Margin="187,51,0,0" Name="radioButton2" VerticalAlignment="Top" Grid.Row="1" Checked="radioButton2_Checked" />
+        <TextBlock Grid.Row="1" Height="26" HorizontalAlignment="Left" Margin="26,83,0,0" Name="textBlock1"  Text="{Binding CatalogItemModel.Mensaje1, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="584" Grid.ColumnSpan="3" Grid.RowSpan="2" />
+        <TextBlock Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="26,21,0,0" Name="textBlock2" Text="{Binding CatalogItemModel.Mensaje2, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="584" />
+        <TextBlock Grid.ColumnSpan="3" Height="23" HorizontalAlignment="Left" Margin="26,48,0,0" Name="textBlock3" Text="{Binding Error, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="584" Grid.Row="2" />
+        <Label Content="{Binding CatalogItemModel.Mensaje3}" FontFamily="Arial Rounded MT" FontSize="11.5" FontStretch="Normal" Foreground="#FFFF2424" Grid.ColumnSpan="3" Height="28" HorizontalAlignment="Right" Margin="0,24,160,0" Name="label1" VerticalAlignment="Top" Width="555" Grid.Row="4" />
+    </Grid>
+</Window>

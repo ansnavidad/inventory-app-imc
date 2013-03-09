@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{974C8517-2493-4647-B5B2-F03F58103D35}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InventoryApp.Model</RootNamespace>
+    <AssemblyName>InventoryApp.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RestSharp">
+      <HintPath>..\..\..\..\..\..\..\..\Programs\ElaraInventario\Resources\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgregarItemDestinoModel.cs" />
+    <Compile Include="AgregarItemModel.cs" />
+    <Compile Include="AlmacenModel.cs" />
+    <Compile Include="ArticuloModel.cs" />
+    <Compile Include="BancoModel.cs" />
+    <Compile Include="CatalogAlmacenModel.cs" />
+    <Compile Include="CatalogArticuloModel.cs" />
+    <Compile Include="CatalogBancoModel.cs" />
+    <Compile Include="CatalogCategoriaReloadModel.cs" />
+    <Compile Include="CatalogCategoriaModel.cs" />
+    <Compile Include="CatalogCiudadModel.cs" />
+    <Compile Include="CatalogClienteModel.cs" />
+    <Compile Include="CatalogDepartamentoModel.cs" />
+    <Compile Include="CatalogEmpresaModel.cs" />
+    <Compile Include="CatalogEquipoModel.cs" />
+    <Compile Include="CatalogInfraestructuraModel.cs" />
+    <Compile Include="CatalogInventario\Descriptor.cs" />
+    <Compile Include="CatalogInventario\Descriptor2.cs" />
+    <Compile Include="CatalogInventario\InventarioModel.cs" />
+    <Compile Include="CatalogItemStatusModel.cs" />
+    <Compile Include="CatalogMarcaModel.cs" />
+    <Compile Include="CatalogMaxMinModel.cs" />
+    <Compile Include="CatalogMedioEnvioModel.cs" />
+    <Compile Include="CatalogModeloModel.cs" />
+    <Compile Include="CatalogMonedaModel.cs" />
+    <Compile Include="CatalogMovimiento.cs" />
+    <Compile Include="CatalogMovimientoModel.cs" />
+    <Compile Include="CatalogPaisModel.cs" />
+    <Compile Include="CatalogProgramadoModel.cs" />
+    <Compile Include="CatalogPropiedadModel.cs" />
+    <Compile Include="CatalogProveedorCuentaModel.cs" />
+    <Compile Include="CatalogProveedorModel.cs" />
+    <Compile Include="CatalogProyectoModel.cs" />
+    <Compile Include="CatalogRolModel.cs" />
+    <Compile Include="CatalogServicioModel.cs" />
+    <Compile Include="CatalogSolicitanteModel.cs" />
+    <Compile Include="CatalogTecnicoModel.cs" />
+    <Compile Include="CatalogTerminoEnvioModel.cs" />
+    <Compile Include="CatalogTipoCotizacionModel.cs" />
+    <Compile Include="CatalogTipoEmpresaModel.cs" />
+    <Compile Include="CatalogTipoMovimientoModel.cs" />
+    <Compile Include="CatalogTipoPedimentoModel.cs" />
+    <Compile Include="CatalogTransporteModel.cs" />
+    <Compile Include="CatalogUnidadModel.cs" />
+    <Compile Include="CatalogUsuarioModel.cs" />
+    <Compile Include="CategoriaModel.cs" />
+    <Compile Include="CiudadModel.cs" />
+    <Compile Include="ClienteModel.cs" />
+    <Compile Include="DeleteAlmacen.cs" />
+    <Compile Include="DeleteArticulo.cs" />
+    <Compile Include="DeleteBanco.cs" />
+    <Compile Include="DeleteCargaItems.cs" />
+    <Compile Include="DeleteCategoria.cs" />
+    <Compile Include="DeleteCiudad.cs" />
+    <Compile Include="DeleteCliente.cs" />
+    <Compile Include="DeleteDepartamento.cs" />
+    <Compile Include="DeleteEmpresa.cs" />
+    <Compile Include="DeleteEquipo.cs" />
+    <Compile Include="DeleteFacturaDetalleModel.cs" />
+    <Compile Include="DeleteInfraestructura.cs" />
+    <Compile Include="DeleteItemStatus.cs" />
+    <Compile Include="DeleteMarca.cs" />
+    <Compile Include="DeleteMaxMin.cs" />
+    <Compile Include="DeleteMedioEnvio.cs" />
+    <Compile Include="DeleteModelo.cs" />
+    <Compile Include="DeleteMoneda.cs" />
+    <Compile Include="DeleteMovimiento.cs" />
+    <Compile Include="DeletePais.cs" />
+    <Compile Include="DeleteProgramado.cs" />
+    <Compile Include="DeletePropiedad.cs" />
+    <Compile Include="DeleteProveedor.cs" />
+    <Compile Include="DeleteProveedorCuenta.cs" />
+    <Compile Include="DeleteProyecto.cs" />
+    <Compile Include="DeleteRol.cs" />
+    <Compile Include="DeleteServicio.cs" />
+    <Compile Include="DeleteSolicitante.cs" />
+    <Compile Include="DeleteTecnico.cs" />
+    <Compile Include="DeleteTerminoEnvio.cs" />
+    <Compile Include="DeleteTipoCotizacion.cs" />
+    <Compile Include="DeleteTipoEmpresa.cs" />
+    <Compile Include="DeleteTipoMovimiento.cs" />
+    <Compile Include="DeleteTipoPedimento.cs" />
+    <Compile Include="DeleteTransporte.cs" />
+    <Compile Include="DeleteUnidad.cs" />
+    <Compile Include="DeleteUsuarios.cs" />
+    <Compile Include="DepartamentoESModel.cs" />
+    <Compile Include="DepartamentoModel.cs" />
+    <Compile Include="EmpresaModel.cs" />
+    <Compile Include="EquipoModel.cs" />
+    <Compile Include="FacturaVentaModel.cs" />
+    <Compile Include="Historial\HistorialModel.cs" />
+    <Compile Include="IModelChangeTrack.cs" />
+    <Compile Include="InfraestructuraModel.cs" />
+    <Compile Include="InsertTipoEmpresaModel.cs" />
+    <Compile Include="InsertTransporteModel.cs" />
+    <Compile Include="ItemModel.cs" />
+    <Compile Include="ItemStatusModel.cs" />
+    <Compile Include="Login\LoginModel.cs" />
+    <Compile Include="Login\UsersInfo.cs" />
+    <Compile Include="LoteModel.cs" />
+    <Compile Include="MarcaModel.cs" />
+    <Compile Include="MaxMinModel.cs" />
+    <Compile Include="MedioEnvioModel.cs" />
+    <Compile Include="MenuModel.cs" />
+    <Compile Include="ModelBase.cs" />
+    <Compile Include="ModeloModel.cs" />
+    <Compile Include="MonedaModel.cs" />
+    <Compile Include="MovimientoDetalleModel.cs" />
+    <Compile Include="MovimientoGridModel.cs" />
+    <Compile Include="MovimientoModel.cs" />
+    <Compile Include="MovimientoSalidasModel.cs" />
+    <Compile Include="PaisModel.cs" />
+    <Compile Include="PedimentoModel.cs" />
+    <Compile Include="ProgramadoModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CatalogItemModel.cs" />
+    <Compile Include="PropiedadModel.cs" />
+    <Compile Include="ProveedorCuentaModel.cs" />
+    <Compile Include="ProveedorModel.cs" />
+    <Compile Include="ProyectoModel.cs" />
+    <Compile Include="Recibo\AlmacenModel.cs" />
+    <Compile Include="Recibo\FacturaCompraDetalleModel.cs" />
+    <Compile Include="Recibo\FacturaCompraModel.cs" />
+    <Compile Include="Recibo\IOrigenModel.cs" />
+    <Compile Include="Recibo\MovimientoModel.cs" />
+    <Compile Include="Recibo\OrigenClienteModel.cs" />
+    <Compile Include="Recibo\OrigenProveedorModel.cs" />
+    <Compile Include="Recibo\ReciboItemModel.cs" />
+    <Compile Include="Recibo\ReciboModel.cs" />
+    <Compile Include="Recibo\ReciboStatusModel.cs" />
+    <Compile Include="Recibo\TipoOrigenModel.cs" />
+    <Compile Include="RolModel.cs" />
+    <Compile Include="Seguridad\Rol.cs" />
+    <Compile Include="Seguridad\Usuario.cs" />
+    <Compile Include="ServicioModel.cs" />
+    <Compile Include="SolicitanteModel.cs" />
+    <Compile Include="TecnicoModel.cs" />
+    <Compile Include="TerminoEnvioModel.cs" />
+    <Compile Include="TipoCotizacionModel.cs" />
+    <Compile Include="TipoMovimientoModel.cs" />
+    <Compile Include="TipoPedimentoModel.cs" />
+    <Compile Include="TransporteModel.cs" />
+    <Compile Include="UltimoMovimientoModel.cs" />
+    <Compile Include="UnidadModel.cs" />
+    <Compile Include="UsuaioModel.cs" />
+    <Compile Include="UsuarioModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InventoryApp.DAL\InventoryApp.DAL.csproj">
+      <Project>{85AA51E1-F7B7-488C-A286-1E4015501512}</Project>
+      <Name>InventoryApp.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

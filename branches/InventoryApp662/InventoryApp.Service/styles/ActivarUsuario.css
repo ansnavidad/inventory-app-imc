@@ -1,0 +1,54 @@
+﻿body 
+{
+    background-color:#253E63;
+    
+}
+
+
+#divcentral 
+{
+    background-color:#778899;
+    text-align:center;
+    position:absolute;
+       font-family: Arial, Helvetica, sans-serif;
+    font-size:40px; color:white;
+    top: 55px;
+    left: 26px;
+     height: 96px;
+    width: 1216px;
+-moz-border-radius-topleft:30px;
+-moz-border-radius-topright:30px;
+-moz-border-radius-bottomleft:30px;
+-moz-border-radius-bottomright:30px;
+-webkit-border-top-left-radius:10px;
+-webkit-border-top-right-radius:10px;
+-webkit-border-bottom-left-radius:10px;
+-webkit-border-bottom-right-radius:10px;
+
+}
+
+#divinferior
+{ 
+    background-color:#708090;
+    border-color:white;
+         
+    text-align:center;
+    position:absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:40px; color:white;
+    top: 185px;
+    left: 22px;
+     height: 497px;
+    width: 1216px;
+-moz-border-radius-topleft:30px;
+-moz-border-radius-topright:30px;
+-moz-border-radius-bottomleft:30px;
+-moz-border-radius-bottomright:30px;
+-webkit-border-top-left-radius:10px;
+-webkit-border-top-right-radius:10px;
+-webkit-border-bottom-left-radius:10px;
+-webkit-border-bottom-right-radius:10px;
+
+    
+    }
+    

@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="InventoryApp.View.Recibo.CatalogReciboView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="300" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/WindowTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/DataGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../Style/Button.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Border  Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0,0,0,1" Style="{StaticResource titleBorder}" >
+            <Label Content="Recibos" Height="28" HorizontalAlignment="Left" Margin="2,0,0,0" Name="lblNameConsulta" Width="AUTO" Style="{StaticResource titleLabel}" />
+        </Border>
+        <Button  Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="162,4,13,3" Name="btnNuevo" VerticalAlignment="Stretch" 
+                 Width="75" Grid.Column="2" Command="{Binding AddReciboCmd}" Click="btnNuevo_Click" Style="{StaticResource btnElara}" />
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="1" CanUserDeleteRows="False"
+                  HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dtGridMoneda"
+                  SelectedItem="{Binding SelectedRecibo, Mode=TwoWay}"
+                  VerticalAlignment="Stretch" ItemsSource="{Binding Recibos}"
+                  Grid.Column="0" Grid.ColumnSpan="3"
+                  MouseDoubleClick="dtGridMoneda_MouseDoubleClick"
+                  Style="{StaticResource GridStyle}" RowStyle="{StaticResource RowStyle}" 
+                  ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
+            <DataGrid.Columns>
+                <!--<DataGridCheckBoxColumn x:Name="check"  MinWidth="50" Header="" SortMemberPath="IsSelected" Binding="{Binding Path=IsChecked,Mode=TwoWay}" />-->
+                <!--<DataGridTemplateColumn Header="" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" x:Name="RowCheckBox" IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
+                <DataGridTextColumn Header="Fecha Creación" Width="150" x:Name="fechaCreacion" 
+                                    Binding="{Binding FechaCreacion}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Folio" Width="150" x:Name="folio" 
+                                    Binding="{Binding UnidRecibo}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="PO" Width="150" x:Name="po" 
+                                    Binding="{Binding PO}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="TroubleTicket" Width="*" x:Name="tt" 
+                                    Binding="{Binding TroubleTicket}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

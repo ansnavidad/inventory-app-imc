@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+             DataContext="{StaticResource catalogInventarioFisicoViewModel}"
              d:DesignHeight="300" d:DesignWidth="600">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -30,16 +31,16 @@
         <Button  Content="Nuevo" Height="23" HorizontalAlignment="Stretch" Margin="161,4,14,3" Name="btnNuevo" VerticalAlignment="Stretch" 
                  Width="75" Grid.Column="2" Command="{Binding AddReciboCmd}" Style="{StaticResource btnElara}" />
         <DataGrid AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" Margin="0" Name="dtGridMovimiento"
-                  ItemsSource="{Binding InventarioCollection}"
-                  SelectedItem="{Binding SelectedInventario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                  ItemsSource="{Binding Inventarios}"
+                  SelectedItem="{Binding SelectedInventarioFisico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" RowStyle="{StaticResource RowStyle}" 
                   Style="{StaticResource GridStyle}" ColumnHeaderStyle="{StaticResource DatagridColumnHeaderStyle_Effects}">
             <DataGrid.Columns>
 
-                <DataGridTextColumn Header="Fecha de Captura" Width="*" x:Name="FechaCaptura" Binding="{Binding Path=Cantidad}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Almacén" Width="1*" x:Name="Almacen" Binding="{Binding Path=SelectedAlmacen.ALMACEN_NAME}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Status" Width="*" x:Name="Status" Binding="{Binding Path=Fecha}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Fecha de Cierre" Width="*" x:Name="FechaCierre" Binding="{Binding Path=Fecha}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Fecha de Captura" Width="*" x:Name="FechaCaptura" Binding="{Binding Path=FechaIni}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Almacén" Width="1*" x:Name="Almacen" Binding="{Binding Path=Almacen.AlmacenName}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Status" Width="*" x:Name="Status" Binding="{Binding Path=Status}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Fecha de Cierre" Width="*" x:Name="FechaCierre" Binding="{Binding Path=FechaFin}" IsReadOnly="True"/>
                 
                 <!--<DataGridTemplateColumn Header="Finalizado" Width="*" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>

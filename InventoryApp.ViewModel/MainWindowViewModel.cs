@@ -400,6 +400,9 @@ namespace InventoryApp.ViewModel
                     case "Inventarios Físicos ":
                       page = new CatalogInventario.CatalogInvViewModel(this.ActualUser);
                       break;
+                    case "inventario fisico test":
+                      page = new InventarioFisico.CatInventarioFisicoViewModel();
+                      break;
                     //Seguridad
                     case "Roles":
 

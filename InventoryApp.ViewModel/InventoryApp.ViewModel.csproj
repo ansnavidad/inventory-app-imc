@@ -197,6 +197,7 @@
     <Compile Include="GridMovimientos\MovimientosGridViewModel.cs" />
     <Compile Include="Historial\HistorialViewModel.cs" />
     <Compile Include="ILoadDatesViewModel.cs" />
+    <Compile Include="InventarioFisico\CatInventarioFisicoViewModel.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="IViewModelChangeTrack.cs" />
     <Compile Include="Job\JobViewModel.cs" />

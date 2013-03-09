@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.ObjectModel;
+using InventoryApp.DAL;
 
 namespace InventoryApp.Model.InventarioFisico
 {
-    public class InventarioFisicoModel: ModelBase
+    public class InventarioFisicoModel: ModelBase,IModelDataConverter
     {
+        private IDataMapper _DataMapper;
+
         public AlmacenModel Almacen
         {
             get { return _Almacen; }
@@ -69,20 +73,25 @@ namespace InventoryApp.Model.InventarioFisico
 
         public Int32 Cantidad
         {
-            get { return _Cantidad; }
-            set
-            {
-                if (_Cantidad != value)
+            get {
+                int _Cantidad = 0;
+                try
                 {
-                    _Cantidad = value;
-                    OnPropertyChanged(CantidadPropertyName);
+                    var res = (from o in this._Detalles
+                               select o.Cantidad).Sum();
+                    _Cantidad = res;
                 }
+                catch (Exception)
+                {
+
+                }
+
+                return _Cantidad;
             }
         }
-        private Int32 _Cantidad;
         public const string CantidadPropertyName = "Cantidad";
 
-        public InventarioFisico.InventarioFisicoDetalleModel Detalles
+        public ObservableCollection<InventarioFisicoDetalleModel> Detalles
         {
             get { return _Detalles; }
             set
@@ -94,7 +103,7 @@ namespace InventoryApp.Model.InventarioFisico
                 }
             }
         }
-        private InventarioFisico.InventarioFisicoDetalleModel _Detalles;
+        private ObservableCollection<InventarioFisicoDetalleModel> _Detalles;
         public const string DetallesPropertyName = "Detalles";
 
         public long unid
@@ -111,5 +120,63 @@ namespace InventoryApp.Model.InventarioFisico
         }
         private long _unid;
         public const string unidPropertyName = "unid";
+
+        public void AddDetalle(InventarioFisicoDetalleModel detalle)
+        {
+            if(this.Detalles!=null)
+            {
+                //Si ya existe el detalle
+                var res=(from o in this.Detalles
+                        where o.Item.UnidItem==detalle.Item.UnidItem
+                        select o).First();
+
+                //El elemento ya existe. Hay que sumar a la cantidad
+                if(res!=null)
+                {
+                    res.Cantidad+=detalle.Cantidad;
+                }
+                else
+                {
+                    this.Detalles.Add(detalle);
+                }
+            }
+        }
+
+        #region Constructor Logic
+        public InventarioFisicoModel()
+        {
+            this.init();
+        }
+
+        public void init()
+        {
+            this._Detalles = new ObservableCollection<InventarioFisicoDetalleModel>();
+            this._unid = UNID.getNewUNID();
+            this._FechaIni = DateTime.Now;
+            this._Status = false;
+        }
+        #endregion
+
+        #region DataAccessFunctions
+        public void Load(long unid)
+        {
+        }
+
+        public void Save()
+        {
+        } 
+        #endregion
+
+        #region IModelDataConverter
+        public object ConvertTo()
+        {
+            throw new NotImplementedException();
+        }
+
+        public object ConvertBack(object data)
+        {
+            throw new NotImplementedException();
+        } 
+        #endregion
     }
 }

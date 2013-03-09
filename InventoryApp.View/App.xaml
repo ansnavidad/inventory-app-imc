@@ -143,6 +143,10 @@
              xmlns:catRolSystemViewModel="clr-namespace:InventoryApp.ViewModel.CatalogRolSystem;assembly=InventoryApp.ViewModel"
              xmlns:rolSystemViews="clr-namespace:InventoryApp.View.CatalogRolSystem"    
              
+             xmlns:catInventarioFisicoViewModel="clr-namespace:InventoryApp.ViewModel.InventarioFisico;assembly=InventoryApp.ViewModel"
+             xmlns:catInventarioFisicoView="clr-namespace:InventoryApp.View.InventarioFisico"
+             
+             
              StartupUri="Login/LoginView.xaml"
              >
     <!--StartupUri="prueba.xaml"-->
@@ -454,6 +458,9 @@
         <ObjectDataProvider x:Key="catalogRolSystemViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
                             MethodName="GetCurrentPage" x:Shared="False"/>
 
+        <ObjectDataProvider x:Key="catalogInventarioFisicoViewModel" ObjectInstance="{StaticResource mainWindowViewModel}"
+                            MethodName="GetCurrentPage" x:Shared="False"/>
+
         <!--CONVERTERS-->
         <rootViewModel:BoolToVisibilityValueConverter x:Key="boolVisibilityConverter" />
         
@@ -680,5 +687,8 @@
             <inventarioCatalogView:CatalogInv/>
         </DataTemplate>
         
+        <DataTemplate DataType="{x:Type catInventarioFisicoViewModel:CatInventarioFisicoViewModel}">
+            <catInventarioFisicoView:InventarioFisicoView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

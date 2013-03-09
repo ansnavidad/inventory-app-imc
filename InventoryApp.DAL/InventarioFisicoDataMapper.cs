@@ -6,7 +6,7 @@ using InventoryApp.DAL.POCOS;
 
 namespace InventoryApp.DAL
 {
-    public class InventarioFisicoDataMapper : IDataMapper   
+    public class InventarioFisicoDataMapper : IDataMapper
     {
         public object getElements()
         {
@@ -38,7 +38,7 @@ namespace InventoryApp.DAL
             throw new NotImplementedException();
         }
 
-        public void Insert(POCOS.INVENTARIO_FISICO inventarioFisico)
+        public void Upsert(POCOS.INVENTARIO_FISICO inventarioFisico)
         {
             if (inventarioFisico != null)
             {
@@ -50,11 +50,10 @@ namespace InventoryApp.DAL
                     {
                         invFisico.UNID_ALMACEN = inventarioFisico.UNID_ALMACEN;
                         invFisico.FECHA_FIN = inventarioFisico.FECHA_FIN;
-
-
-                        //Sfisiync
+                        invFisico.IS_ACTIVE = true;
+                        invFisico.FECHA_INICIO = inventarioFisico.FECHA_INICIO;
+                        invFisico.IS_FINALIZADO = inventarioFisico.IS_FINALIZADO;
                         invFisico.IS_MODIFIED = true;
-                        //invFisico.IS_ACTIVE = true;
                         invFisico.LAST_MODIFIED_DATE = UNID.getNewUNID();
 
                         var modifiedSync = Entity.SYNCs.FirstOrDefault(p => p.UNID_SYNC == 20120101000000000);
@@ -63,9 +62,7 @@ namespace InventoryApp.DAL
                             modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
                         }
 
-                        //
                         Entity.SaveChanges();
-                        //UNID.Master(recibo, u, -1, "Modificación");
                     }
                     else
                     {
@@ -73,6 +70,51 @@ namespace InventoryApp.DAL
                         Entity.SaveChanges();
                     }
                 }
+            }
+        }
+
+        public void Delete(POCOS.INVENTARIO_FISICO inventarioFisico)
+        {
+            if (inventarioFisico != null)
+            {
+                POCOS.INVENTARIO_FISICO invFisico;
+                using (var Entity = new TAE2Entities())
+                {
+                    invFisico = Entity.INVENTARIO_FISICO.FirstOrDefault(o => o.UNID_INVENTARIO_FISICO == inventarioFisico.UNID_INVENTARIO_FISICO);
+                    if (invFisico != null)
+                    {
+                        invFisico.IS_ACTIVE = false;
+                        invFisico.IS_MODIFIED = true;
+                        invFisico.LAST_MODIFIED_DATE = UNID.getNewUNID();
+                        var modifiedSync = Entity.SYNCs.First(p => p.UNID_SYNC == 20120101000000000);
+                        modifiedSync.ACTUAL_DATE = UNID.getNewUNID();
+                        Entity.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public List<VW_GET_INVENTARIO_FISICO> getElementsView()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.VW_GET_INVENTARIO_FISICO
+                           orderby p.UNID_INVENTARIO_FISICO descending
+                           select p).ToList();
+                return res;
+            }
+        }
+
+        public List<INVENTARIO_FISICO> getElementsWithDetails()
+        {
+            using (var Entity = new TAE2Entities())
+            {
+                var res = (from p in Entity.INVENTARIO_FISICO
+                               .Include("ALMACEN")
+                               .Include("INVENTARIO_FISICO_DET")
+                           orderby p.UNID_INVENTARIO_FISICO descending
+                           select p).ToList();
+                return res;
             }
         }
     }
